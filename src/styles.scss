@@ -1,0 +1,145 @@
+
+/* Root variables formatting */
+:root {
+	--accent1: #ff0582;
+	--accent2: #8c00ff;
+	--accent4: #00a4ff;
+	--accent5: #0bffff;
+	--accent6: #00ff59;
+	--accent3: #ffcc00;
+	--accent7: #ff8800;
+	--accent8: #5d5d5d;
+	--accent9: #ffffff;
+
+	--background:           rgb( 0, 0, 0);
+	--backgroundTrans:      rgba(0, 0, 0, 0.6);
+	--textColour: 			#efefef;
+	--imageBlurring: 	    2px;
+}
+
+/* document formatting */
+
+html, body {
+	overflow-x: hidden;
+}
+
+* {
+	scrollbar-color:    var(--accent2) transparent;
+	scrollbar-width:    thin;
+
+	&::-webkit-scrollbar {
+		width: 			var(--innerRaidus);}
+	&::-webkit-scrollbar-track {
+		background: 	var(--backgroundAccent2);}
+	&::-webkit-scrollbar-thumb {
+		border-radius: 	2px;
+		border: 		1px solid var(--background);
+		background: 	var(--accent2);}
+	&::-webkit-scrollbar-thumb:hover {
+		background: 	var(--darkAccent1);}
+}
+
+body {
+	min-height: 100vh;
+	margin: 	0;
+	position:   relative;
+
+	background:		#000;
+	font-family:    "Georgia", serif;
+	color:	 		var(--textColour);
+
+	overflow-x:         hidden;
+	scroll-behavior: 	smooth;
+	cursor: 			crosshair;
+
+	::selection {
+		color:              black;
+		background-color: 	var(--accent2);}
+}
+
+/* style formatting */
+
+a {
+	text-decoration: none;
+	color: var(--accent1);
+}
+
+p {
+	font-size:      13px;
+	color:	 		var(--textColour);
+	margin: 		0;
+}
+
+h1, h2, h3, h4, h5 {
+	vertical-align: middle;
+	font-family:    "Playfair Display", serif;
+	line-height:    100%;
+
+	color:          var(--textColour);
+
+	position:   relative;
+	margin:     0;
+	padding:    0;
+}
+
+h1 {font-size: 2rem;}
+h2 {font-size: 1.75rem;}
+h3 {font-size: 1.5rem;}
+h4 {font-size: 1.25rem;}
+h5 {font-size: 1.1rem;}
+
+/* mark formatting */
+
+@mixin customFontColour($colour){
+	color:          $colour;
+	&::selection {
+		color: black;
+		background-color: 	$colour!important;}}
+
+p {
+	@include customFontColour(var(--textColour));}
+strong {
+	font-weight: 	bolder;
+	@include customFontColour(var(--accent2));}
+accent {
+	@include customFontColour(var(--accent4));}
+
+sub, sup {
+	font-size:      0.6em;
+	line-height:    100%;}
+
+/* list formatting */
+
+ul {
+	margin: 10px 0 0 0;
+	padding: 0 0 0 10px;
+
+	li {
+		padding:        0 0 5px 5px;
+		line-height:    100%;
+
+		font-family:    "Helvetica", Sans-serif;
+		font-size:      12px;
+
+		&::marker {
+			font-weight: 	700;
+			line-height: 	100%;
+			vertical-align: middle;
+			font-size: 	   .85em;}}
+
+	&.bullet li {
+		&::marker {
+			color: 	var(--accent1);}}
+	&.number li {
+		list-style-type: 	decimal;
+		&::marker {
+			color: 	var(--accent2);}}
+	&.numeral li {
+		list-style-type: 	lower-roman;
+		&::marker {
+			color: 	var(--accent2);}}
+	&.letter li {
+		list-style-type: 	lower-latin;
+		&::marker {
+			color: 	var(--accent2);}}
+}
