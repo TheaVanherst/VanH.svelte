@@ -16,15 +16,16 @@
 		&.borders {
 			border: 	1px solid var(--accent2);
 			border-top-color: 		transparent;
-			border-bottom-color: 	transparent;}
+			border-bottom-color: 	transparent;
+		}
 
 		margin-bottom: 	15px;
 
 		* {
 			color:	var(--textColour);
 			&::selection {
-				color: black;
-				background-color: var(--accent2) !important;
+				color: 		black;
+				background: var(--accent2) !important;
 			}
 		}
 	}

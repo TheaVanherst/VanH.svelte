@@ -14,9 +14,12 @@
     	// this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
 		// this prevents having to do if statements that constantly get fucked with a lot.
 		// tldr; "theoretically" should be more optimal and generally easier to write for.
+
+	$: console.log($scrollPos)
 </script>
 
-<svelte:window bind:scrollY={$scrollPos} bind:innerWidth={$screenSize} />
+<svelte:window  bind:innerWidth={$screenSize}/>
+<svelte:body bind:scrollY={$scrollPos}/>
 <Background/>
 
 {#if $screenSize !== 0}

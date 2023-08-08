@@ -36,28 +36,38 @@
 	$fontSize: 40px;
 	$gapSize: 10px;
 
-	* { transition: ease .5s;}
+	* {
+		transition: ease .5s;
+	}
 
-	h1, h2 {
-		height: max-content;}
+	h1,
+	h2 {
+		height: 	max-content;
+	}
 
 	.icon {
 		&.textVis {
 			img {
-				position: relative;
-				margin-left: -4px;
-				margin-bottom: 15px;
-				width: 	30px;}}
+				position: 	relative;
+				width: 		30px;
+
+				margin-left: 	-4px;
+				margin-bottom: 	15px;
+			}
+		}
 		&.textHidden {
 			.divider {
 				display: flex;
 			}
 			img {
-				margin: auto 0;
-				z-index: 10;
-				height: 40px;}
+				margin: 	auto 0;
+				z-index: 	10;
+				height: 	40px;
+			}
 			h2 {
-				width: 	30px;}}
+				width: 	30px;
+			}
+		}
 	}
 
 	.offset {
@@ -65,24 +75,28 @@
 
 		.divider {
 			border-left: 	3px solid var(--accent2);
+			background: 	var(--backgroundTrans);
+
 			padding-left: 	15px;
 			margin-bottom: 	15px;
-			background-color: 	var(--backgroundTrans);
 
 			h2 {
 				text-transform:	uppercase;
-				padding: 		6px 10px 10px 10px;}}}
+				padding: 		6px 10px 10px 10px;
+			}
+		}
+	}
 
 	.sideBar {
-		position: relative;
-		display: inline-grid; // this fixes a bug relating to the flex parent -
-		// for some reason not specifying this breaks shit.
+		position: 	relative;
+		display: 	inline-grid;
 
 		h1 {
 			writing-mode: 		vertical-rl;
 			text-orientation: 	mixed;
 			text-transform: 	uppercase;
-			margin-top:			$gapSize;}
+			margin-top:			$gapSize;
+		}
 	}
 
 	.wrapper {
@@ -90,11 +104,17 @@
 
 		&.textVis {
 			gap: 		$gapSize;
-			.offset { width: 	calc(100% - $fontSize - $gapSize);}}
+			.offset {
+				width: 	calc(100% - 2rem - $gapSize);
+			}
+		}
 
 		&.textHidden {
 			gap: 		0;
-			.offset { width: 	100%;}} // this is required to keep the animation type consistant.
+			.offset {
+				width: 	100%;
+			}
+		}
 	}
 
 </style>

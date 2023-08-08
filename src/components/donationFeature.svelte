@@ -52,22 +52,25 @@
 			margin-bottom: 	25px;
 
 			&.stack {
-				width: 100%;}}
+				width: 100%;
+			}
+		}
 
 		.box {
 			display: 	flex;
-			position: 	relative;
 
 			border-radius: 		5px;
 			border: 			1px solid var(--accent9);
 			background: 		var(--backgroundTrans);
 
 			font-size: 	12px;
-			width: 		100%;
 			padding: 	10px;
 			&::selection {
 				color:              black;
-				background-color: 	var(--accent9);}}}
+				background-color: 	var(--accent9);
+			}
+		}
+	}
 
 	.imageShowcase {
 		margin: 	-15px 0 -70px -57px;
@@ -77,7 +80,9 @@
 
 		> img {
 			width: 			300px;
-			padding-bottom: 10px;}}
+			padding-bottom: 10px;
+		}
+	}
 
 	.citation {
 		border: 		1px solid var(--accent8);
@@ -91,23 +96,28 @@
 		&::before,
 		&::after {
 			position: 	absolute;
-			font-size: 	55px;}
+			font-size: 	55px;
+		}
 
 		&::before {
 			content: 	open-quote;
-			margin: 	-25px 0 0 -25px;}
+			margin: 	-25px 0 0 -25px;
+		}
 		&::after {
 			content: 	close-quote;
 			margin: 	0 5px -25px 0;
 			right: 		0px;
-			bottom: 	0px;}
+			bottom: 	0px;
+		}
 
 		p.text {
 			font-size: 		12px;
 			padding-bottom: 9px;
 
 			&:last-of-type {
-				padding-bottom: 0;}}
+				padding-bottom: 0;
+			}
+		}
 	}
 
 	.closeQuote {
@@ -119,23 +129,29 @@
 		justify-content: 	center;
 
 		> * {
-			margin: auto 0;}
+			margin: auto 0;
+		}
 
 		p {
-			font-size: 		19px;}
+			font-size: 		19px;
+		}
 
 		img {
 			width: 70px;
 			height: 70px;
-			margin: -30px -20px -20px 8px;}
+			margin: -30px -20px -20px 8px;
+		}
 	}
 
 	@keyframes float {
 		0% {
-			transform: translatey(-20px);}
+			transform: translatey(-20px);
+		}
 		50% {
-			transform: translatey(0px);}
+			transform: translatey(0px);
+		}
 		100% {
-			transform: translatey(-20px);}
+			transform: translatey(-20px);
+		}
 	}
 </style>

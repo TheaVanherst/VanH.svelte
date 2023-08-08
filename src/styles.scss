@@ -2,8 +2,8 @@
 /* Root variables formatting */
 :root {
 	--accent1: #ff0582;
+	--accent4: #ff00fb;
 	--accent2: #8c00ff;
-	--accent4: #00a4ff;
 	--accent5: #0bffff;
 	--accent6: #00ff59;
 	--accent3: #ffcc00;
@@ -19,7 +19,8 @@
 
 /* document formatting */
 
-html, body {
+html,
+body {
 	overflow-x: hidden;
 }
 
@@ -60,8 +61,8 @@ body {
 /* style formatting */
 
 a {
-	text-decoration: none;
-	color: var(--accent1);
+	text-decoration:    none;
+	color:              var(--accent1);
 }
 
 p {
@@ -70,7 +71,7 @@ p {
 	margin: 		0;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4 {
 	vertical-align: middle;
 	font-family:    "Playfair Display", serif;
 	line-height:    100%;
@@ -86,33 +87,39 @@ h1 {font-size: 2rem;}
 h2 {font-size: 1.75rem;}
 h3 {font-size: 1.5rem;}
 h4 {font-size: 1.25rem;}
-h5 {font-size: 1.1rem;}
 
 /* mark formatting */
 
 @mixin customFontColour($colour){
 	color:          $colour;
 	&::selection {
-		color: black;
-		background-color: 	$colour!important;}}
+		color:      black;
+		background: $colour!important;
+	}
+}
 
 p {
-	@include customFontColour(var(--textColour));}
+	@include customFontColour(var(--textColour));
+}
 strong {
 	font-weight: 	bolder;
-	@include customFontColour(var(--accent2));}
+	@include customFontColour(var(--accent2));
+}
 accent {
-	@include customFontColour(var(--accent4));}
+	@include customFontColour(var(--accent4));
+}
 
-sub, sup {
+sub,
+sup {
 	font-size:      0.6em;
-	line-height:    100%;}
+	line-height:    100%;
+}
 
 /* list formatting */
 
 ul {
-	margin: 10px 0 0 0;
-	padding: 0 0 0 10px;
+	margin:     10px 0 0 0;
+	padding:    0 0 0 10px;
 
 	li {
 		padding:        0 0 5px 5px;
@@ -125,21 +132,31 @@ ul {
 			font-weight: 	700;
 			line-height: 	100%;
 			vertical-align: middle;
-			font-size: 	   .85em;}}
+			font-size: 	   .85em;
+		}
+	}
 
 	&.bullet li {
 		&::marker {
-			color: 	var(--accent1);}}
+			color: 	var(--accent1);
+		}
+	}
 	&.number li {
 		list-style-type: 	decimal;
 		&::marker {
-			color: 	var(--accent2);}}
+			color: 	var(--accent2);
+		}
+	}
 	&.numeral li {
 		list-style-type: 	lower-roman;
 		&::marker {
-			color: 	var(--accent2);}}
+			color: 	var(--accent2);
+		}
+	}
 	&.letter li {
 		list-style-type: 	lower-latin;
 		&::marker {
-			color: 	var(--accent2);}}
+			color: 	var(--accent2);
+		}
+	}
 }

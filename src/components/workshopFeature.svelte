@@ -2,7 +2,7 @@
     import Container 			from "./generic/container.svelte";
 
     import WorkshopCard from "./sections/workshopCard.svelte";
-	import { workshopData } from "$lib/databases/workshopDatabase.js";
+	import { workshopArray } from "$lib/databases/workshopDatabase.js";
     import { screenType } 	from '$lib/accessibilityController.js';
 
     import { register } from 'swiper/element/bundle';
@@ -14,7 +14,7 @@
 	<swiper-container
 			slides-per-view="{$screenType}"
 			navigation="true" pagination="true" space-between={5}>
-		{#each workshopData as workshopItem}
+		{#each workshopArray as workshopItem}
 			<swiper-slide>
 				<WorkshopCard dataEntry={workshopItem}/>
 			</swiper-slide>
