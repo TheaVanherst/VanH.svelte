@@ -12,6 +12,9 @@ const questionDatabase = [
         submittedby: "Stella",
         question: "Whom inspires you the most as an artist?",
         answer: "I don't really have typical inspirations like artists and the longer I am an artist the less likely I am to cling onto anyone specifically. Dispite that; Cherax Destructor is probably one of the only idols I've ever had, I adore her music and aspire to have vibes like her."
+    },{
+        question: "Can I draw one of your characters?",
+        answer: "Of course! As long as you don't take credit for the design of the character, and try your best to treat my characters with respect, you're more than fine to do so. Though, I would highly appreciate mentioning or forwarding the artwork to me of course."
     }
 ]
 

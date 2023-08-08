@@ -34,7 +34,7 @@
 							{/if}
 							{#if characterData.sexuality}
 								<p id="sexuality">
-									<span>Sexuality</span>: {characterData.sexuality}
+									<span>Sexuality</span>:{characterData.sex} {characterData.sexuality}
 								</p>
 							{/if}
 							{#if characterData.partner}

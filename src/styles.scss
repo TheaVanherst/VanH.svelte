@@ -94,20 +94,14 @@ h4 {font-size: 1.25rem;}
 	color:          $colour;
 	&::selection {
 		color:      black;
-		background: $colour!important;
-	}
+		background: $colour!important;}
 }
 
 p {
-	@include customFontColour(var(--textColour));
-}
+	@include customFontColour(var(--textColour));}
 strong {
 	font-weight: 	bolder;
-	@include customFontColour(var(--accent2));
-}
-accent {
-	@include customFontColour(var(--accent4));
-}
+	@include customFontColour(var(--accent2));}
 
 sub,
 sup {
@@ -138,25 +132,17 @@ ul {
 
 	&.bullet li {
 		&::marker {
-			color: 	var(--accent1);
-		}
-	}
+			color: 	var(--accent1);}}
 	&.number li {
 		list-style-type: 	decimal;
 		&::marker {
-			color: 	var(--accent2);
-		}
-	}
+			color: 	var(--accent2);}}
 	&.numeral li {
 		list-style-type: 	lower-roman;
 		&::marker {
-			color: 	var(--accent2);
-		}
-	}
+			color: 	var(--accent2);}}
 	&.letter li {
 		list-style-type: 	lower-latin;
 		&::marker {
-			color: 	var(--accent2);
-		}
-	}
+			color: 	var(--accent2);}}
 }

@@ -1,4 +1,10 @@
 
+const sexes = {
+    male: "♀️",
+    female: "♂️",
+    intersex: "⚧"
+}
+
 // name on the url button // path it takes you to // internal references via. CMS & what to search for.
 const characterList = [
     {
@@ -6,6 +12,7 @@ const characterList = [
         fullName:   "Valentina Goss",
         path:       "Valentina.webp",
         nationality:    "Austrian",
+        sex:            sexes.male,
         sexuality:      "Lesbian",
         partner:        "Izabela",
         cannonHeight:   "6'4",
@@ -18,7 +25,8 @@ const characterList = [
         fullName:   "Yumi Myeong",
         path:       "Yumi.webp",
         nationality:    "Korean",
-        sexuality:      "Demisexual, Butch, Lesbian",
+        sex:            sexes.female,
+        sexuality:      "Demisexual, Lesbian",
         partner:        "Vahn",
         cannonHeight:   "12'9",
         nonCanHeight:   "24'",
@@ -31,6 +39,7 @@ const characterList = [
         fullName:   "Izabela Deblanc",
         path:       "Izabela.webp",
         nationality:    "French / Polish Lithuanian",
+        sex:            sexes.female,
         sexuality:      "Bisexual",
         partner:        "Vastra, Valentina",
         cannonHeight:   "9'4 - 11'4",
@@ -44,7 +53,8 @@ const characterList = [
         fullName:   "Vahn Charette Der-spar",
         path:       "Vahn.webp",
         nationality:    "Sri Lanka / British",
-        sexuality:      "Transexual, Ace, Lesbian",
+        sex:            sexes.male + sexes.male,
+        sexuality:      "Ace, Lesbian",
         partner:        "Yumi",
         cannonHeight:   "7'4",
         nonCanHeight:   "9'7",
@@ -57,6 +67,7 @@ const characterList = [
         fullName:   "Mother of Sol",
         path:       "Bastet.webp",
         nationality:    "Unknown",
+        sex:            sexes.female,
         sexuality:      "Unknown",
         partner:        "Daughters of the Nile",
         cannonHeight:   "4,473,000,000km",
@@ -69,6 +80,7 @@ const characterList = [
         fullName:   "Madame Vastra",
         path:       "Vastra.webp",
         nationality:    "Cuban",
+        sex:            sexes.male,
         sexuality:      "Queer, Dom",
         partner:        "Izabela",
         cannonHeight:   "5'8 - 16'4",
