@@ -1,9 +1,12 @@
 <script>
-    import Container 			from "./generic/container.svelte";
+    import scss from "./generic/swiperPreset.scss";
 
-    import WorkshopCard from "./sections/workshopCard.svelte";
-	import { workshopArray } from "$lib/databases/workshopDatabase.js";
-    import { screenType } 	from '$lib/accessibilityController.js';
+    import Container 		from "./generic/container.svelte";
+    import WorkshopCard 	from "./sections/workshopCard.svelte";
+    import WorkshopSnippet 	from "./sections/workshopSnippet.svelte";
+
+	import { workshopArray, workshopMinatureArray } from "$lib/databases/workshopDatabase.js";
+    import { screenType, screenSize } 	from '$lib/accessibilityController.js';
 
     import { register } from 'swiper/element/bundle';
 
@@ -11,45 +14,42 @@
 </script>
 
 <Container>
-	<swiper-container
-			slides-per-view="{$screenType}"
-			navigation="true" pagination="true" space-between={5}>
-		{#each workshopArray as workshopItem}
-			<swiper-slide>
-				<WorkshopCard dataEntry={workshopItem}/>
-			</swiper-slide>
-		{/each}
-	</swiper-container>
+	<div class="caro">
+		<swiper-container
+				slides-per-view="{$screenType}"
+				navigation="true" pagination="true" space-between={5}>
+			{#each workshopArray as workshopItem}
+				<swiper-slide>
+					<WorkshopCard dataEntry={workshopItem}/>
+				</swiper-slide>
+			{/each}
+		</swiper-container>
+	</div>
+	<div class="caro offset">
+		<swiper-container
+				slides-per-view={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
+				navigation="true">
+			{#each workshopMinatureArray as workshopItem}
+				<swiper-slide>
+					<WorkshopSnippet item={workshopItem}/>
+				</swiper-slide>
+			{/each}
+		</swiper-container>
+	</div>
 </Container>
 
 <style lang="scss">
 	* {
-		transition: ease .3s;}
+		transition: ease .3s;
+	}
 
-	swiper-container::part(button-prev),
-	swiper-container::part(button-next) {
-		width: 		10px;
-		height: 	40px;
-		padding: 	5px;
+	.offset {
+		margin: 	5px 10px 15px 10px;
+		position: 	relative;
+	}
 
-		border-radius: 		3px;
-		background-color: 	var(--backgroundTrans);
-		backdrop-filter: 	blur(var(--imageBlurring));
-		color: 				white!important;
-
-	&:hover {
-		 background: var(--accent2);}}
-	swiper-container::part(bullet),
-	swiper-container::part(bullet-active) {
-		backdrop-filter: 	blur(var(--imageBlurring));
-		border-radius: 		1px;
-		width: 	35px;
-		height: 3px;}
-	swiper-container::part(bullet) {
-		background: white;
-		transition: ease opacity .3s;
-		filter:		drop-shadow(0px 0px 0.8px var(--accent0));}
-	swiper-container::part(bullet-active) {
-		background: var(--accent2);
-		filter: 	drop-shadow(0px 0px 0.8px var(--accent2));}
+	.caro {
+		border-radius:	5px;
+		overflow: 		hidden;
+	}
 </style>

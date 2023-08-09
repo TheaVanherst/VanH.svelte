@@ -39,9 +39,10 @@
 
 			padding: 		7px 0;
 			margin: 		0 auto;
+			width: 			max-content;
+
 			text-align: 	center;
 			display: 		flex;
-			width: 			max-content;
 
 			&:not(:only-child){
 				&:first-child{

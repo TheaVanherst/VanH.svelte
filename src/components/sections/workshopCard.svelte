@@ -3,10 +3,7 @@
 	let active = false;
 </script>
 
-<a href={dataEntry.url} target="_blank"
-   class="{active ? 'hovered' : ''}"
-   	on:mouseenter={() => {active = true;}}
-   	on:mouseleave={() => {active = false;}}>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id={dataEntry.url}" target="_blank">
 	<div class="workshopItem">
 		<h4 class="title">
 			{dataEntry.name}
@@ -26,7 +23,7 @@
 				<div class="developers">
 					By:&nbsp;
 					{#each dataEntry.authors as author, i}
-						<a class="author" href={author.url}>
+						<a class="author" href={author.website}>
 							{author.name}
 						</a>
 						{#if i < dataEntry.authors.length - 1}
@@ -42,7 +39,7 @@
 <style lang="scss">
 	* {	transition: .5s ease;}
 
-	.hovered {
+	a:hover {
 		.workshopItem {
 			.title {
 				filter:
@@ -75,17 +72,14 @@
 	.workshopItem {
 		position: 		relative;
 		overflow: 		hidden;
-		border-top: 	1px solid var(--accent8);
-		border-bottom: 	1px solid var(--accent8);
-
-		border-left: 	transparent;
-		border-right: 	transparent;
 		width: 			calc(100%);
 
 		img {
-			width:	100%;
-			border-radius: 5px;
-			overflow: hidden;
+			width:			100%;
+			border-radius: 	5px;
+
+			overflow: 		hidden;
+			vertical-align: bottom;
 		}
 
 		h4 {
@@ -98,11 +92,12 @@
 	}
 
 	.workshopData {
-		padding:		5px 10px;
 		.description {
 			font-family:	"Helvetica", Sans-serif;
-			margin-bottom: 	10px;
 			line-height: 	1rem;
+
+			padding: 		10px 10px 0 10px;
+			margin-bottom: 	10px; // required for the text overflow to behave.
 
 			display: 		-webkit-box;
 			overflow: 		hidden;
@@ -117,14 +112,14 @@
 			}
 
 			border-top: 	1px solid var(--accent8);
-			padding: 		5px 0 18px 0;
+			padding: 		5px 10px 27px 10px;
 
 			.game {
 				display: 		flex;
 				margin-bottom: 	3px;
 
 				img {
-					border-radius: 	2px;
+					border-radius: 	3px;
 					overflow: 		hidden;
 
 					width: 	22px;

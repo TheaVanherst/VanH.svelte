@@ -4,15 +4,20 @@
     import SidebarTexts 	from "../components/generic/sidebarTexts.svelte";
 
 	import CharacterFeature from "../components/characterFeature.svelte";
+    import WorkshopFeature from "../components/workshopFeature.svelte";
+    import GithubFeature 	from "../components/githubFeature.svelte";
     import DonationFeature 	from "../components/donationFeature.svelte";
     import QandaFeature 	from "../components/qandaFeature.svelte";
-    import WorkshopFeature from "../components/workshopFeature.svelte";
 
     import navigation 	from '$lib/databases/navigationDirectories.js';
 </script>
 
 <SidebarTexts titlecard="Characters" icon="furaffinityLogo.webp">
 	<CharacterFeature/>
+</SidebarTexts>
+
+<SidebarTexts titlecard="Github" icon="githubLogo.webp">
+	<GithubFeature/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Workshop" icon="steamLogo.webp">
@@ -36,14 +41,34 @@
 		{/each}
 	</div>
 	<div class="right">
-		<p>	All featured artwork is drawn and created by Thea Vanherst </p>
-		<p>	Website developed and created by Thea Vanherst @ <span>vanh.art</span> </p>
+		<p>
+			All featured artwork is drawn and created by Thea Vanherst
+		</p>
+		<p>
+			Website developed and created by Thea Vanherst @ <span>vanh.art</span>
+		</p>
 	</div>
 </div>
 
 <style lang="scss">
 	span {
 		color: var(--accent9);
+	}
+
+	.cropped {
+		width: 	calc(100% + 30px)!important;
+		margin: 15px -15px 0 -15px!important;
+	}
+
+	.mobile {
+		display: block;
+
+		> * {
+			margin: 0 auto!important;
+		}
+
+		.right {
+			display: none;}
 	}
 
 	.footer {
@@ -55,22 +80,6 @@
 		margin: 	15px 0 0 0;
 
 		transition: ease .3s;
-
-		&.cropped {
-			width: 	calc(100% + 30px)!important;
-			margin: 15px -15px 0 -15px!important;
-		}
-
-		&.mobile {
-			display: block;
-
-			> * {
-				margin: 0 auto!important;
-			}
-
-			.right {
-				display: none;}
-		}
 
 		.left {
 			margin: 0 15px 0 15px;

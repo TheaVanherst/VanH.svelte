@@ -21,29 +21,43 @@
 						{characterData.fullName}
 					</h4>
 
-					<!-- About -->
-					{#if characterData.sexuality || characterData.partner || characterData.nationality}
-						<p class="descriptionTitle">
-							About
-						</p>
-						<div class="description">
-							{#if characterData.nationality}
-								<p id="nationality">
-									<span>Nationality</span>: {characterData.nationality}
-								</p>
-							{/if}
-							{#if characterData.sexuality}
-								<p id="sexuality">
-									<span>Sexuality</span>:{characterData.sex} {characterData.sexuality}
-								</p>
-							{/if}
-							{#if characterData.partner}
-								<p id="partner">
-									<span>Partner(s)</span>: {characterData.partner}
-								</p>
-							{/if}
-						</div>
-					{/if}
+					<p class="descriptionTitle">
+						Origin
+					</p>
+
+					<div class="description">
+						{#if characterData.nationality}
+							<p id="nationality">
+								<span>Nationality</span>: {characterData.nationality}
+							</p>
+						{/if}
+						{#if characterData.timePeriod}
+							<p id="timePeriod">
+								<span>Time period</span>: {characterData.timePeriod}
+							</p>
+						{/if}
+						{#if characterData.age}
+							<p id="age">
+								<span>Age</span>: {characterData.age}
+							</p>
+						{/if}
+					</div>
+
+					<p class="descriptionTitle">
+						About
+					</p>
+					<div class="description">
+						{#if characterData.sexuality}
+							<p id="sexuality">
+								<span>Sexuality</span>:{characterData.sex} {characterData.sexuality}
+							</p>
+						{/if}
+						{#if characterData.partner}
+							<p id="partner">
+								<span>Partner(s)</span>: {characterData.partner}
+							</p>
+						{/if}
+					</div>
 
 					<!-- Heights -->
 					<p class="descriptionTitle">
@@ -51,16 +65,16 @@
 					</p>
 					<div class="description">
 						<p id="cannonHeight">
-							<span>Cannon</span>: {characterData.cannonHeight}
+							<span>Canon</span>: {characterData.canonHeight}
 						</p>
 						{#if characterData.nonCanHeight}
 							<p id="nonCannonHeight">
-								<span>Non-cannon</span>: {characterData.nonCanHeight}
+								<span>Non-canon</span>: {characterData.nonCanHeight}
 							</p>
 						{/if}
-						{#if characterData.beastarCannon}
+						{#if characterData.beastarCanon}
 							<p id="beastarCannonHeight">
-								<span>Beastars Cannon</span>: {characterData.beastarCannon}
+								<span>Beastars Canon</span>: {characterData.beastarCanon}
 							</p>
 						{/if}
 					</div>
@@ -86,7 +100,7 @@
 						</p>
 					{/if}
 					{#if characterData.creationDate[0]}
-						<div class="partition">
+						<div class="description">
 							<p id="creationDate">
 								<span>Creation Date</span>: {characterData.creationDate[0]}
 							</p>
@@ -138,7 +152,6 @@
 		.showcase {
 			display: 			flex;
 			justify-content: 	center;
-			position: 			relative;
 			background: 		black;
 
 			height: 			550px;
@@ -155,8 +168,6 @@
 
 		position: 		absolute;
 		overflow-y:		scroll;
-
-		backdrop-filter: 	blur(var(--imageBlurring));
 
 		.wrapper {
 			padding: 	15px 15px 25px 15px;
@@ -180,14 +191,16 @@
 
 		#nationality, #beastarCannonHeight {
 			@include cfc(var(--accent1),black);}
-		#cannonHeight {
+		#cannonHeight, #timePeriod {
 			@include cfc(var(--accent7),black);}
-		#partner, #IterationsDate {
+		#IterationsDate, #age {
 			@include cfc(var(--accent3),black);}
 		#sexuality, #creationDate {
 			@include cfc(var(--accent6),black);}
 		#nonCannonHeight {
 			@include cfc(var(--accent5),black);}
+		#partner {
+			@include cfc(var(--accent4),black);}
 
 		.partition {
 			padding-top: 	10px;
@@ -198,6 +211,7 @@
 		.description {
 			padding: 		0 0 5px 2px;
 			font-family: 	"Helvetica", Sans-serif;
-			font-size: 		12px;}
+			font-size: 		12px;
+		}
 	}
 </style>
