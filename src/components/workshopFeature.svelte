@@ -1,6 +1,4 @@
 <script>
-    import scss from "./generic/swiperPreset.scss";
-
     import Container 		from "./generic/container.svelte";
     import WorkshopCard 	from "./sections/workshopCard.svelte";
     import WorkshopSnippet 	from "./sections/workshopSnippet.svelte";
@@ -14,7 +12,7 @@
 </script>
 
 <Container>
-	<div class="caro">
+	<div class="regularBorder">
 		<swiper-container
 				slides-per-view="{$screenType}"
 				navigation="true" pagination="true" space-between={5}>
@@ -25,7 +23,7 @@
 			{/each}
 		</swiper-container>
 	</div>
-	<div class="caro offset">
+	<div class="regularBorder offset">
 		<swiper-container
 				slides-per-view={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
 				navigation="true">
@@ -39,6 +37,8 @@
 </Container>
 
 <style lang="scss">
+	@import "./src/components/generic/swiperPreset.scss";
+
 	* {
 		transition: ease .3s;
 	}
@@ -46,10 +46,5 @@
 	.offset {
 		margin: 	5px 10px 15px 10px;
 		position: 	relative;
-	}
-
-	.caro {
-		border-radius:	5px;
-		overflow: 		hidden;
 	}
 </style>

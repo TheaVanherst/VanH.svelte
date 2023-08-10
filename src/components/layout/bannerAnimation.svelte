@@ -42,7 +42,6 @@
 		overflow: 			hidden;
 
 		height: 	$bannerHeight;
-		padding: 	0;
 
 		> * {
 			position:   absolute;

@@ -12,7 +12,7 @@
     {#each levels as level}
         <div
             class="spaceBg{level - 1}"
-            style="background-position-y: 	calc({-$scrollPos * (0.3 * level)}px);"></div>
+            style="background-position-y: calc({-$scrollPos * (0.3 * level)}px);"></div>
     {/each}
 </parallax>
 

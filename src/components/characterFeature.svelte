@@ -29,33 +29,21 @@
 </Container>
 
 <style lang="scss">
+	@import "./src/commonStyles.scss";
+
 	* {
 		transition: ease .3s;
 	}
 
 	.citation {
-		font-size:      11px;
-		font-family:    "Helvetica", Sans-serif;
-		color: 			var(--accent8);
-		opacity:        0.8;
+		@include citationText(var(--accent2), var(--accent1));
 
 		margin: 	8px 0 8px auto;
 		width:		max-content;
 
 		position: 	relative;
 		display: 	block;
+
 		transition: .3s ease;
-
-		span {
-			transition: .5s ease;
-			color: 		var(--accent2);
-		}
-
-		&:hover {
-			 color: var(--accent9);
-			> span {
-				color: var(--accent1);
-			}
-		}
 	}
 </style>

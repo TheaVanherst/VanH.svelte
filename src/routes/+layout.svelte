@@ -1,45 +1,54 @@
 <script>
+    import { fly } from 'svelte/transition';
+
+    import '../styles.scss';
+
 	// general shit
-	import '../styles.scss';
-
     import { scrollPos, screenSize, bandWidths, screenType } 	from '$lib/accessibilityController.js';
-	import LoadingFull from "../components/generic/loadingFull.svelte";
-	// navigation bar
-	import ProfileBar 	from "$root/components/layout/bannerAnimation.svelte";
-	import Background 	from "$root/components/layout/background.svelte";
 
-    import NavigationComponent from "$root/components/layout/navigationComponent.svelte";
+	import LoadingFull 			from "../components/generic/loadingFull.svelte";
+	import ProfileBar 			from "$root/components/layout/bannerAnimation.svelte";
+	import Background 			from "$root/components/layout/background.svelte";
+    import NavigationComponent 	from "$root/components/layout/navigationComponent.svelte";
 
 	$: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     	// this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
 		// this prevents having to do if statements that constantly get fucked with a lot.
 		// tldr; "theoretically" should be more optimal and generally easier to write for.
+
+    let pageData
+		// for some reason, something I've done fucks with the scroll position, so you can't bind
+		// it typically with svelte. Instead, I'm just using the ParentElement as a means to do everything instead.
 </script>
 
-<svelte:window  bind:innerWidth={$screenSize}/>
-<svelte:body bind:scrollY={$scrollPos}/>
-<Background/>
+<svelte:window bind:innerWidth={$screenSize}/>
 
-{#if $screenSize !== 0}
-	<div id="navigation">
-		<div id="layout">
-			<div class="bannerContent">
+<Background/>
+<div class="parentElement"
+	 bind:this={pageData}
+	 on:scroll={() => $scrollPos=pageData.scrollTop}>
+
+	{#if $screenSize !== 0}
+		<div id="navigation">
+			<div id="layout">
+				<div class="content" in:fly={{y: -100, duration: 500, delay: 300 }}>
+					<ProfileBar/>
+				</div>
+				<NavigationComponent/>
+				<slot/>
+			</div>
+		</div>
+	{:else}
+		<div id="loading">
+			<div class="content">
 				<ProfileBar/>
-			</div>
-			<NavigationComponent/>
-			<slot/>
-		</div>
-	</div>
-{:else}
-	<div id="loading">
-		<div class="bannerContent">
-			<ProfileBar/>
-			<div class="loadingBar">
-				<LoadingFull/>
+				<div class="loadingBar">
+					<LoadingFull/>
+				</div>
 			</div>
 		</div>
-	</div>
-{/if}
+	{/if}
+</div>
 
 <style lang="scss">
 	* {
@@ -48,44 +57,54 @@
 		box-sizing: 		border-box; /* Opera/IE 8+ */
 	}
 
-	#navigation {
-		margin: 	0 auto;
-		width: 		100%;
-		max-width: 	800px;
-		height: 	100%;
-	}
+	.parentElement {
+		display: 	block;
+		position: 	relative;
+		overflow-x: hidden; // this is a bullshit fix
+		overflow-y: scroll;
 
-	#layout {
 		width: 		100%;
-		height: 	100%;
-		max-width: 	801px;
-		position: 	absolute;
-		padding: 	15px;
-		min-width: 300px;
+		height: 	100vh;
 
-		.bannerContent {
-			padding: 	0 0 15px 0;
+		#navigation {
 			margin: 	0 auto;
-			position: 	relative;
-		}
+			width: 		100%;
+			max-width: 	800px;
+			height: 	100%;}
 	}
 
-	#loading {
+	.content {
+		padding: 	0 0 15px 0;
+		position: 	relative;
+	}
+
+	// page types
+
+	#layout { // loaded page data
+		width: 		100%;
+		min-width: 	300px;
+		max-width: 	801px;
+		height: 	100%;
+		padding: 	15px;
+
+		position: 	absolute;
+
+		.content {
+			margin: 	0 auto;}
+	}
+
+	#loading { // loading animation
 		width: 		100%;
 		height: 	100%;
+		margin: 	auto auto;
+
 		position: 	absolute;
 		display: 	flex;
-		margin: 	auto auto;
 
 		.loadingBar {
 			position: relative;
-			top: 150px;
-		}
-
-		.bannerContent {
-			padding: 	0 0 15px 0;
-			margin: 	auto auto;
-			position: 	relative;
-		}
+			top: 150px;}
+		.content {
+			margin: 	auto auto;}
 	}
 </style>

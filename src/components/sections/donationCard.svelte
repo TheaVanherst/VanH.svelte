@@ -1,12 +1,8 @@
 <script>
 	export let tierData;
-    let active = false;
 </script>
 
-<a href={tierData.link} target="_blank"
-   class={active === true ? 'active' : ''}
-   on:mouseenter={() => {active = true}}
-   on:mouseleave={() => {active = false}}>
+<a href={tierData.link} target="_blank">
 	<div class="tierCard class{tierData.accent}">
 		<h4> {tierData.donationTier} </h4>
 		<ul>
@@ -17,38 +13,36 @@
 				<li class="tint">{exclusives}</li>
 			{/each}
 		</ul>
-		<div class="button">
+		<div class="button regularBorder buttonPadding">
 			Become a {tierData.donationTier}
 		</div>
 	</div>
 </a>
 
 <style lang="scss">
-	* {
-		transition: ease .3s;
-	}
+	@import "./src/commonStyles.scss";
+
+	* { transition: ease .3s;}
 
 	@mixin cfc($colour,$invert){
 		border: 	1px solid $colour;
+		li {		@include customFontColour(white)}
 		.button {	background: $colour;}
-		.tint {		color:   	$colour;}
-		::selection {
-			color: 				$invert;
-			background-color: 	$colour;}}
+		.tint {		@include customFontColour($colour)}}
 
-	a {
-		color: white;
-		&.active {
-			.tierCard {
-				@include cfc(var(--accent2), black);}}
-	}
+	a:hover {
+		.tierCard {
+			@include cfc(var(--accent2), black);}}
 
 	.tierCard {
 		padding: 			12px 15px 0 15px;
-		background: 		var(--backgroundTrans);
 		border-radius: 		5px;
 		height: 			100%;
+
+		background: 		var(--backgroundTrans);
 		position: 			relative;
+
+		@include cfc(var(--accent9), black);
 
 		&.class1 { @include cfc(var(--accent1), black);}
 		&.class7 { @include cfc(var(--accent7), black);}
@@ -62,25 +56,16 @@
 			text-transform: 	uppercase;
 			text-decoration: 	underline;}
 
-		a {
-			width: 		100%;
-			display: 	flex;}
+		ul {
+			padding:    0 0 8px 10px;}
 
 		.button {
-			width: 		140px;
-			padding: 	5px 8px 5px 8px;
-			margin: 	0 0 -13px calc(100% - 184px);
+			border: 	2px solid black;
+
+			margin: 	0 0 -15px calc(100% - 184px);
 			bottom: 	0;
+			width: 		140px;
 
-			border: 		2px solid black;
-			border-radius: 	5px;
-
-			position: 	absolute;
-
-			font-family: 	"Helvetica", Sans-serif;
-			font-size: 		12px;
-			font-weight: 	600;
-			color: 			black;
-		}
+			position: 	absolute;}
 	}
 </style>

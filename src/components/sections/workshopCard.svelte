@@ -1,21 +1,22 @@
 <script>
 	export let dataEntry
-	let active = false;
 </script>
 
 <a href="https://steamcommunity.com/sharedfiles/filedetails/?id={dataEntry.url}" target="_blank">
-	<div class="workshopItem">
-		<h4 class="title">
+	<div class="workshopItem regularBorder">
+		<h4 class="titleH4">
 			{dataEntry.name}
 		</h4>
-		<img src="/workshop/{dataEntry.thumbnail}.webp">
+		<img 	class="regularBorder"
+				src="/workshop/{dataEntry.thumbnail}.webp">
 		<div class="workshopData">
 			<p class="description">
 				{dataEntry.description}
 			</p>
 			<div class="details">
 				<div class="game">
-					<img src="/workshop/gameIcons/{dataEntry.game.url}.webp">
+					<img 	class="shortBorder tinyIco"
+							src="/workshop/gameIcons/{dataEntry.game.url}.webp">
 					<p>
 						{dataEntry.game.name}
 					</p>
@@ -23,7 +24,7 @@
 				<div class="developers">
 					By:&nbsp;
 					{#each dataEntry.authors as author, i}
-						<a class="author" href={author.website}>
+						<a class="author" href={author.website} target="_blank">
 							{author.name}
 						</a>
 						{#if i < dataEntry.authors.length - 1}
@@ -37,109 +38,53 @@
 </a>
 
 <style lang="scss">
-	* {	transition: .5s ease;}
+	@import "./src/commonStyles.scss";
+
+	* {
+		transition: .5s ease;
+	}
 
 	a:hover {
 		.workshopItem {
-			.title {
-				filter:
-					drop-shadow(0px 0px 1px var(--accent9))
-					brightness(0) 	saturate(100%)
-					invert(15%) 	sepia(75%)
-					saturate(5273%) hue-rotate(271deg)
-					brightness(97%) contrast(132%);
-			}
+			.titleH4 {
+				@include rainbowTransition();}
 			.details {
-				border-top: 1px solid var(--accent2)!important;
-			}
+				border-top: 1px solid var(--accent2)!important;}
 			.author {
 				&:hover {
 					text-decoration: underline;
-					color: var(--accent3)!important;
-				}
+					color: var(--accent3)!important;}
 				&:not(:hover){
-					filter:
-						drop-shadow(0px 0px 1px var(--accent9))
-						brightness(0) 	saturate(100%)
-						invert(15%) 	sepia(75%)
-						saturate(5273%) hue-rotate(271deg)
-						brightness(97%) contrast(132%);
-				}
-			}
-		}
-	}
-
-	.workshopItem {
-		position: 		relative;
-		overflow: 		hidden;
-		width: 			calc(100%);
-
-		img {
-			width:			100%;
-			border-radius: 	5px;
-
-			overflow: 		hidden;
-			vertical-align: bottom;
-		}
-
-		h4 {
-			filter:	 		drop-shadow(0px 0px 0.8px var(--accent9));
-			padding: 		7px 10px 10px 10px;
-			white-space: 	nowrap;
-			text-transform: uppercase;
-			position: 		relative;
+					@include rainbowTransition();} }
 		}
 	}
 
 	.workshopData {
 		.description {
-			font-family:	"Helvetica", Sans-serif;
-			line-height: 	1rem;
-
-			padding: 		10px 10px 0 10px;
-			margin-bottom: 	10px; // required for the text overflow to behave.
-
-			display: 		-webkit-box;
-			overflow: 		hidden;
-
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 4;
-		}
+			@include shortForm(4);}
 
 		.details {
-			> * {
-				white-space: 	nowrap;
-			}
-
+			white-space: 	nowrap;
 			border-top: 	1px solid var(--accent8);
-			padding: 		5px 10px 27px 10px;
+			padding: 		10px 10px 27px 10px;
 
 			.game {
 				display: 		flex;
 				margin-bottom: 	3px;
 
-				img {
-					border-radius: 	3px;
-					overflow: 		hidden;
-
-					width: 	22px;
-					height: 22px;
-				}
 				p {
-					margin: 	auto 0 auto 7px;
-				}
+					margin: 	auto 0 auto 7px;}
 			}
 
 			.developers {
 				font-family:	"Helvetica", Sans-serif;
 				font-size: 		12px;
-				color: 			var(--accent8);
-
 				display: 		flex;
 
+				@include customFontColour(var(--accent8));
+
 				.author {
-					color: var(--accent9);
-				}
+					@include customFontColour(var(--accent9));}
 			}
 		}
 	}

@@ -36,7 +36,9 @@
 	<div class="left">
 		{#each navigation as item}
 			<a href={item.path}>
-				<img src="/icons/{item.imagePath}.webp">
+				<img
+					class="tinyIco"
+					src="/icons/{item.imagePath}.webp">
 			</a>
 		{/each}
 	</div>
@@ -51,8 +53,10 @@
 </div>
 
 <style lang="scss">
-	span {
-		color: var(--accent9);
+	@import "./src/commonStyles.scss";
+
+	* {
+		transition: ease .3s;
 	}
 
 	.cropped {
@@ -62,11 +66,8 @@
 
 	.mobile {
 		display: block;
-
 		> * {
-			margin: 0 auto!important;
-		}
-
+			margin: 0 auto!important;}
 		.right {
 			display: none;}
 	}
@@ -77,9 +78,8 @@
 
 		width: 		calc(100%);
 		padding: 	15px 0;
-		margin: 	15px 0 0 0;
 
-		transition: ease .3s;
+		display: flex;
 
 		.left {
 			margin: 0 15px 0 15px;
@@ -87,24 +87,11 @@
 
 			img {
 				padding: 4px;
-				width:  18px;
-				height: 18px;
 				margin: auto 0;
 
-				transition: ease .3s;
-
 				&:hover {
-					filter:
-						drop-shadow(0px 0px 1px var(--accent9))
-						brightness(0) 	saturate(100%)
-						invert(15%) 	sepia(75%)
-						saturate(5273%) hue-rotate(271deg)
-						brightness(97%) contrast(132%);
-				}
-			}
+					@include rainbowTransition();}}
 		}
-
-		display: flex;
 
 		.right {
 			margin: 0 15px 0 auto;
@@ -114,8 +101,12 @@
 				text-align: 	right;
 				font-family:	"Helvetica", Sans-serif;
 				font-size: 		12px;
-				color:			var(--accent8)
-			}
+				color:			var(--accent8);}
+
+			span {
+				color: var(--accent9);
+				&:hover {
+					@include rainbowTransition();} }
 		}
 	}
 </style>

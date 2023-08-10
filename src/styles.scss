@@ -19,9 +19,11 @@
 
 /* document formatting */
 
-html,
-body {
-	overflow-x: hidden;
+@mixin customFontColour($colour){
+	color:          $colour;
+	&::selection {
+		color:      black;
+		background: $colour!important;}
 }
 
 * {
@@ -29,15 +31,16 @@ body {
 	scrollbar-width:    thin;
 
 	&::-webkit-scrollbar {
-		width: 			var(--innerRaidus);}
+		width: 			0.2em;}
 	&::-webkit-scrollbar-track {
-		background: 	var(--backgroundAccent2);}
+		background: 	transparent;}
 	&::-webkit-scrollbar-thumb {
 		border-radius: 	2px;
-		border: 		1px solid var(--background);
 		background: 	var(--accent2);}
 	&::-webkit-scrollbar-thumb:hover {
-		background: 	var(--darkAccent1);}
+		background: 	var(--accent1);}
+	&::-webkit-scrollbar-thumb:active {
+		background: 	var(--accent6);}
 }
 
 body {
@@ -60,6 +63,25 @@ body {
 
 /* style formatting */
 
+h1, h2, h3, h4 {
+	vertical-align: middle;
+	font-family:    "Playfair Display", serif;
+	line-height:    100%;
+
+	@include customFontColour(var(--textColour));
+
+	position:   relative;
+	margin:     0;
+	padding:    0;
+}
+
+h1 {font-size: 2rem; line-height: 2rem;}
+h2 {font-size: 1.75rem; line-height: 1.75rem}
+h3 {font-size: 1.5rem; line-height: 1.5rem;}
+h4 {font-size: 1.25rem; line-height: 1.25rem;}
+
+/* mark formatting */
+
 a {
 	text-decoration:    none;
 	color:              var(--accent1);
@@ -69,51 +91,12 @@ p {
 	font-size:      13px;
 	color:	 		var(--textColour);
 	margin: 		0;
-}
-
-h1, h2, h3, h4 {
-	vertical-align: middle;
-	font-family:    "Playfair Display", serif;
-	line-height:    100%;
-
-	color:          var(--textColour);
-
-	position:   relative;
-	margin:     0;
-	padding:    0;
-}
-
-h1 {font-size: 2rem;}
-h2 {font-size: 1.75rem;}
-h3 {font-size: 1.5rem;}
-h4 {font-size: 1.25rem;}
-
-/* mark formatting */
-
-@mixin customFontColour($colour){
-	color:          $colour;
-	&::selection {
-		color:      black;
-		background: $colour!important;}
-}
-
-p {
 	@include customFontColour(var(--textColour));}
-strong {
-	font-weight: 	bolder;
-	@include customFontColour(var(--accent2));}
-
-sub,
-sup {
-	font-size:      0.6em;
-	line-height:    100%;
-}
 
 /* list formatting */
 
 ul {
 	margin:     10px 0 0 0;
-	padding:    0 0 0 10px;
 
 	li {
 		padding:        0 0 5px 5px;
@@ -128,21 +111,9 @@ ul {
 			vertical-align: middle;
 			font-size: 	   .85em;
 		}
-	}
 
-	&.bullet li {
-		&::marker {
-			color: 	var(--accent1);}}
-	&.number li {
-		list-style-type: 	decimal;
-		&::marker {
-			color: 	var(--accent2);}}
-	&.numeral li {
-		list-style-type: 	lower-roman;
-		&::marker {
-			color: 	var(--accent2);}}
-	&.letter li {
-		list-style-type: 	lower-latin;
-		&::marker {
-			color: 	var(--accent2);}}
+		&:last-of-type {
+			padding-bottom: 0px;
+		}
+	}
 }

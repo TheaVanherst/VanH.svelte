@@ -2,7 +2,7 @@
 	export let item;
 </script>
 
-<a href="https://steamcommunity.com/sharedfiles/filedetails/?id={item.url}">
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id={item.url}" target="_blank">
 	<img class="thumbnail" src="/workshop/mnis/{item.thumbnail}.webp">
 	<img class="gameIcon" src="/workshop/gameIcons/{item.game.url}.webp">
 </a>

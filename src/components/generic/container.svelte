@@ -1,9 +1,11 @@
 <script>
-	export let borders = false;
+	export let
+		borders = false,
+		colour = 1;
 </script>
 
 
-<div class="container {borders ? 'borders' : ''}">
+<div class="container {borders ? 'borders' : ''} class{colour}">
 	<slot/>
 </div>
 
@@ -13,20 +15,10 @@
 		border-radius: 	5px;
 		overflow: 		hidden;
 
-		&.borders {
-			border: 	1px solid var(--accent2);
-			border-top-color: 		transparent;
-			border-bottom-color: 	transparent;
-		}
-
 		margin-bottom: 	15px;
 
 		* {
 			color:	var(--textColour);
-			&::selection {
-				color: 		black;
-				background: var(--accent2) !important;
-			}
 		}
 	}
 </style>

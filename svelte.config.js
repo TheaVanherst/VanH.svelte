@@ -9,9 +9,6 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$routes: 		path.resolve('./src/routes'),
-			$stores: 		path.resolve('./src/controllers'),
-
-			$cms:			path.resolve('./cms'),
 			$root: 			path.resolve('./src'),
 		}
 	},

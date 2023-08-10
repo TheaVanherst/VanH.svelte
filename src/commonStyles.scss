@@ -1,0 +1,132 @@
+
+@mixin rainbowTransition() {
+	filter:
+			drop-shadow(0px 0px 1px var(--accent9))
+			brightness(0) 	saturate(100%)
+			invert(15%) 	sepia(75%)
+			saturate(5273%) hue-rotate(271deg)
+			brightness(97%) contrast(132%);
+}
+
+// TODO: title types
+
+.titleH4 {
+	padding: 		8px 10px 10px 10px;
+	white-space: 	nowrap;
+	text-transform: uppercase;
+	position: 		relative;
+}
+
+// TODO: generic texts
+
+@mixin customFontColour($colour){
+	color:          $colour;
+	&::selection {
+		color:      black;
+		background: $colour!important;}
+}
+
+@mixin citationText($colour, $hover){
+	font-size: 		10px;
+	font-family: 	"Helvetica", Sans-serif;
+	opacity:        0.8;
+
+	@include customFontColour(var(--accent8));
+	span {
+		@include customFontColour($colour);}
+
+	&:hover {
+		@include customFontColour(var(--accent0));
+		> span {
+			@include customFontColour($hover);}}
+}
+
+.generic {
+	font-family: 	"Helvetica", Sans-serif;
+	margin-bottom: 	10px;
+}
+
+// TODO: description
+
+@mixin shortForm($lineCount)  {
+	font-family:	"Helvetica", Sans-serif;
+
+	line-height: 	1rem;
+	display: 		-webkit-box;
+	overflow: 		hidden;
+
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lineCount;
+
+	padding: 		10px 10px 0 10px;
+	margin-bottom: 	10px; // required for the text overflow to behave.
+}
+
+.quote {
+	border-left: 	1px solid var(--accent8);
+	border-right: 	1px solid var(--accent8);
+	padding: 		10px;
+
+	position: relative;
+
+	&::before,
+	&::after {
+		position: 	absolute;
+		font-size: 	55px;}
+	&::before {
+		left: 		0;
+		margin: 	-15px 0 0 -12px;
+		content: 	open-quote;}
+	&::after {
+		right: 0;
+		margin: 	-5px -12px 0 0;
+		content: 	close-quote;}
+}
+
+// TODO: cropping
+
+.regularBorder {
+	border-radius: 	5px;
+	overflow: 		hidden;
+	vertical-align: bottom;
+	width:			100%;
+}
+
+.shortBorder {
+	border-radius: 	3px;
+	overflow: 		hidden;
+	vertical-align: bottom;
+	width:			100%;
+}
+
+// TODO: icons
+
+.tinyIco {
+	width: 	22px;
+	height: 22px;
+}
+
+.profileIcon {
+	width: 	        40px;
+	height:         40px;
+	border-radius: 	50%;
+	overflow: 		hidden;
+
+	transition: transform ease .3s;
+
+	&:hover {
+		transform: scale(1.2);
+	}
+}
+
+// TODO: buttons
+
+.buttonPadding {
+	padding: 	6px 8px 5px 8px;
+
+	font-family: 	"Helvetica", Sans-serif;
+	font-size: 		12px;
+	font-weight: 	600;
+	color: 			black;
+}
+
