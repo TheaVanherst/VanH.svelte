@@ -4,7 +4,6 @@
     import { screenType } 		from '$lib/accessibilityController.js';
 
     import { donationTiers, personalMessage } 	from "$lib/databases/donationTiers.js";
-
     import DonationCard from "$root/components/sections/donationCard.svelte";
 </script>
 
@@ -53,8 +52,7 @@
 			margin-bottom: 	25px;
 
 			&.stack {
-				width: 100%;}
-		}
+				width: 100%;}}
 
 		.box {
 			display: 	flex;
@@ -66,8 +64,7 @@
 			font-size: 	12px;
 			padding: 	10px;
 
-			@include customFontColour(var(--accent9));
-		}
+			@include customFontColour(var(--accent9));}
 	}
 
 	.imageShowcase {
@@ -77,8 +74,7 @@
 		position: 	relative;
 
 		> img {
-			width: 	300px;}
-	}
+			width: 	300px;}}
 
 	.citation {
 		margin: 5px;
@@ -88,8 +84,7 @@
 			padding-bottom: 9px;
 
 			&:last-of-type {
-				padding-bottom: 0;}
-		}
+				padding-bottom: 0;}}
 
 		.closeQuote {
 			margin: 	1px 10px -4px auto;
@@ -101,13 +96,11 @@
 
 			img {
 				width: 	70px;
-				margin: -30px -20px -20px 8px;}
-		}
+				margin: -30px -20px -20px 8px;}}
 	}
 
 	@keyframes float {
 		0% {	transform: translatey(-20px);}
 		50% {	transform: translatey(0px);}
-		100% {	transform: translatey(-20px);}
-	}
+		100% {	transform: translatey(-20px);}}
 </style>

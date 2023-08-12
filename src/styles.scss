@@ -54,12 +54,18 @@ body {
 
 	overflow-x:         hidden;
 	scroll-behavior: 	smooth;
-	cursor: 			crosshair;
 
 	::selection {
 		color:              black;
 		background-color: 	var(--accent2);}
 }
+
+// cursor defaults
+
+body {
+	cursor: crosshair!important;}
+a {
+	cursor: crosshair!important;}
 
 /* style formatting */
 

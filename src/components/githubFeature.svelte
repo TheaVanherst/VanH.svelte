@@ -43,9 +43,7 @@
 	@import "./src/components/generic/swiperPreset.scss";
 	@import "./src/commonStyles.scss";
 
-	* {
-		transition: ease .3s;
-	}
+	* {	transition: ease .3s;}
 
 	a:hover {
 		.titleH4 {
@@ -55,8 +53,7 @@
 			color: 		white!important;}
 		img  {
 			opacity: 	1!important;
-			transform: 	scale(1.1);}
-	}
+			transform: 	scale(1.1);}}
 
 	.crop { // manages the pagination
 		.slide {
@@ -70,10 +67,8 @@
 			height:			220px;
 			overflow: 		hidden; //img cropper
 
-			> img {
-				width:		100%;}
-			img {
-				opacity: 	0.7;}
+			> img {	width:		100%;}
+			img {	opacity: 	0.7;}
 
 			.descCard {
 				position: 	absolute;
@@ -85,18 +80,15 @@
 
 					right: 		0;
 					top: 		-32px;
-					padding: 	5px;
-				}
+					padding: 	5px;}
 
 				.description {
 					background: var(--backgroundTrans);
-					@include shortForm(3);
-				}
+					@include shortForm(3);}
 
 				.referral {
 					// fallback colour
-					background: 	var(--accent9);
-				}
+					background: 	var(--accent9);}
 			}
 		}
 	}

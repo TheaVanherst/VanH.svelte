@@ -18,7 +18,8 @@
 	.container {
 		display:            flex;
 		border-radius:      5px;
-        backdrop-filter: 	blur(var(--imageBlurring));
+        background:         var(--backgroundTrans);
+        position:           relative;
 
         img {
 			width:          60%;

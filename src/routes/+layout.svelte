@@ -16,14 +16,14 @@
 		// this prevents having to do if statements that constantly get fucked with a lot.
 		// tldr; "theoretically" should be more optimal and generally easier to write for.
 
-    let pageData
+    let pageData = 0;
 		// for some reason, something I've done fucks with the scroll position, so you can't bind
 		// it typically with svelte. Instead, I'm just using the ParentElement as a means to do everything instead.
 </script>
 
 <svelte:window bind:innerWidth={$screenSize}/>
-
 <Background/>
+
 <div class="parentElement"
 	 bind:this={pageData}
 	 on:scroll={() => $scrollPos=pageData.scrollTop}>

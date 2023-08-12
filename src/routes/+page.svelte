@@ -4,12 +4,10 @@
     import SidebarTexts 	from "../components/generic/sidebarTexts.svelte";
 
 	import CharacterFeature from "../components/characterFeature.svelte";
-    import WorkshopFeature from "../components/workshopFeature.svelte";
+    import WorkshopFeature 	from "../components/workshopFeature.svelte";
     import GithubFeature 	from "../components/githubFeature.svelte";
     import DonationFeature 	from "../components/donationFeature.svelte";
     import QandaFeature 	from "../components/qandaFeature.svelte";
-
-    import navigation 	from '$lib/databases/navigationDirectories.js';
 </script>
 
 <SidebarTexts titlecard="Characters" icon="furaffinityLogo.webp">
@@ -34,13 +32,16 @@
 
 <div class="footer {$screenSize < 800 ? 'cropped' : ''} {$screenType < 3 ? 'mobile' : ''}">
 	<div class="left">
-		{#each navigation as item}
-			<a href={item.path}>
-				<img
-					class="tinyIco"
-					src="/icons/{item.imagePath}.webp">
-			</a>
-		{/each}
+		<!--{#each navigation as item}-->
+		<!--	<a href={item.path}>-->
+		<!--		<img-->
+		<!--			class="tinyIco"-->
+		<!--			src="/icons/{item.imagePath}.webp">-->
+		<!--	</a>-->
+		<!--{/each}-->
+
+		<!-- hit counter -->
+		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
 	</div>
 	<div class="right">
 		<p>
@@ -72,6 +73,10 @@
 			display: none;}
 	}
 
+	.hitCounter {
+		padding: 10px;
+	}
+
 	.footer {
 		background-color: 	var(--backgroundTrans);
 		border-top: 		1px solid var(--accent2);
@@ -89,8 +94,9 @@
 				padding: 4px;
 				margin: auto 0;
 
-				&:hover {
-					@include rainbowTransition();}}
+				//&:hover {
+				//	@include rainbowTransition();}
+			}
 		}
 
 		.right {
