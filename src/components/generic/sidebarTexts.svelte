@@ -34,7 +34,6 @@
 	</div>
 </div>
 
-
 <style lang="scss">
 	* {	transition: ease .5s;}
 

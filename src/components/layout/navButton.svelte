@@ -1,21 +1,39 @@
 <script>
     import { screenType } 	from '$lib/accessibilityController.js';
-    export let push = "";
+
+    export let push = "",
+            smaller = false, blank = false,
+            faded = false;
+
     let active = false;
 </script>
 
-<a href={push.path} target="_blank"
+<a href={push.path}
+   target="{blank ? '_blank' : ''}"
+   class="{faded ? 'fade' : ''}"
     on:mouseenter={()=>{active = true}}
     on:mouseleave={()=>{active = false}}>
     <div class="title">
-        {#if $screenType > 2}
-            <div class="tag">
-                <h3> {push.title} </h3>
+        {#if smaller}
+            <div class="navigation">
+                <h5>
+                    {push.title}
+                </h5>
+            </div>
+        {:else}
+            {#if $screenType > 2}
+                <div class="socials">
+                    <h3>
+                        {push.title}
+                    </h3>
+                </div>
+            {/if}
+        {/if}
+        {#if push.imagePath}
+            <div class="icon">
+                <img src="/icons/{push.imagePath}.webp">
             </div>
         {/if}
-        <div class="icon">
-            <img src="/icons/{push.imagePath}.webp">
-        </div>
     </div>
 </a>
 
@@ -35,17 +53,56 @@
             > * {
                 display: flex;}
 
-            .tag {
+            h3, h5 {
+                text-transform: uppercase;}
+
+            .socials {
                 margin: auto 8px auto 0;
                 h3 {
-                    margin: -4px 0 0 0;
-                    text-transform: uppercase;}}
+                    margin: -4px 0 0 0;}}
+            .navigation {
+                margin: auto 0;
+                h5 {
+                    margin: -1px 0 0 0;}}
 
             .icon  {
                 margin: auto 0;
                 img {
                     width:  26px;
                     height: 26px;}}
+        }
+    }
+
+    h5 {
+        &::after {
+            content: '';
+
+            position: absolute;
+            transition: ease 300ms;
+
+            bottom: -14px;
+
+            width: 100%;
+            height: 1px;
+            opacity: 0;
+            transform: translate3d(-100%, 0, 0);
+
+            background-color: var(--accent2);
+        }
+    }
+
+    a {
+        &.fade {
+            pointer-events: none;
+            h5 {
+                color: var(--accent2);
+
+                &::after {
+                    opacity: 1;
+                    bottom: -4px;
+                    background-color: var(--accent2);
+                }
+            }
         }
     }
 </style>

@@ -1,5 +1,5 @@
 <script>
-    import { fly } from 'svelte/transition';
+    import { fly } 	from 'svelte/transition';
 
     import '../styles.scss';
 
@@ -7,9 +7,12 @@
     import { scrollPos, screenSize, bandWidths, screenType } 	from '$lib/accessibilityController.js';
 
 	import LoadingFull 			from "../components/generic/loadingFull.svelte";
+
 	import ProfileBar 			from "$root/components/layout/bannerAnimation.svelte";
 	import Background 			from "$root/components/layout/background.svelte";
+
     import NavigationComponent 	from "$root/components/layout/navigationComponent.svelte";
+    import PageFooter 			from "../components/layout/pageFooter.svelte";
 
 	$: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     	// this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
@@ -21,21 +24,26 @@
 		// it typically with svelte. Instead, I'm just using the ParentElement as a means to do everything instead.
 </script>
 
-<svelte:window bind:innerWidth={$screenSize}/>
+<svelte:window bind:innerWidth={ $screenSize }/>
 <Background/>
 
 <div class="parentElement"
-	 bind:this={pageData}
-	 on:scroll={() => $scrollPos=pageData.scrollTop}>
+	 bind:this={ pageData }
+	 on:scroll={() => $scrollPos = pageData.scrollTop}>
+	<!-- the current issue is that the banner has an overflow problem, and results in the page having an x overflow, fucking with the page. -->
+	<!-- This code here is really dogshit for edge browsers, but fixes the issue via. preventing overflow on this parent element -->
 
 	{#if $screenSize !== 0}
+		<!-- basic loading check -->
 		<div id="navigation">
 			<div id="layout">
-				<div class="content" in:fly={{y: -100, duration: 500, delay: 300 }}>
+				<div class="content"
+					 in:fly={{y: -100, duration: 500, delay: 300 }}>
 					<ProfileBar/>
 				</div>
 				<NavigationComponent/>
 				<slot/>
+				<PageFooter/>
 			</div>
 		</div>
 	{:else}

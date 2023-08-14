@@ -1,17 +1,28 @@
 <script>
-    import navigation 	from '$lib/databases/navigationDirectories.js';
-    import { screenType } 	from '$lib/accessibilityController.js';
-    import Button 		from "$root/components/layout/navButton.svelte";
+    import { fly } 	from 'svelte/transition';
+    import { page } from '$app/stores';
 
-    import { fly } from 'svelte/transition';
+    import { socialMedias, navigationDirectories } 	from '$lib/navigationDirectories.js';
+    import { screenType } 							from '$lib/accessibilityController.js';
+
+    import Button 	from "$root/components/layout/navButton.svelte";
 </script>
 
-<div class="navigationBar regularBorder">
+<div class="navigationBar">
 	{#key $screenType > 2}
 		<div class="controller" in:fly={{x: -50}}>
-			{#each navigation as item}
-				<Button push="{item}"/>
-			{/each}
+			<div class="socials">
+				{#each socialMedias as item}
+					<Button push="{item}" blank={true}/>
+				{/each}
+			</div>
+			<div>
+				{#each navigationDirectories as nav}
+					<Button push="{nav}"
+							smaller={true}
+							faded={$page.route.id === nav.path}/>
+				{/each}
+			</div>
 		</div>
 	{/key}
 </div>
@@ -24,12 +35,19 @@
 		position: 	relative;
 
 		.controller {
-			border-bottom: 	1px solid var(--accent6);
 			background: 	var(--backgroundTrans);
-
 			padding:		0 5px;
-			margin: 		0 auto;
+
 			width: 			max-content;
+			margin: 		0 auto;
+			> * {
+				width: 			max-content;
+				margin: 		0 auto;
+			}
+
+			.socials {
+				border-bottom: 	1px solid var(--accent6);
+			}
 		}
 	}
 </style>
