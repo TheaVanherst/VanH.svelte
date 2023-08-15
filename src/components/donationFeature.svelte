@@ -1,71 +1,54 @@
 <script>
     import { fly } from 'svelte/transition';
 
-    import { screenType } 		from '$lib/accessibilityController.js';
+    import { screenType } 	from '$lib/accessibilityController.js';
 
-    import { donationTiers, personalMessage } 	from "$lib/databases/donationTiers.js";
+    import { donationTiers, personalMessage, citation } from "$lib/databases/donationTiers.js";
     import DonationCard from "$root/components/sections/donationCard.svelte";
 </script>
 
-<div class="table">
-	{#each donationTiers as tier}
-		<div class="tierBlock {$screenType < 3 ? 'stack' : ''}" >
-			<DonationCard tierData={tier}/>
-		</div>
-	{/each}
-	<div class="box">
-		{#if $screenType > 2}
-			<div class="imageShowcase"
-				 in:fly={{y: 100, duration: 1200, delay: 300 }}>
-				<img src="/branding/profileGraphic.webp">
-			</div>
-		{/if}
-		<div class="citation quote">
-			{#each personalMessage as text}
-				<p> {text} </p>
-			{/each}
+<DonationCard
+		data={donationTiers} citation={citation}/>
 
-			{#key $screenType < 3}
-				<div class="closeQuote"
-					 in:fly={{y: 20, duration: 400, delay: 200 }}>
-					<h4> Love, Thea </h4>
-					{#if $screenType < 3}
-						<img src="/branding/vahnicon.webp">
-					{/if}
-				</div>
-			{/key}
+<div class="box">
+	{#if $screenType > 2}
+		<div class="imageShowcase"
+			 in:fly={{y: 100, duration: 1200, delay: 300 }}>
+			<img src="/branding/profileGraphic.webp">
 		</div>
+	{/if}
+	<div class="citation quote">
+		{#each personalMessage as text}
+			<p> {text} </p>
+		{/each}
+
+		{#key $screenType < 3}
+			<div class="closeQuote"
+				 in:fly={{y: 20, duration: 400, delay: 200 }}>
+				<h4> Love, Thea </h4>
+				{#if $screenType < 3}
+					<img src="/branding/vahnicon.webp">
+				{/if}
+			</div>
+		{/key}
 	</div>
 </div>
 
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	.table {
-		display: 		flex;
-		flex-wrap: 		wrap;
-		gap: 			15px;
-		margin-bottom: 	20px;
+	.box {
+		display: 	flex;
 
-		.tierBlock {
-			width: 			calc((100% - 15px) / 2);
-			margin-bottom: 	25px;
+		border-radius: 	5px;
+		border: 		1px solid var(--accent9);
+		background: 	var(--backgroundTrans);
 
-			&.stack {
-				width: 100%;}}
+		font-size: 	12px;
+		padding: 	10px;
+		margin-bottom: 	15px;
 
-		.box {
-			display: 	flex;
-
-			border-radius: 	5px;
-			border: 		1px solid var(--accent9);
-			background: 	var(--backgroundTrans);
-
-			font-size: 	12px;
-			padding: 	10px;
-
-			@include customFontColour(var(--accent9));}
-	}
+		@include customFontColour(var(--accent9));}
 
 	.imageShowcase {
 		margin: 	-10px 0 -70px -57px;

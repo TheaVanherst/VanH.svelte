@@ -9,6 +9,7 @@
 		border-radius: 	5px;
 		overflow: 		hidden;
 
+		position: 		relative;
 		margin-bottom: 	15px;
 	}
 </style>

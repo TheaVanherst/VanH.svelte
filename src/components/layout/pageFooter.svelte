@@ -1,21 +1,21 @@
 <script>
     import { screenSize, screenType } 	from '$lib/accessibilityController.js';
 
-    import { socialMedias } 	from '$lib/navigationDirectories.js';
+    // import { socialMedias } 	from '$lib/navigationDirectories.js';
 </script>
 
 <div class="footer {$screenSize < 800 ? 'cropped' : ''} {$screenType < 3 ? 'mobile' : ''}">
 	<div class="left">
-		{#each socialMedias as item}
-			<a href={item.path}>
-				<img
-					class="tinyIco"
-					src="/icons/{item.imagePath}.webp">
-			</a>
-		{/each}
+		<!--{#each socialMedias as item}-->
+		<!--	<a href={item.path}>-->
+		<!--		<img-->
+		<!--			class="tinyIco"-->
+		<!--			src="/icons/{item.imagePath}.webp">-->
+		<!--	</a>-->
+		<!--{/each}-->
 
 		<!-- hit counter -->
-<!--		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>-->
+		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
 	</div>
 	<div class="right">
 		<p>
@@ -67,8 +67,8 @@
 				padding: 4px;
 				margin: auto 0;
 
-				&:hover {
-					@include rainbowTransition();}
+				//&:hover {
+				//	@include rainbowTransition();}
 			}
 		}
 

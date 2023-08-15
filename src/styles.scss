@@ -91,8 +91,7 @@ h5 {font-size: 1.10rem; line-height: 1.10rem;}
 
 a {
 	text-decoration:    none;
-	color:              var(--accent1);
-}
+	@include customFontColour(var(--accent1));}
 
 p {
 	font-size:      13px;
@@ -100,13 +99,16 @@ p {
 	margin: 		0;
 	@include customFontColour(var(--textColour));}
 
+b {
+	@include customFontColour(var(--accent3));}
+
 /* list formatting */
 
 ul {
 	margin:     10px 0 0 0;
 
 	li {
-		padding:        0 0 5px 5px;
+		padding:        0 0 10px 5px;
 		line-height:    100%;
 
 		font-family:    "Helvetica", Sans-serif;

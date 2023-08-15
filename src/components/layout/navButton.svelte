@@ -86,7 +86,6 @@
             height: 1px;
             opacity: 0;
             transform: translate3d(-100%, 0, 0);
-
             background-color: var(--accent2);
         }
     }
@@ -100,7 +99,6 @@
                 &::after {
                     opacity: 1;
                     bottom: -4px;
-                    background-color: var(--accent2);
                 }
             }
         }
