@@ -7,8 +7,14 @@
 		<h4 class="titleH4">
 			{dataEntry.name}
 		</h4>
-		<img 	class="regularBorder"
-				src="/workshop/{dataEntry.thumbnail}.webp">
+
+		<div class="thumbnail regularBorder">
+			<img 	class="tinyIco socialIco shortBorder"
+					src="/icons/steamLogo.webp">
+			<img 	class="regularBorder"
+					src="/workshop/{dataEntry.thumbnail}.webp">
+		</div>
+
 		<div class="workshopData">
 			<p class="description">
 				{dataEntry.description}
@@ -40,14 +46,10 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* {
-		transition: .5s ease;
-	}
+	* {	transition: .5s ease;}
 
 	a:hover {
 		.workshopItem {
-			.titleH4 {
-				@include rainbowTransition();}
 			.details {
 				border-top: 1px solid var(--accent2)!important;}
 			.author {
@@ -55,11 +57,14 @@
 					text-decoration: underline;
 					color: var(--accent3)!important;}
 				&:not(:hover){
-					@include rainbowTransition();} }
-		}
-	}
+					@include rainbowTransition();}}}}
+
+	.socialIco {
+		top: 38px;}
 
 	.workshopData {
+		position: relative;
+
 		.description {
 			@include shortForm(4);}
 
@@ -73,8 +78,7 @@
 				margin-bottom: 	3px;
 
 				p {
-					margin: 	auto 0 auto 7px;}
-			}
+					margin: 	auto 0 auto 7px;}}
 
 			.developers {
 				font-family:	"Helvetica", Sans-serif;
@@ -84,8 +88,7 @@
 				@include customFontColour(var(--accent8));
 
 				.author {
-					@include customFontColour(var(--accent9));}
-			}
+					@include customFontColour(var(--accent9));}}
 		}
 	}
 </style>

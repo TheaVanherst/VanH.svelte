@@ -61,18 +61,21 @@ const
             "a couple days, they'll then be opened to regular donators, and finally via. a twitter post.",
 
             "To gain access to the exclusive Discord server, a donation or membership is required via. " +
-            "Ko-fi. Information regarding bonuses and perks can be found on the home page."
+            "Ko-fi. Information regarding bonuses and perks can be found on the home page.",
+
+            "Commission payments will be done via. Paypal. You are required to include during your form " +
+            "submission, once I am full available, I'll shortly send you an invoice. Once the invoice is " +
+            "fully paid, you will be the next project I will work on after completing other ongoing projects",
         ],
 
     benefits =
         [
             "No water marks will be featured on the final result of the drawing, that you receive and as " +
-            "per my Commission Terms, I expect the exact same to be applied for future ownership of the " +
-            "drawing. (A watermark may be included on my own personal posts featured on social media.)",
+            "per my Commission Terms",
 
-            "You are not obliged to credit me as the artist for personal use, but it is highly appreciated.",
+            "You are not obliged to credit me as the artist for personal use.",
 
-            "You will receive all files required to not only create the drawing, but also alternate " +
+            "As a Member, will receive all files required to not only create the drawing, but also alternate " +
             "versions of the drawing such as lines, flats and shading.",
 
             "You can do anything you want with the commission result, as long as it doesn't involve " +
@@ -89,11 +92,16 @@ const
             "However, this ownership excludes commercial rights and you cannot produce and sell " +
             "content containing them, nor will I via. the terms of the Attribution-NonCommercial-ShareAlike " +
             "license. In the instance of wanting to sell them, a future agreement will have to be made " +
-            "on-top of the original commission price, as it is against my personal interest to do so.",
+            "on-top of the original commission price, as it is against my personal interest to do so. your " +
+            "commission will never be resold off as separate artwork without the knowledge beforehand.",
 
             "You have full permission to edit the drawings however you please, but watermarks must not " +
             "be featured on them. Any edits should be addressed, and should also include credit to the " +
             "original artist as per the Attribution-NonCommercial-ShareAlike license.",
+
+            "Although watermarks must not be included on the artworks, including your own personal ownership, " +
+            "watermarks may be included on my own personal social media posts, but members have the ability " +
+            "to download the artwork, watermark free.",
 
             "You are not required to state I created them, but are obliged to not claim them a your " +
             "own creations. However, crediting me / linking me in any way is highly appreciated and " +
@@ -106,17 +114,41 @@ const
 
             "If payment is not met for any reason, or additional fees are required and not paid, your " +
             "commission will be refunded and will be offered / auctioned off to someone else. This also " +
-            "includes refunding after the initialization of the commission."
-        ],
-
-    payDetails =
-        [
-            "Commission payments will be done via. Paypal. You are required to include during your form " +
-            "submission, once I am full available, I'll shortly send you an invoice. Once the invoice is " +
-            "fully paid, you will be the next project I will work on after completing other ongoing projects",
+            "includes refunding after the initialization of the commission.",
 
             "Refunds are accepted prior to the final sketch and you've agreed that you are happy with the " +
             "line-work being started. Once I start the lines, I will not accept your refund."
-        ]
+        ];
 
-export { notices, howToCom, benefits, tnc, payDetails }
+export { notices, howToCom, benefits, tnc }
+
+const commissionTypes = ["Sketch sheet"]
+
+const exampleArr =
+    [{
+        img: "DaurineMacro",
+        title: "Macromancy",
+        type: commissionTypes[0],
+        source: "1681815430573244420",
+        nsfw: true
+    },{
+        img: "izabelaMilking",
+        title: "Target Practice",
+        type: commissionTypes[0],
+        source: "1671551443424165890",
+        nsfw: true
+    },{
+        img: "izabelaComparrision",
+        title: "Taller than the Pictures",
+        type: commissionTypes[0],
+        source: "1671551443424165890",
+        nsfw: true
+    },{
+        img: "IzabelaAlarmClock",
+        title: "Wake Up Call",
+        type: commissionTypes[0],
+        source: "1672121314721554432",
+        nsfw: true
+    }]
+
+export { exampleArr }

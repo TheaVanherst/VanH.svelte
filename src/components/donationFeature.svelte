@@ -4,10 +4,10 @@
     import { screenType } 	from '$lib/accessibilityController.js';
 
     import { donationTiers, personalMessage, citation } from "$lib/databases/donationTiers.js";
-    import DonationCard from "$root/components/sections/donationCard.svelte";
+    import ListedCard from "$root/components/sections/listedCard.svelte";
 </script>
 
-<DonationCard
+<ListedCard
 		data={donationTiers} citation={citation}/>
 
 <div class="box">

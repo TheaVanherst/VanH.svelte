@@ -13,5 +13,15 @@
 
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-prefetch>%sveltekit.body%</body>
+	<body data-sveltekit-prefetch>
+		<div id="body">
+			%sveltekit.body%
+		</div>
+	</body>
 </html>
+
+<style lang="scss">
+	#body {
+		display: contents
+	}
+</style>

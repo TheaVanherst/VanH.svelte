@@ -22,7 +22,7 @@
 						<div class="preview">
 							<img src="/github/{dataEntry.preview}.webp">
 							<div class="descCard">
-								<img 	class="tinyIco"
+								<img 	class="tinyIco socialIco shortBorder"
 										src="/icons/githubLogo.webp">
 								<p class="description">
 									{dataEntry.description}
@@ -46,14 +46,9 @@
 	* {	transition: ease .3s;}
 
 	a:hover {
-		.titleH4 {
-			@include rainbowTransition();}
 		.referral {
 			background: var(--accent2)!important;
-			color: 		white!important;}
-		img  {
-			opacity: 	1!important;
-			transform: 	scale(1.1);}}
+			color: 		white!important;}}
 
 	.crop { // manages the pagination
 		.slide {
@@ -68,19 +63,14 @@
 			overflow: 		hidden; //img cropper
 
 			> img {	width:		100%;}
-			img {	opacity: 	0.7;}
 
 			.descCard {
 				position: 	absolute;
 				width: 		100%;
 				bottom: 	0;
 
-				img {
-					position: 	absolute;
-
-					right: 		0;
-					top: 		-32px;
-					padding: 	5px;}
+				.tinyIco {
+					top: 		-42px;}
 
 				.description {
 					background: var(--backgroundTrans);
@@ -88,8 +78,7 @@
 
 				.referral {
 					// fallback colour
-					background: 	var(--accent9);}
-			}
+					background: 	var(--accent9);}}
 		}
 	}
 </style>

@@ -5,7 +5,9 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"start": "sirv public -s --no-clear",
+		"start:dev": "sirv public --dev -s"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",

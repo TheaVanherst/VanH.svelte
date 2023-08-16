@@ -14,7 +14,12 @@
 	padding: 		8px 10px 10px 10px;
 	white-space: 	nowrap;
 	text-transform: uppercase;
-	position: 		relative;
+	position: 		relative;}
+
+a {
+	&:hover {
+		.titleH4 {
+			@include rainbowTransition();}}
 }
 
 // TODO: generic texts
@@ -107,6 +112,28 @@
 .tinyIco {
 	width: 	22px;
 	height: 22px;}
+
+a {
+	.socialIco {
+		background: var(--backgroundTrans);
+
+		padding: 	5px;
+		margin: 	5px;
+
+		right: 		0;
+		bottom: 	42px;
+
+		position: 	absolute;
+		z-index:    100;
+	}
+
+	&:hover {
+		.socialIco {
+			background-color: black;}
+		img {
+			transform: scale(1.1);}
+	}
+}
 
 .profileIcon {
 	width: 	        40px;
