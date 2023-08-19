@@ -4,31 +4,30 @@ const
 
 const
     dosAndDonts =
-        [{
-            class: "Will do;",
-            accent: 3,
-            perks: [
-                "Lactation, Cum",
-                "Hyper breasts, Hyper ass",
-                "Hyper balls, Hyper penis",
-                "Breast expansion, Ass expansion",
-                "Penis Expansion, Balls expansion",
-                "Macro of any scale"
-            ],
-        },{
-            class: "Wont do;",
-            accent: 1,
-            perks: [
-                "Pregnancy, Inflation",
-                "Gore, Damage or Harm",
-                "Watersports, Scat",
-                "Overweight, Fat",
-            ],
-            exclusives: [
-                "Males",
-                "Vore"
-            ]
-        }];
+        [
+            {
+                class: "Will do;",
+                accent: 3,
+                perks: [
+                    "Lactation, Cum",
+                    "Hyper breasts, Hyper ass",
+                    "Hyper balls, Hyper penis",
+                    "Breast expansion, Ass expansion",
+                    "Penis Expansion, Balls expansion",
+                    "Macro of any scale"],
+            },{
+                class: "Wont do;",
+                accent: 1,
+                perks: [
+                    "Pregnancy, Inflation",
+                    "Gore, Damage or Harm",
+                    "Watersports, Scat",
+                    "Overweight, Fat"],
+                exclusives: [
+                    "Males",
+                    "Vore"]
+            }
+        ];
 
 export { dosAndDonts, citation }
 
@@ -156,23 +155,23 @@ const commissionTypes =
         }
     ];
 
-
-const additionalPurchases = [
-    {
-        title: 'Photoshop files',
-        description:
-            'Photoshop files are included in the Discord archive, and are free for future and current members. ' +
-            'Photoshop files can also be purchased at any given time in the future.',
-        price: '10'
-    },{
-        title: 'Private Photoshop files',
-        description:
-            "If you wish to keep project files private, this would required to be specified before or during the " +
-            "regular commission process. This purchase option includes the Photoshop file download, which is then " +
-            "exclusive to you; it will not be available for members.",
-        price: '35'
-    }
-]
+const additionalPurchases =
+    [
+        {
+            title: 'Photoshop files',
+            description:
+                'Photoshop files are included in the Discord archive, and are free for future and current members. ' +
+                'Photoshop files can also be purchased at any given time in the future.',
+            price: '10'
+        },{
+            title: 'Private Photoshop files',
+            description:
+                "If you wish to keep project files private, this would required to be specified before or during the " +
+                "regular commission process. This purchase option includes the Photoshop file download, which is then " +
+                "exclusive to you; it will not be available for members.",
+            price: '35'
+        }
+    ]
 
 export { commissionTypes, additionalPurchases }
 

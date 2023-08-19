@@ -7,15 +7,18 @@
     import ListedCard 		from "../../components/sections/ListedCard.svelte";
 	import CommissionCard 	from "../../components/sections/commissionCard.svelte";
 
-    import { dosAndDonts, citation, notices, howToCom, benefits, tnc, commissionTypes, additionalPurchases, exampleArr }
-    					from "$lib/databases/commissionDetails.js";
+    import {
+			dosAndDonts, exampleArr, citation,
+			commissionTypes, additionalPurchases,
+			howToCom, benefits,
+			notices, tnc,
+		} from "$lib/databases/commissionDetails.js";
 
     import { register } from 'swiper/element/bundle';
 
     register();
 
     let show = false;
-    $: console.log(show)
 </script>
 
 <SidebarTexts titlecard="Examples">
@@ -141,31 +144,23 @@
 	@import "./src/commonStyles.scss";
 	@import "./src/components/generic/swiperPreset.scss";
 
-	h3 {
-		text-transform: uppercase;}
+	* {	transition: ease .3s;}
 
-	ul {
-		padding-left: 20px;}
-
-	span {
-		color: 	var(--accent7);
-	}
+	h3 {	text-transform: uppercase;}
+	ul {	padding-left: 	20px;}
+	span {	color: 			var(--accent7);}
 
 	#commPreivew {
-		height: 450px;
-	}
+		height: 450px;}
 
 	.commType {
 		padding: 8px 5px 8px 15px;
 
 		&:not(:first-of-type) {
-			margin-top: 10px;
-		}
+			margin-top: 10px;}
 
-		h4 {
-			padding-bottom: 10px;}
-		p {
-			padding-bottom: 7px;}
+		h4 {	padding-bottom: 10px;}
+		p {		padding-bottom: 7px;}
 
 		.prices {
 			padding: 0 5px;
@@ -173,17 +168,14 @@
 			span {
 				color: 		var(--accent3);
 				font-style: italic;}
-			h5 {
-				padding-right: 15px;
+			h5 {	padding-right: 15px;
 
-				&:nth-of-type(1){ span {color: var(--accent1);}}
-				&:nth-of-type(2){ span {color: var(--accent6);}}
-				&:nth-of-type(3){ span {color: var(--accent3);}}
-				&:nth-of-type(4){ span {color: var(--accent7);}}
-				&:nth-of-type(5){ span {color: var(--accent2);}}
-				&:nth-of-type(6){ span {color: var(--accent5);}}
-			}
-		}
+				&:nth-of-type(1){ span { color: var(--accent1);}}
+				&:nth-of-type(2){ span { color: var(--accent6);}}
+				&:nth-of-type(3){ span { color: var(--accent3);}}
+				&:nth-of-type(4){ span { color: var(--accent7);}}
+				&:nth-of-type(5){ span { color: var(--accent2);}}
+				&:nth-of-type(6){ span { color: var(--accent5);}}}}
 
 		&:nth-child(1) {	border-left: 1px solid var(--accent2);}
 		&:nth-child(2) {	border-left: 1px solid var(--accent1);}
@@ -195,11 +187,10 @@
 
 	.additionalPurchases {
 		.type {
-			padding: 3px 5px 3px 15px;
-			margin-bottom: 10px;
+			padding: 		3px 5px 3px 15px;
+			margin-bottom: 	10px;
 
-			h5 {
-				padding-bottom: 5px;}
+			h5 {	padding-bottom: 5px;}
 
 			@mixin cbc ($colour){
 				border-left: 	1px solid $colour;
@@ -211,16 +202,12 @@
 			&:nth-child(3) { @include cbc(var(--accent5));}
 			&:nth-child(4) { @include cbc(var(--accent7));}
 			&:nth-child(5) { @include cbc(var(--accent1));}
-			&:nth-child(6) { @include cbc(var(--accent2));}
-		}
-	}
+			&:nth-child(6) { @include cbc(var(--accent2));}}}
 
 	.chunk {
 		padding: 	10px 15px;
-		> * {
-			margin-bottom: 	10px;}
-		p {
-			font-size: 		12px;
+		> * {	margin-bottom: 	10px;}
+		p {	font-size: 		12px;
 			font-family:    "Helvetica", Sans-serif;
 
 			&:last-child {
