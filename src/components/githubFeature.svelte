@@ -19,7 +19,7 @@
 						<h4 class="titleH4">
 							{dataEntry.name}
 						</h4>
-						<div class="preview">
+						<div class="imageWrapper">
 							<img src="/github/{dataEntry.preview}.webp">
 							<div class="descCard">
 								<img 	class="tinyIco socialIco shortBorder"
@@ -58,11 +58,8 @@
 		position: 		relative;
 		font-family:    "Helvetica", Sans-serif;
 
-		.preview {
+		.imageWrapper {
 			height:			220px;
-			overflow: 		hidden; //img cropper
-
-			> img {	width:		100%;}
 
 			.descCard {
 				position: 	absolute;
@@ -78,7 +75,5 @@
 
 				.referral {
 					// fallback colour
-					background: 	var(--accent9);}}
-		}
-	}
+					background: 	var(--accent9);}}}}
 </style>

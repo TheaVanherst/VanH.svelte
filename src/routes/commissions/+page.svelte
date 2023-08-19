@@ -46,6 +46,7 @@
 				 id="commPreivew">
 				<img src="/commissions/DemoImage.webp">
 			</div>
+			<p class="citation">Featured example; <span>A Moonlit Ritual</span>.</p>
 		</div>
 		<div class="chunk">
 			<h3>Commission Types</h3>
@@ -152,6 +153,13 @@
 
 	#commPreivew {
 		height: 450px;}
+
+	.citation {
+		margin: 		10px 15px -5px 15px;
+		font-family:	"Helvetica", Sans-serif;
+		font-size: 	10px;
+		text-align: right;
+	}
 
 	.commType {
 		padding: 8px 5px 8px 15px;

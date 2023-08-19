@@ -27,7 +27,3 @@
 <SidebarTexts titlecard="Q&A">
 	<QandaFeature/>
 </SidebarTexts>
-
-<style lang="scss">
-
-</style>

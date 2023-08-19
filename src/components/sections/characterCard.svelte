@@ -12,7 +12,7 @@
 	<h3 class="titleH4">
 		{characterData.name}
 	</h3>
-	<div class="showcase regularBorder">
+	<div class="showcase imageWrapper regularBorder">
 		<img class="imagePreview" src="/characters/{characterData.path}"/>
 		{#if active}
 			<div class="citation" transition:fly={{y: 50, duration: 400 }}>
@@ -130,15 +130,10 @@
 
 	.card {
 		height: 		550px;
-
+		background: 	black;
 		.showcase {
-			display: 			flex;
-			justify-content: 	center;
-			background: 		black;
-
-			img {
-				height: 	auto;
-				display: 	block;}}}
+			height: 	510px;
+			display: 	flex;}}
 
 	.citation {
 		height: 		510px;
