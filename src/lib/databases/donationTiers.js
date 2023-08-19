@@ -2,13 +2,13 @@
 const
     consistantBonus =
         [
-            "Lifetime Discord server access.",
+            "Lifetime Discord server access",
             "Access to supporter only chat channels.",
-            "Preview ongoing work in progress artworks.",
+            "Preview ongoing work in progress artworks",
             "Suggest and give feedback on WIP artworks",
             "Direct communication with me via. DMs or server channels",
         ],
-    citation = "Accent texts are exclusive to that donation tier.";
+    citation = "Accent texts are exclusive to that donation tier";
 
 const
     donationTiers =
@@ -26,10 +26,11 @@ const
             perks: consistantBonus,
             link: "https://ko-fi.com/theavanherst/tiers",
             exclusives: [
-                "Access to the entire archive of my artworks, including alternate versions.",
+                "Access to the entire archive of my artworks, including alternate versions",
                 "Downloadable, archived photoshop files of all artworks",
-                "First in line on commission slots openings.",
-                "Member exclusive polling and sketches."
+                "First in line on commission slots openings",
+                "Member exclusive polling and sketches",
+                "Occasional members only livestreams of WIP drawings"
             ],
         }],
 

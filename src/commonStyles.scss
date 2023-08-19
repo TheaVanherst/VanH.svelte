@@ -104,8 +104,68 @@ a {
 	width:			100%;
 }
 
+.imageWrapper {
+	width: 		100%;
+	overflow: 	hidden;
+
+	img {
+		height: 	100%;
+		width: 		100%;
+		object-fit: cover;}
+}
+
 // TODO: containers
 
+.nsfw {
+	img,
+	.blurCont {
+		transition: ease .3s;
+	}
+
+	&.hoverable {
+		&:hover {
+			.blurCont {
+				&:before, &:after {
+					background: black;}
+				img {
+					transform: scale(1.15);}}}
+	}
+
+	> a {
+		pointer-events: none;}
+
+	.blurCont {
+		position: relative;
+		width: 100%;
+		height: 100%;
+
+		&:before, &:after {
+			position: 	absolute;
+			z-index: 	100;
+			transition: ease .3s;
+
+			left: 		50%;
+			top: 		50%;
+			font-family:    "Helvetica", Sans-serif;
+			white-space: 	nowrap;
+			color: 			white;
+
+			padding: 		5px 20px;
+			border-radius: 	5px;
+			background: 	var(--backgroundTrans);}
+		&:before {
+			content: 		"Content Warning";
+			font-weight: 	600;
+
+			transform: 	translate(-50%, -156%);}
+		&:after {
+			content: 		"Click to preview";
+			transform: 	translate(-50%, -39%);
+			font-size: 11px;}
+
+		img {
+			filter: blur(10px);
+			transform: scale(1.05);}}}
 
 // TODO: icons
 

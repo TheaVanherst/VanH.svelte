@@ -15,7 +15,7 @@
 		<!--{/each}-->
 
 		<!-- hit counter -->
-<!--		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>-->
+		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
 	</div>
 	<div class="right">
 		<p>

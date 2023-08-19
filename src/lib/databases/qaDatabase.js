@@ -15,6 +15,9 @@ const questionDatabase = [
     },{
         question: "Can I draw one of your characters?",
         answer: "Of course! As long as you credit me for the design of the character, and try your best to treat my characters with respect, you're more than fine to do so. Though, I please forward your creations to me of course, I would love to see the final product."
+    },{
+        question: "What software and brushes do you use?",
+        answer: "I use Adobe Photoshop CC with good ol' default brushes with the pressure sensitivity on both the opacity & the size; it's as basic as you can get!"
     }
 ]
 
