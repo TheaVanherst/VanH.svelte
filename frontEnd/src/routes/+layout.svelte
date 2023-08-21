@@ -29,6 +29,7 @@
 <Background/>
 
 <div class="parentElement"
+	 id="body-ele"
 	 bind:this={ pageData }
 	 on:scroll={() => $scrollPos = pageData.scrollTop}>
 	<!-- the current issue is that the banner has an overflow problem, and results in the page having an x overflow, fucking with the page. -->
