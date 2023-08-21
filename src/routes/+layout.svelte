@@ -6,7 +6,7 @@
 	// general shit
     import { scrollPos, screenSize, bandWidths, screenType } 	from '$lib/accessibilityController.js';
 
-	import LoadingFull 			from "../components/generic/loadingFull.svelte";
+	import LoadingFull 			from "../components/layout/loadingFull.svelte";
 
 	import ProfileBar 			from "$root/components/layout/bannerAnimation.svelte";
 	import Background 			from "$root/components/layout/background.svelte";

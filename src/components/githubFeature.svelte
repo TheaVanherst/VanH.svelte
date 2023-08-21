@@ -1,7 +1,7 @@
 <script>
     import { screenType } from '$lib/accessibilityController.js';
 
-    import Container from "./generic/container.svelte";
+    import Container from "./container.svelte";
 
 	import { githubDatabase } from "$lib/databases/githubDatabase.js";
 </script>
@@ -40,7 +40,7 @@
 </Container>
 
 <style lang="scss">
-	@import "./src/components/generic/swiperPreset.scss";
+	@import "../swiperPreset";
 	@import "./src/commonStyles.scss";
 
 	* {	transition: ease .3s; }

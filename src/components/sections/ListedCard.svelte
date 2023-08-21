@@ -77,7 +77,8 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* { transition: ease .3s; }
+	* { transition: color ease .3s, background ease .3s, border ease .3s; }
+		// please don't fuck with this, future me.
 
 	@mixin cfc($colour,$invert){
 		border: 	1px solid $colour;
@@ -133,10 +134,8 @@
 			text-transform: uppercase;
 			padding-bottom: 3px;}
 
-		ul {
-			padding:	0 0 5px 7px;
-			li {
-				padding:	0 0 5px 5px;}}
+		ul {		padding:	0 0 5px 7px;
+			li {	padding:	0 0 5px 5px;}}
 
 		.button {
 			margin: 	0 0 -13px calc(100% - 184px);

@@ -1,8 +1,8 @@
 <script>
     import { screenType } 	from '$lib/accessibilityController.js';
 
-    import SidebarTexts from "../../components/generic/sidebarTexts.svelte";
-    import Container	from "../../components/generic/container.svelte";
+    import SidebarTexts from "../../components/layout/sidebarTexts.svelte";
+    import Container	from "../../components/container.svelte";
 
     import ListedCard 		from "../../components/sections/ListedCard.svelte";
 	import CommissionCard 	from "../../components/sections/commissionCard.svelte";
@@ -143,7 +143,7 @@
 
 <style lang="scss">
 	@import "./src/commonStyles.scss";
-	@import "./src/components/generic/swiperPreset.scss";
+	@import "../../swiperPreset";
 
 	* {	transition: ease .3s;}
 

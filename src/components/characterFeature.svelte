@@ -1,5 +1,5 @@
 <script>
-    import Container 			from "./generic/container.svelte";
+    import Container 			from "./container.svelte";
     import characters 			from "$lib/databases/characterDatabase.js";
     import CharacterCard 		from "./sections/characterCard.svelte";
 
@@ -28,7 +28,7 @@
 
 <style lang="scss">
 	@import "./src/commonStyles.scss";
-	@import "./src/components/generic/swiperPreset.scss";
+	@import "../swiperPreset";
 
 	* {	transition: ease .3s;}
 

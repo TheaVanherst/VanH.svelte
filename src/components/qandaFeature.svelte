@@ -1,7 +1,7 @@
 <script>
 	import qaDatabase 	from "$lib/databases/qaDatabase.js";
 
-    import Container 	from "./generic/container.svelte";
+    import Container 	from "./container.svelte";
 </script>
 
 <Container>
@@ -43,7 +43,6 @@
 
 		&:hover {
 			cursor: url('/cursors/altSelect.gif'), crosshair;
-
 			.q {
 				padding: 1px 8px 1px 8px;
 
@@ -51,7 +50,10 @@
 				border-radius: 	3px;
 				color: 			black;}
 			.s {
-				margin: -7px 60px 0 50px;}}
+				margin: -7px 60px 0 50px;}
+			.a {
+				img {
+					transform: scale(1.2);}}}
 
 		&:first-child {
 			padding-top: 10px;}

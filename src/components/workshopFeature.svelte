@@ -1,5 +1,5 @@
 <script>
-    import Container 		from "./generic/container.svelte";
+    import Container 		from "./container.svelte";
     import WorkshopCard 	from "./sections/workshopCard.svelte";
     import WorkshopSnippet 	from "./sections/workshopSnippet.svelte";
 
@@ -37,11 +37,11 @@
 </Container>
 
 <style lang="scss">
-	@import "./src/components/generic/swiperPreset.scss";
+	@import "../swiperPreset";
 
-	* {	transition: ease .3s;}
+	* {	transition: ease .3s; }
 
 	.offset {
-		margin: 	5px 10px 15px 10px;
+		margin: 	-10px 10px 0px 10px;
 		position: 	relative;}
 </style>

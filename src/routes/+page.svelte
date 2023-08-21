@@ -1,5 +1,5 @@
 <script>
-    import SidebarTexts 	from "../components/generic/sidebarTexts.svelte";
+    import SidebarTexts 	from "../components/layout/sidebarTexts.svelte";
 
 	import CharacterFeature from "../components/characterFeature.svelte";
     import WorkshopFeature 	from "../components/workshopFeature.svelte";

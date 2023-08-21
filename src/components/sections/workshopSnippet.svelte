@@ -17,6 +17,8 @@
 		position:   relative;
 		transition: ease .4s;
 
+		margin: 10px 0;
+
 		.thumbnail {
 			margin: 	0 5px;
 			width: 		calc(100% - 10px);
@@ -39,5 +41,6 @@
 
 		&:hover {
 			opacity: 	1;
-			transform: 	scale(0.9);}}
+			z-index: 	1;
+			transform: 	scale(1.2);}}
 </style>
