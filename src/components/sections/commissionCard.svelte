@@ -4,13 +4,14 @@
 	let show = false;
 </script>
 
-<div class="card regularBorder {data.nsfw ? 'nsfw' : ''} hoverable"
+<div class="card regularBorder {data.nsfw ? 'nsfw' : ''} {!show ? 'hidden' : ''} hoverable"
 	 on:click={() => {show = true;}}>
-	<a href="https://twitter.com/TheaVanherst/status/{data.source}" target="_blank">
+	<a 	href="https://twitter.com/TheaVanherst/status/{data.source}"
+	   	target="_blank">
 		<h3 class="titleH4">
 			{data.title}
 		</h3>
-		<div class="showcase regularBorder">
+		<div class="showcase regularBorder imageWrapper">
 			<div class="{data.nsfw && !show ? 'blurCont' : ''}">
 				<img 	class="commissionPreview"
 						src="/commissions/{data.img}.webp">
@@ -32,21 +33,11 @@
 		margin-bottom: 	25px;
 
 		.showcase {
-			position: 			relative;
 			display: 			flex;
 			justify-content: 	center;
-			background: 		black;
-			height: 	100%;
-			width: 		100%;
-
-			.commissionPreview {
-				height: 	100%;
-				width: 		100%;
-				object-fit: cover;}
+			height: 			100%;
 
 			.commType {
-				font-size: 		12px;
-				font-family:	"Helvetica", Sans-serif;
 				background: 	var(--backgroundTrans);
 
 				padding:	5px 10px;

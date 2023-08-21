@@ -29,7 +29,9 @@ const workshopArray = [
         authors: [  authorReferencing.thea,
                     authorReferencing.sipher ],
         description:
-                "A stand alone mod that rehauls, redesigns and reanimates the original Ponies Crypt mod - featuring UI reworks, title cards and bestiaries unique to each character, all of which fully compatible with all the DLCs.",
+            "A stand alone mod that rehauls, redesigns and reanimates the original Ponies Crypt mod - featuring " +
+            "UI reworks, title cards and bestiaries unique to each character, all of which fully compatible with all " +
+            "the DLCs.",
         url:    "2979392248",
     },{
         thumbnail:  "refinedScrolls",
@@ -38,7 +40,8 @@ const workshopArray = [
         authors:  [ authorReferencing.thea,
                     authorReferencing.sipher ],
         description:
-                "A pack that replaces the default, meaningless symbols on scrolls to simplistic iconography, and replaces scroll / paper items / equipment.",
+            "A pack that replaces the default, meaningless symbols on scrolls to simplistic iconography, and " +
+            "replaces scroll / paper items / equipment.",
         url:    "2991894017",
     },{
         thumbnail:  "twoSisters",
@@ -47,7 +50,9 @@ const workshopArray = [
         authors: [  authorReferencing.thea,
                     authorReferencing.sipher ],
         description:
-                "A HUD extention of the My Little Pony Re-haul Mod. This resource pack is not required, and just adds additional Equestrian themed UI / HUD tweaks - designed for the \"Wealth of Canterlot\" Update [01/06/2023].",
+            "A HUD extention of the My Little Pony Re-haul Mod. This resource pack is not required, and just " +
+            "adds additional Equestrian themed UI / HUD tweaks - designed for the \"Wealth of Canterlot\" Update " +
+            "[01/06/2023].",
         url:    "2984585592",
     },{
         thumbnail:  "thirdImpact",
@@ -55,7 +60,8 @@ const workshopArray = [
         game:       gameReferencing.terraria,
         authors: [  authorReferencing.thea ],
         description:
-                "A complete and ongoing overhaul of the Moonlord, redesigning and re-scheming assets to Third Impact from Neon Genesis Evangelion.",
+            "A complete and ongoing overhaul of the Moonlord, redesigning and re-scheming assets to Third " +
+            "Impact from Neon Genesis Evangelion.",
         url:    "2449497541",
     },{
         thumbnail:  "evaUnit1",
@@ -63,7 +69,8 @@ const workshopArray = [
         game:       gameReferencing.terraria,
         authors: [  authorReferencing.thea ],
         description:
-                "A 1:1 scale, 330 block tall recreation of Eva Unit: 01 from Neon Genesis Evangelion, holding the Tirpitz. Reported on by PC GAMER, Jan 18th 2021.",
+            "A 1:1 scale, 330 block tall recreation of Eva Unit: 01 from Neon Genesis Evangelion, holding the " +
+            "Tirpitz. Reported on by PC GAMER, Jan 18th 2021.",
         url:    "2440395917"
     }
 ],

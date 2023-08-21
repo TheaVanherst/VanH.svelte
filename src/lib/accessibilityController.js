@@ -17,10 +17,12 @@ const scrollIntoView = ({ target }) => {
 
 export { scrollIntoView, scrollPos };
 
+// Page size datasets
+
 const screenSize = writable(0);
 const screenType = writable(0);
 
-const bandWidths = [850, 600, 400];
+const bandWidths = [850, 600, 400]; //pre-determined bandwidth sizes
 
 export { screenSize, bandWidths, screenType };
 

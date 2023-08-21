@@ -19,10 +19,10 @@
 					{/if}
 				</p>
 			</div>
-			<div class="a">
+			<div class="a fancy">
 				<img class="profileIcon pfp"
 						src="/branding/vahnPfp.webp">
-				<p class="quote">
+				<p class="quote fancy">
 					{qa.answer}
 				</p>
 			</div>
@@ -33,11 +33,25 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
+	* {	transition: .3s ease;}
+
 	.wrapper {
 		padding: 5px;}
 
 	.questionBlock {
-		padding: 		0 10px 8px 10px;
+		padding: 0 10px 8px 10px;
+
+		&:hover {
+			cursor: url('/cursors/altSelect.gif'), crosshair;
+
+			.q {
+				padding: 1px 8px 1px 8px;
+
+				background: 	var(--accent3);
+				border-radius: 	3px;
+				color: 			black;}
+			.s {
+				margin: -7px 60px 0 50px;}}
 
 		&:first-child {
 			padding-top: 10px;}
@@ -60,9 +74,7 @@
 			text-align: right;
 			margin: 	-6px 40px 0 10px;
 
-			img {
-				position: absolute;}
-			p {
-				margin:			0 11px 0 0;}}
+			img {	position: 	absolute;}
+			p {	margin:		0 11px 0 0;}}
 	}
 </style>

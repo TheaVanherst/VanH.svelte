@@ -29,26 +29,21 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* {
-		transition: ease .3s;
-	}
+	* {	transition: ease .3s;}
 
 	.cropped {
 		width: 	calc(100% + 30px)!important;
-		margin: 0 -15px!important;
-	}
+		margin: 0 -15px!important;}
 
 	.mobile {
 		display: block;
 		> * {
 			margin: 0 auto!important;}
 		.right {
-			display: none;}
-	}
+			display: none;}}
 
 	.hitCounter {
-		padding: 10px;
-	}
+		padding: 10px;}
 
 	.footer {
 		background-color: 	var(--backgroundTrans);
@@ -69,8 +64,7 @@
 
 				//&:hover {
 				//	@include rainbowTransition();}
-			}
-		}
+		}}
 
 		.right {
 			margin: 0 15px 0 auto;
@@ -78,14 +72,10 @@
 
 			p {
 				text-align: 	right;
-				font-family:	"Helvetica", Sans-serif;
-				font-size: 		12px;
 				color:			var(--accent8);}
 
 			span {
 				color: var(--accent9);
 				&:hover {
-					@include rainbowTransition();} }
-		}
-	}
+					@include rainbowTransition();}}}}
 </style>

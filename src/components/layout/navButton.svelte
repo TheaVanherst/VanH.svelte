@@ -40,7 +40,7 @@
 <style lang="scss">
     @import "./src/commonStyles.scss";
 
-    * { transition: ease .3s;}
+    * { transition: ease .3s; }
 
     a {
         &:hover {
@@ -69,26 +69,22 @@
                 margin: auto 0;
                 img {
                     width:  26px;
-                    height: 26px;}}
-        }
-    }
+                    height: 26px;}}}}
 
     h5 {
         &::after {
             content: '';
 
-            position: absolute;
+            position:   absolute;
             transition: ease 300ms;
 
-            bottom: -14px;
+            bottom:     -14px;
+            width:      100%;
+            height:     1px;
+            opacity:    0;
 
-            width: 100%;
-            height: 1px;
-            opacity: 0;
-            transform: translate3d(-100%, 0, 0);
-            background-color: var(--accent2);
-        }
-    }
+            transform:  translate3d(-100%, 0, 0);
+            background: var(--accent2);}}
 
     a {
         &.fade {
@@ -98,9 +94,5 @@
 
                 &::after {
                     opacity: 1;
-                    bottom: -4px;
-                }
-            }
-        }
-    }
+                    bottom: -4px;}}}}
 </style>

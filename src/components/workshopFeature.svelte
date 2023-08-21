@@ -39,12 +39,9 @@
 <style lang="scss">
 	@import "./src/components/generic/swiperPreset.scss";
 
-	* {
-		transition: ease .3s;
-	}
+	* {	transition: ease .3s;}
 
 	.offset {
 		margin: 	5px 10px 15px 10px;
-		position: 	relative;
-	}
+		position: 	relative;}
 </style>

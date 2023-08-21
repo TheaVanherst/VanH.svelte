@@ -28,15 +28,17 @@
 					</p>
 				</div>
 				<div class="developers">
-					By:&nbsp;
-					{#each dataEntry.authors as author, i}
-						<a class="author" href={author.website} target="_blank">
-							{author.name}
-						</a>
-						{#if i < dataEntry.authors.length - 1}
-							&nbsp;and&nbsp;
-						{/if}
-					{/each}
+					<p>
+						By:
+						{#each dataEntry.authors as author, i}
+							<a class="author" href={author.website} target="_blank">
+								{author.name}
+							</a>
+							{#if i < dataEntry.authors.length - 1}
+								<span>and&nbsp;</span>
+							{/if}
+						{/each}
+					</p>
 				</div>
 			</div>
 		</div>
@@ -62,33 +64,29 @@
 	.socialIco {
 		top: 38px;}
 
-	.workshopData {
-		position: relative;
+	.workshopItem {
+		.workshopData {
+			position: relative;
 
-		.description {
-			@include shortForm(4);}
+			.description {
+				@include shortForm(4);}
 
-		.details {
-			white-space: 	nowrap;
-			border-top: 	1px solid var(--accent8);
-			padding: 		10px 10px 27px 10px;
+			.details {
+				white-space: 	nowrap;
+				border-top: 	1px solid var(--accent8);
+				padding: 		10px 10px 27px 10px;
 
-			.game {
-				display: 		flex;
-				margin-bottom: 	3px;
+				.game {
+					display: 		flex;
+					margin-bottom: 	3px;
 
-				p {
-					margin: 	auto 0 auto 7px;}}
+					p { margin: 	auto 0 auto 7px;}}
 
-			.developers {
-				font-family:	"Helvetica", Sans-serif;
-				font-size: 		12px;
-				display: 		flex;
-
-				@include customFontColour(var(--accent8));
-
-				.author {
-					@include customFontColour(var(--accent9));}}
-		}
-	}
+				.developers {
+					display: 		flex;
+					p,
+					span {
+						@include customFontColour(var(--accent8));}
+					.author {
+						@include customFontColour(var(--accent9));}}}}}
 </style>

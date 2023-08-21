@@ -6,7 +6,7 @@
 {#if $page?.error}
     <SidebarTexts titlecard="Error {$page?.status}">
         <div class="container">
-            <img src="/error.gif"/>
+            <img src="/branding/error.gif"/>
             <div class="caption">
                 <h3>{$page?.error?.message}</h3>
             </div>
@@ -20,13 +20,15 @@
 		border-radius:      5px;
         background:         var(--backgroundTrans);
         position:           relative;
+        margin-bottom:      15px;
 
         img {
 			width:          60%;
             object-fit:     cover;
             margin:         10px;
-            border-radius:  10px;
+            border-radius:  5px;
             overflow:       hidden;}
+
         .caption {
             padding: 15px;}
 	}

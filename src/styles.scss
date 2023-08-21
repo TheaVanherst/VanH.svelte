@@ -10,11 +10,8 @@
 	--accent7: #ff8800;
 	--accent8: #5d5d5d;
 	--accent9: #ffffff;
-
-	--background:           rgb( 0, 0, 0);
-	--backgroundTrans:      rgba(0, 0, 0, 0.6);
-	--textColour: 			#efefef;
-	--imageBlurring: 	    2px;
+	--backgroundTrans:
+				rgba(0, 0, 0, 0.6);
 }
 
 /* document formatting */
@@ -23,8 +20,7 @@
 	color:          $colour;
 	&::selection {
 		color:      black;
-		background: $colour!important;}
-}
+		background: $colour!important;}}
 
 * {
 	scrollbar-color:    var(--accent2) transparent;
@@ -40,8 +36,7 @@
 	&::-webkit-scrollbar-thumb:hover {
 		background: 	var(--accent1);}
 	&::-webkit-scrollbar-thumb:active {
-		background: 	var(--accent6);}
-}
+		background: 	var(--accent6);}}
 
 body {
 	min-height: 100vh;
@@ -50,7 +45,7 @@ body {
 
 	background:		#000;
 	font-family:    "Georgia", serif;
-	color:	 		var(--textColour);
+	color:	 		white;
 
 	overflow-x:         hidden;
 	scroll-behavior: 	smooth;
@@ -63,44 +58,51 @@ body {
 // cursor defaults
 
 body {
-	cursor: crosshair!important;}
-a {
-	cursor: crosshair!important;}
+	cursor: url('/cursors/normal.gif'), crosshair;}
+a { cursor: url('/cursors/linkSelect.gif'), crosshair;}
+*:active {
+	cursor: url('/cursors/textSelect.gif'), crosshair;}
 
 /* style formatting */
+
+a { * { color: white;}}
 
 h1, h2, h3, h4, h5 {
 	vertical-align: middle;
 	font-family:    "Playfair Display", serif;
 	line-height:    100%;
 
-	@include customFontColour(var(--textColour));
+	@include customFontColour(white);
 
 	position:   relative;
 	margin:     0;
-	padding:    0;
-}
+	padding:    0;}
 
-h1 {font-size: 2.00rem; line-height: 2.00rem;}
-h2 {font-size: 1.75rem; line-height: 1.75rem;}
-h3 {font-size: 1.50rem; line-height: 1.50rem;}
+h1 {font-size: 2.00rem; line-height: 2.00rem;
+	text-transform: uppercase;}
+h2 {font-size: 1.75rem; line-height: 1.75rem;
+	text-transform: uppercase;}
+h3 {font-size: 1.50rem; line-height: 1.50rem;
+	text-transform: uppercase;}
 h4 {font-size: 1.25rem; line-height: 1.25rem;}
 h5 {font-size: 1.10rem; line-height: 1.10rem;}
 
 /* mark formatting */
 
-a {
-	text-decoration:    none;
+a { text-decoration:    none;
 	@include customFontColour(var(--accent1));}
 
-p {
-	font-size:      13px;
-	color:	 		var(--textColour);
+p { font-size:      12px;
+	font-family:	"Helvetica", Sans-serif;
+	line-height:    110%;
+	color:	 		white;
 	margin: 		0;
-	@include customFontColour(var(--textColour));}
+	@include customFontColour(white);}
+.fancy {
+	font-size: 13px;
+	font-family: 	"Playfair Display", serif;}
 
-b {
-	@include customFontColour(var(--accent3));}
+b { @include customFontColour(var(--accent3));}
 
 /* list formatting */
 
@@ -109,20 +111,17 @@ ul {
 
 	li {
 		padding:        0 0 10px 5px;
-		line-height:    100%;
 
 		font-family:    "Helvetica", Sans-serif;
 		font-size:      12px;
+		line-height:    100%;
+		@include customFontColour(white);
 
 		&::marker {
 			font-weight: 	700;
 			line-height: 	100%;
 			vertical-align: middle;
-			font-size: 	   .85em;
-		}
+			font-size: 	   .85em;}
 
 		&:last-of-type {
-			padding-bottom: 0px;
-		}
-	}
-}
+			padding-bottom: 0;}}}

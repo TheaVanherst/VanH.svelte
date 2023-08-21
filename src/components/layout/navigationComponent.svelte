@@ -42,12 +42,8 @@
 			margin: 		0 auto;
 			> * {
 				width: 			max-content;
-				margin: 		0 auto;
-			}
+				margin: 		0 auto;}
 
 			.socials {
-				border-bottom: 	1px solid var(--accent6);
-			}
-		}
-	}
+				border-bottom: 	1px solid var(--accent6);}}}
 </style>

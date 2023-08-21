@@ -156,8 +156,7 @@
 
 	.citation {
 		margin: 		10px 15px -5px 15px;
-		font-family:	"Helvetica", Sans-serif;
-		font-size: 	10px;
+		font-size: 	11px;
 		text-align: right;
 	}
 
@@ -215,9 +214,6 @@
 	.chunk {
 		padding: 	10px 15px;
 		> * {	margin-bottom: 	10px;}
-		p {	font-size: 		12px;
-			font-family:    "Helvetica", Sans-serif;
-
-			&:last-child {
+		p { &:last-child {
 				margin: 0;}}}
 </style>

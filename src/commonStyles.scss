@@ -1,12 +1,11 @@
 
 @mixin rainbowTransition() {
 	filter:
-			drop-shadow(0px 0px 1px var(--accent9))
-			brightness(0) 	saturate(100%)
-			invert(15%) 	sepia(75%)
-			saturate(5273%) hue-rotate(271deg)
-			brightness(97%) contrast(132%);
-}
+		drop-shadow(0px 0px 1px var(--accent9))
+		brightness(0) 	saturate(100%)
+		invert(15%) 	sepia(75%)
+		saturate(5273%) hue-rotate(271deg)
+		brightness(97%) contrast(132%);}
 
 // TODO: title types
 
@@ -17,10 +16,10 @@
 	position: 		relative;}
 
 a {
+	transition: .5s ease; //fallback transition
 	&:hover {
 		.titleH4 {
-			@include rainbowTransition();}}
-}
+			@include rainbowTransition();}}}
 
 // TODO: generic texts
 
@@ -28,8 +27,7 @@ a {
 	color:          $colour;
 	&::selection {
 		color:      black;
-		background: $colour!important;}
-}
+		background: $colour!important;}}
 
 @mixin citationText($colour, $hover){
 	font-size: 		10px;
@@ -43,13 +41,11 @@ a {
 	&:hover {
 		@include customFontColour(var(--accent0));
 		> span {
-			@include customFontColour($hover);}}
-}
+			@include customFontColour($hover);}}}
 
 .generic {
 	font-family: 	"Helvetica", Sans-serif;
-	margin-bottom: 	10px;
-}
+	margin-bottom: 	10px;}
 
 // TODO: description
 
@@ -77,16 +73,17 @@ a {
 	&::before,
 	&::after {
 		position: 	absolute;
-		font-size: 	55px;}
+		font-size: 	50px;}
 	&::before {
+		top:        0;
 		left: 		0;
-		margin: 	-15px 0 0 -12px;
+		margin: 	5px 0 0 -12px;
 		content: 	open-quote;}
 	&::after {
-		right: 0;
-		margin: 	-5px -12px 0 0;
-		content: 	close-quote;}
-}
+		bottom:     0;
+		right:      0;
+		margin: 	0 -10px -10px 0;
+		content: 	close-quote;}}
 
 // TODO: cropping
 
@@ -94,33 +91,30 @@ a {
 	border-radius: 	5px;
 	overflow: 		hidden;
 	vertical-align: bottom;
-	width:			100%;
-}
+	width:			100%;}
 
 .shortBorder {
 	border-radius: 	3px;
 	overflow: 		hidden;
 	vertical-align: bottom;
-	width:			100%;
-}
+	width:			100%;}
 
 .imageWrapper {
 	width: 		100%;
+	position: 	relative;
 	overflow: 	hidden;
 
-	> img {
+	img:not(.tinyIco) {
 		height: 	100%;
 		width: 		100%;
-		object-fit: cover;}
-}
+		object-fit: cover;}}
 
 // TODO: containers
 
 .nsfw {
 	img,
 	.blurCont {
-		transition: ease .3s;
-	}
+		transition: ease .3s;}
 
 	&.hoverable {
 		&:hover {
@@ -128,16 +122,18 @@ a {
 				&:before, &:after {
 					background: black;}
 				img {
-					transform: scale(1.15);}}}
-	}
+					transform: scale(1.15);}}}}
 
-	> a {
-		pointer-events: none;}
+	&.hidden {
+		&:hover {
+			cursor: url('/cursors/busy.gif'), crosshair;}
+		> a {
+			pointer-events: none;}}
 
 	.blurCont {
-		position: relative;
-		width: 100%;
-		height: 100%;
+		position:   relative;
+		width:      100%;
+		height:     100%;
 
 		&:before, &:after {
 			position: 	absolute;
@@ -146,13 +142,14 @@ a {
 
 			left: 		50%;
 			top: 		50%;
+
 			font-family:    "Helvetica", Sans-serif;
 			white-space: 	nowrap;
 			color: 			white;
+			background: 	var(--backgroundTrans);
 
 			padding: 		5px 20px;
-			border-radius: 	5px;
-			background: 	var(--backgroundTrans);}
+			border-radius: 	5px;}
 		&:before {
 			content: 		"Content Warning";
 			font-weight: 	600;
@@ -164,8 +161,8 @@ a {
 			font-size: 11px;}
 
 		img {
-			filter: blur(10px);
-			transform: scale(1.05);}}}
+			filter:     blur(10px);
+			transform:  scale(1.05);}}}
 
 // TODO: icons
 
@@ -184,16 +181,13 @@ a {
 		bottom: 	42px;
 
 		position: 	absolute;
-		z-index:    100;
-	}
+		z-index:    100;}
 
 	&:hover {
 		.socialIco {
 			background-color: black;}
 		img {
-			transform: scale(1.1);}
-	}
-}
+			transform: scale(1.1);}}}
 
 .profileIcon {
 	width: 	        40px;
@@ -204,9 +198,7 @@ a {
 	transition: transform ease .3s;
 
 	&:hover {
-		transform: scale(1.2);
-	}
-}
+		transform: scale(1.2);}}
 
 // TODO: buttons
 
@@ -216,6 +208,5 @@ a {
 	font-family: 	"Helvetica", Sans-serif;
 	font-size: 		12px;
 	font-weight: 	600;
-	color: 			black;
-}
+	color: 			black;}
 

@@ -23,8 +23,7 @@
 			height: 	calc(100%);
 
 			border-radius: 	5px;
-			overflow: 		hidden;
-		}
+			overflow: 		hidden;}
 
 		.gameIcon {
 			border-radius: 	3px;
@@ -36,12 +35,9 @@
 
 			bottom: 0;
 			right:	0;
-			margin: 3px 8px 3px 3px;
-		}
+			margin: 3px 8px 3px 3px;}
 
 		&:hover {
 			opacity: 	1;
-			transform: 	scale(0.9);
-		}
-	}
+			transform: 	scale(0.9);}}
 </style>

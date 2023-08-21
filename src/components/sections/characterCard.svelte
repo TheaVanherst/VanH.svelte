@@ -120,36 +120,33 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* {	transition: .5s ease;}
+	* {	transition: .5s ease; }
 
 	.hovered {
 		.titleH4 {
-			@include rainbowTransition()}
+			@include rainbowTransition();}
 		img {
 			opacity: 0.3;}}
 
+	.showcase,
+	.citation {
+		height: 		510px;}
+
 	.card {
 		height: 		550px;
-		background: 	black;
 		.showcase {
-			height: 	510px;
+			background: black;
 			display: 	flex;}}
 
 	.citation {
-		height: 		510px;
 		position: 		absolute;
 		overflow-y:		scroll;
 
 		.wrapper {
 			padding: 	15px 15px 25px 15px;}
 
-		p {
-			font-size: 	12px;}
 		h4 {
-			padding-bottom: 	9px;
-			@include customFontColour(var(--accent9));}
-
-		@include customFontColour(var(--accent9));
+			padding-bottom: 	9px;}
 
 		.partition {
 			padding-top: 	10px;
@@ -158,10 +155,7 @@
 		.descriptionTitle {
 			padding: 		0 0 4px 0;}
 		.description {
-			padding: 		0 0 7px 2px;
-			font-family: 	"Helvetica", Sans-serif;
-			font-size: 		12px;}
-	}
+			padding: 		0 0 7px 2px;}}
 
 	@mixin cfc($colour,$invert){
 		> span { color: $colour; }

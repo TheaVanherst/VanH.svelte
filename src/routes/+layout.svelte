@@ -25,6 +25,7 @@
 </script>
 
 <svelte:window bind:innerWidth={ $screenSize }/>
+
 <Background/>
 
 <div class="parentElement"
@@ -60,59 +61,47 @@
 
 <style lang="scss">
 	* {
-		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-		-moz-box-sizing: 	border-box; /* Firefox, other Gecko */
-		box-sizing: 		border-box; /* Opera/IE 8+ */
-	}
+		-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
+		-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
+		box-sizing: 		border-box;} 	/* Opera/IE 8+ */
+
+	#navigation,
+	#layout {
+		max-width: 	800px;}
+
+	.parentElement,
+	.content {
+		position: 	relative;}
 
 	.parentElement {
-		display: 	block;
-		position: 	relative;
-		overflow-x: hidden; // this is a bullshit fix
-		overflow-y: scroll;
-
-		width: 		100%;
-		height: 	100vh;
-
 		#navigation {
-			margin: 	0 auto;
-			width: 		100%;
-			max-width: 	800px;
-			height: 	100%;}
-	}
+			margin: 	0 auto;}}
 
 	.content {
-		padding: 	0 0 15px 0;
-		position: 	relative;
-	}
+		padding: 	0 0 15px 0;}
 
 	// page types
 
-	#layout { // loaded page data
+	#layout,
+	#loading {
 		width: 		100%;
-		min-width: 	300px;
-		max-width: 	801px;
 		height: 	100%;
+		position: 	absolute;}
+
+	#layout { // loaded page data
+		min-width: 	300px;
 		padding: 	15px;
 
-		position: 	absolute;
-
 		.content {
-			margin: 	0 auto;}
-	}
+			margin: 	0 auto;}}
 
 	#loading { // loading animation
-		width: 		100%;
-		height: 	100%;
 		margin: 	auto auto;
-
-		position: 	absolute;
 		display: 	flex;
 
 		.loadingBar {
-			position: relative;
-			top: 150px;}
+			position: 	relative;
+			top: 		150px;}
 		.content {
-			margin: 	auto auto;}
-	}
+			margin: 	auto auto;}}
 </style>

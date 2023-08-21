@@ -30,9 +30,7 @@
 	@import "./src/commonStyles.scss";
 	@import "./src/components/generic/swiperPreset.scss";
 
-	* {
-		transition: ease .3s;
-	}
+	* {	transition: ease .3s;}
 
 	.citation {
 		@include citationText(var(--accent2), var(--accent1));
@@ -43,6 +41,5 @@
 		position: 	relative;
 		display: 	block;
 
-		transition: .3s ease;
-	}
+		transition: .3s ease;}
 </style>

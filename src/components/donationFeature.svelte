@@ -19,7 +19,7 @@
 	{/if}
 	<div class="citation quote">
 		{#each personalMessage as text}
-			<p> {text} </p>
+			<p class="fancy"> {text} </p>
 		{/each}
 
 		{#key $screenType < 3}
@@ -44,17 +44,12 @@
 		border: 		1px solid var(--accent9);
 		background: 	var(--backgroundTrans);
 
-		font-size: 	12px;
-		padding: 	10px;
-		margin-bottom: 	15px;
-
-		@include customFontColour(var(--accent9));}
+		padding: 		10px;
+		margin-bottom: 	15px;}
 
 	.imageShowcase {
 		margin: 	-10px 0 -70px -57px;
-
 		animation: 	float 6s infinite ease-in-out;
-		position: 	relative;
 
 		> img {
 			width: 	300px;}}
@@ -63,7 +58,6 @@
 		margin: 5px;
 
 		> p {
-			font-size: 		12px;
 			padding-bottom: 9px;
 
 			&:last-of-type {

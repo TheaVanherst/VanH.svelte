@@ -55,10 +55,7 @@
 			margin: 0;
 			height: 100%;
 			&:hover {
-				animation: 	zoomLoop 3s ease-in-out infinite;
-			}
-		}
-	}
+				animation: 	zoomLoop 3s ease-in-out infinite;}}}
 
 	.planetarySystem {
 		filter: 	drop-shadow(0px 0px 2px var(--darkAccent1));
@@ -72,14 +69,12 @@
 
 			&.tilt1 {	animation: tiltSpin 3s ease-in-out infinite;}
 			&.tilt2 {	animation: tiltSpin 5s ease-in-out infinite;}
-			&.tilt3 {	animation: tiltSpin 6s ease-in-out infinite;}
-		}
+			&.tilt3 {	animation: tiltSpin 6s ease-in-out infinite;}}
 
 		.circle,
 		.circle > .dot {
 			position: 			absolute;
-			border-radius: 		50%;
-		}
+			border-radius: 		50%;}
 
 		.circle {
 			&:nth-child(1) > .dot {background: var(--accent6);}
@@ -106,9 +101,7 @@
 					width: 		$planetSize;
 					height: 	$planetSize;
 					margin-top: 	calc(50% - ((($ringSize + $planetSize) / 2.85) - 4px));
-					margin-left: 	calc(50% - ((($ringSize + $planetSize) / 2.8) + 5px));
-				}
-			}
+					margin-left: 	calc(50% - ((($ringSize + $planetSize) / 2.8) + 5px));}}
 
 			&.decorationRing1 {	@include cgm(200px, 10px, var(--accent2), 0px,  3s); }
 			&.decorationRing2 {	@include cgm(320px, 8px, var(--accent6), 0px,  3s); }

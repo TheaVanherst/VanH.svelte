@@ -31,7 +31,7 @@
     @mixin cgm($st, $sd, $hm, $zh, $ov, $lp){
         -webkit-animation: 	backgroundSpeed+$st $sd linear infinite;
         animation: 			backgroundSpeed+$st $sd linear infinite;
-        background-image: 	url("/stars"+($st)+".gif");
+        background-image: 	url("/branding/stars"+($st)+".gif");
 
         left:  -$lp;
         height: calc(100vh + $hm);

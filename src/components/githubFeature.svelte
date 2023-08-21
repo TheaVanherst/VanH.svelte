@@ -43,7 +43,7 @@
 	@import "./src/components/generic/swiperPreset.scss";
 	@import "./src/commonStyles.scss";
 
-	* {	transition: ease .3s;}
+	* {	transition: ease .3s; }
 
 	a:hover {
 		.referral {
@@ -55,25 +55,17 @@
 			margin-bottom: 28px;}}
 
 	.slide {
-		position: 		relative;
-		font-family:    "Helvetica", Sans-serif;
+		.descCard {
+			position: 	absolute;
+			bottom: 	0;
+			background: var(--backgroundTrans);
 
-		.imageWrapper {
-			height:			220px;
+			.tinyIco {
+				top: 	-42px;}
 
-			.descCard {
-				position: 	absolute;
-				width: 		100%;
-				bottom: 	0;
+			.description {
+				@include shortForm(3);}
 
-				.tinyIco {
-					top: 		-42px;}
-
-				.description {
-					background: var(--backgroundTrans);
-					@include shortForm(3);}
-
-				.referral {
-					// fallback colour
-					background: 	var(--accent9);}}}}
+			.referral { // fallback colour
+				background: 	var(--accent9);}}}
 </style>
