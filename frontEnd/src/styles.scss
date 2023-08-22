@@ -39,6 +39,7 @@
 		background: 	var(--accent6);}}
 
 body {
+	min-height: 100vh; // DONT REMOVE. THIS BREAKS MOBILE.
 	margin: 	0;
 	position:   relative;
 
@@ -46,7 +47,7 @@ body {
 	font-family:    "Georgia", serif;
 	color:	 		white;
 
-	overflow: hidden;
+	overflow-x:         hidden;
 	scroll-behavior: 	smooth;
 
 	::selection {

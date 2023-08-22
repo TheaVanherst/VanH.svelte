@@ -46,7 +46,7 @@
 				</div>
 				<NavigationComponent/>
 				<slot/>
-<!--				<PageFooter/>-->
+				<PageFooter/>
 			</div>
 		</div>
 	{:else}
@@ -81,7 +81,12 @@
 		position: 	relative;}
 
 	.parentElement {
-		overflow-x: hidden; // this is a bullshit fix
+		// if you remove any of this, it will break mobile.
+		// DO NOT FUCKING REMOVE IT.
+		display: block;
+		position: relative;
+		overflow-x: hidden; // this is a bullshit fix to fix the banner
+		overflow-y: scroll;
 
 		width: 	100%;
 		height: 100vh;}
@@ -113,5 +118,4 @@
 		.content {
 			margin: 	auto auto;}}
 
-	// page scroll controllers
 </style>

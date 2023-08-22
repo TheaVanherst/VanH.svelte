@@ -1,18 +1,25 @@
 <script>
     import { slide, scale } from 'svelte/transition';
 
+    import { screenType } 	from '$lib/accessibilityController.js';
+
     let chatBox = false;
 </script>
 
-<div id="messageController">
+<div
+	id="messageController"
+	class="{$screenType < 3 ? 'mobile' : ''}">
 	{#if !chatBox}
-		<div class="button open" in:scale={{delay: 300}} out:scale
+		<div class="button open"
+			 in:scale={{delay: 300}} out:scale
 			 on:click={() => {chatBox = !chatBox}}>
 			<img src="/icons/commentIcon.webp">
 		</div>
 	{:else}
-		<div id="messager" in:slide={{delay: 300}} out:slide>
-			<div class="button close" transition:scale
+		<div id="messager"
+			 in:slide={{delay: 300}} out:slide>
+			<div class="button close"
+				 transition:scale
 				 on:click={() => {chatBox = !chatBox}}>
 				<img src="/icons/closeIcon.webp">
 			</div>
@@ -36,6 +43,14 @@
 		float: 			right;
 
 		z-index: 	2;}
+
+	.mobile {
+		#messager {
+			max-width: calc(100% - 30px);
+			width: 100%;}
+		#chatbox {
+			width: 100%;}
+	}
 
 	.button {
 		width: 		min-content;
@@ -69,10 +84,11 @@
 		margin: 		15px 15px 0 15px;
 		width: 			calc(100% - 30px);
 		min-width:		270px;
-		max-width: 		300px;}
+		max-width: 		350px;}
 	#chatbox {
 		margin-bottom: 	15px; // shit fix to fix the transition
 		border-radius: 	5px;
+		width:			350px;
 		overflow: 		hidden;}
 
 </style>
