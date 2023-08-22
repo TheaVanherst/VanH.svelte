@@ -178,9 +178,9 @@ export { commissionTypes, additionalPurchases }
 const exampleArr =
     [
         {
-            img: "DaurineMacro",
-            title: "Macromancy",
-            type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[1][0]}`,
+            img: "bastetFullRender",
+            title: "Goddess of Sol",
+            type: `${commissionTypes[1].title}, ${commissionTypes[1].prices[2][0]}`,
             source: "1681815430573244420",
             nsfw: true
         },{
@@ -190,16 +190,16 @@ const exampleArr =
             source: "1692547932971471062",
             nsfw: true
         },{
+            img: "DaurineMacro",
+            title: "Macromancy",
+            type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[1][0]}`,
+            source: "1681815430573244420",
+            nsfw: true
+        },{
             img: "izabelaMilking",
             title: "Target Practice",
             type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
             source: "1671551443424165890",
-            nsfw: true
-        },{
-            img: "IzabelaAlarmClock",
-            title: "Wake Up Call",
-            type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
-            source: "1672121314721554432",
             nsfw: true
         }
     ];

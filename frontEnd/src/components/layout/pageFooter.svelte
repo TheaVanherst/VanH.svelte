@@ -1,15 +1,8 @@
 <script>
-    import { screenSize, screenType, scrollIntoView } 	from '$lib/accessibilityController.js';
+    import { screenSize, screenType } 	from '$lib/accessibilityController.js';
 
     // import { socialMedias } 	from '$lib/navigationDirectories.js';
 </script>
-
-<a 	id="scrollerTop" href="#body-ele"
-   	on:click|preventDefault={scrollIntoView}>
-	<p>
-		scroll to top
-	</p>
-</a>
 
 <div class="footer {$screenSize < 800 ? 'cropped' : ''} {$screenType < 3 ? 'mobile' : ''}">
 	<div class="left">
@@ -48,22 +41,6 @@
 			margin: 0 auto!important;}
 		.right {
 			display: none;}}
-
-	#scrollerTop {
-		p {
-			margin: 0 auto 15px auto;
-			width: max-content;
-			padding: 5px 25px;
-			border-left: 1px solid var(--accent2);
-			border-right: 1px solid var(--accent2);
-			background: var(--backgroundTrans);
-
-			&:hover {
-				background: var(--accent2);
-				border-radius: 5px;
-			}
-		}
-	}
 
 	.hitCounter {
 		padding: 10px;}

@@ -17,8 +17,13 @@
 		"sass": "^1.64.2",
 		"svelte": "^4.0.5",
 		"svelte-preprocess": "^5.0.4",
+		"svelte-scrollto": "^0.2.0",
 		"swiper": "^10.1.0",
 		"vite": "^4.4.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"i": "^0.3.7",
+		"npm": "^9.8.1"
+	}
 }

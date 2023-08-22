@@ -10,6 +10,7 @@
 
 	import ProfileBar 			from "$root/components/layout/bannerAnimation.svelte";
 	import Background 			from "$root/components/layout/background.svelte";
+    import MessengerPlugin 		from "$root/components/sections/messengerPlugin.svelte";
 
     import NavigationComponent 	from "$root/components/layout/navigationComponent.svelte";
     import PageFooter 			from "../components/layout/pageFooter.svelte";
@@ -27,9 +28,9 @@
 <svelte:window bind:innerWidth={ $screenSize }/>
 
 <Background/>
+<MessengerPlugin/>
 
 <div class="parentElement"
-	 id="body-ele"
 	 bind:this={ pageData }
 	 on:scroll={() => $scrollPos = pageData.scrollTop}>
 	<!-- the current issue is that the banner has an overflow problem, and results in the page having an x overflow, fucking with the page. -->
@@ -45,7 +46,7 @@
 				</div>
 				<NavigationComponent/>
 				<slot/>
-				<PageFooter/>
+<!--				<PageFooter/>-->
 			</div>
 		</div>
 	{:else}
@@ -61,23 +62,29 @@
 </div>
 
 <style lang="scss">
-	* {
-		-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
+	* {	-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
 		-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
 		box-sizing: 		border-box;} 	/* Opera/IE 8+ */
+
+	// generic navigation
 
 	#navigation,
 	#layout {
 		max-width: 	800px;}
+	#navigation {
+		margin: 	0 auto;}
+
+	// page controller
 
 	.parentElement,
 	.content {
 		position: 	relative;}
 
 	.parentElement {
-		#navigation {
-			margin: 	0 auto;}}
+		overflow-x: hidden; // this is a bullshit fix
 
+		width: 	100%;
+		height: 100vh;}
 	.content {
 		padding: 	0 0 15px 0;}
 
@@ -105,4 +112,6 @@
 			top: 		150px;}
 		.content {
 			margin: 	auto auto;}}
+
+	// page scroll controllers
 </style>
