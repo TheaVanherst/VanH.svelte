@@ -1,10 +1,5 @@
 const questionDatabase = [
     {
-        question: "Do you do commissions?",
-        answer: "I do! Commissions are first open to members, if members don't fill all available slots, slots will " +
-            "then be open to supporters, and eventually go to twitter. There's very low chances for commissions to " +
-            "open publicly, so to grab a slot, make sure to support me via. a donation."
-    },{
         profile: "stellaPfp",
         submittedby: "Stella",
         question: "What got you interested into Macro / Hyper?",

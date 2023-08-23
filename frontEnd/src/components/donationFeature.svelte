@@ -1,6 +1,5 @@
 <script>
     import { fly } from 'svelte/transition';
-
     import { screenType } 	from '$lib/accessibilityController.js';
 
     import { donationTiers, personalMessage, citation } from "$lib/databases/donationTiers.js";
@@ -10,7 +9,7 @@
 <ListedCard
 		data={donationTiers} citation={citation}/>
 
-<div class="box">
+<div class="box regularBorder">
 	{#if $screenType > 2}
 		<div class="imageShowcase"
 			 in:fly={{y: 100, duration: 1200, delay: 300 }}>
@@ -35,12 +34,10 @@
 </div>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
-
 	.box {
-		display: 	flex;
+		display: 		flex;
+		overflow: 		visible;
 
-		border-radius: 	5px;
 		border: 		1px solid var(--accent9);
 		background: 	var(--backgroundTrans);
 
@@ -48,18 +45,22 @@
 		margin-bottom: 	15px;}
 
 	.imageShowcase {
-		margin: 	-10px 0 -70px -57px;
+		margin: 	-10px -15px 0 -57px;
+		z-index: 	1;
+
 		animation: 	float 6s infinite ease-in-out;
 
 		> img {
-			width: 	300px;}}
+			position: 	relative;
+			max-width: 	280px;
+			display: 	flex;
 
-	.citation {
-		margin: 5px;
+			top: 		50%;
+			transform: 	translatey(-50%);
+		}}
 
-		> p {
-			padding-bottom: 9px;
-
+	.citation {	margin: 5px;
+		> p {	padding-bottom: 9px;
 			&:last-of-type {
 				padding-bottom: 0;}}
 
@@ -68,16 +69,12 @@
 			width:	 	max-content;
 			display: 	flex;
 
-			> * {
-				margin: 	auto 0;}
-
-			img {
-				width: 	70px;
-				margin: -30px -20px -20px 8px;}}
-	}
+			> * {	margin: auto 0;}
+			img {	width: 	70px;
+					margin: -30px -20px -20px 8px;}}}
 
 	@keyframes float {
 		0% {	transform: translatey(-20px);}
-		50% {	transform: translatey(0px);}
+		50% {	transform: translatey( 20px);}
 		100% {	transform: translatey(-20px);}}
 </style>

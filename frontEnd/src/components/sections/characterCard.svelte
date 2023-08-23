@@ -130,9 +130,10 @@
 
 	.showcase,
 	.citation {
-		height: 		510px;}
+		height: 		520px;}
 
 	.card {
+		margin-bottom: 	28px;
 		height: 		550px;
 		.showcase {
 			background: black;
@@ -143,7 +144,7 @@
 		overflow-y:		scroll;
 
 		.wrapper {
-			padding: 	15px 15px 25px 15px;}
+			padding: 	15px 15px 15px 15px;}
 
 		h4 {
 			padding-bottom: 	9px;}

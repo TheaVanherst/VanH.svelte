@@ -1,10 +1,12 @@
 
+@import "./src/commonStyles.scss";
+
 /* Root variables formatting */
 :root {
 	--accent1: #ff0582;
 	--accent4: #ff00fb;
 	--accent2: #8c00ff;
-	--accent5: #0bffff;
+	--accent5: #10ffd6;
 	--accent6: #00ff59;
 	--accent3: #ffcc00;
 	--accent7: #ff8800;
@@ -15,12 +17,6 @@
 }
 
 /* document formatting */
-
-@mixin customFontColour($colour){
-	color:          $colour;
-	&::selection {
-		color:      black;
-		background: $colour!important;}}
 
 * {
 	scrollbar-color:    var(--accent2) transparent;
@@ -107,7 +103,8 @@ b { @include customFontColour(var(--accent3));}
 /* list formatting */
 
 ul {
-	margin:     10px 0 0 0;
+	margin:             10px 0 0 0;
+	list-style-type:    square;
 
 	li {
 		padding:        0 0 10px 5px;

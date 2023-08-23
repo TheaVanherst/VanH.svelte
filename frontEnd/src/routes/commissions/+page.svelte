@@ -1,8 +1,7 @@
 <script>
-    import { screenType } 	from '$lib/accessibilityController.js';
-
     import SidebarTexts from "../../components/layout/sidebarTexts.svelte";
-    import Container	from "../../components/container.svelte";
+    import Container	from "../../components/generic/container.svelte";
+    import Carousel from "$root/components/generic/carousel.svelte";
 
     import ListedCard 		from "../../components/sections/ListedCard.svelte";
 	import CommissionCard 	from "../../components/sections/commissionCard.svelte";
@@ -23,15 +22,13 @@
 
 <SidebarTexts titlecard="Examples">
 	<Container>
-		<swiper-container
-				slides-per-view="{$screenType < 3 ? 1 : 2}"
-				navigation="true" pagination="true" space-between={5}>
+		<Carousel maxWidth={2}>
 			{#each exampleArr as image}
 				<swiper-slide>
 					<CommissionCard data={image}/>
 				</swiper-slide>
 			{/each}
-		</swiper-container>
+		</Carousel>
 	</Container>
 	<ListedCard
 			data={dosAndDonts} citation={citation}
@@ -142,10 +139,7 @@
 </SidebarTexts>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
-	@import "../../swiperPreset";
-
-	* {	transition: ease .3s;}
+	* {	transition: ease .3s; }
 
 	h3 {	text-transform: uppercase;}
 	ul {	padding-left: 	20px;}
@@ -155,10 +149,9 @@
 		height: 450px;}
 
 	.citation {
-		margin: 		10px 15px -5px 15px;
+		margin: 	10px 15px -5px 15px;
 		font-size: 	11px;
-		text-align: right;
-	}
+		text-align: right;}
 
 	.commType {
 		padding: 8px 5px 8px 15px;
@@ -212,7 +205,7 @@
 			&:nth-child(6) { @include cbc(var(--accent2));}}}
 
 	.chunk {
-		padding: 	10px 15px;
+		padding: 1px 3px;
 		> * {	margin-bottom: 	10px;}
 		p { &:last-child {
 				margin: 0;}}}

@@ -28,8 +28,6 @@
 </div>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
-
 	.navigationBar {
 		margin: 	0 auto 15px auto;
 		position: 	relative;

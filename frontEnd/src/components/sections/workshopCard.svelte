@@ -8,10 +8,10 @@
 			{dataEntry.name}
 		</h4>
 
-		<div class="thumbnail regularBorder">
+		<div class="workshopPreview regularBorder">
 			<img 	class="tinyIco socialIco shortBorder"
 					src="/icons/steamLogo.webp">
-			<img 	class="regularBorder"
+			<img 	class="thumbnail regularBorder"
 					src="/workshop/{dataEntry.thumbnail}.webp">
 		</div>
 
@@ -65,6 +65,9 @@
 		top: 38px;}
 
 	.workshopItem {
+		.thumbnail {
+			width:	100%;}
+
 		.workshopData {
 			position: relative;
 

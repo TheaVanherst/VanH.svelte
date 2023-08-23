@@ -1,45 +1,28 @@
 <script>
-    import Container 			from "./container.svelte";
-    import characters 			from "$lib/databases/characterDatabase.js";
-    import CharacterCard 		from "./sections/characterCard.svelte";
+    import Container 	from "./generic/container.svelte";
+    import Carousel 	from "$root/components/generic/carousel.svelte";
 
-    import { screenType } 	from '$lib/accessibilityController.js';
-
-    import { register } from 'swiper/element/bundle';
-
-    register();
+    import characters 		from "$lib/databases/characterDatabase.js";
+    import CharacterCard 	from "./sections/characterCard.svelte";
 </script>
 
-<Container>
-	<swiper-container
-			slides-per-view="{$screenType}"
-			navigation="true" pagination="true" space-between={5}>
+<Container bottom={10}>
+	<Carousel>
 		{#each characters as char}
 			<swiper-slide>
 				<CharacterCard characterData={char}/>
 			</swiper-slide>
 		{/each}
-	</swiper-container>
-
-	<a class="citation" href="https://twitter.com/stellaempyrea">
-		Big thanks to <span>Stella</span> for assistance with the descriptions.
-	</a>
+	</Carousel>
 </Container>
 
-<style lang="scss">
-	@import "./src/commonStyles.scss";
-	@import "../swiperPreset";
+<a class="citation externalCitation hover" href="https://twitter.com/stellaempyrea">
+	Big thanks to <span>Stella</span> for writing the character descriptions.
+</a>
 
-	* {	transition: ease .3s;}
+<style lang="scss">
+	* {	transition: ease .3s; }
 
 	.citation {
-		@include citationText(var(--accent2), var(--accent1));
-
-		margin: 	8px 0 8px auto;
-		width:		max-content;
-
-		position: 	relative;
-		display: 	block;
-
-		transition: .3s ease;}
+		margin: 	-4px 0 10px auto;}
 </style>

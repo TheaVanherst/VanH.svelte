@@ -1,7 +1,7 @@
 <script>
 	import qaDatabase 	from "$lib/databases/qaDatabase.js";
 
-    import Container 	from "./container.svelte";
+    import Container 	from "./generic/container.svelte";
 </script>
 
 <Container>
@@ -33,30 +33,21 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* {	transition: .3s ease;}
-
-	.wrapper {
-		padding: 5px;}
+	* {	transition: .3s ease; }
 
 	.questionBlock {
 		padding: 0 10px 8px 10px;
 
 		&:hover {
-			cursor: url('/cursors/altSelect.gif'), crosshair;
-			.q {
-				padding: 1px 8px 1px 8px;
-
-				background: 	var(--accent3);
-				border-radius: 	3px;
-				color: 			black;}
-			.s {
-				margin: -7px 60px 0 50px;}
-			.a {
-				img {
+			.q {	padding: 	1px 1px 1px 15px;
+					background: var(--accent3);
+					color: 		black;}
+			.s {	margin: 	-7px 60px 0 50px;}
+			.a { img {
 					transform: scale(1.2);}}}
 
-		&:first-child {
-			padding-top: 10px;}
+		&:first-child {	padding-top: 	10px;}
+		&:last-child {	padding-bottom: 4px;}
 
 		.q {
 			width: 			max-content;
@@ -77,6 +68,5 @@
 			margin: 	-6px 40px 0 10px;
 
 			img {	position: 	absolute;}
-			p {	margin:		0 11px 0 0;}}
-	}
+			p {		margin:		0 11px 0 0;}}}
 </style>

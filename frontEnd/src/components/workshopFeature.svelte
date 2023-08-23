@@ -1,47 +1,38 @@
 <script>
-    import Container 		from "./container.svelte";
+    import Carousel from "$root/components/generic/carousel.svelte";
+    import Container 		from "./generic/container.svelte";
     import WorkshopCard 	from "./sections/workshopCard.svelte";
     import WorkshopSnippet 	from "./sections/workshopSnippet.svelte";
 
 	import { workshopArray, workshopMinatureArray } from "$lib/databases/workshopDatabase.js";
-    import { screenType, screenSize } 	from '$lib/accessibilityController.js';
-
-    import { register } from 'swiper/element/bundle';
-
-    register();
+    import { screenSize } 	from '$lib/accessibilityController.js';
 </script>
 
 <Container>
-	<div class="regularBorder">
-		<swiper-container
-				slides-per-view="{$screenType}"
-				navigation="true" pagination="true" space-between={5}>
+	<div>
+		<Carousel>
 			{#each workshopArray as workshopItem}
 				<swiper-slide>
 					<WorkshopCard dataEntry={workshopItem}/>
 				</swiper-slide>
 			{/each}
-		</swiper-container>
+		</Carousel>
 	</div>
-	<div class="regularBorder offset">
-		<swiper-container
-				slides-per-view={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
-				navigation="true">
-			{#each workshopMinatureArray as workshopItem}
-				<swiper-slide>
-					<WorkshopSnippet item={workshopItem}/>
-				</swiper-slide>
-			{/each}
-		</swiper-container>
+
+	<div class="offset">
+		<Carousel
+			customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
+			pagination={false}>
+				{#each workshopMinatureArray as workshopItem}
+					<swiper-slide>
+						<WorkshopSnippet item={workshopItem}/>
+					</swiper-slide>
+				{/each}
+		</Carousel>
 	</div>
 </Container>
 
 <style lang="scss">
-	@import "../swiperPreset";
-
-	* {	transition: ease .3s; }
-
 	.offset {
-		margin: 	-10px 10px 0px 10px;
-		position: 	relative;}
+		margin: -10px 10px -4px 0;}
 </style>

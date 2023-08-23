@@ -26,7 +26,7 @@
 </div>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
+	* {	transition: ease .3s; }
 
 	.card {
 		height: 		550px;

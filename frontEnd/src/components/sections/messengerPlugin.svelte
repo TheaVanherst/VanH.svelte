@@ -1,6 +1,5 @@
 <script>
     import { slide, scale } from 'svelte/transition';
-
     import { screenType } 	from '$lib/accessibilityController.js';
 
     let chatBox = false;
@@ -18,7 +17,7 @@
 	{:else}
 		<div id="messager"
 			 in:slide={{delay: 300}} out:slide>
-			<div class="button close"
+			<div class="button close small"
 				 transition:scale
 				 on:click={() => {chatBox = !chatBox}}>
 				<img src="/icons/closeIcon.webp">
@@ -34,7 +33,6 @@
 </div>
 
 <style lang="scss">
-
 	* {
 		bottom: 	0;
 		right: 		0;
@@ -49,46 +47,27 @@
 			max-width: calc(100% - 30px);
 			width: 100%;}
 		#chatbox {
-			width: 100%;}
-	}
+			width: 100%;}}
 
-	.button {
-		width: 		min-content;
-		height: 	min-content;
+	.button {	position: 	absolute;}
+	.open {		margin: 	15px;}
+	.close {	margin: 	0 0 10px 0;}
 
-		&:hover {
-		img {
-			background: var(--accent6);}}
-
-		img {
-			transition: 	ease .3s;
-			padding: 		5px;
-			border-radius: 	5px;
-			background: 	var(--accent2);}}
-	.open {
-		margin: 	15px;}
-	.close {
-		margin: 	0 0 10px 0;
-		img {
-			width: 20px;
-			height: 20px;}}
-
-	.button,
 	#messager {
-		position: 		absolute;
 		overflow: 		hidden;
+		position: 		absolute;
 
-		> * {
-			position: 	relative;}}
-	#messager {
 		margin: 		15px 15px 0 15px;
 		width: 			calc(100% - 30px);
 		min-width:		270px;
-		max-width: 		350px;}
+		max-width: 		350px;
+
+		> * {
+			position: 	relative;}}
 	#chatbox {
 		margin-bottom: 	15px; // shit fix to fix the transition
-		border-radius: 	5px;
-		width:			350px;
+		border: 1px solid var(--accent8);
+		width:			348px;
 		overflow: 		hidden;}
 
 </style>

@@ -29,18 +29,15 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* {	transition: ease .3s;}
+	* {	transition: ease .3s; }
 
 	.cropped {
 		width: 	calc(100% + 30px)!important;
 		margin: 0 -15px!important;}
 
-	.mobile {
-		display: block;
-		> * {
-			margin: 0 auto!important;}
-		.right {
-			display: none;}}
+	.mobile {	display: 	block;
+		> * {	margin: 	0 auto!important;}
+		.right {display: 	none;}}
 
 	.hitCounter {
 		padding: 10px;}
@@ -59,8 +56,9 @@
 			width:	max-content;
 
 			img {
-				padding: 4px;
-				margin: auto 0;
+				padding: 		4px;
+				margin: 		auto 0;
+				vertical-align: bottom;
 
 				//&:hover {
 				//	@include rainbowTransition();}
@@ -70,8 +68,7 @@
 			margin: 0 15px 0 auto;
 			width:	max-content;
 
-			p {
-				text-align: 	right;
+			p {	text-align: 	right;
 				color:			var(--accent8);}
 
 			span {

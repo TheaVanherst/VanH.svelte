@@ -1,71 +1,19 @@
 <script>
     import { screenType } from '$lib/accessibilityController.js';
 
-    import Container from "./container.svelte";
+    import Container from "./generic/container.svelte";
+    import Carousel from "$root/components/generic/carousel.svelte";
+	import GithubCard from "$root/components/sections/githubCard.svelte";
 
 	import { githubDatabase } from "$lib/databases/githubDatabase.js";
 </script>
 
-<Container>
-	<swiper-container
-			slides-per-view="{$screenType < 3 ? 1 : 2}"
-			navigation="true" pagination="true" space-between={5}>
+<Container bottom="{10}">
+	<Carousel customCalc={$screenType > 2 ? 2 : 1}>
 		{#each githubDatabase as dataEntry}
 			<swiper-slide>
-				<a 	class="{$screenType < 3 ? 'crop' : ''}"
-					href="https://github.com/TheaVanherst/{dataEntry.url}"
-				   	target="_blank">
-					<div class="slide regularBorder">
-						<h4 class="titleH4">
-							{dataEntry.name}
-						</h4>
-						<div class="imageWrapper">
-							<img src="/github/{dataEntry.preview}.webp">
-							<div class="descCard">
-								<img 	class="tinyIco socialIco shortBorder"
-										src="/icons/githubLogo.webp">
-								<p class="description">
-									{dataEntry.description}
-								</p>
-								<p class="referral buttonPadding" style="background: {dataEntry.color}">
-									TheaVanherst/{dataEntry.url}
-								</p>
-							</div>
-						</div>
-					</div>
-				</a>
+				<GithubCard data={dataEntry}/>
 			</swiper-slide>
 		{/each}
-	</swiper-container>
+	</Carousel>
 </Container>
-
-<style lang="scss">
-	@import "../swiperPreset";
-	@import "./src/commonStyles.scss";
-
-	* {	transition: ease .3s; }
-
-	a:hover {
-		.referral {
-			background: var(--accent2)!important;
-			color: 		white!important;}}
-
-	.crop { // manages the pagination
-		.slide {
-			margin-bottom: 28px;}}
-
-	.slide {
-		.descCard {
-			position: 	absolute;
-			bottom: 	0;
-			background: var(--backgroundTrans);
-
-			.tinyIco {
-				top: 	-42px;}
-
-			.description {
-				@include shortForm(3);}
-
-			.referral { // fallback colour
-				background: 	var(--accent9);}}}
-</style>

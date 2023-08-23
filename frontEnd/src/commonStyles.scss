@@ -9,13 +9,12 @@
 // TODO: title types
 
 .titleH4 {
-	padding: 		8px 10px 10px 10px;
+	padding: 		0 10px 10px 3px;
 	white-space: 	nowrap;
 	text-transform: uppercase;
 	position: 		relative;}
 
-a {
-	transition: .5s ease; //fallback transition
+a { transition: .5s ease; //fallback transition
 	&:hover {
 		.titleH4 {
 			@include rainbowTransition();}}}
@@ -33,14 +32,39 @@ a {
 	font-family: 	"Helvetica", Sans-serif;
 	opacity:        0.8;
 
-	@include customFontColour(var(--accent8));
+	@include customFontColour(white);
+	span {  @include customFontColour($colour);}
+
+	&:hover {
+		@include customFontColour(var(--accent0));
+		> span {    @include customFontColour($hover);}}}
+
+.citation {
+	font-size: 		10px;
+	font-family: 	"Helvetica", Sans-serif;
+	position: 	relative;
+	display: 	block;
+
+	@include customFontColour(white);
 	span {
-		@include customFontColour($colour);}
+		@include customFontColour(var(--accent1));}
 
 	&:hover {
 		@include customFontColour(var(--accent0));
 		> span {
-			@include customFontColour($hover);}}}
+			@include customFontColour(var(--accent3));}}}
+
+.externalCitation {
+	width:          max-content;
+	padding:        3px 10px 3px 3px;
+	background:     var(--backgroundTrans);
+
+	position: 	    relative;
+	display: 	    block;
+
+	border-right:       1px solid var(--accent8);
+	&.hover:hover {
+		border-right:   1px solid var(--accent3);}}
 
 .generic {
 	font-family: 	"Helvetica", Sans-serif;
@@ -59,8 +83,7 @@ a {
 	-webkit-line-clamp: $lineCount;
 
 	padding: 		10px 10px 0 10px;
-	margin-bottom: 	10px; // required for the text overflow to behave.
-}
+	margin-bottom: 	10px;} // required for the text overflow to behave.
 
 .quote {
 	border-left: 	1px solid var(--accent8);
@@ -87,16 +110,14 @@ a {
 // TODO: cropping
 
 .regularBorder {
-	border-radius: 	5px;
+	//border-radius: 	5px;
 	overflow: 		hidden;
-	vertical-align: bottom;
-	width:			100%;}
+	vertical-align: bottom;}
 
 .shortBorder {
-	border-radius: 	3px;
+	//border-radius: 	3px;
 	overflow: 		hidden;
-	vertical-align: bottom;
-	width:			100%;}
+	vertical-align: bottom;}
 
 .imageWrapper {
 	width: 		100%;
@@ -191,7 +212,6 @@ a {
 .profileIcon {
 	width: 	        40px;
 	height:         40px;
-	border-radius:  3px;
 	overflow: 		hidden;
 
 	transition: transform ease .3s;
@@ -202,10 +222,41 @@ a {
 // TODO: buttons
 
 .buttonPadding {
-	padding: 	6px 8px 5px 8px;
+	p { padding: 	6px 8px 5px 8px;
 
-	font-family: 	"Helvetica", Sans-serif;
-	font-size: 		12px;
-	font-weight: 	600;
-	color: 			black;}
+		line-height: 	1rem;
+		font-family: 	"Helvetica", Sans-serif;
+		font-size: 		12px;
+		font-weight: 	600;
+		color: 			black;}
+
+	&.inline {
+		p { display: 		-webkit-box;
+			overflow: 		hidden;
+
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			padding: 	6px 8px 0 8px;}
+		padding-bottom: 5px;}}
+
+.button {
+	width: 		min-content;
+	height: 	min-content;
+	overflow: 		hidden;
+
+	&.small {
+		img {   width: 20px;
+				height: 20px;}}
+
+	&:hover {
+		img {
+			background: var(--accent2);}}
+
+	img {
+		position: 	    relative;
+		transition: 	ease .3s;
+		padding: 		5px;
+		//border-radius: 	5px;
+		border:         1px solid var(--accent2);
+		background: 	var(--backgroundTrans);}}
 

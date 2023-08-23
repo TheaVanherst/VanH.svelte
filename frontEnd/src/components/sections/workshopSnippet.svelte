@@ -3,8 +3,8 @@
 </script>
 
 <a href="https://steamcommunity.com/sharedfiles/filedetails/?id={item.url}" target="_blank">
-	<img class="thumbnail" src="/workshop/mnis/{item.thumbnail}.webp">
-	<img class="gameIcon" src="/workshop/gameIcons/{item.game.url}.webp">
+	<img class="thumbnail regularBorder" src="/workshop/mnis/{item.thumbnail}.webp">
+	<img class="gameIcon shortBorder" src="/workshop/gameIcons/{item.game.url}.webp">
 </a>
 
 <style lang="scss">
@@ -21,15 +21,10 @@
 
 		.thumbnail {
 			margin: 	0 5px;
-			width: 		calc(100% - 10px);
-			height: 	calc(100%);
-
-			border-radius: 	5px;
-			overflow: 		hidden;}
+			width: 		100%;
+			height: 	100%}
 
 		.gameIcon {
-			border-radius: 	3px;
-			overflow: 		hidden;
 			position: 		absolute;
 
 			width: 	18px;

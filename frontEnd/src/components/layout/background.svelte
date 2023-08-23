@@ -46,9 +46,9 @@
     .spaceBg3 {    @include cgm(1,45s,$res1,1,0.5,355px);}
 
 	@keyframes backgroundSpeed1 {
-		0% {  	transform: translateY(calc($res1 * -1));}
+		0% {  	transform: translateY($res1 * -1);}
 		100% {  transform: translateY(0px);} }
 	@keyframes backgroundSpeed2 {
-		0% {  	transform: translateY(calc($res2 * -1));}
+		0% {  	transform: translateY($res2 * -1);}
 		100% {  transform: translateY(0px);} }
 </style>
