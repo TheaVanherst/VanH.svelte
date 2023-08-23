@@ -141,7 +141,7 @@ const commissionTypes =
                 "possibility.",
             included: 'Includes a single full-sized character, and an additional micro character',
             prices: [["Lines","180"],["Flats","200"],["Shaded","250"]],
-            adPrices: [["Extra characters","35"],["Extra micro characters","25"]]
+            adPrices: [["Extra characters","35"],["Extra micros","25"]]
         },
         {
             title: "Full Render",
@@ -151,7 +151,7 @@ const commissionTypes =
                 "stand along piece and feature one or two lines of dialog if requested.",
             included: 'Includes a single full-sized character, and an additional micro character',
             prices: [["Lines","130"],["Flats","150"],["Shaded","200"]],
-            adPrices: [["Extra characters","30"],["Extra micro characters","15"]]
+            adPrices: [["Extra characters","40"],["Extra micros","15"]]
         }
     ];
 

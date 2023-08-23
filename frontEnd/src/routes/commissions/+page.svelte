@@ -56,7 +56,7 @@
 						<p>
 							{commissionType.description}
 						</p>
-						<p>
+						<p class="included">
 							{commissionType.included}
 						</p>
 						<div class="prices">
@@ -162,13 +162,29 @@
 		h4 {	padding-bottom: 10px;}
 		p {		padding-bottom: 7px;}
 
+		.included {
+			&:before {
+				content: "*";
+				color: var(--accent1);
+				padding-right: 5px;}}
+
 		.prices {
-			padding: 0 5px;
-			display: inline-flex;
+			display: 	flex;
+			display: 	-webkit-inline-box;
+			column-gap: 5px;
+			row-gap: 	5px;
+			flex-flow: 	row wrap;
+
+			width: 		100%;
+			max-width: 100%;
 			span {
 				color: 		var(--accent3);
 				font-style: italic;}
-			h5 {	padding-right: 15px;
+			h5 {
+				padding-right: 15px;
+				width: max-content;
+				height: max-content;
+				display: grid;
 
 				&:nth-of-type(1){ span { color: var(--accent1);}}
 				&:nth-of-type(2){ span { color: var(--accent6);}}
