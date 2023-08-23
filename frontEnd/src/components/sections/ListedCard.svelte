@@ -30,7 +30,8 @@
 	<div class="tableCite citation externalCitation">
 		<p>{ citation }</p>
 		{#each data as set}
-			<div style="background-color: var(--accent{set.accent})"></div>
+			<div class="regularBorder"
+				 style="background-color: var(--accent{set.accent})"></div>
 		{/each}
 	</div>
 {/if}

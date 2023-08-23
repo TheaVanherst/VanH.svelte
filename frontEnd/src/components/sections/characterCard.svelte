@@ -133,7 +133,7 @@
 		height: 		520px;}
 
 	.card {
-		margin-bottom: 	28px;
+		margin-bottom: 	30px;
 		height: 		550px;
 		.showcase {
 			background: black;

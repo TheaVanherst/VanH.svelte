@@ -109,14 +109,20 @@ a { transition: .5s ease; //fallback transition
 
 // TODO: cropping
 
+$wideBorder:    0; //   10
+$normalBorder:  0; //   5
+$shortBorder:   0; //   3
+
+.wideBorder {
+	border-radius: 	$wideBorder;
+	vertical-align: bottom;}
+
 .regularBorder {
-	//border-radius: 	5px;
-	overflow: 		hidden;
+	border-radius: 	$normalBorder;
 	vertical-align: bottom;}
 
 .shortBorder {
-	//border-radius: 	3px;
-	overflow: 		hidden;
+	border-radius: 	$shortBorder;
 	vertical-align: bottom;}
 
 .imageWrapper {
@@ -187,6 +193,7 @@ a { transition: .5s ease; //fallback transition
 // TODO: icons
 
 .tinyIco {
+	border-radius: $shortBorder;
 	width: 	22px;
 	height: 22px;}
 
@@ -212,6 +219,7 @@ a {
 .profileIcon {
 	width: 	        40px;
 	height:         40px;
+	border-radius:  $normalBorder;
 	overflow: 		hidden;
 
 	transition: transform ease .3s;

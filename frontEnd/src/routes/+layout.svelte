@@ -1,5 +1,6 @@
 <script>
-    import { fly } 	from 'svelte/transition';
+    import { fly, fade } 	from 'svelte/transition';
+    import { cubicIn, cubicOut } from 'svelte/easing'
 
     import '../styles.scss';
 
@@ -14,6 +15,8 @@
 
     import NavigationComponent 	from "$root/components/layout/navigationComponent.svelte";
     import PageFooter 			from "../components/layout/pageFooter.svelte";
+
+    export let data
 
 	$: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     	// this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
@@ -45,7 +48,12 @@
 					<ProfileBar/>
 				</div>
 				<NavigationComponent/>
-				<slot/>
+				{#key data.pathname}
+					<div in:fade={{ easing: cubicOut, duration: 300, delay: 350 }}
+						 out:fade={{ easing: cubicIn, duration: 300 }}>
+						<slot/>
+					</div>
+				{/key}
 				<PageFooter/>
 			</div>
 		</div>
