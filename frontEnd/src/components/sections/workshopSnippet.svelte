@@ -15,7 +15,7 @@
 
 		display: 	flex;
 		position:   relative;
-		transition: ease .4s;
+		transition: cubic-bezier(0.33, 1, 0.68, 1) .4s;
 
 		margin: 10px 0;
 

@@ -29,7 +29,7 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* { transition: ease .3s; }
+	* {	transition: .3s cubic-bezier(0.33, 1, 0.68, 1);}
 
 	a:hover {
 		.referral {
@@ -37,6 +37,7 @@
 			p {	color: 	white;}}}
 
 	.slide {
+		overflow: hidden;
 		margin-bottom: 27px;
 		.descCard {
 			position: 	absolute;
@@ -44,10 +45,10 @@
 			background: var(--backgroundTrans);
 
 			.tinyIco {
-				top: 	-42px;}
+				top: 	-128px;}
 
 			.description {
-				@include shortForm(3);}
+				@include shortForm(2);}
 
 			.referral { // fallback colour
 				overflow: hidden;

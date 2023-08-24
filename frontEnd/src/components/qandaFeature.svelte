@@ -37,6 +37,7 @@
 
 	.questionBlock {
 		padding: 0 10px 8px 10px;
+		overflow: hidden;
 
 		&:hover {
 			.q {	padding: 	1px 1px 1px 15px;

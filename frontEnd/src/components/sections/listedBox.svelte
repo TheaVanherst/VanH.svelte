@@ -30,7 +30,7 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* { transition: color ease .3s, background ease .3s, border ease .3s; }
+	* { transition: ease .3s}
 
 	@mixin cfc($colour,$invert){
 		border: 	1px solid $colour;
@@ -55,11 +55,11 @@
 		&.class7 { @include cfc(var(--accent7), black);}
 
 		ul {		padding:	0 0 5px 7px;
-			margin: 	0;
+					margin: 	0;
 			li {	padding:	0 0 5px 5px;}}
 
 		.button {
-			margin: 	0 0 -13px calc(100% - 184px);
+			margin: 	0 0 -13px calc(100% - 170px);
 			bottom: 	0;
 			width: 		140px;
 

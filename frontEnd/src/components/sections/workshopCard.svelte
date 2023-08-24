@@ -48,7 +48,7 @@
 <style lang="scss">
 	@import "./src/commonStyles.scss";
 
-	* {	transition: .5s ease;}
+	* {	transition: .3s cubic-bezier(0.33, 1, 0.68, 1);}
 
 	a:hover {
 		.workshopItem {
@@ -61,10 +61,14 @@
 				&:not(:hover){
 					@include rainbowTransition();}}}}
 
-	.socialIco {
-		top: 38px;}
+	.workshopPreview {
+		overflow: hidden;
+		.socialIco {
+			top: 30px;}}
 
 	.workshopItem {
+		overflow: hidden;
+
 		.thumbnail {
 			width:	100%;}
 
