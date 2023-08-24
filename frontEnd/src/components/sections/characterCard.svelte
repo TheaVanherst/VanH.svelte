@@ -126,6 +126,7 @@
 		.titleH4 {
 			@include rainbowTransition();}
 		img {
+			transform: scale(1.1);
 			opacity: 0.3;}}
 
 	.showcase,

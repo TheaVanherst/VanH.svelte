@@ -139,8 +139,7 @@ const commissionTypes =
                 "effects being included. Specifics on each sketch is discussed through various anatomy " +
                 "drawings, with the option to extend to a second page of sketches in a later commission being a " +
                 "possibility.",
-            included: 'Includes a single full-sized character, and an additional micro character',
-            prices: [["Lines","180"],["Flats","200"],["Shaded","250"]],
+            prices: [["Lines","200"],["Flats","230"],["Shaded","270"]],
             adPrices: [["Extra characters","35"],["Extra micros","25"]]
         },
         {
@@ -149,7 +148,6 @@ const commissionTypes =
                 "A singular, page filling drawing with a simple background with a complicated pose, or a detailed " +
                 "background in a simple pose - typically featuring one or two characters as is treated as a single," +
                 "stand along piece and feature one or two lines of dialog if requested.",
-            included: 'Includes a single full-sized character, and an additional micro character',
             prices: [["Lines","130"],["Flats","150"],["Shaded","200"]],
             adPrices: [["Extra characters","40"],["Extra micros","15"]]
         }
@@ -162,14 +160,22 @@ const additionalPurchases =
             description:
                 'Photoshop files are included in the Discord archive, and are free for future and current members. ' +
                 'Photoshop files can also be purchased at any given time in the future.',
-            price: '10'
+            price: '10.00'
         },{
             title: 'Private Photoshop files',
             description:
                 "If you wish to keep project files private, this would required to be specified before or during the " +
                 "regular commission process. This purchase option includes the Photoshop file download, which is then " +
                 "exclusive to you; it will not be available for members.",
-            price: '35'
+            price: '35.00'
+        },{
+            title: 'Late Shading / Flats',
+            description:
+                "In the instance of you purchasing lines or flats, you may want to then have your commission have it shaded." +
+                "This purchase option is a means to provide shading or flats at a later date from the original " +
+                "commission. Eg. If you purchase lines, and want it to have flats & shading, it will be the value of (Shaded - " +
+                "Lines). Eg. Shading at 270, minus lines 200, equaling a cost of £70.",
+            price: '20.00 and upwards'
         }
     ]
 

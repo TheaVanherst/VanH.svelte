@@ -174,21 +174,24 @@ $shortBorder:   0; //   3
 			color: 			white;
 			background: 	var(--backgroundTrans);
 
-			padding: 		5px 20px;
-			border-radius: 	5px;}
+			padding: 		5px 20px;}
 		&:before {
 			content: 		"Content Warning";
 			font-weight: 	600;
-
-			transform: 	translate(-50%, -156%);}
-		&:after {
-			content: 		"Click to preview";
-			transform: 	translate(-50%, -39%);
-			font-size: 11px;}
+			transform: 	    translate(-50%, -65%);}
 
 		img {
 			filter:     blur(10px);
 			transform:  scale(1.05);}}}
+
+.imageCite {
+	background: 	var(--backgroundTrans);
+
+	padding:	5px 10px;
+	bottom: 	10px;
+	width: 		max-content;
+
+	position:	absolute;}
 
 // TODO: icons
 

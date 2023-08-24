@@ -1,7 +1,7 @@
 <script>
     import { screenType } 	from '$lib/accessibilityController.js';
 
-    import ListedBox from "$root/components/sections/listedBox.svelte";
+    import ListedBox from "$root/components/generic/listedBox.svelte";
 
     // let the record show that this code sucks balls.
 

@@ -16,33 +16,18 @@
 				<img 	class="commissionPreview"
 						src="/commissions/{data.img}.webp">
 			</div>
-			<p class="commType shortBorder">
+			<p class="imageCite shortBorder">
 				Example type: {data.type}
 			</p>
-			<img 	class="tinyIco socialIco shortBorder"
-					src="/icons/twitterLogo.webp">
 		</div>
 	</a>
 </div>
 
 <style lang="scss">
-	* {	transition: ease .3s; }
-
-	.card {
-		height: 		550px;
-		margin-bottom: 	25px;
-
+	* {		transition: 		ease .3s; }
+	.card {	height: 			550px;
 		.showcase {
 			display: 			flex;
 			justify-content: 	center;
-			height: 			100%;
-
-			.commType {
-				background: 	var(--backgroundTrans);
-
-				padding:	5px 10px;
-				bottom: 	50px;
-				width: 		max-content;
-
-				position:	absolute;}}}
+			height: 			100%;}}
 </style>

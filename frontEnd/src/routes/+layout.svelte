@@ -11,7 +11,7 @@
 
 	import ProfileBar 			from "$root/components/layout/bannerAnimation.svelte";
 	import Background 			from "$root/components/layout/background.svelte";
-    import MessengerPlugin 		from "$root/components/sections/messengerPlugin.svelte";
+    import MessengerPlugin 		from "$root/components/layout/messengerPlugin.svelte";
 
     import NavigationComponent 	from "$root/components/layout/navigationComponent.svelte";
     import PageFooter 			from "../components/layout/pageFooter.svelte";

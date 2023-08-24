@@ -3,7 +3,7 @@
     import { screenType } 	from '$lib/accessibilityController.js';
 
     import { donationTiers, personalMessage, citation } from "$lib/databases/donationTiers.js";
-    import ListedCard from "$root/components/sections/listedCard.svelte";
+    import ListedCard from "$root/components/generic/ListedCard.svelte";
 </script>
 
 <ListedCard
