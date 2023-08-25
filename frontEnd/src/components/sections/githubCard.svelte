@@ -45,7 +45,7 @@
 			background: var(--backgroundTrans);
 
 			.tinyIco {
-				top: 	-128px;}
+				top: 	-143px;}
 
 			.description {
 				@include shortForm(2);}

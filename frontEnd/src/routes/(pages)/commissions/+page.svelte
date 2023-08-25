@@ -1,4 +1,6 @@
 <script>
+    import { screenType } from '$lib/accessibilityController.js';
+
     import SidebarTexts from "../../../components/layout/sidebarTexts.svelte";
     import Container	from "../../../components/generic/container.svelte";
     import Carousel from "$root/components/generic/carousel.svelte";
@@ -17,7 +19,7 @@
 
 <SidebarTexts titlecard="Examples">
 	<Container bottom={10}>
-		<Carousel maxWidth={2}>
+		<Carousel maxWidth={2} customCalc={$screenType > 2 ? 2 : 1}>
 			{#each exampleArr as image}
 				<swiper-slide>
 					<div class="bottom">
@@ -77,7 +79,7 @@
 <style lang="scss">
 	* {			transition: 	ease .3s; }
 	ul {		padding-left: 	20px;}
-	.bottom {	margin-bottom: 	60px;}
+	.bottom {	margin-bottom: 	25px;}
 	.chunk {	padding: 		1px 3px;
 		> * {	margin-bottom: 	10px;}
 		p { &:last-child {

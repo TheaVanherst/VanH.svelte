@@ -89,11 +89,7 @@
 
 					p { margin: 	auto 0 auto 7px;}}
 
-				.developers {
-					display: 		flex;
-					p,
-					span {
-						@include customFontColour(var(--accent8));}
-					.author {
-						@include customFontColour(var(--accent9));}}}}}
+				.developers {	display: flex;
+					p, span {	@include customFontColour(var(--accent8));}
+					.author {	@include customFontColour(var(--accent9));}}}}}
 </style>

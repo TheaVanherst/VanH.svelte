@@ -13,6 +13,9 @@
         let to =    n?.to?.url?.pathname ?? "/",
             from =  n?.from?.url?.pathname ?? "/";
 
+        // this fixes an issue relating to the root always requiring a "/" at the end.
+        to = to.charAt(to.length - 1) !== "/" ? to + "/" : to;
+
         if (to !== from) { // checks for page reload & internal reference
             pageUpdate = {};
 
@@ -65,7 +68,5 @@
 	:global(.transitionWrapper > .absol) {
 		position: absolute;
 		&:nth-child(1) {
-			position: relative!important;
-		}
-	}
+			position: relative!important;}}
 </style>

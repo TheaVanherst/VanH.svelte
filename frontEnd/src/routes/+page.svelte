@@ -1,29 +1,39 @@
 <script>
-    import SidebarTexts 	from "../components/layout/sidebarTexts.svelte";
+    import { goto } 		from '$app/navigation';
+    import { screenSize } 	from "$lib/accessibilityController.js";
 
-	import CharacterFeature from "../components/characterFeature.svelte";
-    import WorkshopFeature 	from "../components/workshopFeature.svelte";
-    import GithubFeature 	from "../components/githubFeature.svelte";
-    import DonationFeature 	from "../components/donationFeature.svelte";
-    import QandaFeature 	from "../components/qandaFeature.svelte";
+    import ProfileBar 		from "$root/components/layout/bannerAnimation.svelte";
+    import LoadingFull 		from "../components/layout/loadingFull.svelte";
+
+    $: $screenSize !== 0 ? setTimeout(() => goto('/carrd/'), 500) : '';
 </script>
 
-<SidebarTexts titlecard="Characters" icon="furaffinityLogo.webp">
-	<CharacterFeature/>
-</SidebarTexts>
+<div id="loading">
+	<div class="content">
+		<ProfileBar/>
+		<div class="loadingBar">
+			<LoadingFull/>
+		</div>
+	</div>
+</div>
 
-<SidebarTexts titlecard="Github" icon="githubLogo.webp">
-	<GithubFeature/>
-</SidebarTexts>
+<style lang="scss">
+	.content {
+		position: 	relative;
+		padding: 	0 0 15px 0;
+		margin: 	0 auto;}
 
-<SidebarTexts titlecard="Workshop" icon="steamLogo.webp">
-	<WorkshopFeature/>
-</SidebarTexts>
+	#loading { // loading animation
+		margin: 	auto auto;
+		display: 	flex;
 
-<SidebarTexts titlecard="Support" icon="kofiLogo.webp">
-	<DonationFeature/>
-</SidebarTexts>
+		width: 		100%;
+		height: 	100%;
+		position: 	absolute;
 
-<SidebarTexts titlecard="Q&A">
-	<QandaFeature/>
-</SidebarTexts>
+		.loadingBar {
+			position: 	relative;
+			top: 		150px;}
+		.content {
+			margin: 	auto auto;}}
+</style>
