@@ -68,7 +68,7 @@ const
             "typically be prioritized based on a previous good or bad experience.",
 
             "To gain access to the exclusive Discord server, a donation or membership is required via. " +
-            "Ko-fi. Information regarding bonuses and perks can be found on the home page.",
+            "Ko-fi. Information regarding bonuses and perks can be found on the carrd page.",
 
             "Commission payments will be done via. Paypal. You are required to include during your form " +
             "submission, once I am full available, I'll shortly send you an invoice. Once the invoice is " +

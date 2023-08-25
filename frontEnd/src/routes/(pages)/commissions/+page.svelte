@@ -1,10 +1,10 @@
 <script>
-    import SidebarTexts from "../../components/layout/sidebarTexts.svelte";
-    import Container	from "../../components/generic/container.svelte";
+    import SidebarTexts from "../../../components/layout/sidebarTexts.svelte";
+    import Container	from "../../../components/generic/container.svelte";
     import Carousel from "$root/components/generic/carousel.svelte";
 
-    import ListedCard 		from "../../components/generic/ListedCard.svelte";
-	import CommissionCard 	from "../../components/sections/commissionCard.svelte";
+    import ListedCard 		from "../../../components/generic/ListedCard.svelte";
+	import CommissionCard 	from "../../../components/sections/commissionCard.svelte";
     import CommissionPrices from "$root/components/sections/commissionPrices.svelte";
 
     import { dosAndDonts, exampleArr, citation, howToCom, benefits, notices, tnc,

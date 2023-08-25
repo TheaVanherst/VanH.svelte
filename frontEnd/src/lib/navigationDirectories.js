@@ -11,7 +11,7 @@ const socialMedias =
 
 const navigationDirectories =
     [
-        {   title: "Home",          imagePath: undefined,   path: "/"},
+        {   title: "Home",          imagePath: undefined,   path: "/carrd"},
         {   title: "Commissions",   imagePath: undefined,   path: "/commissions"},
     ];
 
