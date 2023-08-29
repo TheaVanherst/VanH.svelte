@@ -24,7 +24,7 @@
 					{#each navigationDirectories as nav}
 						<Button push="{nav}"
 								smaller={true}
-								faded={$page.route.id === nav.path}/>
+								faded={$page.url.pathname === nav.path + "/"}/>
 					{/each}
 				</div>
 			{/if}

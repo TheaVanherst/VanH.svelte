@@ -72,7 +72,7 @@
 </div>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
+	@import "../../commonStyles";
 
 	* {	transition: ease .3s; }
 

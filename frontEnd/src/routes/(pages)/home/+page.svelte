@@ -1,11 +1,11 @@
 <script>
-    import SidebarTexts 	from "../../../components/layout/sidebarTexts.svelte";
+    import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 
-	import CharacterFeature from "../../../components/characterFeature.svelte";
-    import WorkshopFeature 	from "../../../components/workshopFeature.svelte";
-    import GithubFeature 	from "../../../components/githubFeature.svelte";
-    import DonationFeature 	from "../../../components/donationFeature.svelte";
-    import QandaFeature 	from "../../../components/qandaFeature.svelte";
+	import CharacterFeature from "$root/components/characterFeature.svelte";
+    import WorkshopFeature 	from "$root/components/workshopFeature.svelte";
+    import GithubFeature 	from "$root/components/githubFeature.svelte";
+    import DonationFeature 	from "$root/components/donationFeature.svelte";
+    import QandaFeature 	from "$root/components/qandaFeature.svelte";
 </script>
 
 <SidebarTexts titlecard="Characters" icon="furaffinityLogo.webp">

@@ -7,7 +7,7 @@
 
     import ListedCard 		from "../../../components/generic/ListedCard.svelte";
 	import CommissionCard 	from "../../../components/sections/commissionCard.svelte";
-    import CommissionPrices from "$root/components/sections/commissionPrices.svelte";
+    import CommissionPrices from "$root/components/chunks/commissionPrices.svelte";
 
     import { dosAndDonts, exampleArr, citation, howToCom, benefits, notices, tnc,
 		} from "$lib/databases/commissionDetails.js";

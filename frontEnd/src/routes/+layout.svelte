@@ -8,7 +8,7 @@
     import Background 			from "$root/components/layout/background.svelte";
     import MessengerPlugin 		from "$root/components/layout/messengerPlugin.svelte";
 
-    import NavigationComponent 	from "$root/components/layout/navigationComponent.svelte";
+    import NavigationComponent 	from "$root/components/layout/navBar.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
     import { directory, deviceType, scrollPos,
@@ -32,12 +32,21 @@
 			{#if $directory !== "/"} <!-- this is a placeholder -->
 				<div in:fly={{y: -100, duration: 500, delay: 300 }}> <!-- this needs a better delay calc -->
 					{#if deviceType === 2}
-						<div class="content">
+						<div class="desktop">
 							<ProfileBar/>
 						</div>
+					{:else if deviceType === 1}
+						<div class="tablet">
+							<div class="logo">
+								<img src="/branding/vanhlogo.webp">
+							</div>
+							<div class="imageWrapper banner">
+								<img src="/branding/banneralt.webp">
+							</div>
+						</div>
 					{:else}
-						<div class="tabletBanner imageWrapper">
-							<img src="/branding/banner.webp">
+						<div class="mobile imageWrapper">
+							<img src="/branding/vanhlogo.webp">
 						</div>
 					{/if}
 					<NavigationComponent/>
@@ -98,15 +107,39 @@
 		justify-content: 	space-between;
 
 		.flexBox { // this fixes issues with the footer that I can't be fucked to fix.
+			position: 	relative;
+			z-index: 	1;
 			width: 		100%;
 			margin: 	0 0 auto 0;}
 
-		.tabletBanner {
-			height: 	200px;
-			margin-top: 15px;
-			border: 	1px solid var(--accent8);}
+		.mobile {
+			margin: 5px 0 -25px -5px;}
 
-		.content {
+		.tablet {
+			position: relative;
+			margin-top: 15px;
+
+			> * {
+				height: 	200px;}
+
+			.banner {
+				border: 1px solid #0c0021;}
+
+			.logo {
+				position: 	absolute;
+				z-index: 	100;
+				width: 		100%;
+
+				img {
+					margin: 	-10px 0 -10px -3px;
+					left: 		50%;
+					transform: 	translateX(-50%);
+					height: 	calc(100% + 20px);
+
+					position: 	relative;
+					display: 	block;}}}
+
+		.desktop {
 			position: 	relative;
 			padding: 	15px 0;
 			margin: 	0 auto;}}

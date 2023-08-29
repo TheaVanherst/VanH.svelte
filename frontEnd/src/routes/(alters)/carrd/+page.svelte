@@ -28,6 +28,7 @@
 </div>
 
 <style lang="scss">
+	@import "./src/commonStyles.scss";
 
 	.wrapper {
 		margin: 0 auto;
@@ -39,7 +40,8 @@
 			padding:	0 0 10px 15px;
 			max-width: 	90px;}
 		&:hover {
-			img {	transform: 	scale(1.2);}}
+			h3 {	@include rainbowTransition();}
+			img {	transform: 	scale(1.1) rotate(6deg);}}
 
 		.socialCard {
 			background: 	var(--backgroundTrans);
@@ -49,7 +51,8 @@
 			margin: 	auto 15px;
 			padding: 	7px 15px;
 
-			h3 {	padding-bottom: 10px;}
+			h3 {	transition: .3s ease;
+					padding-bottom: 10px;}
 			p {		padding-bottom: 3px;}}}
 
 	.wrapper > * {
