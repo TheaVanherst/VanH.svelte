@@ -3,18 +3,17 @@
 
 /* Root variables formatting */
 :root {
-	--accent1: #ff0582;
-	--accent4: #ff00fb;
-	--accent2: #8c00ff;
-	--accent5: #10ffd6;
-	--accent6: #00ff59;
-	--accent3: #ffcc00;
-	--accent7: #ff8800;
-	--accent8: #5d5d5d;
-	--accent9: #ffffff;
+	--accent1:  #ff0582;
+	--accent4:  #ff00fb;
+	--accent2:  #8c00ff;
+	--accent5:  #10ffd6;
+	--accent6:  #00ff59;
+	--accent3:  #ffcc00;
+	--accent7:  #ff8800;
+	--accent8:  #5d5d5d;
+	--accent9:  #ffffff;
 	--backgroundTrans:
-				rgba(0, 0, 0, 0.6);
-}
+				rgba(0, 0, 0, 0.6);}
 
 /* document formatting */
 
@@ -121,3 +120,10 @@ ul {
 
 		&:last-of-type {
 			padding-bottom: 0;}}}
+
+/* Common animations */
+
+@keyframes float {
+	0% {	transform: translatey(-20px);}
+	50% {	transform: translatey( 20px);}
+	100% {	transform: translatey(-20px);}}

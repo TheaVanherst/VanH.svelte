@@ -6,8 +6,7 @@
     import ListedCard from "$root/components/generic/ListedCard.svelte";
 </script>
 
-<ListedCard
-		data={donationTiers} citation={citation}/>
+<ListedCard data={donationTiers} citation={citation}/>
 
 <div class="box regularBorder">
 	{#if $screenType > 2}
@@ -56,13 +55,13 @@
 			display: 	flex;
 
 			top: 		50%;
-			transform: 	translatey(-50%);
-		}}
+			transform: 	translatey(-50%);}}
 
 	.citation {	margin: 5px;
 		> p {	padding-bottom: 9px;
 			&:last-of-type {
-				padding-bottom: 0;}}
+				padding-bottom: 0;
+				margin: 0 100px 0 0}}
 
 		.closeQuote {
 			margin: 	1px 10px -4px auto;
@@ -71,10 +70,5 @@
 
 			> * {	margin: auto 0;}
 			img {	width: 	70px;
-					margin: -30px -20px -20px 8px;}}}
-
-	@keyframes float {
-		0% {	transform: translatey(-20px);}
-		50% {	transform: translatey( 20px);}
-		100% {	transform: translatey(-20px);}}
+					margin: -30px -20px -15px 8px;}}}
 </style>

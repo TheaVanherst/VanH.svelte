@@ -39,8 +39,7 @@
 
 		vertical-align: bottom;
 		float: 			right;
-
-		z-index: 	2;}
+		z-index: 		2;}
 
 	.mobile {
 		#messager {

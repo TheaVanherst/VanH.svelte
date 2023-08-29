@@ -3,7 +3,6 @@
 </script>
 
 <div class="wrapper">
-
 	<div class="imageWrapper">
 		<img src="/branding/vahnicon.webp">
 		<div class="socialCard">
@@ -14,7 +13,6 @@
 			</div>
 		</div>
 	</div>
-
 	{#each socialMedias as push}
 		<div class="social">
 			<div class="flex">
@@ -33,33 +31,35 @@
 
 	.wrapper {
 		margin: 0 auto;
-		max-width: 450px;
-	}
+		max-width: 450px;}
 
 	.imageWrapper {
 		img {
+			transition: .3s ease;
 			padding:	0 0 10px 15px;
 			max-width: 	90px;}
+		&:hover {
+			img {	transform: 	scale(1.2);}}
+
 		.socialCard {
 			background: 	var(--backgroundTrans);
 			border-left: 	1px solid var(--accent6);
 
 			width: 		inherit;
 			margin: 	auto 15px;
-			padding: 	5px 15px;
+			padding: 	7px 15px;
 
 			h3 {	padding-bottom: 10px;}
 			p {		padding-bottom: 3px;}}}
 
 	.wrapper > * {
 		margin: 	0 auto 15px auto;}
-
 	.social {
 		padding: 	10px;
-		transition: .2s ease;
+		transition: transform .2s ease, border .4s ease;
 
-		border: 		1px solid var(--accent2);
-		background: 	var(--backgroundTrans);
+		border: 	1px solid var(--accent2);
+		background: var(--backgroundTrans);
 
 		.flex {		display: 		flex;
 			.text {	text-align: 	center;

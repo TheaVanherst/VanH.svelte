@@ -1,8 +1,6 @@
 <script>
     import '../styles.scss';
 
-    import { directory } from "$lib/accessibilityController.js";
-
     import { fly } 	from 'svelte/transition';
     import TransitionHandler from "$lib/transitionHandler.svelte";
 
@@ -13,7 +11,8 @@
     import NavigationComponent 	from "$root/components/layout/navigationComponent.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import { scrollPos, bandWidths, screenSize, screenType } from "$lib/accessibilityController.js";
+    import { directory, deviceType, scrollPos,
+		bandWidths, screenSize, screenType } from "$lib/accessibilityController.js";
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     // this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
@@ -31,10 +30,16 @@
 	<div id="navigation">
 		<div id="layout">
 			{#if $directory !== "/"} <!-- this is a placeholder -->
-				<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
-					<div class="content">
-						<ProfileBar/>
-					</div>
+				<div in:fly={{y: -100, duration: 500, delay: 300 }}> <!-- this needs a better delay calc -->
+					{#if deviceType === 2}
+						<div class="content">
+							<ProfileBar/>
+						</div>
+					{:else}
+						<div class="tabletBanner imageWrapper">
+							<img src="/branding/banner.webp">
+						</div>
+					{/if}
 					<NavigationComponent/>
 				</div>
 			{/if}
@@ -88,13 +93,18 @@
 		min-width: 	300px;
 		padding: 	0 15px;
 
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
+		display: 			flex;
+		flex-direction: 	column;
+		justify-content: 	space-between;
 
 		.flexBox { // this fixes issues with the footer that I can't be fucked to fix.
 			width: 		100%;
 			margin: 	0 0 auto 0;}
+
+		.tabletBanner {
+			height: 	200px;
+			margin-top: 15px;
+			border: 	1px solid var(--accent8);}
 
 		.content {
 			position: 	relative;
