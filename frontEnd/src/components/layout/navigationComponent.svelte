@@ -1,47 +1,54 @@
 <script>
-    import { fly } 	from 'svelte/transition';
+    import { fly,slide } 	from 'svelte/transition';
     import { page } from '$app/stores';
 
     import { socialMedias, navigationDirectories } 	from '$lib/navigationDirectories.js';
-    import { screenType } 							from '$lib/accessibilityController.js';
-
     import Button 	from "$root/components/layout/navButton.svelte";
+
+    import { navigationVisibility, socialMediaVisibility } from "$lib/accessibilityController.js";
 </script>
 
-<div class="navigationBar">
-	{#key $screenType > 2}
-		<div class="controller" in:fly={{x: -50}}>
-			<div class="socials">
-				{#each socialMedias as item}
-					<Button push="{item}" blank={true}/>
-				{/each}
-			</div>
-			<div>
-				{#each navigationDirectories as nav}
-					<Button push="{nav}"
-							smaller={true}
-							faded={$page.route.id === nav.path}/>
-				{/each}
-			</div>
+{#if $navigationVisibility || $socialMediaVisibility}
+	<div class="navigationBar">
+		<div class="controller">
+			{#if $socialMediaVisibility}
+				<div transition:slide>
+					{#each socialMedias.slice(0, 5) as item}
+						<Button push="{item}" blank={true}/>
+					{/each}
+				</div>
+			{/if}
+
+			{#if $navigationVisibility}
+				<div transition:slide>
+					{#each navigationDirectories as nav}
+						<Button push="{nav}"
+								smaller={true}
+								faded={$page.route.id === nav.path}/>
+					{/each}
+				</div>
+			{/if}
 		</div>
-	{/key}
-</div>
+	</div>
+{/if}
 
 <style lang="scss">
 	.navigationBar {
-		margin: 	0 auto 15px auto;
+		margin: 	15px auto;
 		position: 	relative;
 
 		.controller {
-			background: 	var(--backgroundTrans);
-			padding:		0 5px;
-
 			width: 			max-content;
 			margin: 		0 auto;
-			> * {
-				width: 			max-content;
-				margin: 		0 auto;}
 
-			.socials {
+			> * {
+				transition: 	border ease .5s .3s;
+
+				background: 	var(--backgroundTrans);
+				width: 			max-content;
+				margin: 		0 auto;
+				border-bottom: 	1px solid black;}
+
+			> *:first-child {
 				border-bottom: 	1px solid var(--accent6);}}}
 </style>

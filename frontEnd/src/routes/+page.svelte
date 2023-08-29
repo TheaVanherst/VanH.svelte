@@ -5,7 +5,7 @@
     import ProfileBar 		from "$root/components/layout/bannerAnimation.svelte";
     import LoadingFull 		from "../components/layout/loadingFull.svelte";
 
-    $: $screenSize !== 0 ? setTimeout(() => goto('/carrd/'), 500) : '';
+    $: $screenSize !== 0 ? setTimeout(() => goto('/home/'), 500) : '';
 </script>
 
 <div id="loading">
@@ -24,12 +24,13 @@
 		margin: 	0 auto;}
 
 	#loading { // loading animation
-		margin: 	auto auto;
 		display: 	flex;
 
 		width: 		100%;
 		height: 	100%;
 		position: 	absolute;
+		top: 0;
+
 
 		.loadingBar {
 			position: 	relative;

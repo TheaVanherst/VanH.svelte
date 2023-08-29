@@ -68,7 +68,7 @@ const
             "typically be prioritized based on a previous good or bad experience.",
 
             "To gain access to the exclusive Discord server, a donation or membership is required via. " +
-            "Ko-fi. Information regarding bonuses and perks can be found on the carrd page.",
+            "Ko-fi. Information regarding bonuses and perks can be found on the home page.",
 
             "Commission payments will be done via. Paypal. You are required to include during your form " +
             "submission, once I am full available, I'll shortly send you an invoice. Once the invoice is " +
@@ -139,17 +139,22 @@ const commissionTypes =
                 "effects being included. Specifics on each sketch is discussed through various anatomy " +
                 "drawings, with the option to extend to a second page of sketches in a later commission being a " +
                 "possibility.",
-            prices: [["Lines","200"],["Flats","230"],["Shaded","270"]],
+            prices: [["Lines","200"],["Flats","230"],["Details & Shaded","270"]],
             adPrices: [["Extra characters","35"],["Extra micros","25"]]
-        },
-        {
+        },{
             title: "Full Render",
             description:
                 "A singular, page filling drawing with a simple background with a complicated pose, or a detailed " +
                 "background in a simple pose - typically featuring one or two characters as is treated as a single," +
                 "stand along piece and feature one or two lines of dialog if requested.",
-            prices: [["Lines","130"],["Flats","150"],["Shaded","200"]],
+            prices: [["Lines","130"],["Flats","150"],["Details & Shaded","200"]],
             adPrices: [["Extra characters","40"],["Extra micros","15"]]
+        },{
+            title: "Sketch",
+            description:
+                "A single drawing of a character in a pose of your choice, complimented by a simple background.",
+            prices: [["Lines","60"],["Flats","65"],["Simple Shading","80"]],
+            adPrices: [["Extra characters","35"],["Extra micros","15"]],
         }
     ];
 
@@ -188,7 +193,13 @@ const exampleArr =
             title: "Goddess of Sol",
             type: `${commissionTypes[1].title}, ${commissionTypes[1].prices[2][0]}`,
             source: "1681815430573244420",
-            nsfw: true
+            nsfw: false
+        },{
+            img: "CheeksOfLove",
+            title: "Cheeks of Love",
+            type: `${commissionTypes[2].title}, ${commissionTypes[2].prices[2][0]}`,
+            source: "1681815430573244420",
+            nsfw: false
         },{
             img: "DaurineMoonlight",
             title: "A Moonlit Ritual",
@@ -196,16 +207,10 @@ const exampleArr =
             source: "1692547932971471062",
             nsfw: true
         },{
-            img: "DaurineMacro",
-            title: "Macromancy",
-            type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[1][0]}`,
-            source: "1681815430573244420",
-            nsfw: true
-        },{
-            img: "izabelaMilking",
-            title: "Target Practice",
+            img: "PalterySwimwear",
+            title: "Paltry Swimwear",
             type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
-            source: "1671551443424165890",
+            source: "1695100150383841525",
             nsfw: true
         }
     ];

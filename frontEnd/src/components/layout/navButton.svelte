@@ -30,7 +30,7 @@
             {/if}
         {/if}
         {#if push.imagePath}
-            <div class="icon">
+            <div class="mediaIcon">
                 <img src="/icons/{push.imagePath}.webp">
             </div>
         {/if}
@@ -63,13 +63,7 @@
             .navigation {
                 margin: auto 0;
                 h5 {
-                    margin: -1px 0 0 0;}}
-
-            .icon  {
-                margin: auto 0;
-                img {
-                    width:  26px;
-                    height: 26px;}}}}
+                    margin: -1px 0 0 0;}}}}
 
     h5 {
         &::after {

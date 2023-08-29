@@ -3,9 +3,10 @@ const
     consistantBonus =
         [
             "Lifetime Discord server access",
+            "Access to WIP artworks & designs",
             "Access to supporter only chat channels.",
-            "Preview ongoing work in progress artworks",
             "Suggest and give feedback on WIP artworks",
+            "Semi-Regular game livestream and servers",
             "Direct communication with me via. DMs or server channels",
         ],
     citation = "Accent texts are exclusive to that donation tier";
@@ -27,10 +28,11 @@ const
             link: "https://ko-fi.com/theavanherst/tiers",
             exclusives: [
                 "Access to the entire archive of my artworks, including alternate versions",
+                "Downloadable versions of all artworks without watermarks and all future works",
                 "Downloadable, archived photoshop files of all artworks",
-                "First in line on commission slots openings",
                 "Member exclusive polling and sketches",
-                "Occasional members only livestreams of WIP drawings"
+                "Semi-regular members only livestreams of WIP artwork",
+                "First in line on commission slots openings",
             ],
         }],
 
@@ -42,7 +44,7 @@ const
             "I have a bunch of long term goals for members, which is currently not possible with such a small community; " +
             "supporting me through membership helps give me a stable income and invest additional time for polling, " +
             "alternate artworks, and more membership perks.",
-            "Thanks for visiting my site and supporting me."
+            "Thanks for all those whom have supported and continue to support me."
         ];
 
 export { donationTiers, personalMessage, citation }

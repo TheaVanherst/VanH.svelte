@@ -25,9 +25,6 @@
 				<p>
 					{commissionType.description}
 				</p>
-				<p class="included">
-					{commissionType.included}
-				</p>
 				<div class="prices">
 					{#each commissionType.prices as type, i}
 						<h5>
@@ -97,12 +94,6 @@
 
 		h4 {	padding-bottom: 10px;}
 		p {		padding-bottom: 7px;}
-
-		.included {
-			&:before {
-				content: "*";
-				color: var(--accent1);
-				padding-right: 5px;}}
 
 		.prices {
 			display: 	flex;

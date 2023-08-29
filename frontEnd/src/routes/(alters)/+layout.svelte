@@ -1,6 +1,7 @@
 <script>
     import { socialMediaVisibility } from "$lib/accessibilityController.js";
-    $socialMediaVisibility = true;
+    $socialMediaVisibility = false;
+
 </script>
 
 <slot/>

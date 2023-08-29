@@ -25,8 +25,6 @@
 {/if}
 
 <style lang="scss">
-	* {	transition: ease .3s; }
-
 	swiper-container::part(button-prev),
 	swiper-container::part(button-next) {
 		width: 		12px;
@@ -39,26 +37,17 @@
 		transition: ease .3s;
 
 		&:hover {
-			background: var(--accent2);
-		}
-	}
+			background: var(--accent2);}}
 
 	swiper-container::part(bullet),
 	swiper-container::part(bullet-active) {
 		border-radius:  0;
 		width: 	        35px;
-		height:         3px;
-	}
-
+		height:         3px;}
 	swiper-container::part(bullet) {
 		background: var(--accent8);
 		opacity:    1;
-		transition: ease .3s;
-		filter:		drop-shadow(0px 0px 0.5px black);
-	}
-
+		transition: ease .3s;}
 	swiper-container::part(bullet-active) {
-		background: var(--accent2);
-		filter: 	drop-shadow(0px 0px 0.8px var(--accent2));
-	}
+		background: var(--accent2);}
 </style>

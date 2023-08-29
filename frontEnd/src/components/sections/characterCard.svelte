@@ -13,7 +13,7 @@
 		{characterData.name}
 	</h3>
 	<div class="showcase imageWrapper regularBorder">
-		<img class="imagePreview" src="/characters/{characterData.path}"/>
+		<img src="/characters/{characterData.path}"/>
 		{#if active}
 			<div class="citation" transition:fly={{y: 50, duration: 400 }}>
 				<div class="wrapper">

@@ -1,4 +1,6 @@
 
+// TODO: page checking and controlling
+
 import { writable } from "svelte/store";
 
 const
@@ -6,36 +8,45 @@ const
     screenSize = writable(0),
     screenType = writable(0);
 
-const bandWidths = [850, 600, 400]; //pre-determined bandwidth sizes
+const
+    bandWidths = [850, 600, 400]; //pre-determined bandwidth sizes
 
 export { scrollPos, screenSize, bandWidths, screenType };
 
+// TODO: Internal device management & specific code application instances.
+
 let deviceType;
+
+import Device from "svelte-device-info";
 
 switch (true) {
     case Device.isPhone:  deviceType = 0;   break;
     case Device.isTablet: deviceType = 1;   break;
-    default:              deviceType = 2;   break;
-}
+    default:              deviceType = 2;   break;}
 
 export { deviceType };
 
-const loadingStatus =     writable(false);
-const navigationStatus =  writable(true);
-const directory =   writable(undefined);
+// TODO: Internal directory and status management
 
-export { loadingStatus, navigationStatus, directory };
+const
+    loadingStatus =     writable(false),
+    navigationStatus =  writable(true),
+    directory =   writable("/");
 
 import { navigationDirectories } from "$lib/navigationDirectories";
-import Device from "svelte-device-info";
+export { loadingStatus, navigationStatus, directory };
 
-let urlStoreArr =   writable([""]); // handles the transition direction
-let directionX =    writable(0); // handles the transition direction
-let directionY =    writable(0); // handles the transition direction
+// TODO: navigation direction controller
+
+const
+    urlStoreArr =   writable([""]), // handles the transition direction
+    directionX =    writable(0), // handles the transition direction
+    directionY =    writable(0); // handles the transition direction
 
 export { urlStoreArr, directionX, directionY }
 
-const directionProcessing = async (p,c,b = null) => {
+const
+    directionProcessing = async (p,c,b = null) => {
     // calculates which direction it should move horizontally
     let offsets = [0,0]; // debugging purposes
         // this is related to the server hoster, and is enforced by svelte.
@@ -59,7 +70,14 @@ const directionProcessing = async (p,c,b = null) => {
 
     // updates local url management.
     urlStoreArr.set(cfr);
-    !b ? directory.set(c) : directory.set(b);
-}
+    !b ? directory.set(c) : directory.set(b);};
 
 export { directionProcessing };
+
+// TODO: USERINTERFACE CONTROLLERS
+
+const
+    navigationVisibility =  writable(true),
+    socialMediaVisibility = writable(true);
+
+export { navigationVisibility, socialMediaVisibility };

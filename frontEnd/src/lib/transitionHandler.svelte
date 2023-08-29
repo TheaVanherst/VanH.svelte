@@ -1,13 +1,11 @@
 <script>
     import { fly } 	from 'svelte/transition';
-    import { cubicIn, cubicOut } from 'svelte/easing'
+    import { cubicOut } from 'svelte/easing'
 
     import { navigationStatus, loadingStatus, directionProcessing,
-        directionX, directionY }    from '$lib/accessibilityController';
+        directionX, directionY, directory }    from '$lib/accessibilityController';
 
     import { afterNavigate, beforeNavigate } from "$app/navigation";
-
-    let pageUpdate = {};
 
     beforeNavigate(async (n) => {   //TODO: ONLY BROWSER NAVIGATION
         let to =    n?.to?.url?.pathname ?? "/",
@@ -17,8 +15,6 @@
         to = to.charAt(to.length - 1) !== "/" ? to + "/" : to;
 
         if (to !== from) { // checks for page reload & internal reference
-            pageUpdate = {};
-
             if (n.willUnload || // prevents _blank internal redirects
                 $navigationStatus || $loadingStatus) { // haults the current transition if already transitioning.
                 event.preventDefault();}
@@ -40,33 +36,17 @@
         navigationStatus.set(false); // indicates page has transitioned
     });
 
-    let transitionSpeed = 50; // transition position multipliers
+    let transitionSpeed = 150; // transition position multipliers
 </script>
 
-{#key pageUpdate}
+{#key $directory}
 	<div class="transitionWrapper"
 		 in:fly={{
-            easing: cubicOut,
-            duration:   350,
-            delay:      200,
+           	easing: 	cubicOut,
+            duration:   300,
+            delay:      50,
             x: transitionSpeed * -$directionX,
-            y: transitionSpeed * $directionY}}
-		 out:fly={{
-            easing: cubicIn,
-            duration:   350,
-            x: transitionSpeed * $directionX,
-            y: transitionSpeed * -$directionY}}>
-		<div class="absol">
-			<slot/>
-		</div>
+            y: transitionSpeed * $directionY}}>
+		<slot/>
 	</div>
 {/key}
-
-<style lang="scss">
-	// this is a backup to prevent pages from vertically stacking inside the page itself.
-
-	:global(.transitionWrapper > .absol) {
-		position: absolute;
-		&:nth-child(1) {
-			position: relative!important;}}
-</style>
