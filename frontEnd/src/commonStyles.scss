@@ -86,8 +86,8 @@ a { transition: .5s ease; //fallback transition
 	margin-bottom: 	10px;} // required for the text overflow to behave.
 
 .quote {
-	border-left: 	1px solid var(--accent8);
-	border-right: 	1px solid var(--accent8);
+	border-left: 	1px solid var(--accent10);
+	border-right: 	1px solid var(--accent10);
 	padding: 		10px;
 
 	position: relative;
@@ -109,9 +109,9 @@ a { transition: .5s ease; //fallback transition
 
 // TODO: cropping
 
-$wideBorder:    0; //   10
-$normalBorder:  0; //   5
-$shortBorder:   0; //   3
+$wideBorder:    8px; //   10
+$normalBorder:  5px; //   5
+$shortBorder:   3px; //   3
 
 .wideBorder {
 	border-radius: 	$wideBorder;
@@ -168,6 +168,7 @@ $shortBorder:   0; //   3
 			z-index: 	100;
 			transition: ease .3s;
 
+			border-radius: $normalBorder;
 			left: 		50%;
 			top: 		50%;
 
@@ -225,12 +226,7 @@ a {
 	width: 	        40px;
 	height:         40px;
 	border-radius:  $normalBorder;
-	overflow: 		hidden;
-
-	transition: transform ease .3s;
-
-	&:hover {
-		transform: scale(1.2);}}
+	overflow: 		hidden;}
 
 .mediaIcon {
 	margin: auto 0;
@@ -260,24 +256,57 @@ a {
 			padding: 	6px 8px 0 8px;}
 		padding-bottom: 5px;}}
 
-.button {
+.neonButton {
 	width: 		min-content;
 	height: 	min-content;
 	overflow: 		hidden;
+	vertical-align: bottom;
+
+	transition: ease .3s;
+	img {
+		vertical-align: bottom;
+		transition: ease .3s;}
 
 	&.small {
-		img {   width: 20px;
-				height: 20px;}}
+		img {   width:  18px;
+				height: 18px;}}
+
+	padding: 		5px;
+	border-radius: 	$shortBorder;
+
+	background: 	var(--accent6);
+	img {
+		filter:     invert(1);
+		position: 	relative;}
 
 	&:hover {
+		background: var(--accent2);
 		img {
-			background: var(--accent2);}}
+			filter: invert(0);}}}
+
+.navigationButton {
+	width: 		min-content;
+	overflow: 		hidden;
+	vertical-align: bottom;
+
+	transition: background ease .3s;
+
+	&.vertical {
+		height: 12px;
+		padding: 5px 10px;
+		border-radius: $normalBorder;
+		transition: ease 0.3s;
+	}
+
+	background: var(--backgroundTrans);
 
 	img {
-		position: 	    relative;
-		transition: 	ease .3s;
-		padding: 		5px;
-		//border-radius: 	5px;
-		border:         1px solid var(--accent2);
-		background: 	var(--backgroundTrans);}}
+		height: 12px;
+		width:  22px;
+		vertical-align: top;
+	}
 
+	&:hover {
+		background: var(--accent2);
+	}
+}

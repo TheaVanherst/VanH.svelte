@@ -1,11 +1,11 @@
 <script>
     import { goto } 		from '$app/navigation';
-    import { screenSize } 	from "$lib/accessibilityController.js";
+    import { screenSize, pageLoaded }	from "$lib/accessibilityController.js";
 
     import ProfileBar 		from "$root/components/layout/bannerAnimation.svelte";
     import LoadingFull 		from "../components/layout/loadingFull.svelte";
 
-    $: $screenSize !== 0 ? setTimeout(() => goto('/home/'), 500) : '';
+    $: $screenSize !== 0 && $pageLoaded === true ? setTimeout(() => goto('/home/'), 50) : '';
 </script>
 
 <div id="loading">

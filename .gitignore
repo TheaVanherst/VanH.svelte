@@ -8,3 +8,4 @@ node_modules
 /frontEnd/.svelte-kit/
 /frontEnd/.vite/deps_temp_e4af788e/
 /frontEnd/build/
+/oldComponents/

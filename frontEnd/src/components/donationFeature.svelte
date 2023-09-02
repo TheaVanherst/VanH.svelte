@@ -8,7 +8,7 @@
 
 <ListedCard data={donationTiers} citation={citation}/>
 
-<div class="box regularBorder">
+<div class="box wideBorder">
 	{#if $screenType > 2}
 		<div class="imageShowcase"
 			 in:fly={{y: 100, duration: 1200, delay: 300 }}>

@@ -1,30 +1,38 @@
 <script>
-    import { slide, scale } from 'svelte/transition';
+    import { scale, fly } from 'svelte/transition';
     import { screenType } 	from '$lib/accessibilityController.js';
 
     let chatBox = false;
+	let transitionSpeed = 200;
 </script>
 
 <div
 	id="messageController"
 	class="{$screenType < 3 ? 'mobile' : ''}">
 	{#if !chatBox}
-		<div class="button open"
-			 in:scale={{delay: 300}} out:scale
+		<div class="neonButton open"
+			 in:scale={{delay: transitionSpeed}} out:scale
 			 on:click={() => {chatBox = !chatBox}}>
 			<img src="/icons/commentIcon.webp">
 		</div>
 	{:else}
 		<div id="messager"
-			 in:slide={{delay: 300}} out:slide>
-			<div class="button close small"
-				 transition:scale
-				 on:click={() => {chatBox = !chatBox}}>
-				<img src="/icons/closeIcon.webp">
+			 class="wideBorder"
+			 in:fly={{x: 150, delay:transitionSpeed}} out:fly={{x: 150}}>
+			<div class="nav">
+				<div class="title">
+					<h3>MESSENGER</h3>
+				</div>
+				<div class="neonButton close small"
+					 on:click={() => {chatBox = !chatBox}}>
+					<img src="/icons/closeIcon.webp">
+				</div>
 			</div>
+
+
 			<div id="chatbox">
 				<iframe src="https://www5.cbox.ws/box/?boxid=945697&boxtag=RzY1tf"
-						width="100%" height="450" allowtransparency="yes" allow="autoplay"
+						width="100%" height="100%" allowtransparency="yes" allow="autoplay"
 						frameborder="0" marginheight="0" marginwidth="0" scrolling="auto">
 				</iframe>
 			</div>
@@ -33,40 +41,52 @@
 </div>
 
 <style lang="scss">
-	* {
-		bottom: 	0;
-		right: 		0;
+	* { -webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
+		-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
+		box-sizing: 		border-box;
 
-		vertical-align: bottom;
-		float: 			right;
-		z-index: 		2;}
+		right: 		0;
+		z-index: 	2;}
 
 	.mobile {
 		#messager {
-			max-width: calc(100% - 30px);
-			width: 100%;}
+			left: 0;
+			height: calc(100% - 30px);
+			bottom: 0;
+			min-width: calc(300px - 30px);}
 		#chatbox {
-			width: 100%;}}
+			min-width: 100%;}}
 
-	.button {	position: 	absolute;}
-	.open {		margin: 	15px;}
-	.close {	margin: 	0 0 10px 0;}
+	.open {	position: 	absolute;
+			margin: 	15px;}
 
 	#messager {
-		overflow: 		hidden;
-		position: 		absolute;
+		overflow: 	hidden;
+		position: 	absolute;
+		display: 	grid;
 
-		margin: 		15px 15px 0 15px;
-		width: 			calc(100% - 30px);
-		min-width:		270px;
-		max-width: 		350px;
+		border: 1px solid var(--accent8);
+		margin: 16px;
+
+		height: 	calc(100% - 30px);
+		background: var(--backgroundTrans);
 
 		> * {
-			position: 	relative;}}
-	#chatbox {
-		margin-bottom: 	15px; // shit fix to fix the transition
-		border: 1px solid var(--accent8);
-		width:			348px;
-		overflow: 		hidden;}
+			position: 	relative;}
+
+		.nav {
+			width: 		calc(100%);
+			height: 	max-content;
+			display: 	flex;
+			padding: 	10px;
+
+			.title {
+				margin:	 auto auto auto 2px;}}
+
+		#chatbox {
+			min-height: calc(100vh - 46px - 30px); // this is braindead.
+			width:			348px;
+			overflow: 		hidden;}
+	}
 
 </style>

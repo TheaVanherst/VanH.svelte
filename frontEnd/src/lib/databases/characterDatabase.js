@@ -9,7 +9,6 @@ const characterList = [
     {
         name:       "Valentina",
         fullName:   "Valentina Goss",
-        path:       "Valentina.webp",
         nationality:    "Austrian",
         timePeriod:     "19th / 24th century",
         age:            "29 y/o",
@@ -29,7 +28,6 @@ const characterList = [
     },{
         name:       "Bastet",
         fullName:   "Mother of Sol",
-        path:       "Bastet.webp",
         nationality:    "Solar Deity",
         timePeriod:     "Present",
         age:            "4.6 billion years",
@@ -48,7 +46,6 @@ const characterList = [
     },{
         name:       "Izabela",
         fullName:   "Izabela Deblanc",
-        path:       "Izabela.webp",
         nationality:    "French / Polish Lithuanian",
         timePeriod:     "18th - 19th",
         age:            "48 y/o",
@@ -69,7 +66,6 @@ const characterList = [
     },{
         name:       "Yumi",
         fullName:   "Yumi Myeong",
-        path:       "Yumi.webp",
         nationality:    "Korean",
         timePeriod:     "21st century",
         age:            "32 y/o",
@@ -92,7 +88,6 @@ const characterList = [
     },{
         name:       "Vahn",
         fullName:   "Vahn Charette Der-spar",
-        path:       "Vahn.webp",
         nationality:    "Sri Lanka / British",
         timePeriod:     "21st century",
         age:            "25 y/o",
@@ -112,7 +107,6 @@ const characterList = [
     },{
         name:       "Vastra",
         fullName:   "Madame Vastra",
-        path:       "Vastra.webp",
         nationality:    "Cuban",
         timePeriod:     "18th - 20th",
         age:            "36 y/o",
@@ -134,7 +128,6 @@ const characterList = [
     },{
         name:       "Isis",
         fullName:   "Mother Goddess",
-        path:       "Isis.webp",
         nationality:    "Magic Deity",
         timePeriod:     "Present",
         age:            "10.8 billion years",

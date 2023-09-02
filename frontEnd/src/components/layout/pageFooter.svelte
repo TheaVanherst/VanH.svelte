@@ -14,7 +14,7 @@
 		<!--	</a>-->
 		<!--{/each}-->
 
-		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
+<!--		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>-->
 	</div>
 	<div class="right">
 		<p>
@@ -69,11 +69,10 @@
 			margin: 0 15px 0 auto;
 			width:	max-content;
 
-			p {	text-align: 	right;
-				color:			var(--accent8);}
+			p {		text-align: right;
+					color: var(--accent10);}
 
-			span {
-				color: var(--accent9);
+			span {	color: var(--accent9);
 				&:hover {
 					@include rainbowTransition();}}}}
 </style>

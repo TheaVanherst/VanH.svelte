@@ -6,7 +6,7 @@
 
 <div class="nsfw hoverable"
 	 on:click={() => {show = true;}}>
-	<div class="imageWrapper {!show ? 'blurCont' : ''}"
+	<div class="imageWrapper regularBorder {!show ? 'blurCont' : ''}"
 		 id="commPreivew">
 		<img src="/commissions/DemoImage.webp">
 		<p class="imageCite shortBorder">
@@ -72,7 +72,7 @@
 </div>
 
 <style lang="scss">
-	@import "../../commonStyles";
+	@import "../../../commonStyles";
 
 	* {	transition: ease .3s; }
 

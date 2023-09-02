@@ -8,9 +8,9 @@
     let active = false;
 </script>
 
-<a href={push.path}
-   target="{blank ? '_blank' : ''}"
-   class="{faded ? 'fade' : ''}"
+<a href={smaller ? push.path : `https://www.${push.path}`}
+   target={blank ? '_blank' : ''}
+   class={faded ? 'fade' : ''}
     on:mouseenter={()=>{active = true}}
     on:mouseleave={()=>{active = false}}>
     <div class="title">
@@ -46,6 +46,15 @@
         &:hover {
             @include rainbowTransition();}
 
+        &.fade {
+            pointer-events: none;
+            h5 {
+                color: var(--accent2);
+
+                &::after {
+                    opacity: 1;
+                    bottom: -4px;}}}
+
         .title {
             padding:        10px;
             display:        inline-flex;
@@ -80,13 +89,4 @@
             transform:  translate3d(-100%, 0, 0);
             background: var(--accent2);}}
 
-    a {
-        &.fade {
-            pointer-events: none;
-            h5 {
-                color: var(--accent2);
-
-                &::after {
-                    opacity: 1;
-                    bottom: -4px;}}}}
 </style>

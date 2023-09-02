@@ -6,7 +6,7 @@
     let hover = false;
 </script>
 
-<div class="regularBorder tierCard class{hover && button ? 2 : data.accent}"
+<div class="wideBorder tierCard class{hover && button ? 2 : data.accent}"
 	 on:mouseenter={() => {hover = true}}
 	 on:mouseleave={() => {hover = false}}>
 	<h4 class="titleH4"> {data.class} </h4>

@@ -20,7 +20,7 @@
 				</p>
 			</div>
 			<div class="a fancy">
-				<img class="profileIcon pfp"
+				<img class="profileIcon"
 						src="/branding/vahnPfp.webp">
 				<p class="quote fancy">
 					{qa.answer}

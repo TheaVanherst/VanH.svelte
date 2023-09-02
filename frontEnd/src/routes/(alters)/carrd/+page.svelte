@@ -14,16 +14,18 @@
 		</div>
 	</div>
 	{#each socialMedias as push}
-		<div class="social">
-			<div class="flex">
-				<div class="mediaIcon">
-					<img src="/icons/{push.imagePath}.webp">
-				</div>
-				<div class="text">
-					<h3> {push.name} </h3>
+		<a href="https://www.{push.path}" target="_blank">
+			<div class="social wideBorder">
+				<div class="flex">
+					<div class="mediaIcon">
+						<img src="/icons/{push.imagePath}.webp">
+					</div>
+					<div class="text">
+						<h3> {push.name} </h3>
+					</div>
 				</div>
 			</div>
-		</div>
+		</a>
 	{/each}
 </div>
 
@@ -59,6 +61,7 @@
 		margin: 	0 auto 15px auto;}
 	.social {
 		padding: 	10px;
+		margin-bottom: 10px;
 		transition: transform .2s ease, border .4s ease;
 
 		border: 	1px solid var(--accent2);

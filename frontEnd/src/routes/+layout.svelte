@@ -1,6 +1,8 @@
 <script>
     import '../styles.scss';
 
+	import {navigating} from "$app/stores";
+
     import { fly } 	from 'svelte/transition';
     import TransitionHandler from "$lib/transitionHandler.svelte";
 
@@ -11,13 +13,17 @@
     import NavigationComponent 	from "$root/components/layout/navBar.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import { directory, deviceType, scrollPos,
+    import { directory, deviceType, scrollPos, pageLoaded,
 		bandWidths, screenSize, screenType } from "$lib/accessibilityController.js";
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     // this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
     // this prevents having to do if statements that constantly get fucked with a lot.
     // tldr; "theoretically" should be more optimal and generally easier to write for.
+
+	export let data;
+    let pathname;
+    $: pathname = data.pathname; //easy way to update and check the page update.
 </script>
 
 <svelte:window bind:innerWidth={ $screenSize }/>
@@ -29,8 +35,8 @@
 	 on:scroll={(e) => $scrollPos = e.target.scrollTop}>
 	<div id="navigation">
 		<div id="layout">
-			{#if $directory !== "/"} <!-- this is a placeholder -->
-				<div in:fly={{y: -100, duration: 500, delay: 300 }}> <!-- this needs a better delay calc -->
+			{#if $pageLoaded} <!-- this is a placeholder -->
+				<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
 					{#if deviceType === 2}
 						<div class="desktop">
 							<ProfileBar/>
@@ -54,7 +60,7 @@
 			{/if}
 
 			<div class="flexBox">
-				<TransitionHandler>
+				<TransitionHandler refresh={pathname}>
 					<slot/>
 				</TransitionHandler>
 			</div>

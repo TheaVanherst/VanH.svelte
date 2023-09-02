@@ -1,6 +1,6 @@
 <script>
     import { slide } 	from 'svelte/transition';
-    import { page } from '$app/stores';
+    import { page } 	from '$app/stores';
 
     import { socialMedias, navigationDirectories } 	from '$lib/navigationDirectories.js';
     import Button 	from "$root/components/layout/navButton.svelte";
@@ -11,20 +11,20 @@
 {#if $navigationVisibility || $socialMediaVisibility}
 	<div class="navigationBar">
 		<div class="controller">
-			{#if $socialMediaVisibility}
-				<div transition:slide>
-					{#each socialMedias.slice(0, 5) as item}
-						<Button push="{item}" blank={true}/>
-					{/each}
-				</div>
-			{/if}
-
 			{#if $navigationVisibility}
 				<div transition:slide>
 					{#each navigationDirectories as nav}
 						<Button push="{nav}"
 								smaller={true}
 								faded={$page.url.pathname === nav.path + "/"}/>
+					{/each}
+				</div>
+			{/if}
+
+			{#if $socialMediaVisibility}
+				<div transition:slide>
+					{#each socialMedias.slice(0, 5) as item}
+						<Button push="{item}" blank={true}/>
 					{/each}
 				</div>
 			{/if}

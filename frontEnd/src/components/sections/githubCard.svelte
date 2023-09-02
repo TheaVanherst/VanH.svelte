@@ -8,11 +8,13 @@
 			{data.name}
 		</h4>
 		<div class="imageWrapper">
-			<img src="/github/{data.preview}.webp">
+			<img
+				class="tinyIco socialIco shortBorder"
+				src="/icons/githubLogo.webp">
+			<img
+				class="thumbnail"
+				src="/github/{data.preview}.webp">
 			<div class="descCard">
-				<img
-					class="tinyIco socialIco shortBorder"
-					src="/icons/githubLogo.webp">
 				<p class="description">
 					{data.description}
 				</p>
@@ -34,18 +36,24 @@
 	a:hover {
 		.referral {
 			background: var(--accent2)!important;
-			p {	color: 	white;}}}
+			p {
+				color: white;}}}
 
 	.slide {
 		overflow: hidden;
 		margin-bottom: 27px;
+
+		.tinyIco {
+			bottom: unset!important;
+			top: 	0px;}
+
+		.thumbnail {
+			min-height: 220px;}
+
 		.descCard {
 			position: 	absolute;
 			bottom: 	0;
 			background: var(--backgroundTrans);
-
-			.tinyIco {
-				top: 	-143px;}
 
 			.description {
 				@include shortForm(2);}

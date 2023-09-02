@@ -28,13 +28,11 @@ export { deviceType };
 
 // TODO: Internal directory and status management
 
-const
-    loadingStatus =     writable(false),
-    navigationStatus =  writable(true),
-    directory =   writable("/");
+const directory =   writable("/");
+const pageLoaded = writable(false);
+export { directory, pageLoaded };
 
 import { navigationDirectories } from "$lib/navigationDirectories";
-export { loadingStatus, navigationStatus, directory };
 
 // TODO: navigation direction controller
 

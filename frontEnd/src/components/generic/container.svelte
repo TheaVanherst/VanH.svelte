@@ -5,7 +5,7 @@
 </script>
 
 <div
-	class="container"
+	class="container wideBorder"
 	style="
 		{!!bottom ? `padding-bottom: -${10 - bottom}px; ` : ''}
 		{!!border ? `border-color: var(--accent${border})` : ''}">

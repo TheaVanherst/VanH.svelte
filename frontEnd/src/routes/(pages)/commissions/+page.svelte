@@ -6,8 +6,8 @@
     import Carousel from "$root/components/generic/carousel.svelte";
 
     import ListedCard 		from "../../../components/generic/ListedCard.svelte";
-	import CommissionCard 	from "../../../components/sections/commissionCard.svelte";
-    import CommissionPrices from "$root/components/chunks/commissionPrices.svelte";
+	import CommissionCard 	from "../../../components/sections/GenericPages/commissionCard.svelte";
+    import CommissionPrices from "$root/components/sections/commissions/commissionPrices.svelte";
 
     import { dosAndDonts, exampleArr, citation, howToCom, benefits, notices, tnc,
 		} from "$lib/databases/commissionDetails.js";
@@ -77,7 +77,6 @@
 </SidebarTexts>
 
 <style lang="scss">
-	* {			transition: 	ease .3s; }
 	ul {		padding-left: 	20px;}
 	.bottom {	margin-bottom: 	25px;}
 	.chunk {	padding: 		1px 3px;

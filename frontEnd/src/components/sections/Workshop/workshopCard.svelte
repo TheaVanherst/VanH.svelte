@@ -8,10 +8,10 @@
 			{dataEntry.name}
 		</h4>
 
-		<div class="workshopPreview regularBorder">
+		<div class="workshopPreview regularBorder imageWrapper">
 			<img 	class="tinyIco socialIco shortBorder"
 					src="/icons/steamLogo.webp">
-			<img 	class="thumbnail regularBorder"
+			<img 	class="regularBorder"
 					src="/workshop/{dataEntry.thumbnail}.webp">
 		</div>
 
@@ -46,9 +46,9 @@
 </a>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
+	@import "../../../commonStyles";
 
-	* {	transition: .3s cubic-bezier(0.33, 1, 0.68, 1);}
+	* {	transition: .5s ease;}
 
 	a:hover {
 		.workshopItem {
@@ -64,13 +64,10 @@
 	.workshopPreview {
 		overflow: hidden;
 		.socialIco {
-			top: 30px;}}
+			top: 0;}}
 
 	.workshopItem {
 		overflow: hidden;
-
-		.thumbnail {
-			width:	100%;}
 
 		.workshopData {
 			position: relative;
@@ -80,7 +77,7 @@
 
 			.details {
 				white-space: 	nowrap;
-				border-top: 	1px solid var(--accent8);
+				border-top: 	1px solid var(--accent10);
 				padding: 		10px 10px 27px 10px;
 
 				.game {
@@ -90,6 +87,6 @@
 					p { margin: 	auto 0 auto 7px;}}
 
 				.developers {	display: flex;
-					p, span {	@include customFontColour(var(--accent8));}
+					p, span {	@include customFontColour(var(--accent10));}
 					.author {	@include customFontColour(var(--accent9));}}}}}
 </style>
