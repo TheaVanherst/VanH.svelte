@@ -30,9 +30,11 @@ export { deviceType };
 
 const directory =   writable("/");
 const pageLoaded = writable(false);
-export { directory, pageLoaded };
+const transitioning = writable(false);
 
-import { navigationDirectories } from "$lib/navigationDirectories";
+export { directory, pageLoaded, transitioning };
+
+import { navigationDirectories } from "$lib/controllers/navigationDirectories.js";
 
 // TODO: navigation direction controller
 
@@ -43,8 +45,11 @@ const
 
 export { urlStoreArr, directionX, directionY }
 
+const nsfw = writable(false);
+export { nsfw }
+
 const
-    directionProcessing = async (p,c,b = null) => {
+    directionProcessing = async (p,c,b = null, f = 0) => {
     // calculates which direction it should move horizontally
     let offsets = [0,0]; // debugging purposes
         // this is related to the server hoster, and is enforced by svelte.
@@ -56,8 +61,9 @@ const
         offsets[0] = pfr.length > cfr.length ? 1 : -1;} //forwards / backwards
 
     // calculates which direction it should move vertically
-    let pyo = navigationDirectories.findIndex(e => e.path === "/" + cfr[1]),
-        cyo = navigationDirectories.findIndex(e => e.path === "/" + pfr[1]);
+
+    let pyo = navigationDirectories.findIndex(e => e.path === "/" + cfr[1 + f]),
+        cyo = navigationDirectories.findIndex(e => e.path === "/" + pfr[1 + f]);
 
     if (!(offsets[0] ^ 0) && (pyo ^ cyo)) { // only moves if x isn't
         offsets[1] = pyo > cyo ? 1 : -1;} // upwards / downwards
@@ -68,7 +74,8 @@ const
 
     // updates local url management.
     urlStoreArr.set(cfr);
-    !b ? directory.set(c) : directory.set(b);};
+    !b ? directory.set(c) : directory.set(b);
+};
 
 export { directionProcessing };
 

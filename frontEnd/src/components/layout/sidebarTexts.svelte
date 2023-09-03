@@ -1,6 +1,6 @@
 <script>
-    import { horizontalSlide } from "$lib/transitionPresets.js";
-    import { screenType } 	from '$lib/accessibilityController.js';
+    import { horizontalSlide } from "$lib/controllers/transitionPresets.js";
+    import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
 	export let titlecard, icon = undefined;
 </script>

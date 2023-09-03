@@ -1,5 +1,5 @@
 <script>
-    import { screenSize, screenType } 	from '$lib/accessibilityController.js';
+    import { screenSize, screenType } 	from '$lib/controllers/accessibilityController.js';
 
     // import { socialMedias } 	from '$lib/navigationDirectories.js';
 </script>

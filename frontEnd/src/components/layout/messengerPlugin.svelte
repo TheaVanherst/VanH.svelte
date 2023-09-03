@@ -1,9 +1,12 @@
 <script>
     import { scale, fly } from 'svelte/transition';
-    import { screenType } 	from '$lib/accessibilityController.js';
+    import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
     let chatBox = false;
 	let transitionSpeed = 200;
+
+	let directions = [0, 0];
+    $: directions = $screenType < 3 ? [0, 150] : [150, 0];
 </script>
 
 <div
@@ -13,12 +16,18 @@
 		<div class="neonButton open"
 			 in:scale={{delay: transitionSpeed}} out:scale
 			 on:click={() => {chatBox = !chatBox}}>
-			<img src="/icons/commentIcon.webp">
+			<img src="/icons/qAndAIcon.webp">
 		</div>
 	{:else}
 		<div id="messager"
 			 class="wideBorder"
-			 in:fly={{x: 150, delay:transitionSpeed}} out:fly={{x: 150}}>
+			 in:fly={{
+                 x: directions[0],
+                 y: directions[1],
+                 delay:transitionSpeed}}
+			 out:fly={{
+                 x: directions[0],
+                 y: directions[1]}}>
 			<div class="nav">
 				<div class="title">
 					<h3>MESSENGER</h3>
@@ -46,27 +55,35 @@
 		box-sizing: 		border-box;
 
 		right: 		0;
-		z-index: 	2;}
+		z-index: 	10;}
 
 	.mobile {
 		#messager {
 			left: 0;
-			height: calc(100% - 30px);
+			height: calc(100% - 28px);
 			bottom: 0;
 			min-width: calc(300px - 30px);}
 		#chatbox {
+			width: 100%;
 			min-width: 100%;}}
 
-	.open {	position: 	absolute;
+	.open {	position: 	fixed;
 			margin: 	15px;}
+
+	.messageController {
+		position: 	absolute;
+		top: 0;
+		width: 100%;
+		height: 100vh;
+	}
 
 	#messager {
 		overflow: 	hidden;
-		position: 	absolute;
 		display: 	grid;
+		position: 	fixed;
 
 		border: 1px solid var(--accent8);
-		margin: 16px;
+		margin: 15px;
 
 		height: 	calc(100% - 30px);
 		background: var(--backgroundTrans);
@@ -75,7 +92,7 @@
 			position: 	relative;}
 
 		.nav {
-			width: 		calc(100%);
+			width: 		100%;
 			height: 	max-content;
 			display: 	flex;
 			padding: 	10px;
@@ -84,8 +101,8 @@
 				margin:	 auto auto auto 2px;}}
 
 		#chatbox {
-			min-height: calc(100vh - 46px - 30px); // this is braindead.
-			width:			348px;
+			min-height: calc(100vh - 46px - 33px); // this is braindead.
+			max-width:			348px;
 			overflow: 		hidden;}
 	}
 

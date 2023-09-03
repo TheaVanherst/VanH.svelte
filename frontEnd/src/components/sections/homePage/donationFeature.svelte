@@ -1,6 +1,6 @@
 <script>
     import { fly } from 'svelte/transition';
-    import { screenType } 	from '$lib/accessibilityController.js';
+    import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
     import { donationTiers, personalMessage, citation } from "$lib/databases/donationTiers.js";
     import ListedCard from "$root/components/generic/ListedCard.svelte";

@@ -1,6 +1,6 @@
 <script>
     import { goto } 		from '$app/navigation';
-    import { screenSize, pageLoaded }	from "$lib/accessibilityController.js";
+    import { screenSize, pageLoaded }	from "$lib/controllers/accessibilityController.js";
 
     import ProfileBar 		from "$root/components/layout/bannerAnimation.svelte";
     import LoadingFull 		from "../components/layout/loadingFull.svelte";
@@ -29,7 +29,7 @@
 		width: 		100%;
 		height: 	100%;
 		position: 	absolute;
-		top: 0;
+		top: 		0;
 
 
 		.loadingBar {

@@ -88,20 +88,36 @@ workshopMinatureArray = [
         url: "2893560157",
         game: gameReferencing.crypt,
     },{
+        thumbnail: "ctns",
+        url: "2999058962",
+        game: gameReferencing.crypt,
+    },{
+        thumbnail: "crystalEmpire",
+        url: "2981811524",
+        game: gameReferencing.crypt,
+    },{
         thumbnail: "clothing",
         url: "2880648331",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "clouds",
         url: "2869322710",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "guns",
         url: "2833427254",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "ladyD",
         url: "2880649390",
+        game: gameReferencing.terraria,
+        nsfw: true,
+    },{
+        thumbnail: "fluttershy",
+        url: "2756432238",
         game: gameReferencing.terraria,
     },{
         thumbnail: "metroidEquips",
@@ -115,22 +131,27 @@ workshopMinatureArray = [
         thumbnail: "rosalina",
         url: "2714945863",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "rosalinaClothing",
         url: "2712920418",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "moxxi",
         url: "2464132043",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "goblin",
         url: "2464351787",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "tavi",
         url: "2463389326",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "coffee",
         url: "2472031797",
@@ -143,10 +164,12 @@ workshopMinatureArray = [
         thumbnail: "traveller",
         url: "2938035091",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "wizard",
         url: "2462522375",
         game: gameReferencing.terraria,
+        nsfw: true,
     },{
         thumbnail: "evangelionClothing",
         url: "2450249218",

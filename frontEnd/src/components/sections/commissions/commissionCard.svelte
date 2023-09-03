@@ -1,21 +1,16 @@
 <script>
 	export let data
-
-	let show = false;
 </script>
 
-<div class="card regularBorder {data.nsfw ? 'nsfw' : ''} {!show ? 'hidden' : ''} hoverable"
-	 on:click={() => {show = true;}}>
+<div class="card regularBorder hoverable">
 	<a 	href="https://twitter.com/TheaVanherst/status/{data.source}"
-	   	target="_blank">
+		  target="_blank">
 		<h3 class="titleH4">
 			{data.title}
 		</h3>
 		<div class="showcase regularBorder imageWrapper">
-			<div class="{data.nsfw && !show ? 'blurCont' : ''}">
-				<img 	class="commissionPreview"
-						src="/commissions/{data.img}.webp">
-			</div>
+			<img 	class="commissionPreview"
+					src="/commissions/{data.img}.webp">
 			<p class="imageCite shortBorder">
 				Example type: {data.type}
 			</p>

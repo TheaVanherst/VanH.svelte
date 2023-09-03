@@ -1,5 +1,5 @@
 <script>
-    import { socialMedias } 	from '$lib/navigationDirectories.js';
+    import { socialMedias } 	from '$lib/controllers/navigationDirectories.js';
 </script>
 
 <div class="wrapper">
@@ -30,7 +30,7 @@
 </div>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
+	@import "../../../../commonStyles";
 
 	.wrapper {
 		margin: 0 auto;

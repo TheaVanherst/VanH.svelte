@@ -1,5 +1,5 @@
 <script>
-    import { screenType } 	from '$lib/accessibilityController.js';
+    import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
 	export let
 		maxWidth = 3,

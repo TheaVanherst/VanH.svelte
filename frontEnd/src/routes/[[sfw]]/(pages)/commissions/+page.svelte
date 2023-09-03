@@ -1,12 +1,13 @@
 <script>
-    import { screenType } from '$lib/accessibilityController.js';
+    import { screenType } 	from '$lib/controllers/accessibilityController.js';
+    import { nsfw } from "$lib/controllers/accessibilityController.js";
 
-    import SidebarTexts from "../../../components/layout/sidebarTexts.svelte";
-    import Container	from "../../../components/generic/container.svelte";
-    import Carousel from "$root/components/generic/carousel.svelte";
+    import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
+    import Container		from "$root/components/generic/container.svelte";
+    import Carousel 		from "$root/components/generic/carousel.svelte";
 
-    import ListedCard 		from "../../../components/generic/ListedCard.svelte";
-	import CommissionCard 	from "../../../components/sections/GenericPages/commissionCard.svelte";
+    import ListedCard 		from "$root/components/generic/ListedCard.svelte";
+	import CommissionCard 	from "$root/components/sections/commissions/commissionCard.svelte";
     import CommissionPrices from "$root/components/sections/commissions/commissionPrices.svelte";
 
     import { dosAndDonts, exampleArr, citation, howToCom, benefits, notices, tnc,
@@ -17,23 +18,25 @@
     register();
 </script>
 
-<SidebarTexts titlecard="Examples">
-	<Container bottom={10}>
-		<Carousel maxWidth={2} customCalc={$screenType > 2 ? 2 : 1}>
-			{#each exampleArr as image}
-				<swiper-slide>
-					<div class="bottom">
-						<CommissionCard data={image}/>
-					</div>
-				</swiper-slide>
-			{/each}
-		</Carousel>
-	</Container>
-	<ListedCard
-			data={dosAndDonts} citation={citation}
-			divisional={2}
-			buttonTog={false} redirect={false}/>
-</SidebarTexts>
+{#if $nsfw}
+	<SidebarTexts titlecard="Examples">
+		<Container bottom={10}>
+			<Carousel maxWidth={2} customCalc={$screenType > 2 ? 2 : 1}>
+				{#each exampleArr as image}
+					<swiper-slide>
+						<div class="bottom">
+							<CommissionCard data={image}/>
+						</div>
+					</swiper-slide>
+				{/each}
+			</Carousel>
+		</Container>
+		<ListedCard
+				data={dosAndDonts} citation={citation}
+				divisional={2}
+				buttonTog={false} redirect={false}/>
+	</SidebarTexts>
+{/if}
 
 <SidebarTexts titlecard="Prices">
 	<Container>

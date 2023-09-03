@@ -7,7 +7,7 @@
     import WorkshopSnippet 	from "./workshopSnippet.svelte";
 
 	import { workshopArray, workshopMinatureArray } from "$lib/databases/workshopDatabase.js";
-    import { screenSize, deviceType } 	from '$lib/accessibilityController.js';
+    import {screenSize, deviceType, nsfw} from '$lib/controllers/accessibilityController.js';
 
     let moreToggle = false;
 </script>
@@ -54,9 +54,11 @@
 						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
 						pagination={false}>
 					{#each workshopMinatureArray as workshopItem}
-						<swiper-slide>
-							<WorkshopSnippet item={workshopItem}/>
-						</swiper-slide>
+						{#if workshopItem.nsfw && $nsfw || !workshopItem.nsfw}
+							<swiper-slide>
+								<WorkshopSnippet item={workshopItem}/>
+							</swiper-slide>
+						{/if}
 					{/each}
 				</Carousel>
 			</div>

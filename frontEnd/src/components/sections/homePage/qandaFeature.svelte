@@ -1,7 +1,7 @@
 <script>
 	import qaDatabase 	from "$lib/databases/qaDatabase.js";
 
-    import Container 	from "./generic/container.svelte";
+    import Container 	from "../../generic/container.svelte";
 </script>
 
 <Container>
@@ -31,7 +31,7 @@
 </Container>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
+	@import "../../../commonStyles";
 
 	* {	transition: .3s ease; }
 

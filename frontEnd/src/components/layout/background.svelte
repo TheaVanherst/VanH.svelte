@@ -1,5 +1,6 @@
 <script>
-    import { scrollPos } from '$lib/accessibilityController.js';
+    import { scrollPos } from '$lib/controllers/accessibilityController.js';
+    import { deviceType } from "$lib/controllers/accessibilityController.js";
 
     // TODO: NOTE;
     // Not using --ypos, and trying to use $scrollPos causes a slight delay when scrolling.
@@ -8,13 +9,20 @@
     const levels = [4,3,2]
 </script>
 
-<parallax>
-    {#each levels as level}
-        <div
-            class="spaceBg{level - 1}"
-            style="background-position-y: calc({-$scrollPos * (0.3 * level)}px);"></div>
-    {/each}
-</parallax>
+{#if deviceType > 0}
+    <parallax>
+        {#each levels as level}
+            <div class="spaceBg{level - 1}"
+                style="background-position-y: calc({-$scrollPos * (0.3 * level)}px);"></div>
+        {/each}
+    </parallax>
+{:else}
+    <parallax>
+        {#each levels as level}
+            <div class="spaceBg{level - 1}"></div>
+        {/each}
+    </parallax>
+{/if}
 
 <style lang="scss">
     // gif resolutions

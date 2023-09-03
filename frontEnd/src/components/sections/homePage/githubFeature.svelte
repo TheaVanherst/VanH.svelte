@@ -1,7 +1,7 @@
 <script>
-    import { screenType } from '$lib/accessibilityController.js';
+    import { screenType } from '$lib/controllers/accessibilityController.js';
 
-    import Container from "./generic/container.svelte";
+    import Container from "../../generic/container.svelte";
     import Carousel from "$root/components/generic/carousel.svelte";
 	import GithubCard from "$root/components/sections/githubCard.svelte";
 

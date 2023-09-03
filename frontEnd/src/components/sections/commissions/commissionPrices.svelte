@@ -1,19 +1,21 @@
 <script>
     import { commissionTypes, additionalPurchases } from "$lib/databases/commissionDetails.js";
 
-    let show = false;
+    import { nsfw } from "$lib/controllers/accessibilityController.js";
 </script>
 
-<div class="nsfw hoverable"
-	 on:click={() => {show = true;}}>
-	<div class="imageWrapper regularBorder {!show ? 'blurCont' : ''}"
-		 id="commPreivew">
+<div class="imageWrapper regularBorder"
+	 id="commPreivew">
+	{#if $nsfw === true}
 		<img src="/commissions/DemoImage.webp">
-		<p class="imageCite shortBorder">
-			Previews of Shading / Flats / Lines
-		</p>
-	</div>
+	{:else}
+		<img src="/commissions/DemoImagesfw.webp">
+	{/if}
+	<p class="imageCite shortBorder">
+		Previews of Shading / Flats / Lines
+	</p>
 </div>
+
 <div class="chunk">
 	<h3>Commission Types</h3>
 	<div class="colourWrapper">

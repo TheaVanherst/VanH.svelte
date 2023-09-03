@@ -1,5 +1,5 @@
 <script>
-    import { socialMediaVisibility } from "$lib/accessibilityController.js";
+    import { socialMediaVisibility } from "$lib/controllers/accessibilityController.js";
     $socialMediaVisibility = true;
 </script>
 

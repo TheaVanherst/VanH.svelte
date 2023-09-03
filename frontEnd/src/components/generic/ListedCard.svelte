@@ -1,5 +1,5 @@
 <script>
-    import { screenType } 	from '$lib/accessibilityController.js';
+    import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
     import ListedBox from "$root/components/generic/listedBox.svelte";
 

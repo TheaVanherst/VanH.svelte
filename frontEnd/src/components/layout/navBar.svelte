@@ -2,10 +2,10 @@
     import { slide } 	from 'svelte/transition';
     import { page } 	from '$app/stores';
 
-    import { socialMedias, navigationDirectories } 	from '$lib/navigationDirectories.js';
+    import { socialMedias, navigationDirectories } 	from '$lib/controllers/navigationDirectories.js';
     import Button 	from "$root/components/layout/navButton.svelte";
 
-    import { navigationVisibility, socialMediaVisibility } from "$lib/accessibilityController.js";
+    import { navigationVisibility, socialMediaVisibility } from "$lib/controllers/accessibilityController.js";
 </script>
 
 {#if $navigationVisibility || $socialMediaVisibility}

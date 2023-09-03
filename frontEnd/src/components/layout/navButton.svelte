@@ -1,18 +1,44 @@
 <script>
-    import { screenType } 	from '$lib/accessibilityController.js';
+    import {
+            directionProcessing, screenType,
+            directory, transitioning, nsfw
+        } from '$lib/controllers/accessibilityController.js';
+    import { goto } from "$app/navigation";
+    import { page } from "$app/stores";
 
     export let push = "",
             smaller = false, blank = false,
             faded = false;
 
     let active = false;
+
+    const redirectCheck = (e, s) => {
+        if (s) {
+            $nsfw = $page.params.sfw === "nsfw";
+
+            let paraLength = Object.keys($page.params).length;
+            let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
+
+            if (newRoute !== $directory && !$transitioning) {
+                directionProcessing($directory, newRoute, newRoute, paraLength);
+                $transitioning = true;
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'})
+
+                setTimeout(() => {
+                    goto(newRoute)
+                    $transitioning = false;
+                }, 250);}}}
 </script>
 
-<a href={smaller ? push.path : `https://www.${push.path}`}
+<a href={smaller ? '' : `https://www.${push.path}`}
    target={blank ? '_blank' : ''}
    class={faded ? 'fade' : ''}
-    on:mouseenter={()=>{active = true}}
-    on:mouseleave={()=>{active = false}}>
+    on:mousedown|preventDefault={() => redirectCheck(push.path, smaller)}
+    on:mouseenter={() => active = true}
+    on:mouseleave={() => active = false}>
     <div class="title">
         {#if smaller}
             <div class="navigation">
@@ -42,8 +68,7 @@
 
     * { transition: ease .3s; }
 
-    a {
-        &:hover {
+    a { &:hover {
             @include rainbowTransition();}
 
         &.fade {
@@ -56,23 +81,16 @@
                     bottom: -4px;}}}
 
         .title {
-            padding:        10px;
-            display:        inline-flex;
+            padding:    10px;
+            display:    inline-flex;
 
-            > * {
-                display: flex;}
+            > * {       display: flex;}
+            h3, h5 {    text-transform: uppercase;}
 
-            h3, h5 {
-                text-transform: uppercase;}
-
-            .socials {
-                margin: auto 8px auto 0;
-                h3 {
-                    margin: -4px 0 0 0;}}
-            .navigation {
-                margin: auto 0;
-                h5 {
-                    margin: -1px 0 0 0;}}}}
+            .socials {      margin: auto 8px auto 0;
+                h3 {        margin: -4px 0 0 0;}}
+            .navigation {   margin: auto 0;
+                h5 {        margin: -1px 0 0 0;}}}}
 
     h5 {
         &::after {
@@ -88,5 +106,4 @@
 
             transform:  translate3d(-100%, 0, 0);
             background: var(--accent2);}}
-
 </style>

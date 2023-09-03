@@ -193,13 +193,13 @@ const exampleArr =
             title: "Goddess of Sol",
             type: `${commissionTypes[1].title}, ${commissionTypes[1].prices[2][0]}`,
             source: "1681815430573244420",
-            nsfw: false
+            nsfw: true,
         },{
             img: "CheeksOfLove",
             title: "Cheeks of Love",
             type: `${commissionTypes[2].title}, ${commissionTypes[2].prices[2][0]}`,
             source: "1681815430573244420",
-            nsfw: false
+            nsfw: true,
         },{
             img: "DaurineMoonlight",
             title: "A Moonlit Ritual",
