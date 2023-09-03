@@ -139,54 +139,6 @@ $shortBorder:   3px; //   3
 
 // TODO: containers
 
-.nsfw {
-	img,
-	.blurCont {
-		transition: ease .3s;}
-
-	&.hoverable {
-		&:hover {
-			.blurCont {
-				&:before, &:after {
-					background: black;}
-				img {
-					transform: scale(1.15);}}}}
-
-	&.hidden {
-		&:hover {
-			cursor: url('/cursors/busy.gif'), crosshair;}
-		> a {
-			pointer-events: none;}}
-
-	.blurCont {
-		position:   relative;
-		width:      100%;
-		height:     100%;
-
-		&:before, &:after {
-			position: 	absolute;
-			z-index: 	100;
-			transition: ease .3s;
-
-			border-radius: $normalBorder;
-			left: 		50%;
-			top: 		50%;
-
-			font-family:    "Helvetica", Sans-serif;
-			white-space: 	nowrap;
-			color: 			white;
-			background: 	var(--backgroundTrans);
-
-			padding: 		5px 20px;}
-		&:before {
-			content: 		"Content Warning";
-			font-weight: 	600;
-			transform: 	    translate(-50%, -65%);}
-
-		img {
-			filter:     blur(10px);
-			transform:  scale(1.05);}}}
-
 .imageCite {
 	background: 	var(--backgroundTrans);
 

@@ -6,11 +6,13 @@ import path from 'path';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			fallback: 'index.html'
+		}),
 		alias: {
 			$routes: 		path.resolve('./src/routes'),
 			$root: 			path.resolve('./src'),
-		}
+		},
 	},
 	preprocess: preprocess(),
 	optimizeDeps: {
