@@ -58,11 +58,13 @@
 		z-index: 	10;}
 
 	.mobile {
+		height: 100%;
+
 		#messager {
 			left: 0;
 			height: calc(100% - 28px);
 			bottom: 0;
-			min-width: calc(300px - 30px);}
+			min-width: 300px - 30px;}
 		#chatbox {
 			width: 100%;
 			min-width: 100%;}}
@@ -79,7 +81,6 @@
 
 	#messager {
 		overflow: 	hidden;
-		display: 	grid;
 		position: 	fixed;
 
 		border: 1px solid var(--accent8);
@@ -101,9 +102,10 @@
 				margin:	 auto auto auto 2px;}}
 
 		#chatbox {
-			min-height: calc(100vh - 46px - 33px); // this is braindead.
-			max-width:			348px;
-			overflow: 		hidden;}
+			max-height: calc(100% - 49px);
+			height: 	100%;
+			max-width:	348px;
+			overflow: 	hidden;}
 	}
 
 </style>
