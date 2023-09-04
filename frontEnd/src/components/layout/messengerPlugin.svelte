@@ -1,5 +1,5 @@
 <script>
-    import { scale, fly } from 'svelte/transition';
+    import { scale, fly } 	from 'svelte/transition';
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
     let chatBox = false;

@@ -14,7 +14,7 @@
 		<!--	</a>-->
 		<!--{/each}-->
 
-		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
+<!--		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>-->
 	</div>
 	<div class="right">
 		<p>
@@ -44,6 +44,8 @@
 	.footer {
 		background-color: 	var(--backgroundTrans);
 		border-top: 		1px solid var(--accent2);
+		border-top-left-radius: $wideBorder;
+		border-top-right-radius: $wideBorder;
 
 		width: 		calc(100%);
 		padding: 	15px 0;

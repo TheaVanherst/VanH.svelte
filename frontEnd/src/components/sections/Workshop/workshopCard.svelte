@@ -87,6 +87,10 @@
 					p { margin: 	auto 0 auto 7px;}}
 
 				.developers {	display: flex;
-					p, span {	@include customFontColour(var(--accent10));}
-					.author {	@include customFontColour(var(--accent9));}}}}}
+					p, span {	color: var(--accent10);
+						&::selection {
+								color: var(--accent10);}}
+					.author {	color: var(--accent9);
+						&::selection {
+								color: var(--accent9);}}}}}}
 </style>

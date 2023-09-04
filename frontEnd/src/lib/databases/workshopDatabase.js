@@ -76,9 +76,15 @@ const workshopArray = [
 ],
 workshopMinatureArray = [
     {
+        thumbnail: "bastet",
+        url: "3030689070",
+        game: gameReferencing.crypt,
+        nsfw: true,
+    },{
         thumbnail: "izabela",
         url: "2970592342",
         game: gameReferencing.crypt,
+        nsfw: true,
     },{
         thumbnail: "yumi",
         url: "2959125647",

@@ -21,38 +21,24 @@ a { transition: .5s ease; //fallback transition
 
 // TODO: generic texts
 
-@mixin customFontColour($colour){
-	color:          $colour;
-	&::selection {
-		color:      black;
-		background: $colour!important;}}
-
-@mixin citationText($colour, $hover){
-	font-size: 		10px;
-	font-family: 	"Helvetica", Sans-serif;
-	opacity:        0.8;
-
-	@include customFontColour(white);
-	span {  @include customFontColour($colour);}
-
-	&:hover {
-		@include customFontColour(var(--accent0));
-		> span {    @include customFontColour($hover);}}}
-
 .citation {
 	font-size: 		10px;
 	font-family: 	"Helvetica", Sans-serif;
+	color:          white;
+
 	position: 	relative;
 	display: 	block;
 
-	@include customFontColour(white);
 	span {
-		@include customFontColour(var(--accent1));}
+		color: var(--accent1);
+		&::selection {
+			color: var(--accent1);};}
 
 	&:hover {
-		@include customFontColour(var(--accent0));
 		> span {
-			@include customFontColour(var(--accent3));}}}
+			color: var(--accent3);
+			&::selection {
+				color: var(--accent3)!important;}}}}
 
 .externalCitation {
 	width:          max-content;

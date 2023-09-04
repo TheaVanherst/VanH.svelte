@@ -115,7 +115,8 @@
 				height: max-content;
 				display: grid;
 
-				&:nth-of-type(1){ span { @include customFontColour(var(--accent1));}}
+				&:nth-of-type(1){ span { color: var(--accent1);
+					&::selection {		 color: var(--accent1);};}}
 				&:nth-of-type(2){ span { color: var(--accent6); }}
 				&:nth-of-type(3){ span { color: var(--accent3); }}
 				&:nth-of-type(4){ span { color: var(--accent7); }}

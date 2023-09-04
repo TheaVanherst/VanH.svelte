@@ -1,6 +1,6 @@
 <script>
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
-    import { nsfw } from "$lib/controllers/accessibilityController.js";
+    import { nsfw } 		from "$lib/controllers/accessibilityController.js";
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/container.svelte";

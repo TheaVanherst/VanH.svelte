@@ -4,7 +4,7 @@
 
 <div class="wrapper">
 	<div class="imageWrapper">
-		<img src="/branding/vahnicon.webp">
+		<img src="/branding/vahnIcon.webp">
 		<div class="socialCard">
 			<h3>Thea Vanherst</h3>
 			<div class="desc">
@@ -32,13 +32,14 @@
 <style lang="scss">
 	@import "../../../../commonStyles";
 
+	* {transition: .2s ease}
+
 	.wrapper {
 		margin: 0 auto;
 		max-width: 450px;}
 
 	.imageWrapper {
 		img {
-			transition: .3s ease;
 			padding:	0 0 10px 15px;
 			max-width: 	90px;}
 		&:hover {
@@ -53,27 +54,57 @@
 			margin: 	auto 15px;
 			padding: 	7px 15px;
 
-			h3 {	transition: .3s ease;
-					padding-bottom: 10px;}
+			h3 {	padding-bottom: 10px;}
 			p {		padding-bottom: 3px;}}}
 
 	.wrapper > * {
 		margin: 	0 auto 15px auto;}
 	.social {
-		padding: 	10px;
+		&:before {
+			content: "";
+			height: 500px;
+			width: 500px;
+			position: absolute;
+			z-index: -2;
+			background: conic-gradient(
+				var(--accent2),
+				var(--accent2));
+			top: -228px;}
+
+		position: relative;
+		overflow: hidden;
 		margin-bottom: 10px;
-		transition: transform .2s ease, border .4s ease;
 
-		border: 	1px solid var(--accent2);
-		background: var(--backgroundTrans);
-
-		.flex {		display: 		flex;
-			.text {	text-align: 	center;
-					white-space: 	nowrap;
-					margin: 		0 auto;}
+		.flex {
+			padding: 		10px;
+			display: 		flex;
+			background: 	black;
+			margin: 		1px;
+			border-radius:  8px;
+			.text {
+				text-align: 	center;
+				white-space: 	nowrap;
+				margin: 		0 auto;}
 			h3 {	white-space: 	nowrap;}}
 
 		&:hover {
-			transform: 	scale(1.05);
-			border: 	1px solid var(--accent6);}}
+			transform: 	scale(1.1);
+
+			&:before {
+				background: conic-gradient(
+					var(--accent2), var(--accent5), var(--accent6), var(--accent3),
+					var(--accent7), var(--accent1), var(--accent2));
+				animation: spin 3s infinite linear;}
+
+			.flex {
+				filter: invert(1);
+				border-radius: 7px;
+
+				margin: 	2px;
+				padding: 	9px;}}}
+
+	@keyframes spin {
+		from {	transform: rotate(360deg);}
+		to {	transform: rotate(0deg);}
+	}
 </style>

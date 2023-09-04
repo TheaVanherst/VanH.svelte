@@ -1,15 +1,15 @@
 <script>
-    import { fly } 	from 'svelte/transition';
+    import { fly } 		from 'svelte/transition';
     import { cubicOut } from 'svelte/easing';
 
-    import { afterNavigate } from "$app/navigation";
-    import { onMount } from "svelte";
+    import { afterNavigate } 	from "$app/navigation";
+    import { onMount } 			from "svelte";
 
     import { navigating, page } from "$app/stores";
     import {
         directionProcessing, nsfw,
-        directionX, directionY,
-        pageLoaded, transitioning,
+        directionX, directionY, transitioning,
+        pageLoaded, directory,
     } from '$lib/controllers/accessibilityController.js';
 
     afterNavigate(async (n) => { //handles on mount
@@ -24,6 +24,7 @@
     onMount(() => { // temp
         $pageLoaded = true;
         $nsfw = $page.params.sfw === "nsfw";
+        $directory = "/home";
 	});
 
     let transitionSpeed = 150; // transition position multipliers

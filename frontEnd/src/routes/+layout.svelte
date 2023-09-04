@@ -1,17 +1,15 @@
 <script>
     import '../styles.scss';
 
-    import { fly } 	from 'svelte/transition';
-    import TransitionHandler from "$lib/controllers/transitionHandler.svelte";
+    import { fly } 				from 'svelte/transition';
+    import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
-    import ProfileBar 			from "$root/components/layout/bannerAnimation.svelte";
+    import Header 				from "$root/components/layout/Header/header.svelte";
     import Background 			from "$root/components/layout/background.svelte";
     import MessengerPlugin 		from "$root/components/layout/messengerPlugin.svelte";
-
-    import NavigationComponent 	from "$root/components/layout/navBar.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import { directory, deviceType, scrollPos, pageLoaded,
+    import { directory, scrollPos,
 		bandWidths, screenSize, screenType } from "$lib/controllers/accessibilityController.js";
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
@@ -29,29 +27,7 @@
 
 <div class="parentElement" id="scrollParent">
 	<div id="layout">
-		{#if $pageLoaded} <!-- this is a placeholder -->
-			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
-				{#if deviceType === 2}
-					<div class="desktop">
-						<ProfileBar/>
-					</div>
-				{:else if deviceType === 1}
-					<div class="tablet">
-						<div class="logo">
-							<img src="/branding/vanhlogo.webp">
-						</div>
-						<div class="imageWrapper banner regularBorder">
-							<img src="/branding/banneralt.webp">
-						</div>
-					</div>
-				{:else}
-					<div class="mobile imageWrapper">
-						<img src="/branding/vanhlogo.webp">
-					</div>
-				{/if}
-				<NavigationComponent/>
-			</div>
-		{/if}
+		<Header/>
 
 		<div class="flexBox">
 			<TransitionHandler>
@@ -104,37 +80,5 @@
 			z-index: 	1;
 			width: 		100%;
 			margin: 	0 0 auto 0;}
-
-		.mobile {
-			margin: 5px 0 -25px -5px;}
-
-		.tablet {
-			position: relative;
-			margin-top: 15px;
-
-			> * {
-				height: 	200px;}
-
-			.banner {
-				overflow: hidden;
-				border: 1px solid var(--accent8);}
-
-			.logo {
-				position: 	absolute;
-				z-index: 	1;
-				width: 		100%;
-
-				img {
-					margin: 	-10px 0 -10px -3px;
-					left: 		50%;
-					transform: 	translateX(-50%);
-					height: 	calc(100% + 20px);
-
-					position: 	relative;
-					display: 	block;}}}
-
-		.desktop {
-			position: 	relative;
-			padding: 	15px 0;
-			margin: 	0 auto;}}
+	}
 </style>

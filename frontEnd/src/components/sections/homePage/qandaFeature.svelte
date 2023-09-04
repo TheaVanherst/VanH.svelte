@@ -11,7 +11,7 @@
 				<p class="q generic">
 					"{qa.question}"
 				</p>
-				<p class="s">
+				<p class="s citation">
 					{#if qa.submittedby}
 						Question submitted by: <span>{qa.submittedby}</span>
 					{:else}
@@ -56,13 +56,13 @@
 			font-weight: 	700;
 			font-size: 		14px;
 
-			@include customFontColour(var(--accent3));}
+			color: var(--accent3);
+			&::selection {
+				color: var(--accent3);};}
 
 		.s {
 			margin: 	-5px 60px 0 50px;
-			width: 		max-content;
-
-			@include citationText(var(--accent1), var(--accent3));}
+			width: 		max-content;}
 
 		.a {
 			text-align: right;

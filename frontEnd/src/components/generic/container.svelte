@@ -1,6 +1,6 @@
 <script>
 	export let
-		border = 8,
+		border = 2,
 		bottom = undefined;
 </script>
 

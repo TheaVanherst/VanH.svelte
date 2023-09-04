@@ -51,9 +51,9 @@ body {
 	overflow-x:         hidden;
 	scroll-behavior: 	smooth;
 
-	::selection {
+	&::selection {
 		color:          black;
-		background: 	var(--accent2);}
+		background: 	var(--backgroundTrans);}
 }
 
 // cursor defaults
@@ -69,10 +69,12 @@ a { cursor: url('/cursors/linkSelect.gif'), crosshair;}
 a { * { color: white;}}
 
 h1, h2, h3, h4, h5 {
+	&::selection {
+		background:      black;
+		color: var(--accent6);}
+
 	vertical-align: middle;
 	font-family:    "Playfair Display", serif;
-
-	@include customFontColour(white);
 
 	position:   relative;
 	margin:     0;
@@ -90,19 +92,23 @@ h5 {font-size: 1.10rem; line-height: 1.10rem;}
 /* mark formatting */
 
 a { text-decoration:    none;
-	@include customFontColour(var(--accent1));}
+	&::selection {
+		color: var(--accent2);}}
 
 p { font-size:      12px;
 	font-family:	"Helvetica", Sans-serif;
 	line-height:    110%;
 	color:	 		white;
-	margin: 		0;
-	@include customFontColour(white);}
+	&::selection {
+		background:      black;
+		color: var(--accent6);}
+
+	margin: 		0;}
 .fancy {
 	font-size: 13px;
-	font-family: 	"Playfair Display", serif;}
+	font-family: "Playfair Display", serif;}
 
-b { @include customFontColour(var(--accent3));}
+b { color: var(--accent3);}
 
 /* list formatting */
 
@@ -116,7 +122,9 @@ ul {
 		font-family:    "Helvetica", Sans-serif;
 		font-size:      12px;
 		line-height:    100%;
-		@include customFontColour(white);
+		&::selection {
+			background:      black;
+			color: var(--accent3);}
 
 		&::marker {
 			font-weight: 	700;

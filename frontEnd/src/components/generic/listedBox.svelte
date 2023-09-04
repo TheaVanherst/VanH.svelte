@@ -35,7 +35,9 @@
 	@mixin cfc($colour,$invert){
 		border: 	1px solid $colour;
 		.button {	background: $colour;}
-		.tint {		@include customFontColour($colour)}}
+		.tint {	color: $colour;
+			&::selection {
+				color: $colour;}}}
 
 	.tierCard {
 		padding: 			12px 15px 0 15px;

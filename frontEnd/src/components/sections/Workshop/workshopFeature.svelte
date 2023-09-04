@@ -1,13 +1,13 @@
 <script>
     import { slide } from 'svelte/transition';
 
-    import Carousel from "$root/components/generic/carousel.svelte";
-    import Container 		from "../../generic/container.svelte";
-    import WorkshopCard 	from "./workshopCard.svelte";
-    import WorkshopSnippet 	from "./workshopSnippet.svelte";
+    import Carousel 		from "$root/components/generic/carousel.svelte";
+    import Container 		from "$root/components/generic/container.svelte";
+    import WorkshopCard 	from "$root/components/sections/workshop/workshopCard.svelte";
+    import WorkshopSnippet 	from "$root/components/sections/workshop/workshopSnippet.svelte";
 
 	import { workshopArray, workshopMinatureArray } from "$lib/databases/workshopDatabase.js";
-    import {screenSize, deviceType, nsfw} from '$lib/controllers/accessibilityController.js';
+    import {screenSize, deviceType, nsfw} 			from '$lib/controllers/accessibilityController.js';
 
     let moreToggle = false;
 </script>

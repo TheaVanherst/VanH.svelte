@@ -12,7 +12,7 @@
 	{#if $screenType > 2}
 		<div class="imageShowcase"
 			 in:fly={{y: 100, duration: 1200, delay: 300 }}>
-			<img src="/branding/profileGraphic.webp">
+			<img src="/branding/vahnGraphic.webp">
 		</div>
 	{/if}
 	<div class="citation quote">
@@ -25,7 +25,7 @@
 				 in:fly={{y: 20, duration: 400, delay: 200 }}>
 				<h4> Love, Thea </h4>
 				{#if $screenType < 3}
-					<img src="/branding/vahnicon.webp">
+					<img src="/branding/vahnIcon.webp">
 				{/if}
 			</div>
 		{/key}
