@@ -9,8 +9,7 @@
     import MessengerPlugin 		from "$root/components/layout/messengerPlugin.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import { directory, scrollPos,
-		bandWidths, screenSize, screenType } from "$lib/controllers/accessibilityController.js";
+    import { scrollPos, bandWidths, screenSize, screenType } from "$lib/controllers/accessibilityController.js";
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     // this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
@@ -35,11 +34,9 @@
 			</TransitionHandler>
 		</div>
 
-		{#if $directory !== "/"} <!-- this is a placeholder -->
-			<div in:fly={{y: 100, duration: 500, delay: 350 }}>
-				<PageFooter/>
-			</div>
-		{/if}
+		<div in:fly={{y: 100, duration: 500, delay: 350 }}>
+			<PageFooter/>
+		</div>
 	</div>
 </div>
 

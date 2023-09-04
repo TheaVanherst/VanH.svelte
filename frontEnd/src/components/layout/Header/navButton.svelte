@@ -1,107 +1,112 @@
 <script>
-    import { directionProcessing, screenType, directory, transitioning, nsfw
-        } from '$lib/controllers/accessibilityController.js';
-    import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
+    import { screenType } from '$lib/controllers/accessibilityController.js';
 
-    export let push = "",
-            smaller = false, blank = false,
-            faded = false;
+    import RedirectBuilder from "$root/components/generic/redirectBuilder.svelte";
 
-    let active = false;
-
-    const redirectCheck = (e, s) => {
-        if (s) {
-            $nsfw = $page.params.sfw === "nsfw";
-
-            let paraLength = Object.keys($page.params).length;
-            let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
-
-            if (newRoute !== $directory && !$transitioning) {
-                directionProcessing($directory, newRoute, newRoute, paraLength);
-                $transitioning = true;
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'})
-
-                setTimeout(() => {
-                    goto(newRoute)
-                    $transitioning = false;
-                }, 250);}}}
+    export let
+            push =      "",
+            redirect =  false,
+            blank =     false,
+            faded =     false;
 </script>
 
-<a href={smaller ? '' : `https://www.${push.path}`}
-   target={blank ? '_blank' : ''}
-   class={faded ? 'fade' : ''}
-    on:mousedown|preventDefault={() => redirectCheck(push.path, smaller)}
-    on:mouseenter={() => active = true}
-    on:mouseleave={() => active = false}>
-    <div class="title">
-        {#if smaller}
+<RedirectBuilder url={push.path} blank={blank} external={redirect}>
+    <div class="title {!redirect ? 'smaller' : 'larger'}">
+        {#if redirect}
             <div class="navigation">
                 <h5>
                     {push.title}
                 </h5>
             </div>
         {:else}
-            {#if $screenType > 2}
-                <div class="socials">
-                    <h3>
-                        {push.title}
-                    </h3>
+            <div class="social wideBorder">
+                <div class="flex">
+                    <div class="mediaIcon">
+                        <img src="/icons/{push.imagePath}.webp">
+                    </div>
+                    {#if $screenType > 2}
+                        <div class="text">
+                            <h3> {push.title} </h3>
+                        </div>
+                    {/if}
                 </div>
-            {/if}
-        {/if}
-        {#if push.imagePath}
-            <div class="mediaIcon">
-                <img src="/icons/{push.imagePath}.webp">
             </div>
         {/if}
     </div>
-</a>
+</RedirectBuilder>
 
 <style lang="scss">
     @import "../../../commonStyles";
 
     * { transition: ease .3s; }
 
-    a { &:hover {
-            @include rainbowTransition();}
+    .navigation {
+        &:hover {
+            @include rainbowTransition();}}
 
-        &.fade {
-            pointer-events: none;
-            h5 {
-                color: var(--accent2);
-
-                &::after {
-                    opacity: 1;
-                    bottom: -4px;}}}
-
-        .title {
-            padding:    10px;
-            display:    inline-flex;
-
-            > * {       display: flex;}
-            h3, h5 {    text-transform: uppercase;}
-
-            .socials {      margin: auto 8px auto 0;
-                h3 {        margin: -4px 0 0 0;}}
-            .navigation {   margin: auto 0;
-                h5 {        margin: -1px 0 0 0;}}}}
-
-    h5 {
-        &::after {
-            content: '';
+    .social {
+        &:before {
+            height: 500px;
+            width:  500px;
+            left:   -182px;
+            top:    -233px;
 
             position:   absolute;
-            transition: ease 300ms;
+            z-index:    -2;
 
-            bottom:     -14px;
-            width:      100%;
-            height:     1px;
-            opacity:    0;
+            background: conic-gradient(
+                            var(--accent2),
+                            var(--accent2));
+            content:    "";}
 
-            transform:  translate3d(-100%, 0, 0);
-            background: var(--accent2);}}
+        position: relative;
+        overflow: hidden;
+
+        .flex {
+            background: black;
+            filter:     invert(1);
+
+            padding: 		5px 10px;
+            margin: 		1px;
+            border-radius:  8px;
+
+            display: 		flex;
+
+            .text {
+                text-align: 	center;
+                white-space: 	nowrap;
+                margin: 		0 auto;}
+            h3 {
+                white-space: 	nowrap;}}
+
+        &:hover {
+            transform: 	scale(1.1);
+
+            &:before {
+                background: conic-gradient(
+                                var(--accent2), var(--accent5), var(--accent6), var(--accent3),
+                                var(--accent7), var(--accent1), var(--accent2));
+                animation: spin 3s infinite linear;}
+
+            .flex {
+                border-radius: 7px;
+
+                margin: 	2px;
+                padding: 	4px 9px;}}}
+
+
+    .title {
+        &.smaller {
+            padding:    0 5px;}
+        &.larger {
+            padding: 10px;}
+
+        display:    inline-flex;
+
+        .navigation {
+            margin: auto 0;
+            display: flex;
+            h5 {
+                margin: -1px 0 0 0;
+                text-transform: uppercase;}}}
 </style>

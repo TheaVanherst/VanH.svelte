@@ -61,26 +61,33 @@
 		margin: 	0 auto 15px auto;}
 	.social {
 		&:before {
-			content: "";
 			height: 500px;
-			width: 500px;
+			width:  500px;
+			top:    -233px;
+
 			position: absolute;
 			z-index: -2;
+
 			background: conic-gradient(
 				var(--accent2),
 				var(--accent2));
-			top: -228px;}
+			content: "";}
 
 		position: relative;
 		overflow: hidden;
+
 		margin-bottom: 10px;
 
 		.flex {
-			padding: 		10px;
-			display: 		flex;
-			background: 	black;
+			background: black;
+			filter:     invert(1);
+
+			padding: 		8px 10px;
 			margin: 		1px;
 			border-radius:  8px;
+
+			display: 		flex;
+
 			.text {
 				text-align: 	center;
 				white-space: 	nowrap;
@@ -97,14 +104,8 @@
 				animation: spin 3s infinite linear;}
 
 			.flex {
-				filter: invert(1);
 				border-radius: 7px;
 
 				margin: 	2px;
-				padding: 	9px;}}}
-
-	@keyframes spin {
-		from {	transform: rotate(360deg);}
-		to {	transform: rotate(0deg);}
-	}
+				padding: 	7px 9px;}}}
 </style>

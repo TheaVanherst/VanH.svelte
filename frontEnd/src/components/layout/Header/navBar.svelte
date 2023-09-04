@@ -15,7 +15,7 @@
 				<div transition:slide id="navigation">
 					{#each navigationDirectories as nav}
 						<Button push="{nav}"
-								smaller={true}
+								redirect={true}
 								faded={$page.url.pathname === nav.path + "/"}/>
 					{/each}
 				</div>
@@ -47,7 +47,6 @@
 				transition: 	border ease .5s .3s;
 
 				border-radius: 	$normalBorder;
-				background: 	var(--backgroundTrans);
 				width: 			max-content;
 				margin: 		0 auto;
 				border-bottom: 	1px solid black;}
@@ -56,11 +55,9 @@
 				margin-top: 10px;}
 
 			#navigation {
-				padding: 0 10px;
+				padding: 		0 10px;
+				background: 	var(--backgroundTrans);
 				border-bottom: 	1px solid var(--accent2);}
-			#socials {
-				padding: 0 10px;
-				border: 1px solid var(--accent10);}
 
 		}}
 </style>
