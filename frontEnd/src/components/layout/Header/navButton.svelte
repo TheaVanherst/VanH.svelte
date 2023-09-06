@@ -1,27 +1,30 @@
 <script>
     import { screenType } from '$lib/controllers/accessibilityController.js';
-
     import RedirectBuilder from "$root/components/generic/redirectBuilder.svelte";
+
+    import RainbowButtonWrap from "$root/components/layout/rainbowButtonWrap.svelte";
 
     export let
             push =      "",
             redirect =  false,
             blank =     false,
-            faded =     false;
+            selected =     false;
 </script>
 
 <RedirectBuilder url={push.path} blank={blank} external={redirect}>
-    <div class="title {!redirect ? 'smaller' : 'larger'}">
+    <div class="title {!redirect ? 'socButton' : 'navButton'}">
         {#if redirect}
-            <div class="navigation">
+            <div class="navigation"
+                class:currentRoot={selected}>
                 <h5>
                     {push.title}
                 </h5>
             </div>
         {:else}
-            <div class="social wideBorder">
-                <div class="flex">
-                    <div class="mediaIcon">
+            <RainbowButtonWrap padding="{$screenType > 2 ? [5,10] : [6,6]}">
+                <div class="central">
+                    <div class="mediaIcon"
+                        class:enlargen={$screenType < 3}>
                         <img src="/icons/{push.imagePath}.webp">
                     </div>
                     {#if $screenType > 2}
@@ -30,7 +33,7 @@
                         </div>
                     {/if}
                 </div>
-            </div>
+            </RainbowButtonWrap>
         {/if}
     </div>
 </RedirectBuilder>
@@ -44,69 +47,29 @@
         &:hover {
             @include rainbowTransition();}}
 
-    .social {
-        &:before {
-            height: 500px;
-            width:  500px;
-            left:   -182px;
-            top:    -233px;
-
-            position:   absolute;
-            z-index:    -2;
-
-            background: conic-gradient(
-                            var(--accent2),
-                            var(--accent2));
-            content:    "";}
-
-        position: relative;
-        overflow: hidden;
-
-        .flex {
-            background: black;
-            filter:     invert(1);
-
-            padding: 		5px 10px;
-            margin: 		1px;
-            border-radius:  8px;
-
-            display: 		flex;
-
-            .text {
-                text-align: 	center;
-                white-space: 	nowrap;
-                margin: 		0 auto;}
-            h3 {
-                white-space: 	nowrap;}}
-
-        &:hover {
-            transform: 	scale(1.1);
-
-            &:before {
-                background: conic-gradient(
-                                var(--accent2), var(--accent5), var(--accent6), var(--accent3),
-                                var(--accent7), var(--accent1), var(--accent2));
-                animation: spin 3s infinite linear;}
-
-            .flex {
-                border-radius: 7px;
-
-                margin: 	2px;
-                padding: 	4px 9px;}}}
-
-
     .title {
-        &.smaller {
-            padding:    0 5px;}
-        &.larger {
-            padding: 10px;}
+        display: inline-flex;
 
-        display:    inline-flex;
+        &.socButton { padding: 0 5px;}
+        &.navButton {  padding: 10px;}
 
         .navigation {
-            margin: auto 0;
-            display: flex;
-            h5 {
-                margin: -1px 0 0 0;
-                text-transform: uppercase;}}}
+            margin:     auto 0;
+            display:    flex;
+
+            &.currentRoot {
+                border-bottom: 1px solid;}
+
+            h5 {    margin:         -1px 0 0 0;
+                    text-transform: uppercase;}}}
+
+    .central {
+        display: 	flex;
+        width: 		100%;
+
+        .enlargen.mediaIcon {
+            width:  30px;
+            height: 30px;}
+        .text {
+            padding-left: 5px;}}
 </style>

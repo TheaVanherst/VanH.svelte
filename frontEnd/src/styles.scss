@@ -53,7 +53,7 @@ body {
 
 	&::selection {
 		color:          black;
-		background: 	var(--backgroundTrans);}
+		background: 	white;}
 }
 
 // cursor defaults
@@ -124,7 +124,7 @@ ul {
 		line-height:    100%;
 		&::selection {
 			background:      black;
-			color: var(--accent3);}
+			color: var(--accent6);}
 
 		&::marker {
 			font-weight: 	700;

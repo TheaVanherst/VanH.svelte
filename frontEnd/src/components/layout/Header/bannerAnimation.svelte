@@ -53,9 +53,7 @@
 
 		.branding {
 			margin: 0;
-			height: 100%;
-			&:hover {
-				animation: 	zoomLoop 3s ease-in-out infinite;}}}
+			height: 100%;}}
 
 	.planetarySystem {
 		filter: 	drop-shadow(0px 0px 2px var(--darkAccent1));
@@ -125,9 +123,5 @@
 	@keyframes tiltSpin {
 		from {	transform: rotateY(0);}
 		to {	transform: rotateY(-1turn);}}
-	@keyframes zoomLoop {
-		0% {	transform: scale(1) 	rotateY(20deg)}
-		50% {   transform: scale(1.1)	rotateY(-20deg)}
-		100% {	transform: scale(1) 	rotateY(20deg)}}
 
 </style>

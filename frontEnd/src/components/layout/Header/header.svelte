@@ -47,7 +47,7 @@
 
 		.banner {
 			overflow: hidden;
-			border: 1px solid var(--accent8);}
+			border: 1px solid var(--accent2);}
 
 		.logo {
 			position: 	absolute;

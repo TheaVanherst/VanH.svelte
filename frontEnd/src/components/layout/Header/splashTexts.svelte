@@ -9,8 +9,8 @@
 
     const picker = () => {
         numberGen = Math.floor(Math.random() * splash.length);
-        splash[numberGen][1] === true && !$nsfw || !splash?.[numberGen]?.[0] ?
-			picker() : text = splash[numberGen][0];
+        splash[numberGen][0] === true && !$nsfw || !splash?.[numberGen]?.[1] ?
+			picker() : text = splash[numberGen][1];
 	};
 
     picker();
@@ -24,7 +24,7 @@
 	<div id="splash" style="top: {y}px; right: -{x}px">
 		<div class="transform">
 			<p>
-				{splash[numberGen][0]}
+				{text}
 			</p>
 		</div>
 	</div>

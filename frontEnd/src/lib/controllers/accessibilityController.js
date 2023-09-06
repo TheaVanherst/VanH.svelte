@@ -29,10 +29,11 @@ export { deviceType };
 // TODO: Internal directory and status management
 
 const directory =   writable("/");
-const pageLoaded = writable(false);
+const rootPath =    writable("/")
+const pageLoaded =  writable(false);
 const transitioning = writable(false);
 
-export { directory, pageLoaded, transitioning };
+export { directory, rootPath, pageLoaded, transitioning };
 
 import { navigationDirectories } from "$lib/controllers/navigationDirectories.js";
 

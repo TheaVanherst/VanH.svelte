@@ -1,17 +1,18 @@
 <script>
-    import { directionProcessing, directory, transitioning, nsfw
+    import { directionProcessing, directory, rootPath, transitioning, nsfw
     } from '$lib/controllers/accessibilityController.js';
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
 
     const redirectCheck = (e, s) => {
         if (s) {
-            $nsfw = $page.params.sfw === "nsfw";
-
             let paraLength = Object.keys($page.params).length;
             let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
 
             if (newRoute !== $directory && !$transitioning) {
+                $rootPath = e;
+                $nsfw = $page.params.sfw === "nsfw";
+
                 directionProcessing($directory, newRoute, newRoute, paraLength);
                 $transitioning = true;
 
@@ -25,9 +26,9 @@
                 }, 250);}}}
 
 	export let
-		url = '',
-        blank = false,
-		external = false;
+		url = 		'',
+        blank = 	false,
+		external = 	false;
 </script>
 
 <a href={external ? '' : `https://www.${url}`}

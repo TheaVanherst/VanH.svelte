@@ -2,6 +2,8 @@
     import { scale, fly } 	from 'svelte/transition';
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
+    import RainbowButtonWrap from "$root/components/layout/rainbowButtonWrap.svelte";
+
     let chatBox = false;
 	let transitionSpeed = 200;
 
@@ -13,10 +15,12 @@
 	id="messageController"
 	class="{$screenType < 3 ? 'mobile' : ''}">
 	{#if !chatBox}
-		<div class="neonButton open"
+		<div class="open"
 			 in:scale={{delay: transitionSpeed}} out:scale
 			 on:click={() => {chatBox = !chatBox}}>
-			<img src="/icons/qAndAIcon.webp">
+			<RainbowButtonWrap padding={[5,5]}>
+				<img src="/icons/qAndAIcon.webp">
+			</RainbowButtonWrap>
 		</div>
 	{:else}
 		<div id="messager"
@@ -58,13 +62,13 @@
 		z-index: 	10;}
 
 	.mobile {
-		height: 100%;
+		height: 		100%;
 
 		#messager {
-			left: 0;
-			height: calc(100% - 28px);
-			bottom: 0;
-			min-width: 300px - 30px;}
+			left: 		0;
+			bottom: 	0;
+			height: 	calc(100% - 28px);
+			min-width: 	300px - 30px;}
 		#chatbox {
 			width: 100%;
 			min-width: 100%;}}
@@ -74,16 +78,15 @@
 
 	.messageController {
 		position: 	absolute;
-		top: 0;
-		width: 100%;
-		height: 100vh;
-	}
+		top: 		0;
+		width: 		100%;
+		height: 	100vh;}
 
 	#messager {
 		overflow: 	hidden;
 		position: 	fixed;
 
-		border: 1px solid var(--accent8);
+		border: 1px solid var(--accent2);
 		margin: 15px;
 
 		height: 	calc(100% - 30px);

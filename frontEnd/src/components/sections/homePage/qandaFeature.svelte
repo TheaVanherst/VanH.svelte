@@ -40,10 +40,10 @@
 		overflow: hidden;
 
 		&:hover {
-			.q {	padding: 	1px 1px 1px 15px;
-					background: var(--accent3);
-					color: 		black;}
-			.s {	margin: 	-7px 60px 0 50px;}
+			.q {	color: 		white;
+					background: var(--accent2);
+					padding: 	1px 5px 2px 15px;}
+			.s {	margin: 	-5px 60px 0 100px;}
 			.a { img {
 					transform: scale(1.2);}}}
 
@@ -51,14 +51,16 @@
 		&:last-child {	padding-bottom: 4px;}
 
 		.q {
+			padding: 	1px 2px 2px 2px;
 			width: 			max-content;
-			border-bottom: 	solid 1px var(--accent3);
 			font-weight: 	700;
 			font-size: 		14px;
+			border-radius: 3px;
 
-			color: var(--accent3);
+			color: 		black;
+			background: var(--accent9);
 			&::selection {
-				color: var(--accent3);};}
+				color: var(--accent9);};}
 
 		.s {
 			margin: 	-5px 60px 0 50px;

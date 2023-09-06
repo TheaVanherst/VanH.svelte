@@ -1,11 +1,10 @@
 <script>
     import { slide } 	from 'svelte/transition';
-    import { page } 	from '$app/stores';
 
     import { socialMedias, navigationDirectories } 	from '$lib/controllers/navigationDirectories.js';
     import Button 	from "$root/components/layout/Header/navButton.svelte";
 
-    import { navigationVisibility, socialMediaVisibility } from "$lib/controllers/accessibilityController.js";
+    import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/accessibilityController.js";
 </script>
 
 {#if $navigationVisibility || $socialMediaVisibility}
@@ -16,7 +15,7 @@
 					{#each navigationDirectories as nav}
 						<Button push="{nav}"
 								redirect={true}
-								faded={$page.url.pathname === nav.path + "/"}/>
+								selected={$rootPath === nav.path}/>
 					{/each}
 				</div>
 			{/if}
