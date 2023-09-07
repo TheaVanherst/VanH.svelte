@@ -10,6 +10,7 @@
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
     import { scrollPos, bandWidths, screenSize, screenType } from "$lib/controllers/accessibilityController.js";
+    import { websiteTag, websiteDiv, transitioning, loadingIco, pageName } from "$lib/controllers/accessibilityController.js";
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     // this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
@@ -18,6 +19,10 @@
 
 	export let data;
 </script>
+
+<svelte:head>
+	<title>{$transitioning === true ? loadingIco : `${websiteTag} ${websiteDiv} ${$pageName}`}</title>
+</svelte:head>
 
 <svelte:window bind:innerWidth={ $screenSize } bind:scrollY={$scrollPos} />
 

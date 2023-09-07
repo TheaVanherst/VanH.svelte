@@ -11,7 +11,7 @@
             selected =     false;
 </script>
 
-<RedirectBuilder url={push.path} blank={blank} external={redirect}>
+<RedirectBuilder url={push.path} blank={blank} external={redirect} redirectName={push.pagePreview}>
     <div class="title {!redirect ? 'socButton' : 'navButton'}">
         {#if redirect}
             <div class="navigation"

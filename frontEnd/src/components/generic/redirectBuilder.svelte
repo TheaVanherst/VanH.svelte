@@ -1,10 +1,16 @@
 <script>
-    import { directionProcessing, directory, rootPath, transitioning, nsfw
+    import { directionProcessing, directory, rootPath, pageName, transitioning, nsfw
     } from '$lib/controllers/accessibilityController.js';
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
 
-    const redirectCheck = (e, s) => {
+    export let
+        url = 		'',
+        blank = 	false,
+        external = 	false,
+		redirectName = undefined
+
+    const redirectCheck = (e, s, n) => {
         if (s) {
             let paraLength = Object.keys($page.params).length;
             let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
@@ -23,16 +29,14 @@
                 setTimeout(() => {
                     goto(newRoute)
                     $transitioning = false;
-                }, 250);}}}
-
-	export let
-		url = 		'',
-        blank = 	false,
-		external = 	false;
+                }, 250);}}
+    	if (n) {
+            $pageName = n;}
+    }
 </script>
 
-<a href={external ? '' : `https://www.${url}`}
+<a href={external ? '' : `https://www.${url.path}`}
    target={blank ? '_blank' : ''}
-   on:mousedown|preventDefault={() => redirectCheck(url, external)}>
+   on:mousedown|preventDefault={() => redirectCheck(url, external, redirectName)}>
 	<slot/>
 </a>
