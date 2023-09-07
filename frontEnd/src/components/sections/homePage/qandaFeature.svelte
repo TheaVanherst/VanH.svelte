@@ -8,7 +8,7 @@
 	{#each qaDatabase as qa}
 		<div class="questionBlock">
 			<div>
-				<p class="q generic">
+				<p class="q">
 					"{qa.question}"
 				</p>
 				<p class="s citation">
@@ -51,7 +51,9 @@
 		&:last-child {	padding-bottom: 4px;}
 
 		.q {
-			padding: 	1px 2px 2px 2px;
+			margin-bottom: 	10px;
+			padding: 		1px 2px 2px 2px;
+
 			width: 			max-content;
 			font-weight: 	700;
 			font-size: 		14px;

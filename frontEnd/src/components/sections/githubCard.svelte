@@ -18,7 +18,7 @@
 				<p class="description">
 					{data.description}
 				</p>
-				<div class="referral buttonPadding inline" style="background: var(--accent{data.color})">
+				<div class="referral" style="background: var(--accent{data.color})">
 					<p>
 						TheaVanherst/{data.url}
 					</p>
@@ -59,6 +59,16 @@
 				@include shortForm(2);}
 
 			.referral { // fallback colour
+				padding: 	6px 8px 5px 8px;
 				overflow: hidden;
-				background: 	var(--accent9);}}}
+				background: 	var(--accent9);
+
+				p {
+					color: 			black;
+					font-weight: 	600;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 1;
+					display: 		-webkit-box;
+					overflow: 		hidden;}}
+		}}
 </style>

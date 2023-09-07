@@ -70,7 +70,6 @@ a { * { color: white;}}
 
 h1, h2, h3, h4, h5 {
 	&::selection {
-		background:      black;
 		color: var(--accent6);}
 
 	vertical-align: middle;
@@ -93,24 +92,28 @@ h5 {font-size: 1.10rem; line-height: 1.10rem;}
 
 a { text-decoration:    none;
 	&::selection {
-		color: var(--accent2);}}
+		color: var(--accent2);}
+	* { color: white;}}
+
+b { color: var(--accent3);}
 
 p { font-size:      12px;
 	font-family:	"Helvetica", Sans-serif;
 	line-height:    110%;
 	color:	 		white;
 	&::selection {
-		background:      black;
-		color: var(--accent6);}
+		color:      var(--accent6);}
 
 	margin: 		0;}
 .fancy {
 	font-size: 13px;
 	font-family: "Playfair Display", serif;}
 
-b { color: var(--accent3);}
-
 /* list formatting */
+
+span {
+	&::selection {
+		color:      var(--accent1);}}
 
 ul {
 	margin:             10px 0 0 0;
@@ -123,8 +126,7 @@ ul {
 		font-size:      12px;
 		line-height:    100%;
 		&::selection {
-			background:      black;
-			color: var(--accent6);}
+			color:      var(--accent6);}
 
 		&::marker {
 			font-weight: 	700;

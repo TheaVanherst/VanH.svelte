@@ -35,7 +35,7 @@
 					{/each}
 					{#each commissionType.adPrices as type, i}
 						<h5>
-							<span>{type[0]}:</span> £{type[1]}.00
+							<span>{type[0]}:</span> (+£{type[1]}.00)
 						</h5>
 					{/each}
 				</div>
@@ -89,7 +89,6 @@
 
 	.commType {
 		padding: 	8px 5px 8px 15px;
-		margin: 	0 0 0 -2px;
 
 		&:not(:first-of-type) {
 			margin-top: 10px;}
@@ -106,6 +105,11 @@
 
 			width: 		100%;
 			max-width: 100%;
+
+			@mixin cbc ($colour){
+				span {
+					color: 		$colour;}}
+
 			span {
 				color: 		var(--accent3);
 				font-style: italic;}
@@ -115,13 +119,12 @@
 				height: max-content;
 				display: grid;
 
-				&:nth-of-type(1){ span { color: var(--accent1);
-					&::selection {		 color: var(--accent1);};}}
-				&:nth-of-type(2){ span { color: var(--accent6); }}
-				&:nth-of-type(3){ span { color: var(--accent3); }}
-				&:nth-of-type(4){ span { color: var(--accent7); }}
-				&:nth-of-type(5){ span { color: var(--accent2); }}
-				&:nth-of-type(6){ span { color: var(--accent5); }}
+				&:nth-of-type(1){ @include cbc(var(--accent1));}
+				&:nth-of-type(2){ @include cbc(var(--accent6));}
+				&:nth-of-type(3){ @include cbc(var(--accent3));}
+				&:nth-of-type(4){ @include cbc(var(--accent7));}
+				&:nth-of-type(5){ @include cbc(var(--accent2));}
+				&:nth-of-type(6){ @include cbc(var(--accent5));}
 			}}
 
 		&:nth-child(1) {	border-left: 1px solid var(--accent2);}
@@ -142,7 +145,7 @@
 			@mixin cbc ($colour){
 				border-left: 	1px solid $colour;
 				span {
-					color: 		$colour}}
+					color: 		$colour;}}
 
 			&:nth-child(1) { @include cbc(var(--accent6));}
 			&:nth-child(2) { @include cbc(var(--accent3));}

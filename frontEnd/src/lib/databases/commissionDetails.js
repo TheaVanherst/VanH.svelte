@@ -155,6 +155,13 @@ const commissionTypes =
                 "A single drawing of a character in a pose of your choice, complimented by a simple background.",
             prices: [["Lines","60"],["Flats","65"],["Simple Shading","80"]],
             adPrices: [["Extra characters","35"],["Extra micros","15"]],
+        },{
+            title: "Two Tone",
+            description:
+                "A drawing featuring a character of your own creation in a pose of my own choice, with highly refined lines and a " +
+                "simplistic trademark background & attention to detail. Lines are refined, and lighting is done through a solid black fill.",
+            prices: [["Lines & fill","70"],["flats & shine","80"],["More details / background","120"]],
+            adPrices: [["Extra characters","40"],["Extra micros","20"],["Detailed clothing","10"]]
         }
     ];
 

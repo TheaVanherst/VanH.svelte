@@ -52,13 +52,9 @@ a { transition: .5s ease; //fallback transition
 	position: 	    relative;
 	display: 	    block;
 
-	border-right:       1px solid var(--accent8);
+	border-right:       1px solid var(--accent2);
 	&.hover:hover {
 		border-right:   1px solid var(--accent3);}}
-
-.generic {
-	font-family: 	"Helvetica", Sans-serif;
-	margin-bottom: 	10px;}
 
 // TODO: description
 
@@ -177,80 +173,3 @@ a {
 	img {
 		width:  100%;
 		height: 100%;}}
-
-// TODO: buttons
-
-.buttonPadding {
-	p { padding: 	6px 8px 5px 8px;
-
-		line-height: 	1rem;
-		font-family: 	"Helvetica", Sans-serif;
-		font-size: 		12px;
-		font-weight: 	600;
-		color: 			black;}
-
-	&.inline {
-		p { display: 		-webkit-box;
-			overflow: 		hidden;
-
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 1;
-			padding: 	6px 8px 0 8px;}
-		padding-bottom: 5px;}}
-
-.neonButton {
-	width: 		min-content;
-	height: 	min-content;
-	overflow: 		hidden;
-	vertical-align: bottom;
-
-	transition: ease .3s;
-	img {
-		vertical-align: bottom;
-		transition: ease .3s;}
-
-	&.small {
-		img {   width:  18px;
-				height: 18px;}}
-
-	padding: 		5px;
-	border-radius: 	$normalBorder;
-
-	background: 	white;
-	border: 1px solid var(--accent2);
-
-	img {
-		filter:     invert(1);
-		position: 	relative;}
-
-	&:hover {
-		background: var(--accent2);
-		img {
-			filter: invert(0);}}}
-
-.navigationButton {
-	width: 		min-content;
-	overflow: 		hidden;
-	vertical-align: bottom;
-
-	transition: background ease .3s;
-
-	&.vertical {
-		height: 12px;
-		padding: 5px 10px;
-		border-radius: $normalBorder;
-		transition: ease 0.3s;
-	}
-
-	background: var(--backgroundTrans);
-
-	img {
-		height: 12px;
-		width:  22px;
-		vertical-align: top;
-	}
-
-	&:hover {
-		background: var(--accent2);
-	}
-}

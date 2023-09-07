@@ -1,7 +1,7 @@
 <script>
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 
-	import CharacterFeature from "$root/components/sections/characters/characterFeature.svelte";
+	import CharacterFeature from "$root/components/sections/characters/characterSlide.svelte";
     import WorkshopFeature 	from "$root/components/sections/Workshop/workshopFeature.svelte";
     import GithubFeature 	from "$root/components/sections/homePage/githubFeature.svelte";
     import DonationFeature 	from "$root/components/sections/homePage/donationFeature.svelte";

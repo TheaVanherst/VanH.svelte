@@ -48,7 +48,7 @@
 <style lang="scss">
 	@import "../../../commonStyles";
 
-	* {	transition: .5s ease;}
+	* {	transition: .3s cubic-bezier(0.33, 1, 0.68, 1);}
 
 	a:hover {
 		.workshopItem {

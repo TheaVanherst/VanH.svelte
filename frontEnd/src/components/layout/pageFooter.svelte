@@ -1,24 +1,17 @@
 <script>
     import { screenSize, screenType } 	from '$lib/controllers/accessibilityController.js';
 
-    // import { socialMedias } 	from '$lib/navigationDirectories.js';
+    import { page } from "$app/stores";
 </script>
 
 <div class="footer {$screenSize < 800 ? 'cropped' : ''} {$screenType < 3 ? 'mobile' : ''}">
 	<div class="left">
-		<!--{#each socialMedias as item}-->
-		<!--	<a href={item.path}>-->
-		<!--		<img-->
-		<!--			class="tinyIco"-->
-		<!--			src="/icons/{item.imagePath}.webp">-->
-		<!--	</a>-->
-		<!--{/each}-->
-
-<!--		<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>-->
+		{#if $page.url.hostname !== "localhost"} <!-- dev check -->
+			<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
+		{/if}
 	</div>
 	<div class="right">
-		<p>
-			All featured artwork is drawn and created by Thea Vanherst
+		<p> All featured artwork is drawn and created by Thea Vanherst
 		</p><p>
 			Website developed and created by Thea Vanherst @ <span>vanh.art</span>
 		</p>
@@ -61,11 +54,7 @@
 			img {
 				padding: 		4px;
 				margin: 		auto 0;
-				vertical-align: bottom;
-
-				//&:hover {
-				//	@include rainbowTransition();}
-		}}
+				vertical-align: bottom;}}
 
 		.right {
 			margin: 0 15px 0 auto;

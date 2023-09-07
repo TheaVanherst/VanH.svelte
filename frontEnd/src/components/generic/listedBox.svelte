@@ -21,7 +21,7 @@
 		{/if}
 	</ul>
 	{#if button || !data.class}
-		<div class="button regularBorder buttonPadding">
+		<div class="button regularBorder">
 			<p>Become a {data.class}</p>
 		</div>
 	{/if}
@@ -61,9 +61,15 @@
 			li {	padding:	0 0 5px 5px;}}
 
 		.button {
-			margin: 	0 0 -13px calc(100% - 170px);
-			bottom: 	0;
-			width: 		140px;
+			margin: 0 15px -13px 0;
+			bottom: 0;
+			right: 0;
+
+			p {
+				font-weight: 	600;
+				color: 			black;
+				padding: 		7px 12px 6px 12px;
+			}
 
 			position: 	absolute;}}
 </style>

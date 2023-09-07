@@ -27,7 +27,7 @@
 </div>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
+	@import "../../../commonStyles";
 
 	* {	transition: .5s ease; }
 

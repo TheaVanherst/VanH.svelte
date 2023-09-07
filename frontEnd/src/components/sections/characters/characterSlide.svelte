@@ -1,11 +1,10 @@
 <script>
     import Container 	from "../../generic/container.svelte";
-
     import Carousel from "$root/components/generic/carousel.svelte";
 
 	import characterList from "$lib/databases/characterDatabase.js";
 
-    import CharacterCardWrap 	from "$root/components/sections/characters/characterCardWrap.svelte";
+    import CharacterCardWrap 	from "$root/components/sections/characters/hoverSlideWrap.svelte";
     import GenericInfo 			from "$root/components/sections/characters/genericInfo.svelte";
 </script>
 
