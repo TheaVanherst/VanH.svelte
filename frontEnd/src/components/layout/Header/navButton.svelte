@@ -7,13 +7,11 @@
     export let
         push =      "",
         redirect =  false,
-        blank =     false,
         selected =  false;
 </script>
 
 <RedirectBuilder
         url={push.path}
-        blank={blank}
         external={redirect}
         redirectName={push.pagePreview}>
     <div class="title {!redirect ? 'socButton' : 'navButton'}">

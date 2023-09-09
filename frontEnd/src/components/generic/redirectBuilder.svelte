@@ -6,37 +6,36 @@
 
     export let
         url = 		'',
-        blank = 	false,
         external = 	false,
-		redirectName = undefined
+		redirectName = undefined;
 
     const redirectCheck = (e, s, n) => {
-        if (s) {
-            let paraLength = Object.keys($page.params).length;
-            let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
+        let paraLength = Object.keys($page.params).length;
+        let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
 
-            if (newRoute !== $directory && !$transitioning) {
-                $rootPath = e;
-                $nsfw = $page.params.sfw === "nsfw";
+        if (newRoute !== $directory && !$transitioning) {
+            $rootPath = e;
+            $nsfw = $page.params.sfw === "nsfw";
 
-                directionProcessing($directory, newRoute, newRoute, paraLength);
-                $transitioning = true;
+            directionProcessing($directory, newRoute, newRoute, paraLength);
+            $transitioning = true;
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'})
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'})
 
-                setTimeout(() => {
-                    goto(newRoute)
-                    $transitioning = false;
-                }, 250);}}
+            setTimeout(() => {
+                goto(newRoute)
+                $transitioning = false;
+            }, 250);}
+
     	if (n) {
             $pageName = n;}
     }
 </script>
 
-<a href={external ? '' : `https://www.${url.path}`}
-   target={blank ? '_blank' : ''}
-   on:mousedown|preventDefault={() => redirectCheck(url, external, redirectName)}>
+<a href={external ? '' : `https://www.${url}`}
+   target={external ? '' : '_blank'}
+   on:mousedown|preventDefault={() => external ? redirectCheck(url, external, redirectName) : false}>
 	<slot/>
 </a>

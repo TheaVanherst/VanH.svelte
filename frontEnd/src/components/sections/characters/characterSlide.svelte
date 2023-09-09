@@ -6,16 +6,20 @@
 
     import CharacterCardWrap 	from "$root/components/sections/characters/hoverSlideWrap.svelte";
     import GenericInfo 			from "$root/components/sections/characters/genericInfo.svelte";
+
+    import { nsfw } from "$lib/controllers/accessibilityController.js";
 </script>
 
 <Container bottom={10}>
 	<Carousel>
 		{#each characterList as char}
-			<swiper-slide>
-				<CharacterCardWrap characterData={char}>
-					<GenericInfo data={char}></GenericInfo>
-				</CharacterCardWrap>
-			</swiper-slide>
+			{#if char.nsfw && $nsfw || !char.nsfw}
+				<swiper-slide>
+					<CharacterCardWrap characterData={char}>
+						<GenericInfo data={char}></GenericInfo>
+					</CharacterCardWrap>
+				</swiper-slide>
+			{/if}
 		{/each}
 	</Carousel>
 </Container>

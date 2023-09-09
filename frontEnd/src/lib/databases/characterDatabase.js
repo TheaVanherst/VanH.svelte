@@ -24,7 +24,8 @@ const characterList = [
             "“A woman of fortune”, many would agree. Her targets, if they could still speak, would likely " +
             "describe her as “a damned good shot.”  All of these things, and more, are true. At her core " +
             "though, Valentina is a woman driven by the pursuit of nothing less than her own success, no " +
-            "matter the cost. You would do well to avoid getting in the way of that."
+            "matter the cost. You would do well to avoid getting in the way of that.",
+        nsfw: false,
     },{
         name:       "Bastet",
         fullName:   "Mother of Sol",
@@ -42,7 +43,8 @@ const characterList = [
             "planet. The heavens are her tapestry, and as Sol’s Mother and its Guardian, she weaves the " +
             "night sky with delicate complexity, warding her star and ensuring its safety as it travels the " +
             "long, cold night. Turn your gaze to the vastness of the cosmos, and within its inky voids and " +
-            "pools of starlight, perhaps you will catch a glimpse of some part of her."
+            "pools of starlight, perhaps you will catch a glimpse of some part of her.",
+        nsfw: true,
     },{
         name:       "Izabela",
         fullName:   "Izabela Deblanc",
@@ -62,7 +64,8 @@ const characterList = [
             "to her wish to see those under her care prosper, and she will not hesitate to take matters into " +
             "her own hands to ensure her charges are on the right path. If she really likes you, you may " +
             "find she comes off as a bit pushy, but she means well.  Mother knows best, after all, so don’t " +
-            "worry, and leave it all to the Mistress of White."
+            "worry, and leave it all to the Mistress of White.",
+        nsfw: true,
     },{
         name:       "Yumi",
         fullName:   "Yumi Myeong",
@@ -84,7 +87,8 @@ const characterList = [
             "to be clothing that is far too exposing, but allows her to fully use these “eyes” for greatly " +
             "enhanced spatial awareness. This allows her to excel in hand to hand combat, where her size and " +
             "build aid her greatly, though this advantage requires a careful approach to fighting to avoid " +
-            "damaging the sensory organs."
+            "damaging the sensory organs.",
+        nsfw: false,
     },{
         name:       "Vahn",
         fullName:   "Vahn Charette Der-spar",
@@ -103,7 +107,8 @@ const characterList = [
             "expects nothing but the best from her students, and will not tolerate slacking. Headstrong to the " +
             "point of what some would consider arrogant, she is opinionated and operates under the assumption of " +
             "right until proven wrong, making her seem scathing to some, but her students can attest to her " +
-            "genuine efforts to both do her best and bring the best out of them."
+            "genuine efforts to both do her best and bring the best out of them.",
+        nsfw: false,
     },{
         name:       "Vastra",
         fullName:   "Madame Vastra",
@@ -124,7 +129,8 @@ const characterList = [
             "new way to enjoy her acquisitions, particularly when it comes to her more carnal desires. A shrewd " +
             "businesswoman through and through, Vastra will fleece you for all you’ve got while convincing you " +
             "it’s in your best interest, and should you be foolish enough to renege on your pay… Well, she’s " +
-            "never been one to turn down an opportunity to appease her longtime benefactor."
+            "never been one to turn down an opportunity to appease her longtime benefactor.",
+        nsfw: false,
     },{
         name:       "Isis",
         fullName:   "Mother Goddess",
@@ -143,7 +149,8 @@ const characterList = [
             "obliteration she reshapes the universe, consuming great swaths of starlight and leaving cosmic voids " +
             "in her wake. None can escape annihilation’s embrace, but it is a necessary evil. Her inexorable march " +
             "through the galactic stage paves the way for a better, brighter future. Through her all life was born, " +
-            "and to her it must all return."
+            "and to her it must all return.",
+        nsfw: true,
     }
 ];
 

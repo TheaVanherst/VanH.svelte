@@ -1,7 +1,7 @@
 <script>
     import { socialMedias } 	from '$lib/controllers/navigationDirectories.js';
-
-    import RainbowButtonWrap from "$root/components/layout/rainbowButtonWrap.svelte";
+    import RedirectBuilder 		from "$root/components/generic/redirectBuilder.svelte";
+    import RainbowButtonWrap 	from "$root/components/layout/rainbowButtonWrap.svelte";
 </script>
 
 <div class="wrapper">
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	{#each socialMedias as push}
-		<a href="https://www.{push.path}" target="_blank">
+		<RedirectBuilder url={push.path} redirectName={push.pagePreview}>
 			<RainbowButtonWrap bottom={10} padding={[9,15]}>
 				<div class="central">
 					<div class="mediaIcon">
@@ -27,7 +27,7 @@
 					</div>
 				</div>
 			</RainbowButtonWrap>
-		</a>
+		</RedirectBuilder>
 	{/each}
 </div>
 

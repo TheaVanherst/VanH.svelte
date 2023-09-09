@@ -65,7 +65,7 @@ const nsfw = writable(false);
 export { nsfw }
 
 const
-    directionProcessing = async (p,c,b = null, f = 0) => {
+    directionProcessing = async (p,c,b = null) => {
     // calculates which direction it should move horizontally
     let offsets = [0,0]; // debugging purposes
         // this is related to the server hoster, and is enforced by svelte.
@@ -78,8 +78,8 @@ const
 
     // calculates which direction it should move vertically
 
-    let pyo = navigationDirectories.findIndex(e => e.path === "/" + cfr[1 + f]),
-        cyo = navigationDirectories.findIndex(e => e.path === "/" + pfr[1 + f]);
+    let pyo = navigationDirectories.findIndex(e => e.path === "/" + cfr[1]),
+        cyo = navigationDirectories.findIndex(e => e.path === "/" + pfr[1]);
 
     if (!(offsets[0] ^ 0) && (pyo ^ cyo)) { // only moves if x isn't
         offsets[1] = pyo > cyo ? 1 : -1;} // upwards / downwards
