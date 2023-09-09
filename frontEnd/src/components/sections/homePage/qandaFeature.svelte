@@ -31,6 +31,8 @@
 </Container>
 
 <style lang="scss">
+	@import "../../../commonStyles.scss";
+
 	* {	transition: .3s ease; }
 
 	.questionBlock {
@@ -41,7 +43,9 @@
 			.q {	color: 		white;
 					background: var(--accent2);
 					padding: 	1px 5px 2px 15px;}
-			.s {	margin: 	-5px 60px 0 100px;}
+			.s {	margin: 	-5px 60px 0 100px;
+				span {
+					animation: colorRotate 3s linear infinite;}}
 			.a { img {
 					transform: scale(1.2);}}}
 

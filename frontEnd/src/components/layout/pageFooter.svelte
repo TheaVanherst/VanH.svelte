@@ -1,5 +1,7 @@
 <script>
     import { screenSize, screenType } 	from '$lib/controllers/accessibilityController.js';
+    import { splashText } from "$lib/controllers/accessibilityController.js";
+    import { submitters } from "$lib/databases/splashTextDatabase.js";
 
     import { page } from "$app/stores";
 </script>
@@ -11,7 +13,8 @@
 		{/if}
 	</div>
 	<div class="right">
-		<p> All featured artwork is drawn and created by Thea Vanherst
+		<p id="splash">
+			Splash text by <span>{$splashText?.[2]?.user ?? submitters?.thea?.user ?? "[NOT FOUND]"}</span>
 		</p><p>
 			Website developed and created by Thea Vanherst @ <span>vanh.art</span>
 		</p>
@@ -40,12 +43,16 @@
 		border-top-left-radius: 	$wideBorder;
 		border-top-right-radius: 	$wideBorder;
 
-		width: 		calc(100%);
+		width: 		100%;
 		padding: 	15px 0;
 
 		display: 	flex;
 		position: 	relative;
 		bottom: 	0;
+
+		p:hover {
+			span {
+				animation: colorRotate 1s linear infinite;}}
 
 		.left {	margin: 0 15px 0 15px;
 				width:	max-content;
@@ -58,7 +65,5 @@
 					width:	max-content;
 			p {		text-align: right;
 					color: var(--accent10);}
-			span {	color: var(--accent9);
-				&:hover {
-					@include rainbowTransition();}}}}
+			span {	color: var(--accent9);}}}
 </style>

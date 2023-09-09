@@ -1,11 +1,13 @@
 
 const submitters = {
     thea: {
-        user: "Thea" },
+        user: "Thea Vanherst" },
     stella: {
         user: "Stella" },
     alex: {
         user: "Alex_Miles" },
+    xal:  {
+        user: "Xaleya" },
     jolly: {
         user: "Mr Jolly" },
     rust: {
@@ -53,7 +55,6 @@ const splash = [
     [true,  "I hope we're having Germans.", submitters.alex],
     [false, "Demon-core approved!"],
     [false, "Human instrumentality!"],
-    [false, "It's wednesday, or as I call it; Thursday"],
     [true,  "Executed on state tv!", submitters.rust],
     [false, "'Bang and the dirt is gone!'"],
     [true,  "'I'll see you by the canal m8'", submitters.alex],
@@ -64,12 +65,12 @@ const splash = [
     [false, "Wine or cheese?"],
     [false, "Vinyl Cheese!"],
     [false, "Helvetica Standard!"],
-    [false, "Instead of spreading rumours, how about-!"],
+    [false, "Instead of spreading rumours about me-"],
     [true,  "Are you jealous of my billion boyfriends?", submitters.alex],
     [true,  "Ay moji!"],
     [true,  "🅱️eter 🅱️iffin!"],
-    [true,  "Fucking god damn... Bigger tits he says..."],
     [true,  "ENDLESS TRASH!"],
+    [true,  "Fucking god damn... Bigger tits he says..."],
     [true,  "5th tit revision in a row..."],
     [true,  "not thicc enough he says make them biGGER"],
     [true,  "As if giving two planets of an ass wasn't enough"],
@@ -98,7 +99,38 @@ const splash = [
     [false, "Love is-in-bloom!"],
     [true,  "574 INCHES of Fat milky Borzoi JUGS", submitters.stella],
     [true,  "youve got curves shes got curves", submitters.stella],
-    [true,  "Awarded the VOREWARE seal of approval!"]
+    [true,  "Awarded the VOREWARE seal of approval!"],
+    [true,  "'I WANT TO FUCK A DEER!!!!'", submitters.xal],
+    [true,  "They call me Mommy too!", submitters.xal],
+    [true,  "Do you want to buy my nfcheese?"],
+    [true,  "Skygracer blocked me."],
+    [true,  "Say my name."],
+    [false, "Queries?"],
+    [true,  "Remember; No hetero."],
+    [true,  "Never go full homo."],
+    [false, "The lettuce won!"],
+    [false, "Nationalize Greggs!"],
+    [false, "Let's go, In and out, 20 minute adventure"],
+    [false, "Chewsday!"],
+    [false, "What's your damage?"],
+    [false, "They won't touch radio demon"],
+    [true,  "Is this a fukin' Beastars reference?", submitters.alex],
+    [false, "They don't know that I have fooled them all!", submitters.alex],
+    [false, "Rei William Johnson!", submitters.alex],
+    [true,  "'you smoke cigars, i smoke cock'", submitters.stella],
+    [true,  "IT IS FOCKING MINGING", submitters.stella],
+    [true,  "2 pints of Albanians, and a packet of Quavers"],
+    [true,  "🐱 🌌 🥛 🌎", submitters.stella],
+    [true,  "average fuck enjoyer", submitters.stella],
+    [true,  "🐶 🍈 🍈", submitters.stella],
+    [true,  "Your size will now serve a greater purpose", submitters.stella],
+    [false, "It's monday, or as I call it; tuesday"],
+    [false, "It's tuesday, or as I call it; wednesday"],
+    [false, "It's wednesday, or as I call it; thursday"],
+    [false, "It's thursday, or as I call it; friday"],
+    [false, "It's friday, or as I call it; saturday"],
+    [false, "It's saturday, or as I call it; sunday"],
+    [false, "It's sunday, or as I call it; monday"],
 ]
 
-export { splash }
+export { splash, submitters }

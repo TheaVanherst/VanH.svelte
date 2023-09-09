@@ -9,6 +9,11 @@ const
 
 export { websiteTag, websiteDiv, loadingIco, pageName }
 
+const
+    splashText = writable(undefined);
+
+export { splashText }
+
 // TODO: page checking and controlling
 
 import { writable } from "svelte/store";

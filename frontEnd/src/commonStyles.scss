@@ -6,6 +6,15 @@
 		saturate(5273%) hue-rotate(271deg)
 		brightness(97%) contrast(132%);}
 
+@keyframes colorRotate {
+	0% {	color: var(--accent3);}
+	15% {	color: var(--accent7);}
+	30% {	color: var(--accent1);}
+	50% {	color: var(--accent2);}
+	65% {	color: var(--accent5);}
+	80% {	color: var(--accent6);}
+	100% {	color: var(--accent3);}}
+
 @keyframes spin {
 	from {	transform: translate(-50%,-50%) rotate(360deg);}
 	to {	transform: translate(-50%,-50%) rotate(0deg);}}

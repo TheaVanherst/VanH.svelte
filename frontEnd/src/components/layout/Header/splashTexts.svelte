@@ -2,7 +2,7 @@
 	import { fly, scale } from "svelte/transition";
 
     import { splash } from "$lib/databases/splashTextDatabase.js";
-    import { nsfw } from "$lib/controllers/accessibilityController.js";
+    import { nsfw, splashText } from "$lib/controllers/accessibilityController.js";
 
 	let text = "undefined?",
 		numberGen = 0,
@@ -16,7 +16,10 @@
 
 		generator = () => {
             rainbow = false;
-        	text = splash[numberGen][1];}
+
+			$splashText = splash[numberGen];
+            text = $splashText[1];
+    	}
 
     picker();
 
@@ -87,7 +90,7 @@
 
 		&.animation {
 			animation:
-				colorRotate 1s linear 0s infinite,
+				colorRotate 1s linear infinite,
 				float 2.3s ease-in-out infinite;}
 	}
 
@@ -96,13 +99,5 @@
 		50% {	transform: scale(1);}
 		100% {	transform: scale(1.2);}}
 
-	@keyframes colorRotate {
-		0% {	color: var(--accent3);}
-		15% {	color: var(--accent7);}
-		30% {	color: var(--accent1);}
-		50% {	color: var(--accent2);}
-		65% {	color: var(--accent5);}
-		80% {	color: var(--accent6);}
-		100% {	color: var(--accent3);}
-	}
+
 </style>
