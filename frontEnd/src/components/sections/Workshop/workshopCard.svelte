@@ -62,9 +62,9 @@
 					@include rainbowTransition();}}}}
 
 	.workshopPreview {
-		overflow: hidden;
+		overflow: 	hidden;
 		.socialIco {
-			top: 0;}}
+			top: 	0;}}
 
 	.workshopItem {
 		overflow: hidden;
@@ -78,19 +78,17 @@
 			.details {
 				white-space: 	nowrap;
 				border-top: 	1px solid var(--accent10);
-				padding: 		10px 10px 27px 10px;
+				padding: 		10px 10px 27px 10px;}}}
 
-				.game {
-					display: 		flex;
-					margin-bottom: 	3px;
+	.developers {	display: flex;
+		p, span {	color: var(--accent10);
+			&::selection {
+				color: var(--accent10);}}
+		.author {	color: var(--accent9);
+			&::selection {
+				color: var(--accent9);}}}
 
-					p { margin: 	auto 0 auto 7px;}}
-
-				.developers {	display: flex;
-					p, span {	color: var(--accent10);
-						&::selection {
-								color: var(--accent10);}}
-					.author {	color: var(--accent9);
-						&::selection {
-								color: var(--accent9);}}}}}}
+	.game {	display: 	flex;
+			margin: 	0 0 3px 0;
+		p { margin: 	auto 0 auto 7px;}}
 </style>

@@ -37,57 +37,30 @@
 <style lang="scss">
 	* {	transition: ease .5s;}
 
-	h1, h2 {
-		text-transform:	uppercase;
-		height: 	max-content;}
+	h1, h2 {	text-transform:	uppercase;
+				height: 		max-content;}
+	img {		height: 		32px;}
 
-	.wrapper {
-		display: flex;
-
-		&.textVis {
-			gap: 		10px;
-			.offset {
-				width: 	calc(100% - 2rem - 10px);}}
-
-		&.textHidden {
-			gap: 		0;
-			.offset {
-				width: 	100%;}}
-	}
-
-	img {
-		height: 	32px;}
+	.wrapper {			display: 	flex;
+		&.textVis {		gap: 		10px;
+			.offset { 	width: 		calc(100% - 2rem - 10px);}}
+		&.textHidden {	gap: 		0;
+			.offset {	width: 		100%;}}}
 
 	.offset {
-		.divider {
-			display: 		flex;
+		.divider {	display: 		flex;
+					border-left: 	3px solid var(--accent2);
+					background: 	var(--backgroundTrans);
+					padding: 	0 0 0 15px;
+					margin: 	0 0 15px 0;
+			img {	margin: 	auto 0;}
+			h2 {	padding: 	6px 10px 10px 10px;}}}
 
-			border-left: 	3px solid var(--accent2);
-			background: 	var(--backgroundTrans);
-
-			padding-left: 	15px;
-			margin-bottom: 	15px;
-
-			img {
-				margin: 	auto 0;}
-
-			h2 {
-				padding: 	6px 10px 10px 10px;}
-		}
-	}
-
-	.sideBar {
-		display: 	inline-grid;
-
-		img {
-			margin-left: 	-4px;
-			margin-bottom: 	15px;
-			position: 		relative;}
-
-		h1 {
-			writing-mode: 		vertical-rl;
-			text-orientation: 	mixed;
-			margin-top:			10px;}
-	}
+	.sideBar {	display: 		inline-grid;
+		img {	margin: 		0 0 15px -4px;
+				position: 		relative;}
+		h1 {	writing-mode: 	vertical-rl;
+				text-orientation: 	mixed;
+				margin:			10px 0 0 0;}}
 
 </style>

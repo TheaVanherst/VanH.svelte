@@ -74,27 +74,20 @@
 </div>
 
 <style lang="scss">
-	@import "../../../commonStyles";
-
 	* {	transition: ease .3s; }
 
-	.chunk {
-		padding: 10px 3px 1px 3px;
-		> * {	margin-bottom: 	10px;}
+	.chunk {	padding: 	10px 3px 1px 3px;
+		> * {	margin:		0 0 10px 0;}
 		p { &:last-child {
-			margin: 0;}}}
+				margin: 	0;}}}
 
 	#commPreivew {
-		height: 300px;}
-
-	.commType {
-		padding: 	8px 5px 8px 15px;
-
+				height: 	300px;}
+	.commType {	padding: 	8px 5px 8px 15px;
 		&:not(:first-of-type) {
-			margin-top: 10px;}
-
-		h4 {	padding-bottom: 10px;}
-		p {		padding-bottom: 7px;}
+				margin: 	10px 0 0 0;}
+		h4 {	padding: 	0 0 10px 0;}
+		p {		paddinG: 	0 0 7px 0;}
 
 		.prices {
 			display: 	flex;
@@ -104,48 +97,42 @@
 			flex-flow: 	row wrap;
 
 			width: 		100%;
-			max-width: 100%;
+			max-width: 	100%;
 
 			@mixin cbc ($colour){
 				span {
-					color: 		$colour;}}
+					color: 	$colour;}}
 
 			span {
 				color: 		var(--accent3);
 				font-style: italic;}
 			h5 {
-				padding-right: 15px;
-				width: max-content;
-				height: max-content;
-				display: grid;
+				padding: 	0 0 0 15px;
+				width: 		max-content;
+				height: 	max-content;
+				display: 	grid;
 
 				&:nth-of-type(1){ @include cbc(var(--accent1));}
 				&:nth-of-type(2){ @include cbc(var(--accent6));}
 				&:nth-of-type(3){ @include cbc(var(--accent3));}
 				&:nth-of-type(4){ @include cbc(var(--accent7));}
 				&:nth-of-type(5){ @include cbc(var(--accent2));}
-				&:nth-of-type(6){ @include cbc(var(--accent5));}
-			}}
-
+				&:nth-of-type(6){ @include cbc(var(--accent5));}}}
 		&:nth-child(1) {	border-left: 1px solid var(--accent2);}
 		&:nth-child(2) {	border-left: 1px solid var(--accent1);}
 		&:nth-child(3) {	border-left: 1px solid var(--accent7);}
 		&:nth-child(4) {	border-left: 1px solid var(--accent3);}
 		&:nth-child(5) {	border-left: 1px solid var(--accent6);}
-		&:nth-child(6) {	border-left: 1px solid var(--accent5);}
-	}
+		&:nth-child(6) {	border-left: 1px solid var(--accent5);}}
 
 	.additionalPurchases {
-		.type {
-				padding: 		3px 5px 3px 15px;
-				margin-bottom: 	10px;
-			h5 {
-				padding-bottom: 5px;}
+		.type {		padding: 	3px 5px 3px 15px;
+					margin: 	0 0 10px 0;
+			h5 {	padding: 	0 0 5px 0;}
 
 			@mixin cbc ($colour){
-				border-left: 	1px solid $colour;
-				span {
-					color: 		$colour;}}
+						border-left: 	1px solid $colour;
+				span {	color: 			$colour;}}
 
 			&:nth-child(1) { @include cbc(var(--accent6));}
 			&:nth-child(2) { @include cbc(var(--accent3));}

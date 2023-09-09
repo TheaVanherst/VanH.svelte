@@ -37,7 +37,7 @@
 		.referral {
 			background: var(--accent2)!important;
 			p {
-				color: white;}}}
+				color: white!important;}}}
 
 	.slide {
 		overflow: hidden;
@@ -45,7 +45,7 @@
 
 		.tinyIco {
 			bottom: unset!important;
-			top: 	0px;}
+			top: 	0;}
 
 		.thumbnail {
 			min-height: 220px;}

@@ -34,14 +34,14 @@
 
 <style lang="scss">
 	.box {
-		display: 		flex;
-		overflow: 		visible;
+		display: 	flex;
+		overflow: 	visible;
 
-		border: 		1px solid var(--accent9);
-		background: 	var(--backgroundTrans);
+		border: 	1px solid var(--accent9);
+		background: var(--backgroundTrans);
 
-		padding: 		10px;
-		margin-bottom: 	15px;}
+		padding: 	10px;
+		margin: 	0 0 15px 0;}
 
 	.imageShowcase {
 		margin: 	-10px -15px 0 -57px;
@@ -58,9 +58,9 @@
 			transform: 	translatey(-50%);}}
 
 	.citation {	margin: 5px;
-		> p {	padding-bottom: 9px;
+		> p {	padding: 0 0 9px 0;
 			&:last-of-type {
-				padding-bottom: 0;
+				padding: 0 0 0 0;
 				margin: 0 100px 0 0}}
 
 		.closeQuote {

@@ -5,20 +5,22 @@
     import RainbowButtonWrap from "$root/components/layout/rainbowButtonWrap.svelte";
 
     export let
-            push =      "",
-            redirect =  false,
-            blank =     false,
-            selected =     false;
+        push =      "",
+        redirect =  false,
+        blank =     false,
+        selected =  false;
 </script>
 
-<RedirectBuilder url={push.path} blank={blank} external={redirect} redirectName={push.pagePreview}>
+<RedirectBuilder
+        url={push.path}
+        blank={blank}
+        external={redirect}
+        redirectName={push.pagePreview}>
     <div class="title {!redirect ? 'socButton' : 'navButton'}">
         {#if redirect}
             <div class="navigation"
                 class:currentRoot={selected}>
-                <h5>
-                    {push.title}
-                </h5>
+                <h5> {push.title} </h5>
             </div>
         {:else}
             <RainbowButtonWrap padding="{$screenType > 2 ? [5,10] : [6,6]}">
@@ -43,33 +45,25 @@
 
     * { transition: ease .3s; }
 
-    .navigation {
-        &:hover {
+    .navigation { &:hover {
             @include rainbowTransition();}}
 
-    .title {
-        display: inline-flex;
-
-        &.socButton { padding: 0 5px;}
-        &.navButton {  padding: 10px;}
-
-        .navigation {
-            margin:     auto 0;
-            display:    flex;
-
+    .title {            display: inline-flex;
+        &.socButton {   padding: 0 5px;}
+        &.navButton {   padding: 10px;}
+        .navigation {   margin: auto 0;
+                        display:    flex;
             &.currentRoot {
-                border-bottom: 1px solid;}
-
-            h5 {    margin:         -1px 0 0 0;
-                    text-transform: uppercase;}}}
+                        border-bottom: 1px solid;}
+            h5 {        margin:         -1px 0 0 0;
+                        text-transform: uppercase;}}}
 
     .central {
-        display: 	flex;
-        width: 		100%;
-
+            display: 	flex;
+            width: 		100%;
         .enlargen.mediaIcon {
-            width:  30px;
-            height: 30px;}
+            width:      30px;
+            height:     30px;}
         .text {
-            padding-left: 5px;}}
+            padding:    0 0 0 5px;}}
 </style>

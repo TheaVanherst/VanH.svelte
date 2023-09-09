@@ -1,8 +1,106 @@
 
 const
-    citation = "Accent texts would depend on the circumstance"
+    commissionTypes =
+        [
+            {
+                title: "Rendered Sheet",
+                description:
+                    "A full page of various drawings on the subject/character of your choice, " +
+                    "optionally being a sequence. Typically of 2-6 pages in length, with various lines of dialog and, " +
+                    "effects being included. Specifics on each sketch is discussed through various anatomy " +
+                    "drawings, with the option to extend to a second page of sketches in a later commission being a " +
+                    "possibility.",
+                prices: [["Lines","200"],["Flats","230"],["Details & shaded","270"]],
+                adPrices: [["Extra characters","35"],["Extra micros","25"]]
+            },{
+                title: "Full Render",
+                description:
+                    "A singular, page filling drawing with a simple background with a complicated pose, or a detailed " +
+                    "background in a simple pose - typically featuring one or two characters as is treated as a single," +
+                    "stand along piece and feature one or two lines of dialog if requested.",
+                prices: [["Lines","130"],["Flats","150"],["Details & shaded","200"]],
+                adPrices: [["Extra characters","40"],["Extra micros","15"]]
+            },{
+                title: "Sketch",
+                description:
+                    "A single drawing of a character in a pose of your choice, complimented by a simple background.",
+                prices: [["Lines","60"],["Flats","65"],["Simple Shading","80"]],
+                adPrices: [["Extra characters","35"],["Extra micros","15"]],
+            },{
+                title: "Two tone",
+                description:
+                    "A drawing featuring a character of your own creation in a pose of my own choice, with highly refined lines and a " +
+                    "simplistic trademark background & attention to detail. Lines are refined, and lighting is done through a solid black fill.",
+                prices: [["Lines & fill","70"],["Flats & shine","80"],["More details / background","120"]],
+                adPrices: [["Extra characters","40"],["Extra micros","20"],["Detailed clothing","10"]]
+            }
+        ],
+
+    additionalPurchases =
+        [
+            {
+                title: 'Photoshop files',
+                description:
+                    'Photoshop files are included in the Discord archive, and are free for future and current members. ' +
+                    'Photoshop files can also be purchased at any given time in the future.',
+                price: '10.00'
+            },{
+            title: 'Private Photoshop files',
+            description:
+                "If you wish to keep project files private, this would required to be specified before or during the " +
+                "regular commission process. This purchase option includes the Photoshop file download, which is then " +
+                "exclusive to you; it will not be available for members.",
+            price: '35.00'
+        },{
+            title: 'Late Shading / Flats',
+            description:
+                "In the instance of you purchasing lines or flats, you may want to then have your commission have it shaded." +
+                "This purchase option is a means to provide shading or flats at a later date from the original " +
+                "commission. Eg. If you purchase lines, and want it to have flats & shading, it will be the value of (Shaded - " +
+                "Lines). Eg. Shading at 270, minus lines 200, equaling a cost of £70.",
+            price: '20.00 and upwards'
+        }
+        ],
+
+    exampleArr =
+        [
+            {
+                img: "bastetFullRender",
+                title: "Goddess of Sol",
+                type: `${commissionTypes[1].title}, ${commissionTypes[1].prices[2][0]}`,
+                source: "1681815430573244420",
+                nsfw: true,
+            },{
+                img: "wrathOfSol",
+                title: "Wrath of Sol",
+                type: `${commissionTypes[3].title}, ${commissionTypes[3].prices[2][0]}`,
+                source: "1699859046797357377",
+                nsfw: true,
+            },{
+                img: "CheeksOfLove",
+                title: "Cheeks of Love",
+                type: `${commissionTypes[2].title}, ${commissionTypes[2].prices[2][0]}`,
+                source: "1681815430573244420",
+                nsfw: true,
+            },{
+                img: "DaurineMoonlight",
+                title: "A Moonlit Ritual",
+                type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
+                source: "1692547932971471062",
+                nsfw: true
+            },{
+                img: "PalterySwimwear",
+                title: "Paltry Swimwear",
+                type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
+                source: "1695100150383841525",
+                nsfw: true
+            }
+        ];
+
+export { exampleArr, commissionTypes, additionalPurchases }
 
 const
+    citation = "Accent texts would depend on the circumstance",
     dosAndDonts =
         [
             {
@@ -56,7 +154,6 @@ const
             "result, you may be refunded if you are adamant you want something specific from me and I am " +
             "unable to do it."
         ],
-
     howToCom =
         [
             "Commissions are only accessible via slot openings, or for mutuals. Openings are then done in " +
@@ -74,7 +171,6 @@ const
             "submission, once I am full available, I'll shortly send you an invoice. Once the invoice is " +
             "fully paid, you will be the next project I will work on after completing other ongoing projects.",
         ],
-
     benefits =
         [
             "No water marks will be featured on the final result of the drawing, that you receive and as " +
@@ -92,7 +188,6 @@ const
             "You will receive a lot more back and forth for the progress being done, and have a bit" +
             "more hands on to what is being worked on."
         ],
-
     tnc =
         [
             "The drawings produced by the commission are, for all intensive purposes, yours. " +
@@ -128,98 +223,3 @@ const
         ];
 
 export { notices, howToCom, benefits, tnc }
-
-const commissionTypes =
-    [
-        {
-            title: "Rendered Sheet",
-            description:
-                "A full page of various drawings on the subject/character of your choice, " +
-                "optionally being a sequence. Typically of 2-6 pages in length, with various lines of dialog and, " +
-                "effects being included. Specifics on each sketch is discussed through various anatomy " +
-                "drawings, with the option to extend to a second page of sketches in a later commission being a " +
-                "possibility.",
-            prices: [["Lines","200"],["Flats","230"],["Details & Shaded","270"]],
-            adPrices: [["Extra characters","35"],["Extra micros","25"]]
-        },{
-            title: "Full Render",
-            description:
-                "A singular, page filling drawing with a simple background with a complicated pose, or a detailed " +
-                "background in a simple pose - typically featuring one or two characters as is treated as a single," +
-                "stand along piece and feature one or two lines of dialog if requested.",
-            prices: [["Lines","130"],["Flats","150"],["Details & Shaded","200"]],
-            adPrices: [["Extra characters","40"],["Extra micros","15"]]
-        },{
-            title: "Sketch",
-            description:
-                "A single drawing of a character in a pose of your choice, complimented by a simple background.",
-            prices: [["Lines","60"],["Flats","65"],["Simple Shading","80"]],
-            adPrices: [["Extra characters","35"],["Extra micros","15"]],
-        },{
-            title: "Two Tone",
-            description:
-                "A drawing featuring a character of your own creation in a pose of my own choice, with highly refined lines and a " +
-                "simplistic trademark background & attention to detail. Lines are refined, and lighting is done through a solid black fill.",
-            prices: [["Lines & fill","70"],["flats & shine","80"],["More details / background","120"]],
-            adPrices: [["Extra characters","40"],["Extra micros","20"],["Detailed clothing","10"]]
-        }
-    ];
-
-const additionalPurchases =
-    [
-        {
-            title: 'Photoshop files',
-            description:
-                'Photoshop files are included in the Discord archive, and are free for future and current members. ' +
-                'Photoshop files can also be purchased at any given time in the future.',
-            price: '10.00'
-        },{
-            title: 'Private Photoshop files',
-            description:
-                "If you wish to keep project files private, this would required to be specified before or during the " +
-                "regular commission process. This purchase option includes the Photoshop file download, which is then " +
-                "exclusive to you; it will not be available for members.",
-            price: '35.00'
-        },{
-            title: 'Late Shading / Flats',
-            description:
-                "In the instance of you purchasing lines or flats, you may want to then have your commission have it shaded." +
-                "This purchase option is a means to provide shading or flats at a later date from the original " +
-                "commission. Eg. If you purchase lines, and want it to have flats & shading, it will be the value of (Shaded - " +
-                "Lines). Eg. Shading at 270, minus lines 200, equaling a cost of £70.",
-            price: '20.00 and upwards'
-        }
-    ]
-
-export { commissionTypes, additionalPurchases }
-
-const exampleArr =
-    [
-        {
-            img: "bastetFullRender",
-            title: "Goddess of Sol",
-            type: `${commissionTypes[1].title}, ${commissionTypes[1].prices[2][0]}`,
-            source: "1681815430573244420",
-            nsfw: true,
-        },{
-            img: "CheeksOfLove",
-            title: "Cheeks of Love",
-            type: `${commissionTypes[2].title}, ${commissionTypes[2].prices[2][0]}`,
-            source: "1681815430573244420",
-            nsfw: true,
-        },{
-            img: "DaurineMoonlight",
-            title: "A Moonlit Ritual",
-            type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
-            source: "1692547932971471062",
-            nsfw: true
-        },{
-            img: "PalterySwimwear",
-            title: "Paltry Swimwear",
-            type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
-            source: "1695100150383841525",
-            nsfw: true
-        }
-    ];
-
-export { exampleArr }

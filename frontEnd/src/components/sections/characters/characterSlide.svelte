@@ -25,6 +25,5 @@
 </a>
 
 <style lang="scss">
-	.citation {
-		margin: 	-4px 0 10px auto;}
+	.citation {	margin: -4px 0 10px auto;}
 </style>

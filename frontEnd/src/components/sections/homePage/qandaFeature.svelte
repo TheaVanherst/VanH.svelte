@@ -31,13 +31,11 @@
 </Container>
 
 <style lang="scss">
-	@import "../../../commonStyles";
-
 	* {	transition: .3s ease; }
 
 	.questionBlock {
-		padding: 0 10px 8px 10px;
-		overflow: hidden;
+		padding: 	0 10px 8px 10px;
+		overflow: 	hidden;
 
 		&:hover {
 			.q {	color: 		white;
@@ -51,27 +49,23 @@
 		&:last-child {	padding-bottom: 4px;}
 
 		.q {
-			margin-bottom: 	10px;
+			margin: 		0 0 10px 0;
 			padding: 		1px 2px 2px 2px;
-
 			width: 			max-content;
+			border-radius: 	3px;
+
 			font-weight: 	700;
 			font-size: 		14px;
-			border-radius: 3px;
+			color: 			black;
+			background: 	var(--accent9);
 
-			color: 		black;
-			background: var(--accent9);
 			&::selection {
-				color: var(--accent9);};}
+				color: 		var(--accent9);};}
 
-		.s {
-			margin: 	-5px 60px 0 50px;
-			width: 		max-content;}
-
-		.a {
-			text-align: right;
-			margin: 	-6px 40px 0 10px;
-
+		.s {	margin: 	-5px 60px 0 50px;
+				width: 		max-content;}
+		.a {	text-align: right;
+				margin: 	-6px 40px 0 10px;
 			img {	position: 	absolute;}
 			p {		margin:		0 11px 0 0;}}}
 </style>

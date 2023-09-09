@@ -35,20 +35,14 @@
 {/if}
 
 <style lang="scss">
-	.mobile {
-		margin: 5px 0 -25px -5px;}
-
-	.tablet {
-		position: relative;
-		margin-top: 15px;
-
-		> * {
-			height: 	200px;}
+	.mobile {	margin: 	5px 0 -25px -5px;}
+	.tablet {	position: 	relative;
+				margin:	 	15px 0 0 0;
+		> * {	height: 	200px;}
 
 		.banner {
-			overflow: hidden;
-			border: 1px solid var(--accent2);}
-
+			overflow: 	hidden;
+			border: 	1px solid var(--accent2);}
 		.logo {
 			position: 	absolute;
 			z-index: 	1;

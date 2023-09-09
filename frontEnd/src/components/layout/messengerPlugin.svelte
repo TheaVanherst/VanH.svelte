@@ -57,21 +57,19 @@
 	* { -webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
 		-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
 		box-sizing: 		border-box;
-
-		right: 		0;
-		z-index: 	10;}
+		right: 			0;
+		z-index: 		10;}
 
 	.mobile {
-		height: 		100%;
-
+			height: 	100%;
 		#messager {
 			left: 		0;
 			bottom: 	0;
 			height: 	calc(100% - 28px);
 			min-width: 	300px - 30px;}
 		#chatbox {
-			width: 100%;
-			min-width: 100%;}}
+			width: 		100%;
+			min-width: 	100%;}}
 
 	.open {	position: 	fixed;
 			margin: 	15px;}
@@ -86,8 +84,8 @@
 		overflow: 	hidden;
 		position: 	fixed;
 
-		border: 1px solid var(--accent2);
-		margin: 15px;
+		border: 	1px solid var(--accent2);
+		margin: 	15px;
 
 		height: 	calc(100% - 30px);
 		background: var(--backgroundTrans);
@@ -108,7 +106,6 @@
 			max-height: calc(100% - 49px);
 			height: 	100%;
 			max-width:	348px;
-			overflow: 	hidden;}
-	}
+			overflow: 	hidden;}}
 
 </style>

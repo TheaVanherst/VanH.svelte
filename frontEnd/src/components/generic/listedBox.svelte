@@ -28,23 +28,21 @@
 </div>
 
 <style lang="scss">
-	@import "../../commonStyles";
-
-	* { transition: ease .3s}
+	* { transition: ease .3s; }
 
 	@mixin cfc($colour,$invert){
-		border: 	1px solid $colour;
+					border: 	1px solid $colour;
 		.button {	background: $colour;}
-		.tint {	color: $colour;
+		.tint {		color: $colour;
 			&::selection {
-				color: $colour;}}}
+					color: $colour;}}}
 
 	.tierCard {
-		padding: 			12px 15px 0 15px;
-		height: 			100%;
+		padding: 12px 15px 0 15px;
+		height: 100%;
 
-		background: 		var(--backgroundTrans);
-		position: 			relative;
+		background: var(--backgroundTrans);
+		position: 	relative;
 
 		@include cfc(var(--accent9), black);
 
@@ -61,15 +59,15 @@
 			li {	padding:	0 0 5px 5px;}}
 
 		.button {
+			position: 	absolute;
+
 			margin: 0 15px -13px 0;
 			bottom: 0;
-			right: 0;
+			right: 	0;
 
-			p {
-				font-weight: 	600;
+			p {	font-weight: 	600;
 				color: 			black;
-				padding: 		7px 12px 6px 12px;
-			}
-
-			position: 	absolute;}}
+				padding: 		7px 12px 6px 10px;}}
+		&:hover {
+			p {	color: 			white;}}}
 </style>

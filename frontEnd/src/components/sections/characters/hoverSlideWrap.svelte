@@ -34,25 +34,17 @@
 	.hovered {
 		.titleH4 {
 			@include rainbowTransition();}
-		img {
-			transform: scale(1.1);
-			opacity: 0.3;}}
-
+		img {		transform: scale(1.1);
+					opacity: 0.3;}}
 	.showcase,
-	.infoPlate {
-		height: 		520px;}
+	.infoPlate {	height: 520px;}
+	.card {			margin: 0 0 30px 0;
+					height: 550px;
+		.showcase {	background: black;
+					display: 	flex;}}
 
-	.card {
-		margin-bottom: 	30px;
-		height: 		550px;
-		.showcase {
-			background: black;
-			display: 	flex;}}
-
-	.infoPlate {
-		position: 	absolute;
-		overflow-y:	scroll;
-
+	.infoPlate {	position: 	absolute;
+					overflow-y:	scroll;
 		.scrollWrap {
-			padding: 	12px 15px 10px 15px;}}
+					padding: 12px 15px 10px 15px;}}
 </style>

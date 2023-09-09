@@ -44,14 +44,13 @@
 
 			> * {
 				transition: 	border ease .5s .3s;
-
 				border-radius: 	$normalBorder;
 				width: 			max-content;
 				margin: 		0 auto;
 				border-bottom: 	1px solid black;}
 
 			> *:not(:first-child) {
-				margin-top: 10px;}
+				margin: 10px 0 0 0;}
 
 			#navigation {
 				padding: 		0 10px;

@@ -30,24 +30,21 @@
     $res2: 400px;
 
     parallax {
-        div {
-            width: 		150%;
-            top: 		0;
-            position: 	fixed;}
-    }
+        div {   width: 		150%;
+                top: 		0;
+                position: 	fixed;}}
 
     @mixin cgm($st, $sd, $hm, $zh, $ov, $lp){
         -webkit-animation: 	backgroundSpeed+$st $sd linear infinite;
         animation: 			backgroundSpeed+$st $sd linear infinite;
         background-image: 	url("/branding/stars"+($st)+".gif");
 
-        left:  -$lp;
+        left:   -$lp;
         height: calc(100vh + $hm);
 
         position: 	fixed;
         z-index:   -$zh;
-        opacity: 	$ov;
-    }
+        opacity: 	$ov;}
 
     .spaceBg1 {    @include cgm(1,15s,$res1,3,1,0);}
     .spaceBg2 {    @include cgm(2,45s,$res2,2,0.7,250px);}

@@ -9,7 +9,7 @@
     import {
         directionProcessing, nsfw,
         directionX, directionY, transitioning,
-        pageLoaded, directory, pageName
+        pageLoaded, directory
     } from '$lib/controllers/accessibilityController.js';
 
     afterNavigate(async (n) => { //handles on mount

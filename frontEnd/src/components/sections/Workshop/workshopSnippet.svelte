@@ -11,13 +11,12 @@
 	a {
 		width: 		80px;
 		height: 	70px;
+		margin: 	10px 0;
 		opacity: 	0.75;
 
 		display: 	flex;
 		position:   relative;
 		transition: cubic-bezier(0.33, 1, 0.68, 1) .4s;
-
-		margin: 10px 0;
 
 		.thumbnail {
 			margin: 	0 5px;

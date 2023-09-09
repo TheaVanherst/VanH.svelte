@@ -34,11 +34,11 @@
 <style lang="scss">
 	@import "../../../../commonStyles";
 
-	* {transition: .2s ease}
+	* { transition: .2s ease}
 
 	.wrapper {
-		margin: 0 auto;
-		max-width: 450px;}
+		margin: 	0 auto;
+		max-width: 	450px;}
 
 	.imageWrapper {
 		img {
@@ -56,17 +56,15 @@
 			margin: 	auto 15px;
 			padding: 	7px 15px;
 
-			h3 {	padding-bottom: 10px;}
-			p {		padding-bottom: 3px;}}}
+			h3 {	padding: 0 0 10px 0;}
+			p {		padding: 0 0 3px 0;}}}
 
 	.central {
-		display: 	flex;
-		width: 		100%;
-
+			display: 	flex;
+			width: 		100%;
 		.text {
 			width: 		100%;
 			text-align: center;}}
-
 	.wrapper > * {
-		margin: 	0 auto 15px auto;}
+			margin: 	0 auto 15px auto;}
 </style>

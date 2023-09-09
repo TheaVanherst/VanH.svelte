@@ -51,12 +51,11 @@
 		box-sizing: 		border-box;} 	/* Opera/IE 8+ */
 
 	.parentElement {
-		display: block;
-		position: relative;
+		display: 	block;
+		position: 	relative;
 		overflow: 	hidden visible;
 
 		margin: 	0 auto;
-
 		min-width: 	100%;
 		max-width: 	800px;
 		height: 	100vh;}

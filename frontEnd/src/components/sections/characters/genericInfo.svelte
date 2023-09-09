@@ -80,21 +80,16 @@
 
 <style lang="scss">
 	.citation {
-		h4 {
-			padding-bottom: 	9px;}
-
+		h4 {	padding: 	0 0 9px 0;}
 		.partition {
-			padding-top: 	10px;
-			margin-top: 	5px;
-			border-top: 	1px solid var(--accent9);}
-
+				padding: 	10px 0 0 0;
+				margin: 	5px 0 0 0;
+				border-top: 1px solid var(--accent9);}
 		.description {
 			padding: 		0 0 7px 2px;
 			.title {
 				text-decoration: underline;
-				padding: 		0 0 4px 0;}
-		}
-	}
+				padding: 	0 0 4px 0;}}}
 
 	@mixin cfc($colour,$invert){
 		> span { color: $colour; }

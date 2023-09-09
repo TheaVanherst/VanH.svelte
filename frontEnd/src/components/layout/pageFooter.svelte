@@ -35,10 +35,10 @@
 		padding: 10px;}
 
 	.footer {
-		background-color: 	var(--backgroundTrans);
-		border-top: 		1px solid var(--accent2);
-		border-top-left-radius: $wideBorder;
-		border-top-right-radius: $wideBorder;
+		background-color: 			var(--backgroundTrans);
+		border-top: 				1px solid var(--accent2);
+		border-top-left-radius: 	$wideBorder;
+		border-top-right-radius: 	$wideBorder;
 
 		width: 		calc(100%);
 		padding: 	15px 0;
@@ -47,22 +47,17 @@
 		position: 	relative;
 		bottom: 	0;
 
-		.left {
-			margin: 0 15px 0 15px;
-			width:	max-content;
-
+		.left {	margin: 0 15px 0 15px;
+				width:	max-content;
 			img {
 				padding: 		4px;
 				margin: 		auto 0;
 				vertical-align: bottom;}}
 
-		.right {
-			margin: 0 15px 0 auto;
-			width:	max-content;
-
+		.right {	margin: 0 15px 0 auto;
+					width:	max-content;
 			p {		text-align: right;
 					color: var(--accent10);}
-
 			span {	color: var(--accent9);
 				&:hover {
 					@include rainbowTransition();}}}}

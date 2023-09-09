@@ -19,13 +19,13 @@
 </div>
 
 <style lang="scss">
-	* {		transition: 		ease .3s; }
-	.card {	height: 			550px;
-			overflow: 			hidden;
-			width: 				100%;
-			position: 			relative;
+	* {		transition: ease .3s; }
+	.card {	height: 	550px;
+			overflow: 	hidden;
+			width: 		100%;
+			position: 	relative;
 		.showcase {
-			height: 			515px;
-			display: 			flex;
+			height: 	515px;
+			display: 	flex;
 			justify-content: 	center;}}
 </style>
