@@ -9,3 +9,6 @@ node_modules
 /frontEnd/.vite/deps_temp_e4af788e/
 /frontEnd/build/
 /oldComponents/
+/backEnd/.idea/
+/backEnd/.gitignore
+/backEnd Locale/

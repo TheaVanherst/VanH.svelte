@@ -20,11 +20,11 @@ const characterList = [
         occupation:     "Bounty Hunter / Pirate",
         creationDate:   ["July 2023","2021 - Nov 2019"],
         desc:
-            "There are many things one could say to describe Captain Goss. “Dashing”, some might say. " +
-            "“A woman of fortune”, many would agree. Her targets, if they could still speak, would likely " +
-            "describe her as “a damned good shot.”  All of these things, and more, are true. At her core " +
-            "though, Valentina is a woman driven by the pursuit of nothing less than her own success, no " +
-            "matter the cost. You would do well to avoid getting in the way of that.",
+            'There are many things one could say to describe Captain Goss. “Dashing”, some might say. ' +
+            '“A woman of fortune”, many would agree. Her targets, if they could still speak, would likely ' +
+            'describe her as “a damned good shot.”  All of these things, and more, are true. At her core ' +
+            'though, Valentina is a woman driven by the pursuit of nothing less than her own success, no ' +
+            'matter the cost. You would do well to avoid getting in the way of that.',
         nsfw: false,
     },{
         name:       "Bastet",
@@ -103,7 +103,7 @@ const characterList = [
         beastarCanon:  "6'4",
         occupation: "University professor",
         creationDate:   ["2022","2020 - March 2018"],
-        desc:   "A professor of the arts, specialising in the Digital Media. An earnest, confident woman who " +
+        desc:   "A professor of the arts, specializing in the Digital Media. An earnest, confident woman who " +
             "expects nothing but the best from her students, and will not tolerate slacking. Headstrong to the " +
             "point of what some would consider arrogant, she is opinionated and operates under the assumption of " +
             "right until proven wrong, making her seem scathing to some, but her students can attest to her " +
@@ -121,7 +121,7 @@ const characterList = [
         canonHeight:   "5'8 - 16'4",
         nonCanHeight:   "15'4 - 42'2",
         occupation:     "Snake-oil Sales-woman",
-        creationDate:   ["July 2023","2020"],
+        creationDate:   ["July 2023","Dec 2019"],
         desc:   "To many merchants, this moniker would be a grave insult, but to Vastra, such nomenclature can " +
             "hardly begin to describe what she does to unwitting customers. Her longest standing contract is " +
             "with none other than the devil himself, but even he had to admit that Vastra drives one hell of a " +

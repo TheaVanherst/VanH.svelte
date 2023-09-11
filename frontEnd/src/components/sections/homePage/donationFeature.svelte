@@ -8,13 +8,14 @@
 
 <ListedCard data={donationTiers} citation={citation}/>
 
-<div class="box wideBorder">
+<div class="container wideBorder">
 	{#if $screenType > 2}
 		<div class="imageShowcase"
 			 in:fly={{y: 100, duration: 1200, delay: 300 }}>
 			<img src="/branding/vahnGraphic.webp">
 		</div>
 	{/if}
+
 	<div class="citation quote">
 		{#each personalMessage as text}
 			<p class="fancy"> {text} </p>
@@ -33,7 +34,7 @@
 </div>
 
 <style lang="scss">
-	.box {
+	.container {
 		display: 	flex;
 		overflow: 	visible;
 

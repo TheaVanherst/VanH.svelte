@@ -71,8 +71,8 @@ const
                 source: "1681815430573244420",
                 nsfw: true,
             },{
-                img: "wrathOfSol",
-                title: "Wrath of Sol",
+                img: "doorFrame",
+                title: "Mistress in Transit",
                 type: `${commissionTypes[3].title}, ${commissionTypes[3].prices[2][0]}`,
                 source: "1699859046797357377",
                 nsfw: true,
@@ -87,12 +87,6 @@ const
                 title: "A Moonlit Ritual",
                 type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
                 source: "1692547932971471062",
-                nsfw: true
-            },{
-                img: "PalterySwimwear",
-                title: "Paltry Swimwear",
-                type: `${commissionTypes[0].title}, ${commissionTypes[0].prices[2][0]}`,
-                source: "1695100150383841525",
                 nsfw: true
             }
         ];

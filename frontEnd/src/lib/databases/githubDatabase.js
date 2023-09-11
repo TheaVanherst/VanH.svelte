@@ -9,16 +9,16 @@ const githubDatabase = [
             "A Steam workshop localised download of Crypt of the Necrospriter - A software to assist with animating " +
             "in Crypt via. being able to live render updates to your spritesheets."
     },{
-        name:       "VanH.art/carrd",
-        url:        "vanh.carrd",
+        name:       "VanH.art/svelte",
+        url:        "vanH.svelte",
         preview:    "vanh",
         color:      1,
         description:
             "Vanh.art is an open source project! If you're interested in using this website as a basis to start " +
             "your own home-esc site, the source code is right here."
     },{
-        name:       "VanH.svelte",
-        url:        "VanH.svelte",
+        name:       "VanH.art/nge",
+        url:        "VanH.nge",
         preview:    "vanhsvelte",
         color:      5,
         description:
