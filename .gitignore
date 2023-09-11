@@ -4,11 +4,16 @@ node_modules
 .env
 /.idea/
 /.gitignore
+
 /frontEnd/.htaccess
 /frontEnd/.svelte-kit/
 /frontEnd/.vite/deps_temp_e4af788e/
 /frontEnd/build/
-/oldComponents/
+
+/frontEnd/package-lock.json
+
 /backEnd/.idea/
 /backEnd/.gitignore
 /backEnd Locale/
+
+/backEnd/package-lock.json
