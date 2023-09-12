@@ -22,6 +22,12 @@ const questionDatabase = [
         question: "What software and brushes do you use?",
         answer: "I use Adobe Photoshop CC with good ol' default brushes with the pressure sensitivity on both the " +
             "opacity & the size; it's as basic as you can get!"
+    },{
+        question: "Can I RP with one of your characters?",
+        answer: "I'm 'fine' with people using Izabela, and no one else. If content such as erotica is created as a " +
+            "consequence, that's also perfectly fine. However, I request that you please read the current erotica I have " +
+            "hosted on my FA to get an understanding of her character and to treat her with respect, tag her correctly, " +
+            "and associate Izabela as my design by referencing me as her owner & creator. \n TLDR; Respect my rights & her character."
     }
 ]
 

@@ -85,7 +85,8 @@ a { transition: .5s ease; //fallback transition
 	border-right: 	1px solid var(--accent10);
 	padding: 		10px;
 
-	position: relative;
+	position:       relative;
+	white-space:    pre-line;
 
 	&::before,
 	&::after {

@@ -59,10 +59,10 @@ body {
 // cursor defaults
 
 body {
-	cursor: url('/cursors/normal.gif'), crosshair;}
-a { cursor: url('/cursors/linkSelect.gif'), crosshair;}
+	cursor: crosshair;}
+a { cursor: crosshair;}
 *:active {
-	cursor: url('/cursors/textSelect.gif'), crosshair;}
+	cursor: crosshair;}
 
 /* style formatting */
 

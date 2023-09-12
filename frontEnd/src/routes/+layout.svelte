@@ -4,12 +4,14 @@
     import { fly } 				from 'svelte/transition';
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
-    import Header 				from "$root/components/layout/Header/header.svelte";
+    import SpaceshipCursor 		from "$root/components/layout/spaceshipCursor.svelte";
     import Background 			from "$root/components/layout/background.svelte";
     import MessengerPlugin 		from "$root/components/layout/messengerPlugin.svelte";
+
+    import Header 				from "$root/components/layout/Header/header.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import { scrollPos, bandWidths, screenSize, screenType } from "$lib/controllers/accessibilityController.js";
+    import { scrollPos, bandWidths, screenSize, screenType, deviceType } from "$lib/controllers/accessibilityController.js";
     import { websiteTag, websiteDiv, transitioning, loadingIco, pageName } from "$lib/controllers/accessibilityController.js";
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
@@ -28,6 +30,10 @@
 
 <Background/>
 <MessengerPlugin/>
+
+{#if deviceType === 2}
+	<SpaceshipCursor/>
+{/if}
 
 <div class="parentElement" id="scrollParent">
 	<div id="layout">

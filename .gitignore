@@ -19,3 +19,4 @@ node_modules
 /backEnd Locale/
 
 /backEnd/package-lock.json
+/frontEnd/.idea/

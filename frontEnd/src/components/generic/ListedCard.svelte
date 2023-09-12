@@ -27,7 +27,7 @@
 </div>
 
 {#if citation}
-	<div class="tableCite citation externalCitation">
+	<div class="citation externalCitation">
 		<p>{ citation }</p>
 		{#each data as set}
 			<div class="regularBorder"
@@ -57,10 +57,9 @@
 		&:last-of-type {
 			margin-bottom: 0;}}
 
-	.tableCite {
+	.externalCitation {
 		margin:     	0 0 15px auto;
 		padding: 		3px 10px 3px 3px;
-		border-right: 	1px solid var(--accent8);
 
 		display:    flex;
 		width:      max-content;
