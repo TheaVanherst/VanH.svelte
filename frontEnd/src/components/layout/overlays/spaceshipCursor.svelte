@@ -22,7 +22,7 @@
 <div id="spaceShipController">
 	<div id="spaceShip" style="left: {$position.x}px; top: {$position.y}px">
 		<img id="ship" src="/cursors/shipCursorYRaw.png" style="object-position: -{$mousePosition.xTilt}px -{$mousePosition.yTilt}px">
-		<div id="boosterController" style="top: {-$position.t * 30}px; transform: scaleY({$position.t / 3})">
+		<div id="boosterController" style="top: {-$position.t * 28}px; transform: scaleY({$position.t / 3})">
 			<img id="booster1" src="/cursors/animatedBooster.gif" style="left: {$mousePosition.xMulti - 9}px;">
 			<img id="booster2" src="/cursors/animatedBooster.gif">
 		</div>
@@ -39,57 +39,46 @@
 </div>
 
 <style lang="scss">
-
 	#spaceShipController {
 		position: 	fixed;
-		width: max-content;
-		height: max-content;
+		width: 		max-content;
+		height: 	max-content;
 		z-index: 	99;
 		animation:
 			yMovement 25s infinite ease-in-out,
-			xMovement 20s infinite ease-in-out;
-	}
+			xMovement 20s infinite ease-in-out;}
 
 	#laserController {
-		position: 	absolute;
-
-		#laser {
-			position: 	absolute;
+				position: 	absolute;
+		#laser {position: 	absolute;
 			img {
 				margin-top:	 	47px;
 				margin-left: 	-9px;
 				position: 		absolute;}
-
 			&:last-of-type { //dumb fix
 				display: none;}}}
 
 	#boosterController {
 		position: 	absolute;
 		z-index: 	2;
-		margin-top: 80px;
-
+		margin-top: 75px;
 		#booster1 {
 			top: 	69px;
 			left: 	-7px;
 			z-index: 2;
-			animation:
-					flicker 12s infinite ease-in-out;}
+			animation: flicker 12s infinite ease-in-out;}
 		#booster2 {
 			top: 	73px;
 			left: 	-7px;
 			z-index: 1;
-			animation:
-					flicker 22s infinite ease-in-out;}
-	}
+			animation: flicker 22s infinite ease-in-out;}}
 
 	#spaceShip {
-		position: 	absolute;
-		z-index: 	1;
-
+			position: 	absolute;
+			z-index: 	1;
 		img {
 			object-fit: none;
 			position: 	absolute;}
-
 		#ship {
 			top: 	32px;
 			left: 	-24px;

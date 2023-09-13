@@ -1,9 +1,9 @@
 <script>
     import { fly } 				from 'svelte/transition';
 
-    import ProfileBar 			from "$root/components/layout/Header/bannerAnimation.svelte";
-    import NavigationComponent 	from "$root/components/layout/Header/navBar.svelte";
-    import SplashTexts 			from "$root/components/layout/Header/splashTexts.svelte";
+    import ProfileBar 			from "$root/components/layout/header/bannerAnimation.svelte";
+    import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
+    import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
 
     import { deviceType, pageLoaded } from "$lib/controllers/accessibilityController.js";
 

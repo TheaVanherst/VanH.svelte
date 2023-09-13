@@ -4,11 +4,12 @@
     import { fly } 				from 'svelte/transition';
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
-    import SpaceshipCursor 		from "$root/components/layout/spaceshipCursor.svelte";
-    import Background 			from "$root/components/layout/background.svelte";
-    import MessengerPlugin 		from "$root/components/layout/messengerPlugin.svelte";
+    import SpaceshipCursor 		from "$root/components/layout/overlays/spaceshipCursor.svelte";
+    import Background 			from "$root/components/layout/overlays/background.svelte";
+    import MessengerPlugin 		from "$root/components/layout/overlays/messengerPlugin.svelte";
+    import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
 
-    import Header 				from "$root/components/layout/Header/header.svelte";
+    import Header 				from "$root/components/layout/header/header.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
     import { scrollPos, bandWidths, screenSize, screenType, deviceType } from "$lib/controllers/accessibilityController.js";
@@ -32,6 +33,7 @@
 <MessengerPlugin/>
 
 {#if deviceType === 2}
+	<CometGenerator/>
 	<SpaceshipCursor/>
 {/if}
 

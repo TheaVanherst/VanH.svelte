@@ -58,8 +58,6 @@
 		margin: 	0 auto;
 		max-width: 	220px;
 
-		cursor: url('/cursors/busy.gif'), crosshair!important;
-
 		.transform {
 			height: 	100px;
 			width: 		100%;

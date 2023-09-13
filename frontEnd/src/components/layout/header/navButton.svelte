@@ -2,7 +2,7 @@
     import { screenType } from '$lib/controllers/accessibilityController.js';
     import RedirectBuilder from "$root/components/generic/redirectBuilder.svelte";
 
-    import RainbowButtonWrap from "$root/components/layout/rainbowButtonWrap.svelte";
+    import RainbowButtonWrap from "$root/components/generic/rainbowButtonWrap.svelte";
 
     export let
         push =      "",

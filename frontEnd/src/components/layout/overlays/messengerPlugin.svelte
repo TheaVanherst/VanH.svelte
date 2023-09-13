@@ -2,7 +2,7 @@
     import { scale, fly } 	from 'svelte/transition';
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
-    import RainbowButtonWrap from "$root/components/layout/rainbowButtonWrap.svelte";
+    import RainbowButtonWrap from "$root/components/generic/rainbowButtonWrap.svelte";
 
     let chatBox = false;
 	let transitionSpeed = 200;

@@ -1,7 +1,7 @@
 <script>
     import { socialMedias } 	from '$lib/controllers/navigationDirectories.js';
     import RedirectBuilder 		from "$root/components/generic/redirectBuilder.svelte";
-    import RainbowButtonWrap 	from "$root/components/layout/rainbowButtonWrap.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/rainbowButtonWrap.svelte";
 </script>
 
 <div class="wrapper">

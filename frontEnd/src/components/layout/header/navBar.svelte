@@ -2,7 +2,7 @@
     import { slide } 	from 'svelte/transition';
 
     import { socialMedias, navigationDirectories } 	from '$lib/controllers/navigationDirectories.js';
-    import Button 	from "$root/components/layout/Header/navButton.svelte";
+    import Button 	from "$root/components/layout/header/navButton.svelte";
 
     import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/accessibilityController.js";
 </script>
