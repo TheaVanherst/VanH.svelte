@@ -59,7 +59,6 @@
 	.parentElement {
 		display: 	block;
 		position: 	relative;
-		overflow: 	hidden visible;
 
 		margin: 	0 auto;
 		min-width: 	100%;

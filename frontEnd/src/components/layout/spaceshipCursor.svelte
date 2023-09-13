@@ -5,73 +5,98 @@
 
     import { spring } from 'svelte/motion';
 
-    let coords = spring(
-        { x: ($screenSize / 2), y: -100 },
+    let position = spring(
+        {	x: -($screenSize / 2),
+			y: -100,
+			t: 2 },
         { stiffness: 0.1, damping: 0.6}
     );
+
+    $: $mousePosition.x !== position.x ? position.set({ x: $mousePosition.x, y: $mousePosition.y, t: $mousePosition.yMulti }) : false;
 
     let shoot = {}
 </script>
 
-<svelte:window
-		on:mousedown={() => shoot = {}}
-		on:mousemove={() => coords.set({ x: $mousePosition.x, y: $mousePosition.y})} />
+<svelte:window on:mousedown={() => shoot = {}}/>
 
-<div id="spaceShip"
-	 style="left: {$coords.x}px; top: {$coords.y}px">
-	<img id="ship" src="/cursors/shipCursor.webp" style="object-position: -{$mousePosition.xTilt}px 0;">
-	<img id="booster1" src="/cursors/shipCursorShipBoost.webp" style="left: {$mousePosition.xTilt / 48 - 9}px">
-	<img id="booster2" src="/cursors/shipCursorShipBoost.webp">
-</div>
-{#key shoot}
-	<div id="laserParent"
-		 out:fly={{y: -400, duration: 1200 }}
-		 style="left: {$coords.x}px; top: {$coords.y}px">
-		<img id="laser" src="/cursors/shipCursorLaser.webp">
+<div id="spaceShipController">
+	<div id="spaceShip" style="left: {$position.x}px; top: {$position.y}px">
+		<img id="ship" src="/cursors/shipCursorYRaw.png" style="object-position: -{$mousePosition.xTilt}px -{$mousePosition.yTilt}px">
+		<div id="boosterController" style="top: {-$position.t * 30}px; transform: scaleY({$position.t / 3})">
+			<img id="booster1" src="/cursors/animatedBooster.gif" style="left: {$mousePosition.xMulti - 9}px;">
+			<img id="booster2" src="/cursors/animatedBooster.gif">
+		</div>
 	</div>
-{/key}
+	<div id="laserController">
+		{#key shoot}
+			<div id="laser"
+				 out:fly={{y: -400, duration: 1200 }}
+				 style="left: {$position.x}px; top: {$position.y}px">
+				<img src="/cursors/shipCursorLaser.webp">
+			</div>
+		{/key}
+	</div>
+</div>
 
 <style lang="scss">
 
-	#laserParent {
+	#spaceShipController {
 		position: 	fixed;
+		width: max-content;
+		height: max-content;
 		z-index: 	99;
-		> * {
-			margin-top:	 	50px;
-			margin-left: 	-9px;
-			position: 		absolute;}}
+		animation:
+			yMovement 25s infinite ease-in-out,
+			xMovement 20s infinite ease-in-out;
+	}
 
-	#spaceShip {
-		position: 	fixed;
-		z-index: 	100;
+	#laserController {
+		position: 	absolute;
 
-		img {
+		#laser {
 			position: 	absolute;
-			object-fit: cover;}
+			img {
+				margin-top:	 	47px;
+				margin-left: 	-9px;
+				position: 		absolute;}
 
-		#ship {
-			top: 	32px;
-			left: 	-24px;
+			&:last-of-type { //dumb fix
+				display: none;}}}
 
-			width: 	48px;
-			height: 49px;
-			object-position:
-					-48px*2 0;}
+	#boosterController {
+		position: 	absolute;
+		z-index: 	2;
+		margin-top: 80px;
 
 		#booster1 {
-			top: 	71px;
+			top: 	69px;
 			left: 	-7px;
 			z-index: 2;
 			animation:
-				flicker 12s infinite ease-in-out;}
+					flicker 12s infinite ease-in-out;}
 		#booster2 {
 			top: 	73px;
 			left: 	-7px;
 			z-index: 1;
 			animation:
-				flicker 22s infinite ease-in-out;}
+					flicker 22s infinite ease-in-out;}
 	}
 
+	#spaceShip {
+		position: 	absolute;
+		z-index: 	1;
+
+		img {
+			object-fit: none;
+			position: 	absolute;}
+
+		#ship {
+			top: 	32px;
+			left: 	-24px;
+			width: 	48px;
+			height: 49px;
+			object-position:
+					-48px*2 0;}}
 
 	@keyframes xMovement {
 		0% {	margin-left: -10px;}
@@ -79,18 +104,16 @@
 		70% {	margin-left: 0;}
 		80% {	margin-left: 5px;}
 		100% {	margin-left: -10px;}}
-
 	@keyframes yMovement {
 		0% {	margin-top: 15px;}
 		20% {	margin-top: 10px;}
 		70% {	margin-top: 0;}
 		100% {	margin-top: 15px;}}
-
 	@keyframes zMovement {
-		0% {	transform: scale(1.1);}
+		0% {	transform: scale(1.02);}
 		20% {	transform: scale(1)}
-		50% {	transform: scale(0.95)}
-		100% {	transform: scale(1.1);}}
+		50% {	transform: scale(0.99)}
+		100% {	transform: scale(1.02);}}
 
 	@keyframes flicker {
 		0% {	opacity:0.1; 	transform: scale(1, 1);}

@@ -1,46 +1,82 @@
 
 import { readable } from 'svelte/store';
 
-let oldX =      0,
+let // previous cursor locations
+    oldX =      0,
     oldY =      0;
-let timeout1,
+let // timeouts
+    timeout1,
     timeout2,
-    waitUntil = 5;
+    waitUntil = 0;
 
-const width =   48
-const presetOffsetCalc = [
-    width * 0, width * 1, width * 2, width * 3, width * 4];
+const
+    xRequiredMovement1 = 2,
+    xRequiredMovement2 = 6,
+    yRequiredMovement = 10;
+const
+    framesPerSecond = 1000 / 15;
+
+const // spaceship spritesheet dimentions
+    width =   48,
+    height =  49;
+const // spritesheet spritesheet multipliers
+    presetOffsetCalcX = [
+        0, width, width * 2, width * 3, width * 4],
+    presetOffsetCalcY = [
+        0, height, height * 2];
 
 export default readable({x:0, y:0, xTilt: 0}, (set) => {
     document.addEventListener("pointermove", move);
 
-    const directionCalc = (x, y, t = false) => {
-            waitUntil = Date.now() + 1000 / 15;
+    const directionCalc = (x, y) => {
+            waitUntil = Date.now() + framesPerSecond;
         let diffX = Math.abs(x - oldX),
             diffY = Math.abs(y - oldY),
-            tilt = diffY > diffX + 1 ?
-                presetOffsetCalc[2] : x > oldX ?
-                    diffX > 4 ? presetOffsetCalc[4] : presetOffsetCalc[3] :
-                    diffX > 4 ? -presetOffsetCalc[0] : presetOffsetCalc[1];
+            xTilt =
+                diffY > diffX ?
+                    2 :
+                    diffX > xRequiredMovement1 ?
+                        x > oldX ?
+                            diffX > xRequiredMovement2 ? 4 : 3 :
+                            diffX > xRequiredMovement2 ? 0 : 1 :
+                        2,
+            yTilt =
+                y > oldY + yRequiredMovement ?
+                    0 :
+                    y < oldY - yRequiredMovement ?
+                        2 : 1;
 
         set({
             x:  x,
             y:  y,
-            xTilt:  tilt
+            xTilt: presetOffsetCalcX[xTilt],
+            yTilt: presetOffsetCalcY[yTilt],
+            xMulti: xTilt,
+            yMulti: yTilt,
         });
 
         oldX = x;
         oldY = y;
 
         clearTimeout(timeout1);
-        timeout1 = setTimeout(() => {
-            set({ xTilt: tilt < presetOffsetCalc[2] ? presetOffsetCalc[1] : presetOffsetCalc[3] })
-        }, 250);
-
         clearTimeout(timeout2);
+
+        timeout1 = setTimeout(() => {
+            xTilt = presetOffsetCalcX[xTilt] < presetOffsetCalcX[2] ? 1 : 3
+
+            set({
+                xTilt: presetOffsetCalcX[xTilt],
+                yTilt: presetOffsetCalcY[1],
+                xMulti: xTilt,
+                yMulti: 0,
+            })}, 250);
         timeout2 = setTimeout(() => {
-            set({ xTilt: presetOffsetCalc[2]  })
-        }, 300);
+            set({
+                xTilt: presetOffsetCalcX[2],
+                yTilt: presetOffsetCalcY[1],
+                xMulti: 2,
+                yMulti: 0,
+            })}, 300);
     }
 
     function move(e) {
