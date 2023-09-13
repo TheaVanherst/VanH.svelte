@@ -46,9 +46,9 @@
         z-index:   -$zh;
         opacity: 	$ov;}
 
-    .spaceBg1 {    @include cgm(1,15s,$res1,3,1,0);}
-    .spaceBg2 {    @include cgm(2,45s,$res2,2,0.7,250px);}
-    .spaceBg3 {    @include cgm(1,45s,$res1,1,0.5,355px);}
+    .spaceBg1 {    @include cgm(1,45s,$res1,3,0.5,0);}
+    .spaceBg2 {    @include cgm(2,35s,$res2,2,0.7,250px);}
+    .spaceBg3 {    @include cgm(1,18s,$res1,1,1,355px);}
 
 	@keyframes backgroundSpeed1 {
 		0% {  	transform: translateY($res1 * -1);}
