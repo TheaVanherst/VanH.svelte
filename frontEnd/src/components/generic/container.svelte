@@ -15,7 +15,7 @@
 <style lang="scss">
 	.container {
 		position: 		relative;
-		background: 	var(--backgroundTrans);
+		background: 	var(--TransBlack);
 
 		margin-bottom: 	15px;
 		padding: 		10px;

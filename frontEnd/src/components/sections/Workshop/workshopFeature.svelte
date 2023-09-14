@@ -6,16 +6,17 @@
     import WorkshopCard 	from "$root/components/sections/workshop/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/sections/workshop/workshopSnippet.svelte";
 
-	import { workshopArray, workshopMinatureArray } from "$lib/databases/workshopDatabase.js";
-    import {screenSize, deviceType, nsfw} 			from '$lib/controllers/accessibilityController.js';
+    import { screenSize, deviceType, nsfw } from '$lib/controllers/accessibilityController.js';
 
     let moreToggle = false;
+
+    export let dataset = undefined;
 </script>
 
 <Container border={10}>
 	<div>
 		<Carousel>
-			{#each workshopArray as workshopItem}
+			{#each dataset[0] as workshopItem}
 				<swiper-slide>
 					<WorkshopCard dataEntry={workshopItem}/>
 				</swiper-slide>
@@ -29,10 +30,12 @@
 					<Carousel
 							customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
 							pagination={false}>
-						{#each workshopMinatureArray as workshopItem}
-							<swiper-slide>
-								<WorkshopSnippet item={workshopItem}/>
-							</swiper-slide>
+						{#each dataset[1] as workshopItem}
+							{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
+								<swiper-slide>
+									<WorkshopSnippet item={workshopItem}/>
+								</swiper-slide>
+							{/if}
 						{/each}
 					</Carousel>
 				</div>
@@ -53,8 +56,8 @@
 				<Carousel
 						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
 						pagination={false}>
-					{#each workshopMinatureArray as workshopItem}
-						{#if workshopItem.nsfw && $nsfw || !workshopItem.nsfw}
+					{#each dataset[1] as workshopItem}
+						{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
 							<swiper-slide>
 								<WorkshopSnippet item={workshopItem}/>
 							</swiper-slide>

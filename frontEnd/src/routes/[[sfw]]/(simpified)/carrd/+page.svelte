@@ -49,7 +49,7 @@
 			img {	transform: 	scale(1.1) rotate(6deg);}}
 
 		.socialCard {
-			background: 	var(--backgroundTrans);
+			background: 	var(--TransBlack);
 			border-left: 	1px solid var(--accent6);
 
 			width: 		inherit;

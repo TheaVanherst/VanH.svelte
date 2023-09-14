@@ -88,7 +88,7 @@
 		margin: 	15px;
 
 		height: 	calc(100% - 30px);
-		background: var(--backgroundTrans);
+		background: var(--TransBlack);
 
 		> * {
 			position: 	relative;}

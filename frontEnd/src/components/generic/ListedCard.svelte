@@ -63,7 +63,7 @@
 
 		display:    flex;
 		width:      max-content;
-		background: var(--backgroundTrans);
+		background: var(--TransBlack);
 
 		p {
 			margin-right: 5px;}

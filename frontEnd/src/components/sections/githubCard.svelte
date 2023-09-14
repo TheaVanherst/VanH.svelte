@@ -1,29 +1,38 @@
 <script>
+    import { fly } from "svelte/transition";
+
+    import SanityImage from "$lib/serializer/sanityImage.svelte";
+
 	export let data;
+
+    let hover = false;
 </script>
 
 <a href="https://github.com/TheaVanherst/{data.url}" target="_blank">
-	<div class="slide regularBorder">
+	<div class="slide regularBorder"
+		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
 		<h4 class="titleH4">
-			{data.name}
+			{data.itemName}
 		</h4>
 		<div class="imageWrapper">
-			<img
-				class="tinyIco socialIco shortBorder"
-				src="/icons/githubLogo.webp">
-			<img
-				class="thumbnail"
-				src="/github/{data.preview}.webp">
+			<div class="thumbnail">
+				<SanityImage image={data.previewImage}></SanityImage>
+			</div>
+
 			<div class="descCard">
-				<p class="description">
-					{data.description}
-				</p>
-				<div class="referral" style="background: var(--accent{data.color})">
-					<p>
-						TheaVanherst/{data.url}
-					</p>
+				{#if hover}
+					<div class="description shortBorder" transition:fly={{y:-50}}>
+						<p>
+							{data.shortDesc}
+						</p>
+					</div>
+				{/if}
+
+				<div class="referral" style="background: var(--accent{data.accentColour})">
+					<p>TheaVanherst/{data.url}</p>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </a>
@@ -43,32 +52,34 @@
 		overflow: hidden;
 		margin-bottom: 27px;
 
-		.tinyIco {
-			bottom: unset!important;
-			top: 	0;}
-
 		.thumbnail {
-			min-height: 220px;}
+			max-height: 250px;
+			min-height: 200px;}}
 
-		.descCard {
-			position: 	absolute;
-			bottom: 	0;
-			background: var(--backgroundTrans);
+	.descCard {
+		position: 	absolute;
+		width: 		100%;
+		bottom: 	0;
 
-			.description {
-				@include shortForm(2);}
+		.description {
+			margin: 	5px;
+			background: white;
+			overflow: 	hidden;
+			p {
+				color: black;
+				@include shortForm(2);}}
 
-			.referral { // fallback colour
-				padding: 	6px 8px 5px 8px;
-				overflow: hidden;
-				background: 	var(--accent9);
+		.referral { // fallback colour
+			padding: 	7px 9px 6px 9px;
+			overflow: 	hidden;
+			background: 	var(--accent9);
 
-				p {
-					color: 			black;
-					font-weight: 	600;
-					-webkit-box-orient: vertical;
-					-webkit-line-clamp: 1;
-					display: 		-webkit-box;
-					overflow: 		hidden;}}
-		}}
+			p {
+				color: 			black;
+				font-weight: 	600;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 1;
+				display: 		-webkit-box;
+				overflow: 		hidden;}}
+	}
 </style>

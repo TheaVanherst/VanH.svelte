@@ -39,7 +39,7 @@
 		overflow: 	visible;
 
 		border: 	1px solid var(--accent9);
-		background: var(--backgroundTrans);
+		background: var(--TransBlack);
 
 		padding: 	10px;
 		margin: 	0 0 15px 0;}

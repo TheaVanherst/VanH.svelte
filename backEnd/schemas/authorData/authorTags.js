@@ -1,6 +1,6 @@
 
-import {defineField, defineType} from 'sanity'
-import { TagIcon }    from '@sanity/icons'
+import { defineType} from 'sanity'
+import { TagsIcon }    from '@sanity/icons'
 import { emojiTags, icon } from '../blocks/emojiTagData'
 
 const
@@ -8,7 +8,7 @@ const
     name: 'authorTags', title: 'Author Tags',
     type: 'document',
     fields: emojiTags,
-    icon: TagIcon,
+    icon: TagsIcon,
     preview: {
       select: {
         emoji: 'emoji',

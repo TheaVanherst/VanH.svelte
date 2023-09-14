@@ -22,6 +22,7 @@
 // TODO: title types
 
 .titleH4 {
+	transition: filter .4s ease-in-out;
 	padding: 		0 10px 10px 3px;
 	white-space: 	nowrap;
 	text-transform: uppercase;
@@ -56,7 +57,7 @@ a { transition: .5s ease; //fallback transition
 .externalCitation {
 	width:          max-content;
 	padding:        3px 10px 3px 3px;
-	background:     var(--backgroundTrans);
+	background:     var(--TransBlack);
 
 	position: 	    relative;
 	display: 	    block;
@@ -77,8 +78,8 @@ a { transition: .5s ease; //fallback transition
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $lineCount;
 
-	padding: 		10px 10px 0 10px;
-	margin-bottom: 	10px;} // required for the text overflow to behave.
+	padding: 		8px 10px 0 10px;
+	margin-bottom: 	7px;} // required for the text overflow to behave.
 
 .quote {
 	border-left: 	1px solid var(--accent10);
@@ -127,6 +128,7 @@ $shortBorder:   3px; //   3
 	overflow: 	    hidden;
 	vertical-align: bottom;
 	display:        flex;
+	background-color: white;
 
 	img:not(.tinyIco) {
 		height: 	100%;
@@ -136,7 +138,7 @@ $shortBorder:   3px; //   3
 // TODO: containers
 
 .imageCite {
-	background: 	var(--backgroundTrans);
+	background: 	var(--TransBlack);
 
 	padding:	5px 10px;
 	bottom: 	10px;
@@ -153,9 +155,9 @@ $shortBorder:   3px; //   3
 
 a {
 	.socialIco {
-		background: var(--backgroundTrans);
+		background-color: white;
 
-		padding: 	5px;
+		padding: 	4px;
 		margin: 	5px;
 
 		right: 		0;
@@ -166,7 +168,7 @@ a {
 
 	&:hover {
 		.socialIco {
-			background-color: black;}
+			transform: scale(1.1);}
 		img {
 			transform: scale(1.1);}}}
 

@@ -5,12 +5,12 @@
     import Carousel from "$root/components/generic/carousel.svelte";
 	import GithubCard from "$root/components/sections/githubCard.svelte";
 
-	import { githubDatabase } from "$lib/databases/githubDatabase.js";
+    export let dataset = [];
 </script>
 
 <Container bottom="{10}">
 	<Carousel customCalc={$screenType > 2 ? 2 : 1}>
-		{#each githubDatabase as dataEntry}
+		{#each dataset as dataEntry}
 			<swiper-slide>
 				<GithubCard data={dataEntry}/>
 			</swiper-slide>

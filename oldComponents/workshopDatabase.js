@@ -3,22 +3,18 @@ const
     gameReferencing = {
         crypt: {
             name: "Crypt of the Necrodancer",
-            url: "crypt"
-        },
+            url: "crypt"},
         terraria: {
             name: "Terraria",
-            url: "terraria"
-        }
+            url: "terraria"}
     },
     authorReferencing = {
         thea: {
             name: "Thea Vanherst",
-            website: "https://twitter.com/TheaVanherst",
-        },
+            website: "https://twitter.com/TheaVanherst",},
         sipher: {
             name: "Sipher Nil",
-            website: "https://twitter.com/siphernil"
-        }
+            website: "https://twitter.com/siphernil"}
     };
 
 const workshopArray = [

@@ -2,7 +2,7 @@
 import {defineField, defineType} from 'sanity'
 import {slugUniqueCheck} from '../../lib/slugUniqueCheck'
 
-import { UsersIcon } from '@sanity/icons'
+import { UserIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'author',
@@ -93,7 +93,7 @@ export default defineType({
     }),
   ],
 
-  icon: UsersIcon,
+  icon: UserIcon,
   preview: {
     select: {
       title: 'fullName',

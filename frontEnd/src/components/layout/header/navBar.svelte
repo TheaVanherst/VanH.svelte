@@ -54,7 +54,7 @@
 
 			#navigation {
 				padding: 		0 10px;
-				background: 	var(--backgroundTrans);
+				background: 	var(--TransBlack);
 				border-bottom: 	1px solid var(--accent2);}
 
 		}}

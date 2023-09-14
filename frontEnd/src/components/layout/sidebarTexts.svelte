@@ -50,7 +50,7 @@
 	.offset {
 		.divider {	display: 		flex;
 					border-left: 	3px solid var(--accent2);
-					background: 	var(--backgroundTrans);
+					background: 	var(--TransBlack);
 					padding: 	0 0 0 15px;
 					margin: 	0 0 15px 0;
 			img {	margin: 	auto 0;}

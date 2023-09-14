@@ -38,7 +38,7 @@
 		padding: 10px;}
 
 	.footer {
-		background-color: 			var(--backgroundTrans);
+		background-color: 			var(--TransBlack);
 		border-top: 				1px solid var(--accent2);
 		border-top-left-radius: 	$wideBorder;
 		border-top-right-radius: 	$wideBorder;

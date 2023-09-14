@@ -102,7 +102,7 @@
 					margin-left: 	calc(50% - ((($ringSize + $planetSize) / 2.8) + 5px));}}
 
 			&.decorationRing1 {	@include cgm(200px, 10px, var(--accent2), 0px,  3s); }
-			&.decorationRing2 {	@include cgm(320px, 8px, var(--accent6), 0px,  3s); }
+			&.decorationRing2 {	@include cgm(320px, 8px, var(--accent9), 0px,  3s); }
 
 			&.ring5 {	@include cgm(190px, 1px, #a955cb, 4px,  3s); }
 			&.ring2 {	@include cgm(300px, 1px, #5da4a4, 6px,  8s); }

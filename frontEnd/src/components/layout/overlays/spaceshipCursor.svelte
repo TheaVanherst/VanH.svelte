@@ -7,12 +7,11 @@
 
     let position = spring(
         {	x: -($screenSize / 2),
-			y: -100,
-			t: 2 },
+			y: -100},
         { stiffness: 0.1, damping: 0.6}
     );
 
-    $: $mousePosition.x !== position.x ? position.set({ x: $mousePosition.x, y: $mousePosition.y, t: $mousePosition.yMulti }) : false;
+    $: $mousePosition.x !== position.x ? position.set({ x: $mousePosition.x, y: $mousePosition.y}) : false;
 
     let shoot = {}
 </script>
@@ -22,7 +21,7 @@
 <div id="spaceShipController">
 	<div id="spaceShip" style="left: {$position.x}px; top: {$position.y}px">
 		<img id="ship" src="/cursors/shipCursorYRaw.png" style="object-position: -{$mousePosition.xTilt}px -{$mousePosition.yTilt}px">
-		<div id="boosterController" style="top: {-$position.t * 28}px; transform: scaleY({$position.t / 3})">
+		<div id="boosterController" style="top: {-$mousePosition.yMulti * 3}px;">
 			<img id="booster1" src="/cursors/animatedBooster.gif" style="left: {$mousePosition.xMulti - 9}px;">
 			<img id="booster2" src="/cursors/animatedBooster.gif">
 		</div>
@@ -61,7 +60,7 @@
 	#boosterController {
 		position: 	absolute;
 		z-index: 	2;
-		margin-top: 75px;
+		margin-top: 5px;
 		#booster1 {
 			top: 	69px;
 			left: 	-7px;

@@ -6,24 +6,26 @@
     import GithubFeature 	from "$root/components/sections/homePage/githubFeature.svelte";
     import DonationFeature 	from "$root/components/sections/homePage/donationFeature.svelte";
     import QandaFeature 	from "$root/components/sections/homePage/qandaFeature.svelte";
+
+    export let data = null;
 </script>
 
 <SidebarTexts titlecard="Characters" icon="aboutIcon.webp">
-	<CharacterFeature/>
+	<CharacterFeature dataset={data.characterData}/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Github" icon="githubLogo.webp">
-	<GithubFeature/>
+	<GithubFeature dataset={data.githubData}/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Workshop" icon="steamLogo.webp">
-	<WorkshopFeature/>
+	<WorkshopFeature dataset={[data.workshopData, data.workshopSnippet]}/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Support" icon="kofiLogo.webp">
-	<DonationFeature/>
+	<DonationFeature dataset=""/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Q&A" icon="commentIcon.webp">
-	<QandaFeature/>
+	<QandaFeature dataset=""/>
 </SidebarTexts>

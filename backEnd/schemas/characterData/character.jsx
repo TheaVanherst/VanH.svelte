@@ -103,11 +103,11 @@ export default defineType({
       validation: Rule => Rule.required().min(4).max(64),
     }),
     defineField({
-      name: 'bio', title: 'Bio',
-      type: 'blockContent',
+      name: 'desc', title: 'Bio',
+      type: 'text',
     }),
     defineField({
-      name: 'lore', title: 'lore',
+      name: 'biography', title: 'Lore',
       type: 'blockContent',
     }),
     defineField({

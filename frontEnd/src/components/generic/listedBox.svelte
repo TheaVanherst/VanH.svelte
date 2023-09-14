@@ -41,7 +41,7 @@
 		padding: 12px 15px 0 15px;
 		height: 100%;
 
-		background: var(--backgroundTrans);
+		background: var(--TransBlack);
 		position: 	relative;
 
 		@include cfc(var(--accent9), black);

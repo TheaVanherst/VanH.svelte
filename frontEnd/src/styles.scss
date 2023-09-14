@@ -4,7 +4,6 @@
 /* Root variables formatting */
 :root {
 	--accent11: #0c0021;
-	--accent8:  #630082;
 	--accent2:  #8c00ff;
 	--accent1:  #ff0582;
 	--accent4:  #ff00fb;
@@ -14,8 +13,9 @@
 	--accent7:  #ff8800;
 	--accent10:  #48575a;
 	--accent9:  #ffffff;
-	--backgroundTrans:
-				rgba(0, 0, 0, 0.6);}
+	--TransBlack: rgba(0, 0, 0, 0.6);
+	--TransWhite: rgba(255, 255, 255, 0.9);
+}
 
 /* document formatting */
 
@@ -95,7 +95,7 @@ h5 {font-size: 1.10rem; line-height: 1.10rem;}
 
 p { font-size:      12px;
 	font-family:	"Helvetica", Sans-serif;
-	line-height:    110%;
+	line-height:    120%;
 	color:	 		white;
 	&::selection {
 		color:      var(--accent6);}
@@ -108,8 +108,7 @@ p { font-size:      12px;
 /* list formatting */
 
 title {
-	display: none;
-}
+	display: none;}
 
 span {
 	&::selection {
@@ -124,13 +123,12 @@ ul {
 
 		font-family:    "Helvetica", Sans-serif;
 		font-size:      12px;
-		line-height:    100%;
+		line-height:    110%;
 		&::selection {
 			color:      var(--accent6);}
 
 		&::marker {
 			font-weight: 	700;
-			line-height: 	100%;
 			vertical-align: middle;
 			font-size: 	   .85em;}
 

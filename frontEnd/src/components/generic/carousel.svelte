@@ -32,17 +32,18 @@
 <style lang="scss">
 	swiper-container::part(button-prev),
 	swiper-container::part(button-next) {
-		width: 		12px;
-		padding: 	0 5px;
+		width: 			12px;
+		padding: 		0 5px;
+		border-radius: 	5px;
 
-		border-radius: 		5px;
-		background-color: 	var(--backgroundTrans);
+		background-color: 	var(--TransBlack);
 		color: 				white!important;
 
-		transition: ease .3s;
+		transition: filter ease .3s, background ease .3s;
 
 		&:hover {
-			background: var(--accent2);}}
+			background: black;
+			filter: 	invert(1);}}
 
 	swiper-container::part(bullet),
 	swiper-container::part(bullet-active) {
@@ -50,9 +51,9 @@
 		width: 	        35px;
 		height:         3px;}
 	swiper-container::part(bullet) {
-		background: var(--accent8);
+		background: var(--accent2);
 		opacity:    1;
 		transition: ease .3s;}
 	swiper-container::part(bullet-active) {
-		background: var(--accent2);}
+		background: white;}
 </style>

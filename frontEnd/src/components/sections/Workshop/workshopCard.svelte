@@ -1,46 +1,36 @@
 <script>
+	import { fly } from "svelte/transition";
+
+    import SanityImage from "$lib/serializer/sanityImage.svelte";
 	export let dataEntry
+
+    let hover = false;
 </script>
 
 <a href="https://steamcommunity.com/sharedfiles/filedetails/?id={dataEntry.url}" target="_blank">
-	<div class="workshopItem regularBorder">
+	<div class="workshopItem regularBorder"
+		 class:hovered={hover}
+		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
 		<h4 class="titleH4">
-			{dataEntry.name}
+			{dataEntry.itemName}
 		</h4>
 
 		<div class="workshopPreview regularBorder imageWrapper">
-			<img 	class="tinyIco socialIco shortBorder"
-					src="/icons/steamLogo.webp">
-			<img 	class="regularBorder"
-					src="/workshop/{dataEntry.thumbnail}.webp">
-		</div>
-
-		<div class="workshopData">
-			<p class="description">
-				{dataEntry.description}
-			</p>
-			<div class="details">
-				<div class="game">
-					<img 	class="shortBorder tinyIco"
-							src="/workshop/gameIcons/{dataEntry.game.url}.webp">
-					<p>
-						{dataEntry.game.name}
-					</p>
-				</div>
-				<div class="developers">
-					<p>
-						By:
-						{#each dataEntry.authors as author, i}
-							<a class="author" href={author.website} target="_blank">
-								{author.name}
-							</a>
-							{#if i < dataEntry.authors.length - 1}
-								<span>and&nbsp;</span>
-							{/if}
-						{/each}
-					</p>
-				</div>
+			<div class="regularBorder thumbnail">
+				<SanityImage image={dataEntry.previewImage}/>
 			</div>
+
+			{#if hover}
+				<div class="transWrap shortBorder" transition:fly={{y:-50}}>
+					<div class="desc">
+						<div class="gameIcon">
+							<SanityImage image={dataEntry.gameLogo}/></div>
+						<div>
+							<p>{dataEntry.shortDesc}</p>
+						</div>
+					</div>
+				</div>
+			{/if}
 		</div>
 	</div>
 </a>
@@ -48,47 +38,30 @@
 <style lang="scss">
 	@import "../../../commonStyles";
 
-	* {	transition: .3s cubic-bezier(0.33, 1, 0.68, 1);}
+	.workshopItem {
+		overflow: 	hidden;}
 
-	a:hover {
-		.workshopItem {
-			.details {
-				border-top: 1px solid var(--accent2)!important;}
-			.author {
-				&:hover {
-					text-decoration: underline;
-					color: var(--accent3)!important;}
-				&:not(:hover){
-					@include rainbowTransition();}}}}
+	.gameIcon {
+		min-width: 	24px;
+		height: 	24px;
+		margin: 	auto -3px auto 8px;}
 
 	.workshopPreview {
-		overflow: 	hidden;
-		.socialIco {
-			top: 	0;}}
+		margin-bottom: 27px;
+		.regularBorder, .shortBorder {
+			overflow: hidden;}}
 
-	.workshopItem {
-		overflow: hidden;
+	.transWrap {
+		position: 	absolute;
+		bottom: 	0;
+		margin: 	5px;
 
-		.workshopData {
-			position: relative;
+		.desc {
+			background: white;
+			overflow: 	hidden;
+			display: flex;
 
-			.description {
-				@include shortForm(4);}
-
-			.details {
-				white-space: 	nowrap;
-				border-top: 	1px solid var(--accent10);
-				padding: 		10px 10px 27px 10px;}}}
-
-	.developers {	display: flex;
-		p, span {	color: var(--accent10);
-			&::selection {
-				color: var(--accent10);}}
-		.author {	color: var(--accent9);
-			&::selection {
-				color: var(--accent9);}}}
-
-	.game {	display: 	flex;
-			margin: 	0 0 3px 0;
-		p { margin: 	auto 0 auto 7px;}}
+			p {
+				color: black;
+				@include shortForm(2);}}}
 </style>

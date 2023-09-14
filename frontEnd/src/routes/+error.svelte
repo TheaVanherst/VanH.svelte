@@ -18,7 +18,7 @@
 	.container {
 		display:            flex;
 		border-radius:      5px;
-        background:         var(--backgroundTrans);
+        background:         var(--TransBlack);
         position:           relative;
         margin-bottom:      15px;
 

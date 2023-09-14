@@ -2,21 +2,21 @@
     import Container 	from "../../generic/container.svelte";
     import Carousel from "$root/components/generic/carousel.svelte";
 
-	import characterList from "$lib/databases/characterDatabase.js";
-
-    import CharacterCardWrap 	from "$root/components/sections/characters/hoverSlideWrap.svelte";
-    import GenericInfo 			from "$root/components/sections/characters/genericInfo.svelte";
+    import CharacterCardWrap 	from "$root/components/sections/characters/homepageHoverSlide.svelte";
+    import GenericInfo 			from "$root/components/sections/characters/informationPlate.svelte";
 
     import { nsfw } from "$lib/controllers/accessibilityController.js";
+
+    export let dataset = {};
 </script>
 
 <Container bottom={10}>
 	<Carousel>
-		{#each characterList as char}
-			{#if char.nsfw && $nsfw || !char.nsfw}
+		{#each dataset as char}
+			{#if char.NSFW && $nsfw || !char.NSFW}
 				<swiper-slide>
-					<CharacterCardWrap characterData={char}>
-						<GenericInfo data={char}></GenericInfo>
+					<CharacterCardWrap data={char}>
+						<GenericInfo data={char}/>
 					</CharacterCardWrap>
 				</swiper-slide>
 			{/if}

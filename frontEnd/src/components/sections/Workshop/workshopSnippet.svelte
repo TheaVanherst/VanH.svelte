@@ -1,10 +1,24 @@
 <script>
+    import { fly } from 'svelte/transition';
+	import SanityImage from "$lib/serializer/sanityImage.svelte";
+
 	export let item;
+
+    let active = false;
 </script>
 
-<a href="https://steamcommunity.com/sharedfiles/filedetails/?id={item.url}" target="_blank">
-	<img class="thumbnail regularBorder" src="/workshop/mnis/{item.thumbnail}.webp">
-	<img class="gameIcon shortBorder" src="/workshop/gameIcons/{item.game.url}.webp">
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id={item.url}" target="_blank"
+   on:mouseenter={() => {active = true;}}
+   on:mouseleave={() => {active = false;}}>
+	<div class="thumbnail regularBorder">
+		<SanityImage image={item.previewImage}/>
+	</div>
+
+	{#if active}
+		<div class="gameIcon shortBorder" transition:fly={{x: 20}}>
+				<SanityImage image={item.gameLogo}/>
+		</div>
+	{/if}
 </a>
 
 <style lang="scss">
@@ -19,19 +33,22 @@
 		transition: cubic-bezier(0.33, 1, 0.68, 1) .4s;
 
 		.thumbnail {
+			overflow: 	hidden;
 			margin: 	0 5px;
 			width: 		100%;
 			height: 	100%}
 
 		.gameIcon {
-			position: 		absolute;
+			position: 	absolute;
+			background: white;
+			padding: 	2px;
 
-			width: 	18px;
-			height: 18px;
+			width: 	20px;
+			height: 20px;
 
 			bottom: 0;
 			right:	0;
-			margin: 3px 8px 3px 3px;}
+			margin: 3px 0 3px 3px;}
 
 		&:hover {
 			opacity: 	1;
