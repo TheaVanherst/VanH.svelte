@@ -1,6 +1,8 @@
 <script>
     import '../styles.scss';
 
+    import { onMount } from 'svelte';
+
     import { fly } 				from 'svelte/transition';
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
@@ -15,12 +17,20 @@
     import { scrollPos, bandWidths, screenSize, screenType, deviceType } from "$lib/controllers/accessibilityController.js";
     import { websiteTag, websiteDiv, transitioning, loadingIco, pageName } from "$lib/controllers/accessibilityController.js";
 
+
+    import Device from "svelte-device-info";
+
+    onMount(async () => {
+        switch (true) {
+            case Device.isPhone:  	$deviceType = 0; break;
+            case Device.isTablet: 	$deviceType = 1; break;
+            default:      			$deviceType = 2; break;}
+    })
+
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     // this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
     // this prevents having to do if statements that constantly get fucked with a lot.
     // tldr; "theoretically" should be more optimal and generally easier to write for.
-
-	export let data;
 </script>
 
 <svelte:head>
@@ -32,7 +42,7 @@
 <Background/>
 <MessengerPlugin/>
 
-{#if deviceType === 2}
+{#if $deviceType === 2}
 	<CometGenerator/>
 	<SpaceshipCursor/>
 {/if}

@@ -30,14 +30,7 @@ export { scrollPos, screenSize, bandWidths, screenType };
 
 // TODO: Internal device management & specific code application instances.
 
-let deviceType;
-
-import Device from "svelte-device-info";
-
-switch (true) {
-    case Device.isPhone:  deviceType = 0;   break;
-    case Device.isTablet: deviceType = 1;   break;
-    default:              deviceType = 2;   break;}
+const deviceType = writable(undefined);
 
 export { deviceType };
 

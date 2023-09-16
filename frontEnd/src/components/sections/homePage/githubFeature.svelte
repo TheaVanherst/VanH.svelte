@@ -3,7 +3,7 @@
 
     import Container from "../../generic/container.svelte";
     import Carousel from "$root/components/generic/carousel.svelte";
-	import GithubCard from "$root/components/sections/githubCard.svelte";
+	import GithubCard from "$root/components/sections/Embedded/githubCard.svelte";
 
     export let dataset = [];
 </script>

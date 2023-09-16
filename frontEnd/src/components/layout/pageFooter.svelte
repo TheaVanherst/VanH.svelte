@@ -9,7 +9,7 @@
 <div class="footer {$screenSize < 800 ? 'cropped' : ''} {$screenType < 3 ? 'mobile' : ''}">
 	<div class="left">
 		{#if $page.url.hostname !== "localhost"} <!-- dev check -->
-			<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
+<!--			<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>-->
 		{/if}
 	</div>
 	<div class="right">

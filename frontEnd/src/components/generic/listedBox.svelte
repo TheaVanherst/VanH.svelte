@@ -67,7 +67,5 @@
 
 			p {	font-weight: 	600;
 				color: 			black;
-				padding: 		7px 12px 6px 10px;}}
-		&:hover {
-			p {	color: 			white;}}}
+				padding: 		7px 12px 6px 10px;}}}
 </style>

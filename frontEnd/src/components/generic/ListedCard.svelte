@@ -59,10 +59,8 @@
 
 	.externalCitation {
 		margin:     	0 0 15px auto;
-		padding: 		3px 10px 3px 3px;
 
 		display:    flex;
-		width:      max-content;
 		background: var(--TransBlack);
 
 		p {

@@ -1,5 +1,5 @@
 <script>
-    import { page } from '$app/stores';
+    import { page }         from '$app/stores';
     import SidebarTexts 	from "../components/layout/sidebarTexts.svelte";
 </script>
 

@@ -1,11 +1,11 @@
 
-import sanityClient from "@sanity/client"
+import {createClient} from '@sanity/client'
 
-const client = sanityClient({
+const client = createClient({
     projectId: 'pvetsaze',
     dataset: 'production',
-    token: '', // or leave blank for unauthenticated usage
-    useCdn: true,
+    apiVersion: '2023-09-13',
+    useCdn: false
 });
 
 export default client;

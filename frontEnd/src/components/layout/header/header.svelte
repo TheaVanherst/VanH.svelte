@@ -11,12 +11,12 @@
 
 {#if $pageLoaded} <!-- this is a placeholder -->
 	<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
-		{#if deviceType === 2}
+		{#if $deviceType === 2}
 			<div class="desktop">
 				<SplashTexts/>
 				<ProfileBar/>
 			</div>
-		{:else if deviceType === 1}
+		{:else if $deviceType === 1}
 			<div class="tablet">
 				<div class="logo">
 					<img src="/branding/vanhlogo.webp">

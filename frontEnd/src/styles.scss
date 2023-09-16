@@ -19,8 +19,7 @@
 
 /* document formatting */
 
-* {
-	scrollbar-color:    var(--accent2) transparent;
+* { scrollbar-color:    var(--accent2) transparent;
 	scrollbar-width:    thin;
 
 	&::-webkit-scrollbar {
@@ -58,11 +57,9 @@ body {
 
 // cursor defaults
 
-body {
-	cursor: crosshair;}
-a { cursor: crosshair;}
-*:active {
-	cursor: crosshair;}
+body {      cursor: crosshair;}
+a {         cursor: crosshair;}
+*:active {  cursor: crosshair;}
 
 /* style formatting */
 
@@ -84,12 +81,9 @@ h1, h2, h3, h4, h5 {
 	margin:     0;
 	padding:    0;}
 
-h1 {font-size: 2.00rem; line-height: 2.00rem;
-	text-transform: uppercase;}
-h2 {font-size: 1.75rem; line-height: 1.75rem;
-	text-transform: uppercase;}
-h3 {font-size: 1.50rem; line-height: 1.50rem;
-	text-transform: uppercase;}
+h1 {font-size: 2.00rem; line-height: 2.00rem;   text-transform: uppercase;}
+h2 {font-size: 1.75rem; line-height: 1.75rem;   text-transform: uppercase;}
+h3 {font-size: 1.50rem; line-height: 1.50rem;   text-transform: uppercase;}
 h4 {font-size: 1.25rem; line-height: 1.25rem;}
 h5 {font-size: 1.10rem; line-height: 1.10rem;}
 

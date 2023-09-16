@@ -1,8 +1,9 @@
 
 import client from "$lib/sanityClient.js";
 
-export const load = async () => {
-    const allQueries = await client.fetch(`{
+
+export async function load ( ) {
+    const [allQueries] = await Promise.all([client.fetch(`{
         "characterData":
             *[ _type == 'character'][]{
                 ...,
@@ -15,12 +16,12 @@ export const load = async () => {
                         'sex': sex->emoji,
                         'age': age,
                         'slug': slug.current,
-                        'charIcon': charIcon,
+                        'charIcon': charIcon
                     },
                 'heights':
                     heights[]{
                         'loreType': loreType->loreType,
-                        'height': canonHeightLow,
+                        'height': canonHeightLow
                     }
             },
         "workshopData":
@@ -45,9 +46,8 @@ export const load = async () => {
                 itemName,
                 accentColour,
                 previewImage,
-                shortDesc,
-            },
-    }`);
-
-    return allQueries;
+                shortDesc
+            }
+    }`)]);
+    return allQueries
 }

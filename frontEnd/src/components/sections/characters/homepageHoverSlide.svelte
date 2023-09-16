@@ -20,10 +20,8 @@
 		</div>
 
 		{#if active}
-			<div class="infoPlate" transition:fly={{y: 50, duration: 400 }}>
-				<div class="scrollWrap">
-					<slot/>
-				</div>
+			<div class="infoPlate" transition:fly={{y: -50, duration: 400 }}>
+				<slot/>
 			</div>
 		{/if}
 	</div>
@@ -32,21 +30,17 @@
 <style lang="scss">
 	@import "../../../commonStyles";
 
-	* {	transition: transform .5s ease, opacity .5s ease; }
+	* {	transition: transform .5s ease; }
 
 	.hovered {
 		.titleH4 { 	@include rainbowTransition();}
-		.fade {		transform: scale(1.1);
-					opacity: 0.2;}}
+		.fade {		transform: scale(1.1);}}
 	.showcase,
 	.infoPlate {	height: 520px;}
 	.card {			margin: 0 0 30px 0;
 					height: 550px;
-		.showcase {	background: white;
-					display: 	flex;}}
+		.showcase {	display: 	flex;}}
 
 	.infoPlate {	position: 	absolute;
-					overflow-y:	scroll;
-		.scrollWrap {
-					padding: 12px 15px 10px 15px;}}
+					overflow-y:	scroll;}
 </style>

@@ -6,12 +6,12 @@ import { SquareIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'workshopItem',
-  title: 'Workshop Item',
+  title: 'Embedded Item',
   type: 'document',
   fields: [
     // TODO: User Data
     defineField({
-      name: 'itemName', title: 'Workshop Item Name',
+      name: 'itemName', title: 'Embedded Item Name',
       type: 'string',
     }),
     defineField({
@@ -26,7 +26,7 @@ export default defineType({
     }),
     defineField({
       name: 'url',
-      title: 'Workshop ID',
+      title: 'Embedded ID',
       type: 'string',
       validation: Rule => Rule.required()
     }),

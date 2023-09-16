@@ -11,7 +11,7 @@
 </script>
 
 <Container bottom={10}>
-	<Carousel>
+	<Carousel >
 		{#each dataset as char}
 			{#if char.NSFW && $nsfw || !char.NSFW}
 				<swiper-slide>
