@@ -1,5 +1,4 @@
 <script>
-    import Container 	from "../../generic/container.svelte";
     import Carousel from "$root/components/generic/carousel.svelte";
 
     import CharacterCardWrap 	from "$root/components/sections/characters/homepageHoverSlide.svelte";

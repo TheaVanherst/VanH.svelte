@@ -24,8 +24,8 @@
                 top: 0,
                 behavior: 'smooth'})
 
-            setTimeout(() => {
-                goto(newRoute)
+            setTimeout(async () => {
+                await goto(newRoute)
                 $transitioning = false;
             }, 250);}
 

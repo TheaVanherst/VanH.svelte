@@ -45,4 +45,34 @@
             y: transitionSpeed * $directionY}}>
 		<slot/>
 	</div>
+{:else}
+	<div class="centre">
+		<div class="plane tilt2">
+			<div class="circle decorationRing2"></div>
+		</div>
+	</div>
 {/if}
+
+<style lang="scss">
+	.centre {
+		width: 100%;
+
+		.plane {
+			margin: 50px auto;
+
+			border: 				6px solid var(--accent2);
+			border-left-color: 		transparent;
+			border-right-color: 	transparent;
+
+			width: 			40px;
+			height: 		40px;
+			border-radius: 	50%;
+
+			animation: 2s spin ease-in-out infinite;
+		}
+
+		@keyframes spin {
+			from {	transform: rotate(0deg);}
+			to {	transform: rotate(-360deg);}}
+	}
+</style>
