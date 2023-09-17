@@ -13,16 +13,14 @@
     export let dataset = undefined;
 </script>
 
-<Container border={10}>
-	<div>
-		<Carousel>
-			{#each dataset[0] as workshopItem}
-				<swiper-slide>
-					<WorkshopCard dataEntry={workshopItem}/>
-				</swiper-slide>
-			{/each}
-		</Carousel>
-	</div>
+<Container>
+	<Carousel>
+		{#each dataset[0] as workshopItem}
+			<swiper-slide>
+				<WorkshopCard dataEntry={workshopItem}/>
+			</swiper-slide>
+		{/each}
+	</Carousel>
 	<div class="navWrapper">
 		{#if deviceType < 2}
 			{#if moreToggle}

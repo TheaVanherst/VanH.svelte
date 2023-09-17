@@ -12,6 +12,7 @@ export default defineType({
     defineField({
       name: 'itemName', title: 'Embedded Item Name',
       type: 'string',
+      validation: Rule => Rule.required()
     }),
     defineField({
       name: 'url',

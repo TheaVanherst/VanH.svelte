@@ -1,8 +1,7 @@
 
 import blockContent from './blockContent';
 
-import post from './post';
-import category from './category';
+import donationTiers from './misc/donationTiers'
 
 import character from './characterData/character';
 import sexTags from './characterData/sexTags'
@@ -22,8 +21,7 @@ const dataTypes = [
   blockContent,
 
   // data types
-  post,
-    category,
+  donationTiers,
 
   character,
     sexTags,

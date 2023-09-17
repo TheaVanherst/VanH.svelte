@@ -47,7 +47,15 @@ export async function load ( ) {
                 accentColour,
                 previewImage,
                 shortDesc
-            }
+            },
+        "donationBuffs": 
+            *[_type == 'donationTier' && featured == true][] {
+                ...
+            },
+        "donationPerks":
+            *[_type == 'donationTier' && featured == false][] {
+                ...
+            },
     }`)]);
     return allQueries
 }

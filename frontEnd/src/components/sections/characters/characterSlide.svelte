@@ -10,19 +10,17 @@
     export let dataset = {};
 </script>
 
-<Container bottom={10}>
-	<Carousel >
-		{#each dataset as char}
-			{#if char.NSFW && $nsfw || !char.NSFW}
-				<swiper-slide>
-					<CharacterCardWrap data={char}>
-						<GenericInfo data={char}/>
-					</CharacterCardWrap>
-				</swiper-slide>
-			{/if}
-		{/each}
-	</Carousel>
-</Container>
+<Carousel>
+	{#each dataset as char}
+		{#if char.NSFW && $nsfw || !char.NSFW}
+			<swiper-slide>
+				<CharacterCardWrap data={char}>
+					<GenericInfo data={char}/>
+				</CharacterCardWrap>
+			</swiper-slide>
+		{/if}
+	{/each}
+</Carousel>
 
 <a class="citation externalCitation hover" href="https://twitter.com/stellaempyrea">
 	Big thanks to <span>Stella</span> for writing the character descriptions.

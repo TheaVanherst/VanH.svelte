@@ -34,7 +34,7 @@
 	};
 </script>
 
-<div class="plate shortBorder">
+<div class="plate regularBorder">
 	<div class="table">
 		<div class="cell">
 			<div class="characterIcon">
@@ -48,8 +48,8 @@
 	</div>
 </div>
 
-<div class="plate shortBorder">
-	<p class="title">Life</p>
+<div class="plate regularBorder">
+	<p class="subtitle">Life</p>
 	{#if data.sexuality || data.partners}
 		<div class="description">
 			{#if data.sexuality}
@@ -80,9 +80,9 @@
 	{/if}
 </div>
 
-<div class="plate shortBorder">
+<div class="plate regularBorder">
 	<div class="description">
-		<p class="title">Height</p>
+		<p class="subtitle">Height</p>
 		{#if data.heights}
 			{#each data.heights as heightset}
 				<p class="{heightset.loreType.replace(' ','')}Height">
@@ -93,17 +93,17 @@
 	</div>
 </div>
 
-<div class="plate shortBorder">
+<div class="plate regularBorder">
 	<div class="description">
-		<p class="title">Description</p>
+		<p class="subtitle">Description</p>
 		<p>{data.desc}</p>
 	</div>
 </div>
 
-<div class="plate shortBorder">
+<div class="plate regularBorder">
 	{#if data.creation}
 		<div class="description">
-			<p class="title">Design Iterations</p>
+			<p class="subtitle">Design Iterations</p>
 			<p id="creationDate"><span>Creation Date</span>: {dateBuilder(data.creation)}</p>
 			{#if data.prevcreation}
 				{#each data.prevcreation as iteration}
@@ -140,10 +140,7 @@
 	h4 { 		margin: 0 0 5px 0;}
 	p span { 	color: 	var(--accent2); }
 
-	.title {
-		font-family: 	"Playfair Display", serif;
-		font-weight: 	600;
-		font-size: 		13px;
+	.subtitle {
 		padding: 		0 0 5px 0;}
 
 	.description {
@@ -154,6 +151,5 @@
 	.plate {
 		background: white;
 		padding: 	10px;
-		margin: 	5px;
-	}
+		margin: 	5px;}
 </style>

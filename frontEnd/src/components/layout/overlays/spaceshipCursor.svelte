@@ -39,6 +39,8 @@
 
 <style lang="scss">
 	#spaceShipController {
+		pointer-events: none;
+
 		position: 	fixed;
 		width: 		max-content;
 		height: 	max-content;

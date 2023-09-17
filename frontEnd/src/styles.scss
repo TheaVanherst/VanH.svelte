@@ -95,6 +95,11 @@ p { font-size:      12px;
 		color:      var(--accent6);}
 	margin: 		0;}
 
+.subtitle {
+	font-family: 	"Playfair Display", serif;
+	font-weight: 	600;
+	font-size: 		13px;}
+
 .fancy {
 	font-size: 13px;
 	font-family: "Playfair Display", serif;}
@@ -109,11 +114,11 @@ span {
 		color:      var(--accent1);}}
 
 ul {
-	margin:             10px 0 0 0;
-	list-style-type:    square;
+	margin:  10px 0 10px 0;
+	padding: 0 0 0 15px;
 
 	li {
-		padding:        0 0 10px 5px;
+		padding:        0 0 4px 5px;
 
 		font-family:    "Helvetica", Sans-serif;
 		font-size:      12px;

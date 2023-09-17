@@ -1,14 +1,14 @@
 <script>
 	export let
 		border = 2,
-		bottom = undefined;
+		padding = [10,10,10,10]
 </script>
 
 <div
 	class="container wideBorder"
 	style="
-		{!!bottom ? `padding-bottom: -${10 - bottom}px; ` : ''}
-		{!!border ? `border-color: var(--accent${border})` : ''}">
+		{`padding: ${padding[0]}px ${padding[1]}px ${padding[2]}px ${padding[3]}px;`}
+		{`border-color: var(--accent${border})`}">
 			<slot/>
 </div>
 

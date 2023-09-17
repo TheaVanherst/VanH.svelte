@@ -36,7 +36,7 @@
 	* {	transition: .3s ease; }
 
 	.questionBlock {
-		padding: 	0 10px 8px 10px;
+		padding: 	0 5px 8px 5px;
 		overflow: 	hidden;
 
 		&:hover {
@@ -49,7 +49,7 @@
 			.a { img {
 					transform: scale(1.2);}}}
 
-		&:first-child {	padding-top: 	10px;}
+		&:first-child { padding-top: 5px;}
 		&:last-child {	padding-bottom: 4px;}
 
 		.q {
