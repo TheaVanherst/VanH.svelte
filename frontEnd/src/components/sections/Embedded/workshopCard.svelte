@@ -11,16 +11,13 @@
 	<div class="workshopItem regularBorder"
 		 class:hovered={hover}
 		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
-		<h4 class="titleH4">
-			{dataEntry.itemName}
-		</h4>
 
 		<div class="workshopPreview regularBorder">
 			<div class="regularBorder">
 				<SanityImage image={dataEntry.previewImage}/>
 			</div>
 
-			<FlyInCard icon={dataEntry.gameLogo} desc={dataEntry.shortDesc} hover={hover}/>
+			<FlyInCard icon={dataEntry.gameLogo} title={dataEntry.itemName} desc={dataEntry.shortDesc} hover={hover}/>
 		</div>
 	</div>
 </a>
@@ -32,6 +29,6 @@
 			position: 	relative;
 			overflow: 	hidden;
 			margin-bottom: 27px;
-			.regularBorder, .shortBorder {
+			.regularBorder {
 				overflow: hidden;}}}
 </style>

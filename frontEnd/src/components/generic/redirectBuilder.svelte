@@ -1,6 +1,7 @@
 <script>
-    import { directionProcessing, directory, rootPath, pageName, transitioning, nsfw
-    } from '$lib/controllers/accessibilityController.js';
+    import {
+        directionProcessing, directory, nsfw,
+        rootPath, pageName, transitioning} from '$lib/controllers/accessibilityController.js';
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
 

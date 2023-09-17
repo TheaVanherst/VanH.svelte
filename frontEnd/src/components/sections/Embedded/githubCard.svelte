@@ -10,12 +10,9 @@
 <a href="https://github.com/TheaVanherst/{data.url}" target="_blank">
 	<div class="slide regularBorder"
 		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
-		<h4 class="titleH4">
-			{data.itemName}
-		</h4>
 		<div class="thumbnail">
 			<SanityImage image={data.previewImage}/>
-			<FlyInCard desc={data.shortDesc} hover={hover}/>
+			<FlyInCard title={data.itemName} desc={data.shortDesc} hover={hover}/>
 		</div>
 		<div class="referral" style="background: var(--accent{data.accentColour})">
 			<p>TheaVanherst/{data.url}</p>
@@ -31,8 +28,7 @@
 	a:hover {
 		.referral {
 			background: var(--accent2)!important;
-			p {
-				color: white!important;}}}
+			p {	color: 	white!important;}}}
 
 	.slide {
 		overflow: hidden;
@@ -47,13 +43,13 @@
 	.referral { // fallback colour
 		padding: 	7px 9px 6px 9px;
 		overflow: 	hidden;
-		background: 	var(--accent9);
+		background: var(--accent9);
 
 		p {
 			color: 			black;
 			font-weight: 	600;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 1;
-			display: 		-webkit-box;
-			overflow: 		hidden;}}
+			display: 	-webkit-box;
+			overflow: 	hidden;}}
 </style>

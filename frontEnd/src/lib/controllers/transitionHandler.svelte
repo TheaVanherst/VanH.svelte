@@ -1,6 +1,6 @@
 <script>
-    import { fly } 		from 'svelte/transition';
-    import { cubicOut } from 'svelte/easing';
+    import { fly, scale } 	from 'svelte/transition';
+    import { cubicOut } 	from 'svelte/easing';
 
     import { afterNavigate } 	from "$app/navigation";
     import { onMount } 			from "svelte";
@@ -21,7 +21,7 @@
 
     export let refresh = '';
 
-    onMount(() => { // temp
+    onMount(async () => { // temp
         $pageLoaded = true;
         $nsfw = $page.params.sfw === "nsfw";
         $directory = "/home";
@@ -32,13 +32,13 @@
 
 {#if !$transitioning}
 	<div class="transitionWrapper"
-		 in:fly={{
-           	easing: 	cubicOut,
+		in:fly={{
+        	easing: 	cubicOut,
             duration:   300,
-            delay:      100,
+            delay:      200,
             x: transitionSpeed * $directionX,
             y: transitionSpeed * -$directionY}}
-		 out:fly={{
+		out:fly={{
            	easing: 	cubicOut,
             duration:   300,
             x: transitionSpeed * -$directionX,
@@ -46,7 +46,8 @@
 		<slot/>
 	</div>
 {:else}
-	<div class="centre">
+	<div class="centre"
+		transition:scale={{duration: 200}}>
 		<div class="plane tilt2">
 			<div class="circle decorationRing2"></div>
 		</div>
@@ -55,21 +56,20 @@
 
 <style lang="scss">
 	.centre {
+		position: absolute;
 		width: 100%;
 
 		.plane {
-			margin: 50px auto;
-
-			border: 				6px solid var(--accent2);
+			border-radius: 	50%;
+			border: 		6px solid var(--accent2);
 			border-left-color: 		transparent;
 			border-right-color: 	transparent;
 
-			width: 			40px;
-			height: 		40px;
-			border-radius: 	50%;
+			margin: 50px auto;
+			width: 	40px;
+			height: 40px;
 
-			animation: 2s spin ease-in-out infinite;
-		}
+			animation: 2s spin ease-in-out infinite;}
 
 		@keyframes spin {
 			from {	transform: rotate(0deg);}

@@ -42,13 +42,13 @@
 
 		animation: 	float 6s infinite ease-in-out;
 
-	> img {
-		position: 	relative;
-		max-width: 	280px;
-		display: 	flex;
+		> img {
+			position: 	relative;
+			max-width: 	280px;
+			display: 	flex;
 
-		top: 		50%;
-		transform: 	translatey(-50%);}}
+			top: 		50%;
+			transform: 	translatey(-50%);}}
 
 	.citation {	margin: 5px;
 	> p {	padding: 0 0 9px 0;

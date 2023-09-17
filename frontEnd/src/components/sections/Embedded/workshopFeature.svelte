@@ -26,8 +26,8 @@
 			{#if moreToggle}
 				<div class="mobileOffset" transition:slide>
 					<Carousel
-							customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
-							pagination={false}>
+						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
+						pagination={false}>
 						{#each dataset[1] as workshopItem}
 							{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
 								<swiper-slide>
@@ -38,14 +38,14 @@
 					</Carousel>
 				</div>
 				<div class="navigationButton vertical close"
-					 on:mousedown={() => moreToggle = false}
-					 in:slide out:slide>
+					on:mousedown={() => moreToggle = false}
+					in:slide out:slide>
 					<img src="/icons/upIcon.webp">
 				</div>
 			{:else}
 				<div class="navigationButton vertical open"
-					 on:mousedown={() => moreToggle = true}
-					 in:slide={{delay: 300 }} out:slide>
+					on:mousedown={() => moreToggle = true}
+					in:slide={{delay: 300 }} out:slide>
 					<img src="/icons/downIcon.webp">
 				</div>
 			{/if}
