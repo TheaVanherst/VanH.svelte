@@ -2,10 +2,10 @@
 // TODO: Misc
 
 const
-    websiteTag = "𝖁𝖆𝖓𝖍.𝖆𝖗𝖙",
+    websiteTag = "VanH.art", //𝖁𝖆𝖓𝖍.𝖆𝖗𝖙
     websiteDiv = "//",
-    loadingIco = "𝙻𝚘𝚊𝚍𝚒𝚗𝚐...",
-    pageName = writable("𝚆𝚎𝚕𝚌𝚘𝚖𝚎");
+    loadingIco = "Loading...", // 𝙻𝚘𝚊𝚍𝚒𝚗𝚐...
+    pageName = writable("Welcome to"); //𝚆𝚎𝚕𝚌𝚘𝚖𝚎
 
 export { websiteTag, websiteDiv, loadingIco, pageName }
 

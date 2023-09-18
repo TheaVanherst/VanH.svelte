@@ -15,9 +15,9 @@ const socialMedias =
 
 const navigationDirectories =
     [
-        {   title: "Home",  imagePath: undefined,   path: "/home",              pagePreview: "𝐇𝐨𝐦𝐞",},
-        {   title: "Slots", imagePath: undefined,   path: "/commissions",       pagePreview: "𝕊𝕝𝕠𝕥𝕤",},
-        {   title: "Carrd", imagePath: undefined,   path: "/carrd",             pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀",},
+        {   title: "Home",  imagePath: undefined,   path: "/home",              pagePreview: "𝙷𝚘𝚖𝚎𝚙𝚊𝚐𝚎 𝚊𝚝",},
+        {   title: "Slots", imagePath: undefined,   path: "/commissions",       pagePreview: "𝙲𝚘𝚖𝚖𝚒𝚜𝚜𝚒𝚘𝚗𝚜 𝚊𝚝",},
+        {   title: "Carrd", imagePath: undefined,   path: "/carrd",             pagePreview: "𝚂𝚘𝚌𝚒𝚊𝚕𝚜 𝚊𝚝",},
     ];
 
 export { socialMedias, navigationDirectories };

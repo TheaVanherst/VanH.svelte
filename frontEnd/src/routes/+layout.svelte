@@ -31,10 +31,75 @@
     // this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
     // this prevents having to do if statements that constantly get fucked with a lot.
     // tldr; "theoretically" should be more optimal and generally easier to write for.
+
+    let timeout;
+
+    let headerArray = [],
+		headerString = "",
+    	offsetArray = [];
+
+    const toUnicode = (str) => {
+        let returnArray = [];
+        let rawParse = str.split('');
+
+        let unicodeLoop = 0,
+        	trueLength = 0;
+
+        for (let i = 0; i < rawParse.length; i++) {
+            let parsedUnicode = rawParse[i].charCodeAt(0).toString(16).toUpperCase();
+
+			if (parsedUnicode.length > 2 && unicodeLoop < 1){
+                returnArray[trueLength] = 2;
+                unicodeLoop++
+			} else {
+                if (unicodeLoop !== 1) {
+                    returnArray[trueLength] = 1;}
+                trueLength++
+                unicodeLoop = 0;}}
+
+        return returnArray;};
+
+	const loadingClear = () => {
+        clearTimeout(timeout);};
+
+    const pageLoaded = () => {
+        clearTimeout(timeout);
+
+        headerArray = `${websiteTag} ${websiteDiv} ${$pageName} `;
+        offsetArray = toUnicode(`${headerArray}`);
+        headerArray = headerArray.split("");
+        headerString = headerArray.join("");
+
+        timeout = setTimeout(() => {
+            printUpdate();
+        },500);};
+
+    const offsetShift = (a) => {
+        let o = a[0]
+        a.shift();
+        a.push(o);};
+
+    const printUpdate = () => {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+            if (offsetArray[0] === 1){
+                offsetShift(offsetArray);
+                offsetShift(headerArray);}
+            else {
+                offsetShift(offsetArray);
+                offsetShift(headerArray);
+                offsetShift(headerArray);}
+
+            headerString = headerArray.join("");
+            printUpdate();
+        },500);}
+
+    $: $transitioning === true ? () => loadingClear() : pageLoaded();
 </script>
 
 <svelte:head>
-	<title>{$transitioning === true ? loadingIco : `${websiteTag} ${websiteDiv} ${$pageName}`}</title>
+	<title>{headerString}</title>
 </svelte:head>
 
 <svelte:window bind:innerWidth={ $screenSize } bind:scrollY={$scrollPos} />
