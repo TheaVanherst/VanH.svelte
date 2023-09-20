@@ -10,7 +10,7 @@
         external = 	false,
 		redirectName = undefined;
 
-    const redirectCheck = (e, s, n) => {
+    const redirectCheck = (e, n) => {
         let paraLength = Object.keys($page.params).length;
         let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
 
@@ -18,7 +18,7 @@
             $rootPath = e;
             $nsfw = $page.params.sfw === "nsfw";
 
-            directionProcessing($directory, newRoute, newRoute, paraLength);
+			directionProcessing($directory, newRoute, newRoute, paraLength);
             $transitioning = true;
 
             window.scrollTo({
@@ -37,6 +37,6 @@
 
 <a href={external ? '' : `https://www.${url}`}
    target={external ? '' : '_blank'}
-   on:mousedown|preventDefault={() => external ? redirectCheck(url, external, redirectName) : false}>
+   on:mousedown|preventDefault={() => external ? redirectCheck(url, redirectName) : false}>
 	<slot/>
 </a>

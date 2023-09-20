@@ -5,6 +5,8 @@
     import { afterNavigate } 	from "$app/navigation";
     import { onMount } 			from "svelte";
 
+    import LoadingFull from "$root/components/layout/loadingFull.svelte";
+
     import { navigating, page } from "$app/stores";
     import {
         directionProcessing, nsfw,
@@ -34,45 +36,34 @@
 	<div class="transitionWrapper"
 		in:fly={{
         	easing: 	cubicOut,
-            duration:   300,
-            delay:      200,
+            duration:   250,
+            delay:      250,
             x: transitionSpeed * $directionX,
             y: transitionSpeed * -$directionY}}
 		out:fly={{
            	easing: 	cubicOut,
-            duration:   300,
+            duration:   250,
             x: transitionSpeed * -$directionX,
             y: transitionSpeed * $directionY}}>
 		<slot/>
 	</div>
 {:else}
-	<div class="centre"
-		transition:scale={{duration: 200}}>
-		<div class="plane tilt2">
-			<div class="circle decorationRing2"></div>
+	<div class="centre" in:scale={{duration: 200}} out:scale={{duration: 200}}>
+		<div class="wrapper">
+			<LoadingFull/>
 		</div>
 	</div>
 {/if}
 
 <style lang="scss">
 	.centre {
+		top: 0;
 		position: absolute;
 		width: 100%;
 
-		.plane {
-			border-radius: 	50%;
-			border: 		6px solid var(--accent2);
-			border-left-color: 		transparent;
-			border-right-color: 	transparent;
-
+		.wrapper {
 			margin: 50px auto;
-			width: 	40px;
-			height: 40px;
-
-			animation: 2s spin ease-in-out infinite;}
-
-		@keyframes spin {
-			from {	transform: rotate(0deg);}
-			to {	transform: rotate(-360deg);}}
+			width: fit-content;
+		}
 	}
 </style>

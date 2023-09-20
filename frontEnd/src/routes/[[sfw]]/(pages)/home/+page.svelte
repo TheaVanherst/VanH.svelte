@@ -7,7 +7,7 @@
     import DonationFeature 	from "$root/components/sections/homePage/donationFeature.svelte";
     import QandaFeature 	from "$root/components/sections/homePage/qandaFeature.svelte";
 
-    export let data = {};
+    export let data;
 </script>
 
 <SidebarTexts titlecard="Characters" icon="aboutIcon.webp">

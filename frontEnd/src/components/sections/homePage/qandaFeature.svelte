@@ -8,9 +8,9 @@
 	{#each qaDatabase as qa}
 		<div class="questionBlock">
 			<div>
-				<p class="q">
+				<h5 class="q">
 					"{qa.question}"
-				</p>
+				</h5>
 				<p class="s citation">
 					{#if qa.submittedby}
 						Question submitted by: <span>{qa.submittedby}</span>
@@ -40,9 +40,7 @@
 		overflow: 	hidden;
 
 		&:hover {
-			.q {	color: 		white;
-					background: var(--accent2);
-					padding: 	1px 5px 2px 15px;}
+			.q {	padding: 	2px 5px 2px 15px;}
 			.s {	margin: 	-5px 60px 0 100px;
 				span {
 					animation: colorRotate 3s linear infinite;}}
@@ -54,14 +52,9 @@
 
 		.q {
 			margin: 		0 0 10px 0;
-			padding: 		1px 2px 2px 2px;
+			padding: 		2px 2px 2px 2px;
 			width: 			max-content;
 			border-radius: 	3px;
-
-			font-weight: 	700;
-			font-size: 		14px;
-			color: 			black;
-			background: 	var(--accent9);
 
 			&::selection {
 				color: 		var(--accent9);};}

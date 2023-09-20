@@ -27,12 +27,12 @@ const
                 prices: [["Lines","60"],["Flats","65"],["Simple Shading","80"]],
                 adPrices: [["Extra characters","35"],["Extra micros","15"]],
             },{
-                title: "Two tone",
+                title: "Full Render Solo",
                 description:
-                    "A drawing featuring a character of your own creation in a pose of my own choice, with highly refined lines and a " +
-                    "simplistic trademark background & attention to detail. Lines are refined, and lighting is done through a solid black fill.",
-                prices: [["Lines & fill","70"],["Flats & shine","80"],["More details / background","120"]],
-                adPrices: [["Extra characters","40"],["Extra micros","20"],["Detailed clothing","10"]]
+                    "A single full-render-esc drawing used across the majority of my artworks, typically full body in a simplistic pose with " +
+                    "a complimentary background trademark background. Lines are refined, and lighting is done through a single passing.",
+                prices: [["Lines","90"],["Flats","100"],["Simplistic shading","120"]],
+                adPrices: [["Extra characters","40"],["Extra micros","20"],["Complex background","30"]]
             }
         ],
 

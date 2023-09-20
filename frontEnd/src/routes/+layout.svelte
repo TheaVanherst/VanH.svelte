@@ -59,9 +59,6 @@
 
         return returnArray;};
 
-	const loadingClear = () => {
-        clearTimeout(timeout);};
-
     const pageLoaded = () => {
         clearTimeout(timeout);
 
@@ -72,7 +69,7 @@
 
         timeout = setTimeout(() => {
             printUpdate();
-        },500);};
+        },250);};
 
     const offsetShift = (a) => {
         let o = a[0]
@@ -95,11 +92,11 @@
             printUpdate();
         },500);}
 
-    $: $transitioning === true ? () => loadingClear() : pageLoaded();
+    $: $transitioning !== true && $deviceType === 2 ? pageLoaded() : false;
 </script>
 
 <svelte:head>
-	<title>{headerString}</title>
+	<title>{$transitioning ? loadingIco : headerString}</title>
 </svelte:head>
 
 <svelte:window bind:innerWidth={ $screenSize } bind:scrollY={$scrollPos} />
