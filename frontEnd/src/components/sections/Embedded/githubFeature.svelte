@@ -1,19 +1,29 @@
 <script>
-    import { screenType } from '$lib/controllers/accessibilityController.js';
-
     import Container from "../../generic/container.svelte";
-    import Carousel from "$root/components/generic/carousel.svelte";
 	import GithubCard from "$root/components/sections/Embedded/githubCard.svelte";
 
     export let dataset = [];
 </script>
 
-<Container padding={[10,10,0,10]}>
-	<Carousel customCalc={$screenType > 2 ? 2 : 1}>
+<Container>
+	<div class="table">
 		{#each dataset as dataEntry}
-			<swiper-slide>
+			<div class="cell">
 				<GithubCard data={dataEntry}/>
-			</swiper-slide>
+			</div>
 		{/each}
-	</Carousel>
+	</div>
 </Container>
+
+<style lang="scss">
+	.table {
+		box-sizing: border-box;
+		gap: 5px;
+		column-count: 2;
+
+		.cell {
+			display: inline-block;
+			width: 100%;
+		}
+	}
+</style>

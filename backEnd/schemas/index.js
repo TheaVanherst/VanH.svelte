@@ -1,6 +1,11 @@
 
 import blockContent from './blockContent';
 
+import questionAndAnswers from './misc/questionAndAnswers';
+import commissionData from './misc/commissionTerms';
+import commissionTypes from './misc/commissionTypes';
+import donationData from './misc/donationData'
+
 import donationTiers from './misc/donationTiers'
 
 import character from './characterData/character';
@@ -19,6 +24,12 @@ import githubItems from './alternateWorks/githubItems'
 const dataTypes = [
   // custom data types
   blockContent,
+
+  // customPages
+  questionAndAnswers,
+  commissionData,
+  commissionTypes,
+  donationData,
 
   // data types
   donationTiers,

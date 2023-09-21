@@ -1,6 +1,9 @@
 <script>
     import { goto } 		from '$app/navigation';
-    import { directionProcessing, screenSize, pageLoaded, transitioning } from "$lib/controllers/accessibilityController.js";
+    import {
+        directionProcessing, rootPath,
+        screenSize, pageLoaded, transitioning,
+    	} from "$lib/controllers/accessibilityController.js";
 
     import ProfileBar 		from "$root/components/layout/header/bannerAnimation.svelte";
     import LoadingFull 		from "../components/layout/loadingFull.svelte";
@@ -10,21 +13,21 @@
         setTimeout(async () => {
             let paraLength = Object.keys($page.params).length;
             let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
+            $rootPath = e;
 
-            await directionProcessing("/",newRoute,newRoute,paraLength);
+            await directionProcessing(e,newRoute,newRoute,paraLength);
             $transitioning = true;
 
             setTimeout(async () => {
                 $transitioning = false;
 
-                await goto("/carrd/");
+                await goto(e);
             }, 250);
 
         }, 50);
 	};
 
-    $: $screenSize !== 0 && $pageLoaded === true ? pageRedirect("/") : false;
-
+    $: $screenSize !== 0 && $pageLoaded === true ? pageRedirect("/home") : false;
 </script>
 
 <div id="loading">

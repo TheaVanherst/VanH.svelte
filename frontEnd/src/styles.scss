@@ -3,16 +3,16 @@
 
 /* Root variables formatting */
 :root {
-	--accent11: #0c0021;
-	--accent2:  #8c00ff;
-	--accent1:  #ff0582;
-	--accent4:  #ff00fb;
-	--accent5: #00ffff;
-	--accent6:  #00ff59;
-	--accent3:  #ffcc00;
-	--accent7:  #ff8800;
-	--accent10:  #48575a;
-	--accent9:  #ffffff;
+	--accent11: #0c0021; --textAccent11: #fff;
+	--accent2:  #8c00ff; --textAccent2:  #fff;
+	--accent1:  #ff0582; --textAccent1:  #fff;
+	--accent4:  #ff00fb; --textAccent4:  #000;
+	--accent5:  #00ffff; --textAccent5:  #000;
+	--accent6:  #00ff59; --textAccent6:  #000;
+	--accent3:  #ffcc00; --textAccent3:  #000;
+	--accent7:  #ff8800; --textAccent7:  #000;
+	--accent10: #48575a; --textAccent10: #fff;
+	--accent9:  #ffffff; --textAccent9:  #000;
 	--TransBlack: rgba(0, 0, 0, 0.6);
 	--TransWhite: rgba(255, 255, 255, 0.9);
 }

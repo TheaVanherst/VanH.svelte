@@ -17,7 +17,6 @@
     import { scrollPos, bandWidths, screenSize, screenType, deviceType } from "$lib/controllers/accessibilityController.js";
     import { websiteTag, websiteDiv, transitioning, loadingIco, pageName } from "$lib/controllers/accessibilityController.js";
 
-
     import Device from "svelte-device-info";
 
     onMount(async () => {

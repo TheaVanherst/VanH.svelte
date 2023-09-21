@@ -1,7 +1,7 @@
 <script>
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
-    import DonationCard from "$root/components/sections/homePage/donationCard.svelte";
+    import DonationCard from "$root/components/sections/generic/sectionListCard.svelte";
 
     import PersonalMessage from "$root/components/sections/homePage/personalMessage.svelte";
 

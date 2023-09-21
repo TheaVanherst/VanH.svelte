@@ -45,7 +45,8 @@ export async function load () {
                 itemName,
                 accentColour,
                 previewImage,
-                shortDesc
+                shortDesc,
+                'slug': slug.current,
             },
         "donationBuffs":
             *[_type == 'donationTier' && featured == true][] {
@@ -54,6 +55,25 @@ export async function load () {
         "donationPerks":
             *[_type == 'donationTier' && featured == false][] {
                 ...
+            },
+        "qAndA":
+            *[_type == 'questionAnswer'][] {
+                answerer->{
+                        userPortrait
+                    },
+                questions[]{
+                    answer,
+                    question,
+                    ...,
+                    'user': author->{
+                        userPortrait,
+                        handle
+                    },
+                },
+                'anon': fallback->{
+                    userPortrait,
+                    handle
+                },
             },
     }`)]);
 

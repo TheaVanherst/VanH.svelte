@@ -9,11 +9,11 @@
 		lineCount = 2;
 
     export let
-		hover = false;
+		hover = false
 </script>
 
 {#if hover}
-	<div class="transWrap" transition:fly={{y:-50}}>
+	<div class="card" transition:fly={{y:-50}}>
 		<div class="container shortBorder">
 			<h5>{title}</h5>
 
@@ -28,17 +28,18 @@
 		</div>
 	</div>
 {:else}
-
 {/if}
 
 <style lang="scss">
-	.transWrap {
+	.card {
 		position: 	absolute;
+
 		flex: 		100%;
 		bottom: 	0;
 		width: 		100%;
 
 		.container {
+			overflow: 	hidden;
 			background: white;
 			padding: 	5px;
 			margin: 	5px;}}

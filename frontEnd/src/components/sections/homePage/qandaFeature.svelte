@@ -1,30 +1,41 @@
 <script>
-	import qaDatabase 	from "$lib/databases/qaDatabase.js";
-
+	import SanityImage 	from "$lib/serializer/sanityImage.svelte";
     import Container 	from "../../generic/container.svelte";
+
+    export let dataset = [];
 </script>
 
 <Container>
-	{#each qaDatabase as qa}
-		<div class="questionBlock">
-			<div>
-				<h5 class="q">
-					"{qa.question}"
-				</h5>
-				<p class="s citation">
-					{#if qa.submittedby}
-						Question submitted by: <span>{qa.submittedby}</span>
-					{:else}
-						Question submitted by anon.
-					{/if}
-				</p>
+	{#each dataset[0].questions as qa}
+		<div class="row">
+			<div class="profileIcon anon">
+				{#if qa.user}
+					<SanityImage image={qa.user.userPortrait}/>
+				{:else}
+					<SanityImage image={dataset[0].anon.userPortrait}/>
+				{/if}
 			</div>
-			<div class="a fancy">
-				<img class="profileIcon"
-						src="/branding/vahnPfp.webp">
-				<p class="quote fancy">
-					{qa.answer}
-				</p>
+			<div class="questionBlock">
+				<div>
+					<div class="q">
+						<h5>"{qa.question}"</h5>
+					</div>
+					<p class="s citation">
+						{#if qa.user}
+							Question submitted by: <span>{qa.user.handle}</span>
+						{:else}
+							Question submitted by {dataset[0].anon.handle}.
+						{/if}
+					</p>
+				</div>
+				<div class="a">
+					<p class="quote fancy">
+						{qa.answer}
+					</p>
+				</div>
+			</div>
+			<div class="profileIcon thea">
+				<SanityImage image={dataset[0].answerer.userPortrait}/>
 			</div>
 		</div>
 	{/each}
@@ -35,34 +46,32 @@
 
 	* {	transition: .3s ease; }
 
+	.row:hover {
+		.profileIcon {
+			transform: scale(1.2);}
+		.q {margin: 4px 0 4px 20px;}
+		.s {margin: 2px 0 0 75px;}
+	}
+
+	.profileIcon {
+		aspect-ratio: 	1/1;
+		display: 		inline-table;
+		background: 	white;
+
+		&.thea {
+			margin: auto 0;}}
+
+	.row {
+		display: 	flex;
+		gap: 		10px;
+		padding: 5px;
+
+		.questionBlock {
+			width: 	100%;}}
+
 	.questionBlock {
-		padding: 	0 5px 8px 5px;
-		overflow: 	hidden;
-
-		&:hover {
-			.q {	padding: 	2px 5px 2px 15px;}
-			.s {	margin: 	-5px 60px 0 100px;
-				span {
-					animation: colorRotate 3s linear infinite;}}
-			.a { img {
-					transform: scale(1.2);}}}
-
-		&:first-child { padding-top: 5px;}
-		&:last-child {	padding-bottom: 4px;}
-
-		.q {
-			margin: 		0 0 10px 0;
-			padding: 		2px 2px 2px 2px;
-			width: 			max-content;
-			border-radius: 	3px;
-
-			&::selection {
-				color: 		var(--accent9);};}
-
-		.s {	margin: 	-5px 60px 0 50px;
-				width: 		max-content;}
-		.a {	text-align: right;
-				margin: 	-6px 40px 0 10px;
-			img {	position: 	absolute;}
-			p {		margin:		0 11px 0 0;}}}
+		.q {margin: 4px 4px 4px 4px;}
+		.s {margin: 2px 0 0 15px;}
+		.a {margin: 4px 4px 4px 4px;}
+	}
 </style>

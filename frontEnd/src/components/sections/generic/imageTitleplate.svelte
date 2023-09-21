@@ -2,9 +2,14 @@
     import { fly } from 'svelte/transition';
     import SanityImage from "$lib/serializer/sanityImage.svelte";
 
-    export let data
+    export let
+		image = "",
+		title = "",
+		subtitle = "";
 
     let active = false;
+    export let
+		hoverable = false;
 </script>
 
 <div class="card wideBorder {active ? 'hovered' : ''}"
@@ -14,17 +19,22 @@
 	<div class="showcase imageWrapper wideBorder">
 		<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 		<div class="fade">
-			<SanityImage image="{data.fullRender}"/>
+			<SanityImage image={image}/>
 		</div>
 
-		{#if active}
+		{#if active && hoverable}
 			<div class="infoPlate" transition:fly={{y: -50, duration: 400 }}>
 				<slot/>
 			</div>
 		{:else}
+
 			<div class="titleCard" transition:fly={{y: 50, duration: 400 }}>
-				<h4>{data.nickName}</h4>
-				<p>{data.job}</p>
+				{#if title}
+					<h4>{title}</h4>
+				{/if}
+				{#if subtitle}
+					<p>{subtitle}</p>
+				{/if}
 			</div>
 		{/if}
 	</div>

@@ -1,7 +1,7 @@
 <script>
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 
-	import CharacterFeature from "$root/components/sections/characters/characterSlide.svelte";
+	import CharacterFeature from "$root/components/sections/characters/characterCard.svelte";
     import WorkshopFeature 	from "$root/components/sections/Embedded/workshopFeature.svelte";
     import GithubFeature 	from "$root/components/sections/Embedded/githubFeature.svelte";
     import DonationFeature 	from "$root/components/sections/homePage/donationFeature.svelte";
@@ -27,5 +27,5 @@
 </SidebarTexts>
 
 <SidebarTexts titlecard="Q&A" icon="commentIcon.webp">
-	<QandaFeature dataset=""/>
+	<QandaFeature dataset={data.qAndA}/>
 </SidebarTexts>

@@ -11,11 +11,13 @@
 	<div class="slide regularBorder"
 		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
 		<div class="thumbnail">
-			<SanityImage image={data.previewImage}/>
+			<div class="image">
+				<SanityImage image={data.previewImage}/>
+			</div>
 			<FlyInCard title={data.itemName} desc={data.shortDesc} hover={hover}/>
 		</div>
 		<div class="referral" style="background: var(--accent{data.accentColour})">
-			<p>TheaVanherst/{data.url}</p>
+			<p>TheaVanherst/{data.slug}</p>
 		</div>
 	</div>
 </a>
@@ -32,13 +34,17 @@
 
 	.slide {
 		overflow: hidden;
-		margin-bottom: 27px;
 
 		.thumbnail {
 			position: 	relative;
 			overflow: 	hidden;
-			max-height: 250px;
-			min-height: 200px;}}
+			max-height: 180px;
+			min-height: 150px;
+
+			.image {
+				height: 250px;
+			}
+		}}
 
 	.referral { // fallback colour
 		padding: 	7px 9px 6px 9px;

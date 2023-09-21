@@ -5,6 +5,8 @@
     import client from "$lib/sanityClient.js";
     export let image = null;
 
+    $: image;
+
     let loadCheck = undefined;
     let loaded = 	false;
 
@@ -17,7 +19,7 @@
         return imageUrlBuilder(client).image(source);};
 </script>
 
-{#if image?.asset}
+{#if image && image?.asset}
 	<div class:loaded>
 		<img loading="lazy"
 			 src =   { urlFor(image).width(1200) }

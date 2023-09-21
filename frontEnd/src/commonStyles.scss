@@ -80,11 +80,11 @@ a { transition: .5s ease; //fallback transition
 	&::before,
 	&::after {
 		position: 	absolute;
-		font-size: 	50px;}
+		font-size: 	40px;}
 	&::before {
 		top:        0;
 		left: 		0;
-		margin: 	5px 0 0 -12px;
+		margin: 	7px 0 0 -12px;
 		content: 	open-quote;}
 	&::after {
 		bottom:     0;
