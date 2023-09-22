@@ -1,15 +1,14 @@
 <script>
-    import { screenType } 	from '$lib/controllers/accessibilityController.js';
-
+    // import { screenType } 	from '$lib/controllers/accessibilityController.js';
     import { nsfw } from "$lib/controllers/accessibilityController.js";
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
-    import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
 
     import SectionListCard from "$root/components/sections/generic/sectionListCard.svelte";
 
-    import { exampleArr } from "$lib/databases/commissionDetails.js";
+    // import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
+    // import { exampleArr } from "$lib/databases/commissionDetails.js";
 
     import { register } from 'swiper/element/bundle';
 

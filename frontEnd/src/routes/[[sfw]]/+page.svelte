@@ -6,7 +6,7 @@
     	} from "$lib/controllers/accessibilityController.js";
 
     import ProfileBar 		from "$root/components/layout/header/bannerAnimation.svelte";
-    import LoadingFull 		from "../components/layout/loadingFull.svelte";
+    import LoadingFull 		from "../../components/layout/loadingFull.svelte";
     import { page } from "$app/stores";
 
     const pageRedirect = async (e) => {

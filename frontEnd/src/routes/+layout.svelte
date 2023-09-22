@@ -13,8 +13,20 @@
     import Header 				from "$root/components/layout/header/header.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import { scrollPos, bandWidths, screenSize, screenType, deviceType, transitioning } from "$lib/controllers/accessibilityController.js";
+    import { scrollPos,bandWidths, screenSize, screenType, deviceType,
+        transitioning, pageLoaded } from "$lib/controllers/accessibilityController.js";
     import { pageTitlebar, loadingIco, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
+
+    import { onMount } from "svelte";
+    import Device from "svelte-device-info";
+
+    onMount(async () => { // dumb page setup stuff
+        $pageLoaded = 	true;
+        switch (true) {
+            case Device.isPhone:  	$deviceType = 0; break;
+            case Device.isTablet: 	$deviceType = 1; break;
+            default:      			$deviceType = 2; break;}
+    });
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     $: $transitioning !== true && $deviceType === 2 ? titlebarScroller(`${websiteTag} ${$pageName} `) : false;

@@ -5,7 +5,7 @@
 
     import PersonalMessage from "$root/components/sections/homePage/personalMessage.svelte";
 
-    export let global = undefined, tiers = undefined;
+    export let global = undefined, tiers = undefined, personal = undefined;
 </script>
 
 <div class="table" class:mobile={$screenType === 1}>
@@ -26,7 +26,7 @@
 	</div>
 </div>
 
-<PersonalMessage/>
+<PersonalMessage message={personal}/>
 
 <style lang="scss">
 	.table {

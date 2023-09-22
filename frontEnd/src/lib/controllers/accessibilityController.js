@@ -11,9 +11,7 @@ import { writable } from "svelte/store";
 const
     scrollPos = writable(0),
     screenSize = writable(0),
-    screenType = writable(0);
-
-const
+    screenType = writable(0),
     bandWidths = [850, 650, 450]; //pre-determined bandwidth sizes
 
 export { scrollPos, screenSize, bandWidths, screenType };
@@ -26,10 +24,12 @@ export { deviceType };
 
 // TODO: Internal directory and status management
 
-const directory =   writable("/");
-const rootPath =    writable("/")
-const pageLoaded =  writable(false);
-const transitioning = writable(false);
+const
+    directory =   writable("/"),
+    rootPath =    writable("/");
+const
+    pageLoaded =  writable(false),
+    transitioning = writable(false);
 
 export { directory, rootPath, pageLoaded, transitioning };
 
@@ -39,12 +39,13 @@ import { navigationDirectories } from "$lib/controllers/navigationDirectories.js
 
 const
     urlStoreArr =   writable([""]), // handles the transition direction
-    directionX =    writable(0), // handles the transition direction
-    directionY =    writable(0); // handles the transition direction
+    direction =    writable([0,0]); // handles the transition direction
 
-export { urlStoreArr, directionX, directionY }
+export { urlStoreArr, direction }
 
-const nsfw = writable(false);
+const
+    nsfw = writable(false);
+
 export { nsfw }
 
 const
@@ -69,8 +70,7 @@ const
         offsets[1] = pyo > cyo ? 1 : -1;} // upwards / downwards
 
     // sets writable memory for fetching.
-    directionY.set(offsets[0]);
-    directionX.set(offsets[1]);
+    direction.set([offsets[0],offsets[1]]);
 
     // updates local url management.
     urlStoreArr.set(cfr);

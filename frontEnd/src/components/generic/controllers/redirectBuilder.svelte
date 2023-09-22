@@ -2,7 +2,7 @@
     import { directionProcessing, directory, nsfw, rootPath, transitioning} from '$lib/controllers/accessibilityController.js';
     import { pageName } from "$lib/controllers/titlebarScoller.js";
 
-    import { goto } from "$app/navigation";
+    import { goto, preloadData } from "$app/navigation";
     import { page } from "$app/stores";
 
     export let
@@ -18,25 +18,30 @@
             $rootPath = e;
             $nsfw = $page.params.sfw === "nsfw";
 
+            preloadData(e);
 			directionProcessing($directory, newRoute, newRoute, paraLength);
             $transitioning = true;
 
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'})
+                behavior: 'smooth'});
 
             setTimeout(async () => {
-                await goto(newRoute)
+                await goto(newRoute);
                 $transitioning = false;
             }, 250);}
 
     	if (n) {
-            $pageName = n;}
-    }
+            $pageName = n;}}
 </script>
 
-<a href={external ? '' : `https://www.${url}`}
-   target={external ? '' : '_blank'}
-   on:mousedown|preventDefault={() => external ? redirectCheck(url, redirectName) : false}>
-	<slot/>
-</a>
+{#if external}
+	<a href="" target=""
+	   on:mousedown|preventDefault={() => redirectCheck(url, redirectName)}>
+		<slot/>
+	</a>
+{:else}
+	<a href="https://www.${url}" target="_blank" data-sveltekit-preload-data>
+		<slot/>
+	</a>
+{/if}

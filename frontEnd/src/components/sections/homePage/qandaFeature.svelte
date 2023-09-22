@@ -64,7 +64,7 @@
 	.row {
 		display: 	flex;
 		gap: 		10px;
-		padding: 5px;
+		padding: 	5px;
 
 		.questionBlock {
 			width: 	100%;}}
@@ -72,6 +72,7 @@
 	.questionBlock {
 		.q {margin: 4px 4px 4px 4px;}
 		.s {margin: 2px 0 0 15px;}
-		.a {margin: 4px 4px 4px 4px;}
+		.a {margin: 4px 4px 4px 4px;
+			text-align: right;}
 	}
 </style>

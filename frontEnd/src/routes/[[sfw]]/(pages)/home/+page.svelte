@@ -23,7 +23,7 @@
 </SidebarTexts>
 
 <SidebarTexts titlecard="Support" icon="kofiLogo.webp">
-	<DonationFeature global={data.donationData[0].globalTiers} tiers={data.donationData[0].tiers} />
+	<DonationFeature global={data.donationData[0].globalTiers} tiers={data.donationData[0].tiers} personal={data.donationData[0].personalMessage} />
 </SidebarTexts>
 
 <SidebarTexts titlecard="Q&A" icon="commentIcon.webp">

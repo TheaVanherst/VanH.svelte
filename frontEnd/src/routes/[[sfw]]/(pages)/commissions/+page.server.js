@@ -1,6 +1,4 @@
 
-export const prerender = false;
-
 import client from "$lib/sanityClient.js";
 
 export async function load () {
