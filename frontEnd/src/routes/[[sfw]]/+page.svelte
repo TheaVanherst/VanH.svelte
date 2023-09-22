@@ -28,6 +28,8 @@
 	};
 
     $: $screenSize !== 0 && $pageLoaded === true ? pageRedirect("/home") : false;
+
+    export let data;
 </script>
 
 <div id="loading">

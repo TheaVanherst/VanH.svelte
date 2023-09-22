@@ -2,7 +2,7 @@
     import { directionProcessing, directory, nsfw, rootPath, transitioning} from '$lib/controllers/accessibilityController.js';
     import { pageName } from "$lib/controllers/titlebarScoller.js";
 
-    import { goto, preloadData } from "$app/navigation";
+    import { goto } from "$app/navigation";
     import { page } from "$app/stores";
 
     export let
@@ -12,13 +12,13 @@
 
     const redirectCheck = (e, n) => {
         let paraLength = Object.keys($page.params).length;
-        let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}/` : e;
+        let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}` : e;
 
         if (newRoute !== $directory && !$transitioning) {
             $rootPath = e;
+            console.log($directory,newRoute);
             $nsfw = $page.params.sfw === "nsfw";
 
-            preloadData(e);
 			directionProcessing($directory, newRoute, newRoute, paraLength);
             $transitioning = true;
 
@@ -41,7 +41,7 @@
 		<slot/>
 	</a>
 {:else}
-	<a href="https://www.${url}" target="_blank" data-sveltekit-preload-data>
+	<a href="https://www.{url}" target="_blank" data-sveltekit-preload-data>
 		<slot/>
 	</a>
 {/if}
