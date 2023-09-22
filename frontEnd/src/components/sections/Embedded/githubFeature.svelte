@@ -21,6 +21,8 @@
 		gap: 5px;
 		column-count: 2;
 
+		margin-bottom: -5px; // FUCK YOU.
+
 		.cell {
 			display: inline-block;
 			width: 100%;}}
