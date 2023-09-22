@@ -36,7 +36,6 @@
             case Device.isTablet: 	$deviceType = 1; break;
             default:      			$deviceType = 2; break;}
     });
-    $: console.log($directory)
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     $: $transitioning !== true && $deviceType === 2 ? titlebarScroller(`${websiteTag} ${$pageName} `) : false;

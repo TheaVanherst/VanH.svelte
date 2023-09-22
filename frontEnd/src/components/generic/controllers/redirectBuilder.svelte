@@ -16,7 +16,6 @@
 
         if (newRoute !== $directory && !$transitioning) {
             $rootPath = e;
-            console.log($directory,newRoute);
             $nsfw = $page.params.sfw === "nsfw";
 
 			directionProcessing($directory, newRoute, newRoute, paraLength);
