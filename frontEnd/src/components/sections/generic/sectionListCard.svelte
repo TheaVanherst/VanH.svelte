@@ -1,23 +1,28 @@
 <script>
     import SanityImage from "$lib/serializer/sanityImage.svelte";
 
-	export let data
+	export let
+        featured = false,
+        title = undefined, description = undefined,
+        list = undefined, banner = undefined;
 </script>
 
 <div class="card wideBorder"
-	 class:black={data.featured}>
+	 class:black={featured}>
 	<div class="banner">
-		<div class="img">
-			<SanityImage image={data.bannerImage}/>
-		</div>
+		{#if banner}
+			<div class="img">
+				<SanityImage image={banner}/>
+			</div>
+		{/if}
 		<div class="titleCard">
-			<h5>{data.tierName}</h5>
-			<p>{data.tierDesc}</p>
+			<h5>{title}</h5>
+			<p>{description}</p>
 		</div>
 	</div>
 
 	<ul>
-		{#each data.tierPerks as bonus}
+		{#each list as bonus}
 			<li>{bonus}</li>
 		{/each}
 	</ul>
@@ -72,7 +77,5 @@
 		&:not(.black) {
 			&:hover {
 				.img {
-					transform: scale(1.1);}}
-		}
-	}
+					transform: scale(1.1);}}}}
 </style>

@@ -1,6 +1,6 @@
 <script>
     import SanityImage from "$lib/serializer/sanityImage.svelte";
-    import FlyInCard from "$root/components/sections/Embedded/flyInCard.svelte";
+    import FlyInCard from "$root/components/sections/Embedded/flyInEmbedCard.svelte";
 
 	export let dataEntry
 

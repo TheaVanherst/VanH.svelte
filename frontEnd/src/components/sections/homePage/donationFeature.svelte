@@ -1,23 +1,26 @@
 <script>
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
-    import DonationCard from "$root/components/sections/generic/sectionListCard.svelte";
+    import SectionListCard from "$root/components/sections/generic/sectionListCard.svelte";
 
     import PersonalMessage from "$root/components/sections/homePage/personalMessage.svelte";
 
-    export let donationData = undefined
+    export let global = undefined, tiers = undefined;
 </script>
 
 <div class="table" class:mobile={$screenType === 1}>
 	<div class="col">
-		{#each donationData.global as global}
-			<DonationCard data={global}/>
-		{/each}
+		<SectionListCard
+            featured={true}
+            title={global.tierName} description={global.tierDesc}
+            list={global.tierPerks} banner={global.bannerImage}/>
 	</div>
 	<div class="col">
-		{#each donationData.perks as perkType}
+		{#each tiers as perkType}
 			<a class="row" target="_blank" href="https://ko-fi.com/theavanherst">
-				<DonationCard data={perkType}/>
+				<SectionListCard
+					title={perkType.tierName} description={perkType.tierDesc}
+					list={perkType.tierPerks} banner={perkType.bannerImage}/>
 			</a>
 		{/each}
 	</div>
@@ -37,10 +40,7 @@
 			gap: 		15px;
 			width: 		50%;
 			.row {
-				display: 	flex;
-				.card {
-					display: 	inline;
-					width: 		100%;}}}
+				display: 	flex;}}
 
 		&.mobile {
 			display: grid;

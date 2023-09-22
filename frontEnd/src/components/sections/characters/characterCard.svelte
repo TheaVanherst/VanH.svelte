@@ -1,5 +1,5 @@
 <script>
-    import Carousel from "$root/components/generic/carousel.svelte";
+    import Carousel from "$root/components/generic/controllers/carousel.svelte";
 
     import ImageTitleplate 	from "$root/components/sections/generic/imageTitleplate.svelte";
     import GenericInfo 			from "$root/components/sections/characters/characterInfoPlate.svelte";

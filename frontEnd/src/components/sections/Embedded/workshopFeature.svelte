@@ -1,8 +1,8 @@
 <script>
     import { slide } from 'svelte/transition';
 
-    import Carousel 		from "$root/components/generic/carousel.svelte";
-    import Container 		from "$root/components/generic/container.svelte";
+    import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
+    import Container 		from "$root/components/generic/containers/container.svelte";
     import WorkshopCard 	from "$root/components/sections/Embedded/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/sections/Embedded/workshopSnippet.svelte";
 

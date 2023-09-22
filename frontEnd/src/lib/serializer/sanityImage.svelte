@@ -39,7 +39,7 @@
 		display:    flex; // fixes an issue with the padding at the bottom of images
 		position:   relative;
 
-		//&:not(.loaded) {
+		//&:not(.loaded) { // this needs to be removed or cleaned up to fix lag.
 		//	animation-duration: 2s;
 		//	animation-fill-mode: forwards;
 		//	animation-iteration-count: infinite;

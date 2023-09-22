@@ -1,5 +1,5 @@
 <script>
-    import Container from "../../generic/container.svelte";
+    import Container from "../../generic/containers/container.svelte";
 	import GithubCard from "$root/components/sections/Embedded/githubCard.svelte";
 
     export let dataset = [];
@@ -23,7 +23,5 @@
 
 		.cell {
 			display: inline-block;
-			width: 100%;
-		}
-	}
+			width: 100%;}}
 </style>

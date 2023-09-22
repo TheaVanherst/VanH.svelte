@@ -13,11 +13,13 @@ const socialMedias =
         {   title: "BC",        name: "Bandcamp",       imagePath:"bandcampLogo",       path: "bandcamp.com/theavanherst"},
     ];
 
+const redirector = " 𝚊𝚝"
+
 const navigationDirectories =
     [
-        {   title: "Home",  imagePath: undefined,   path: "/home",              pagePreview: "𝐇𝐨𝐦𝐞 at",},
-        {   title: "Slots", imagePath: undefined,   path: "/commissions",       pagePreview: "𝕊𝕝𝕠𝕥𝕤 at",},
-        {   title: "Carrd", imagePath: undefined,   path: "/carrd",             pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀 at",},
+        {   title: "Home",  imagePath: undefined,   path: "/home",              pagePreview: "𝐇𝐨𝐦𝐞" + redirector,},
+        {   title: "Slots", imagePath: undefined,   path: "/commissions",       pagePreview: "𝕊𝕝𝕠𝕥𝕤" + redirector,},
+        {   title: "Carrd", imagePath: undefined,   path: "/carrd",             pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector,},
     ];
 
 export { socialMedias, navigationDirectories };

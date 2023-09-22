@@ -1,11 +1,10 @@
 <script>
     import '../styles.scss';
 
-    import { onMount } from 'svelte';
-
     import { fly } 				from 'svelte/transition';
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
+    import { titlebarScroller } from "$lib/controllers/titlebarScoller.js";
     import SpaceshipCursor 		from "$root/components/layout/overlays/spaceshipCursor.svelte";
     import Background 			from "$root/components/layout/overlays/background.svelte";
     import MessengerPlugin 		from "$root/components/layout/overlays/messengerPlugin.svelte";
@@ -14,91 +13,18 @@
     import Header 				from "$root/components/layout/header/header.svelte";
     import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import { scrollPos, bandWidths, screenSize, screenType, deviceType } from "$lib/controllers/accessibilityController.js";
-    import { websiteTag, websiteDiv, transitioning, loadingIco, pageName } from "$lib/controllers/accessibilityController.js";
-
-    import Device from "svelte-device-info";
-
-    onMount(async () => {
-        switch (true) {
-            case Device.isPhone:  	$deviceType = 0; break;
-            case Device.isTablet: 	$deviceType = 1; break;
-            default:      			$deviceType = 2; break;}
-    })
+    import { scrollPos, bandWidths, screenSize, screenType, deviceType, transitioning } from "$lib/controllers/accessibilityController.js";
+    import { pageTitlebar, loadingIco, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
-    // this deals with the bandwidth types via. bandWidths and simplifies it as a global value.
-    // this prevents having to do if statements that constantly get fucked with a lot.
-    // tldr; "theoretically" should be more optimal and generally easier to write for.
-
-    let timeout;
-
-    let headerArray = [],
-		headerString = "",
-    	offsetArray = [];
-
-    const toUnicode = (str) => {
-        let returnArray = [];
-        let rawParse = str.split('');
-
-        let unicodeLoop = 0,
-        	trueLength = 0;
-
-        for (let i = 0; i < rawParse.length; i++) {
-            let parsedUnicode = rawParse[i].charCodeAt(0).toString(16).toUpperCase();
-
-			if (parsedUnicode.length > 2 && unicodeLoop < 1){
-                returnArray[trueLength] = 2;
-                unicodeLoop++
-			} else {
-                if (unicodeLoop !== 1) {
-                    returnArray[trueLength] = 1;}
-                trueLength++
-                unicodeLoop = 0;}}
-
-        return returnArray;};
-
-    const pageLoaded = () => {
-        clearTimeout(timeout);
-
-        headerArray = `${websiteTag} ${websiteDiv} ${$pageName} `;
-        offsetArray = toUnicode(`${headerArray}`);
-        headerArray = headerArray.split("");
-        headerString = headerArray.join("");
-
-        timeout = setTimeout(() => {
-            printUpdate();
-        },250);};
-
-    const offsetShift = (a) => {
-        let o = a[0]
-        a.shift();
-        a.push(o);};
-
-    const printUpdate = () => {
-        clearTimeout(timeout);
-
-        timeout = setTimeout(() => {
-            if (offsetArray[0] === 1){
-                offsetShift(offsetArray);
-                offsetShift(headerArray);}
-            else {
-                offsetShift(offsetArray);
-                offsetShift(headerArray);
-                offsetShift(headerArray);}
-
-            headerString = headerArray.join("");
-            printUpdate();
-        },500);}
-
-    $: $transitioning !== true && $deviceType === 2 ? pageLoaded() : false;
+    $: $transitioning !== true && $deviceType === 2 ? titlebarScroller(`${websiteTag} ${$pageName} `) : false;
 </script>
 
 <svelte:head>
-	<title>{$transitioning ? loadingIco : headerString}</title>
+	<title>{$transitioning ? loadingIco : $pageTitlebar}</title>
 </svelte:head>
 
-<svelte:window bind:innerWidth={ $screenSize } bind:scrollY={$scrollPos} />
+<svelte:window bind:innerWidth={$screenSize } bind:scrollY={$scrollPos} />
 
 <Background/>
 <MessengerPlugin/>
@@ -158,6 +84,5 @@
 
 			z-index: 	1;
 			width: 		100%;
-			margin: 	0 0 auto 0;}
-	}
+			margin: 	0 0 auto 0;}}
 </style>

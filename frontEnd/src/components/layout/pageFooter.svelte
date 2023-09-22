@@ -40,8 +40,8 @@
 	.footer {
 		background-color: 			var(--TransBlack);
 		border-top: 				1px solid var(--accent2);
-		border-top-left-radius: 	$wideBorder;
-		border-top-right-radius: 	$wideBorder;
+		border-top-left-radius: 	var(--borderWide);
+		border-top-right-radius: 	var(--borderWide);
 
 		width: 		100%;
 		padding: 	15px 0;
@@ -52,7 +52,10 @@
 
 		p:hover {
 			span {
-				animation: colorRotate 1s linear infinite;}}
+				animation:
+					colorRotateFadeIn .3s linear,
+					colorRotate 1s .3s linear infinite;
+			}}
 
 		.left {	margin: 0 15px 0 15px;
 				width:	max-content;

@@ -56,6 +56,10 @@ export async function load () {
             *[_type == 'donationTier' && featured == false][] {
                 ...
             },
+        "donationData":
+            *[_type == 'donationData'][] {
+                ...
+            },
         "qAndA":
             *[_type == 'questionAnswer'][] {
                 answerer->{
@@ -75,7 +79,8 @@ export async function load () {
                     handle
                 },
             },
-    }`)]);
+        }`)
+    ]);
 
     return allQueries
 }

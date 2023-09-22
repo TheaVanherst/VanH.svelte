@@ -2,12 +2,13 @@
     import { scale, fly } 	from 'svelte/transition';
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
-    import RainbowButtonWrap from "$root/components/generic/rainbowButtonWrap.svelte";
+    import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
+    import GenericButton from "$root/components/generic/buttons/genericButton.svelte";
 
     let chatBox = false;
 	let transitionSpeed = 200;
 
-	let directions = [0, 0];
+	let directions;
     $: directions = $screenType < 3 ? [0, 150] : [150, 0];
 </script>
 
@@ -36,9 +37,8 @@
 				<div class="title">
 					<h3>MESSENGER</h3>
 				</div>
-				<div class="neonButton close small"
-					 on:click={() => {chatBox = !chatBox}}>
-					<img src="/icons/closeIcon.webp">
+				<div on:click={() => {chatBox = !chatBox}}>
+					<GenericButton icon="/icons/closeIcon"/>
 				</div>
 			</div>
 

@@ -6,50 +6,80 @@ export default defineType({
   type: 'document',
   fields: [
     // TODO: User Data
+
     defineField({
-      name: 'willDo', title: 'Do List',
-      type: 'array',
-      of: [
+      name: 'dosList', title: "Do's",
+      type: 'object',
+      fields: [
         defineField({
-          name: 'dos', title: 'Dos',
+          name: 'title', title: "Do's Title",
+          type: 'string',
+          validation: Rule => Rule.required()
+        }),
+        defineField({
+          name: 'desc', title: "Do's Description",
           type: 'string',
         }),
-      ]
-    }),
-    defineField({
-      name: 'willDonts', title: 'Dont List',
-      type: 'array',
-      of: [
         defineField({
-          name: 'prevIter',
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'donts', title: 'Donts',
-              type: 'string',
-            }),
-            defineField({
-              name: 'maybes', title: 'Maybes',
-              type: 'boolean',
-              initialValue: false,
-              description: 'Do you not really want to do this?',
-            }),
-          ],
-          preview: {
-            select: {
-              title: 'donts',
-              icon: 'maybes'
-            },
-            prepare(selection) {
-              const {title, icon } = selection
-              return {
-                title: (icon ? "🔴" : "🟢") + " " + title,
-              }
-            }
+          name: 'banner',
+          title: 'Banner Image',
+          type: 'image',
+          options: {
+            hotspot: true,
           },
+        }),
+        defineField({
+          name: 'list', title: "Do list",
+          type: 'array',
+          of: [
+            {
+              name: 'item',
+              title: 'A will do element',
+              type: 'string',
+              validation: Rule => Rule.required()
+            }
+          ],
+          validation: Rule => Rule.required()
         }),
       ]
     }),
+    defineField({
+      name: 'dontsList', title: "Dont's",
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title', title: "Dont's Title",
+          type: 'string',
+          validation: Rule => Rule.required()
+        }),
+        defineField({
+          name: 'desc', title: "Dont's Description",
+          type: 'string',
+        }),
+        defineField({
+          name: 'banner',
+          title: 'Banner Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        }),
+        defineField({
+          name: 'list', title: "Dont list",
+          type: 'array',
+          of: [
+            {
+              name: 'item',
+              title: 'A will do element',
+              type: 'string',
+              validation: Rule => Rule.required()
+            }
+          ],
+          validation: Rule => Rule.required()
+        }),
+      ]
+    }),
+
     defineField({
       name: 'exclusionText', title: 'Exclusion Text',
       type: 'string',

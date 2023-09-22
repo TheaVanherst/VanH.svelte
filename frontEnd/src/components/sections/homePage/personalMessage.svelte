@@ -2,7 +2,7 @@
     import { fly } from 'svelte/transition';
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
     import { personalMessage } from "$lib/databases/donationTiers.js";
-    import Container from "$root/components/generic/container.svelte";
+    import Container from "$root/components/generic/containers/container.svelte";
 </script>
 
 <Container border={10}>

@@ -1,14 +1,4 @@
 
-// TODO: Misc
-
-const
-    websiteTag = "VanH.art", //𝖁𝖆𝖓𝖍.𝖆𝖗𝖙
-    websiteDiv = "//",
-    loadingIco = "Loading...", // 𝙻𝚘𝚊𝚍𝚒𝚗𝚐...
-    pageName = writable("Welcome to"); //𝚆𝚎𝚕𝚌𝚘𝚖𝚎
-
-export { websiteTag, websiteDiv, loadingIco, pageName }
-
 const
     splashText = writable(undefined);
 

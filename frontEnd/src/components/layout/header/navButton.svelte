@@ -1,8 +1,8 @@
 <script>
     import { screenType } from '$lib/controllers/accessibilityController.js';
-    import RedirectBuilder from "$root/components/generic/redirectBuilder.svelte";
+    import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
 
-    import RainbowButtonWrap from "$root/components/generic/rainbowButtonWrap.svelte";
+    import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
     export let
         push =      "",

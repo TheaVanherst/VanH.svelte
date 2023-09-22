@@ -41,8 +41,6 @@
 </div>
 
 <style lang="scss">
-	@import "../../../commonStyles";
-
 	* {	transition: transform .5s ease; }
 
 	.hovered {

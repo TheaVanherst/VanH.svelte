@@ -1,6 +1,6 @@
 <script>
     import SanityImage from "$lib/serializer/sanityImage.svelte";
-    import FlyInCard from "$root/components/sections/Embedded/flyInCard.svelte";
+    import FlyInCard from "$root/components/sections/Embedded/flyInEmbedCard.svelte";
 
 	export let data;
 
@@ -23,8 +23,6 @@
 </a>
 
 <style lang="scss">
-	@import "../../../commonStyles";
-
 	* {	transition: .3s cubic-bezier(0.33, 1, 0.68, 1);}
 
 	a:hover {

@@ -32,8 +32,6 @@
 {/if}
 
 <style lang="scss">
-	@import "../../../commonStyles";
-
 	.navigationBar {
 		margin: 	10px auto;
 		position: 	relative;
@@ -44,7 +42,7 @@
 
 			> * {
 				transition: 	border ease .5s .3s;
-				border-radius: 	$normalBorder;
+				border-radius: 	var(--bordernormal);
 				width: 			max-content;
 				margin: 		0 auto;
 				border-bottom: 	1px solid black;}

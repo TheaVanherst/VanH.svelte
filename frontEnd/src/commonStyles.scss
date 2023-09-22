@@ -6,6 +6,10 @@
 		saturate(5273%) hue-rotate(271deg)
 		brightness(97%) contrast(132%);}
 
+@keyframes colorRotateFadeIn {
+	from {  color: var(--accent9);}
+	to {    color: var(--accent3);}};
+
 @keyframes colorRotate {
 	0% {	color: var(--accent3);}
 	15% {	color: var(--accent7);}
@@ -14,10 +18,6 @@
 	65% {	color: var(--accent5);}
 	80% {	color: var(--accent6);}
 	100% {	color: var(--accent3);}}
-
-@keyframes spin {
-	from {	transform: translate(-50%,-50%) rotate(360deg);}
-	to {	transform: translate(-50%,-50%) rotate(0deg);}}
 
 // TODO: title types
 
@@ -38,7 +38,7 @@ a { transition: .5s ease; //fallback transition
 .citation {
 	font-size: 		10px;
 	font-family: 	"Helvetica", Sans-serif;
-	color:          white;
+	color:          var(--accent9);
 
 	position: 	relative;
 	display: 	block;
@@ -77,8 +77,7 @@ a { transition: .5s ease; //fallback transition
 	position:       relative;
 	white-space:    pre-line;
 
-	&::before,
-	&::after {
+	&::before, &::after {
 		position: 	absolute;
 		font-size: 	40px;}
 	&::before {
@@ -94,21 +93,12 @@ a { transition: .5s ease; //fallback transition
 
 // TODO: cropping
 
-$wideBorder:    8px; //   10
-$normalBorder:  5px; //   5
-$shortBorder:   3px; //   3
+.shortBorder, .regularBorder, .wideBorder {
+				vertical-align: bottom;}
+.shortBorder {  border-radius: 	var(--bordersmall);}
+.regularBorder {border-radius: 	var(--bordernormal);}
+.wideBorder {   border-radius: 	var(--borderWide);}
 
-.wideBorder {
-	border-radius: 	$wideBorder;
-	vertical-align: bottom;}
-
-.regularBorder {
-	border-radius: 	$normalBorder;
-	vertical-align: bottom;}
-
-.shortBorder {
-	border-radius: 	$shortBorder;
-	vertical-align: bottom;}
 
 .imageWrapper {
 	width: 		    100%;
@@ -137,7 +127,7 @@ $shortBorder:   3px; //   3
 
 a {
 	.socialIco {
-		background-color: white;
+		background-color: var(--accent9);
 
 		padding: 	4px;
 		margin: 	5px;
@@ -157,7 +147,7 @@ a {
 .profileIcon {
 	width: 	        40px;
 	height:         40px;
-	border-radius:  $normalBorder;
+	border-radius:  var(--bordernormal);
 	overflow: 		hidden;}
 
 .mediaIcon {
@@ -167,33 +157,3 @@ a {
 	img {
 		width:  100%;
 		height: 100%;}}
-
-.neonButton {
-	width: 		min-content;
-	height: 	min-content;
-	overflow: 		hidden;
-	vertical-align: bottom;
-
-	transition: ease .3s;
-	img {
-		vertical-align: bottom;
-		transition: ease .3s;}
-
-	&.small {
-		img {   width:  18px;
-			height: 18px;}}
-
-	padding: 		5px;
-	border-radius: 	$normalBorder;
-
-	background: 	white;
-	border: 1px solid var(--accent2);
-
-	img {
-		filter:     invert(1);
-		position: 	relative;}
-
-	&:hover {
-		background: var(--accent2);
-		img {
-			filter: invert(0);}}}

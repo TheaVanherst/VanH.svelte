@@ -15,6 +15,10 @@
 	--accent9:  #ffffff; --textAccent9:  #000;
 	--TransBlack: rgba(0, 0, 0, 0.6);
 	--TransWhite: rgba(255, 255, 255, 0.9);
+
+	--bordersmall: 3px;
+	--bordernormal: 6px;
+	--borderWide: 9px;
 }
 
 /* document formatting */
@@ -45,14 +49,14 @@ body {
 
 	background:		#000;
 	font-family:    "Georgia", serif;
-	color:	 		white;
+	color:	 		var(--accent9);
 
 	overflow-x:         hidden;
 	scroll-behavior: 	smooth;
 
 	&::selection {
 		color:          black;
-		background: 	white;}
+		background: 	var(--accent9);}
 }
 
 // cursor defaults
@@ -66,7 +70,7 @@ a {         cursor: crosshair;}
 a { text-decoration:    none;
 	&::selection {
 		color: var(--accent2);}
-	* { color: white;}}
+	* { color: var(--accent9);}}
 
 b { color: var(--accent3);}
 
@@ -90,7 +94,7 @@ h5 {font-size: 1.10rem; line-height: 1.10rem;}
 p { font-size:      12px;
 	font-family:	"Helvetica", Sans-serif;
 	line-height:    120%;
-	color:	 		white;
+	color:	 		var(--accent9);
 	&::selection {
 		color:      var(--accent6);}
 	margin: 		0;}

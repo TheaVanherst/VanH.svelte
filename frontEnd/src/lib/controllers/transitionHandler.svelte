@@ -4,6 +4,7 @@
 
     import { afterNavigate } 	from "$app/navigation";
     import { onMount } 			from "svelte";
+    import Device from "svelte-device-info";
 
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
@@ -11,7 +12,7 @@
     import {
         directionProcessing, nsfw,
         directionX, directionY, transitioning,
-        pageLoaded, directory
+        pageLoaded, directory, deviceType
     } from '$lib/controllers/accessibilityController.js';
 
     afterNavigate(async (n) => { //handles on mount
@@ -23,10 +24,15 @@
 
     export let refresh = '';
 
-    onMount(async () => { // temp
-        $pageLoaded = true;
-        $nsfw = $page.params.sfw === "nsfw";
-        $directory = "/home";
+    onMount(async () => { // dumb page setup stuff
+        $pageLoaded = 	true;
+        $nsfw = 		$page.params.sfw === "nsfw";
+        $directory = 	"/home";
+
+        switch (true) {
+            case Device.isPhone:  	$deviceType = 0; break;
+            case Device.isTablet: 	$deviceType = 1; break;
+            default:      			$deviceType = 2; break;}
 	});
 
     let transitionSpeed = 150; // transition position multipliers
@@ -57,13 +63,11 @@
 
 <style lang="scss">
 	.centre {
-		top: 0;
-		position: absolute;
-		width: 100%;
+		top: 		0;
+		position: 	absolute;
+		width: 		100%;
 
 		.wrapper {
 			margin: 50px auto;
-			width: fit-content;
-		}
-	}
+			width: 	fit-content;}}
 </style>

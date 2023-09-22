@@ -1,6 +1,6 @@
 <script>
 	import SanityImage 	from "$lib/serializer/sanityImage.svelte";
-    import Container 	from "../../generic/container.svelte";
+    import Container 	from "../../generic/containers/container.svelte";
 
     export let dataset = [];
 </script>

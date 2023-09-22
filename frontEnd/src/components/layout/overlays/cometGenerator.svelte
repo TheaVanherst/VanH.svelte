@@ -2,7 +2,7 @@
     import { fly } from "svelte/transition";
     import {quartIn, quartOut} from "svelte/easing";
 
-    import {screenSize, scrollPos} from "$lib/controllers/accessibilityController.js";
+    import {screenSize} from "$lib/controllers/accessibilityController.js";
 
     const
 		getRandomInt = (max) => {
@@ -26,7 +26,7 @@
 
             xPosition = getRandomInt($screenSize) + 200;
             yPosition = getRandomInt(outerHeight + 100) - 300;
-            rScale = getRandomInt(7) + 0.5;
+            rScale = getRandomInt(3) + 0.2;
 
             comet = {};
         }, ms);
@@ -39,7 +39,7 @@
 	{#key comet}
 		<img src="/cursors/comet.gif"
 			 style="
-			 	transform: scale(rScale);
+			 	transform: scale({rScale});
 				left: {xPosition}px;
 				top: {yPosition}px"
 			 in:fly={{y: 8, x: -8, duration: 50, easing: quartIn }}
