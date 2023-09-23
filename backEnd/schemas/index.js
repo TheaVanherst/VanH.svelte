@@ -4,6 +4,7 @@ import blockContent from './blockContent';
 import questionAndAnswers from './misc/questionAndAnswers';
 import commissionData from './misc/commissionTerms';
 import commissionTypes from './misc/commissionTypes';
+import commissionPricing from './misc/commissionPricing'
 import donationData from './misc/donationData';
 
 import character from './characterData/character';
@@ -27,6 +28,7 @@ const dataTypes = [
   questionAndAnswers,
   commissionData,
   commissionTypes,
+  commissionPricing,
   donationData,
 
   character,

@@ -1,7 +1,7 @@
 <script>
 	export let
 		border = 2,
-		padding = [10,10,10,10]
+		padding = [15,15,15,15]
 </script>
 
 <div
@@ -18,7 +18,7 @@
 		background: 	var(--TransBlack);
 
 		margin-bottom: 	15px;
-		padding: 		10px;
+		padding: 		15px;
 
 		border-width: 	1px;
 		border-style: 	solid;

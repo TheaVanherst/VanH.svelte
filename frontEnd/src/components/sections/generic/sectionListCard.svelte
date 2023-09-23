@@ -54,8 +54,10 @@
 				background: var(--TransWhite);
 				padding: 	8px 10px;}}
 
-		ul {
-			padding: 2px 10px 2px 25px;}
+		ul {		padding: 2px 10px 2px 25px;
+			&:last-child:not(:only-child) {
+				margin:  10px 0 10px 0;}
+			li {	padding: 0 0 4px 5px;}}
 
 		h5, li, p {
 			color: black;

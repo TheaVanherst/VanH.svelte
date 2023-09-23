@@ -43,8 +43,7 @@
 		overflow: hidden;
 
 		.flex {
-			background: black;
-			filter: 	invert(1);
+			background: white;
 
 			margin: 	1px;
 			display: 	flex;}

@@ -32,21 +32,18 @@
     export let data;
 </script>
 
-<div id="loading">
-	<div class="content">
-		<ProfileBar/>
-		<div class="loadingBar">
-			<LoadingFull/>
+{#if !$pageLoaded} <!-- prevents issues on dev server -->
+	<div id="loading">
+		<div class="content">
+			<ProfileBar/>
+			<div class="loadingBar">
+				<LoadingFull/>
+			</div>
 		</div>
 	</div>
-</div>
+{/if}
 
 <style lang="scss">
-	.content {
-		position: 	relative;
-		padding: 	0 0 15px 0;
-		margin: 	0 auto;}
-
 	#loading { // loading animation
 		display: 	flex;
 
@@ -55,10 +52,11 @@
 		position: 	fixed;
 		top: 		0;
 
-
 		.loadingBar {
 			position: 	relative;
 			top: 		150px;}
 		.content {
+			position: 	relative;
+			padding: 	0 0 15px 0;
 			margin: 	auto auto;}}
 </style>

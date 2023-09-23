@@ -1,99 +1,93 @@
 <script>
-    import { commissionTypes, additionalPurchases } from "$lib/databases/commissionDetails.js";
-
     import { nsfw } from "$lib/controllers/accessibilityController.js";
-</script>
 
-<div class="imageWrapper regularBorder"
-	 id="commPreivew">
-	{#if $nsfw === true}
-		<img src="/commissions/DemoImage.webp">
-	{:else}
-		<img src="/commissions/DemoImagesfw.webp">
-	{/if}
-	<p class="imageCite shortBorder">
-		Previews of Shading / Flats / Lines
-	</p>
-</div>
+    import SanityImage from "$lib/serializer/sanityImage.svelte";
+
+    export let
+		prices = [],
+        additional = [];
+</script>
 
 <div class="chunk">
 	<h3>Commission Types</h3>
 	<div class="colourWrapper">
-		{#each commissionTypes as commissionType}
+		{#each prices as commissionType}
 			<div class="commType">
-				<h4>
-					{commissionType.title}
-				</h4>
-				<p>
-					{commissionType.description}
-				</p>
-				<div class="prices">
-					{#each commissionType.prices as type, i}
-						<h5>
-							<span>{type[0]}:</span> £{type[1]}.00
-						</h5>
-					{/each}
-					{#each commissionType.adPrices as type, i}
-						<h5>
-							<span>{type[0]}:</span> (+£{type[1]}.00)
-						</h5>
-					{/each}
+				{#if $nsfw}
+					<div class="previewBanner regularBorder">
+						<SanityImage image={commissionType.previewImage}/>
+						<h4 class="commissionName shortBorder">
+							{commissionType.styleName}
+						</h4>
+					</div>
+				{/if}
+				<div class="commissionDetails">
+					<p>
+						{commissionType.styleDescription}
+					</p>
+					<div class="prices">
+						{#each commissionType.styleTypes as type}
+							<h5>
+								<span>{type.renderType}:</span> £{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''}
+							</h5>
+						{/each}
+						{#each commissionType.additionalPurchases as type}
+							<h5>
+								<span>{type.renderType}:</span> (+£{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''})
+							</h5>
+						{/each}
+					</div>
 				</div>
 			</div>
 		{/each}
 	</div>
-
 	<h3>Additional purchases</h3>
 	<div class="additionalPurchases">
-		{#each additionalPurchases as additionalType}
+		{#each additional as type}
 			<div class="type">
 				<h5>
-					<span>{additionalType.title}:</span> £{additionalType.price}
+					<span>{type.additionalItem}:</span> £{type.additionalPrice}.00{type.additionalPriceTag ? '+' : ''}
 				</h5>
 				<p>
-					{additionalType.description}
+					{type.additionalDescription}
 				</p>
 			</div>
 		{/each}
 	</div>
-	<p>
-		All commissions will include all latter version of the art after completion. For example,
-		if you were to commission a fully shaded rendered sheet, you will recieve the final version
-		without the watermark, alongside the flats & lines, Including versions without dialog, if
-		dialog is included.
-	</p>
-	<p>
-		Commissions include 1 normal sized character, and includes 1 micro character, additional characters
-		will require purchasing the additional options available, which vary on cost depending on the request.
-	</p>
-	<p>
-		Photoshop files will be available for download via. the Discord archive server, and is a free
-		resource for members. Photoshop files include all of the clipping masks, alternate sketches and
-		references used in the creation of the artwork.
-	</p>
 </div>
 
 <style lang="scss">
 	* {	transition: ease .3s; }
 
-	.chunk {	padding: 	10px 3px 1px 3px;
-		> * {	margin:		0 0 10px 0;}
+	.chunk {
+		> * {	margin:	0 0 10px 0;}
 		p { &:last-child {
-				margin: 	0;}}}
+				margin: 0;}}}
 
-	#commPreivew {
-				height: 	300px;}
-	.commType {	padding: 	8px 5px 8px 15px;
-		&:not(:first-of-type) {
-				margin: 	10px 0 0 0;}
-		h4 {	padding: 	0 0 10px 0;}
+	.previewBanner {
+		overflow: 	hidden;
+		position: 	relative;
+
+		margin: 	0 0 15px 0;
+		height: 	150px;}
+
+	.commissionName {
+		position: 	absolute;
+		bottom: 	0;
+		max-width: 	100%;
+		background: var(--TransBlack);}
+	.commType {
+		padding: 	0 0 8px 15px;
+		margin: 	10px 0 10px 0;
+		h4 {	margin: 	10px;
+				padding: 	10px 10px 10px 10px;}
 		p {		paddinG: 	0 0 7px 0;}
 
 		.prices {
 			display: 	flex;
 			display: 	-webkit-inline-box;
-			column-gap: 5px;
-			row-gap: 	5px;
+
+			gap: 		10px 20px;
 			flex-flow: 	row wrap;
 
 			width: 		100%;
@@ -107,7 +101,7 @@
 				color: 		var(--accent3);
 				font-style: italic;}
 			h5 {
-				padding: 	0 0 0 15px;
+				padding: 	0 0 0 0;
 				width: 		max-content;
 				height: 	max-content;
 				display: 	grid;
@@ -118,12 +112,12 @@
 				&:nth-of-type(4){ @include cbc(var(--accent7));}
 				&:nth-of-type(5){ @include cbc(var(--accent2));}
 				&:nth-of-type(6){ @include cbc(var(--accent5));}}}
-		&:nth-child(1) {	border-left: 1px solid var(--accent2);}
-		&:nth-child(2) {	border-left: 1px solid var(--accent1);}
-		&:nth-child(3) {	border-left: 1px solid var(--accent7);}
-		&:nth-child(4) {	border-left: 1px solid var(--accent3);}
-		&:nth-child(5) {	border-left: 1px solid var(--accent6);}
-		&:nth-child(6) {	border-left: 1px solid var(--accent5);}}
+		&:nth-child(1) { border-left: 1px solid var(--accent2);}
+		&:nth-child(2) { border-left: 1px solid var(--accent1);}
+		&:nth-child(3) { border-left: 1px solid var(--accent7);}
+		&:nth-child(4) { border-left: 1px solid var(--accent3);}
+		&:nth-child(5) { border-left: 1px solid var(--accent6);}
+		&:nth-child(6) { border-left: 1px solid var(--accent5);}}
 
 	.additionalPurchases {
 		.type {		padding: 	3px 5px 3px 15px;
@@ -140,5 +134,4 @@
 			&:nth-child(4) { @include cbc(var(--accent7));}
 			&:nth-child(5) { @include cbc(var(--accent1));}
 			&:nth-child(6) { @include cbc(var(--accent2));}}}
-
 </style>

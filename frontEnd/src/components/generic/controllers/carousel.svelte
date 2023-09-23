@@ -19,16 +19,17 @@
 	<swiper-container
 			slides-per-view={$screenType <= maxWidth ? $screenType : maxWidth}
 			centeredSlidesBounds={centered} grabCursor={true}
-			navigation="true" pagination={pagination} space-between={5}>
+			navigation="true" pagination={pagination} space-between={10}>
 		<slot/>
 	</swiper-container>
 {:else}
 	<swiper-container
 			slides-per-view="{customCalc}"
-			navigation="true" pagination={pagination} space-between={5}>
+			navigation="true" pagination={pagination} space-between={10}>
 		<slot/>
 	</swiper-container>
 {/if}
+
 <style lang="scss">
 	swiper-container::part(button-prev),
 	swiper-container::part(button-next) {

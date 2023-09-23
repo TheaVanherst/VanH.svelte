@@ -64,7 +64,6 @@
 	.row {
 		display: 	flex;
 		gap: 		10px;
-		padding: 	5px;
 
 		.questionBlock {
 			width: 	100%;}}

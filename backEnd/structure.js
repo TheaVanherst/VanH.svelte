@@ -64,6 +64,9 @@ const structure = (S) =>
               S.listItem()
                 .title("Commission Dos and Donts")
                 .child(S.document().schemaType('commissionTypes').documentId('commissionTypes')),
+              S.listItem()
+                .title("Commission Pricing")
+                .child(S.document().schemaType('commissionPrices').documentId('commissionPrices')),
 
               S.divider(),
 

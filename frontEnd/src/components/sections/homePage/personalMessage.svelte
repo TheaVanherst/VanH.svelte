@@ -39,7 +39,6 @@
 	.imageShowcase {
 		margin: 	-10px -15px 0 -57px;
 		z-index: 	1;
-
 		animation: 	float 6s infinite ease-in-out;
 
 		> img {
@@ -61,4 +60,9 @@
 	> * {	margin: auto 0;}
 	img {	width: 	70px;
 		margin: -30px -20px -15px 8px;}}}
+
+	@keyframes float {
+		0% {	transform: translatey(-20px);}
+		50% {	transform: translatey( 20px);}
+		100% {	transform: translatey(-20px);}}
 </style>

@@ -32,12 +32,12 @@
 	.table {
 		display: 	flex;
 		width: 		100%;
-		gap: 		15px;
+		gap: 		12px;
 		margin:	 	0 0 15px 0;
 
 		.col {
 			display: 	grid;
-			gap: 		15px;
+			gap: 		12px;
 			width: 		50%;
 			.row {
 				display: 	flex;}}

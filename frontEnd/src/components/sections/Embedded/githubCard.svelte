@@ -7,7 +7,7 @@
     let hover = false;
 </script>
 
-<a href="https://github.com/TheaVanherst/{data.url}" target="_blank">
+<a href="https://{data.url}" target="_blank">
 	<div class="slide regularBorder"
 		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
 		<div class="thumbnail">

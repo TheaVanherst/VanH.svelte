@@ -19,6 +19,9 @@
 	--bordersmall: 3px;
 	--bordernormal: 6px;
 	--borderWide: 9px;
+
+	--marginGap: 15px;
+	--spacing: 15px;
 }
 
 /* document formatting */
@@ -52,11 +55,10 @@ body {
 	color:	 		var(--accent9);
 
 	overflow-x:         hidden;
-	scroll-behavior: 	smooth;
+	scroll-behavior:    smooth;
 
 	&::selection {
-		color:          black;
-		background: 	var(--accent9);}
+		color:  var(--accent6)}
 }
 
 // cursor defaults
@@ -85,6 +87,11 @@ h1, h2, h3, h4, h5 {
 	margin:     0;
 	padding:    0;}
 
+.selectInv {
+	&::selection {
+		color:  var(--accent2);}
+}
+
 h1 {font-size: 2.00rem; line-height: 2.00rem;   text-transform: uppercase;}
 h2 {font-size: 1.75rem; line-height: 1.75rem;   text-transform: uppercase;}
 h3 {font-size: 1.50rem; line-height: 1.50rem;   text-transform: uppercase;}
@@ -93,16 +100,12 @@ h5 {font-size: 1.10rem; line-height: 1.10rem;}
 
 p { font-size:      12px;
 	font-family:	"Helvetica", Sans-serif;
+	white-space:    break-spaces;
 	line-height:    120%;
 	color:	 		var(--accent9);
 	&::selection {
 		color:      var(--accent6);}
 	margin: 		0;}
-
-.subtitle {
-	font-family: 	"Playfair Display", serif;
-	font-weight: 	600;
-	font-size: 		13px;}
 
 .fancy {
 	font-size: 13px;
@@ -121,8 +124,11 @@ ul {
 	margin:  10px 0 10px 0;
 	padding: 0 0 0 15px;
 
+	&:last-child:not(:only-child) {
+		margin:  10px 0 0 0;}
+
 	li {
-		padding:        0 0 4px 5px;
+		padding:        0 0 8px 5px;
 
 		font-family:    "Helvetica", Sans-serif;
 		font-size:      12px;
@@ -137,10 +143,3 @@ ul {
 
 		&:last-of-type {
 			padding-bottom: 0;}}}
-
-/* Common animations */
-
-@keyframes float {
-	0% {	transform: translatey(-20px);}
-	50% {	transform: translatey( 20px);}
-	100% {	transform: translatey(-20px);}}

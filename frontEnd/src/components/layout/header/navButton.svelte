@@ -63,5 +63,7 @@
             width:      30px;
             height:     30px;}
         .text {
-            padding:    0 0 0 5px;}}
+            padding:    0 0 0 5px;
+            h3 {
+                color:	black;}}}
 </style>

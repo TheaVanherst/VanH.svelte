@@ -49,7 +49,7 @@
 
 <style lang="scss">
 	#cometController {
-		position: absolute;}
+		position: fixed;}
 	img {	position: fixed;
 		&:last-of-type { //dumb fix
 			display: none;}}

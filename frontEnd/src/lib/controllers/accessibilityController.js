@@ -12,7 +12,7 @@ const
     scrollPos = writable(0),
     screenSize = writable(0),
     screenType = writable(0),
-    bandWidths = [850, 650, 450]; //pre-determined bandwidth sizes
+    bandWidths = [850, 600, 500]; //pre-determined bandwidth sizes
 
 export { scrollPos, screenSize, bandWidths, screenType };
 

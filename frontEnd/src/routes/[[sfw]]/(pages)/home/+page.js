@@ -46,7 +46,7 @@ export async function load () {
                 accentColour,
                 previewImage,
                 shortDesc,
-                'slug': slug.current,
+                'slug': slug.current
             },
         "donationBuffs":
             *[_type == 'donationTier' && featured == true][] {
@@ -72,15 +72,15 @@ export async function load () {
                     'user': author->{
                         userPortrait,
                         handle
-                    },
+                    }
                 },
                 'anon': fallback->{
                     userPortrait,
                     handle
-                },
-            },
-        }`)
-    ]);
+                }
+            }
+        }`
+    )]);
 
     return allQueries
 }

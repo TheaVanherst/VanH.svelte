@@ -17,6 +17,7 @@
         scrollPos, bandWidths, screenSize, screenType, deviceType,
         transitioning, pageLoaded, rootPath, directory,
     } from "$lib/controllers/accessibilityController.js";
+
     import { pageTitlebar, loadingIco, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
@@ -90,8 +91,8 @@
 	#layout { // loaded page data
 		min-height: 100vh;
 		max-width: 	800px;
-
 		min-width: 	300px;
+
 		padding: 	0 15px;
 		margin: 	0 auto;
 

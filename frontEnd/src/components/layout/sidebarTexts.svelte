@@ -2,7 +2,9 @@
     import { horizontalSlide } from "$lib/controllers/transitionPresets.js";
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
-	export let titlecard, icon = undefined;
+	export let
+		titlecard,
+		icon = undefined;
 </script>
 
 
@@ -38,14 +40,15 @@
 	* {	transition: ease .5s;}
 
 	h1, h2 {	text-transform:	uppercase;
-				height: 		max-content;}
-	img {		height: 		32px;}
+				height: max-content;}
+	img {		filter: invert(1);
+				height: 32px;}
 
-	.wrapper {			display: 	flex;
-		&.textVis {		gap: 		10px;
-			.offset { 	width: 		calc(100% - 2rem - 10px);}}
-		&.textHidden {	gap: 		0;
-			.offset {	width: 		100%;}}}
+	.wrapper {			display: flex;
+		&.textVis {		gap: 	15px;
+			.offset { 	width: 	calc(100% - 2rem - 10px);}}
+		&.textHidden {	gap: 	0;
+			.offset {	width: 	100%;}}}
 
 	.offset {
 		.divider {	display: 		flex;

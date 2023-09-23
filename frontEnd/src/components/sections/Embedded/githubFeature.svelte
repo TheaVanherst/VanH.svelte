@@ -1,4 +1,6 @@
 <script>
+	import { screenType } from "$lib/controllers/accessibilityController.js";
+
     import Container from "../../generic/containers/container.svelte";
 	import GithubCard from "$root/components/sections/Embedded/githubCard.svelte";
 
@@ -6,7 +8,8 @@
 </script>
 
 <Container>
-	<div class="table">
+	<div class="table"
+		class:full={$screenType < 2}>
 		{#each dataset as dataEntry}
 			<div class="cell">
 				<GithubCard data={dataEntry}/>
@@ -17,13 +20,15 @@
 
 <style lang="scss">
 	.table {
-		box-sizing: border-box;
-		gap: 5px;
-		column-count: 2;
-
-		margin-bottom: -5px; // FUCK YOU.
+		display: 	flex;
+		flex-wrap: 	wrap;
+		gap: 	 	10px;
 
 		.cell {
-			display: inline-block;
-			width: 100%;}}
+			max-width: calc(50% - 5px);}
+
+		&.full {
+			.cell {
+				max-width: 100%;
+				width: 100%;}}}
 </style>

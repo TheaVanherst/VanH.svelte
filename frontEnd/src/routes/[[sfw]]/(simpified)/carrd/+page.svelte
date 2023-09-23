@@ -20,10 +20,10 @@
 			<RainbowButtonWrap bottom={10} padding={[9,15]}>
 				<div class="central">
 					<div class="mediaIcon">
-						<img src="/icons/{push.imagePath}.webp">
+						<img class="selectInv" src="/icons/{push.imagePath}.webp">
 					</div>
 					<div class="text">
-						<h3> {push.name} </h3>
+						<h3 class="selectInv"> {push.name} </h3>
 					</div>
 				</div>
 			</RainbowButtonWrap>
@@ -64,7 +64,9 @@
 			width: 		100%;
 		.text {
 			width: 		100%;
-			text-align: center;}}
+			text-align: center;
+			h3 {
+				color:	black;}}}
 	.wrapper > * {
 			margin: 	0 auto 15px auto;}
 </style>
