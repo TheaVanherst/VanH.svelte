@@ -35,7 +35,6 @@
 		border: 1px solid var(--accent2);
 
 		img {
-			filter:     invert(1);
 			position: 	relative;}
 
 		&:hover {

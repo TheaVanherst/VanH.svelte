@@ -9,7 +9,7 @@
     const levels = [4,3,2]
 </script>
 
-{#if deviceType > 0}
+{#if $deviceType > 0}
     <parallax>
         {#each levels as level}
             <div class="spaceBg{level - 1}"
@@ -30,7 +30,7 @@
     $res2: 400px;
 
     parallax {
-        div {   width: 		150%;
+        div {   width: 		100%;
                 top: 		0;
                 position: 	fixed;}}
 
@@ -39,7 +39,7 @@
         animation: 			backgroundSpeed+$st $sd linear infinite;
         background-image: 	url("/branding/stars"+($st)+".gif");
 
-        left:   -$lp;
+        background-position-x: -$lp;
         height: calc(100vh + $hm);
 
         position: 	fixed;

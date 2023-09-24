@@ -26,7 +26,6 @@
 		in:fly={{
         	easing: 	cubicOut,
             duration:   250,
-            delay:      250,
             x: transitionSpeed * $direction[1],
             y: transitionSpeed * -$direction[0]}}
 		out:fly={{

@@ -9,24 +9,43 @@
 		centered = false;
 
     import { register } from 'swiper/element/bundle';
+    import { onMount } from "svelte";
 
-    register();
+    let mounted;
+    onMount(() => {
+        register();
 
-    let swiper;
+        setTimeout(() => {
+            mounted = true;
+		},100) // this prevents the page from crashing due to an issue with swiper.
+	})
 </script>
 
 {#if !customCalc}
 	<swiper-container
 			slides-per-view={$screenType <= maxWidth ? $screenType : maxWidth}
-			centeredSlidesBounds={centered} grabCursor={true}
+			centeredSlidesBounds={centered}
+			grabCursor={true}
 			navigation="true" pagination={pagination} space-between={10}>
-		<slot/>
+		{#await mounted}
+
+		{:then mount}
+			<slot/>
+		{:catch mount}
+
+		{/await}
 	</swiper-container>
 {:else}
 	<swiper-container
 			slides-per-view="{customCalc}"
 			navigation="true" pagination={pagination} space-between={10}>
-		<slot/>
+		{#await mounted}
+
+		{:then mount}
+			<slot/>
+		{:catch mount}
+
+		{/await}
 	</swiper-container>
 {/if}
 

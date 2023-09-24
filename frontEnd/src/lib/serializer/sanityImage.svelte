@@ -1,25 +1,27 @@
 <script>
     import { onMount } from 'svelte'
+    import {browser} from '$app/environment'
+
     import imageUrlBuilder from "@sanity/image-url";
 
     import client from "$lib/sanityClient.js";
     export let image = null;
 
-    $: image;
-
     let loadCheck = undefined;
     let loaded = 	false;
 
     onMount(() => {
-        if (loadCheck) {
-            loadCheck.onload = () => {
-                loaded = true;};}});
+        loadCheck.onload = () => {
+            loaded = true;
+        };
+    });
+
 
     const urlFor = (source) => {
         return imageUrlBuilder(client).image(source);};
 </script>
 
-{#if image && image?.asset}
+{#if browser && image?.asset}
 	<div class:loaded>
 		<img loading="lazy"
 			 src =   { urlFor(image).width(1200) }
