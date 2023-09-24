@@ -45,10 +45,10 @@
 				height: 32px;}
 
 	.wrapper {			display: flex;
-		&.textVis {		gap: 	15px;
+		&.textVis {		gap: 	10px;
 			.offset { 	width: 	calc(100% - 2rem - 10px);}}
 		&.textHidden {	gap: 	0;
-			.offset {	width: 	100%;}}}
+			.offset {	max-width: 	100%;}}}
 
 	.offset {
 		.divider {	display: 		flex;

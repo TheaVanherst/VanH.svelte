@@ -35,8 +35,8 @@
 </script>
 
 {#if external}
-	<a href="" target=""
-	   on:mousedown|preventDefault={() => redirectCheck(url, redirectName)}>
+	<a href="https://www.{url}" target=""
+	   on:click|preventDefault={() => redirectCheck(url, redirectName)}>
 		<slot/>
 	</a>
 {:else}
