@@ -3,11 +3,10 @@ const structure = (S) =>
   S.list()
     .title('Content Types')
     .items([
-
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'character',
+            'character','developmentStatus','heightTag','sexTag',
           ].includes(listItem.getId())
         ),
 

@@ -21,7 +21,7 @@
             setTimeout(async () => {
                 $transitioning = false;
 
-                await goto(e);
+                await goto(newRoute);
             }, 250);
 
         }, 50);

@@ -120,6 +120,13 @@ export default defineType({
     // TODO: Character Creation
 
     defineField({
+      name: 'developmentStatus', title: 'Development Status',
+      type: 'reference',
+      validation: Rule => Rule.required(),
+      to: {type: 'developmentStatus'}
+    }),
+
+    defineField({
       name: 'creation', title: 'Creation',
       type: 'date',
     }),

@@ -43,6 +43,9 @@
 					{/each}
 				</p>
 			{/if}
+			{#if data.species}
+				<p><span>Species</span>: {data.species}</p>
+			{/if}
 		</div>
 	{/if}
 	{#if data.nationality || data.timePeriod || data.age}
@@ -116,11 +119,13 @@
 		height: 		40px;
 		width: 			40px;}
 
-	h4, p { 	color: 	black;}
+	h4, p { 	white-space: normal;
+				color: 	black;}
 	h4 { 		margin: 0 0 5px 0;}
 	p span { 	color: 	var(--accent2); }
 
 	.subtitle {
+		text-decoration: underline;
 		padding: 		0 0 5px 0;}
 
 	.description {

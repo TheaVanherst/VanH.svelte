@@ -1,8 +1,8 @@
 
-import { nsfw } from "$lib/controllers/accessibilityController.js";
-
 export function load({ params }) {
-    nsfw.set(params.sfw === 'nsfw');
+    return {
+        params: params.sfw
+    }
 }
 
 export const prerender = true;

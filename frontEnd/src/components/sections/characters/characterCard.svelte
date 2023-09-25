@@ -15,7 +15,9 @@
 			{#if char.NSFW && $nsfw || !char.NSFW}
 				<swiper-slide>
 					<ImageTitleplate
-							image={char.fullRender} title={char.nickName} subtitle={char.job} hoverable={true}>
+							image={char.fullRender} title={char.nickName}
+							subtitle={char.job} devStatus={char.developmentStatus}
+							hoverable={true}>
 						<GenericInfo data={char}/>
 					</ImageTitleplate>
 				</swiper-slide>

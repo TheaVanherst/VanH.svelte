@@ -8,11 +8,12 @@ import commissionPricing from './misc/commissionPricing'
 import donationData from './misc/donationData';
 
 import character from './characterData/character';
-import sexTags from './characterData/sexTags'
+import sexTags from './characterData/sexTags';
+import heightTag from './characterData/heightTypes';
+import developmentStatus from './characterData/developmentStatus';
 
 import author from './authorData/author';
 import authorTags from './authorData/authorTags';
-import heightTag from './characterData/heightTypes';
 import internalTags from './authorData/internalTag';
 
 import workshopItems from './alternateWorks/workshopItems';
@@ -34,6 +35,7 @@ const dataTypes = [
   character,
     sexTags,
     heightTag,
+    developmentStatus,
 
   workshopItems,
   workshopSnippet,

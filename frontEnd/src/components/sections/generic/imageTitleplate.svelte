@@ -3,9 +3,10 @@
     import SanityImage from "$lib/serializer/sanityImage.svelte";
 
     export let
-		image = "",
-		title = "",
-		subtitle = "";
+		image = undefined,
+		title = undefined,
+		subtitle = undefined,
+        devStatus = undefined;
 
     let active = false;
     export let
@@ -27,7 +28,11 @@
 				<slot/>
 			</div>
 		{:else}
-
+			{#if devStatus}
+				<p class="developmentIcon regularBorder">
+					{devStatus.statusName} {devStatus.emoji}
+				</p>
+			{/if}
 			<div class="titleCard" transition:fly={{y: 50, duration: 400 }}>
 				{#if title}
 					<h4>{title}</h4>
@@ -59,9 +64,20 @@
 				z-index: 1;
 
 				p, h4 {
-					color: 	black;}
-			}
-		}}
+					color: 	black;}}}}
+
+	.developmentIcon {
+		position: 	absolute;
+		top: 		0;
+		right: 		0;
+
+		margin: 	10px;
+		padding: 	5px 7px;
+
+		font-weight: 700;
+		background: var(--TransWhite);
+		color: 		black;
+	}
 
 	.infoPlate {	position: 	absolute;
 					overflow-y:	scroll;}

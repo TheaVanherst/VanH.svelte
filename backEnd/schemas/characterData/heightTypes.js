@@ -1,6 +1,6 @@
 
 import {defineField, defineType} from 'sanity'
-import { TagIcon }    from '@sanity/icons'
+import { NumberIcon }    from '@sanity/icons'
 
 const
   heightTag = defineType({
@@ -17,7 +17,7 @@ const
         type: 'text',
       }),
     ],
-    icon: TagIcon,
+    icon: NumberIcon,
   });
 
 export default heightTag;
