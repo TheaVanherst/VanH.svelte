@@ -1,5 +1,7 @@
 <script>
-	import SanityImage 	from "$lib/serializer/sanityImage.svelte";
+	import {screenType} from "$lib/controllers/accessibilityController.js";
+
+    import SanityImage 	from "$lib/serializer/sanityImage.svelte";
     import Container 	from "../../generic/containers/container.svelte";
 
     export let dataset = [];
@@ -8,13 +10,15 @@
 <Container>
 	{#each dataset[0].questions as qa}
 		<div class="row">
-			<div class="profileIcon anon">
-				{#if qa.user}
-					<SanityImage image={qa.user.userPortrait}/>
-				{:else}
-					<SanityImage image={dataset[0].anon.userPortrait}/>
-				{/if}
-			</div>
+			{#if $screenType > 2}
+				<div class="profileIcon anon">
+					{#if qa.user}
+						<SanityImage image={qa.user.userPortrait}/>
+					{:else}
+						<SanityImage image={dataset[0].anon.userPortrait}/>
+					{/if}
+				</div>
+			{/if}
 			<div class="questionBlock">
 				<div>
 					<div class="q">

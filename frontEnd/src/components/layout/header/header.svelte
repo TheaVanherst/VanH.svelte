@@ -1,37 +1,30 @@
 <script>
-    import { fly } 				from 'svelte/transition';
-
     import ProfileBar 			from "$root/components/layout/header/bannerAnimation.svelte";
-    import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
     import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
 
     import { deviceType, pageLoaded } from "$lib/controllers/accessibilityController.js";
-
 </script>
 
 {#if $pageLoaded} <!-- this is a placeholder -->
-	<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
-		{#if $deviceType === 2}
-			<div class="desktop">
-				<SplashTexts/>
-				<ProfileBar/>
-			</div>
-		{:else if $deviceType === 1}
-			<div class="tablet">
-				<div class="logo">
-					<img src="/branding/vanhlogo.webp">
-				</div>
-				<div class="imageWrapper banner regularBorder">
-					<img src="/branding/tabletBanner.webp">
-				</div>
-			</div>
-		{:else}
-			<div class="mobile imageWrapper">
+	{#if $deviceType === 2}
+		<div class="desktop">
+			<SplashTexts/>
+			<ProfileBar/>
+		</div>
+	{:else if $deviceType === 1}
+		<div class="tablet">
+			<div class="logo">
 				<img src="/branding/vanhlogo.webp">
 			</div>
-		{/if}
-		<NavigationComponent/>
-	</div>
+			<div class="imageWrapper banner regularBorder">
+				<img src="/branding/tabletBanner.webp">
+			</div>
+		</div>
+	{:else}
+		<div class="mobile imageWrapper">
+			<img src="/branding/vanhlogo.webp">
+		</div>
+	{/if}
 {/if}
 
 <style lang="scss">

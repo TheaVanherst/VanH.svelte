@@ -37,14 +37,39 @@ export default defineType({
         name: 'social', title: 'Social Media',
         type: 'object',
         validation: Rule => Rule.required(),
-        fields: [{
-          name: 'platformName',  title: 'Platform Name',
-          type: 'string', validation: Rule => Rule.required().max(20),
-        },{
-          name: 'url',  title: 'Url',
-          type: 'url', validation: Rule => Rule.required().min(4).max(64),
-        }]
-      }]
+        fields: [
+          {
+            name: 'platformName',  title: 'Platform Name',
+            type: 'reference',
+            to: {type: 'websiteSocials'},
+            validation: Rule => Rule.required()
+          },{
+            name: 'url',  title: 'Profile Handle',
+            description: 'Your profile URL, minus the string to the profile directory.',
+            type: 'string', validation: Rule => Rule.required()
+          },{
+            name: 'visible', title: 'Visibility',
+            description: 'Is this item visible on your profile?',
+            type: 'boolean',
+            initialValue: false,
+          }
+        ],
+        preview: {
+          select: {
+            userURL: 'url',
+            socialURL: 'platformName.socialURL',
+            media: 'platformName.socialLogo',
+          },
+          prepare(selection) {
+            const { userURL, socialURL, media, test } = selection
+            return {
+              title: 'www.' + socialURL + userURL,
+              description: test,
+              media: media,
+            }
+          }
+        },
+      }],
     }),
     defineField({
       name: 'userPortrait',

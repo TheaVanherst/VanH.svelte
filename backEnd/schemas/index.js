@@ -1,11 +1,11 @@
 
 import blockContent from './blockContent';
 
-import questionAndAnswers from './misc/questionAndAnswers';
-import commissionData from './misc/commissionTerms';
-import commissionTypes from './misc/commissionTypes';
-import commissionPricing from './misc/commissionPricing'
-import donationData from './misc/donationData';
+import questionAndAnswers from './pageSpecific/questionAndAnswers';
+import commissionData from './pageSpecific/commissionTerms';
+import commissionTypes from './pageSpecific/commissionTypes';
+import commissionPricing from './pageSpecific/commissionPricing'
+import donationData from './pageSpecific/donationData';
 
 import character from './characterData/character';
 import sexTags from './characterData/sexTags';
@@ -20,6 +20,8 @@ import workshopItems from './alternateWorks/workshopItems';
 import workshopSnippet from './alternateWorks/workshopSnippet';
 import workshopGameTag from './alternateWorks/workshopGameTag';
 import githubItems from './alternateWorks/githubItems';
+
+import socialMedia from './websiteSettings/socialMedia'
 
 const dataTypes = [
   // custom data types
@@ -44,7 +46,9 @@ const dataTypes = [
 
   author,
     authorTags,
-    internalTags
+    internalTags,
+
+  socialMedia,
 ]
 
 export const schemaTypes = dataTypes;

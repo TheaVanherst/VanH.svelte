@@ -2,10 +2,12 @@
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
     import SectionListCard from "$root/components/sections/generic/sectionListCard.svelte";
-
     import PersonalMessage from "$root/components/sections/homePage/personalMessage.svelte";
 
-    export let global = undefined, tiers = undefined, personal = undefined;
+    export let
+		global,
+		tiers,
+		personal;
 </script>
 
 <div class="table" class:mobile={$screenType === 1}>

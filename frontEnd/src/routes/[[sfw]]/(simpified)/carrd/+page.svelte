@@ -1,7 +1,9 @@
 <script>
-    import { socialMedias } 	from '$lib/controllers/navigationDirectories.js';
+    import SanityImage 			from "$lib/serializer/sanityImage.svelte";
     import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
+
+    export let data;
 </script>
 
 <div class="wrapper">
@@ -15,15 +17,15 @@
 			</div>
 		</div>
 	</div>
-	{#each socialMedias as push}
-		<RedirectBuilder url={push.path} redirectName={push.pagePreview}>
+	{#each data.socials as item}
+		<RedirectBuilder url={item.platformName.socialURL + item.url}>
 			<RainbowButtonWrap bottom={10} padding={[9,15]}>
 				<div class="central">
 					<div class="mediaIcon">
-						<img class="selectInv" src="/icons/{push.imagePath}.webp">
+						<SanityImage image={item.platformName.socialLogo}/>
 					</div>
 					<div class="text">
-						<h3 class="selectInv"> {push.name} </h3>
+						<h3 class="selectInv"> {item.platformName.socialName} </h3>
 					</div>
 				</div>
 			</RainbowButtonWrap>
@@ -63,8 +65,8 @@
 			display: 	flex;
 			width: 		100%;
 		.text {
-			width: 		100%;
-			text-align: center;
+			width: 	max-content;
+			margin: 0 auto;
 			h3 {
 				color:	black;}}}
 	.wrapper > * {

@@ -3,13 +3,10 @@
     import { cubicOut } 	from 'svelte/easing';
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
-    import { direction, transitioning } from '$lib/controllers/accessibilityController.js';
-
     import { afterNavigate } 	from "$app/navigation";
     import { navigating } from "$app/stores";
-    import {
-        directionProcessing, pageLoaded,
-    } from '$lib/controllers/accessibilityController.js';
+
+    import { directionProcessing, pageLoaded, direction, transitioning } from '$lib/controllers/accessibilityController.js';
 
     afterNavigate(async (n) => { // DEALS WITH BACKWARDS NAVIGATION
         if (!$navigating || !$pageLoaded) {
@@ -25,6 +22,7 @@
 	<div class="transitionWrapper"
 		in:fly={{
         	easing: 	cubicOut,
+        	delay: 170, // specifically for social media transitions
             duration:   250,
             x: transitionSpeed * $direction[1],
             y: transitionSpeed * -$direction[0]}}
@@ -44,6 +42,10 @@
 {/if}
 
 <style lang="scss">
+	.transitionWrapper {
+		position: static;
+	}
+
 	.centre {
 		top: 		0;
 		position: 	absolute;

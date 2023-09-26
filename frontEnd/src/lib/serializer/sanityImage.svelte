@@ -16,12 +16,11 @@
         };
     });
 
-
     const urlFor = (source) => {
         return imageUrlBuilder(client).image(source);};
 </script>
 
-{#if browser && image?.asset}
+{#if browser && !!image?.asset}
 	<div class:loaded>
 		<img loading="lazy"
 			 src =   { urlFor(image).width(1200) }

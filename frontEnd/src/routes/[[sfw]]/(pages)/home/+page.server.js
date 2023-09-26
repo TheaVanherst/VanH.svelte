@@ -30,10 +30,10 @@ export async function load () {
             },
         "workshopData":
             *[ _type == 'workshopItem'] | order(_updatedAt desc) []{
-                previewImage,
-                shortDesc,
                 itemName,
                 url,
+                previewImage,
+                shortDesc,
                 'gameLogo': gameTags->gameLogo
             },
         "workshopSnippet":

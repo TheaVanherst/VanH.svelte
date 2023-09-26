@@ -1,41 +1,34 @@
 <script>
+	// TODO: this page manages just general aesthetic initialization. Don't touch it.
+
     import '../styles.scss';
-
     import { fly } 				from 'svelte/transition';
-    import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
-    import { titlebarScroller } from "$lib/controllers/titlebarScoller.js";
+    // page visuals
+    import Header 				from "$root/components/layout/header/header.svelte";
+    import PageFooter 			from "$root/components/layout/pageFooter.svelte";
+
     import SpaceshipCursor 		from "$root/components/layout/overlays/spaceshipCursor.svelte";
     import Background 			from "$root/components/layout/overlays/background.svelte";
     import MessengerPlugin 		from "$root/components/layout/overlays/messengerPlugin.svelte";
     import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
 
-    import Header 				from "$root/components/layout/header/header.svelte";
-    import PageFooter 			from "$root/components/layout/pageFooter.svelte";
 
-    import {
-        scrollPos, bandWidths, screenSize, screenType, deviceType,
-        transitioning, pageLoaded, rootPath, directory,
-    } from "$lib/controllers/accessibilityController.js";
-
-    import { pageTitlebar, loadingIco, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
+    import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded,
+    	} from "$lib/controllers/accessibilityController.js";
+    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName
+    	} from "$lib/controllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
     import Device from "svelte-device-info";
 
-    import { page } from "$app/stores";
-
-    onMount(async () => { // dumb page setup stuff
-        $pageLoaded = 	true;
-
-        $directory = ($page.url.pathname).slice(0, -1);
-        let root = ($page.url.pathname).split("/");
-        $rootPath = "/" + root[1];
-
+    onMount(async () => {
         switch (true) {
             case Device.isPhone:  	$deviceType = 0; break;
             case Device.isTablet: 	$deviceType = 1; break;
             default:      			$deviceType = 2; break;}
+
+        $pageLoaded = 	true;
     });
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
@@ -56,24 +49,30 @@
 	<SpaceshipCursor/>
 {/if}
 
-<div class="parentElement" id="scrollParent">
-	<div id="layout">
-		<Header/>
+{#if $pageLoaded}
+	<div class="parentElement" id="scrollParent">
+		<div id="layout">
+			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
+				{#if $pageLoaded} <!-- this is a placeholder -->
+					<Header/>
+				{/if}
+			</div>
 
-		<div class="flexBox">
-			<TransitionHandler>
-				<slot/>
-			</TransitionHandler>
-		</div>
+			<slot/>
 
-		<div in:fly={{y: 100, duration: 500, delay: 350 }}>
-			<PageFooter/>
+			<div in:fly={{y: 100, duration: 500, delay: 350 }}>
+				{#if $pageLoaded} <!-- this is a placeholder -->
+						<PageFooter/>
+				{/if}
+			</div>
 		</div>
 	</div>
-</div>
+{/if}
 
 <style lang="scss">
-	* {	-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
+	.parentElement,
+	#layout {
+		-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
 		-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
 		box-sizing: 		border-box;} 	/* Opera/IE 8+ */
 
@@ -99,12 +98,5 @@
 		position: 			relative;
 		display: 			flex;
 		flex-direction: 	column;
-		justify-content: 	space-between;
-
-		.flexBox { // this fixes issues with the footer that I can't be fucked to fix.
-			position: 	relative;
-
-			z-index: 	1;
-			width: 		100%;
-			margin: 	0 0 auto 0;}}
+		justify-content: 	space-between;}
 </style>

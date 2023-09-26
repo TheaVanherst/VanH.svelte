@@ -1,22 +1,13 @@
 
 const submitters = {
-    thea: {
-        user: "Thea Vanherst" },
-    stella: {
-        user: "Stella" },
-    alex: {
-        user: "Alex_Miles" },
-    xal:  {
-        user: "Xaleya" },
-    jolly: {
-        user: "Mr Jolly" },
-    rust: {
-        user: "Chidi" },
-    atlas: {
-        user: "Atlas" },
-    pizza: {
-        user: "PizzaEgger"},
-}
+    thea: {     user: "Thea Vanherst" },
+    stella: {   user: "Stella" },
+    alex: {     user: "Alex_Miles" },
+    xal: {      user: "Xaleya" },
+    jolly: {    user: "Mr Jolly" },
+    rust: {     user: "Chidi" },
+    atlas: {    user: "Atlas" },
+    pizza: {    user: "PizzaEgger"}};
 
 const splash = [
     [false, "Now with even more characters!"],
@@ -227,6 +218,9 @@ const splash = [
     [false, "Mr electric, kill him! ⚡ "],
     [false, "I have to survive... no matter what!!"],
     [false, "I'm experiencing child like wonder!"],
+    [false, "A 'Transitional Directory Controller'? What?"],
+    [false, "'Accelerationism'? Is that a fast car?"],
+    [false, "Your local socialist!"]
 ]
 
 export { splash, submitters }

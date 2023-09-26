@@ -74,6 +74,8 @@ const
 
     // updates local url management.
     urlStoreArr.set(cfr);
+    rootPath.set("/" + cfr[1])
+
     !b ? directory.set(c) : directory.set(b);
 };
 
@@ -83,6 +85,6 @@ export { directionProcessing };
 
 const
     navigationVisibility =  writable(true),
-    socialMediaVisibility = writable(true);
+    socialMediaVisibility = writable(false);
 
 export { navigationVisibility, socialMediaVisibility };
