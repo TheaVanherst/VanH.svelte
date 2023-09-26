@@ -6,7 +6,7 @@ export { splashText }
 
 // TODO: page checking and controlling
 
-import { writable } from "svelte/store";
+import {get, writable} from "svelte/store";
 
 const
     scrollPos = writable(0),
@@ -71,10 +71,15 @@ const
 
     // sets writable memory for fetching.
     direction.set([offsets[0],offsets[1]]);
+    urlStoreArr.set(cfr); // updates local url management.
 
-    // updates local url management.
-    urlStoreArr.set(cfr);
-    rootPath.set("/" + cfr[1])
+    get(nsfw) === true ? rootPath.set("/" + cfr[2]) : rootPath.set("/" + cfr[1]);
+    if (get(nsfw) === true) {
+        rootPath.set("/" + cfr[2])
+        urlStoreArr.set(cfr.slice(1));}
+    else {
+        rootPath.set("/" + cfr[1]);
+        urlStoreArr.set(cfr);}
 
     !b ? directory.set(c) : directory.set(b);
 };

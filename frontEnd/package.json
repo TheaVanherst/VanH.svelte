@@ -1,7 +1,7 @@
 {
 	"name": "vanh.art",
 	"homepage": "https://vanh.art/",
-	"version": "0.6.0",
+	"version": "0.7.5",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",

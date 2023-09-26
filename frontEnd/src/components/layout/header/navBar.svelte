@@ -5,7 +5,7 @@
     import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
     import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
-    import { navigationDirectories } 	from '$lib/controllers/navigationDirectories.js';
+    import { navigationDirectories } from '$lib/controllers/navigationDirectories.js';
 
     import SanityImage from "$lib/serializer/sanityImage.svelte";
     import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/accessibilityController.js";
@@ -67,10 +67,13 @@
 		background: 	var(--TransBlack);
 		border-bottom: 	1px solid var(--accent2);
 
-		.navButton {	padding:		10px;
-			h5 { 		text-transform: uppercase;}
+		.navButton {	padding:			10px;
+			h5 {	text-transform: 		uppercase;
+					text-underline-offset: 	0.6em;
+					text-decoration:	 	underline 1px transparent;}
 			&.currentRoot {
-				h5 { 	border-bottom: 	1px solid;}}
+				h5 {	text-decoration-color: white;
+						text-underline-offset: 0.2em;}}
 			&:hover {	@include rainbowTransition();}}}
 
 	#socials {

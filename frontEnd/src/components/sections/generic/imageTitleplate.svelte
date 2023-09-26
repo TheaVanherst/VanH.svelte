@@ -1,6 +1,8 @@
 <script>
     import { fly } from 'svelte/transition';
+
     import SanityImage from "$lib/serializer/sanityImage.svelte";
+    import { deviceType } from "$lib/controllers/accessibilityController.js";
 
     export let
 		image = undefined,
@@ -14,17 +16,19 @@
 </script>
 
 <div class="card wideBorder {active ? 'hovered' : ''}"
-	 on:mouseenter={() => {active = true;}}
-	 on:mouseleave={() => {active = false;}}>
+	 on:click={() => {active = !active}}
+	 on:mouseenter={() => {$deviceType === 2 ? active = true : false}}
+	 on:mouseleave={() => {active = false}}>
 
 	<div class="showcase imageWrapper wideBorder">
 		<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-		<div class="fade">
+		<div class="characterImage">
 			<SanityImage image={image}/>
 		</div>
 
 		{#if active && hoverable}
-			<div class="infoPlate" transition:fly={{y: -50, duration: 400 }}>
+			<div class="infoPlate"
+				 transition:fly={{y: -50, duration: 400 }}>
 				<slot/>
 			</div>
 		{:else}
@@ -49,19 +53,29 @@
 	* {	transition: transform .5s ease; }
 
 	.hovered {
-		.fade {		transform: scale(1.1);}}
+		.characterImage {
+			transform: scale(1.1);}}
+
 	.showcase,
 	.infoPlate {	height: 520px;}
+
 	.card {			height: 550px;
-		.showcase {	display: 	flex;
-				position: relative;
-			.titleCard {
-				position: absolute;
-				bottom: 0;
-				background: var(--TransWhite);
+		.showcase {
+			display: 	flex;
+			position: relative;
+
+			.characterImage {
 				width: 100%;
-				padding: 7px 10px 10px 10px;
-				z-index: 1;
+				height: 100%;}
+
+			.titleCard {
+				position: 	absolute;
+				background: var(--TransWhite);
+				z-index: 	1;
+
+				bottom: 	0;
+				width: 		100%;
+				padding: 	7px 10px 10px 10px;
 
 				p, h4 {
 					color: 	black;}}}}
