@@ -1,0 +1,81 @@
+
+import {defineField, defineType} from 'sanity'
+const
+  altTextRequest = (obj) => {
+    let arr = [];
+
+    for (let i = 0; i < obj.length; i++) {
+      if (obj[i]?.alt){
+        arr[i] = ` ${i}: ${obj[i].alt}`;
+      }
+    }
+
+    if(arr.length > 1) {
+      return "Alt texts: [" + arr + "]";
+    }
+    else if (arr.length === 1) {
+      return "Alt text: [" + arr + "]";
+    }
+    else if (arr.length === 0) {
+      return "No alternative text provided.";
+    }
+  },
+
+  blockGallery = {
+    name: 'blockGallery',    title: 'Block Gallery',
+    type: 'object',
+    fields: [
+      {
+        name: 'images',   title: 'Images',
+        type: 'array',
+        of: [{
+          name: 'image',  title: 'Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          validation: Rule => Rule.required(),
+          fields: [
+            defineField({
+              name: 'desc', title: 'Brief Description',
+              type: 'string',
+            }),
+          ],
+        }],
+      },
+      // {
+      //   name: 'display',  title: 'Display as',
+      //   type: 'string',
+      //   initialValue:
+      //     { title: 'Stacked',           value: 'vertical'},
+      //   options: {
+      //     list: [
+      //       {title: 'Stacked',          value: 'vertical'},
+      //       {title: 'Dynamic Vertical', value: 'dynamicvertical'},
+      //       {title: 'Dynamic Grid',     value: 'dynamicgrid'},
+      //       {title: 'Grid',             value: 'grid'},
+      //       {title: 'Scroll',           value: 'scroll'},
+      //       {title: 'Carousel',         value: 'carousel'},
+      //     ],
+      //     layout: 'radio',
+      //   },
+      // },
+    ],
+
+    preview: {
+      select: {
+        images: 'images',
+        image: 'images',
+      },
+      prepare(selection) {
+        const { images, image } = selection;
+        return {
+          title: `Gallery block of ${Object.keys(images).length} images`,
+          subtitle: altTextRequest(image),
+          media: image[0]
+        };
+      },
+    },
+  };
+
+export default blockGallery;

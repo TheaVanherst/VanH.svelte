@@ -6,7 +6,7 @@
     import Container		from "$root/components/generic/containers/container.svelte";
     import SectionListCard from "$root/components/sections/generic/sectionListCard.svelte";
     import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
-    import SanityImage from "$lib/serializer/sanityImage.svelte";
+    import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
     import CommissionPrices from "$root/components/sections/commissions/commissionPrices.svelte";
 
@@ -36,17 +36,17 @@
 			 class:full={$screenType < 2}>
 			<div class="column">
 				<SectionListCard
-						banner={data.commissionTypes[0].dosList.banner}
-						list={data.commissionTypes[0].dosList.list}
-						title={data.commissionTypes[0].dosList.title}
-						description={data.commissionTypes[0].dosList.desc}/>
+					banner={data.commissionTypes[0].dosList.banner}
+					list={data.commissionTypes[0].dosList.list}
+					title={data.commissionTypes[0].dosList.title}
+					description={data.commissionTypes[0].dosList.desc}/>
 			</div>
 			<div class="column">
 				<SectionListCard
-						banner={data.commissionTypes[0].dontsList.banner}
-						list={data.commissionTypes[0].dontsList.list}
-						title={data.commissionTypes[0].dontsList.title}
-						description={data.commissionTypes[0].dontsList.desc}/>
+					banner={data.commissionTypes[0].dontsList.banner}
+					list={data.commissionTypes[0].dontsList.list}
+					title={data.commissionTypes[0].dontsList.title}
+					description={data.commissionTypes[0].dontsList.desc}/>
 			</div>
 		</div>
 	{/if}
@@ -67,10 +67,6 @@
 </SidebarTexts>
 
 <SidebarTexts titlecard="Prices">
-	<div class="imagePreview">
-
-	</div>
-
 	<Container>
 		<CommissionPrices
 			prices={data.commissionPrices[0].prices}

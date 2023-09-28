@@ -2,18 +2,14 @@
 import {defineField, defineType} from 'sanity'
 import {slugUniqueCheck} from '../../lib/slugUniqueCheck'
 
-import { UserIcon } from '@sanity/icons'
+import { StarIcon } from '@sanity/icons'
 
 export default defineType({
-  name: 'author',
-  title: 'Authors',
+  name: 'commissioner',
+  title: 'Commissioner',
   type: 'document',
   fields: [
     // TODO: User Data
-    defineField({
-      name: 'fullName', title: 'Full Name',
-      type: 'string',
-    }),
     defineField({
       name: 'handle', title: 'Handle',
       description: "A shorthand onsite username",
@@ -24,7 +20,7 @@ export default defineType({
       type: 'slug',
       validation: Rule => Rule.required(),
       options: {
-        source: 'fullName',
+        source: 'handle',
         maxLength: 24,
         isUnique: slugUniqueCheck
       }
@@ -47,11 +43,6 @@ export default defineType({
             name: 'url',  title: 'Profile Handle',
             description: 'Your profile URL, minus the string to the profile directory.',
             type: 'string', validation: Rule => Rule.required()
-          },{
-            name: 'visible', title: 'Visibility',
-            description: 'Is this item visible on your profile?',
-            type: 'boolean',
-            initialValue: false,
           }
         ],
         preview: {
@@ -79,58 +70,19 @@ export default defineType({
         hotspot: true,
       },
     }),
-    defineField({
-      name: 'profileBanner',
-      title: 'Profile Banner',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'shortDesc',
-      title: 'Short Description',
-      type: 'string',
-      validation: Rule => Rule.required().min(4).max(64),
-    }),
-    defineField({
-      name: 'bio',
-      title: 'Bio',
-      type: 'blockContent',
-    }),
-    defineField({
-      name: 'authorTag', title: 'Tags',
-      type: 'array',
-      of: [
-        { type: 'reference',
-          validation: Rule => Rule.required(),
-          to: {type: 'authorTags'}},
-      ]
-    }),
-    defineField({
-      name: 'internalRole', title: 'Internal Roles',
-      type: 'array',
-      of: [
-        { type: 'reference',
-          validation: Rule => Rule.required(),
-          to: {type: 'internalTags'}},
-      ]
-    }),
   ],
 
-  icon: UserIcon,
+  icon: StarIcon,
   preview: {
     select: {
-      title: 'fullName',
+      title: 'handle',
       shortDesc: 'shortDesc',
       media: 'userPortrait',
-      artIcon: 'authorTag.0.emoji',
-      intIcon: 'internalRole.0.emoji'
     },
     prepare(selection) {
-      const {title, shortDesc, media, artIcon, intIcon} = selection
+      const {title, shortDesc, media} = selection
       return {
-        title: `${title} ${artIcon} ${intIcon}`,
+        title: `${title}`,
         subtitle: shortDesc,
         media: media,
       }

@@ -17,6 +17,7 @@
 		"@sveltejs/kit": "^1.25.0",
 		"sass": "^1.64.2",
 		"svelte": "^4.2.0",
+		"svelte-bricks": "^0.2.1",
 		"svelte-device-info": "^1.0.0",
 		"svelte-preprocess": "^5.0.4",
 		"swiper": "^10.1.0",

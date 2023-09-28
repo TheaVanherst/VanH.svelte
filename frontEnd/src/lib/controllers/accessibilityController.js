@@ -71,20 +71,24 @@ const
 
     // sets writable memory for fetching.
     direction.set([offsets[0],offsets[1]]);
-    urlStoreArr.set(cfr); // updates local url management.
+    rootProcessing(cfr, true);
 
-    get(nsfw) === true ? rootPath.set("/" + cfr[2]) : rootPath.set("/" + cfr[1]);
-    if (get(nsfw) === true) {
-        rootPath.set("/" + cfr[2])
-        urlStoreArr.set(cfr.slice(1));}
-    else {
-        rootPath.set("/" + cfr[1]);
-        urlStoreArr.set(cfr);}
+    !b ? directory.set(c) : directory.set(b); //idk why removing this breaks everything.
+},
+    rootProcessing = (directory, parsed = false) => {
+        directory = parsed ?
+            directory :
+            directory.split("/");
 
-    !b ? directory.set(c) : directory.set(b);
-};
+        if (get(nsfw) === true) {
+            rootPath.set("/" + directory[2])
+            urlStoreArr.set(directory.slice(1));}
+        else {
+            rootPath.set("/" + directory[1]);
+            urlStoreArr.set(directory);}
+    }
 
-export { directionProcessing };
+export { directionProcessing, rootProcessing };
 
 // TODO: USERINTERFACE CONTROLLERS
 

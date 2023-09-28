@@ -6,7 +6,16 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'character','developmentStatus','heightTag','sexTag',
+            'artworks',
+          ].includes(listItem.getId())
+        ),
+
+      S.divider(),
+
+      ...S.documentTypeListItems()
+        .filter(
+          (listItem) => [
+            'character','alterCharacter','developmentStatus','heightTag','sexTag'
           ].includes(listItem.getId())
         ),
 
@@ -25,7 +34,7 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'author','authorTags','internalTags'
+            'author','authorTags','internalTags','commissioner'
           ].includes(listItem.getId())
         ),
 

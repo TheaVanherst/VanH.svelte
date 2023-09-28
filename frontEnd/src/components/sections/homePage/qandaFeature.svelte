@@ -1,7 +1,7 @@
 <script>
 	import {screenType} from "$lib/controllers/accessibilityController.js";
 
-    import SanityImage 	from "$lib/serializer/sanityImage.svelte";
+    import SanityImage 	from "$root/serializer/types/sanityImage.svelte";
     import Container 	from "../../generic/containers/container.svelte";
 
     export let dataset = [];

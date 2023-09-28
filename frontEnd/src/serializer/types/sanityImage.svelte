@@ -33,7 +33,6 @@
 	$backgroundSize: 800px;
 
 	div {
-
 		height:     100%;
 		width:      100%;
 

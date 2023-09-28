@@ -1,13 +1,13 @@
 <script>
     import { slide } 	from 'svelte/transition';
 
-    import { screenType } from '$lib/controllers/accessibilityController.js';
+    import {nsfw, screenType} from '$lib/controllers/accessibilityController.js';
     import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
     import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
     import { navigationDirectories } from '$lib/controllers/navigationDirectories.js';
 
-    import SanityImage from "$lib/serializer/sanityImage.svelte";
+    import SanityImage from "$root/serializer/types/sanityImage.svelte";
     import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/accessibilityController.js";
 
     export let socials;
@@ -19,11 +19,13 @@
 		{#if $navigationVisibility}
 			<div transition:slide id="navigation">
 				{#each navigationDirectories as item}
-					<RedirectBuilder url={item.path} external={true} redirectName={item.pagePreview}>
-						<div class="navButton" class:currentRoot={$rootPath === item.path}>
-							<h5> {item.title} </h5>
-						</div>
-					</RedirectBuilder>
+					{#if item.nsfw && $nsfw || !item.nsfw}
+						<RedirectBuilder url={item.path} external={true} redirectName={item.pagePreview}>
+							<div class="navButton" class:currentRoot={$rootPath === item.path}>
+								<h5> {item.title} </h5>
+							</div>
+						</RedirectBuilder>
+					{/if}
 				{/each}
 			</div>
 		{/if}

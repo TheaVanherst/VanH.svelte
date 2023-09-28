@@ -1,5 +1,5 @@
 <script>
-    import SanityImage 			from "$lib/serializer/sanityImage.svelte";
+    import SanityImage 			from "$root/serializer/types/sanityImage.svelte";
     import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 

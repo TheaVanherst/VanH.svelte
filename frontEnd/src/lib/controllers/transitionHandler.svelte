@@ -3,17 +3,32 @@
     import { cubicOut } 	from 'svelte/easing';
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
-    import { afterNavigate } 	from "$app/navigation";
+    import {afterNavigate, beforeNavigate, goto} from "$app/navigation";
     import { navigating } from "$app/stores";
 
-    import { directionProcessing, pageLoaded, direction, transitioning } from '$lib/controllers/accessibilityController.js';
+    import {directionProcessing, pageLoaded, direction, transitioning, directory} from '$lib/controllers/accessibilityController.js';
 
     afterNavigate(async (n) => { // DEALS WITH BACKWARDS NAVIGATION
         if (!$navigating || !$pageLoaded) {
             let to =    (n.to.url.pathname).slice(0, -1) ?? "/",
                 from =  n.type === "enter" ? to : (n?.from?.url?.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
-            await directionProcessing(from, to, to, 0);} //resets x, y positions
+            await directionProcessing(from, to, to, 0);
+        } //resets x, y positions
     });
+
+    beforeNavigate(async (n) => {
+        if (n.delta !== 0 && n.type === "popstate") {
+            let to = (n.to.url.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
+
+            await directionProcessing($directory, to, null, 0);
+            $transitioning = true;
+
+            setTimeout(async () => {
+                $transitioning = false;
+            }, 250);
+
+        } //resets x, y positions
+	})
 
     let transitionSpeed = 150; // transition position multipliers
 </script>

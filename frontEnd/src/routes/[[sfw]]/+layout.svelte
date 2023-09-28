@@ -5,7 +5,7 @@
     export let data;
 
     import { nsfw } from "$lib/controllers/accessibilityController.js";
-    $nsfw = data.dParams === 'nsfw';
+    $nsfw = data.dParams === 'nsfw'; // page initializing
 </script>
 
 <NavigationComponent socials={data.socials}/>
