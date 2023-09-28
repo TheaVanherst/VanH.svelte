@@ -14,6 +14,7 @@ export default defineType({
       name: 'pieceName', title: 'Artwork Piece Name',
       description: 'what is the name of the artwork piece?',
       type: 'string',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'description', title: 'Description',
@@ -25,27 +26,27 @@ export default defineType({
     defineField({
       name: 'slug', title: 'Slug',
       type: 'slug',
-      validation: Rule => Rule.required(),
       options: {
         source: 'pieceName',
         maxLength: 24,
         isUnique: slugUniqueCheck,
-      }
+      },
+      validation: Rule => Rule.required(),
     }),
 
     defineField({
       name: 'gallery', title: 'Gallery of Images',
+      type: 'blockGallery',
       validation: Rule => Rule.required(),
-      type: 'blockGallery'
     }),
 
     defineField({
       name: 'characters', title: 'Characters',
       type: 'array',
-      of: [
-        { type: 'reference',
-          to: [{type: 'character'}]},
-      ],
+      of: [{
+        type: 'reference',
+        to: [{type: 'character'}]
+      }],
     }),
 
     defineField({
@@ -56,16 +57,17 @@ export default defineType({
         defineField({
           name: 'characters', title: 'Characters',
           type: 'array',
-          of: [
-            { type: 'reference',
-              to: [{type: 'alterCharacter'}]},
-          ],
+          of: [{
+            type: 'reference',
+            to: [{type: 'alterCharacter'}]
+          }],
         }),
-
         defineField({
           name: 'artType', title: 'Commission Type',
           type: 'reference',
-          to: [{type: 'commissionType'}],
+          to: [{
+            type: 'commissionType'
+          }]
         }),
       ]
     }),
@@ -105,6 +107,7 @@ export default defineType({
           },
         },
       ],
+      validation: Rule => Rule.required(),
     }),
 
     nsfwBlock,
@@ -121,25 +124,19 @@ export default defineType({
     select: {
       title: 'pieceName',
       author1: 'authors.0.author.fullName',
-      author1Icon: 'authors.0.participation.emoji',
       author2: 'authors.1.author.fullName',
-      author2Icon: 'authors.1.participation.emoji',
       author3: 'authors.2.author.fullName',
-      author3Icon: 'authors.2.participation.emoji',
       author4: 'authors.3.author.fullName',
-      author4Icon: 'authors.3.participation.emoji',
       media: 'gallery.images[0]',
     },
     prepare(selection) {
-      const {title, author1, author1Icon, author2, author2Icon, author3, author3Icon, author4, author4Icon, media} = selection
-      let returnString = "";
+      const {title, author1, author2, author3, author4, media} = selection
+      let returnString = "Created by ";
 
-      const
-        authors = [author1, author2, author3, author4].filter(Boolean),
-        icons = [author1Icon, author2Icon, author3Icon, author4Icon];
+      const authors = [author1, author2, author3, author4].filter(Boolean);
 
       for (let i = 0; i < authors.length; i++) {
-        returnString += icons[i] + " " + authors[i] + (i < authors.length - 1 ? ", " : "");}
+        returnString += authors[i] + (i < authors.length - 1 ? ", " : " ");}
 
       return {
         title: title,
@@ -148,4 +145,4 @@ export default defineType({
       }
     }
   },
-})
+});

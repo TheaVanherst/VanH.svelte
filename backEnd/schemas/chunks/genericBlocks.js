@@ -1,3 +1,4 @@
+import {defineField} from 'sanity'
 
 const
   nsfwBlock = {
@@ -10,13 +11,14 @@ const
 export { nsfwBlock }
 
 const
-  authorBlock = {
-    name: 'author', title: 'Authors',
-    validation: Rule => Rule.required(),
-    type: 'reference',
-    to: {
-      type: 'author'
-    }
-  };
+  authorBlock =
+    defineField({
+      name: 'author', title: 'Authors',
+      validation: Rule => Rule.required(),
+      type: 'reference',
+      to: {
+        type: 'author'
+      }
+    });
 
 export {authorBlock}

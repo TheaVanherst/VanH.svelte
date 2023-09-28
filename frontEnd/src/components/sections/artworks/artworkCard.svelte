@@ -1,15 +1,19 @@
 <script>
-	import { fly } from "svelte/transition";
-
     import { deviceType } from "$lib/controllers/accessibilityController.js";
+    import { createdPush } from "$lib/misc/dateBuilder.js";
 
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
-	import {createdPush} from "$lib/misc/dateBuilder.js";
+
+    import ImageCard from "$root/components/generic/containers/imageCard.svelte";
 
     export let postData;
 
-    let active
+    let active,
+		arrayLength =
+		(postData?.characters ? postData.characters.length : 0) +
+		(postData?.commissionData?.characters ? postData.commissionData.characters?.length : 0);
+
 </script>
 
 <div class="postWrapper wideBorder"
@@ -18,124 +22,90 @@
 	 on:mouseleave={() => {active = false}}>
 	<div class="galleryWrapper">
 		<SanityGalleries portableText={postData.gallery}/>
-		{#if !active}
-			<div class="titleCard regularBorder"
-				 transition:fly={{y: -50, duration: 400 }}>
-				<h4>{postData.pieceName}</h4>
+
+		<ImageCard active={active} accent={true}>
+			<h4 slot="title">{postData.pieceName}</h4>
+			<p slot="desc">
+				{!!postData.description ? postData.description : ''}
+			</p>
+			<div slot="misc">
+				{#if !!postData.commissionData}
+					<p class="altTitle">
+						{postData.commissionData.artType.typeName} for:
+					</p>
+					{#each postData.commissionData.characters as character}
+						<div class="characterCard">
+							<div class="icon mediaIcon shortBorder">
+								<SanityImage image={character.owner.userPortrait}/>
+							</div>
+							<h4>
+								{character.owner.handle}
+							</h4>
+						</div>
+					{/each}
+				{/if}
+				<p>
+					Style: {postData.gallery.styleType}, {postData.gallery.renderType}
+				</p>
 			</div>
-		{:else}
-			<div class="descCard regularBorder"
-				 transition:fly={{y: 50, duration: 400 }}>
-				<div class="description">
-					<h4>{postData.pieceName}</h4>
-					{#if postData.description}
-						<p>
-							{postData.description}
-						</p>
-					{/if}
-					{#if !!postData.commissionData}
-						<p class="title fancy">
-							{postData.commissionData.artType.preName} {postData.commissionData.artType.typeName} for:
-						</p>
-						{#each postData.commissionData.characters as character}
-							<div class="commissionerCard">
-								<div class="icon mediaIcon shortBorder">
-									<SanityImage image={character.owner.userPortrait}/>
-								</div>
-								<h4>
-									{character.owner.handle}
-								</h4>
+
+			<div slot="altMisc">
+				<p>
+					Featured Character{arrayLength > 1 ? 's' : ''}:
+				</p>
+				{#if !!postData.characters}
+					{#each postData.characters as character}
+						<div class="characterCard">
+							<div class="icon mediaIcon shortBorder">
+								<SanityImage image={character.charIcon}/>
 							</div>
-						{/each}
-					{/if}
-				</div>
-				<div class="characterCards">
-					{#if postData.characters || postData.commissionData?.characters}
-						<p class="title fancy">
-							Featured Character{postData.characters?.length + postData.commissionData?.characters?.length > 1 ? 's' : ''}:
-						</p>
-					{/if}
-					{#if !!postData.characters}
-						{#each postData.characters as character}
-							<div class="characterCard">
-								<div class="icon mediaIcon shortBorder">
-									<SanityImage image={character.charIcon}/>
-								</div>
-								<h4>
-									{character.fullName}
-								</h4>
+							<h4>
+								{character.fullName}
+							</h4>
+						</div>
+					{/each}
+				{/if}
+				{#if !!postData.commissionData?.characters}
+					{#each postData.commissionData.characters as character}
+						<div class="characterCard">
+							<div class="icon mediaIcon shortBorder">
+								<SanityImage image={character.charIcon}/>
 							</div>
-						{/each}
-					{/if}
-					{#if !!postData.commissionData?.characters}
-						{#each postData.commissionData.characters as character}
-							<div class="characterCard">
-								<div class="icon mediaIcon shortBorder">
-									<SanityImage image={character.charIcon}/>
-								</div>
-								<h4>
-									{character.fullName}
-								</h4>
-							</div>
-						{/each}
-					{/if}
-					<p class="creationDate">{createdPush(postData.publishedAt)}</p>
-				</div>
+							<h4>
+								{character.fullName}
+							</h4>
+						</div>
+					{/each}
+				{/if}
+				<p>
+					{createdPush(postData.publishedAt)}
+				</p>
 			</div>
-		{/if}
+		</ImageCard>
 	</div>
 </div>
 
 <style lang="scss">
 
-	p, h4 {
-		color: black;}
-
 	.postWrapper {
 		overflow: hidden;
 		.galleryWrapper {
-			position: relative;
-			.titleCard,
-			.descCard {
-				overflow: 	hidden;
-				position: 	absolute;}}}
+			position: relative;}}
 
-	.galleryWrapper {
-		.titleCard,
-		.descCard {
-			margin: 	5px;
-			bottom: 	0;}
-		.titleCard, .description, .characterCards {
-			padding: 	8px 15px 10px 10px;}
-		.characterCards > .title {
-			padding-bottom: 7px;}
-		.description > p {
-			padding-top: 7px;}
-		.description, .titleCard {
-			background: var(--TransWhite);}
-		.characterCards {
-			background: var(--accent9);}}
-
-	.commissionerCard,
 	.characterCard {
-		display: inline-flex;
+		display: flex;
 		width: 100%;
+		margin: 5px 0;
 		gap: 10px;
 		vertical-align: bottom;
 
 		> * {
 			margin: auto 0;}
-
 		.icon {
 			overflow: hidden;}}
 
-	.characterCards {
-		padding-bottom: 5px;
-		.characterCard:not(:last-of-type) {
-			padding-bottom: 5px;
-		}
-	}
-	.creationDate,
-	.commissionerCard {
-		padding-top: 5px;}
+	.creationDate{
+		padding-top: 7px;}
+
+	p {	margin: 7px 0;}
 </style>

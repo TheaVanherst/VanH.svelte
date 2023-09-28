@@ -16,7 +16,6 @@
 			<div class="regularBorder">
 				<SanityImage image={dataEntry.previewImage}/>
 			</div>
-
 			<FlyInCard icon={dataEntry.gameLogo} title={dataEntry.itemName} desc={dataEntry.shortDesc} hover={hover}/>
 		</div>
 	</div>

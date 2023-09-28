@@ -8,8 +8,8 @@ const
     name: 'internalTags', title: 'Internal Tags',
     type: 'document',
     fields: emojiTags,
-    icon: CheckmarkCircleIcon,
 
+    icon: CheckmarkCircleIcon,
     preview: {
       select: {
         emoji: 'emoji',

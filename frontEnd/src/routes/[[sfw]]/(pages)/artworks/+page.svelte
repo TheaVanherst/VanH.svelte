@@ -8,7 +8,7 @@
 <div class="wrapper">
 	<Masonry
 			items=	{data.artworks}
-			gap=	{5}
+			gap=	{10}
 			idKey=	{`_id`}
 
 			animate=		{false}

@@ -25,7 +25,7 @@ const
     name: 'blockGallery',    title: 'Block Gallery',
     type: 'object',
     fields: [
-      {
+      defineField({
         name: 'images',   title: 'Images',
         type: 'array',
         of: [{
@@ -42,24 +42,41 @@ const
             }),
           ],
         }],
-      },
-      // {
-      //   name: 'display',  title: 'Display as',
-      //   type: 'string',
-      //   initialValue:
-      //     { title: 'Stacked',           value: 'vertical'},
-      //   options: {
-      //     list: [
-      //       {title: 'Stacked',          value: 'vertical'},
-      //       {title: 'Dynamic Vertical', value: 'dynamicvertical'},
-      //       {title: 'Dynamic Grid',     value: 'dynamicgrid'},
-      //       {title: 'Grid',             value: 'grid'},
-      //       {title: 'Scroll',           value: 'scroll'},
-      //       {title: 'Carousel',         value: 'carousel'},
-      //     ],
-      //     layout: 'radio',
-      //   },
-      // },
+      }),
+      defineField({
+        name: 'display',  title: 'Display as',
+        type: 'string',
+        initialValue:
+          { title: 'Stacked',           value: 'vertical'},
+        options: {
+          list: [
+            {title: 'Stacked',          value: 'vertical'},
+            {title: 'Dynamic Vertical', value: 'dynamicvertical'},
+            {title: 'Dynamic Grid',     value: 'dynamicgrid'},
+            {title: 'Grid',             value: 'grid'},
+            {title: 'Scroll',           value: 'scroll'},
+            {title: 'Carousel',         value: 'carousel'},
+          ],
+          layout: 'radio',
+        },
+      }),
+
+      defineField({
+        name: 'styleType', title: 'Style Type',
+        type: 'reference',
+        to: [{
+          type: 'styleType'
+        }],
+        validation: Rule => Rule.required(),
+      }),
+      defineField({
+        name: 'renderType', title: 'Render Type',
+        type: 'reference',
+        to: [{
+          type: 'renderType'
+        }],
+        validation: Rule => Rule.required(),
+      }),
     ],
 
     preview: {

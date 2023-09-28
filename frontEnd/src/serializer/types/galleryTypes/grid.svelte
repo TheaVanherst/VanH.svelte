@@ -24,6 +24,7 @@
         .row {
 	        vertical-align: bottom;
 	        display: flex;
+            gap: var(--imageSpacing);
 
 	        width: 100%;
 

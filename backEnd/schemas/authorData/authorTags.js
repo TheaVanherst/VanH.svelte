@@ -8,6 +8,7 @@ const
     name: 'authorTags', title: 'Author Tags',
     type: 'document',
     fields: emojiTags,
+
     icon: TagsIcon,
     preview: {
       select: {

@@ -6,6 +6,11 @@ export async function load () {
         "artworks":
             *[ _type == 'artworks'] | order(publishedAt desc) {
                 ...,
+                'gallery': gallery {
+                    ...,
+                    'renderType': renderType->renderName,
+                    'styleType': styleType->styleName
+                },
                 'characters': characters[]->{
                     fullName,
                     charIcon,

@@ -34,16 +34,17 @@ export default defineType({
         type: 'object',
         validation: Rule => Rule.required(),
         fields: [
-          {
+          defineField({
             name: 'platformName',  title: 'Platform Name',
             type: 'reference',
             to: {type: 'websiteSocials'},
             validation: Rule => Rule.required()
-          },{
+          }),
+          defineField({
             name: 'url',  title: 'Profile Handle',
             description: 'Your profile URL, minus the string to the profile directory.',
             type: 'string', validation: Rule => Rule.required()
-          }
+          })
         ],
         preview: {
           select: {
