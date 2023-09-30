@@ -1,9 +1,9 @@
 <script>
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 
-	import CharacterFeature from "$root/components/sections/characters/characterCard.svelte";
-    import WorkshopFeature 	from "$root/components/sections/Embedded/workshopFeature.svelte";
-    import GithubFeature 	from "$root/components/sections/Embedded/githubFeature.svelte";
+	import CharacterFeature from "$root/components/sections/characters/homePage/characterShowcase.svelte";
+    import WorkshopFeature 	from "$root/components/sections/embedded/workshopFeature.svelte";
+    import GithubFeature 	from "$root/components/sections/embedded/githubFeature.svelte";
     import DonationFeature 	from "$root/components/sections/homePage/donationFeature.svelte";
     import QandaFeature 	from "$root/components/sections/homePage/qandaFeature.svelte";
 

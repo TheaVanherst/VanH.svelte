@@ -1,6 +1,6 @@
 <script>
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import FlyInCard from "$root/components/sections/Embedded/flyInEmbedCard.svelte";
+    import FlyInCard from "$root/components/generic/imageContainers/flyInClamp.svelte";
 
 	export let dataEntry
 
@@ -13,7 +13,7 @@
 		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
 
 		<div class="workshopPreview regularBorder">
-			<div class="regularBorder">
+			<div class="regularBorder imageWrapper">
 				<SanityImage image={dataEntry.previewImage}/>
 			</div>
 			<FlyInCard icon={dataEntry.gameLogo} title={dataEntry.itemName} desc={dataEntry.shortDesc} hover={hover}/>

@@ -4,9 +4,11 @@
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
-    import SectionListCard from "$root/components/sections/generic/sectionListCard.svelte";
+    import SectionListCard from "$root/components/generic/containers/sectionListCard.svelte";
     import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
+
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
 
     import CommissionPrices from "$root/components/sections/commissions/commissionPrices.svelte";
 
@@ -20,9 +22,9 @@
 				<swiper-slide>
 					<div class="imageCard wideBorder">
 						<SanityImage image="{image.imageRender}"/>
-						<div class="imageCite regularBorder bottom">
+						<ImageTag position={[0,0]}>
 							<p>{image.renderStyle}</p>
-						</div>
+						</ImageTag>
 					</div>
 				</swiper-slide>
 			{/if}
@@ -35,18 +37,30 @@
 		<div class="table"
 			 class:full={$screenType < 2}>
 			<div class="column">
-				<SectionListCard
-					banner={data.commissionTypes[0].dosList.banner}
-					list={data.commissionTypes[0].dosList.list}
-					title={data.commissionTypes[0].dosList.title}
-					description={data.commissionTypes[0].dosList.desc}/>
+				<SectionListCard image={data.commissionTypes[0].dosList.banner}>
+					<div slot="title">
+						<h5>{data.commissionTypes[0].dosList.title}</h5>
+						<p>{data.commissionTypes[0].dosList.desc}</p>
+					</div>
+					<ul>
+						{#each data.commissionTypes[0].dosList.list as bonus}
+							<li>{bonus}</li>
+						{/each}
+					</ul>
+				</SectionListCard>
 			</div>
 			<div class="column">
-				<SectionListCard
-					banner={data.commissionTypes[0].dontsList.banner}
-					list={data.commissionTypes[0].dontsList.list}
-					title={data.commissionTypes[0].dontsList.title}
-					description={data.commissionTypes[0].dontsList.desc}/>
+				<SectionListCard image={data.commissionTypes[0].dontsList.banner}>
+					<div slot="title">
+						<h5>{data.commissionTypes[0].dontsList.title}</h5>
+						<p>{data.commissionTypes[0].dontsList.desc}</p>
+					</div>
+					<ul>
+						{#each data.commissionTypes[0].dontsList.list as bonus}
+							<li>{bonus}</li>
+						{/each}
+					</ul>
+				</SectionListCard>
 			</div>
 		</div>
 	{/if}
@@ -117,14 +131,15 @@
 	.imageCard {
 		height: 	500px;
 		overflow: 	hidden;
+		position: 	relative;
 		margin: 	0 0 27px 0;}
 
 	h3 {		margin:  	0 0 10px 0;}
-	ul {		padding: 	0 0 3px 15px;
-		&:last-child {
-				margin:  0 0 0 0;}}
 	.bottom {	margin: 	0 0 27px 10px;}
 	.chunk {	padding: 	1px 3px 1px 3px;
+		ul {	padding: 	0 0 3px 15px;
+			&:last-child {
+				margin-bottom: 0!important;}}
 		> * {	margin: 	0 0 10px 0;}
 		p { &:last-child {
 				margin: 		0;}}}

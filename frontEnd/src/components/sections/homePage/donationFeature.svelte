@@ -1,7 +1,7 @@
 <script>
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
-    import SectionListCard from "$root/components/sections/generic/sectionListCard.svelte";
+    import SectionListCard from "$root/components/generic/containers/sectionListCard.svelte";
     import PersonalMessage from "$root/components/sections/homePage/personalMessage.svelte";
 
     export let
@@ -13,16 +13,34 @@
 <div class="table" class:mobile={$screenType === 1}>
 	<div class="col">
 		<SectionListCard
-            featured={true}
-            title={global.tierName} description={global.tierDesc}
-            list={global.tierPerks} banner={global.bannerImage}/>
+			featured={true}
+			image={global.bannerImage}>
+
+			<div slot="title">
+				<h5>{global.tierName}</h5>
+				<p>{global.tierDesc}</p>
+			</div>
+			<ul>
+				{#each global.tierPerks as bonus}
+					<li>{bonus}</li>
+				{/each}
+			</ul>
+		</SectionListCard>
 	</div>
 	<div class="col">
 		{#each tiers as perkType}
 			<a class="row" target="_blank" href="https://ko-fi.com/theavanherst">
-				<SectionListCard
-					title={perkType.tierName} description={perkType.tierDesc}
-					list={perkType.tierPerks} banner={perkType.bannerImage}/>
+				<SectionListCard image={perkType.bannerImage}>
+					<div slot="title">
+						<h5>{perkType.tierName}</h5>
+						<p>{perkType.tierDesc}</p>
+					</div>
+					<ul>
+						{#each perkType.tierPerks as bonus}
+							<li>{bonus}</li>
+						{/each}
+					</ul>
+				</SectionListCard>
 			</a>
 		{/each}
 	</div>

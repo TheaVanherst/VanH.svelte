@@ -3,16 +3,15 @@
     import { cubicOut } 	from 'svelte/easing';
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
-    import {afterNavigate, beforeNavigate, goto} from "$app/navigation";
+    import {afterNavigate, beforeNavigate} from "$app/navigation";
     import { navigating } from "$app/stores";
 
-    import {directionProcessing, pageLoaded, direction, transitioning, directory} from '$lib/controllers/accessibilityController.js';
+    import {directionProcessing, pageLoaded, direction, transitioning, directory, nsfw} from '$lib/controllers/accessibilityController.js';
 
-    afterNavigate(async (n) => { // DEALS WITH BACKWARDS NAVIGATION
+    afterNavigate((n) => { // DEALS WITH BACKWARDS NAVIGATION
         if (!$navigating || !$pageLoaded) {
-            let to =    (n.to.url.pathname).slice(0, -1) ?? "/",
-                from =  n.type === "enter" ? to : (n?.from?.url?.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
-            await directionProcessing(from, to, to, 0);
+            let to =    "/" + ($nsfw ? 'nsfw' : '') + (n.to.url.pathname).slice(0, -1) ?? "/"; // FUCKING DUMB, IT'S TEMPORARY, IGNORE IT, PLEASE.
+			directionProcessing(to, to, to, 0);
         } //resets x, y positions
     });
 
@@ -22,11 +21,9 @@
 
             await directionProcessing($directory, to, null, 0);
             $transitioning = true;
-
             setTimeout(async () => {
                 $transitioning = false;
             }, 250);
-
         } //resets x, y positions
 	})
 

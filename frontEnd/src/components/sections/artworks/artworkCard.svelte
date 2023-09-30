@@ -5,7 +5,7 @@
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
-    import ImageCard from "$root/components/generic/containers/imageCard.svelte";
+    import ImageFloatCard from "$root/components/generic/imageContainers/imageFloatCard.svelte";
 
     export let postData;
 
@@ -23,12 +23,16 @@
 	<div class="galleryWrapper">
 		<SanityGalleries portableText={postData.gallery}/>
 
-		<ImageCard active={active} accent={true}>
-			<h4 slot="title">{postData.pieceName}</h4>
-			<p slot="desc">
-				{!!postData.description ? postData.description : ''}
-			</p>
-			<div slot="misc">
+		<ImageFloatCard active={active} accent={true}>
+			<h4 slot="title">
+				{postData.pieceName}
+			</h4>
+
+			<div slot="desc">
+				<h4>{postData.pieceName}</h4>
+				<p>
+					{!!postData.description ? postData.description : ''}
+				</p>
 				{#if !!postData.commissionData}
 					<p class="altTitle">
 						{postData.commissionData.artType.typeName} for:
@@ -49,7 +53,7 @@
 				</p>
 			</div>
 
-			<div slot="altMisc">
+			<div slot="alt">
 				<p>
 					Featured Character{arrayLength > 1 ? 's' : ''}:
 				</p>
@@ -80,32 +84,28 @@
 				<p>
 					{createdPush(postData.publishedAt)}
 				</p>
+
 			</div>
-		</ImageCard>
+		</ImageFloatCard>
 	</div>
 </div>
 
 <style lang="scss">
-
 	.postWrapper {
-		overflow: hidden;
+		overflow: 		hidden;
 		.galleryWrapper {
-			position: relative;}}
+			position: 	relative;}}
+
+	p {	margin: 	7px 0;}
 
 	.characterCard {
-		display: flex;
-		width: 100%;
-		margin: 5px 0;
-		gap: 10px;
+		display: 	flex;
+		width: 		100%;
+		margin: 	5px 0;
+		gap: 		10px;
 		vertical-align: bottom;
-
 		> * {
-			margin: auto 0;}
+			margin: 	auto 0;}
 		.icon {
-			overflow: hidden;}}
-
-	.creationDate{
-		padding-top: 7px;}
-
-	p {	margin: 7px 0;}
+			overflow:	hidden;}}
 </style>

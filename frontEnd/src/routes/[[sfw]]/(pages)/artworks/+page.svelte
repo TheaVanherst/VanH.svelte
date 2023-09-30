@@ -7,16 +7,16 @@
 
 <div class="wrapper">
 	<Masonry
-			items=	{data.artworks}
-			gap=	{10}
-			idKey=	{`_id`}
+		items=	{data.artworks}
+		gap=	{10}
+		idKey=	{`_id`}
 
-			animate=		{false}
-			columnClass=	"flex"
-			let:item>
-		<div class="artPost">
-			<ArtworkCard postData={item}/>
-		</div>
+		animate=		{false}
+		columnClass=	"flex"
+		let:item>
+			<div class="artPost">
+				<ArtworkCard postData={item}/>
+			</div>
 	</Masonry>
 	<div class="endOfContent wideBorder">
 		<p>Currently a WIP!</p>

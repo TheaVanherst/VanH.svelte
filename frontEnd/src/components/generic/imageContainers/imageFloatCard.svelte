@@ -5,27 +5,27 @@
 </script>
 
 {#if !active}
-	<div id="imageCard" transition:fly={{y: -50, duration: 400 }}>
-		<div class="titleCard regularBorder">
-			<div class="wrapper">
-				<slot name="title"/>
+	<div class="previewCard" transition:fly={{y: -50, duration: 400 }}>
+		{#if $$slots['title']}
+			<div class="titleCard regularBorder">
+				<div class="wrapper">
+					<slot name="title"/>
+				</div>
 			</div>
-		</div>
+		{/if}
 	</div>
 {:else}
-	<div id="imageCard" transition:fly={{y: 50, duration: 400 }}>
+	<div class="infoPlate" transition:fly={{y: 50, duration: 400 }}>
 		<div class="descCard regularBorder">
 			<div class="titleCard">
 				<div class="wrapper">
-					<slot name="title"/>
 					<slot name="desc"/>
-					<slot name="misc"/>
 				</div>
 			</div>
-			{#if $$slots['altMisc']}
+			{#if $$slots['alt']}
 				<div class="accent">
 					<div class="wrapper">
-						<slot name="altMisc"/>
+						<slot name="alt"/>
 					</div>
 				</div>
 			{/if}
@@ -34,11 +34,9 @@
 {/if}
 
 <style lang="scss">
-	:global(#imageCard *) {
-		color: black;
-	}
-
-	#imageCard  {
+	:global(.previewCard *, .infoPlate *) {
+		color: 		black;}
+	.previewCard, .infoPlate {
 		margin: 	5px;
 		bottom: 	0;
 		position: 	absolute;}
@@ -48,13 +46,9 @@
 		position: 	relative;
 		overflow: 	hidden;
 		> * {
-			display: block;
-		}
-	}
+			display: block;}}
 
-	.wrapper {		margin: 8px 15px 10px 10px;}
-	.description {	margin: 5px 0 5px 0;}
-
+	.wrapper {		margin: 	8px 15px 10px 10px;}
 	.titleCard {	background: var(--TransWhite);}
 	.accent {		background: var(--accent9);}
 </style>

@@ -1,20 +1,20 @@
 <script>
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import FlyInCard from "$root/components/sections/Embedded/flyInEmbedCard.svelte";
+    import FlyInCard from "$root/components/generic/imageContainers/flyInClamp.svelte";
 
 	export let data;
 
-    let hover = false;
+    let active = false;
 </script>
 
 <a href="https://{data.url}" target="_blank">
 	<div class="slide regularBorder"
-		 on:mouseenter={() => hover=true} on:mouseleave={() => hover=false}>
+		 on:mouseenter={() => active=true} on:mouseleave={() => active=false}>
 		<div class="thumbnail">
-			<div class="image">
+			<div class="imageWrapper">
 				<SanityImage image={data.previewImage}/>
 			</div>
-			<FlyInCard title={data.itemName} desc={data.shortDesc} hover={hover}/>
+			<FlyInCard title={data.itemName} desc={data.shortDesc} hover={active}/>
 		</div>
 		<div class="referral" style="background: var(--accent{data.accentColour})">
 			<p>TheaVanherst/{data.slug}</p>
@@ -39,7 +39,7 @@
 			max-height: 180px;
 			min-height: 150px;
 
-			.image {
+			.imageWrapper {
 				height: 250px;
 			}
 		}}

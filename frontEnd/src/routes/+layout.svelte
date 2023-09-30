@@ -53,9 +53,7 @@
 	<div class="parentElement" id="scrollParent">
 		<div id="layout">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
-				{#if $pageLoaded} <!-- this is a placeholder -->
-					<Header/>
-				{/if}
+				<Header/>
 			</div>
 
 			<slot/>

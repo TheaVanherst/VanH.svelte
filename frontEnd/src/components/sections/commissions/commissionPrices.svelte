@@ -2,86 +2,77 @@
     import { nsfw } from "$lib/controllers/accessibilityController.js";
 
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
+	import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
 
     export let
 		prices = [],
         additional = [];
 </script>
 
-<div class="chunk">
-	<h3>Commission Types</h3>
-	<div class="colourWrapper">
-		{#each prices as commissionType}
-			<div class="commType">
-				{#if $nsfw}
-					<div class="previewBanner regularBorder">
-						<SanityImage image={commissionType.previewImage}/>
-						<h4 class="commissionName shortBorder">
-							{commissionType.styleName}
-						</h4>
-					</div>
-				{/if}
-				<div class="commissionDetails">
-					<p>
-						{commissionType.styleDescription}
-					</p>
-					<div class="prices">
-						{#each commissionType.styleTypes as type}
-							<h5>
-								<span>{type.renderType}:</span> £{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''}
-							</h5>
-						{/each}
-						{#each commissionType.additionalPurchases as type}
-							<h5>
-								<span>{type.renderType}:</span> (+£{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''})
-							</h5>
-						{/each}
-					</div>
+<h3>Commission Types</h3>
+<div class="colourWrapper">
+	{#each prices as commissionType}
+		<div class="commType">
+			{#if $nsfw}
+				<div class="previewBanner regularBorder imageWrapper">
+					<SanityImage image={commissionType.previewImage}/>
+					<ImageTag position={[0,0]} border="shortBorder">
+						<p>{commissionType.styleName}</p>
+					</ImageTag>
+				</div>
+			{/if}
+			<div class="commissionDetails">
+				<p>
+					{commissionType.styleDescription}
+				</p>
+				<div class="prices">
+					{#each commissionType.styleTypes as type}
+						<h5>
+							<span>{type.renderType}:</span> £{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''}
+						</h5>
+					{/each}
+					{#each commissionType.additionalPurchases as type}
+						<h5>
+							<span>{type.renderType}:</span> (+£{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''})
+						</h5>
+					{/each}
 				</div>
 			</div>
-		{/each}
-	</div>
-	<h3>Additional purchases</h3>
-	<div class="additionalPurchases">
-		{#each additional as type}
-			<div class="type">
-				<h5>
-					<span>{type.additionalItem}:</span> £{type.additionalPrice}.00{type.additionalPriceTag ? '+' : ''}
-				</h5>
-				<p>
-					{type.additionalDescription}
-				</p>
-			</div>
-		{/each}
-	</div>
+		</div>
+	{/each}
+</div>
+<h3>Additional purchases</h3>
+<div class="additionalPurchases">
+	{#each additional as type}
+		<div class="type">
+			<h5>
+				<span>{type.additionalItem}:</span> £{type.additionalPrice}.00{type.additionalPriceTag ? '+' : ''}
+			</h5>
+			<p>
+				{type.additionalDescription}
+			</p>
+		</div>
+	{/each}
 </div>
 
 <style lang="scss">
 	* {	transition: ease .3s; }
 
-	.chunk {
-		> * {	margin:	0 0 10px 0;}
-		p { &:last-child {
-				margin: 0;}}}
+	p { &:last-child {
+		margin: 0;}}
+	h3 {
+		margin-bottom: 15px;}
 
 	.previewBanner {
-		overflow: 	hidden;
-		position: 	relative;
-
 		margin: 	0 0 15px 0;
 		height: 	150px;}
 
-	.commissionName {
-		position: 	absolute;
-		bottom: 	0;
-		max-width: 	100%;
-		background: var(--TransBlack);}
 	.commType {
 		padding: 	0 0 8px 15px;
 		margin: 	10px 0 10px 0;
-		h4 {	margin: 	10px;
-				padding: 	10px 10px 10px 10px;}
-		p {		paddinG: 	0 0 7px 0;}
+
+		.commissionDetails {
+			p {padding: 	0 0 10px 0;}}
 
 		.prices {
 			display: 	flex;

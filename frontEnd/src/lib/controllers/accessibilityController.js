@@ -70,7 +70,9 @@ const
         offsets[1] = pyo > cyo ? 1 : -1;} // upwards / downwards
 
     // sets writable memory for fetching.
+    // console.log(get(direction), p, c, b);
     direction.set([offsets[0],offsets[1]]);
+    // console.log(get(direction))
     rootProcessing(cfr, true);
 
     !b ? directory.set(c) : directory.set(b); //idk why removing this breaks everything.
