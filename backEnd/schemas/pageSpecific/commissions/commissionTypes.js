@@ -24,9 +24,6 @@ export default defineType({
           name: 'banner',
           title: 'Banner Image',
           type: 'image',
-          options: {
-            hotspot: true,
-          },
         }),
         defineField({
           name: 'list', title: "Do list",
@@ -60,9 +57,6 @@ export default defineType({
           name: 'banner',
           title: 'Banner Image',
           type: 'image',
-          options: {
-            hotspot: true,
-          },
         }),
         defineField({
           name: 'list', title: "Dont list",

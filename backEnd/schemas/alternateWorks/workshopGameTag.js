@@ -14,9 +14,6 @@ const
       defineField({
         name: 'gameLogo', title: 'Game Logo',
         type: 'image',
-        options: {
-          hotspot: true,
-        },
       }),
     ],
     icon: TagIcon,
@@ -25,8 +22,7 @@ const
         title: 'gameName',
         media: 'gameLogo'
       },
-      prepare(selection) {
-        const {title, media} = selection
+      prepare: ({ title, media }) => {
         return {
           title: title,
           media: media,

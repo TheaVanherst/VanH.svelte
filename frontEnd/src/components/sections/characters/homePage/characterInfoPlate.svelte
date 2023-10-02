@@ -1,15 +1,15 @@
 <script>
 	import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
-    import {heightBuilder, shortMonthBuilder} from "$lib/misc/measurementConverters.js";
+    import { heightBuilder, standardTinyhand, standardShorthand } from "$lib/misc/measurementConverters.js";
 
     export let data = {}
 
     const iterationBuilder = (c,s) => {
         let returnString = "";
-        if (c){			returnString += shortMonthBuilder(c);
-            if (s) {	returnString += " - " + shortMonthBuilder(s);}}
-        else if (s){	returnString += shortMonthBuilder(s);}
+        if (c){			returnString += standardTinyhand(c);
+            if (s) {	returnString += " - " + standardTinyhand(s);}}
+        else if (s){	returnString += standardTinyhand(s);}
         return returnString;
 	};
 </script>
@@ -56,6 +56,9 @@
 			{#if data.timePeriod}
 				<p><span>Time period</span>: {data.timePeriod}</p>
 			{/if}
+			{#if data.birthday}
+				<p><span>Birthday</span>: {standardShorthand(data.birthday)}</p>
+			{/if}
 			{#if data.age}
 				<p><span>Age</span>: {data.age}</p>
 			{/if}
@@ -87,7 +90,7 @@
 	{#if data.creation}
 		<div class="description">
 			<p class="subtitle">Design Iterations</p>
-			<p id="creationDate"><span>Creation Date</span>: {shortMonthBuilder(data.creation)}</p>
+			<p id="creationDate"><span>Creation Date</span>: {standardTinyhand(data.creation)}</p>
 			{#if data.prevcreation}
 				{#each data.prevcreation as iteration}
 					<p id="IterationsDate">

@@ -21,15 +21,34 @@ export default defineType({
               validation: Rule => Rule.required()
             }),
             defineField({
-              name: 'renderStyle', title: 'Render information',
-              type: 'string',
+              name: 'styleType', title: 'Style information',
+              type: 'reference',
+              to: { type: 'styleType' },
+            }),
+            defineField({
+              name: 'renderType', title: 'Render information',
+              type: 'reference',
+              to: { type: 'renderType' },
             }),
             defineField({
               name: 'nsfwRender', title: 'Should this be hidden for SFW users?',
               type: 'boolean',
               initialValue: false,
             }),
-          ]
+          ],
+          preview: {
+            select: {
+              render: 'renderType.renderName',
+              style:  'styleType.styleName',
+              icon:   'imageRender'
+            },
+            prepare: ({ render, style, icon }) => {
+              return {
+                title: `${render}, ${style}`,
+                media: icon
+              }
+            }
+          }
         }),
       ],
     }),
@@ -43,9 +62,9 @@ export default defineType({
           type: 'object',
           fields: [
             defineField({
-              name: 'styleName', title: 'Style Name',
-              type: 'string',
-              validation: Rule => Rule.required()
+              name: 'styleType', title: 'Style information',
+              type: 'reference',
+              to: { type: 'styleType' },
             }),
             defineField({
               name: 'styleDescription', title: 'Style Description',
@@ -56,9 +75,6 @@ export default defineType({
               name: 'previewImage',
               title: 'Preview Image',
               type: 'image',
-              options: {
-                hotspot: true,
-              },
             }),
             defineField({
               name: 'styleTypes', title: 'Style type',
@@ -69,8 +85,9 @@ export default defineType({
                   type: 'object',
                   fields: [
                     defineField({
-                      name: 'renderType', title: 'Render Type',
-                      type: 'string',
+                      name: 'renderType', title: 'Style information',
+                      type: 'reference',
+                      to: { type: 'renderType' },
                       validation: Rule => Rule.required()
                     }),
                     defineField({
@@ -85,11 +102,10 @@ export default defineType({
                   ],
                   preview: {
                     select: {
-                      name: 'renderType',
+                      name: 'renderType.renderName',
                       price: 'renderTypePrice'
                     },
-                    prepare(selection) {
-                      const {name, price} = selection
+                    prepare: ({ name, price }) => {
                       return {title: name + ": £" + price,}
                     }
                   }
@@ -125,8 +141,7 @@ export default defineType({
                       name: 'renderType',
                       price: 'renderTypePrice'
                     },
-                    prepare(selection) {
-                      const {name, price} = selection
+                    prepare: ({ name, price }) => {
                       return {title: name + ": £" + price,}
                     }
                   }
@@ -136,23 +151,23 @@ export default defineType({
           ],
           preview: {
             select: {
-              name: 'styleName',
-              style1: 'styleTypes.[0].renderType',
-              style2: 'styleTypes.[1].renderType',
-              style3: 'styleTypes.[2].renderType',
-              style4: 'styleTypes.[3].renderType',
-              style5: 'styleTypes.[4].renderType',
-              price1: 'styleTypes.[0].renderTypePrice',
-              price2: 'styleTypes.[1].renderTypePrice',
-              price3: 'styleTypes.[2].renderTypePrice',
-              price4: 'styleTypes.[3].renderTypePrice',
-              price5: 'styleTypes.[4].renderTypePrice',
-              media: 'previewImage'
+              name:   'styleType.styleName',
+              style1: 'styleTypes.0.renderType.renderName',
+              style2: 'styleTypes.1.renderType.renderName',
+              style3: 'styleTypes.2.renderType.renderName',
+              style4: 'styleTypes.3.renderType.renderName',
+              style5: 'styleTypes.4.renderType.renderName',
+              price1: 'styleTypes.0.renderTypePrice',
+              price2: 'styleTypes.1.renderTypePrice',
+              price3: 'styleTypes.2.renderTypePrice',
+              price4: 'styleTypes.3.renderTypePrice',
+              price5: 'styleTypes.4.renderTypePrice',
+              media:  'previewImage'
             },
-            prepare(selection) {
-              const { name, media,
-                style1, style2, style3, style4, style5,
-                price1, price2, price3, price4, price5,} = selection
+            prepare: ({
+              name, media,
+              style1, style2, style3, style4, style5,
+              price1, price2, price3, price4, price5 }) => {
 
               let
                 styles = [style1,style2,style3,style4,style5],
@@ -161,7 +176,7 @@ export default defineType({
                 returnString = "";
 
               for (let i = 0; i < styles.length; i++) {
-                returnString += (!!prices[i] ? `${styles[i]}: ${prices[i]}` : '') + (!!prices[i+1] ? ', ' : '');}
+                returnString += (!!prices[i] ? `${styles[i]}: £${prices[i]}` : '') + (!!prices[i+1] ? ', ' : '');}
 
               return {
                 title: name,
@@ -182,14 +197,10 @@ export default defineType({
           type: 'object',
           fields: [
             defineField({
-              name: 'additionalItem', title: 'Additional Item',
-              type: 'string',
+              name: 'additionalPurchases', title: 'Additional Purchases',
+              type: 'reference',
+              to: { type: 'additionalPurchases' },
               validation: Rule => Rule.required()
-            }),
-            defineField({
-              name: 'additionalDescription', title: 'Additional Description',
-              type: 'text',
-              rows: 2,
             }),
             defineField({
               name: 'additionalPrice', title: 'Additional Price',
@@ -203,11 +214,10 @@ export default defineType({
           ],
           preview: {
             select: {
-              name: 'additionalItem',
+              name: 'additionalPurchases.purchaseName',
               price: 'additionalPrice'
             },
-            prepare(selection) {
-              const {name, price} = selection
+            prepare: ({ name, price }) => {
               return {title: name + ": £" + price,}
             }
           }

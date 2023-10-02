@@ -32,11 +32,15 @@
     });
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
-    $: $transitioning !== true && $deviceType === 2 ? titlebarScroller(`${websiteTag} ${$pageName} `) : false;
+    $: $deviceType === 2 ?
+		$transitioning !== true ?
+			titlebarScroller(`${websiteTag} // ${$pageName} `)
+			: $pageTitlebar = loadingIco
+		: $pageTitlebar = websiteTag;
 </script>
 
 <svelte:head>
-	<title>{$transitioning ? loadingIco : $pageTitlebar}</title>
+	<title>{$pageTitlebar}</title>
 </svelte:head>
 
 <svelte:window bind:innerWidth={$screenSize} bind:scrollY={$scrollPos} />

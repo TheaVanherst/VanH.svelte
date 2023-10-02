@@ -24,7 +24,7 @@
 	.developmentIcon {
 		position: 	absolute;
 
-		margin: 	10px;
+		margin: 	5px 5px;
 		padding: 	5px 7px;
 
 		&.left {	left: 	0;}

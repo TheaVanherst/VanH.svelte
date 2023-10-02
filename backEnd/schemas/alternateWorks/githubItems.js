@@ -34,9 +34,6 @@ export default defineType({
       name: 'previewImage',
       title: 'Preview Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: 'shortDesc',
@@ -62,7 +59,7 @@ export default defineType({
         {
           type: 'reference',
           validation: Rule => Rule.required(),
-          to: {type: 'author'}
+          to: { type: 'author' }
         }
       ]
     }),
@@ -75,8 +72,7 @@ export default defineType({
       shortDesc: 'shortDesc',
       media: 'previewImage'
     },
-    prepare(selection) {
-      const { title, shortDesc, media } = selection
+    prepare: ({ title, shortDesc, media }) => {
       return {
         title: title,
         subtitle: shortDesc,

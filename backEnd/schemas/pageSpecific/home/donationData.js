@@ -32,9 +32,6 @@ export default defineType({
               name: 'bannerImage',
               title: 'Banner Image',
               type: 'image',
-              options: {
-                hotspot: true,
-              },
             }),
             defineField({
               name: 'tierPerks', title: 'Tier Perks',
@@ -76,9 +73,6 @@ export default defineType({
           name: 'bannerImage',
           title: 'Banner Image',
           type: 'image',
-          options: {
-            hotspot: true,
-          },
         }),
         defineField({
           name: 'tierPerks', title: 'Tier Perks',

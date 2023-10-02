@@ -11,7 +11,8 @@ import donationData from './pageSpecific/home/donationData';
 import artworks from './arts/drawings';
 import commissionType from './arts/commissionTypes';
 import renderType from './arts/renderType';
-import styleType from './arts/styleType'
+import styleType from './arts/styleType';
+import purchaseTypes from './arts/purchaseTypes';
 
 import character from './characterData/character';
 import sexTags from './characterData/sexTags';
@@ -42,6 +43,7 @@ const dataTypes = [
   commissionType,
   renderType,
   styleType,
+  purchaseTypes,
 
   // customPages
   questionAndAnswers,

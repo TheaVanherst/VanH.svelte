@@ -1,5 +1,5 @@
 
-import {defineField, defineType} from 'sanity'
+import {defineField} from 'sanity'
 const
   altTextRequest = (obj) => {
     let arr = [];
@@ -31,9 +31,6 @@ const
         of: [{
           name: 'image',  title: 'Image',
           type: 'image',
-          options: {
-            hotspot: true,
-          },
           validation: Rule => Rule.required(),
           fields: [
             defineField({
@@ -47,15 +44,15 @@ const
         name: 'display',  title: 'Display as',
         type: 'string',
         initialValue:
-          { title: 'Stacked',           value: 'vertical'},
+          { title: 'Stacked',           value: 'vertical' },
         options: {
           list: [
-            {title: 'Stacked',          value: 'vertical'},
-            {title: 'Dynamic Vertical', value: 'dynamicvertical'},
-            {title: 'Dynamic Grid',     value: 'dynamicgrid'},
-            {title: 'Grid',             value: 'grid'},
-            {title: 'Scroll',           value: 'scroll'},
-            {title: 'Carousel',         value: 'carousel'},
+            { title: 'Stacked',          value: 'vertical' },
+            { title: 'Dynamic Vertical', value: 'dynamicvertical' },
+            { title: 'Dynamic Grid',     value: 'dynamicgrid' },
+            { title: 'Grid',             value: 'grid' },
+            { title: 'Scroll',           value: 'scroll' },
+            { title: 'Carousel',         value: 'carousel' },
           ],
           layout: 'radio',
         },
@@ -64,17 +61,13 @@ const
       defineField({
         name: 'styleType', title: 'Style Type',
         type: 'reference',
-        to: [{
-          type: 'styleType'
-        }],
+        to: { type: 'styleType' },
         validation: Rule => Rule.required(),
       }),
       defineField({
         name: 'renderType', title: 'Render Type',
         type: 'reference',
-        to: [{
-          type: 'renderType'
-        }],
+        to: { type: 'renderType' },
         validation: Rule => Rule.required(),
       }),
     ],
@@ -84,8 +77,7 @@ const
         images: 'images',
         image: 'images',
       },
-      prepare(selection) {
-        const { images, image } = selection;
+      prepare: ({ images, image }) => {
         return {
           title: `Gallery block of ${Object.keys(images).length} images`,
           subtitle: altTextRequest(image),

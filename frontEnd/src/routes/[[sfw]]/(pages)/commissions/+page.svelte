@@ -23,7 +23,7 @@
 					<div class="imageCard wideBorder">
 						<SanityImage image="{image.imageRender}"/>
 						<ImageTag position={[0,0]}>
-							<p>{image.renderStyle}</p>
+							<p>{image.styleType}, {image.renderType}</p>
 						</ImageTag>
 					</div>
 				</swiper-slide>
@@ -114,7 +114,7 @@
 		width:	 	100%;
 		display: 	inline-flex;
 		gap: 	 	10px;
-		margin-bottom: 15px;
+		margin: 	0 0 15px 0;
 
 		.column {
 			width: 	50%;
@@ -132,7 +132,11 @@
 		height: 	500px;
 		overflow: 	hidden;
 		position: 	relative;
-		margin: 	0 0 27px 0;}
+		margin: 	0 0 27px 0;
+
+		p {	text-transform: lowercase;
+			&:first-letter {
+				text-transform: capitalize;}}}
 
 	h3 {		margin:  	0 0 10px 0;}
 	.bottom {	margin: 	0 0 27px 10px;}
@@ -142,5 +146,5 @@
 				margin-bottom: 0!important;}}
 		> * {	margin: 	0 0 10px 0;}
 		p { &:last-child {
-				margin: 		0;}}}
+				margin: 	0 0 0 0;}}}
 </style>

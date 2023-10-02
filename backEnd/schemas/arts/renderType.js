@@ -17,8 +17,7 @@ export default defineType({
     select: {
       type: 'renderName',
     },
-    prepare(selection) {
-      const {type} = selection
+    prepare: ({ type }) => {
       return {
         title: type
       }

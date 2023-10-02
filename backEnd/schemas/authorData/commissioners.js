@@ -52,8 +52,7 @@ export default defineType({
             socialURL: 'platformName.socialURL',
             media: 'platformName.socialLogo',
           },
-          prepare(selection) {
-            const { userURL, socialURL, media, test } = selection
+          prepare: ({ userURL, socialURL, media, test }) => {
             return {
               title: 'www.' + socialURL + userURL,
               description: test,
@@ -67,9 +66,6 @@ export default defineType({
       name: 'userPortrait',
       title: 'User Portrait',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
     }),
   ],
 
@@ -80,8 +76,7 @@ export default defineType({
       shortDesc: 'shortDesc',
       media: 'userPortrait',
     },
-    prepare(selection) {
-      const {title, shortDesc, media} = selection
+    prepare: ({title, shortDesc, media}) => {
       return {
         title: `${title}`,
         subtitle: shortDesc,

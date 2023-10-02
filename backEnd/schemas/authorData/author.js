@@ -127,8 +127,7 @@ export default defineType({
       artIcon: 'authorTag.0.emoji',
       intIcon: 'internalRole.0.emoji'
     },
-    prepare(selection) {
-      const {title, shortDesc, media, artIcon, intIcon} = selection
+    prepare: ({ title, shortDesc, media, artIcon, intIcon }) => {
       return {
         title: `${title} ${artIcon} ${intIcon}`,
         subtitle: shortDesc,

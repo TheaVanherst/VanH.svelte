@@ -7,6 +7,8 @@ import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemas'
 import { structure }    from './structure'
 
+import {enhancedGroups} from './lib/dynamicFieldRemap'
+
 export default defineConfig({
   name: 'default',
   title: 'VanH.Svelte',
@@ -22,6 +24,18 @@ export default defineConfig({
   ],
 
   schema: {
-    types: schemaTypes,
+    types: enhancedGroups(schemaTypes),
+  },
+  form: {
+    components: {
+      input: (props) => {
+        if (Array.isArray(props.groups) && props.groups.length > 0) {
+          if (props.groups[0].name === 'all-fields') {
+            props.groups.shift()
+          }
+        }
+        return props.renderDefault(props)
+      },
+    },
   },
 })

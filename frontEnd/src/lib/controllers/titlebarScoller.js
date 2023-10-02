@@ -2,7 +2,7 @@
 import { writable } from "svelte/store";
 
 const
-    websiteTag = "𝖁𝖆𝖓𝖍.𝖆𝖗𝖙 //", //𝖁𝖆𝖓𝖍.𝖆𝖗𝖙
+    websiteTag = "𝖁𝖆𝖓𝖍.𝖆𝖗𝖙", //𝖁𝖆𝖓𝖍.𝖆𝖗𝖙
     loadingIco = "Loading ⏳", // 𝙻𝚘𝚊𝚍𝚒𝚗𝚐...
 
     pageName =      writable("𝚆𝚎𝚕𝚌𝚘𝚖𝚎 𝚝𝚘"), //𝚆𝚎𝚕𝚌𝚘𝚖𝚎
@@ -39,13 +39,13 @@ const
                 unicodeLoop = 0;}}
 
         return returnArray;
-    };
+    },
 
-const
     titlebarScroller = (pageName) => {
-        clearTimeout(timeout);
+        clearTimeout(timeout); // fallback to prevent overflow.
 
         headerArray = pageName;
+        headerString = pageName;
         offsetArray = unicodeArrFragmenter(`${headerArray}`);
         headerArray = headerArray.split("");
         headerString = headerArray.join("");
@@ -54,9 +54,8 @@ const
         timeout = setTimeout(() => {
             printUpdate();
         },250);
-    };
+    },
 
-const
     offsetShift = (a) => {
         let o = a[0]
         a.shift();

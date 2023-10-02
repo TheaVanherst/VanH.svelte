@@ -28,21 +28,21 @@ export default defineType({
     defineField({
       name: 'charIcon', title: 'Character Icon',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: 'sex', title: 'Sex',
       type: 'reference',
       validation: Rule => Rule.required(),
-      to: {type: 'sexTag'}
+      to: { type: 'sexTag' }
     }),
     defineField({
       name: 'owner', title: 'characterOwner',
       description: 'Who was this character designed by?',
       type: 'reference',
-      to: [{type: 'commissioner'},{type: 'author'}],
+      to: [
+        { type: 'commissioner' },
+        { type: 'author' }
+      ],
     }),
     defineField({
       name: 'fursona', title: 'Fursona',
@@ -60,8 +60,7 @@ export default defineType({
       emoji: 'sex.emoji',
       creator: 'owner.handle'
     },
-    prepare(selection) {
-      const {name, icon, emoji, creator} = selection
+    prepare: ({ name, icon, emoji, creator }) => {
 
       return {
         title: emoji + " " + name,

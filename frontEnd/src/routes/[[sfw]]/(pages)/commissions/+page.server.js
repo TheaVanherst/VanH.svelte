@@ -13,7 +13,25 @@ export async function load () {
             },
         "commissionPrices":
             *[ _type == 'commissionPrices']{
-                ...
+                ...,
+                'PreviewImages': PreviewImages[]{
+                    ...,
+                    'renderType': renderType->renderName,
+                    'styleType': styleType->styleName
+                },
+                'prices': prices[]{
+                    ...,
+                    'styleType': styleType->styleName,
+                    'styleTypes': styleTypes[]{
+                        ...,
+                        'renderType': renderType->renderName
+                    }
+                },
+                'additionalPurchases': additionalPurchases[]{
+                    additionalPrice,
+                    'additionalItem': additionalPurchases->purchaseName,
+                    'additionalDescription': additionalPurchases->additionalDescription
+                }
             },
         }`
     )]);

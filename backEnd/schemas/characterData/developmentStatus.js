@@ -28,8 +28,7 @@ const
         emoji: 'emoji',
         desc: 'description'
       },
-      prepare(selection) {
-        const {name, emoji, desc} = selection
+      prepare: ({ name, emoji, desc }) => {
         return {
           title: emoji + " " + name ,
           description: desc

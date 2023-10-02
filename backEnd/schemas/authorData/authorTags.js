@@ -16,8 +16,7 @@ const
         title: 'title',
         desc: 'description'
       },
-      prepare(selection) {
-        const {title, emoji, desc} = selection
+      prepare: ({title, emoji, desc}) => {
         return {
           title: `${title}`,
           subtitle: desc,

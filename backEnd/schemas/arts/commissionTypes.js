@@ -29,8 +29,7 @@ export default defineType({
       type: 'typeName',
       emoji: 'emoji'
     },
-    prepare(selection) {
-      const {type, emoji} = selection
+    prepare: ({ type, emoji }) => {
       return {
         title: emoji + " " + type
       }

@@ -34,17 +34,11 @@ export default defineType({
       name: 'previewImage',
       title: 'Preview Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: 'workshopBanner',
       title: 'workshop Banner',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: 'shortDesc',
@@ -61,7 +55,7 @@ export default defineType({
       name: 'gameTags', title: 'Game',
       type: 'reference',
       validation: Rule => Rule.required(),
-      to: {type: 'gameTag'}
+      to: { type: 'gameTag' }
     }),
     defineField({
       name: 'author', title: 'Author',
@@ -70,7 +64,7 @@ export default defineType({
           {
             type: 'reference',
             validation: Rule => Rule.required(),
-            to: {type: 'author'}
+            to: { type: 'author' }
           }
         ]
     }),
@@ -90,8 +84,7 @@ export default defineType({
       media: 'previewImage',
       featured: 'featured'
     },
-    prepare(selection) {
-      const {title, shortDesc, media, featured} = selection
+    prepare: ({ title, shortDesc, media, featured }) => {
       return {
         title: (featured ? '⚪' : '🔴') + ' ' + title,
         subtitle: shortDesc,

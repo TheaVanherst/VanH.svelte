@@ -40,9 +40,7 @@
 			min-height: 150px;
 
 			.imageWrapper {
-				height: 250px;
-			}
-		}}
+				height: 250px;}}}
 
 	.referral { // fallback colour
 		padding: 	7px 9px 6px 9px;

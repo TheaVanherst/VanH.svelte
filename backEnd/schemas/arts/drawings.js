@@ -59,15 +59,13 @@ export default defineType({
           type: 'array',
           of: [{
             type: 'reference',
-            to: [{type: 'alterCharacter'}]
+            to: [{ type: 'alterCharacter' }]
           }],
         }),
         defineField({
           name: 'artType', title: 'Commission Type',
           type: 'reference',
-          to: [{
-            type: 'commissionType'
-          }]
+          to: [{ type: 'commissionType' }]
         }),
       ]
     }),
@@ -86,9 +84,7 @@ export default defineType({
               name: 'participation', title: 'Participation',
               validation: Rule => Rule.required(),
               type: 'reference',
-              to: {
-                type: 'authorTags'
-              }
+              to: { type: 'authorTags' }
             }
           ],
           preview: {
@@ -97,8 +93,7 @@ export default defineType({
               desc: 'participation.emoji',
               media: 'author.userPortrait'
             },
-            prepare(selection) {
-              const {title, desc, media} = selection
+            prepare: ({title, desc, media}) => {
               return {
                 title: `${desc} ${title}`,
                 media: media
@@ -129,8 +124,7 @@ export default defineType({
       author4: 'authors.3.author.fullName',
       media: 'gallery.images[0]',
     },
-    prepare(selection) {
-      const {title, author1, author2, author3, author4, media} = selection
+    prepare: ({ title, author1, author2, author3, author4, media }) => {
       let returnString = "Created by ";
 
       const authors = [author1, author2, author3, author4].filter(Boolean);

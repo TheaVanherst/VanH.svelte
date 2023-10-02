@@ -1,11 +1,4 @@
 
-const monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-
-const shortMonthBuilder = (d) => {
-    const stripped = (d.split('-'));
-    return `${monthNames[parseInt(stripped[1]) - 1]} ${stripped[0]}`;
-};
-
 function nFormatter(num, digits) {
     const lookup = [
         { value: 1, symbol: "" },
@@ -23,8 +16,6 @@ function nFormatter(num, digits) {
     });
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
-
-export {shortMonthBuilder}
 
 const heightBuilder = (h) => { //converts cm to inches
     if (h < 1000) {
@@ -44,3 +35,21 @@ const heightBuilder = (h) => { //converts cm to inches
 };
 
 export { heightBuilder }
+
+const standardTinyhand = (n) => {
+    return new Date(n).toLocaleDateString('en-GB', {
+        month: 'short',
+        year:  'numeric',
+    });
+};
+
+
+const standardShorthand = (n) => {
+    return new Date(n).toLocaleDateString('en-GB', {
+        day:   'numeric',
+        month: 'short',
+        year:  'numeric',
+    });
+}
+
+export { standardTinyhand, standardShorthand }

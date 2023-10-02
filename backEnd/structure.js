@@ -19,7 +19,6 @@ const structure = (S) =>
           ].includes(listItem.getId())
         ),
 
-
       S.divider(),
 
       ...S.documentTypeListItems()
@@ -40,14 +39,12 @@ const structure = (S) =>
 
       S.divider(),
 
-
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
             'donationTier',
           ].includes(listItem.getId())
         ),
-
 
       S.listItem()
         .title('Page Data')
@@ -83,7 +80,6 @@ const structure = (S) =>
                 .child(S.document().schemaType('questionAnswer').documentId('questionAnswer')),
             ])
         ),
-
 
       S.divider(),
     ])
