@@ -12,17 +12,16 @@
     $: directions = $screenType < 3 ? [0, 150] : [150, 0];
 </script>
 
-<div
-	id="messageController"
+<div id="messageController"
 	class="{$screenType < 3 ? 'mobile' : ''}">
 	{#if !chatBox}
 		<div class="open"
-			 in:scale={{delay: transitionSpeed}} out:scale
-			 on:click={() => {chatBox = !chatBox}}>
-			<RainbowButtonWrap padding={[5,5]}>
-				<img src="/icons/qAndAIcon.webp">
-			</RainbowButtonWrap>
-		</div>
+			  in:scale={{delay: transitionSpeed}} out:scale
+			  on:click={() => {chatBox = !chatBox}}>
+		<RainbowButtonWrap padding={[5,5]}>
+			<img src="/icons/qAndAIcon.webp">
+		</RainbowButtonWrap>
+	</div>
 	{:else}
 		<div id="messager"
 			 class="wideBorder"
@@ -54,19 +53,14 @@
 </div>
 
 <style lang="scss">
-	* { -webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
-		-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
-		box-sizing: 		border-box;
-		right: 			0;
+	* {	right: 			0;
 		z-index: 		10;}
 
 	.mobile {
-			height: 	100%;
+		height: 	100%;
 		#messager {
 			left: 		0;
-			bottom: 	0;
-			height: 	calc(100% - 28px);
-			min-width: 	300px - 30px;}
+			bottom: 	0;}
 		#chatbox {
 			width: 		100%;
 			min-width: 	100%;}}

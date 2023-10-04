@@ -1,9 +1,10 @@
 <script>
-    import { directionProcessing, directory, nsfw, rootPath, transitioning} from '$lib/controllers/accessibilityController.js';
+    import { directionProcessing, directory, nsfw, rootPath, transitioning } from '$lib/controllers/accessibilityController.js';
     import { pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
+
 
     export let
         url = 		'',
@@ -30,7 +31,7 @@
                 $transitioning = false;
             }, 250);}
 
-    	if (n) {
+    	if (n) { // this sets a custom page name.
             $pageName = n;}}
 </script>
 

@@ -3,14 +3,16 @@
     import { cubicOut } 	from 'svelte/easing';
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
-    import {afterNavigate, beforeNavigate} from "$app/navigation";
+    import { afterNavigate, beforeNavigate } from "$app/navigation";
     import { navigating } from "$app/stores";
 
-    import {directionProcessing, pageLoaded, direction, transitioning, directory, nsfw} from '$lib/controllers/accessibilityController.js';
+    import { directionProcessing, pageLoaded, direction, transitioning, directory
+    	} from '$lib/controllers/accessibilityController.js';
 
-    afterNavigate((n) => { // DEALS WITH BACKWARDS NAVIGATION
-        if (!$navigating || !$pageLoaded) {
-            let to =    "/" + ($nsfw ? 'nsfw' : '') + (n.to.url.pathname).slice(0, -1) ?? "/"; // FUCKING DUMB, IT'S TEMPORARY, IGNORE IT, PLEASE.
+    afterNavigate((n) => {
+        if (!$navigating || !$pageLoaded) {  // this fixes an issue where the url doesn't update from the initial layout load.
+            let to = (n.to.url.pathname).slice(0, -1);
+			to = to === "" ? "/" : to;
 			directionProcessing(to, to, to, 0);
         } //resets x, y positions
     });
@@ -30,11 +32,11 @@
     let transitionSpeed = 150; // transition position multipliers
 </script>
 
-{#if !$transitioning}
+{#if !$transitioning && !$navigating}
 	<div class="transitionWrapper"
 		in:fly={{
         	easing: 	cubicOut,
-        	delay: 170, // specifically for social media transitions
+        	delay: 		170, // specifically for social media transitions
             duration:   250,
             x: transitionSpeed * $direction[1],
             y: transitionSpeed * -$direction[0]}}
@@ -43,9 +45,11 @@
             duration:   250,
             x: transitionSpeed * -$direction[1],
             y: transitionSpeed * $direction[0]}}>
-		<slot/>
+		<div>
+			<slot/>
+		</div>
 	</div>
-{:else}
+{:else if $navigating}
 	<div class="centre" in:scale={{duration: 200}} out:scale={{duration: 200}}>
 		<div class="wrapper">
 			<LoadingFull/>
@@ -55,8 +59,12 @@
 
 <style lang="scss">
 	.transitionWrapper {
-		position: static;
-	}
+		position: 	static;
+
+		div {
+			position: 	fixed;
+			display: 	contents;
+			max-width: 	100%;}}
 
 	.centre {
 		top: 		0;

@@ -1,7 +1,7 @@
 <script>
 	import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
-    import { heightBuilder, standardTinyhand, standardShorthand } from "$lib/misc/measurementConverters.js";
+    import { heightBuilder, standardTinyhand, standardShorthand } from "$lib/builders/measurementConverters.js";
 
     export let data = {}
 

@@ -12,7 +12,7 @@ import artworks from './arts/drawings';
 import commissionType from './arts/commissionTypes';
 import renderType from './arts/renderType';
 import styleType from './arts/styleType';
-import purchaseTypes from './arts/purchaseTypes';
+import purchaseTypes from './arts/additionalTypes';
 
 import character from './characterData/character';
 import sexTags from './characterData/sexTags';

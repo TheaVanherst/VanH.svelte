@@ -1,6 +1,6 @@
 <script>
     import { deviceType } from "$lib/controllers/accessibilityController.js";
-    import { createdPush } from "$lib/misc/dateBuilder.js";
+    import { createdPush } from "$lib/builders/dateBuilder.js";
 
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";

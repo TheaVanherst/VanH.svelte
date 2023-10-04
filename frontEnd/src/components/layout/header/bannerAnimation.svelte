@@ -30,7 +30,7 @@
 			<div class="circle decorationRing3"></div>
 		</div>
 	</div>
-	<img class="branding" src="/branding/vanhlogo.webp"/>
+	<slot/>
 </div>
 
 <style lang="scss">
@@ -39,7 +39,7 @@
 	.profileGraphic {
 		display:            flex;
 		justify-content:    center;
-		overflow: 			hidden;
+		position: 			relative;
 
 		height: 	$bannerHeight;
 
@@ -49,11 +49,7 @@
 
 		> .planetarySystem {
 			margin-top: 30px;
-			width: 		$bannerHeight;}
-
-		.branding {
-			margin: 0;
-			height: 100%;}}
+			width: 		$bannerHeight;}}
 
 	.planetarySystem {
 		filter: 	drop-shadow(0px 0px 2px var(--darkAccent1));
@@ -109,9 +105,7 @@
 			&.ring3 {	@include cgm(350px, 1px, #bebe63, 7px,  12s);}
 			&.ring4 {	@include cgm(380px, 1px, #bb4c92, 10px, 10s);}
 			&.ring1 {	@include cgm(500px, 1px, #449b61, 5px,  43s);}
-			&.ring6 {	@include cgm(640px, 1px, #5da4a4, 4px,  167s); }
-		}
-	}
+			&.ring6 {	@include cgm(640px, 1px, #5da4a4, 4px, 167s);}}}
 
 	@keyframes rotateAnimation {
 		0% {	transform: rotateY(-30deg);}

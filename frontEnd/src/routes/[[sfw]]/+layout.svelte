@@ -1,6 +1,6 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
-    import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
+    import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
 
     export let data;
 

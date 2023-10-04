@@ -16,7 +16,7 @@
 
     import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded,
     	} from "$lib/controllers/accessibilityController.js";
-    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName
+    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName,
     	} from "$lib/controllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
@@ -54,8 +54,8 @@
 {/if}
 
 {#if $pageLoaded}
-	<div class="parentElement" id="scrollParent">
-		<div id="layout">
+	<div id="scrollParent">
+		<div id="layout" style="{$deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
 				<Header/>
 			</div>
@@ -72,26 +72,16 @@
 {/if}
 
 <style lang="scss">
-	.parentElement,
-	#layout {
-		-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
-		-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
-		box-sizing: 		border-box;} 	/* Opera/IE 8+ */
-
-	.parentElement {
-		display: 	block;
-		position: 	relative;
-
-		margin: 	0 auto;
-		min-width: 	100%;
-		max-width: 	800px;
-		height: 	100vh;}
-
-	// generic navigation
-
-	#layout { // loaded page data
+	#scrollParent {
 		min-height: 100vh;
+		max-width: 	100%;
+		margin: 	0 auto;}
+
+	#layout {
+		min-height: 100vh;
+
 		max-width: 	800px;
+		width: 		100%;
 		min-width: 	300px;
 
 		padding: 	0 15px;

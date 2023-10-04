@@ -3,6 +3,7 @@ const structure = (S) =>
   S.list()
     .title('Content Types')
     .items([
+      // Optional configuration
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [

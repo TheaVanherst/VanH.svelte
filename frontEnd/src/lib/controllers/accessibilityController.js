@@ -6,7 +6,7 @@ export { splashText }
 
 // TODO: page checking and controlling
 
-import {get, writable} from "svelte/store";
+import { get, writable } from "svelte/store";
 
 const
     scrollPos = writable(0),
@@ -25,11 +25,11 @@ export { deviceType };
 // TODO: Internal directory and status management
 
 const
-    directory =   writable("/"),
-    rootPath =    writable("/");
+    directory =   writable("/"), // directory string
+    rootPath =    writable("/"); // the root directory (/home)
 const
-    pageLoaded =  writable(false),
-    transitioning = writable(false);
+    pageLoaded =  writable(false), // ensures that the layout is loaded
+    transitioning = writable(false); // detects page changes
 
 export { directory, rootPath, pageLoaded, transitioning };
 

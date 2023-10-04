@@ -3,37 +3,64 @@
     import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
 
     import { deviceType, pageLoaded } from "$lib/controllers/accessibilityController.js";
+
+    let hover = false;
 </script>
 
-{#if $pageLoaded} <!-- this is a placeholder -->
-	{#if $deviceType === 2}
-		<div class="desktop">
-			<SplashTexts/>
-			<ProfileBar/>
-		</div>
-	{:else if $deviceType === 1}
-		<div class="tablet">
-			<div class="logo">
+<div class="bannerWrapper">
+	{#if $pageLoaded} <!-- this is a placeholder -->
+		{#if $deviceType === 2}
+			<div class="desktop">
+				<SplashTexts/>
+				<ProfileBar>
+					<div on:mouseenter={() => hover = true}
+						 on:mouseleave={() => hover = false}>
+						<slot/>
+						<div class="branding">
+							<img src="/branding/vanhlogo.webp"/>
+						</div>
+						<!--{#if !hover}-->
+						<!--	<div class="branding">-->
+						<!--		<img class="branding" src="/branding/vanhlogo.webp"-->
+						<!--			 transition:fade={{easing:cubicInOut, duration: 350}}/>-->
+						<!--	</div>-->
+						<!--{/if}-->
+					</div>
+				</ProfileBar>
+			</div>
+		{:else if $deviceType === 1}
+			<div class="tablet">
+				<div class="logo">
+					<img src="/branding/vanhlogo.webp">
+				</div>
+				<div class="banner wideBorder">
+					<img src="/branding/tabletBanner.webp">
+				</div>
+			</div>
+		{:else}
+			<div class="mobile imageWrapper">
 				<img src="/branding/vanhlogo.webp">
 			</div>
-			<div class="imageWrapper banner regularBorder">
-				<img src="/branding/tabletBanner.webp">
-			</div>
-		</div>
-	{:else}
-		<div class="mobile imageWrapper">
-			<img src="/branding/vanhlogo.webp">
-		</div>
+		{/if}
 	{/if}
-{/if}
+</div>
 
 <style lang="scss">
-	.mobile {	margin: 	5px 0 -25px -5px;}
+	.mobile {
+		overflow: visible;
+		img {
+			margin: 5px 0 -10px -5px;
+			width: 	100%;}}
+
 	.tablet {	position: 	relative;
-				margin:	 	15px 0 0 0;
+				margin:	 	15px 0 10px 0;
 		> * {	height: 	200px;}
 
 		.banner {
+			img {
+				display: flex;
+				height: 100%;}
+
 			overflow: 	hidden;
 			border: 	1px solid var(--accent2);}
 		.logo {
@@ -53,5 +80,14 @@
 	.desktop {
 		position: 	relative;
 		padding: 	15px 0;
-		margin: 	0 auto;}
+		margin: 	0 auto;
+
+		.branding {
+			position: 	absolute;
+			transform: 	translate(-50%, 50%);
+			height: 	100%;
+			img {
+				margin: 	5px 0 0 0;
+				transform: 	translate(0, -50%);
+				height: 	110%;}}}
 </style>

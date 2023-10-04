@@ -37,7 +37,6 @@ export default defineType({
     defineField({
       name: 'gallery', title: 'Gallery of Images',
       type: 'blockGallery',
-      validation: Rule => Rule.required(),
     }),
 
     defineField({

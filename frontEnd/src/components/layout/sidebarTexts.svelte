@@ -1,5 +1,5 @@
 <script>
-    import { horizontalSlide } from "$lib/controllers/transitionPresets.js";
+    import { horizontalSlide } from "$lib/transitions/transitionPresets.js";
     import { screenType } 	from '$lib/controllers/accessibilityController.js';
 
 	export let

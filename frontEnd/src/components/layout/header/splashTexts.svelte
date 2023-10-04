@@ -18,7 +18,7 @@
             rainbow = false;
 
 			$splashText = splash[numberGen];
-            text = $splashText[1];
+            text = splash[numberGen][1];
     	}
 
     picker();
