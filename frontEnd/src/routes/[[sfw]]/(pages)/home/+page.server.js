@@ -1,32 +1,21 @@
 
 import client from "$lib/sanityClient.js";
+import { characterData } from "$lib/queries/characterData.js";
 
 export async function load () {
     const [allQueries] = await Promise.all([client.fetch(`{
         "characterData":
-            *[ _type == 'character'] | order(_updatedAt desc) []{
-                ...,
-                'sex': sex->emoji,
-                'slug': slug.current,
-                'partners':
-                    partners[]->{
-                        'fullName': fullName,
-                        'nickName': nickName,
-                        'sex': sex->emoji,
-                        'age': age,
-                        'slug': slug.current,
-                        'charIcon': charIcon
-                    },
-                'heights':
-                    heights[]{
-                        'loreType': loreType->loreType,
-                        'height': canonHeightLow
-                    },
-                'developmentStatus': 
-                    developmentStatus->{
-                        emoji,
-                        statusName
-                    }
+            *[ _type == 'characterOrder'] | order(_updatedAt desc) []{
+                characters[]->{
+                    ${characterData.core}
+                    ${characterData.info}
+                    ${characterData.lore}
+                    ${characterData.context}
+                    ${characterData.images}
+                    ${characterData.sex}
+                    ${characterData.height}
+                    ${characterData.creation}
+                }
             },
         "workshopData":
             *[ _type == 'workshopItem'] | order(_updatedAt desc) []{
@@ -68,22 +57,17 @@ export async function load () {
         "qAndA":
             *[_type == 'questionAnswer'][] {
                 answerer->{
-                        userPortrait
-                    },
+                    userPortrait},
                 questions[]{
                     answer,
                     question,
                     ...,
                     'user': author->{
                         userPortrait,
-                        handle
-                    }
-                },
+                        handle}},
                 'anon': fallback->{
                     userPortrait,
-                    handle
-                }
-            }
+                    handle}}
         }`
     )]);
 

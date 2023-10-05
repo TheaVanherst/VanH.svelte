@@ -11,21 +11,28 @@
 </script>
 
 <SidebarTexts titlecard="Characters" icon="aboutIcon.webp">
-	<CharacterFeature dataset={data.characterData}/>
+	<CharacterFeature
+			dataset={data.characterData[0].characters}/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Github" icon="githubLogo.webp">
-	<GithubFeature dataset={data.githubData}/>
+	<GithubFeature
+			dataset={data.githubData}/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Workshop" icon="steamLogo.webp">
-	<WorkshopFeature dataset={[data.workshopData, data.workshopSnippet]}/>
+	<WorkshopFeature
+			dataset={[data.workshopData, data.workshopSnippet]}/>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Support" icon="kofiLogo.webp">
-	<DonationFeature global={data.donationData[0].globalTiers} tiers={data.donationData[0].tiers} personal={data.donationData[0].personalMessage} />
+	<DonationFeature
+			global={data.donationData[0].globalTiers}
+			tiers={data.donationData[0].tiers}
+			personal={data.donationData[0].personalMessage} />
 </SidebarTexts>
 
 <SidebarTexts titlecard="Q&A" icon="commentIcon.webp">
-	<QandaFeature dataset={data.qAndA}/>
+	<QandaFeature
+			dataset={data.qAndA}/>
 </SidebarTexts>

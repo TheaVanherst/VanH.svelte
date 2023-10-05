@@ -3,10 +3,12 @@ import blockContent from './blockContent';
 import blockGallery   from './blocks/galleryContentBlock';
 
 import questionAndAnswers from './pageSpecific/home/questionAndAnswers';
+import donationData from './pageSpecific/home/donationData';
+import characterOrder from './pageSpecific/home/characterOrder'
+
 import commissionData from './pageSpecific/commissions/commissionTerms';
 import commissionTypes from './pageSpecific/commissions/commissionTypes';
 import commissionPricing from './pageSpecific/commissions/commissionPricing'
-import donationData from './pageSpecific/home/donationData';
 
 import artworks from './arts/drawings';
 import commissionType from './arts/commissionTypes';
@@ -47,10 +49,12 @@ const dataTypes = [
 
   // customPages
   questionAndAnswers,
+  donationData,
+  characterOrder,
+
   commissionData,
   commissionTypes,
   commissionPricing,
-  donationData,
 
   character,
     sexTags,

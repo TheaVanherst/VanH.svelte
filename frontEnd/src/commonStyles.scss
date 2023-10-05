@@ -68,12 +68,20 @@ a {
 
 	.imageWrapper {
 		img {
-			transition: transform .3s ease-in-out;}}
+			transition: transform .3s cubic-bezier(0.33, 1, 0.68, 1);}}
 
 	&:hover {
 		.imageWrapper {
 			img {
 				transform: scale(1.1);}}}}
+
+.enlargedIcon {
+	max-width: 	    70px;
+	max-height:     70px;
+	aspect-ratio:   1/1;
+	border-radius:  var(--borderWide);
+	overflow: 		hidden;
+}
 
 .profileIcon {
 	width: 	        40px;

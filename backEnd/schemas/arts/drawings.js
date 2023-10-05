@@ -1,6 +1,6 @@
-import {defineField, defineType} from 'sanity'
-import {slugUniqueCheck} from '../../lib/slugUniqueCheck'
-import {ImageIcon} from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
+import { slugUniqueCheck } from '../../lib/slugUniqueCheck'
+import { ImageIcon } from '@sanity/icons'
 
 import { nsfwBlock, authorBlock } from '../chunks/genericBlocks'
 

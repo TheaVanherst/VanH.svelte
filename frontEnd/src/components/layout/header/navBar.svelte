@@ -17,7 +17,7 @@
 {#if $navigationVisibility || $socialMediaVisibility}
 	<div class="navigationBar">
 		{#if $navigationVisibility}
-			<div transition:slide id="navigation">
+			<div transition:slide={{duration: 200}} id="navigation">
 				{#each navigationDirectories as item}
 					{#if item.nsfw && $nsfw || !item.nsfw}
 						<RedirectBuilder url={item.path} external={true} redirectName={item.pagePreview}>
@@ -31,7 +31,7 @@
 		{/if}
 
 		{#if $socialMediaVisibility}
-			<div transition:slide id="socials">
+			<div transition:slide={{duration: 200}} id="socials">
 				{#each socials.slice(0, 5) as item}
 					<RedirectBuilder url={item.platformName.socialURL + item.url}>
 						<RainbowButtonWrap padding="{$screenType > 2 ? [5,10] : [6,6]}">
@@ -58,9 +58,12 @@
 
 	.navigationBar {
 		position: 	relative;
+		gap: 		10px;
+		display: 	grid;
 		> * {
 			transition: 	border ease .5s .3s;
-			margin: 		0 auto 10px auto;
+			margin: 		0 auto 0 auto;
+
 			border-radius: 	var(--bordernormal);
 			width: 			max-content;}}
 

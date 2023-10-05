@@ -61,6 +61,9 @@ const structure = (S) =>
               S.listItem()
                 .title('Donation Data')
                 .child(S.document().schemaType('donationData').documentId('donationData')),
+              S.listItem()
+                .title('Character Orders')
+                .child(S.document().schemaType('characterOrder').documentId('characterList')),
 
               S.divider(),
 

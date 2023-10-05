@@ -18,7 +18,7 @@
 	<div class="table">
 		<div class="cell">
 			<div class="characterIcon">
-				<SanityImage image={data.charIcon}/>
+				<SanityImage image={data.icon}/>
 			</div>
 		</div>
 		<div class="cell">
@@ -82,7 +82,7 @@
 <div class="plate regularBorder">
 	<div class="description">
 		<p class="subtitle">Description</p>
-		<p>{data.desc}</p>
+		<p>{data.description}</p>
 	</div>
 </div>
 

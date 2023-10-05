@@ -11,9 +11,9 @@
 <NavigationComponent socials={data.socials}/>
 
 <div class="flexBox">
-	<TransitionHandler>
+<!--	<TransitionHandler>-->
 		<slot/>
-	</TransitionHandler>
+<!--	</TransitionHandler>-->
 </div>
 
 <style lang="scss">

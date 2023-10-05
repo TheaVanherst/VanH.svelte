@@ -11,11 +11,11 @@
 {#if dataset}
 	<Carousel>
 		{#each dataset as char}
-			{#if char.NSFW && $nsfw || !char.NSFW}
+			{#if char.nsfw && $nsfw || !char.nsfw}
 				<swiper-slide>
 					<div class="card">
-						<CharacterCard image={char.fullRender}>
-							<p slot="imageTag">{char.developmentStatus.statusName} {char.developmentStatus.emoji}</p>
+						<CharacterCard image={char.render}>
+							<p slot="imageTag">{char.developmentStatus}</p>
 
 							<div slot="title">
 								<h4>{char.nickName}</h4>

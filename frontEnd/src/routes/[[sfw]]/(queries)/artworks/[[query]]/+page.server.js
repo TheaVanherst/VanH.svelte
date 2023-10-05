@@ -1,10 +1,16 @@
 
 import client from "$lib/sanityClient.js";
+import { characterData } from "$lib/queries/characterData.js";
 
-export async function load () {
+import { queryGenerator } from "$lib/queries/queryBuilder.js";
+
+export const load = async ({params}) => {
+    const { query } = params
+    let queryString = queryGenerator(query);
+
     const [allQueries] = await Promise.all([client.fetch(`{
         "artworks":
-            *[ _type == 'artworks'][0...10] | order(publishedAt desc) {
+            *[ _type == 'artworks' ${queryString}][0...10] | order(publishedAt desc) {
                 ...,
                 'gallery': gallery {
                     ...,
@@ -33,7 +39,13 @@ export async function load () {
                         }
                     }
                 },
-            }
+            },
+        "preSearches":
+            *[ _type == 'character'] | order(_updatedAt desc) []{
+                ${characterData.core}
+                ${characterData.info}
+                ${characterData.images}
+            },
         }`
     )]);
 
