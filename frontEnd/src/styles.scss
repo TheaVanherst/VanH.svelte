@@ -3,16 +3,17 @@
 
 /* Root variables formatting */
 :root {
-	--accent11: #0c0021; --textAccent11: #fff;
-	--accent2:  #8c00ff; --textAccent2:  #fff;
-	--accent1:  #ff0582; --textAccent1:  #fff;
-	--accent4:  #ff00fb; --textAccent4:  #000;
-	--accent5:  #00ffff; --textAccent5:  #000;
-	--accent6:  #00ff59; --textAccent6:  #000;
-	--accent3:  #ffcc00; --textAccent3:  #000;
-	--accent7:  #ff8800; --textAccent7:  #000;
-	--accent10: #48575a; --textAccent10: #fff;
-	--accent9:  #ffffff; --textAccent9:  #000;
+	--accent9:  #ffffff;
+	--accent10: #48575a;
+	--accent11: #0c0021;
+	--accent2:  #8c00ff;
+	--accent1:  #ff0582;
+	--accent4:  #ff00fb;
+	--accent5:  #00ffff;
+	--accent6:  #00ff59;
+	--accent3:  #ffcc00;
+	--accent7:  #ff8800;
+
 	--TransBlack: rgba(0, 0, 0, 0.6);
 	--TransWhite: rgba(255, 255, 255, 0.9);
 
@@ -29,10 +30,6 @@
 
 * { scrollbar-color:    var(--accent2) transparent;
 	scrollbar-width:    thin;
-
-	-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
-	-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
-	box-sizing: 		border-box;
 
 	&::-webkit-scrollbar {
 		width: 			0.2em;}
@@ -63,14 +60,19 @@ body {
 	scroll-behavior:    smooth;
 
 	&::selection {
-		color:  var(--accent6)}
-}
+		color:  var(--accent6);}}
 
 // cursor defaults
 
 body {      cursor: crosshair;}
 a {         cursor: crosshair;}
 *:active {  cursor: crosshair;}
+
+.wrapCorrection {
+	-webkit-box-sizing: border-box; 	/* Safari/Chrome, other WebKit */
+	-moz-box-sizing: 	border-box; 	/* Firefox, other Gecko */
+	box-sizing: 		border-box;}
+
 
 /* style formatting */
 
@@ -121,6 +123,25 @@ p { font-size:      12px;
 	font-size: 13px;
 	font-family: "Playfair Display", serif;}
 
+.citation {
+	font-size: 		10px;
+	font-family: 	"Helvetica", Sans-serif;
+	color:          var(--accent9);
+
+	position: 	relative;
+	display: 	block;
+
+	span {
+		transition: color .3s ease-in-out;
+		color: var(--accent1);
+		&::selection {
+			color: var(--accent1);};}
+
+	&:hover {
+		> span {
+			color: var(--accent3);
+			&::selection {
+				color: var(--accent3)!important;}}}}
 /* list formatting */
 
 title {
@@ -148,3 +169,26 @@ ul {
 
 		&:last-of-type {
 			padding-bottom: 0;}}}
+
+
+.quote {
+	border-left: 	1px solid var(--accent10);
+	border-right: 	1px solid var(--accent10);
+	padding: 		10px;
+
+	position:       relative;
+	white-space:    pre-line;
+
+	&::before, &::after {
+		position: 	absolute;
+		font-size: 	40px;}
+	&::before {
+		top:        0;
+		left: 		0;
+		margin: 	7px 0 0 -12px;
+		content: 	open-quote;}
+	&::after {
+		bottom:     0;
+		right:      0;
+		margin: 	0 -10px -10px 0;
+		content: 	close-quote;}}

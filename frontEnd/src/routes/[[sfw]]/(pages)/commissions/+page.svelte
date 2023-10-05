@@ -1,6 +1,6 @@
 <script>
-    import { screenType } 	from '$lib/controllers/accessibilityController.js';
-    import { nsfw } from "$lib/controllers/accessibilityController.js";
+    import { screenType } 	from '$lib/controllers/pageControllers.js';
+    import { nsfw } from "$lib/controllers/pageControllers.js";
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
@@ -10,7 +10,7 @@
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
     import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
 
-    import CommissionPrices from "$root/components/sections/commissions/commissionPrices.svelte";
+    import CommissionPrices from "$root/components/sections/commissionPage/commissionPrices.svelte";
 
     export let data;
 </script>

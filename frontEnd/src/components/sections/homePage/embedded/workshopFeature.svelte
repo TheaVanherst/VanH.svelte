@@ -3,10 +3,10 @@
 
     import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
     import Container 		from "$root/components/generic/containers/container.svelte";
-    import WorkshopCard 	from "$root/components/sections/embedded/workshopCard.svelte";
-    import WorkshopSnippet 	from "$root/components/sections/embedded/workshopSnippet.svelte";
+    import WorkshopCard 	from "$root/components/sections/homePage/embedded/workshopCard.svelte";
+    import WorkshopSnippet 	from "$root/components/sections/homePage/embedded/workshopSnippet.svelte";
 
-    import { screenSize, deviceType, nsfw } from '$lib/controllers/accessibilityController.js';
+    import { screenSize, deviceType, nsfw } from '$lib/controllers/pageControllers.js';
 
     let moreToggle = false;
 

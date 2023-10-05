@@ -1,6 +1,6 @@
 <script>
     import { goto } 		from '$app/navigation';
-    import { directionProcessing, rootPath, transitioning } from "$lib/controllers/accessibilityController.js";
+    import { directionProcessing, rootPath, transitioning } from "$lib/controllers/pageControllers.js";
 
     import { page } from "$app/stores";
     import {onMount} from "svelte";

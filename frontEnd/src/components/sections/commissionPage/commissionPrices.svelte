@@ -1,5 +1,5 @@
 <script>
-    import { nsfw } from "$lib/controllers/accessibilityController.js";
+    import { nsfw } from "$lib/controllers/pageControllers.js";
 
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
 	import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";

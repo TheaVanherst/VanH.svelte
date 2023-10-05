@@ -4,7 +4,7 @@ import client from "$lib/sanityClient.js";
 export async function load () {
     const [allQueries] = await Promise.all([client.fetch(`{
         "artworks":
-            *[ _type == 'artworks'] | order(publishedAt desc) {
+            *[ _type == 'artworks'][0...10] | order(publishedAt desc) {
                 ...,
                 'gallery': gallery {
                     ...,

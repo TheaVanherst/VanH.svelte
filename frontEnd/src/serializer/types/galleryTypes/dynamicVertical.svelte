@@ -1,14 +1,16 @@
 <script>
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import CitedImage from "$root/serializer/types/citedImage.svelte";
+
     export let push;
+    export let citation;
 </script>
 
 <div class="dynamicVertical">
-    {#each push as row}
+    {#each push as row, x}
         <div class="row" style="--yWid: {push.length}">
-            {#each row as image}
+            {#each row as image, i}
                 <div class="col">
-                    <SanityImage image={image}/>
+                    <CitedImage image={image} citation={citation[x][i]}/>
                 </div>
             {/each}
         </div>

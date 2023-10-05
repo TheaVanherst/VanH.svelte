@@ -1,13 +1,11 @@
 <script>
-    import { screenType } 	from '$lib/controllers/accessibilityController.js';
+    import { fly } from 'svelte/transition';
+    import { screenType } 	from '$lib/controllers/pageControllers.js';
 
+    import Container from "$root/components/generic/containers/container.svelte";
     import SectionListCard from "$root/components/generic/containers/sectionListCard.svelte";
-    import PersonalMessage from "$root/components/sections/homePage/personalMessage.svelte";
 
-    export let
-		global,
-		tiers,
-		personal;
+    export let global, tiers, personal;
 </script>
 
 <div class="table" class:mobile={$screenType === 1}>
@@ -46,11 +44,12 @@
 	</div>
 </div>
 
-<PersonalMessage message={personal}/>
-
 <style lang="scss">
+
+	.table, .messageTable {
+		display: 	flex;}
+
 	.table {
-		display: 	flex;
 		width: 		100%;
 		gap: 		12px;
 		margin:	 	0 0 15px 0;
@@ -58,12 +57,15 @@
 		.col {
 			display: 	grid;
 			gap: 		12px;
-			width: 		50%;
-			.row {
-				display: 	flex;}}
+			width: 		50%;}
 
 		&.mobile {
 			display: grid;
 			.col {
 				width: 100%;}}}
+
+	@keyframes float {
+		0% {	transform: translatey(-20px);}
+		50% {	transform: translatey( 20px);}
+		100% {	transform: translatey(-20px);}}
 </style>

@@ -13,7 +13,7 @@ const config = {
 			$root: 			path.resolve('./src'),
 		},
 		prerender: {
-			entries: ['/','/nsfw/','/home','/nsfw/home','/commissions/','/nsfw/commissions','/carrd','/nsfw/carrd','/nsfw/artworks'],
+			entries: ['/','/nsfw/','/home','/nsfw/home','/commissionPage/','/nsfw/commissionPage','/carrd','/nsfw/carrd','/nsfw/artworkPage'],
 		},
 	},
 	preprocess: preprocess(),

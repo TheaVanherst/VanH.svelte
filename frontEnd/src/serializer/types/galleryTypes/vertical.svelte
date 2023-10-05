@@ -1,24 +1,23 @@
 <script>
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import CitedImage from "$root/serializer/types/citedImage.svelte";
+
     export let push;
+    export let citation;
 </script>
 
 <div class="table vertical">
-    {#each push as image}
-        <div>
-            <SanityImage image={image}/>
+    {#each push as image, i}
+        <div class="regularBorder">
+            <CitedImage image={image} citation={citation[i]}/>
         </div>
     {/each}
 </div>
 
 <style lang="scss">
 	.table {
-        > div {
-	        overflow:       hidden;
+        gap:        5px;
+        display:    grid;
 
-            &:not(:last-of-type){
-	            margin-bottom:  var(--imageSpacing);
-            }
-        }
-    }
+        div {
+            overflow: hidden;}}
 </style>

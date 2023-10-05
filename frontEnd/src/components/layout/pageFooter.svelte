@@ -1,6 +1,6 @@
 <script>
-    import { screenSize, screenType } 	from '$lib/controllers/accessibilityController.js';
-    import { splashText } from "$lib/controllers/accessibilityController.js";
+    import { screenSize, screenType } 	from '$lib/controllers/pageControllers.js';
+    import { splashText } from "$lib/controllers/pageSettings.js";
     import { submitters } from "$lib/databases/splashTextDatabase.js";
 
     import { page } from "$app/stores";

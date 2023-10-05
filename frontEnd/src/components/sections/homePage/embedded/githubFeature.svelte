@@ -1,8 +1,8 @@
 <script>
-	import { screenType } from "$lib/controllers/accessibilityController.js";
+	import { screenType } from "$lib/controllers/pageControllers.js";
 
-    import Container from "../../generic/containers/container.svelte";
-	import GithubCard from "$root/components/sections/embedded/githubCard.svelte";
+    import Container from "../../../generic/containers/container.svelte";
+	import GithubCard from "$root/components/sections/homePage/embedded/githubCard.svelte";
 
     export let dataset = [];
 </script>

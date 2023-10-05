@@ -1,5 +1,5 @@
 <script>
-    import { directionProcessing, directory, nsfw, rootPath, transitioning } from '$lib/controllers/accessibilityController.js';
+    import { directionProcessing, directory, nsfw, rootPath, transitioning } from '$lib/controllers/pageControllers.js';
     import { pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { goto } from "$app/navigation";

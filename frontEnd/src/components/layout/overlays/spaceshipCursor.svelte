@@ -1,6 +1,6 @@
 <script>
     import mousePosition from "$lib/controllers/mousePosition.js";
-    import {screenSize} from "$lib/controllers/accessibilityController.js";
+    import {screenSize} from "$lib/controllers/pageControllers.js";
     import { fly } from "svelte/transition";
 
     import { spring } from 'svelte/motion';

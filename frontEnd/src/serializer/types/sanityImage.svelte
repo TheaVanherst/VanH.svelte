@@ -12,9 +12,7 @@
 
     onMount(() => {
         loadCheck.onload = () => {
-            loaded = true;
-        };
-    });
+            loaded = true;};});
 
     const urlFor = (source) => {
         return imageUrlBuilder(client).image(source);};
@@ -39,18 +37,18 @@
 		display:    flex; // fixes an issue with the padding at the bottom of images
 		position:   relative;
 
-		//&:not(.loaded) { // this needs to be removed or cleaned up to fix lag.
-		//	animation-duration: 2s;
-		//	animation-fill-mode: forwards;
-		//	animation-iteration-count: infinite;
-		//	animation-name: placeHolderShimmer;
-		//	animation-timing-function: linear;
-		//
-		//	background: linear-gradient(to right,
-		//			var(--backgroundAccent2) 8%,
-		//			var(--backgroundAccent1) 18%,
-		//			var(--backgroundAccent2) 33%);
-		//	background-size: $backgroundSize 104px;}
+		&:not(.loaded) { // this needs to be removed or cleaned up to fix lag.
+			animation-duration: 2s;
+			animation-fill-mode: forwards;
+			animation-iteration-count: infinite;
+			animation-name: placeHolderShimmer;
+			animation-timing-function: linear;
+
+			background: linear-gradient(to right,
+					var(--backgroundAccent2) 8%,
+					var(--backgroundAccent1) 18%,
+					var(--backgroundAccent2) 33%);
+			background-size: $backgroundSize 104px;}
 
 		img {
 			margin:     0;

@@ -1,5 +1,5 @@
 <script>
-	import ArtworkCard from "$root/components/sections/artworks/artworkCard.svelte";
+	import ArtworkCard from "$root/components/sections/artworkPage/artworkCard.svelte";
     import Masonry from 'svelte-bricks'; // THIS IS SO FUCKING GOOD.
 
 	export let data;

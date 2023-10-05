@@ -23,41 +23,7 @@
 	from {	transform: translate(-50%,-50%) rotate(360deg);}
 	to {	transform: translate(-50%,-50%) rotate(0deg);}}
 
-// TODO: title types
-
-.titleH4 {
-	transition: filter .4s ease-in-out;
-	padding: 		0 10px 10px 3px;
-	white-space: 	nowrap;
-	text-transform: uppercase;
-	position: 		relative;}
-
-a { transition: .5s ease; //fallback transition
-	&:hover {
-		.titleH4 {
-			@include rainbowTransition();}}}
-
 // TODO: generic texts
-
-.citation {
-	font-size: 		10px;
-	font-family: 	"Helvetica", Sans-serif;
-	color:          var(--accent9);
-
-	position: 	relative;
-	display: 	block;
-
-	span {
-		transition: color .3s ease-in-out;
-		color: var(--accent1);
-		&::selection {
-			color: var(--accent1);};}
-
-	&:hover {
-		> span {
-			color: var(--accent3);
-			&::selection {
-				color: var(--accent3)!important;}}}}
 
 .externalCitation {
 	width:          max-content;
@@ -70,30 +36,6 @@ a { transition: .5s ease; //fallback transition
 	border-right:       1px solid var(--accent2);
 	&.hover:hover {
 		border-right:   1px solid var(--accent3);}}
-
-// TODO: description
-
-.quote {
-	border-left: 	1px solid var(--accent10);
-	border-right: 	1px solid var(--accent10);
-	padding: 		10px;
-
-	position:       relative;
-	white-space:    pre-line;
-
-	&::before, &::after {
-		position: 	absolute;
-		font-size: 	40px;}
-	&::before {
-		top:        0;
-		left: 		0;
-		margin: 	7px 0 0 -12px;
-		content: 	open-quote;}
-	&::after {
-		bottom:     0;
-		right:      0;
-		margin: 	0 -10px -10px 0;
-		content: 	close-quote;}}
 
 // TODO: cropping
 

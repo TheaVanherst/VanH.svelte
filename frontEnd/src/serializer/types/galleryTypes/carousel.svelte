@@ -28,10 +28,7 @@
                     <img src="/icons/rightRouteArrow.webp"/>
                 </label>
 
-                <container>
-                    <SanityImage image={image}/>
-                </container>
-
+                <SanityImage image={image}/>
             </div>
         {/each}
     </div>

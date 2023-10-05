@@ -7,7 +7,7 @@
     import { navigating } from "$app/stores";
 
     import { directionProcessing, pageLoaded, direction, transitioning, directory
-    	} from '$lib/controllers/accessibilityController.js';
+    	} from '$lib/controllers/pageControllers.js';
 
     afterNavigate((n) => {
         if (!$navigating || !$pageLoaded) {  // this fixes an issue where the url doesn't update from the initial layout load.

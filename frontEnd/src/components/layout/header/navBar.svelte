@@ -1,14 +1,14 @@
 <script>
     import { slide } 	from 'svelte/transition';
 
-    import {nsfw, screenType} from '$lib/controllers/accessibilityController.js';
+    import {nsfw, screenType} from '$lib/controllers/pageControllers.js';
     import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
     import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
     import { navigationDirectories } from '$lib/controllers/navigationDirectories.js';
 
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/accessibilityController.js";
+    import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/pageControllers.js";
 
     export let socials;
     export let data;

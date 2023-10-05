@@ -1,9 +1,9 @@
 <script>
     import Carousel from "$root/components/generic/controllers/carousel.svelte";
     import CharacterCard 	from "$root/components/generic/imageContainers/showcaseCard.svelte";
-    import InfoPlate 			from "$root/components/sections/characters/homePage/characterInfoPlate.svelte";
+    import InfoPlate 			from "$root/components/sections/homePage/characters/characterInfoPlate.svelte";
 
-    import { nsfw } from "$lib/controllers/accessibilityController.js";
+    import { nsfw } from "$lib/controllers/pageControllers.js";
 
     export let dataset = {};
 </script>

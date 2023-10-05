@@ -4,7 +4,7 @@
 
     export let data;
 
-    import { nsfw } from "$lib/controllers/accessibilityController.js";
+    import { nsfw } from "$lib/controllers/pageControllers.js";
     $nsfw = data.dParams === 'nsfw'; // page initializing
 </script>
 

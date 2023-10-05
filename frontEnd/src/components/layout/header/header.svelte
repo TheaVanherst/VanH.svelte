@@ -2,7 +2,7 @@
     import ProfileBar 			from "$root/components/layout/header/bannerAnimation.svelte";
     import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
 
-    import { deviceType, pageLoaded } from "$lib/controllers/accessibilityController.js";
+    import { deviceType, pageLoaded } from "$lib/controllers/pageControllers.js";
 
     let hover = false;
 </script>
@@ -19,12 +19,6 @@
 						<div class="branding">
 							<img src="/branding/vanhlogo.webp"/>
 						</div>
-						<!--{#if !hover}-->
-						<!--	<div class="branding">-->
-						<!--		<img class="branding" src="/branding/vanhlogo.webp"-->
-						<!--			 transition:fade={{easing:cubicInOut, duration: 350}}/>-->
-						<!--	</div>-->
-						<!--{/if}-->
 					</div>
 				</ProfileBar>
 			</div>

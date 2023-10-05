@@ -1,5 +1,4 @@
 <script>
-    import { deviceType } from "$lib/controllers/accessibilityController.js";
     import { createdPush } from "$lib/builders/dateBuilder.js";
 
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
@@ -18,8 +17,7 @@
 
 <div class="postWrapper wideBorder"
 	 on:click={() => {active = !active}}
-	 on:mouseenter={() => {$deviceType === 2 ? active = true : false}}
-	 on:mouseleave={() => {active = false}}>
+	 on:mouseleave={() => active = false}>
 	<div class="galleryWrapper">
 		<SanityGalleries portableText={postData.gallery}/>
 
@@ -92,7 +90,8 @@
 
 <style lang="scss">
 	.postWrapper {
-		overflow: 		hidden;
+		width: 		100%;
+		overflow: 	hidden;
 		.galleryWrapper {
 			position: 	relative;}}
 

@@ -1,6 +1,6 @@
 <script>
-    import { scrollPos } from '$lib/controllers/accessibilityController.js';
-    import { deviceType } from "$lib/controllers/accessibilityController.js";
+    import { scrollPos } from '$lib/controllers/pageControllers.js';
+    import { deviceType } from "$lib/controllers/pageControllers.js";
 
     // TODO: NOTE;
     // Not using --ypos, and trying to use $scrollPos causes a slight delay when scrolling.

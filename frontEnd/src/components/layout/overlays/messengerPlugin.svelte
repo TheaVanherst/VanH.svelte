@@ -1,6 +1,6 @@
 <script>
     import { scale, fly } 	from 'svelte/transition';
-    import { screenType } 	from '$lib/controllers/accessibilityController.js';
+    import { screenType } 	from '$lib/controllers/pageControllers.js';
 
     import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
     import GenericButton from "$root/components/generic/buttons/genericButton.svelte";
@@ -32,7 +32,7 @@
 			 out:fly={{
                  x: directions[0],
                  y: directions[1]}}>
-			<div class="nav">
+			<div class="nav wrapCorrection">
 				<div class="title">
 					<h3>MESSENGER</h3>
 				</div>

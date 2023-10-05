@@ -1,9 +1,4 @@
 
-const
-    splashText = writable(undefined);
-
-export { splashText }
-
 // TODO: page checking and controlling
 
 import { get, writable } from "svelte/store";

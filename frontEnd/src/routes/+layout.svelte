@@ -15,7 +15,7 @@
 
 
     import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded,
-    	} from "$lib/controllers/accessibilityController.js";
+    	} from "$lib/controllers/pageControllers.js";
     import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName,
     	} from "$lib/controllers/titlebarScoller.js";
 
@@ -55,7 +55,7 @@
 
 {#if $pageLoaded}
 	<div id="scrollParent">
-		<div id="layout" style="{$deviceType < 2 ? 'overflow-x: hidden' : ''}">
+		<div id="layout" class="wrapCorrection" style="{$deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
 				<Header/>
 			</div>
