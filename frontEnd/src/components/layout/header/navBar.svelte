@@ -20,7 +20,7 @@
 			<div transition:slide={{duration: 200}} id="navigation">
 				{#each navigationDirectories as item}
 					{#if item.nsfw && $nsfw || !item.nsfw}
-						<RedirectBuilder url={item.path} external={true} redirectName={item.pagePreview}>
+						<RedirectBuilder url="{item.path}" internal={true} redirectName={item.pagePreview}>
 							<div class="navButton" class:currentRoot={$rootPath === item.path}>
 								<h5> {item.title} </h5>
 							</div>

@@ -7,7 +7,7 @@
 
     export let
         url = 		'',
-        external = 	false,
+        internal = 	false,
 		redirectName = undefined;
 
     const redirectCheck = (e, n) => {
@@ -32,10 +32,11 @@
 
     	if (n) { // this sets a custom page name.
             $pageName = n;}}
+
 </script>
 
-{#if external}
-	<a href="https://www.{url}" target=""
+{#if internal}
+	<a href="{url}" target=""
 	   on:click|preventDefault={() => redirectCheck(url, redirectName)}>
 		<slot/>
 	</a>

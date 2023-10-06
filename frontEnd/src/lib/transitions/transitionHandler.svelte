@@ -4,7 +4,7 @@
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
     import { afterNavigate, beforeNavigate } from "$app/navigation";
-    import { navigating } from "$app/stores";
+    import { navigating, updated } from "$app/stores";
 
     import { directionProcessing, pageLoaded, direction, transitioning, directory } from '$lib/controllers/pageControllers.js';
 
@@ -14,7 +14,7 @@
 			to = to === "" ? "/" : to;
 			directionProcessing(to, to, to, 0);}}); //resets x, y positions
 
-    beforeNavigate(async (n) => {
+    beforeNavigate(async (n, willUnload, to ) => {
         if (n.delta !== 0 && n.type === "popstate") {
             let to = (n.to.url.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
 
@@ -22,7 +22,11 @@
             $transitioning = true;
             setTimeout(async () => {
                 $transitioning = false;
-            }, 250);}}); //resets x, y positions
+            }, 250);}
+
+        if ($updated && !willUnload && to?.url) {
+            location.href = to.url.href;}
+    }); //resets x, y positions
 
     let transitionSpeed = 150; // transition position multipliers
 </script>
@@ -32,7 +36,7 @@
 		<div class="transitionWrapper"
 			 in:fly={{
         	easing: 	cubicOut,
-        	delay: 		170, // specifically for social media transitions
+        	delay: 		175, // specifically for social media transitions
             duration:   250,
             x: transitionSpeed * $direction[0]}}
 			 out:fly={{

@@ -1,6 +1,6 @@
 <script>
     import { page } from "$app/stores";
-    import { screenType } 		from '$lib/controllers/pageControllers.js';
+    import { screenType, nsfw } 		from '$lib/controllers/pageControllers.js';
 
     import { slide } 			from "svelte/transition";
     import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
@@ -16,12 +16,14 @@
 <div class="table" id="characterSelect" transition:slide={{duration: 200}}
 	class:tablet={$screenType < 3}>
 	{#each data.preSearches[0].characters as character}
-		<RedirectBuilder url={$page.params.query === `char=${character.slug}` ? `/artworks/` :  `/artworks/char=${character.slug}`} external={true}>
-			<div class="enlargedIcon"
-				 class:active={$page.params.query === `char=${character.slug}`}>
-				<SanityImage image={character.icon}/>
-			</div>
-		</RedirectBuilder>
+		{#if character.NSFW && nsfw || !character.NSFW}
+			<RedirectBuilder url={$page.url.search === `?char=${character.slug}` ? `/artworks/` :  `/artworks/?char=${character.slug}`} internal={true}>
+				<div class="enlargedIcon"
+					 class:active={$page.url.search === `?char=${character.slug}` || $page.url.search === ''}>
+					<SanityImage image={character.icon}/>
+				</div>
+			</RedirectBuilder>
+		{/if}
 	{/each}
 </div>
 
@@ -43,12 +45,12 @@
 			grid-template-columns: auto auto auto auto;}}
 
 	.enlargedIcon {
-		border: 	1px solid transparent;
 		transition: .3s cubic-bezier(0.33, 1, 0.68, 1);;
 		margin: 	0 auto;
+		filter: brightness(0.5);
 
 		&:hover {
 			transform: scale(1.1);}
 		&.active {
-			border: 1px solid var(--accent3);}}
+			filter: brightness(1);}}
 </style>
