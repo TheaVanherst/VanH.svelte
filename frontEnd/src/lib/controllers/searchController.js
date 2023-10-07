@@ -1,21 +1,28 @@
 
 import { writable } from "svelte/store"
+import { goto } from "$app/navigation";
 
-const search = writable();
+const
+    searchQuery = (data) => {
+        const { subscribe, set, update } = writable({
+            data: data,
+            filtered: data,
+            search: ""
+        });
+        return { subscribe, set, update }
+    },
+    searchHandler = (store) => {
+        const searchTerm = store.search.toLowerCase() || ""
+        store.filtered = store.data.filter(item => {
+            let array = searchTerm.split(' ');
+            return array.every(el => item.searchTerms.toLowerCase().includes(el))});
+    },
+    urlSerializer = (v) => {
+        const queryParams = 	v.toString().replaceAll(' ','-');
+        const params = 			new URLSearchParams(window.location.search);
 
-const searchQuery = (data) => {
-    const { subscribe, set, update } = writable({
-        data: data,
-        filtered: data,
-        search: ""
-    });
-    return { subscribe, set, update }
-}
+        params.set('q', queryParams);
+        goto(`?${params}`);
+    }
 
-const searchHandler = (store) => {
-    const searchTerm = store.search.toLowerCase() || ""
-    store.filtered = store.data.filter(item => {
-        return item.searchTerms.toLowerCase().includes(searchTerm)});
-}
-
-export { search, searchQuery, searchHandler }
+export { urlSerializer, searchQuery, searchHandler }

@@ -1,39 +1,50 @@
 <script>
-    import ArtworkCard from "$root/components/sections/artworkPage/artworkCard.svelte";
-    import Masonry from 'svelte-bricks';
-    import { onDestroy } from 'svelte';
+    import {onDestroy, onMount} from 'svelte';
 
-    import {searchQuery, searchHandler} from "$lib/controllers/searchController.js";
+    import Masonry from 'svelte-bricks';
+    import ArtworkCard from "$root/components/sections/artworkPage/artworkCard.svelte";
+
+    import { searchQuery, searchHandler, urlSerializer } from "$lib/controllers/searchController.js";
 
     export let data;
-    const searchProducts = data.artworks.map(artwork => ({
-        ...artwork,
-        searchTerms: `${artwork.pieceName} ${artwork.slug.current} ${artwork.gallery.renderType} ${artwork.gallery.styleType} ${artwork.characters?.map(character => `${character.fullName} ${character.nickName}`)} ${artwork.commissionData?.artType?.TypeName} ${artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle}`)}`
-    }))
 
-    const search = searchQuery(searchProducts);
+    data.artworks = data.artworks.map(artwork => ({
+        ...artwork,
+        searchTerms:
+            (artwork.nsfw ? `nsfw ` : `notsfw `) +
+			`${artwork.pieceName} ${artwork.slug} ` +
+			`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
+            (!!artwork.authors ? artwork.authors.map(artist => `${artist.fullName} ${artist.handle} ${artist.slug} `) : '') +
+            (!!artwork.characters ? artwork.characters?.map(character => `${character.fullName} ${character.nickName } `) : '') +
+            (!!artwork.commissionData ?
+                `${artwork.commissionData?.commissionType} ` +
+                artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `) : '')
+    }));
+
+    const search = searchQuery(data.artworks);
     const unsubscribe = search.subscribe((model) => searchHandler(model));
 
     onDestroy(() => {unsubscribe();});
+    onMount(() => {$search.search = window.location.search.substring(3).replaceAll('-',' ');})
 </script>
 
 <div class="center wrapper">
 	<div class="searchBar">
-		<input type="search" class="input wideBorder" placeholder="Search..." bind:value={$search.search} />
+		<form on:submit|preventDefault={() => urlSerializer($search.search)}>
+			<input type="search" class="input wideBorder" placeholder="Search..." bind:value={$search.search}/>
+		</form>
 	</div>
 
 	{#if $search.filtered}
 		<Masonry
-				items=	{$search.filtered}
-				gap=	{10}
-				idKey=	{`_id`}
-
-				animate=		{false}
-				columnClass=	"flex"
-				let:item>
-			<div class="artPost">
-				<ArtworkCard postData={item}/>
-			</div>
+			items=	{$search.filtered}
+			gap=	{10}
+			idKey=	{`slug`}
+			animate= {false}
+			let:item>
+				<div class="artPost">
+					<ArtworkCard postData={item}/>
+				</div>
 		</Masonry>
 	{/if}
 </div>
@@ -73,7 +84,7 @@
 			width: 		500px;
 			border: 1px solid var(--accent2);
 			outline: none;
-			background: black;
+			background: var(--TransBlack);
 			font-family: "Playfair Display", serif;
 			color: var(--accent9);
 			font-weight: 700;

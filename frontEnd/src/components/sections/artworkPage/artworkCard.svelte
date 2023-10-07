@@ -33,7 +33,7 @@
 				</p>
 				{#if !!postData.commissionData}
 					<p class="altTitle">
-						{postData.commissionData.artType.typeName} for:
+						{postData.commissionData.commissionType} for:
 					</p>
 					{#each postData.commissionData.characters as character}
 						<div class="characterCard">
@@ -46,16 +46,29 @@
 						</div>
 					{/each}
 				{/if}
+				{#if postData.authors.length > 0}
+					<p> With additional help from: </p>
+					{#each postData.authors as author}
+						<div class="characterCard">
+							<div class="icon mediaIcon shortBorder">
+								<SanityImage image={author.author.userPortrait}/>
+							</div>
+							<h4>
+								{author.author.fullName}
+							</h4>
+						</div>
+					{/each}
+				{/if}
 				<p>
-					Style: {postData.gallery.styleType}, {postData.gallery.renderType}
+					{postData.gallery.styleType}: {postData.gallery.renderType}
 				</p>
 			</div>
 
 			<div slot="alt">
-				<p>
-					Featured Character{arrayLength > 1 ? 's' : ''}:
-				</p>
 				{#if !!postData.characters}
+					<p>
+						Featured Character{arrayLength > 1 ? 's' : ''}:
+					</p>
 					{#each postData.characters as character}
 						<div class="characterCard">
 							<div class="icon mediaIcon shortBorder">
@@ -79,10 +92,10 @@
 						</div>
 					{/each}
 				{/if}
+
 				<p>
 					{createdPush(postData.publishedAt)}
 				</p>
-
 			</div>
 		</ImageFloatCard>
 	</div>
@@ -96,6 +109,9 @@
 			position: 	relative;}}
 
 	p {	margin: 	7px 0;}
+	p + p {
+		margin: 4px 0;
+	}
 
 	.characterCard {
 		display: 	flex;
