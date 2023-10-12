@@ -27,7 +27,6 @@
 		.workshopPreview {
 			position: 	relative;
 			overflow: 	hidden;
-			margin-bottom: 27px;
 			.regularBorder {
 				overflow: hidden;}}}
 </style>

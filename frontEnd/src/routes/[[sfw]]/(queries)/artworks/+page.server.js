@@ -4,7 +4,7 @@ import client from "$lib/sanityClient.js";
 export const load = async () => {
     const [allQueries] = await Promise.all([client.fetch(`{
         "artworks":
-            *[ _type == 'artworks'] | order(publishedAt desc) {
+            *[ _type == 'artworks'][] | order(publishedAt desc) {
                 _id,
                 pieceName,
                 description,
@@ -32,6 +32,8 @@ export const load = async () => {
                     'renderType': renderType->renderName,
                     'styleType': styleType->styleName
                 },
+                'photoshopRefId': discordReferences.photoshopRef,
+                'imageRefId': discordReferences.archiveRef,
                 'characters': characters[]->{
                     fullName,
                     charIcon,

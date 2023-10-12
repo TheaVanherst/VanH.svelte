@@ -80,7 +80,7 @@
 	#layout {
 		min-height: 100vh;
 
-		max-width: 	800px;
+		max-width: 	820px;
 		width: 		100%;
 		min-width: 	300px;
 

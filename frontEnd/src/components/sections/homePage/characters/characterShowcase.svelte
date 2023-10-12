@@ -41,6 +41,5 @@
 	.citation {
 		margin: 	-4px 0 10px auto;}
 	.card {
-		height: 	520px;
-		padding: 	0 0 27px 0;}
+		height: 	520px;}
 </style>

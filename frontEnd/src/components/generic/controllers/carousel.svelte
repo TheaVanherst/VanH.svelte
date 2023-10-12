@@ -7,6 +7,8 @@
 	export let
 		pagination = true,
 		centered = false;
+	export let
+        footerAdd = true;
 
     import { register } from 'swiper/element/bundle';
     import { onMount } from "svelte";
@@ -26,6 +28,7 @@
 			slides-per-view={$screenType <= maxWidth ? $screenType : maxWidth}
 			centeredSlidesBounds={centered}
 			grabCursor={true}
+			class="wideBorder {footerAdd ? 'margin' : ''}"
 			navigation="true" pagination={pagination} space-between={10}>
 		{#await mounted}
 
@@ -38,6 +41,7 @@
 {:else}
 	<swiper-container
 			slides-per-view="{customCalc}"
+			class="wideBorder {footerAdd ? 'margin' : ''}"
 			navigation="true" pagination={pagination} space-between={10}>
 		{#await mounted}
 
@@ -76,4 +80,9 @@
 		transition: ease .3s;}
 	swiper-container::part(bullet-active) {
 		background: white;}
+
+	// custom junk
+
+	swiper-container.margin::part(container) { // bad work around.
+		padding-bottom: 27px;}
 </style>

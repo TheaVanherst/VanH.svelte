@@ -8,11 +8,10 @@
 
     export let postData;
 
-    let active,
+    let active = false,
 		arrayLength =
-		(postData?.characters ? postData.characters.length : 0) +
-		(postData?.commissionData?.characters ? postData.commissionData.characters?.length : 0);
-
+			(postData?.characters ? postData.characters.length : 0) +
+			(postData?.commissionData?.characters ? postData.commissionData.characters?.length : 0);
 </script>
 
 <div class="postWrapper wideBorder"
@@ -20,7 +19,6 @@
 	 on:mouseleave={() => active = false}>
 	<div class="galleryWrapper">
 		<SanityGalleries portableText={postData.gallery}/>
-
 		<ImageFloatCard active={active} accent={true}>
 			<h4 slot="title">
 				{postData.pieceName}
@@ -96,6 +94,18 @@
 				<p>
 					{createdPush(postData.publishedAt)}
 				</p>
+
+				{#if postData.imageRefId || postData.photoshopRefId}
+					<div class="footer">
+						<p>
+							Discord references:
+						</p>
+						<p class="links">
+							{#if postData.imageRefId}<a class="shortBorder" href={postData.imageRefId} target="_blank">Artchive</a>{/if}
+							{#if postData.photoshopRefId}<a class="shortBorder" href={postData.photoshopRefId} target="_blank">Resource Files</a>{/if}
+						</p>
+					</div>
+				{/if}
 			</div>
 		</ImageFloatCard>
 	</div>
@@ -110,8 +120,7 @@
 
 	p {	margin: 	7px 0;}
 	p + p {
-		margin: 4px 0;
-	}
+		margin: 4px 0;}
 
 	.characterCard {
 		display: 	flex;
@@ -123,4 +132,14 @@
 			margin: 	auto 0;}
 		.icon {
 			overflow:	hidden;}}
+
+	.footer {
+		.links {
+			a {
+				padding: 3px 5px 2px 5px;
+				color: white;
+				background: var(--accent10);
+				transition: background .3s ease-in-out;
+				&:hover {
+					background: var(--accent2);}}}}
 </style>

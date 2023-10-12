@@ -33,12 +33,9 @@ export default readable({x:0, y:0, xTilt: 0}, (set) => {
         yTilt = diffY < yRequired ?  1 : y > oldY ? 0 : 2;
 
         set({
-            x:  x,
-            y:  y,
-            xTilt: offsetCalcX[xTilt],
-            yTilt: offsetCalcY[yTilt],
-            xMulti: xTilt,
-            yMulti: yTilt,
+            x:  x, y:  y,
+            xTilt: offsetCalcX[xTilt], yTilt: offsetCalcY[yTilt],
+            xMulti: xTilt, yMulti: yTilt
         });
 
         oldX = x;
@@ -47,22 +44,19 @@ export default readable({x:0, y:0, xTilt: 0}, (set) => {
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
-            xTilt < 2 ? xTilt++ : xTilt--
+            if (xTilt !== 2) {
+                xTilt < 2 ? xTilt++ : xTilt--;}
 
             set({
-                xTilt: offsetCalcX[xTilt],
-                yTilt: offsetCalcY[1],
-                xMulti: xTilt,
-                yMulti: 1,
+                xTilt: offsetCalcX[xTilt], yTilt: offsetCalcY[1],
+                xMulti: xTilt, yMulti: 1
             });
 
             if (xTilt !== 2) {
                 setTimeout(() => {
                     set({
-                        xTilt: offsetCalcX[2],
-                        yTilt: offsetCalcY[1],
-                        xMulti: 2,
-                        yMulti: 1,
+                        xTilt: offsetCalcX[2], yTilt: offsetCalcY[1],
+                        xMulti: 2, yMulti: 1
                     });
                 }, 100);
             }

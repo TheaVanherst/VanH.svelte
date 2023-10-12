@@ -7,7 +7,7 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'artworks',
+            'artworks','renderType','styleType',
           ].includes(listItem.getId())
         ),
 
@@ -16,7 +16,7 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'character','alterCharacter','developmentStatus','heightTag','sexTag'
+            'character','developmentStatus','heightTag','sexTag'
           ].includes(listItem.getId())
         ),
 
@@ -34,7 +34,16 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'author','authorTags','internalTags','commissioner'
+            'author','authorTags','internalTags'
+          ].includes(listItem.getId())
+        ),
+
+      S.divider(),
+
+      ...S.documentTypeListItems()
+        .filter(
+          (listItem) => [
+            'commissioner','alterCharacter','commissionType'
           ].includes(listItem.getId())
         ),
 

@@ -27,7 +27,7 @@
 				<div class="mobileOffset" transition:slide>
 					<Carousel
 						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
-						pagination={false}>
+						pagination={false} footerAdd={false}>
 						{#each dataset[1] as workshopItem}
 							{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
 								<swiper-slide>
@@ -53,7 +53,7 @@
 			<div class="desktopOffset">
 				<Carousel
 						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
-						pagination={false}>
+						pagination={false} footerAdd={false}>
 					{#each dataset[1] as workshopItem}
 						{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
 							<swiper-slide>

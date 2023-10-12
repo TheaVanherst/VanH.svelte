@@ -40,6 +40,22 @@ export default defineType({
     }),
 
     defineField({
+      name: 'discordReferences',
+      title: 'Discord Referencing',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'photoshopRef', title: 'Photoshop Message ID',
+          type: 'string',
+        }),
+        defineField({
+          name: 'archiveRef', title: 'Artchive Message ID',
+          type: 'string',
+        }),
+      ]
+    }),
+
+    defineField({
       name: 'characters', title: 'Characters',
       type: 'array',
       of: [{
@@ -122,9 +138,16 @@ export default defineType({
       author3: 'authors.2.author.fullName',
       author4: 'authors.3.author.fullName',
       media: 'gallery.images[0]',
+      photoshop: 'discordReferences.photoshopRef',
+      archive: 'discordReferences.archiveRef'
     },
-    prepare: ({ title, author1, author2, author3, author4, media }) => {
-      let returnString = "Created by ";
+    prepare: ({ title, author1, author2, author3, author4, media, photoshop, archive }) => {
+      let returnString = "";
+
+      returnString += " A" + (archive ? '✔️ ' : '❌ ')
+      returnString += " P" + (photoshop ? '✔️ ' : '❌ ')
+
+      returnString += "Created by ";
 
       const authors = [author1, author2, author3, author4].filter(Boolean);
 

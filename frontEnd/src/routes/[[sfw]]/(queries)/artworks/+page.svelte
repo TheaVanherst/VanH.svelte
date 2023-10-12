@@ -1,8 +1,8 @@
 <script>
     import {onDestroy, onMount} from 'svelte';
 
-    import Masonry from 'svelte-bricks';
-    import ArtworkCard from "$root/components/sections/artworkPage/artworkCard.svelte";
+    import Masonry 		from 'svelte-bricks';
+    import ArtworkCard 	from "$root/components/sections/artworkPage/artworkCard.svelte";
 
     import { searchQuery, searchHandler, urlSerializer } from "$lib/controllers/searchController.js";
 
@@ -25,7 +25,7 @@
     const unsubscribe = search.subscribe((model) => searchHandler(model));
 
     onDestroy(() => {unsubscribe();});
-    onMount(() => {$search.search = window.location.search.substring(3).replaceAll('-',' ');})
+    onMount(() => {$search.search = window.location.search.substring(3).replaceAll('-',' ');});
 </script>
 
 <div class="center wrapper">

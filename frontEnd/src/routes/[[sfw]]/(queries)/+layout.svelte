@@ -45,9 +45,9 @@
 			grid-template-columns: auto auto auto auto;}}
 
 	.enlargedIcon {
-		transition: .3s cubic-bezier(0.33, 1, 0.68, 1);;
+		transition: .3s cubic-bezier(0.33, 1, 0.68, 1);
 		margin: 	0 auto;
-		filter: brightness(0.5);
+		filter: 	brightness(0.5);
 
 		&:hover {
 			transform: scale(1.1);}
