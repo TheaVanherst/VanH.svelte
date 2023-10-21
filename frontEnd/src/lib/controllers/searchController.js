@@ -1,5 +1,7 @@
 
-import { writable } from "svelte/store"
+import { writable, get } from "svelte/store"
+import { page } from '$app/stores';
+
 import {goto} from "$app/navigation";
 
 const
@@ -20,12 +22,11 @@ const
     },
 
     urlSerializer = (values) => {
-        const url = new URL(window.location.href);
-
+        let pageData = get(page).url;
         for ( let [k, v] of Object.entries(values) ) {
-            v ? url.searchParams.set(encodeURIComponent(k), encodeURIComponent(v)) : url.searchParams.delete(k);};
+            v ? pageData.searchParams.set(encodeURIComponent(k), encodeURIComponent(v)) : pageData.searchParams.delete(k);}
 
-        goto(url);
+        goto(pageData);
     };
 
 export { urlSerializer, searchQuery, searchHandler }

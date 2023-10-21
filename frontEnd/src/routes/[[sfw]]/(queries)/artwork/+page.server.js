@@ -58,8 +58,5 @@ export const load = async ({url}) => {
         }`
     )]);
 
-    allQueries.page = url.searchParams.get("page") || 0;
-    allQueries.search = url.searchParams.get("query") || undefined;
-
     return allQueries
 };

@@ -1,7 +1,7 @@
 
 import client from "$lib/sanityClient.js";
 
-export const load = async ({url}) => {
+export const load = async () => {
     const [allQueries] = await Promise.all([client.fetch(`{
         "design":
             *[ _type == 'alternateArts'][] | order(publishedAt desc) {
@@ -35,9 +35,6 @@ export const load = async ({url}) => {
             }
         }`
     )]);
-
-    allQueries.page = url.searchParams.get("page") || 0;
-    allQueries.search = url.searchParams.get("query") || undefined;
 
     return allQueries
 };

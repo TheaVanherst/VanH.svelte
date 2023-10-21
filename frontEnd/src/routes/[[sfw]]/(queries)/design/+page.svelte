@@ -1,5 +1,6 @@
 <script>
-    import {onDestroy, onMount} from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
+    import { page } from "$app/stores";
 
     import Masonry 		from 'svelte-bricks';
     import ArtworkCard 	from "$root/components/sections/artworkPage/artworkCard.svelte";
@@ -21,18 +22,27 @@
     const search = searchQuery(data.design);
     const unsubscribe = search.subscribe((model) => searchHandler(model));
 
-    onDestroy(() => {unsubscribe();});
+    onDestroy(() => { unsubscribe(); });
     onMount(() => {
+        data.page = $page.url.searchParams.get("page") || 0;
+        data.search = $page.url.searchParams.get("query") || undefined;
         if (data.search) {
             $search.search = data.search.replaceAll('-',' ');}});
 
     let pagedData, finalPage, pageNo;
+
+    let hardSearch = () => {
+        $search.search = value;
+        urlSerializer({'query': $search?.search, 'page': pageNo});
+    };
+
+    let value
 </script>
 
 <div class="center wrapper">
 	<div class="searchBar">
-		<form on:submit|preventDefault={() => urlSerializer({'query': $search.search})}>
-			<input type="search" class="input wideBorder" placeholder="Search..." bind:value={$search.search}/>
+		<form on:submit|preventDefault={hardSearch}>
+			<input type="search" class="input wideBorder" placeholder="Search..." bind:value={value}/>
 		</form>
 	</div>
 
