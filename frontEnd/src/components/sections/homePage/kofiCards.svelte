@@ -22,7 +22,7 @@
 								</div>
 							</div>
 							<div class="desc">
-								<p class="price fancy">£{tier.tierCost.price.toFixed(2)}{tier.tierCost.additional ? " or more" : ""} {tier.tierCost.recurring ? "monthly" : "single"} donation</p>
+								<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
 								<div class="joinButton regularBorder">
 									<p class="subtitle">Join</p>
 								</div>

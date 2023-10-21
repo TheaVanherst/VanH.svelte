@@ -7,7 +7,7 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'artworks','renderType','styleType',
+            'artworks','alternateArts','renderType','styleType',
           ].includes(listItem.getId())
         ),
 

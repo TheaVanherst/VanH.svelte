@@ -203,7 +203,7 @@ export default defineType({
               name: 'canonHeightHigh', title: 'Max Height Range',
               description: 'The maximum height of the character (if applicable) in cm.',
               type: 'number',
-              validation: Rule => Rule.integer().positive().precision(2),
+              validation: Rule => Rule.positive().precision(2),
             }),
           ],
           preview: {

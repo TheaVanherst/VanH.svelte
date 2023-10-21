@@ -17,7 +17,7 @@
 <!--	class:tablet={$screenType < 3}>-->
 <!--	{#each data.preSearches[0].characters as character}-->
 <!--		{#if character.NSFW && nsfw || !character.NSFW}-->
-<!--			<RedirectBuilder url={$page.url.search === `?char=${character.slug}` ? `/artworks/` :  `/artworks/?char=${character.slug}`} internal={true}>-->
+<!--			<RedirectBuilder url={$page.url.search === `?char=${character.slug}` ? `/artwork/` :  `/artwork/?char=${character.slug}`} internal={true}>-->
 <!--				<div class="enlargedIcon"-->
 <!--					 class:active={$page.url.search === `?char=${character.slug}` || $page.url.search === ''}>-->
 <!--					<SanityImage image={character.icon}/>-->

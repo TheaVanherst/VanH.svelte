@@ -1,12 +1,12 @@
 import { defineField, defineType } from 'sanity'
 import { slugUniqueCheck } from '../../lib/slugUniqueCheck'
-import { ImagesIcon } from '@sanity/icons'
+import { ImageIcon } from '@sanity/icons'
 
 import { nsfwBlock, authorBlock } from '../chunks/genericBlocks'
 
 export default defineType({
-  name: 'artworks',
-  title: 'Artworks',
+  name: 'alternateArts',
+  title: 'Alternate Arts',
   type: 'document',
   fields: [
     // TODO: User Data
@@ -37,52 +37,6 @@ export default defineType({
     defineField({
       name: 'gallery', title: 'Gallery of Images',
       type: 'blockGallery',
-    }),
-
-    defineField({
-      name: 'discordReferences',
-      title: 'Discord Referencing',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'photoshopRef', title: 'Photoshop Message ID',
-          type: 'string',
-        }),
-        defineField({
-          name: 'archiveRef', title: 'Artchive Message ID',
-          type: 'string',
-        }),
-      ]
-    }),
-
-    defineField({
-      name: 'characters', title: 'Characters',
-      type: 'array',
-      of: [{
-        type: 'reference',
-        to: [{type: 'character'}]
-      }],
-    }),
-
-    defineField({
-      name: 'commissionData',
-      title: 'Commission Information',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'characters', title: 'Characters',
-          type: 'array',
-          of: [{
-            type: 'reference',
-            to: [{ type: 'alterCharacter' }]
-          }],
-        }),
-        defineField({
-          name: 'artType', title: 'Commission Type',
-          type: 'reference',
-          to: [{ type: 'commissionType' }]
-        }),
-      ]
     }),
 
     defineField({
@@ -129,7 +83,7 @@ export default defineType({
       initialValue: (new Date()).toISOString()
     }),
   ],
-  icon: ImagesIcon,
+  icon: ImageIcon,
   preview: {
     select: {
       title: 'pieceName',
@@ -138,14 +92,9 @@ export default defineType({
       author3: 'authors.2.author.fullName',
       author4: 'authors.3.author.fullName',
       media: 'gallery.images[0]',
-      photoshop: 'discordReferences.photoshopRef',
-      archive: 'discordReferences.archiveRef'
     },
-    prepare: ({ title, author1, author2, author3, author4, media, photoshop, archive }) => {
+    prepare: ({ title, author1, author2, author3, author4, media, }) => {
       let returnString = "";
-
-      returnString += " A" + (archive ? '✔️ ' : '❌ ')
-      returnString += " P" + (photoshop ? '✔️ ' : '❌ ')
 
       returnString += "Created by ";
 

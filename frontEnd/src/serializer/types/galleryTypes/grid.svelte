@@ -19,7 +19,7 @@
 
 <style lang="scss">
 	.grid {
-        display: inline-flex;
+        display: grid;
         gap: var(--imageSpacing);
         vertical-align: bottom;
 
@@ -28,7 +28,7 @@
 	        display: flex;
             gap: var(--imageSpacing);
 
-	        width: 100%;
+	        min-width: 100%;
 
 	        .col {
 		        background-color:   var(--backgroundAccent2);

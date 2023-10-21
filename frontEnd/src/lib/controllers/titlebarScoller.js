@@ -6,7 +6,7 @@ const
     loadingIco = "Loading ⏳", // 𝙻𝚘𝚊𝚍𝚒𝚗𝚐...
 
     pageName =      writable("𝚆𝚎𝚕𝚌𝚘𝚖𝚎 𝚝𝚘"), //𝚆𝚎𝚕𝚌𝚘𝚖𝚎
-    pageTitlebar =  writable("𝖁𝖆𝖓𝖍.𝖆𝖗𝖙 ⏳");
+    pageTitlebar =  writable("𝖁𝖆𝖓𝖍.𝖆𝖗𝖙");
 
 export { websiteTag, loadingIco, pageName, pageTitlebar }
 

@@ -11,6 +11,7 @@ import commissionTypes from './pageSpecific/commissions/commissionTypes';
 import commissionPricing from './pageSpecific/commissions/commissionPricing'
 
 import artworks from './arts/drawings';
+import alternateArts from './arts/alternateArts'
 import commissionType from './arts/commissionTypes';
 import renderType from './arts/renderType';
 import styleType from './arts/styleType';
@@ -42,6 +43,7 @@ const dataTypes = [
 
   // art types
   artworks,
+  alternateArts,
   commissionType,
   renderType,
   styleType,

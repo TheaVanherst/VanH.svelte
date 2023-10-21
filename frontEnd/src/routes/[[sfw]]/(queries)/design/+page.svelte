@@ -1,0 +1,82 @@
+<script>
+    import {onDestroy, onMount} from 'svelte';
+    import { fade } from "svelte/transition";
+
+    import Masonry 		from 'svelte-bricks';
+    import ArtworkCard 	from "$root/components/sections/artworkPage/artworkCard.svelte";
+    import Pagination from "$root/components/generic/controllers/pagination.svelte";
+
+    import { searchQuery, searchHandler, urlSerializer } from "$lib/controllers/searchController.js";
+
+    export let data;
+
+    data.design = data.design.map(artwork => ({
+        ...artwork,
+        searchTerms:
+			`${artwork.pieceName} ${artwork.slug} ` +
+			`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
+            `${artwork.gallery.images.map(i => i.desc).join(' ')} ` +
+            (!!artwork.authors ? artwork.authors.map(artist => `${artist.fullName} ${artist.handle} ${artist.slug} `) : '')
+    }));
+
+    const search = searchQuery(data.design);
+    const unsubscribe = search.subscribe((model) => searchHandler(model));
+
+    onDestroy(() => {unsubscribe();});
+    onMount(() => {$search.search = window.location.search.substring(3).replaceAll('-',' ');});
+
+    let pagedData, finalPage;
+</script>
+
+<div class="center wrapper">
+	<div class="searchBar">
+		<form on:submit|preventDefault={() => urlSerializer($search.search)}>
+			<input type="search" class="input wideBorder" placeholder="Search..." bind:value={$search.search}/>
+		</form>
+	</div>
+
+	{#if $search.filtered && pagedData}
+		<div transition:fade>
+			<Masonry
+				items=	{pagedData}
+				gap=	{10}
+				idKey=	{`slug`}
+				animate= {false}
+				let:item>
+					<div class="designPost">
+						<ArtworkCard postData={item}/>
+					</div>
+			</Masonry>
+		</div>
+	{/if}
+</div>
+
+{#if finalPage}
+	<div class="center endOfContent wideBorder">
+		<p>That's all she wrote!</p>
+	</div>
+{/if}
+
+<div class="center wrapper">
+	<Pagination
+		rows={$search.filtered}
+		perPage={10}
+		bind:trimmedRows={pagedData}
+		bind:lastPage={finalPage}/>
+</div>
+
+<style lang="scss">
+	.center {
+		margin: 0 auto 15px auto;}
+
+	.wrapper {
+		width:	100%;
+		.designPost {
+			display: 	flex;}}
+
+	.endOfContent {
+		padding: 	7px 30px;
+		width: 		max-content;
+		background: var(--TransBlack);
+		border:	 	1px solid var(--accent2);}
+</style>

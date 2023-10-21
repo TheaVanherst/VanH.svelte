@@ -42,14 +42,6 @@ export async function load () {
                 shortDesc,
                 'slug': slug.current
             },
-        "donationBuffs":
-            *[_type == 'donationTier' && featured == true][] {
-                ...
-            },
-        "donationPerks":
-            *[_type == 'donationTier' && featured == false][] {
-                ...
-            },
         "donationData":
             *[_type == 'donationData'][] {
                 ...
