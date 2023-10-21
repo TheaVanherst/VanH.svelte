@@ -14,7 +14,7 @@
 	on:mouseenter={() => active = true}
 	on:mouseleave={() => active = false}>
 	<SanityImage image={image}/>
-	{#if citation.length > 0}
+	{#if citation?.length > 0}
 		{#if active}
 			<div transition:fade={{duration:150}}>
 				<ImageTag position={[1,0]} border="shortBorder">

@@ -1,6 +1,5 @@
 <script>
     import {onDestroy, onMount} from 'svelte';
-    import { fade } from "svelte/transition";
 
     import Masonry 		from 'svelte-bricks';
     import ArtworkCard 	from "$root/components/sections/artworkPage/artworkCard.svelte";
@@ -24,35 +23,35 @@
                 artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `) : '')
     }));
 
-    const search = searchQuery(data.artworks);
+    const search = searchQuery(data?.artworks);
     const unsubscribe = search.subscribe((model) => searchHandler(model));
 
     onDestroy(() => {unsubscribe();});
-    onMount(() => {$search.search = window.location.search.substring(3).replaceAll('-',' ');});
+    onMount(() => {
+        if (data.search) {
+            $search.search = data.search.replaceAll('-',' ');}});
 
-    let pagedData, finalPage;
+    let pagedData, finalPage, pageNo;
 </script>
 
 <div class="center wrapper">
 	<div class="searchBar">
-		<form on:submit|preventDefault={() => urlSerializer($search.search)}>
+		<form on:submit|preventDefault={() => urlSerializer({'query': $search.search})}>
 			<input type="search" class="input wideBorder" placeholder="Search..." bind:value={$search.search}/>
 		</form>
 	</div>
 
 	{#if $search.filtered && pagedData}
-		<div transition:fade>
-			<Masonry
-					items=	{pagedData}
-					gap=	{10}
-					idKey=	{`slug`}
-					animate= {false}
-					let:item>
-				<div class="artPost">
-					<ArtworkCard postData={item}/>
-				</div>
-			</Masonry>
-		</div>
+		<Masonry
+				items=	{pagedData}
+				gap=	{10}
+				idKey=	{`slug`}
+				animate= {false}
+				let:item>
+			<div class="artPost">
+				<ArtworkCard postData={item}/>
+			</div>
+		</Masonry>
 	{/if}
 </div>
 
@@ -66,6 +65,8 @@
 	<Pagination
 		rows={$search.filtered}
 		perPage={12}
+		goto={data?.page}
+		bind:currentPage={pageNo}
 		bind:trimmedRows={pagedData}
 		bind:lastPage={finalPage}/>
 </div>

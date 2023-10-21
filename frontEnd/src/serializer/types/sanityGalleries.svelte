@@ -11,6 +11,7 @@
 
     const
         horizontalRow = () => { // Carousel, Scroll, Vertical
+
             commentArray[0] = [];
             imageArray = value.images;
 

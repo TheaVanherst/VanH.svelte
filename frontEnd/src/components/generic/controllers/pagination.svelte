@@ -1,64 +1,62 @@
 <script>
 	import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
-    export let
-		rows,
-		perPage,
-    	trimmedRows,
-        lastPage,
-		transitionStatus;
+    import { urlSerializer } from "$lib/controllers/searchController.js";
 
-    let currentPage = 0;
+    export let
+		rows,trimmedRows,
+		perPage, lastPage,
+		goto, currentPage;
 
     let totalRows, totalPages,
         start, end;
 
-    $: totalRows = rows.length
-    $: currentPage = 0
-    $: totalPages = Math.ceil(totalRows / perPage)
-    $: start = currentPage * perPage
-    $: end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1  ;
+    $: totalRows = rows.length;
+    $: totalPages = Math.ceil(totalRows / perPage);
+
+    $: currentPage  = Number(goto) ?? 0;
+
+    $: start = currentPage * perPage;
+    $: end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
 
 	$: trimmedRows = rows.slice(start, end + 1);
     $: lastPage = currentPage === totalPages - 1;
 
+    $: totalPages - 1 < currentPage ? currentPage = 0 : false;
+
 	const
 		nextPage = (next = true) => {
-            trimmedRows = undefined;
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'});
-            transitionStatus = true;
 
         	setTimeout(() => {
-                trimmedRows = rows.slice(start, end + 1);
                 currentPage = next ? currentPage + 1 : currentPage - 1;
-                transitionStatus = false;
-			}, 500)
+                urlSerializer({'page': currentPage});
+                trimmedRows = rows.slice(start, end + 1);
+			}, 450);
 		};
 </script>
 
-{#if totalRows && totalRows > perPage}
-	<div class='pagination'>
-		<div 	on:click={() => nextPage(false)}
-				class:disabled={currentPage === 0}>
-			<RainbowButtonWrap>
-				<img src="/icons/leftIcon.webp">
-			</RainbowButtonWrap>
-		</div>
-
-		<p>
-			{start + 1} - {end + 1} of {totalRows}
-		</p>
-
-		<div 	on:click={() => nextPage(true)}
-			 	class:disabled={lastPage}>
-			<RainbowButtonWrap>
-				<img src="/icons/rightIcon.webp">
-			</RainbowButtonWrap>
-		</div>
+<div class='pagination'>
+	<div 	on:click={() => nextPage(false)}
+			class:disabled={currentPage === 0}>
+		<RainbowButtonWrap>
+			<img src="/icons/leftIcon.webp">
+		</RainbowButtonWrap>
 	</div>
-{/if}
+
+	<p>
+		{start + 1} - {end + 1} of {totalRows}
+	</p>
+
+	<div 	on:click={() => nextPage(true)}
+			class:disabled={lastPage}>
+		<RainbowButtonWrap>
+			<img src="/icons/rightIcon.webp">
+		</RainbowButtonWrap>
+	</div>
+</div>
 
 <style>
 	.pagination {
