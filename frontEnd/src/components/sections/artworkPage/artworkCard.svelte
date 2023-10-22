@@ -4,6 +4,7 @@
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
+	import MemberReward from "$root/components/generic/buttons/memberRewardRef.svelte";
     import ImageFloatCard from "$root/components/generic/imageContainers/imageFloatCard.svelte";
 
     export let postData;
@@ -17,13 +18,11 @@
 <div class="postWrapper wideBorder"
 	 on:click={() => {active = !active}}
 	 on:mouseleave={() => active = false}>
+
 	<div class="galleryWrapper">
 		<SanityGalleries portableText={postData.gallery}/>
 		<ImageFloatCard active={active} accent={true}>
-			<h4 slot="title">
-				{postData.pieceName}
-			</h4>
-
+			<h4 slot="title">{postData.pieceName}</h4>
 			<div slot="desc">
 				<h4>{postData.pieceName}</h4>
 				<p>
@@ -38,9 +37,7 @@
 							<div class="icon mediaIcon shortBorder">
 								<SanityImage image={character.owner.userPortrait}/>
 							</div>
-							<h4>
-								{character.owner.handle}
-							</h4>
+							<h4>{character.owner.handle}</h4>
 						</div>
 					{/each}
 				{/if}
@@ -51,17 +48,23 @@
 							<div class="icon mediaIcon shortBorder">
 								<SanityImage image={author.author.userPortrait}/>
 							</div>
-							<h4>
-								{author.author.fullName}
-							</h4>
+							<h4>{author.author.fullName}</h4>
 						</div>
 					{/each}
 				{/if}
-				<p>
-					{postData.gallery.styleType}: {postData.gallery.renderType}
-				</p>
+				{#if postData.gallery.styleType || postData.gallery.renderType}
+					<p>
+						{#if postData.gallery.styleType}
+							{postData.gallery.styleType}
+							{#if postData.gallery.styleType}
+								: {postData.gallery.renderType}
+							{/if}
+						{:else if postData.gallery.renderType}
+							{postData.gallery.renderType}
+						{/if}
+					</p>
+				{/if}
 			</div>
-
 			<div slot="alt">
 				{#if !!postData.characters}
 					<p>
@@ -72,9 +75,7 @@
 							<div class="icon mediaIcon shortBorder">
 								<SanityImage image={character.charIcon}/>
 							</div>
-							<h4>
-								{character.fullName}
-							</h4>
+							<h4>{character.fullName}</h4>
 						</div>
 					{/each}
 				{/if}
@@ -84,25 +85,29 @@
 							<div class="icon mediaIcon shortBorder">
 								<SanityImage image={character.charIcon}/>
 							</div>
-							<h4>
-								{character.fullName}
-							</h4>
+							<h4>{character.fullName}</h4>
 						</div>
 					{/each}
 				{/if}
 
-				<p>
-					{createdPush(postData.publishedAt)}
-				</p>
+				<p>{createdPush(postData.publishedAt)}</p>
 
 				{#if postData.imageRefId || postData.photoshopRefId}
 					<div class="footer">
-						<p>
-							Discord references:
-						</p>
+						<p>Discord references:</p>
 						<p class="links">
-							{#if postData.imageRefId}<a class="shortBorder" href={postData.imageRefId} target="_blank">Artchive</a>{/if}
-							{#if postData.photoshopRefId}<a class="shortBorder" href={postData.photoshopRefId} target="_blank">Resource Files</a>{/if}
+							{#if postData.imageRefId}
+								<MemberReward url={postData.imageRefId}>
+									<span slot="referral">Archive</span>
+									<span slot="price">Tier 1 or higher</span>
+								</MemberReward>
+							{/if}
+							{#if postData.photoshopRefId}
+								<MemberReward url={postData.imageRefId}>
+									<span slot="referral">Photoshop</span>
+									<span slot="price">Tier 3</span>
+								</MemberReward>
+							{/if}
 						</p>
 					</div>
 				{/if}
@@ -118,9 +123,8 @@
 		.galleryWrapper {
 			position: 	relative;}}
 
-	p {	margin: 	7px 0;}
-	p + p {
-		margin: 4px 0;}
+	p {		margin: 7px 0;}
+	p + p {	margin: 4px 0;}
 
 	.characterCard {
 		display: 	flex;
@@ -133,13 +137,7 @@
 		.icon {
 			overflow:	hidden;}}
 
-	.footer {
-		.links {
-			a {
-				padding: 3px 5px 2px 5px;
-				color: white;
-				background: var(--accent10);
-				transition: background .3s ease-in-out;
-				&:hover {
-					background: var(--accent2);}}}}
+	.links {
+		gap: 		5px;
+		display: 	grid;}
 </style>

@@ -5,7 +5,7 @@
 </script>
 
 {#if !active}
-	<div class="previewCard" transition:fly={{y: -50, duration: 400 }}>
+	<div class="previewCard card" transition:fly={{y: -50, duration: 400 }}>
 		{#if $$slots['title']}
 			<div class="titleCard regularBorder">
 				<div class="wrapper">
@@ -15,7 +15,7 @@
 		{/if}
 	</div>
 {:else}
-	<div class="infoPlate" transition:fly={{y: 50, duration: 400 }}>
+	<div class="infoPlate regularBorder card" transition:fly={{y: 50, duration: 400 }}>
 		<div class="descCard regularBorder">
 			<div class="titleCard">
 				<div class="wrapper">
@@ -34,8 +34,11 @@
 {/if}
 
 <style lang="scss">
-	:global(.previewCard *, .infoPlate *) {
+	:global(.card p, .card h3, .card h4) {
 		color: 		black;}
+	:global(.card span) {
+		color: 		white;}
+
 	.previewCard, .infoPlate {
 		margin: 	5px;
 		bottom: 	0;
@@ -51,4 +54,9 @@
 	.wrapper {		margin: 	8px 15px 10px 10px;}
 	.titleCard {	background: var(--TransWhite);}
 	.accent {		background: var(--accent9);}
+
+	.infoPlate {
+		max-height: calc(100% - 10px);
+		overflow: scroll;
+	}
 </style>

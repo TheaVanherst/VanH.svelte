@@ -4,7 +4,7 @@
     import { urlSerializer } from "$lib/controllers/searchController.js";
 
     export let
-		rows,trimmedRows,
+		rows, trimmedRows,
 		perPage, lastPage,
 		goto, currentPage;
 
@@ -25,59 +25,78 @@
     $: totalPages - 1 < currentPage ? currentPage = 0 : false;
 
 	const
+		toTop = () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});},
+		pageSet = () => {
+            urlSerializer({'page': currentPage});
+            trimmedRows = rows.slice(start, end + 1);},
 		nextPage = (next = true) => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'});
-
+            toTop();
         	setTimeout(() => {
                 currentPage = next ? currentPage + 1 : currentPage - 1;
-                urlSerializer({'page': currentPage});
-                trimmedRows = rows.slice(start, end + 1);
-			}, 450);
-		};
+                pageSet();
+			}, 450);},
+		directPage = (index) => {
+            toTop();
+            setTimeout(() => {
+                currentPage = index;
+                pageSet();
+            }, 450);}
 </script>
 
 <div class='pagination'>
-	<div 	on:click={() => nextPage(false)}
-			class:disabled={currentPage === 0}>
+	<div on:click={() => nextPage(false)}
+		 class:disabled={currentPage === 0}>
 		<RainbowButtonWrap>
 			<img src="/icons/leftIcon.webp">
 		</RainbowButtonWrap>
 	</div>
 
-	<p>
-		{start + 1} - {end + 1} of {totalRows}
-	</p>
+	{#each Array(totalPages) as _, index (index)}
+		<div class:disabled={currentPage === index}
+			 on:click={() => directPage(index)}>
+			<RainbowButtonWrap>
+				<div class="pageNumber">
+					<h4>{index + 1}</h4>
+				</div>
+			</RainbowButtonWrap>
+		</div>
+	{/each}
 
-	<div 	on:click={() => nextPage(true)}
-			class:disabled={lastPage}>
+	<div on:click={() => nextPage(true)}
+		 class:disabled={lastPage}>
 		<RainbowButtonWrap>
 			<img src="/icons/rightIcon.webp">
 		</RainbowButtonWrap>
 	</div>
 </div>
 
-<style>
+<div class="center">
+	<p>{start + 1} - {end + 1} of {totalRows}</p>
+</div>
+
+<style lang="scss">
+	.center {
+		margin: 7px auto 0 auto;
+		width: max-content;
+		display: flex;}
+
 	.pagination {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		pointer-events: all;
-	}
-
-	.pagination p {
-		margin: 5px 20px;
-
-	}
-
-	button {
-		display: flex;
-	}
+		display: 			flex;
+		align-items: 		center;
+		justify-content: 	center;
+		pointer-events: 	all;
+		gap: 				5px;}
 
 	.disabled {
-		opacity: 0.6;
-		pointer-events: none;
-	}
+		opacity: 		0.6;
+		pointer-events: none;}
 
+	.pageNumber {
+		height: 22px;
+		width: 	12px;
+		h4 {
+			width: max-content;
+			margin: -3px auto 0 auto;
+			color: 	black;	}}
 </style>

@@ -9,7 +9,7 @@ export const load = async ({url}) => {
                 pieceName,
                 description,
                 
-                "nsfw": NSFW,
+                "sfw": !NSFW,
                
                 'slug': slug.current,
                 publishedAt,

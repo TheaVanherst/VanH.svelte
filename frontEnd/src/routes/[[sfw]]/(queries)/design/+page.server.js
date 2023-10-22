@@ -8,8 +8,6 @@ export const load = async () => {
                 _id,
                 pieceName,
                 description,
-                
-                "nsfw": NSFW,
                
                 'slug': slug.current,
                 publishedAt,

@@ -23,7 +23,7 @@
 							</div>
 							<div class="desc">
 								<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
-								<div class="joinButton regularBorder">
+								<div class="joinButton">
 									<p class="subtitle">Join</p>
 								</div>
 								<ul>
@@ -82,13 +82,20 @@
 		* {	color: black;}}
 
 	.joinButton {
-		background: var(--accent2);
+		background: var(--accent10);
 		margin: 	10px 0 15px 0;
 		padding: 	8px;
+		border-radius: 20px;
 
-		p {	color: 	white;
+		transition: background .2s ease-in-out;
+
+		p { color: 	white;
 			width: 	max-content;
 			margin: 0 auto;}}
+
+	a:hover {
+		.joinButton {
+			background: var(--accent2);}}
 
 	ul {	margin: 		10px 0 5px 0;
 			padding-left: 	15px!important;

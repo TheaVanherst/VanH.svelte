@@ -16,7 +16,8 @@ const
       name: 'author', title: 'Authors',
       validation: Rule => Rule.required(),
       type: 'reference',
-      to: { type: 'author' }
+      to: { type: 'author' },
+      initialValue: {_type: 'reference', _ref: "3ad85859-8afa-437f-a74b-d4e83d6d6bdd"}
     });
 
 export {authorBlock}

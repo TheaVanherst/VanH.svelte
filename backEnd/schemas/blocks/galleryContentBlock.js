@@ -60,13 +60,11 @@ const
         name: 'styleType', title: 'Style Type',
         type: 'reference',
         to: { type: 'styleType' },
-        validation: Rule => Rule.required(),
       },
       {
         name: 'renderType', title: 'Render Type',
         type: 'reference',
         to: { type: 'renderType' },
-        validation: Rule => Rule.required(),
       },
     ],
 

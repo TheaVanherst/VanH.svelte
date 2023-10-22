@@ -13,7 +13,7 @@
     data.artworks = data.artworks.map(artwork => ({
         ...artwork,
         searchTerms:
-            (artwork.nsfw ? `nsfw ` : `notsfw `) +
+            (artwork.sfw ? `notsfw `: `nsfw `) +
 			`${artwork.pieceName} ${artwork.slug} ` +
 			`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
             `${artwork.gallery.images.map(i => i.desc).join(' ')} ` +
@@ -25,7 +25,7 @@
     }));
 
     const search = searchQuery(data?.artworks);
-    const unsubscribe = search.subscribe((model) => searchHandler(model));
+    const unsubscribe = search.subscribe((model) => searchHandler(model,true));
 
     onDestroy(() => { unsubscribe(); });
 
@@ -33,12 +33,14 @@
         data.page = $page.url.searchParams.get("page") || 0;
         data.search = $page.url.searchParams.get("query") || undefined;
         if (data.search) {
-            $search.search = data.search.replaceAll('-',' ');}});
+            value = data.search.replaceAll('-',' ');
+            $search.search = value;}});
 
     let pagedData, finalPage, pageNo;
 
     let hardSearch = () => {
         $search.search = value;
+        pageNo = 0;
         urlSerializer({'query': $search?.search, 'page': pageNo});};
 
     let value
@@ -74,7 +76,7 @@
 <div class="center wrapper">
 	<Pagination
 		rows={$search.filtered}
-		perPage={12}
+		perPage={10}
 		goto={data?.page}
 		bind:currentPage={pageNo}
 		bind:trimmedRows={pagedData}

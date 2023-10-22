@@ -6,11 +6,11 @@
 </script>
 
 <div class="dynamicGrid">
-    {#each push as row}
+    {#each push as row, x}
         <div class="row">
-            {#each row as image}
+            {#each row as image, i}
                 <div class="col regularBorder">
-                    <CitedImage image={image} citation={citation[i]}/>
+                    <CitedImage image={image} citation={citation[x][i]}/>
                 </div>
             {/each}
         </div>
@@ -18,15 +18,24 @@
 </div>
 
 <style lang="scss">
-	.row {
-		display:    inline-flex;
-		gap:        var(--imageSpacing);
-		vertical-align: bottom;
+    .dynamicGrid {
+        display: grid;
+        gap: var(--imageSpacing);
+        vertical-align: bottom;
 
-		.col {
-			background: var(--backgroundAccent2);
-			overflow:   hidden;
+        .row {
+            vertical-align: bottom;
+            display: flex;
+            gap: var(--imageSpacing);
 
-			&:not(:only-child) {
-				max-width: 60%;}}}
+            width: 100%;
+
+            .col {
+                background:   var(--backgroundAccent2);
+
+                overflow: hidden;
+                width:    50%;
+
+                &:only-child {
+                    width:    inherit;}}}}
 </style>

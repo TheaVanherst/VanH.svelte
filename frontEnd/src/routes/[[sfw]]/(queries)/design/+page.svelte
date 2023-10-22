@@ -27,14 +27,15 @@
         data.page = $page.url.searchParams.get("page") || 0;
         data.search = $page.url.searchParams.get("query") || undefined;
         if (data.search) {
-            $search.search = data.search.replaceAll('-',' ');}});
+            value = data.search.replaceAll('-',' ');
+            $search.search = value;}});
 
     let pagedData, finalPage, pageNo;
 
     let hardSearch = () => {
         $search.search = value;
-        urlSerializer({'query': $search?.search, 'page': pageNo});
-    };
+        pageNo = 0;
+        urlSerializer({'query': $search?.search, 'page': pageNo});};
 
     let value
 </script>
@@ -88,6 +89,9 @@
 	.endOfContent {
 		padding: 	7px 30px;
 		width: 		max-content;
+
+		p {
+			color:		var(--accent9);}
 		background: var(--TransBlack);
 		border:	 	1px solid var(--accent2);}
 </style>
