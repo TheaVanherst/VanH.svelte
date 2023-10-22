@@ -42,6 +42,9 @@
                 currentPage = index;
                 pageSet();
             }, 450);}
+
+	let fakeArray = Array(totalPages);
+    $: fakeArray = Array(totalPages);
 </script>
 
 <div class='pagination'>
@@ -52,16 +55,20 @@
 		</RainbowButtonWrap>
 	</div>
 
-	{#each Array(totalPages) as _, index (index)}
-		<div class:disabled={currentPage === index}
-			 on:click={() => directPage(index)}>
-			<RainbowButtonWrap>
-				<div class="pageNumber">
-					<h4>{index + 1}</h4>
-				</div>
-			</RainbowButtonWrap>
-		</div>
-	{/each}
+	<p style="margin: 0 15px">
+		{start + 1} - {end + 1} of {totalRows}
+	</p>
+
+	<!--{#each fakeArray as _, index (index)}-->
+	<!--	<div class:disabled={currentPage === index}-->
+	<!--		 on:click={() => directPage(index)}>-->
+	<!--		<RainbowButtonWrap>-->
+	<!--			<div class="pageNumber">-->
+	<!--				<h4>{index + 1}</h4>-->
+	<!--			</div>-->
+	<!--		</RainbowButtonWrap>-->
+	<!--	</div>-->
+	<!--{/each}-->
 
 	<div on:click={() => nextPage(true)}
 		 class:disabled={lastPage}>
@@ -71,9 +78,9 @@
 	</div>
 </div>
 
-<div class="center">
-	<p>{start + 1} - {end + 1} of {totalRows}</p>
-</div>
+<!--<div class="center">-->
+<!--	<p>{start + 1} - {end + 1} of {totalRows}</p>-->
+<!--</div>-->
 
 <style lang="scss">
 	.center {
