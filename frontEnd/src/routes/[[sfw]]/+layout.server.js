@@ -4,20 +4,23 @@ import { socialPlatformQuery } from "$lib/queries/websiteSettings.js";
 
 export async function load({ params }) {
     const [allQueries] = await Promise.all([client.fetch(`{
-        "socials" :
-            *[ _type == 'author' && handle == 'VanH' ]{
-                'platforms': socialMedia[]{
-                    ${socialPlatformQuery},
-                    visible,
-                    url
+        "featuredSocials" :
+            *[ _type == 'featuredSocials' ]{
+                socialMedia[]{
+                    chunkName,
+                    chunkSocials[]{
+                        ${socialPlatformQuery},
+                        nsfw,
+                        url
+                    }
                 }
-            },
+            }
         }`
     )]);
 
     return {
-        socials: allQueries.socials[0].platforms,
-        dParams: params.sfw
+        dParams: params.sfw,
+        featured: allQueries.featuredSocials[0].socialMedia
     }
 }
 

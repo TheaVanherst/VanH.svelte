@@ -5,7 +5,8 @@
 </script>
 
 {#if !active}
-	<div class="previewCard card" transition:fly={{y: -50, duration: 400 }}>
+	<div class="previewCard card"
+		 transition:fly={{y: -50, duration: 400 }}>
 		{#if $$slots['title']}
 			<div class="titleCard regularBorder">
 				<div class="wrapper">
@@ -15,7 +16,8 @@
 		{/if}
 	</div>
 {:else}
-	<div class="infoPlate regularBorder card" transition:fly={{y: 50, duration: 400 }}>
+	<div class="infoPlate regularBorder card"
+		 transition:fly={{y: 50, duration: 400 }}>
 		<div class="descCard regularBorder">
 			<div class="titleCard">
 				<div class="wrapper">

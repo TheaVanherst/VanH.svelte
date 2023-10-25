@@ -61,6 +61,10 @@ body {
 	&::selection {
 		color:  var(--accent6);}}
 
+.noScroll {
+	overflow: hidden;
+}
+
 // cursor defaults
 
 body {      cursor: crosshair;}

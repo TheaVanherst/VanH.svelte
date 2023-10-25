@@ -34,7 +34,7 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'author','authorTags','internalTags'
+            'author','websiteSocials','authorTags','internalTags'
           ].includes(listItem.getId())
         ),
 
@@ -89,11 +89,13 @@ const structure = (S) =>
               S.divider(),
 
               S.listItem()
-                .title('Carrd Links')
+                .title('Common Q&A')
                 .child(S.document().schemaType('questionAnswer').documentId('questionAnswer')),
+              S.listItem()
+                .title('Carrd Links')
+                .child(S.document().schemaType('featuredSocials').documentId('featuredSocials')),
             ])
         ),
-
       S.divider(),
     ])
 

@@ -1,6 +1,5 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
-    import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
 
     export let data;
 
@@ -8,12 +7,10 @@
     $nsfw = data.dParams === 'nsfw'; // page initializing
 </script>
 
-<NavigationComponent socials={data.socials}/>
+<NavigationComponent socials={data.featured}/>
 
 <div class="flexBox">
-<!--	<TransitionHandler>-->
-		<slot/>
-<!--	</TransitionHandler>-->
+	<slot/>
 </div>
 
 <style lang="scss">

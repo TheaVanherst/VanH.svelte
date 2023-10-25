@@ -7,7 +7,7 @@
     let hover = false;
 </script>
 
-<div class="social wideBorder"
+<div class="social"
 	 on:mouseenter={() => hover = true}
 	 on:mouseleave={() => hover = false}
 	style="

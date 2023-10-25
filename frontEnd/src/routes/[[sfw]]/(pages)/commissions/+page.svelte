@@ -132,7 +132,6 @@
 		height: 	500px;
 		overflow: 	hidden;
 		position: 	relative;
-		margin: 	0 0 27px 0;
 
 		p {	text-transform: lowercase;
 			&:first-letter {

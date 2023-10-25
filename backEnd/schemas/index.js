@@ -1,5 +1,5 @@
 
-import blockContent from './blockContent';
+import blockContent from './blocks/blockContent';
 import blockGallery   from './blocks/galleryContentBlock';
 
 import questionAndAnswers from './pageSpecific/home/questionAndAnswers';
@@ -34,7 +34,8 @@ import workshopSnippet from './alternateWorks/workshopSnippet';
 import workshopGameTag from './alternateWorks/workshopGameTag';
 import githubItems from './alternateWorks/githubItems';
 
-import socialMedia from './websiteSettings/socialMedia'
+import socialMedia from './pageSpecific/websiteSettings/socialMedia'
+import featuredSocials from './pageSpecific/websiteSettings/featuredSocials'
 
 const dataTypes = [
   // custom data types
@@ -75,6 +76,7 @@ const dataTypes = [
   commissioners,
 
   socialMedia,
+  featuredSocials
 ]
 
 export const schemaTypes = dataTypes;

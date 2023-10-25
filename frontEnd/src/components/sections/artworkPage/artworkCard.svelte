@@ -1,25 +1,38 @@
 <script>
+	import { fade } from "svelte/transition";
+    import { clickOutside } from "$lib/transitions/transitionPresets.js";
+
     import { createdPush } from "$lib/builders/dateBuilder.js";
+    import { galleryChange } from "$lib/controllers/pageSettings.js";
 
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
 	import MemberReward from "$root/components/generic/buttons/memberRewardRef.svelte";
+    import GenericButton from "$root/components/generic/buttons/genericButton.svelte";
     import ImageFloatCard from "$root/components/generic/imageContainers/imageFloatCard.svelte";
 
     export let postData;
 
     let active = false,
+		hover = false,
 		arrayLength =
 			(postData?.characters ? postData.characters.length : 0) +
 			(postData?.commissionData?.characters ? postData.commissionData.characters?.length : 0);
 </script>
 
 <div class="postWrapper wideBorder"
-	 on:click={() => {active = !active}}
-	 on:mouseleave={() => active = false}>
+	 on:mouseenter={() => hover = true}
+	 on:click={() => active = !active}
+	 use:clickOutside on:click_outside={() => hover = active = false}
+	 on:mouseleave={() => hover = active = false}>
 
 	<div class="galleryWrapper">
+		{#if hover || active}
+			<div class="preview" transition:fade on:click={() => galleryChange(postData.gallery)}>
+				<GenericButton icon="/icons/magnifyIcon"/>
+			</div>
+		{/if}
 		<SanityGalleries portableText={postData.gallery}/>
 		<ImageFloatCard active={active} accent={true}>
 			<h4 slot="title">{postData.pieceName}</h4>
@@ -52,15 +65,13 @@
 						</div>
 					{/each}
 				{/if}
-				{#if postData.gallery.styleType || postData.gallery.renderType}
+				{#if postData.gallery.styleType && postData.gallery.renderType}
 					<p>
-						{#if postData.gallery.styleType}
-							{postData.gallery.styleType}
-							{#if postData.gallery.styleType}
-								: {postData.gallery.renderType}
-							{/if}
-						{:else if postData.gallery.renderType}
-							{postData.gallery.renderType}
+						{#if postData.gallery.styleType && postData.gallery.renderType}
+							<MemberReward>
+								<span slot="title">{postData.gallery.styleType}</span>
+								<span slot="desc">{postData.gallery.renderType}</span>
+							</MemberReward>
 						{/if}
 					</p>
 				{/if}
@@ -97,16 +108,24 @@
 						<p>Discord references:</p>
 						<p class="links">
 							{#if postData.imageRefId}
-								<MemberReward url={postData.imageRefId}>
-									<span slot="referral">Archive</span>
-									<span slot="price">Tier 1 or higher</span>
-								</MemberReward>
+								<a class="shortBorder" href={postData.imageRefId} target="_blank">
+									<MemberReward hover={true}>
+										<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+										<span slot="title">Archive</span>
+										<div slot="descIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+										<span slot="desc">Tier 1 or higher</span>
+									</MemberReward>
+								</a>
 							{/if}
 							{#if postData.photoshopRefId}
-								<MemberReward url={postData.imageRefId}>
-									<span slot="referral">Photoshop</span>
-									<span slot="price">Tier 3</span>
-								</MemberReward>
+								<a class="shortBorder" href={postData.imageRefId} target="_blank">
+									<MemberReward hover={true}>
+										<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+										<span slot="title">Photoshop</span>
+										<div slot="descIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+										<span slot="desc">Tier 3</span>
+									</MemberReward>
+								</a>
 							{/if}
 						</p>
 					</div>
@@ -117,6 +136,13 @@
 </div>
 
 <style lang="scss">
+	.preview {
+		position: 	absolute;
+		z-index: 	1;
+		right: 		0;
+		bottom: 	0;
+		margin:	 	10px;}
+
 	.postWrapper {
 		width: 		100%;
 		overflow: 	hidden;

@@ -34,4 +34,13 @@ export function horizontalSlide(node, {
             `border-${secondary_properties[0]}-width: ${t * border_width_start_value}px;` +
             `border-${secondary_properties[1]}-width: ${t * border_width_end_value}px;`
     };
-}
+};
+
+export function clickOutside(node) {
+    const handleClick = event => {
+        if (node && !node.contains(event.target) && !event.defaultPrevented) {
+            node.dispatchEvent(new CustomEvent('click_outside', node))}}
+    document.addEventListener('click', handleClick, true);
+
+    return {destroy() {document.removeEventListener('click', handleClick, true);}}
+};

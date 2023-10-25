@@ -40,5 +40,5 @@
 		&:hover {
 			background: var(--accent2);
 			img {
-				filter: invert(0);}}}
+				filter: invert(1);}}}
 </style>

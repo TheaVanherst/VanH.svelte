@@ -1,19 +1,18 @@
+
 <script>
-	export let url;
+	export let hover = false;
 </script>
 
-<a class="shortBorder" href={url} target="_blank">
-	<div class="externalInline">
-		<div class="fill">
-			<img class="inlineIcon" src="/externalIcons/discord.webp">
-			<slot name="referral"/>
-		</div>
-		<div class="outline">
-			<img class="inlineIcon" src="/externalIcons/kofi.webp">
-			<slot name="price"/>
-		</div>
+<div class="externalInline" class:hover={hover}>
+	<div class="fill">
+		<slot name="titleIcon"/>
+		<slot name="title"/>
 	</div>
-</a>
+	<div class="outline">
+		<slot name="descIcon"/>
+		<slot name="desc"/>
+	</div>
+</div>
 
 <style lang="scss">
 	.externalInline {
@@ -23,14 +22,16 @@
 		border: 		1px var(--accent10) solid;
 
 		> div {
-			padding: 	1px 8px 1px 3px;
-			gap: 		5px;
-			display: 	inline-flex;}
+			padding: 	2px 3px 1px 3px;
+			display: 	inline-flex;
+			:global(span) {
+				margin: 0 5px;}
+		}
 
 		:global(span) {
 			margin: 	1px 0 0;}
 
-		&:hover {
+		&.hover:hover {
 			border-color: 	var(--accent2);
 			.fill {
 				background: var(--accent2);}

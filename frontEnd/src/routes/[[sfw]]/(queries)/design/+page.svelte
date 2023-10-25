@@ -43,7 +43,7 @@
 <div class="center wrapper">
 	<div class="searchBar">
 		<form on:submit|preventDefault={hardSearch}>
-			<input type="search" class="input wideBorder" placeholder="Search..." bind:value={value}/>
+			<input type="search" class="input" placeholder="Search..." bind:value={value}/>
 		</form>
 	</div>
 

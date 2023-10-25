@@ -12,7 +12,7 @@
     import Background 			from "$root/components/layout/overlays/background.svelte";
     import MessengerPlugin 		from "$root/components/layout/overlays/messengerPlugin.svelte";
     import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
-
+    import FullscreenGallery from "$root/components/generic/controllers/fullscreenGallery.svelte";
 
     import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded,
     	} from "$lib/controllers/pageControllers.js";
@@ -52,6 +52,8 @@
 	<CometGenerator/>
 	<SpaceshipCursor/>
 {/if}
+
+<FullscreenGallery/>
 
 {#if $pageLoaded}
 	<div id="scrollParent">

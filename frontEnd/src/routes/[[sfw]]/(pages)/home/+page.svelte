@@ -1,4 +1,6 @@
 <script>
+    import {nsfw} from "$lib/controllers/pageControllers.js";
+
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 
 	import CharacterFeature from "$root/components/sections/homePage/characters/characterShowcase.svelte";
@@ -25,11 +27,12 @@
 			dataset={[data.workshopData, data.workshopSnippet]}/>
 </SidebarTexts>
 
-<SidebarTexts titlecard="Support" icon="kofiLogo.webp">
-	<KofiCards
-			tiers={data.donationData[0].tiers}/>
-</SidebarTexts>
-
+{#if $nsfw}
+	<SidebarTexts titlecard="Support" icon="kofiLogo.webp">
+		<KofiCards
+				tiers={data.donationData[0].tiers}/>
+	</SidebarTexts>
+{/if}
 
 <SidebarTexts titlecard="Q&A" icon="commentIcon.webp">
 	<QandaFeature

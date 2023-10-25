@@ -1,37 +1,40 @@
 <script>
     import { scale, fly } 	from 'svelte/transition';
+
     import { screenType } 	from '$lib/controllers/pageControllers.js';
+    import { messengerEnabled } from "$lib/controllers/pageSettings.js";
 
     import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
     import GenericButton from "$root/components/generic/buttons/genericButton.svelte";
 
     let chatBox = false;
-	let transitionSpeed = 200;
+	let transitionSpeed = 250;
 
 	let directions;
     $: directions = $screenType < 3 ? [0, 150] : [150, 0];
 </script>
 
 <div id="messageController"
-	class="{$screenType < 3 ? 'mobile' : ''}">
-	{#if !chatBox}
+	 class="{$screenType < 3 ? 'mobile' : ''}">
+	{#if !chatBox && $messengerEnabled}
 		<div class="open"
-			  in:scale={{delay: transitionSpeed}} out:scale
-			  on:click={() => {chatBox = !chatBox}}>
-		<RainbowButtonWrap padding={[5,5]}>
-			<img src="/icons/qAndAIcon.webp">
-		</RainbowButtonWrap>
-	</div>
-	{:else}
+			 in:scale={{delay: transitionSpeed}}
+			 out:scale
+			 on:click={() => {chatBox = !chatBox}}>
+			<RainbowButtonWrap padding={[5,5]}>
+				<img src="/icons/qAndAIcon.webp">
+			</RainbowButtonWrap>
+		</div>
+	{:else if $messengerEnabled}
 		<div id="messager"
 			 class="wideBorder"
 			 in:fly={{
-                 x: directions[0],
-                 y: directions[1],
-                 delay:transitionSpeed}}
+				x: directions[0],
+				y: directions[1],
+				delay:transitionSpeed}}
 			 out:fly={{
-                 x: directions[0],
-                 y: directions[1]}}>
+				x: directions[0],
+				y: directions[1]}}>
 			<div class="nav wrapCorrection">
 				<div class="title">
 					<h3>MESSENGER</h3>
@@ -54,7 +57,7 @@
 
 <style lang="scss">
 	* {	right: 			0;
-		z-index: 		10;}
+		z-index: 		9;}
 
 	.mobile {
 		height: 	100%;
