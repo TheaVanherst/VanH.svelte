@@ -1,7 +1,7 @@
 
 import {defineType}  from 'sanity'
 import { CheckmarkCircleIcon }    from '@sanity/icons'
-import { emojiTags, icon } from '../blocks/emojiTagData'
+import { emojiTags, icon } from '../../lib/blocks/emojiTagData'
 
 const
   internalTags = defineType({

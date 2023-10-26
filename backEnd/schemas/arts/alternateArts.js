@@ -1,3 +1,4 @@
+
 import { defineField, defineType } from 'sanity'
 import { slugUniqueCheck } from '../../lib/slugUniqueCheck'
 import { ImageIcon } from '@sanity/icons'
@@ -6,7 +7,7 @@ import { nsfwBlock, authorBlock } from '../chunks/genericBlocks'
 
 export default defineType({
   name: 'alternateArts',
-  title: 'Alternate Arts',
+  title: 'Design & Media',
   type: 'document',
   fields: [
     // TODO: User Data

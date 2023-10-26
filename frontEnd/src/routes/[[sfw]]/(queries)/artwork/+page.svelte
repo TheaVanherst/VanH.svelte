@@ -17,18 +17,17 @@
 			`${artwork.pieceName} ${artwork.slug} ` +
 			`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
             `${artwork.gallery.images.map(i => i.desc).join(' ')} ` +
-            (!!artwork.authors ? artwork.authors.map(artist => `${artist.fullName} ${artist.handle} ${artist.slug} `) : '') +
-            (!!artwork.characters ? artwork.characters?.map(character => `${character.fullName} ${character.nickName } `) : '') +
+            (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} ${artist.author.handle} ${artist.author.slug} `).join(' ') : '') +
+            (!!artwork.characters ? artwork.characters?.map(character => `${character.fullName} ${character.nickName } `).join(' ') : '') +
             (!!artwork.commissionData ?
                 `${artwork.commissionData?.commissionType} ` +
-                artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `) : '')
+                artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join(' ') : '')
     }));
 
     const search = searchQuery(data?.artworks);
     const unsubscribe = search.subscribe((model) => searchHandler(model,true));
 
     onDestroy(() => { unsubscribe(); });
-
     onMount(() => {
         data.page = $page.url.searchParams.get("page") || 0;
         data.search = $page.url.searchParams.get("query") || undefined;

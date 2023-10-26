@@ -16,7 +16,7 @@
 			`${artwork.pieceName} ${artwork.slug} ` +
 			`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
             `${artwork.gallery.images.map(i => i.desc).join(' ')} ` +
-            (!!artwork.authors ? artwork.authors.map(artist => `${artist.fullName} ${artist.handle} ${artist.slug} `) : '')
+            (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} ${artist.author.handle} ${artist.author.slug} `) : '').join(' ')
     }));
 
     const search = searchQuery(data.design);

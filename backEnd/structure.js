@@ -7,16 +7,7 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'artworks','alternateArts','renderType','styleType',
-          ].includes(listItem.getId())
-        ),
-
-      S.divider(),
-
-      ...S.documentTypeListItems()
-        .filter(
-          (listItem) => [
-            'character','developmentStatus','heightTag','sexTag'
+            'artworks','alternateArts',
           ].includes(listItem.getId())
         ),
 
@@ -34,7 +25,7 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'author','websiteSocials','authorTags','internalTags'
+            'author','character'
           ].includes(listItem.getId())
         ),
 
@@ -77,6 +68,12 @@ const structure = (S) =>
               S.divider(),
 
               S.listItem()
+                .title('Carrd Links')
+                .child(S.document().schemaType('featuredSocials').documentId('featuredSocials')),
+
+              S.divider(),
+
+              S.listItem()
                 .title('Commission Terms')
                 .child(S.document().schemaType('commissionData').documentId('commissionData')),
               S.listItem()
@@ -87,13 +84,6 @@ const structure = (S) =>
                 .child(S.document().schemaType('commissionPrices').documentId('commissionPrices')),
 
               S.divider(),
-
-              S.listItem()
-                .title('Common Q&A')
-                .child(S.document().schemaType('questionAnswer').documentId('questionAnswer')),
-              S.listItem()
-                .title('Carrd Links')
-                .child(S.document().schemaType('featuredSocials').documentId('featuredSocials')),
             ])
         ),
       S.divider(),

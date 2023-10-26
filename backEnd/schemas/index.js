@@ -1,6 +1,6 @@
 
-import blockContent from './blocks/blockContent';
-import blockGallery   from './blocks/galleryContentBlock';
+import blockContent from '../lib/blocks/blockContent';
+import blockGallery   from '../lib/blocks/galleryContentBlock';
 
 import questionAndAnswers from './pageSpecific/home/questionAndAnswers';
 import donationData from './pageSpecific/home/donationData';
@@ -37,6 +37,9 @@ import githubItems from './alternateWorks/githubItems';
 import socialMedia from './pageSpecific/websiteSettings/socialMedia'
 import featuredSocials from './pageSpecific/websiteSettings/featuredSocials'
 
+import generic from './tags/generic'
+import explicit from './tags/explicit'
+
 const dataTypes = [
   // custom data types
   blockContent,
@@ -49,6 +52,10 @@ const dataTypes = [
   renderType,
   styleType,
   purchaseTypes,
+
+  // art tag data
+  generic,
+  explicit,
 
   // customPages
   questionAndAnswers,

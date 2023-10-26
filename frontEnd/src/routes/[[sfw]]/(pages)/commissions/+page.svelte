@@ -76,6 +76,10 @@
 					<li> {benefit} </li>
 				{/each}
 			</ul>
+			<h3>Final Notices</h3>
+			<p>
+				{data.commissionData[0].notices}
+			</p>
 		</div>
 	</Container>
 </SidebarTexts>
@@ -92,14 +96,10 @@
 	</Container>
 </SidebarTexts>
 
-<SidebarTexts titlecard="Terms & Conditions">
+<SidebarTexts titlecard="T&C">
 	<Container>
 		<div class="chunk">
-			<h3>Notices</h3>
-			<p>
-				{data.commissionData[0].notices}
-			</p>
-			<h3>Terms and Conditions</h3>
+			<h3>Wrap Up;</h3>
 			<ul>
 				{#each data.commissionData[0].termsAndConditions as term}
 					<li> {term} </li>
