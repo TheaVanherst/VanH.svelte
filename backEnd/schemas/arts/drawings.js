@@ -103,7 +103,10 @@ export default defineType({
       },{
         name: 'genericTag', type: 'reference',
         to: {type: 'genericTags'},
-      },],
+      },{
+        name: 'genreTag', type: 'reference',
+        to: {type: 'genreTag'},
+      }],
       validation: Rule => Rule.required().unique(),
     }),
 

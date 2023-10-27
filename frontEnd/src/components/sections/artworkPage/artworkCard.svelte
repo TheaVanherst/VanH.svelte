@@ -8,9 +8,10 @@
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
-	import MemberReward from "$root/components/generic/buttons/memberRewardRef.svelte";
-    import GenericButton from "$root/components/generic/buttons/genericButton.svelte";
+	import MemberReward from "$root/components/generic/wrappers/memberRewardRef.svelte";
+    import GenericButton from "$root/components/generic/wrappers/genericButton.svelte";
     import ImageFloatCard from "$root/components/generic/imageContainers/imageFloatCard.svelte";
+    import InlineTag from "$root/components/generic/wrappers/inlineTag.svelte";
 
     export let postData;
 
@@ -74,6 +75,11 @@
 							</MemberReward>
 						{/if}
 					</p>
+				{/if}
+				{#if postData.tags?.length > 0}
+					{#each postData.tags as tag}
+						<InlineTag tag={tag}/>
+					{/each}
 				{/if}
 			</div>
 			<div slot="alt">

@@ -3,7 +3,7 @@
 
     import {nsfw, screenType} from '$lib/controllers/pageControllers.js';
     import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
-    import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
+    import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
     import { navigationDirectories } from '$lib/controllers/navigationDirectories.js';
 

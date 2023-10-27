@@ -1,5 +1,5 @@
 <script>
-	import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
+	import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
     import { urlSerializer } from "$lib/controllers/searchController.js";
 

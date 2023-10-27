@@ -19,7 +19,7 @@ const
         const searchTerm = store.search.toLowerCase() || ""
         store.filtered = store.data.filter(item => {
             let array = searchTerm.split(' ');
-            if (nsfwCheck) {array.push(get(nsfw) ? "" : "notsfw");}
+            if (nsfwCheck) {array.push(get(nsfw) ? "" : "!nsfw");}
             return array.every(el => item.searchTerms.toLowerCase().includes(el))});
     },
 

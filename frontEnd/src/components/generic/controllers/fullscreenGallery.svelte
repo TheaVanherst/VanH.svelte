@@ -3,7 +3,7 @@
 	import { fullscreenGallery, galleryChange } from "$lib/controllers/pageSettings.js";
 
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
-    import GenericButton from "$root/components/generic/buttons/genericButton.svelte";
+    import GenericButton from "$root/components/generic/wrappers/genericButton.svelte";
 
     import { clickOutside } from "$lib/transitions/transitionPresets.js";
 

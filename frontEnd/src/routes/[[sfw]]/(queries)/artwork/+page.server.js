@@ -53,6 +53,10 @@ export const load = async ({url}) => {
                             socialMedia
                         }
                     }
+                },
+                'tags': tagData[]-> {
+                    title,
+                    'type': _type
                 }
             }
         }`

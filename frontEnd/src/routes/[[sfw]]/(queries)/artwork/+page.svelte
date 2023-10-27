@@ -3,8 +3,8 @@
     import { page } from "$app/stores";
 
     import Masonry 		from 'svelte-bricks';
-    import ArtworkCard 	from "$root/components/sections/artworkPage/artworkCard.svelte";
     import Pagination from "$root/components/generic/controllers/pagination.svelte";
+    import ArtworkCard 	from "$root/components/sections/artworkPage/artworkCard.svelte";
 
     import { searchQuery, searchHandler, urlSerializer } from "$lib/controllers/searchController.js";
 
@@ -13,15 +13,16 @@
     data.artworks = data.artworks.map(artwork => ({
         ...artwork,
         searchTerms:
-            (artwork.sfw ? `notsfw `: `nsfw `) +
+            (artwork.sfw ? `!nsfw `: `nsfw `) +
 			`${artwork.pieceName} ${artwork.slug} ` +
 			`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
             `${artwork.gallery.images.map(i => i.desc).join(' ')} ` +
-            (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} ${artist.author.handle} ${artist.author.slug} `).join(' ') : '') +
-            (!!artwork.characters ? artwork.characters?.map(character => `${character.fullName} ${character.nickName } `).join(' ') : '') +
+            (!!artwork.tags ? `${artwork.tags.map(i => `${i.title} `).join('')} ` : '') +
+            (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} ${artist.author.handle} ${artist.author.slug} `).join('') : '') +
+            (!!artwork.characters ? artwork.characters?.map(character => `${character.fullName} ${character.nickName} `).join('') : '') +
             (!!artwork.commissionData ?
                 `${artwork.commissionData?.commissionType} ` +
-                artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join(' ') : '')
+                artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join('') : '')
     }));
 
     const search = searchQuery(data?.artworks);

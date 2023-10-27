@@ -39,6 +39,7 @@ import featuredSocials from './pageSpecific/websiteSettings/featuredSocials'
 
 import generic from './tags/generic'
 import explicit from './tags/explicit'
+import genre from './tags/genre'
 
 const dataTypes = [
   // custom data types
@@ -56,6 +57,7 @@ const dataTypes = [
   // art tag data
   generic,
   explicit,
+  genre,
 
   // customPages
   questionAndAnswers,

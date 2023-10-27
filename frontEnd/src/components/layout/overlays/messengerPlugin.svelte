@@ -4,8 +4,8 @@
     import { screenType } 	from '$lib/controllers/pageControllers.js';
     import { messengerEnabled } from "$lib/controllers/pageSettings.js";
 
-    import RainbowButtonWrap from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
-    import GenericButton from "$root/components/generic/buttons/genericButton.svelte";
+    import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
+    import GenericButton from "$root/components/generic/wrappers/genericButton.svelte";
 
     let chatBox = false;
 	let transitionSpeed = 250;
