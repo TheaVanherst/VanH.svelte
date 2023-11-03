@@ -13,6 +13,7 @@
             let to = (n.to.url.pathname).slice(0, -1);
 			to = to === "" ? "/" : to;
 			directionProcessing(to, to, to, 0);}
+
     }); //resets x, y positions
 
     beforeNavigate(async (n, willUnload, to ) => {

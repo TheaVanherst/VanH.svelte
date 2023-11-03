@@ -8,7 +8,7 @@ export { splashText }
 // ---------------------
 
 const messengerEnabled = writable(true);
-export {messengerEnabled}
+export { messengerEnabled }
 
 // ---------------------
 

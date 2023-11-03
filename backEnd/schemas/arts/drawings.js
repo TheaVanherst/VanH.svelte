@@ -167,14 +167,16 @@ export default defineType({
       author4: 'authors.3.author.fullName',
       media: 'gallery.images[0]',
       photoshop: 'discordReferences.photoshopRef',
-      archive: 'discordReferences.archiveRef'
+      archive: 'discordReferences.archiveRef',
+      tags: 'tagData.0.title'
     },
-    prepare: ({ title, author1, author2, author3, author4, media, photoshop, archive }) => {
+    prepare: ({ title, author1, author2, author3, author4, media, photoshop, archive, tags }) => {
       let returnString = "";
 
       returnString += " A" + (archive ? '✔️ ' : '❌ ')
       returnString += " P" + (photoshop ? '✔️ ' : '❌ ')
-
+      returnString += " T" + (!!tags ? '✔️ ' : '❌ ')
+      console.log(tags)
       returnString += "Created by ";
 
       const authors = [author1, author2, author3, author4].filter(Boolean);

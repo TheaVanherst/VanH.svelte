@@ -2,49 +2,52 @@
 	import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
     import { urlSerializer } from "$lib/controllers/searchController.js";
+    import { direction } from "$lib/controllers/pageControllers.js";
 
     export let
-		rows, trimmedRows,
-		perPage, lastPage,
-		goto, currentPage;
+		rows, trimmedRows, perPage,
+		goto = 0, currentPage = 0,
+        lastPage;
 
     let totalRows, totalPages,
         start, end;
 
     $: totalRows = rows.length;
     $: totalPages = Math.ceil(totalRows / perPage);
-
     $: currentPage  = Number(goto) ?? 0;
-
-    $: start = currentPage * perPage;
-    $: end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
-
-	$: trimmedRows = rows.slice(start, end + 1);
-    $: lastPage = currentPage === totalPages - 1;
-
-    $: totalPages - 1 < currentPage ? currentPage = 0 : false;
 
 	const
 		toTop = () => {
             window.scrollTo({top: 0, behavior: 'smooth'});},
-		pageSet = () => {
-            urlSerializer({'page': currentPage});
-            trimmedRows = rows.slice(start, end + 1);},
+		serializer = () => {
+            $direction = [0,0];
+            setTimeout(() => { // this allows the pagination to update
+                urlSerializer({'page': currentPage});
+                pageStatUpdates();
+            }, 500);},
 		nextPage = (next = true) => {
             toTop();
-        	setTimeout(() => {
-                currentPage = next ? currentPage + 1 : currentPage - 1;
-                pageSet();
-			}, 450);},
+            setTimeout(() => {currentPage = next ? currentPage + 1 : currentPage - 1;}, 500);
+            serializer();},
 		directPage = (index) => {
             toTop();
-            setTimeout(() => {
-                currentPage = index;
-                pageSet();
-            }, 450);}
+            setTimeout(() => {currentPage = index;}, 500);
+            serializer();}
+
+	const pageStatUpdates = () => {
+        start = currentPage * perPage;
+        end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
+        trimmedRows = rows.slice(start, end + 1);
+	}
 
 	let fakeArray = Array(totalPages);
-    $: fakeArray = Array(totalPages);
+    const pageCountUpdate = () => {
+        pageStatUpdates();
+        fakeArray = [...Array(totalPages).keys()];
+        lastPage = currentPage >= totalPages - 1;
+    };
+
+    $: totalPages && pageCountUpdate();
 </script>
 
 <div class='pagination'>
@@ -55,20 +58,16 @@
 		</RainbowButtonWrap>
 	</div>
 
-	<p style="margin: 0 15px">
-		{start + 1} - {end + 1} of {totalRows}
-	</p>
-
-	<!--{#each fakeArray as _, index (index)}-->
-	<!--	<div class:disabled={currentPage === index}-->
-	<!--		 on:click={() => directPage(index)}>-->
-	<!--		<RainbowButtonWrap>-->
-	<!--			<div class="pageNumber">-->
-	<!--				<h4>{index + 1}</h4>-->
-	<!--			</div>-->
-	<!--		</RainbowButtonWrap>-->
-	<!--	</div>-->
-	<!--{/each}-->
+	{#each fakeArray as _, index (index)}
+		<div class:disabled={currentPage === index}
+			 on:click={() => directPage(index)}>
+			<RainbowButtonWrap>
+				<div class="pageNumber">
+					<h4>{index + 1}</h4>
+				</div>
+			</RainbowButtonWrap>
+		</div>
+	{/each}
 
 	<div on:click={() => nextPage(true)}
 		 class:disabled={lastPage}>
@@ -78,16 +77,7 @@
 	</div>
 </div>
 
-<!--<div class="center">-->
-<!--	<p>{start + 1} - {end + 1} of {totalRows}</p>-->
-<!--</div>-->
-
 <style lang="scss">
-	.center {
-		margin: 7px auto 0 auto;
-		width: max-content;
-		display: flex;}
-
 	.pagination {
 		display: 			flex;
 		align-items: 		center;

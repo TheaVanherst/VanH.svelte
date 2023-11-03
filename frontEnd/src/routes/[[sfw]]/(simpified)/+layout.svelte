@@ -1,8 +1,9 @@
 <script>
     import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
 
-    import { socialMediaVisibility } from "$lib/controllers/pageControllers.js";
+    import { navigationVisibility, socialMediaVisibility } from "$lib/controllers/pageControllers.js";
     $socialMediaVisibility = false;
+    $navigationVisibility = true;
 </script>
 
 <TransitionHandler>

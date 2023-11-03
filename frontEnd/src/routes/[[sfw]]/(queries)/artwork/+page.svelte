@@ -3,18 +3,20 @@
     import { page } from "$app/stores";
 
     import Masonry 		from 'svelte-bricks';
-    import Pagination from "$root/components/generic/controllers/pagination.svelte";
-    import ArtworkCard 	from "$root/components/sections/artworkPage/artworkCard.svelte";
+    import Pagination 	from "$root/components/generic/controllers/pagination.svelte";
+
+    import ArtworkCard 	from "$root/components/generic/containers/artworkCard.svelte";
 
     import { searchQuery, searchHandler, urlSerializer } from "$lib/controllers/searchController.js";
+    import { transitioning } from "$lib/controllers/pageControllers.js";
 
     export let data;
 
     data.artworks = data.artworks.map(artwork => ({
         ...artwork,
-        searchTerms:
+        searchTerms: (
             (artwork.sfw ? `!nsfw `: `nsfw `) +
-			`${artwork.pieceName} ${artwork.slug} ` +
+			`${artwork.pieceName.replaceAll(" ","_")} ${artwork.slug} ` +
 			`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
             `${artwork.gallery.images.map(i => i.desc).join(' ')} ` +
             (!!artwork.tags ? `${artwork.tags.map(i => `${i.title} `).join('')} ` : '') +
@@ -23,6 +25,7 @@
             (!!artwork.commissionData ?
                 `${artwork.commissionData?.commissionType} ` +
                 artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join('') : '')
+		).toLowerCase()
     }));
 
     const search = searchQuery(data?.artworks);
@@ -34,21 +37,35 @@
         data.search = $page.url.searchParams.get("query") || undefined;
         if (data.search) {
             value = data.search.replaceAll('-',' ');
-            $search.search = value;}});
+            value = decodeURIComponent(value);
+            $search.search = value;
+        } // initializes search filter
+    });
 
-    let pagedData, finalPage, pageNo;
+    let pagedData, finalPage;
 
-    let hardSearch = () => {
-        $search.search = value;
-        pageNo = 0;
-        urlSerializer({'query': $search?.search, 'page': pageNo});};
+    let hardSearch = (query = "", page = 0) => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        setTimeout(() => {
+            $search.search = query;
+            data.page = page;
+        }, 200);
 
-    let value
+        $transitioning = true;
+        setTimeout(() => { // this allows the pagination to update
+            urlSerializer({'query': $search?.search, 'page': data?.page});
+        }, 300);
+        setTimeout(() => { // this allows the pagination to update
+        	$transitioning = false;
+        }, 300);
+    };
+
+    let value;
 </script>
 
 <div class="center wrapper">
 	<div class="searchBar">
-		<form on:submit|preventDefault={hardSearch}>
+		<form on:submit|preventDefault={() => hardSearch(value, 0)}>
 			<input type="search" class="input" placeholder="Search..." bind:value={value}/>
 		</form>
 	</div>
@@ -78,7 +95,7 @@
 		rows={$search.filtered}
 		perPage={10}
 		goto={data?.page}
-		bind:currentPage={pageNo}
+		bind:currentPage={data.page}
 		bind:trimmedRows={pagedData}
 		bind:lastPage={finalPage}/>
 </div>

@@ -1,8 +1,17 @@
 
 import client from "$lib/sanityClient.js";
 
-export const load = async ({url}) => {
-    const [allQueries] = await Promise.all([client.fetch(`{
+export const load = async ({ fetch, url }) => {
+
+    // let pageData = {}
+    // pageData.itemsPerPage = 10;
+    // pageData.currentPage = parseInt(url.searchParams.get("page")) || 0;
+    // pageData.currentPosition = pageData.currentPage * pageData.itemsPerPage;
+    // pageData.futurePosition = (pageData.currentPosition + 1) * pageData.itemsPerPage;
+    // pageData.maxPosition = await client.fetch(`count(*[_type == 'artworks'])`)
+    // pageData.maxPages = Math.ceil(pageData.maxPosition / pageData.itemsPerPage);
+
+    let [allQueries] = await Promise.all([client.fetch(`{
         "artworks":
             *[ _type == 'artworks'][] | order(publishedAt desc) {
                 _id,
@@ -32,6 +41,7 @@ export const load = async ({url}) => {
                     'renderType': renderType->renderName,
                     'styleType': styleType->styleName
                 },
+                
                 'photoshopRefId': discordReferences.photoshopRef,
                 'imageRefId': discordReferences.archiveRef,
                 'characters': characters[]->{
@@ -40,6 +50,7 @@ export const load = async ({url}) => {
                     fursona,
                     nickName
                 },
+                
                 'commissionData': commissionData {
                     'commissionType': artType->typeName,
                     'characters': characters[]-> {
@@ -54,13 +65,16 @@ export const load = async ({url}) => {
                         }
                     }
                 },
-                'tags': tagData[]-> {
+                
+                'tags': tagData[]|order(_type desc)-> {
                     title,
                     'type': _type
                 }
             }
         }`
     )]);
+
+    // allQueries.pageData = pageData;
 
     return allQueries
 };

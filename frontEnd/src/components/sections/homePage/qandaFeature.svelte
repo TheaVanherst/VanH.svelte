@@ -50,12 +50,14 @@
 
 	* {	transition: .3s ease; }
 
+	.q {
+		text-transform: initial!important;}
+
 	.row:hover {
 		.profileIcon {
 			transform: scale(1.2);}
 		.q {margin: 4px 0 4px 20px;}
-		.s {margin: 2px 0 0 75px;}
-	}
+		.s {margin: 2px 0 0 75px;}}
 
 	.profileIcon {
 		aspect-ratio: 	1/1;
@@ -76,6 +78,5 @@
 		.q {margin: 4px 4px 4px 4px;}
 		.s {margin: 2px 0 0 15px;}
 		.a {margin: 4px 4px 4px 4px;
-			text-align: right;}
-	}
+			text-align: right;}}
 </style>

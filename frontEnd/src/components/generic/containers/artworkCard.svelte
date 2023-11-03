@@ -8,7 +8,7 @@
     import SanityGalleries from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
 
-	import MemberReward from "$root/components/generic/wrappers/memberRewardRef.svelte";
+	import DividedTag from "$root/components/generic/wrappers/dividedTag.svelte";
     import GenericButton from "$root/components/generic/wrappers/genericButton.svelte";
     import ImageFloatCard from "$root/components/generic/imageContainers/imageFloatCard.svelte";
     import InlineTag from "$root/components/generic/wrappers/inlineTag.svelte";
@@ -69,10 +69,10 @@
 				{#if postData.gallery.styleType && postData.gallery.renderType}
 					<p>
 						{#if postData.gallery.styleType && postData.gallery.renderType}
-							<MemberReward>
+							<DividedTag>
 								<span slot="title">{postData.gallery.styleType}</span>
 								<span slot="desc">{postData.gallery.renderType}</span>
-							</MemberReward>
+							</DividedTag>
 						{/if}
 					</p>
 				{/if}
@@ -115,22 +115,22 @@
 						<p class="links">
 							{#if postData.imageRefId}
 								<a class="shortBorder" href={postData.imageRefId} target="_blank">
-									<MemberReward hover={true}>
+									<DividedTag hover={true}>
 										<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
 										<span slot="title">Archive</span>
 										<div slot="descIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
 										<span slot="desc">Tier 1 or higher</span>
-									</MemberReward>
+									</DividedTag>
 								</a>
 							{/if}
 							{#if postData.photoshopRefId}
 								<a class="shortBorder" href={postData.imageRefId} target="_blank">
-									<MemberReward hover={true}>
+									<DividedTag hover={true}>
 										<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
 										<span slot="title">Photoshop</span>
 										<div slot="descIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
 										<span slot="desc">Tier 3</span>
-									</MemberReward>
+									</DividedTag>
 								</a>
 							{/if}
 						</p>

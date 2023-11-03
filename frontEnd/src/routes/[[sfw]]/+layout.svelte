@@ -1,13 +1,18 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
+    import { navigationVisibility, nsfw, socialMediaVisibility } from "$lib/controllers/pageControllers.js";
+    import { slide } from "svelte/transition";
 
     export let data;
 
-    import { nsfw } from "$lib/controllers/pageControllers.js";
     $nsfw = data.dParams === 'nsfw'; // page initializing
 </script>
 
-<NavigationComponent socials={data.featured}/>
+{#if $socialMediaVisibility || $navigationVisibility}
+	<div transition:slide>
+		<NavigationComponent socials={data.featured}/>
+	</div>
+{/if}
 
 <div class="flexBox">
 	<slot/>

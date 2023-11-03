@@ -11,8 +11,6 @@
     import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/pageControllers.js";
 
     export let socials;
-
-	let socialArr = socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$nsfw || $nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5);
 </script>
 
 {#if $navigationVisibility || $socialMediaVisibility}
@@ -33,7 +31,7 @@
 
 		{#if $socialMediaVisibility}
 			<div transition:slide={{duration: 200}} id="socials">
-				{#each socialArr as item}
+				{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$nsfw || $nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
 					<RedirectBuilder url={item.platformName.socialURL + item.url}>
 						<RainbowButtonWrap padding="{$screenType > 2 ? [5,10] : [6,6]}">
 							<div class="central">

@@ -23,5 +23,3 @@ export async function load({ params }) {
         featured: allQueries.featuredSocials[0].socialMedia
     }
 }
-
-export const prerender = true;

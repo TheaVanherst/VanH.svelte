@@ -20,10 +20,10 @@ export { deviceType };
 // TODO: Internal directory and status management
 
 const
-    directory =   writable("/"), // directory string
-    rootPath =    writable("/"); // the root directory (/home)
+    directory =     writable("/"), // directory string
+    rootPath =      writable("/"); // the root directory (/home)
 const
-    pageLoaded =  writable(false), // ensures that the layout is loaded
+    pageLoaded =    writable(false), // ensures that the layout is loaded
     transitioning = writable(false); // detects page changes
 
 export { directory, rootPath, pageLoaded, transitioning };
@@ -75,7 +75,6 @@ const
         directory = parsed ?
             directory :
             directory.split("/");
-
         if (get(nsfw) === true) {
             rootPath.set("/" + directory[2])
             urlStoreArr.set(directory.slice(1));}
@@ -89,7 +88,7 @@ export { directionProcessing, rootProcessing };
 // TODO: USERINTERFACE CONTROLLERS
 
 const
-    navigationVisibility =  writable(true),
+    navigationVisibility =  writable(false),
     socialMediaVisibility = writable(false);
 
 export { navigationVisibility, socialMediaVisibility };
