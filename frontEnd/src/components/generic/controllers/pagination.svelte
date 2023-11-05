@@ -6,7 +6,7 @@
 
     export let
 		rows, trimmedRows, perPage,
-		goto = 0, currentPage = 0,
+		goto, currentPage = 0,
         lastPage;
 
     let totalRows, totalPages,
@@ -37,7 +37,7 @@
 	const pageStatUpdates = () => {
         start = currentPage * perPage;
         end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
-        trimmedRows = rows.slice(start, end + 1);
+        trimmedRows = rows.slice(start, end + 1) ?? [];
 	}
 
 	let fakeArray = Array(totalPages);

@@ -12,7 +12,7 @@ export const load = async ({ fetch, url }) => {
     // pageData.maxPages = Math.ceil(pageData.maxPosition / pageData.itemsPerPage);
 
     const [allQueries] = await Promise.all([client.fetch(`{
-        "design":
+        "designs":
             *[ _type == 'alternateArts'][] | order(publishedAt desc) {
                 _id,
                 pieceName,

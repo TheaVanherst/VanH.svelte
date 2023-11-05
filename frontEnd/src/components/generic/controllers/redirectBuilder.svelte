@@ -11,10 +11,12 @@
 		redirectName = undefined,
 		nsfwPointer = undefined;
 
-    const redirectCheck = (e, n, p) => {
+    const redirectCheck = (e, n, p = null) => {
         let paraLength = Object.keys($page.params).length;
-        let newRoute = paraLength > 0 ? `/${$page.params.sfw}${e}` : e;
+        let newRoute;
 
+        newRoute = (paraLength > 0 ? (p !== null ? `${p ? '/nsfw' : ''}` : `/${$page.params.sfw}`) : "") + e;
+        	// this allows NSFW mode changes via a forced optional param insert.
 
         if (newRoute !== $directory && !$transitioning) {
             $rootPath = e;
@@ -31,8 +33,8 @@
         }
 
     	if (n) { // this sets a custom page name.
-            $pageName = n;}}
-
+            $pageName = n;}
+    }
 </script>
 
 {#if internal}

@@ -4,14 +4,13 @@
     import InfoPlate 			from "$root/components/sections/homePage/characters/characterInfoPlate.svelte";
 
     import { nsfw } from "$lib/controllers/pageControllers.js";
-
     export let dataset = {};
 </script>
 
 {#if dataset}
 	<Carousel>
 		{#each dataset as char}
-			{#if char.nsfw && $nsfw || !char.nsfw}
+			{#if char && char.nsfw && $nsfw || !char.nsfw}
 				<swiper-slide>
 					<div class="card">
 						<CharacterCard image={char.render}>

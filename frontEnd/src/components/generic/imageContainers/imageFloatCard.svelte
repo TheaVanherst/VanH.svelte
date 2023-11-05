@@ -1,11 +1,14 @@
 <script>
     import { fly } from "svelte/transition";
 
-    export let active = false;
+    export let
+		active = false,
+		hover = false;
 </script>
 
 {#if !active}
 	<div class="previewCard card"
+		 class:hovered={hover}
 		 transition:fly={{y: -50, duration: 400 }}>
 		{#if $$slots['title']}
 			<div class="titleCard regularBorder">
@@ -50,15 +53,21 @@
 		display: 	grid;
 		position: 	relative;
 		overflow: 	hidden;
+
+		transition: ease background .3s, ease border .3s;
+		border: 	1px solid transparent;
 		> * {
 			display: block;}}
 
 	.wrapper {		margin: 	8px 15px 10px 10px;}
 	.titleCard {	background: var(--TransWhite);}
 	.accent {		background: var(--accent9);}
+	.previewCard.hovered .titleCard {
+					background: var(--accent9);}
+	.previewCard:hover .titleCard {
+					border: 	1px solid var(--accent2);}
 
 	.infoPlate {
 		max-height: calc(100% - 10px);
-		overflow: scroll;
-	}
+		overflow: scroll;}
 </style>

@@ -81,7 +81,7 @@ const
         else {
             rootPath.set("/" + directory[1]);
             urlStoreArr.set(directory);}
-    }
+    };
 
 export { directionProcessing, rootProcessing };
 

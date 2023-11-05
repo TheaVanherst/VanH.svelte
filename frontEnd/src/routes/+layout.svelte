@@ -1,6 +1,4 @@
 <script>
-	// TODO: this page manages just general aesthetic initialization. Don't touch it.
-
     import '../styles.scss';
     import { fly } 				from 'svelte/transition';
 
@@ -14,10 +12,8 @@
     import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
     import FullscreenGallery from "$root/components/generic/controllers/fullscreenGallery.svelte";
 
-    import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded,
-    	} from "$lib/controllers/pageControllers.js";
-    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName,
-    	} from "$lib/controllers/titlebarScoller.js";
+    import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded } from "$lib/controllers/pageControllers.js";
+    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
     import Device from "svelte-device-info";
@@ -27,9 +23,7 @@
             case Device.isPhone:  	$deviceType = 0; break;
             case Device.isTablet: 	$deviceType = 1; break;
             default:      			$deviceType = 2; break;}
-
-        $pageLoaded = 	true;
-    });
+        $pageLoaded = true;});
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     $: $deviceType === 2 ?

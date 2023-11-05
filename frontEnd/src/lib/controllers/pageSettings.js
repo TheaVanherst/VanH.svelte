@@ -1,7 +1,6 @@
 
 import { get, writable } from "svelte/store";
 
-
 const splashText = writable(undefined);
 export { splashText }
 
@@ -23,6 +22,10 @@ const galleryChange = (item) => {
         document.body.classList.remove("noScroll");
         messengerEnabled.set(true);
         fullscreenGallery.set(undefined);}
-}
+};
 
 export { fullscreenGallery, galleryChange }
+
+const dataSetStore = writable({page: 0, searchQuery: ""});
+
+export { dataSetStore }

@@ -9,11 +9,11 @@
     import { directionProcessing, pageLoaded, direction, transitioning, directory } from '$lib/controllers/pageControllers.js';
 
     afterNavigate((n) => {
-        if (!$pageLoaded || $navigating?.willUnload === true ) {  // this fixes an issue where the url doesn't update from the initial layout load.
+        if (n.type = "enter" || $navigating?.willUnload === true ) {  // this fixes an issue where the url doesn't update from the initial layout load.
             let to = (n.to.url.pathname).slice(0, -1);
 			to = to === "" ? "/" : to;
-			directionProcessing(to, to, to, 0);}
-
+			directionProcessing(to, to, to, 0);
+        }
     }); //resets x, y positions
 
     beforeNavigate(async (n, willUnload, to ) => {

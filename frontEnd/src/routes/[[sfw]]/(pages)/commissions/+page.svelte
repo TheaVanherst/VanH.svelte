@@ -4,12 +4,11 @@
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
-    import SectionListCard from "$root/components/generic/containers/sectionListCard.svelte";
+    import SectionListCard 	from "$root/components/generic/containers/sectionListCard.svelte";
     import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
 
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
-
+    import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
+    import ImageTag 		from "$root/components/generic/imageContainers/imageTag.svelte";
     import CommissionPrices from "$root/components/sections/commissionPage/commissionPrices.svelte";
 
     export let data;

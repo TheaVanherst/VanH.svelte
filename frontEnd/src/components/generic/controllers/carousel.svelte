@@ -13,13 +13,8 @@
     import { register } from 'swiper/element/bundle';
     import { onMount } from "svelte";
 
-    let mounted;
     onMount(() => {
         register();
-
-        setTimeout(() => {
-            mounted = true;
-		},100) // this prevents the page from crashing due to an issue with swiper.
 	})
 </script>
 
@@ -30,26 +25,14 @@
 			grabCursor={true}
 			class="wideBorder {footerAdd ? 'margin' : ''}"
 			navigation="true" pagination={pagination} space-between={10}>
-		{#await mounted}
-
-		{:then mount}
-			<slot/>
-		{:catch mount}
-
-		{/await}
+		<slot/>
 	</swiper-container>
 {:else}
 	<swiper-container
 			slides-per-view="{customCalc}"
 			class="wideBorder {footerAdd ? 'margin' : ''}"
 			navigation="true" pagination={pagination} space-between={10}>
-		{#await mounted}
-
-		{:then mount}
-			<slot/>
-		{:catch mount}
-
-		{/await}
+		<slot/>
 	</swiper-container>
 {/if}
 

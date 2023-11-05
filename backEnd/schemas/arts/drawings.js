@@ -128,8 +128,7 @@ export default defineType({
         ],
         preview: {
           select: {
-            title: 'author.fullName',
-            desc: 'participation.emoji',
+            title: 'author.fullName', desc: 'participation.emoji',
             media: 'author.userPortrait'
           },
           prepare: ({title, desc, media}) => {
@@ -144,7 +143,7 @@ export default defineType({
     }),
 
     defineField({
-      name: 'NSFW',     title: 'Preview Blur',
+      name: 'NSFW', title: 'Preview Blur',
       description: 'Should we blur this image?',
       type: 'boolean', group: 'MetaData',
       initialValue: false,
@@ -161,32 +160,16 @@ export default defineType({
   preview: {
     select: {
       title: 'pieceName',
-      author1: 'authors.0.author.fullName',
-      author2: 'authors.1.author.fullName',
-      author3: 'authors.2.author.fullName',
-      author4: 'authors.3.author.fullName',
       media: 'gallery.images[0]',
       photoshop: 'discordReferences.photoshopRef',
       archive: 'discordReferences.archiveRef',
       tags: 'tagData.0.title'
     },
-    prepare: ({ title, author1, author2, author3, author4, media, photoshop, archive, tags }) => {
-      let returnString = "";
-
-      returnString += " A" + (archive ? '✔️ ' : '❌ ')
-      returnString += " P" + (photoshop ? '✔️ ' : '❌ ')
-      returnString += " T" + (!!tags ? '✔️ ' : '❌ ')
-      console.log(tags)
-      returnString += "Created by ";
-
-      const authors = [author1, author2, author3, author4].filter(Boolean);
-
-      for (let i = 0; i < authors.length; i++) {
-        returnString += authors[i] + (i < authors.length - 1 ? ", " : " ");}
+    prepare: ({ title, media, photoshop, archive, tags }) => {
+      let returnString = `A; ${archive ? '✔️ ' : '❌ '} | P; ${photoshop ? '✔️ ' : '❌ '} | T; ${!!tags ? '✔️ ' : '❌ '}`
 
       return {
-        title: title,
-        subtitle: returnString,
+        title: title, subtitle: returnString,
         media: media,
       }
     }

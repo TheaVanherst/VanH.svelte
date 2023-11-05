@@ -14,9 +14,6 @@
     export let data;
 
     let active = false;
-
-    // this is all kinda dumb and just has to exist because the transition handlers are done via group folders.
-	// at some point I'll remove all this ballocks.
 </script>
 
 {#if active}
@@ -37,7 +34,7 @@
 					</div>
 
 					<div class="button regularBorder unfilter">
-						<RedirectBuilder internal={true} url={"/nsfw/home"} nsfwPointer={true}>
+						<RedirectBuilder internal={true} url={"/home"} nsfwPointer={true}>
 							<h4>Continue</h4>
 						</RedirectBuilder>
 					</div>
