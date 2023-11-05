@@ -5,7 +5,7 @@
     import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
     import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
-    import { navigationDirectories } from '$lib/controllers/navigationDirectories.js';
+    import { navigationDirectories } from '$lib/pageSettings/navigationDirectories.js';
 
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
     import { navigationVisibility, socialMediaVisibility, rootPath } from "$lib/controllers/pageControllers.js";

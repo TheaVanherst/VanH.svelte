@@ -6,40 +6,42 @@
 </script>
 
 <div class="cardsWrapper">
-	<Carousel maxWidth={2.5} centered={true}>
-		{#each tiers as tier, i}
-			<swiper-slide style="height:auto;">
-				<a href={tier.tierRedirect} target="_blank">
-					<div class="contents wideBorder">
-						<div class="card">
-							<div class="imageWrapper tierImage">
-								<SanityImage image={tier.bannerImage}/>
-								<div class="titleWrapper">
-									<div class="titles regularBorder">
-										<h3>{tier.tierEmoji}{tier.tierName}</h3>
-										<p>{tier.tierDesc}</p>
+	{#if tiers}
+		<Carousel maxWidth={2.5} centered={true}>
+			{#each tiers as tier, i}
+				<swiper-slide style="height:auto;">
+					<a href={tier.tierRedirect} target="_blank">
+						<div class="contents wideBorder">
+							<div class="card">
+								<div class="imageWrapper tierImage">
+									<SanityImage image={tier.bannerImage}/>
+									<div class="titleWrapper">
+										<div class="titles regularBorder">
+											<h3>{tier.tierEmoji}{tier.tierName}</h3>
+											<p>{tier.tierDesc}</p>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="desc">
-								<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
-								<div class="joinButton">
-									<p class="subtitle">Join</p>
+								<div class="desc">
+									<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
+									<div class="joinButton">
+										<p class="subtitle">Join</p>
+									</div>
+									<ul>
+										{#each tier.tierPerks as perk, i}
+											<li class="{i === 0 && tier.boldFirst ? 'bold' : ''}">
+												{perk}
+											</li>
+										{/each}
+									</ul>
 								</div>
-								<ul>
-									{#each tier.tierPerks as perk, i}
-										<li class="{i === 0 && tier.boldFirst ? 'bold' : ''}">
-											{perk}
-										</li>
-									{/each}
-								</ul>
 							</div>
 						</div>
-					</div>
-				</a>
-			</swiper-slide>
-		{/each}
-	</Carousel>
+					</a>
+				</swiper-slide>
+			{/each}
+		</Carousel>
+	{/if}
 </div>
 
 <style lang="scss">

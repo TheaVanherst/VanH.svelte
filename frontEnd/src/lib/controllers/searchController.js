@@ -4,7 +4,7 @@ import { page } from '$app/stores';
 import { goto } from "$app/navigation";
 
 import { direction, nsfw } from "$lib/controllers/pageControllers.js";
-import { dataSetStore } from "$lib/controllers/pageSettings.js";
+import { dataSetStore } from "$lib/pageSettings/pageSettings.js";
 
 const
     urlSerializer = (values) => {

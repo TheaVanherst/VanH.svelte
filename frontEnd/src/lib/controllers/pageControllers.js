@@ -28,7 +28,7 @@ const
 
 export { directory, rootPath, pageLoaded, transitioning };
 
-import { navigationDirectories } from "$lib/controllers/navigationDirectories.js";
+import { navigationDirectories } from "$lib/pageSettings/navigationDirectories.js";
 
 // TODO: navigation direction controller
 

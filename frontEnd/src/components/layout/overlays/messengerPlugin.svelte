@@ -2,7 +2,7 @@
     import { scale, fly } 	from 'svelte/transition';
 
     import { screenType } 	from '$lib/controllers/pageControllers.js';
-    import { messengerEnabled } from "$lib/controllers/pageSettings.js";
+    import { messengerEnabled } from "$lib/pageSettings/pageSettings.js";
 
     import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
     import GenericButton from "$root/components/generic/wrappers/genericButton.svelte";

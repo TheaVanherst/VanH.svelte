@@ -15,12 +15,14 @@
         let paraLength = Object.keys($page.params).length;
         let newRoute;
 
-        newRoute = (paraLength > 0 ? (p !== null ? `${p ? '/nsfw' : ''}` : `/${$page.params.sfw}`) : "") + e;
-        	// this allows NSFW mode changes via a forced optional param insert.
+        if (p !== null) {
+            $nsfw = (p ? 'nsfw' : '')
+            newRoute = (p ? '/nsfw' : '') + e;}
+        else {
+            newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
 
         if (newRoute !== $directory && !$transitioning) {
             $rootPath = e;
-            $nsfw = p ? p : $page.params.sfw === "nsfw"
 
 			directionProcessing($directory, newRoute, newRoute, paraLength);
             $transitioning = true;

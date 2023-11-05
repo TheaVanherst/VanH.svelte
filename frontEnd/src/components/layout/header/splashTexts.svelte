@@ -3,7 +3,7 @@
 
     import { splash } from "$lib/databases/splashTextDatabase.js";
     import { nsfw } from "$lib/controllers/pageControllers.js";
-    import { splashText } from "$lib/controllers/pageSettings.js";
+    import { splashText } from "$lib/pageSettings/pageSettings.js";
 
 	let text = "undefined?",
 		numberGen = 0,

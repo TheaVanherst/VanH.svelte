@@ -14,16 +14,18 @@
 </script>
 
 <Container>
-	<Carousel>
-		{#each dataset[0] as workshopItem}
-			<swiper-slide>
-				<WorkshopCard dataEntry={workshopItem}/>
-			</swiper-slide>
-		{/each}
-	</Carousel>
+	{#if dataset[0]} <!-- prevents crashes -->
+		<Carousel>
+			{#each dataset[0] as workshopItem}
+				<swiper-slide>
+					<WorkshopCard dataEntry={workshopItem}/>
+				</swiper-slide>
+			{/each}
+		</Carousel>
+	{/if}
 	<div class="navWrapper">
 		{#if deviceType < 2}
-			{#if moreToggle}
+			{#if moreToggle && dataset[1]} <!-- prevents crashes -->
 				<div class="mobileOffset" transition:slide>
 					<Carousel
 						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
@@ -51,17 +53,19 @@
 			{/if}
 		{:else}
 			<div class="desktopOffset">
-				<Carousel
-						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
-						pagination={false} footerAdd={false}>
-					{#each dataset[1] as workshopItem}
-						{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
-							<swiper-slide>
-								<WorkshopSnippet item={workshopItem}/>
-							</swiper-slide>
-						{/if}
-					{/each}
-				</Carousel>
+				{#if dataset[1]} <!-- prevents crashes -->
+					<Carousel
+							customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
+							pagination={false} footerAdd={false}>
+						{#each dataset[1] as workshopItem}
+							{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
+								<swiper-slide>
+									<WorkshopSnippet item={workshopItem}/>
+								</swiper-slide>
+							{/if}
+						{/each}
+					</Carousel>
+				{/if}
 			</div>
 		{/if}
 	</div>

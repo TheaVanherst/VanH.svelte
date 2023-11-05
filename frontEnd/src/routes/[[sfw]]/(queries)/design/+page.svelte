@@ -4,7 +4,7 @@
     import Masonry 		from 'svelte-bricks';
     import Pagination 	from "$root/components/generic/controllers/pagination.svelte";
 
-    import { dataSetStore } from "$lib/controllers/pageSettings.js";
+    import { dataSetStore } from "$lib/pageSettings/pageSettings.js";
     import { queryFilter } 	from "$lib/controllers/searchController.js";
 
     import ArtworkCard 	from "$root/components/generic/containers/artworkCard.svelte";
@@ -42,9 +42,9 @@
 				idKey=	{`slug`}
 				animate= {false}
 				let:item>
-					<div class="designPost">
-						<ArtworkCard postData={item}/>
-					</div>
+				<div class="designPost">
+					<ArtworkCard postData={item}/>
+				</div>
 			</Masonry>
 		</div>
 	{/if}

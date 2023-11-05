@@ -11,17 +11,17 @@ export { messengerEnabled }
 
 // ---------------------
 
-const fullscreenGallery = writable(undefined);
+const fullscreenGallery = writable({currentImage: 0, gallery: undefined});
 
-const galleryChange = (item) => {
+const galleryChange = (item,id = 0) => {
     if (item) {
         document.body.classList.add("noScroll");
         messengerEnabled.set(false);
-        fullscreenGallery.set(item);}
+        fullscreenGallery.set({gallery: item.flat(), currentImage: id});}
     else {
         document.body.classList.remove("noScroll");
         messengerEnabled.set(true);
-        fullscreenGallery.set(undefined);}
+        fullscreenGallery.set({gallery: undefined, currentImage: 0});}
 };
 
 export { fullscreenGallery, galleryChange }

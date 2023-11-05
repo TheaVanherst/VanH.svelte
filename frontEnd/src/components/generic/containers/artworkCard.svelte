@@ -1,8 +1,6 @@
 <script>
     import { clickOutside } from "$lib/transitions/transitionPresets.js";
-
     import { createdPush } 		from "$lib/builders/dateBuilder.js";
-    import { galleryChange } 	from "$lib/controllers/pageSettings.js";
 
     import SanityGalleries 	from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
@@ -21,7 +19,7 @@
 
     const
 		imageClick = () => {
-            active ? active = !active : galleryChange(postData.gallery);},
+            active ? active = !active : false;},
 		cardFloatClick = () => {
             active = active ? active : !active;}
 </script>

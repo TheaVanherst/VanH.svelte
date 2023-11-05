@@ -7,7 +7,7 @@
     import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
 
     import { navigationVisibility, socialMediaVisibility, transitioning } from "$lib/controllers/pageControllers.js";
-    import { dataSetStore } 	from "$lib/controllers/pageSettings.js";
+    import { dataSetStore } 	from "$lib/pageSettings/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/searchController.js";
     import { beforeNavigate } 	from "$app/navigation";
 
