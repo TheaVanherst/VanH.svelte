@@ -3,16 +3,16 @@
 
 	export let
 		active = false,
-		position = [1,1],
+		positionArray = [1,1],
+		position = 'absolute',
 		border = 'regularBorder';
 </script>
 
 {#if !active}
 	<div class="developmentIcon
-		{border}
-		{position[0] === 0 ? 'bottom' : 'top'}
-		{position[1] === 0 ? 'left' : 'right'}"
-		 transition:fly={{y: (position[0] * 50), duration: 400 }}>
+		{border}"
+		 style="position:{position}"
+		 transition:fly={{y: (positionArray[0] * 50), duration: 400 }}>
 			<slot/>
 	</div>
 {/if}
@@ -22,15 +22,11 @@
 		color: 		black;}
 
 	.developmentIcon {
-		position: 	absolute;
-
 		margin: 	5px 5px;
 		padding: 	5px 7px;
 
-		&.left {	left: 	0;}
-		&.right {	right: 	0;}
-		&.top {		top: 	0;}
-		&.bottom {	bottom: 0;}
+		top: 	0;
+		right: 	0;
 
 		font-weight: 700;
 		background: var(--TransWhite);

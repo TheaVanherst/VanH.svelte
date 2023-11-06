@@ -8,7 +8,7 @@
 
 <div class="table vertical">
     {#each push as image, i}
-        <div class="regularBorder" on:click={() => galleryChange(push, i)}>
+        <div class="regularBorder" on:click={() => galleryChange(push, citation, i)}>
             <CitedImage image={image} citation={citation[i]}/>
         </div>
     {/each}

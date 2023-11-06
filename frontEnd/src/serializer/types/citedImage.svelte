@@ -17,7 +17,7 @@
 	{#if citation?.length > 0}
 		{#if active}
 			<div transition:fade={{duration:150}}>
-				<ImageTag position={[1,0]} border="shortBorder">
+				<ImageTag border="shortBorder">
 					<p>{citation}</p>
 				</ImageTag>
 			</div>

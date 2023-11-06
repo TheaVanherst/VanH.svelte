@@ -16,7 +16,7 @@
         let newRoute;
 
         if (p !== null) {
-            $nsfw = (p ? 'nsfw' : '')
+            $nsfw = p
             newRoute = (p ? '/nsfw' : '') + e;}
         else {
             newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}

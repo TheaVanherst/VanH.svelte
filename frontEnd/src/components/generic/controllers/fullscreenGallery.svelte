@@ -1,8 +1,9 @@
 <script>
-	import { fade, slide } from "svelte/transition";
+	import { fade } from "svelte/transition";
 
 	import { fullscreenGallery, galleryChange } from "$lib/pageSettings/pageSettings.js";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
 
     import { clickOutside } from "$lib/transitions/transitionPresets.js";
 
@@ -14,10 +15,7 @@
             maxPosition = $fullscreenGallery?.gallery.length - 1;
             position = $fullscreenGallery.currentImage;},
 		gallerySwap = () => {
-			if (position < maxPosition) {
-				position++;}
-			else {
-				galleryExit();}},
+            position < maxPosition ? position++ : galleryExit();},
 		galleryExit = () => {
             position = 0;
             galleryChange(undefined);}
@@ -36,9 +34,11 @@
 						</div>
 					{/if}
 				{/each}
-				<div class="pageNumber">
-					<p>{position + 1} / {maxPosition + 1}</p>
-				</div>
+				{#key position}
+					<div class="pageNumber">
+						<p>{position + 1} / {maxPosition + 1}</p>
+					</div>
+				{/key}
 				{#each $fullscreenGallery?.gallery as dot, i}
 					{#if i > position}
 						<div class="circle">
@@ -47,20 +47,22 @@
 				{/each}
 			</div>
 		</div>
-
 		<div class="wrapper"
 				use:clickOutside
 			 	on:click_outside={() => galleryExit()}>
-			<div class="positionSet wideBorder" on:click={() => gallerySwap()}>
-				{#key position}
-					<div transition:slide>
-						<div class="image wideBorder">
-							{#if $fullscreenGallery?.gallery[position]}
-								<SanityImage image={$fullscreenGallery.gallery[position]}/>
-							{/if}
-						</div>
+			<div class="positionSet" on:click={() => gallerySwap()}>
+				<div class="image wideBorder">
+					{#if $fullscreenGallery?.gallery[position]}
+						<SanityImage image={$fullscreenGallery.gallery[position]}/>
+					{/if}
+				</div>
+				{#if $fullscreenGallery?.citation[position]}
+					<div class="imageCitation">
+						<ImageTag border="shortBorder" position="relative">
+							<p>{$fullscreenGallery?.citation[position]}</p>
+						</ImageTag>
 					</div>
-				{/key}
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -76,21 +78,25 @@
 		background: var(--TransBlack);}
 
 	.wrapper {
-		margin: auto;
-
+		margin: 	auto;
 		.positionSet {
-			margin: 15px;
-			box-shadow: 0 0 15px #000;
-		}
+			margin: 15px;}}
 
-		.image {
-			overflow: hidden;
+	.imageCitation {
+		margin: 	0 auto;
+		position: 	relative;
+		width: 		max-content;}
 
-			:global(img){
-				display: 	flex;
-				max-width: 	85vh;
-				max-height: 85vh;
-				object-fit: contain;}}}
+	.image {
+		overflow: 	hidden;
+		box-shadow: 0 0 15px #000;
+		background: var(--TransBlack);
+
+		:global(img){
+			display: 	flex;
+			max-width: 	85vh;
+			max-height: 85vh;
+			object-fit: contain;}}
 
 	.circleWrapper {
 		position: 	absolute;
@@ -111,11 +117,8 @@
 				border-radius: 	50%;
 				background: 	var(--TransWhite);}
 			.pageNumber {
-				padding: 		4px 20px 3px;
+				padding: 		2px 20px 1px;
 				border-radius: 	15px;
 				background: 	var(--accent9);
-
-				p {
-					color: var(--accent10);}}}}
-
+				p {	color: 		var(--accent10);}}}}
 </style>
