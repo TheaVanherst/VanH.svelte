@@ -23,7 +23,6 @@
             $direction = [0,0];
             setTimeout(() => { // this allows the pagination to update
                 urlSerializer({'page': currentPage});
-                pageStatUpdates();
             }, 500);},
 		nextPage = (next = true) => {
             toTop();
@@ -34,18 +33,14 @@
             setTimeout(() => {currentPage = index;}, 500);
             serializer();}
 
-	const pageStatUpdates = () => {
-        start = currentPage * perPage;
-        end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
-        trimmedRows = rows.slice(start, end + 1) ?? [];
-	}
+    $: start = currentPage * perPage;
+    $: end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
+    $: trimmedRows = rows.slice(start, end + 1) ?? [];
 
 	let fakeArray = Array(totalPages);
     const pageCountUpdate = () => {
-        pageStatUpdates();
         fakeArray = [...Array(totalPages).keys()];
-        lastPage = currentPage >= totalPages - 1;
-    };
+        lastPage = currentPage >= totalPages - 1;};
 
     $: totalPages && pageCountUpdate();
 </script>

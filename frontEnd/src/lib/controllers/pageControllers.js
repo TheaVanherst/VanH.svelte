@@ -20,11 +20,11 @@ export { deviceType };
 // TODO: Internal directory and status management
 
 const
-    directory =     writable("/"), // directory string
+    directory =     writable({raw: "/", stripped: '/'}), // directory string
     rootPath =      writable("/"); // the root directory (/home)
 const
     pageLoaded =    writable(false), // ensures that the layout is loaded
-    transitioning = writable(false); // detects page changes
+    transitioning = writable(true); // detects page changes
 
 export { directory, rootPath, pageLoaded, transitioning };
 
@@ -68,7 +68,8 @@ const
         // console.log(get(direction))
         rootProcessing(cfr, true);
 
-        !b ? directory.set(c) : directory.set(b); //idk why removing this breaks everything.
+        let dp = !b ? b : c;
+        directory.set({ raw: dp + "/", stripped: get(nsfw) ? dp.replaceAll("/nsfw",'') + "/" : dp + "/" });
     },
 
     rootProcessing = (directory, parsed = false) => {

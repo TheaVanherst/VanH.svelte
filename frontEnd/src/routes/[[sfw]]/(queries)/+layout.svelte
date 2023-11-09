@@ -28,12 +28,11 @@
         $dataSetStore.page = 		0;}
 
 	// page direction amendments & functionality
-    onMount(() => {paramLocalUpdate()});
+    onMount(() => {paramLocalUpdate();});
     afterNavigate((e) => {
-        if (e.delta) {
+        if (e.delta || e.type === "enter") {
             $transitioning = true;
-            setTimeout(() => {
-            	paramLocalUpdate();}, 300);
+            paramLocalUpdate();
             setTimeout(() => { // this allows the pagination to update
                 $transitioning = false;},300);}});
     beforeNavigate((e) => {

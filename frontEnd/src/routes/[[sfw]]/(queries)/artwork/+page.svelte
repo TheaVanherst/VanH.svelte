@@ -1,6 +1,4 @@
 <script>
-    import { onMount } 	from 'svelte';
-
     import Masonry 		from 'svelte-bricks';
     import Pagination 	from "$root/components/generic/controllers/pagination.svelte";
 
@@ -10,7 +8,7 @@
     import ArtworkCard 	from "$root/components/generic/containers/artworkCard.svelte";
 
     export let data;
-    let filteredData = [];
+    let filteredData = data.artworks;
 
     data.artworks =
 		data.artworks.map(artwork => ({
@@ -28,35 +26,30 @@
 					artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join('') : '')
 			).toLowerCase()}));
 
-    onMount(() => {filteredData = [];});
-    $: $dataSetStore.searchQuery && (filteredData = queryFilter(data.artworks, true));
+    $: $dataSetStore.searchQuery && (filteredData = $dataSetStore.searchQuery === "" ? data.artworks : queryFilter(data.artworks, true));
 
     let pagedData;
 </script>
 
 <div class="center">
 	{#if pagedData}
-		<div>
-			<Masonry
+		<Masonry
 				items=	{pagedData}
 				gap=	{10}
 				idKey=	{`slug`}
 				animate= {false}
 				let:item>
-					<div class="artPost">
-						<ArtworkCard postData={item}/>
-					</div>
-			</Masonry>
-		</div>
+			<div class="artPost">
+				<ArtworkCard postData={item}/>
+			</div>
+		</Masonry>
 	{/if}
 	{#if filteredData}
-		<div>
-			<Pagination
+		<Pagination
 				rows={filteredData} perPage={10}
 				goto={$dataSetStore.page}
 				bind:currentPage={$dataSetStore.page}
 				bind:trimmedRows={pagedData}/>
-		</div>
 	{/if}
 </div>
 

@@ -11,7 +11,11 @@ export { messengerEnabled }
 
 // ---------------------
 
-const fullscreenGallery = writable({gallery: undefined, citation: undefined, currentImage: 0});
+const fullscreenGallery = writable({
+    gallery: undefined,
+    citation: undefined,
+    currentImage: 0,
+    galleryDesc: undefined });
 
 const galleryChange = (item, citation,id = 0) => {
     if (item) {
@@ -20,18 +24,14 @@ const galleryChange = (item, citation,id = 0) => {
         fullscreenGallery.set({
             gallery: item.flat(),
             citation: citation.flat(),
-            currentImage: id
-        });
-    } else {
+            currentImage: id});}
+    else {
         document.body.classList.remove("noScroll");
         messengerEnabled.set(true);
         fullscreenGallery.set({
             gallery: undefined,
             citation: undefined,
-            currentImage: 0
-        });
-    }
-};
+            currentImage: 0 });}};
 
 export { fullscreenGallery, galleryChange }
 

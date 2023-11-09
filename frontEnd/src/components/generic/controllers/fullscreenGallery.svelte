@@ -63,7 +63,6 @@
 						</ImageTag>
 					</div>
 				{/if}
-				<p style="height: 500px">test</p>
 			</div>
 		</div>
 	</div>

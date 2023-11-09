@@ -7,7 +7,6 @@
 
     export let
         url = 		'',
-        internal = 	false,
 		redirectName = undefined,
 		nsfwPointer = undefined;
 
@@ -21,30 +20,22 @@
         else {
             newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
 
-        if (newRoute !== $directory && !$transitioning) {
+        if (newRoute !== $directory.raw && !$transitioning) {
             $rootPath = e;
 
-			directionProcessing($directory, newRoute, newRoute, paraLength);
+			directionProcessing($directory.raw, newRoute, newRoute, paraLength);
             $transitioning = true;
             window.scrollTo({top: 0, behavior: 'smooth'});
 
             setTimeout(async () => {
                 await goto(newRoute);
-                $transitioning = false;
-            }, 350);
-        }
+                $transitioning = false;}, 350);}
 
     	if (n) { // this sets a custom page name.
             $pageName = n;}
     }
 </script>
 
-{#if internal}
-	<a href="{url}" target="" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
-		<slot/>
-	</a>
-{:else}
-	<a href="https://www.{url}" target="_blank" data-sveltekit-preload-data>
-		<slot/>
-	</a>
-{/if}
+<a href="{url}" target="" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
+	<slot/>
+</a>

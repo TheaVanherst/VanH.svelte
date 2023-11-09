@@ -1,9 +1,12 @@
 <script>
     import { clickOutside } from "$lib/transitions/transitionPresets.js";
-    import { createdPush } 		from "$lib/builders/dateBuilder.js";
+    import { createdPush } 	from "$lib/builders/dateBuilder.js";
+    import { directory } 	from "$lib/controllers/pageControllers.js";
 
     import SanityGalleries 	from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
+
+    import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
 
 	import DividedTag 		from "$root/components/generic/wrappers/dividedTag.svelte";
     import ImageFloatCard 	from "$root/components/generic/imageContainers/imageFloatCard.svelte";
@@ -18,10 +21,8 @@
 			(postData?.commissionData?.characters ? postData.commissionData.characters?.length : 0);
 
     const
-		imageClick = () => {
-            active ? active = !active : false;},
-		cardFloatClick = () => {
-            active = active ? active : !active;}
+		imageClick = () => {	active ? active = !active : false;},
+		cardFloatClick = () => {active = active ? active : !active;}
 </script>
 
 <div class="postWrapper wideBorder"
@@ -31,7 +32,7 @@
 	 on:mouseleave={() => hover = false}>
 
 	<div class="galleryWrapper">
-		<div on:click={imageClick}>
+		<div class="gallery" on:click={imageClick}>
 			<SanityGalleries portableText={postData.gallery}/>
 		</div>
 		<div on:click={cardFloatClick}>
@@ -78,7 +79,9 @@
 					{/if}
 					{#if postData.tags?.length > 0}
 						{#each postData.tags as tag}
-							<InlineTag tag={tag}/>
+							<RedirectBuilder url="{$directory.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
+								<InlineTag tag={tag}/>
+							</RedirectBuilder>
 						{/each}
 					{/if}
 				</div>
@@ -88,22 +91,26 @@
 							Featured Character{arrayLength > 1 ? 's' : ''}:
 						</p>
 						{#each postData.characters as character}
-							<div class="characterCard">
-								<div class="icon mediaIcon shortBorder">
-									<SanityImage image={character.charIcon}/>
+<!--							<RedirectBuilder url="{$directory.stripped}?query={character.nickName.toLowerCase()}">-->
+								<div class="characterCard">
+									<div class="icon mediaIcon shortBorder">
+										<SanityImage image={character.charIcon}/>
+									</div>
+									<h4>{character.fullName}</h4>
 								</div>
-								<h4>{character.fullName}</h4>
-							</div>
+<!--							</RedirectBuilder>-->
 						{/each}
 					{/if}
 					{#if !!postData.commissionData?.characters}
 						{#each postData.commissionData.characters as character}
-							<div class="characterCard">
-								<div class="icon mediaIcon shortBorder">
-									<SanityImage image={character.charIcon}/>
+<!--							<RedirectBuilder url="{$directory.stripped}?query={character.nickName.toLowerCase()}">-->
+								<div class="characterCard">
+									<div class="icon mediaIcon shortBorder">
+										<SanityImage image={character.charIcon}/>
+									</div>
+									<h4>{character.fullName}</h4>
 								</div>
-								<h4>{character.fullName}</h4>
-							</div>
+<!--							</RedirectBuilder>-->
 						{/each}
 					{/if}
 
@@ -111,7 +118,6 @@
 
 					{#if postData.imageRefId || postData.photoshopRefId}
 						<div class="footer">
-							<p>Discord references:</p>
 							<p class="links">
 								{#if postData.imageRefId}
 									<a class="shortBorder" href={postData.imageRefId} target="_blank">
@@ -156,8 +162,11 @@
 		.galleryWrapper {
 			position: 	relative;}}
 
+	.alt {
+		margin: -5px 0 0 0;}
+
 	p {		margin: 7px 0;}
-	p + p {	margin: 4px 0;}
+	p + p {	margin: 5px 0;}
 
 	.characterCard {
 		display: 	flex;

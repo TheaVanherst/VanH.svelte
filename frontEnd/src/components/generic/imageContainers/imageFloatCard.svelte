@@ -59,7 +59,7 @@
 		> * {
 			display: block;}}
 
-	.wrapper {		margin: 	8px 15px 10px 10px;}
+	.wrapper {		margin: 	8px 12px 10px 10px;}
 	.titleCard {	background: var(--TransWhite);}
 	.accent {		background: var(--accent9);}
 	.previewCard.hovered .titleCard {
