@@ -2,7 +2,8 @@
 	const colours = [
         { name:'nsfwTags', 		colour:'#ff0582', text: '#fff'},
         { name:'genericTags', 	colour:'#c9c9c9', text: '#000' },
-        { name:'genreTag', 	colour:'#ffac40', text: '#000' }];
+        { name:'genreTag', 		colour:'#ffac40', text: '#000' },
+        { name:'explicitTags',	colour:'#a83fff', text: '#fff'}];
 
 	export let tag;
 

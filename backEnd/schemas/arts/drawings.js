@@ -101,6 +101,9 @@ export default defineType({
         name: 'nsfwTag', type: 'reference',
         to: {type: 'nsfwTags'},
       },{
+        name: 'explicitTag', type: 'reference',
+        to: {type: 'explicitTags'},
+      },{
         name: 'genericTag', type: 'reference',
         to: {type: 'genericTags'},
       },{
@@ -139,7 +142,7 @@ export default defineType({
           }
         },
       }],
-      validation: Rule => Rule.required(),
+      validation: Rule => Rule.required()
     }),
 
     defineField({

@@ -38,6 +38,7 @@ import socialMedia from './pageSpecific/websiteSettings/socialMedia'
 import featuredSocials from './pageSpecific/websiteSettings/featuredSocials'
 
 import generic from './tags/generic'
+import fetish from './tags/fetish'
 import explicit from './tags/explicit'
 import genre from './tags/genre'
 
@@ -56,6 +57,7 @@ const dataTypes = [
 
   // art tag data
   generic,
+  fetish,
   explicit,
   genre,
 

@@ -51,11 +51,11 @@
 				use:clickOutside
 			 	on:click_outside={() => galleryExit()}>
 			<div class="positionSet" on:click={() => gallerySwap()}>
-				<div class="image wideBorder">
-					{#if $fullscreenGallery?.gallery[position]}
+				{#if $fullscreenGallery?.gallery[position]}
+					<div class="image wideBorder">
 						<SanityImage image={$fullscreenGallery.gallery[position]}/>
-					{/if}
-				</div>
+					</div>
+				{/if}
 				{#if $fullscreenGallery?.citation[position]}
 					<div class="imageCitation">
 						<ImageTag border="shortBorder" position="relative">
@@ -63,6 +63,7 @@
 						</ImageTag>
 					</div>
 				{/if}
+				<p style="height: 500px">test</p>
 			</div>
 		</div>
 	</div>
@@ -72,6 +73,7 @@
 	.overlay {
         position: 	fixed;
 		display: 	flex;
+		overflow: 	scroll;
 		z-index: 	10;
 		width: 		100%;
 		height: 	100vh;
@@ -80,7 +82,7 @@
 	.wrapper {
 		margin: 	auto;
 		.positionSet {
-			margin: 15px;}}
+			margin: 50px 15px 15px;}}
 
 	.imageCitation {
 		margin: 	0 auto;

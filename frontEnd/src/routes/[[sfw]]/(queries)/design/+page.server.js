@@ -18,6 +18,8 @@ export const load = async ({ fetch, url }) => {
                 pieceName,
                 description,
                
+                "sfw": !NSFW,
+               
                 'slug': slug.current,
                 publishedAt,
                 
@@ -39,6 +41,11 @@ export const load = async ({ fetch, url }) => {
                     'renderType': renderType->renderName,
                     'styleType': styleType->styleName
                 },
+                
+                'tags': tagData[]|order(_type desc)-> {
+                    title,
+                    'type': _type
+                }
             }
         }`
     )]);

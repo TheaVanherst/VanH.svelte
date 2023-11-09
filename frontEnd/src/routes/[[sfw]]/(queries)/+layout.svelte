@@ -1,44 +1,52 @@
 <script>
-	import { slide } from "svelte/transition";
-
+	import { slide } 	from "svelte/transition";
     import { onMount } 	from "svelte";
     import { page } 	from "$app/stores";
 
     import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
 
-    import { navigationVisibility, socialMediaVisibility, transitioning } from "$lib/controllers/pageControllers.js";
+    import { navigationVisibility, socialMediaVisibility, transitioning
+							  } from "$lib/controllers/pageControllers.js";
     import { dataSetStore } 	from "$lib/pageSettings/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/searchController.js";
-    import { beforeNavigate } 	from "$app/navigation";
+    import { afterNavigate, beforeNavigate } from "$app/navigation";
 
     $socialMediaVisibility = 	true;
     $navigationVisibility = 	true;
 
     export let data;
 
-    onMount(() => {
-        $dataSetStore.searchQuery = $page.url.searchParams.get("query") || "";
+    // generic query functions
+    const paramLocalUpdate = () => {
+        value = $page.url.searchParams.get("query") || "";
+        value = decodeURIComponent(value.replaceAll('-',' '))
         $dataSetStore.page = $page.url.searchParams.get("page") || 0;
+        $dataSetStore.searchQuery = value;};
+    const queryReset = () => {
+        value = "";
+        $dataSetStore.searchQuery = "";
+        $dataSetStore.page = 		0;}
 
-        if ($dataSetStore.searchQuery) {
-            value = $dataSetStore.searchQuery.replaceAll('-',' ');
-            value = decodeURIComponent(value);
-            $dataSetStore.searchQuery = value;}});
-
+	// page direction amendments & functionality
+    onMount(() => {paramLocalUpdate()});
+    afterNavigate((e) => {
+        if (e.delta) {
+            $transitioning = true;
+            setTimeout(() => {
+            	paramLocalUpdate();}, 300);
+            setTimeout(() => { // this allows the pagination to update
+                $transitioning = false;},300);}});
     beforeNavigate((e) => {
         if (e.from.route.id !== e?.to?.route?.id) {
-            value = "";
-            $dataSetStore.searchQuery = "";
-            $dataSetStore.page = 		0;}});
+            queryReset();}});
 
+    // search functionality
     const hardSearch = (query = "", page = 0) => {
-        $dataSetStore.searchQuery = query;
-        $dataSetStore.page = 		page;
-
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
         $transitioning = true;
         setTimeout(() => { // this allows the pagination to update
+            $dataSetStore.searchQuery = query;
+            $dataSetStore.page = 		page;
             urlSerializer({
 				'query': $dataSetStore.searchQuery,
 				'page': $dataSetStore.page});}, 300);

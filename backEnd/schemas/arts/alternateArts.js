@@ -1,7 +1,7 @@
 
 import { defineField, defineType } from 'sanity'
 import { slugUniqueCheck } from '../../lib/slugUniqueCheck'
-import { ImageIcon } from '@sanity/icons'
+import {ArchiveIcon, BookIcon, ClipboardImageIcon, ImageIcon} from '@sanity/icons'
 
 import { nsfwBlock, authorBlock } from '../chunks/genericBlocks'
 
@@ -9,24 +9,30 @@ export default defineType({
   name: 'alternateArts',
   title: 'Design & Media',
   type: 'document',
+  groups: [
+    { name: 'PieceData', title: 'Piece Data', default: true,
+      icon: ClipboardImageIcon },
+    { name: 'MetaData', title: 'Archive / Metadata',
+      icon: ArchiveIcon },
+  ],
   fields: [
     // TODO: User Data
     defineField({
       name: 'pieceName', title: 'Artwork Piece Name',
       description: 'what is the name of the artwork piece?',
-      type: 'string',
+      type: 'string', group: 'PieceData',
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'description', title: 'Description',
       description: 'give a short description of the piece(s)',
-      type: 'text',
+      type: 'text', group: 'PieceData',
       rows: 3,
     }),
 
     defineField({
       name: 'slug', title: 'Slug',
-      type: 'slug',
+      type: 'slug', group: 'MetaData',
       options: {
         source: 'pieceName',
         maxLength: 24,
@@ -37,12 +43,32 @@ export default defineType({
 
     defineField({
       name: 'gallery', title: 'Gallery of Images',
-      type: 'blockGallery',
+      type: 'blockGallery', group: 'PieceData'
+    }),
+
+    defineField({
+      name: 'tagData', title: 'Tags',
+      description: 'Searchable Tags',
+      type: 'array', group: 'MetaData',
+      of: [{
+        name: 'nsfwTag', type: 'reference',
+        to: {type: 'nsfwTags'},
+      },{
+        name: 'explicitTag', type: 'reference',
+        to: {type: 'explicitTags'},
+      },{
+        name: 'genericTag', type: 'reference',
+        to: {type: 'genericTags'},
+      },{
+        name: 'genreTag', type: 'reference',
+        to: {type: 'genreTag'},
+      }],
+      validation: Rule => Rule.required().unique(),
     }),
 
     defineField({
       name: 'authors', title: 'Authors',
-      type: 'array',
+      type: 'array', group: 'MetaData',
       of: [
         {
           name: 'object',
@@ -72,14 +98,19 @@ export default defineType({
           },
         },
       ],
-      validation: Rule => Rule.required(),
+      validation: Rule => Rule.required()
     }),
 
-    nsfwBlock,
+    defineField({
+      name: 'NSFW', title: 'Preview Blur',
+      description: 'Should we blur this image?',
+      type: 'boolean', group: 'MetaData',
+      initialValue: false,
+    }),
 
     defineField({
       name: 'publishedAt', title: 'Published at',
-      type: 'datetime',
+      type: 'datetime', group: 'MetaData',
       validation: Rule => Rule.required(),
       initialValue: (new Date()).toISOString()
     }),

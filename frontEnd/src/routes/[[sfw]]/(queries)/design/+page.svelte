@@ -27,8 +27,8 @@
                     artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join('') : '')
 			).toLowerCase()}));
 
-    onMount(() => {
-        filteredData = queryFilter(data.designs);});
+    onMount(() => {filteredData = [];});
+    $: $dataSetStore.searchQuery && (filteredData = queryFilter(data.designs, true));
 
     let pagedData;
 </script>

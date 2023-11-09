@@ -1,15 +1,15 @@
 
 import { defineField, defineType } from 'sanity'
-import { CircleIcon } from '@sanity/icons'
+import { ErrorOutlineIcon } from '@sanity/icons'
 
 const
   internalTags = defineType({
-    name: 'explicitTags', title: 'Explicit Tags',
+    name: 'nsfwTags', title: 'NSFW Tags',
     type: 'document',
     fields: [
       defineField({
         name: 'title', title: 'Title', type: 'string'})],
-    icon: CircleIcon,
+    icon: ErrorOutlineIcon,
     preview: {
       select: {title: 'title', desc: 'description'},
       prepare: ({title, emoji, desc}) => {
