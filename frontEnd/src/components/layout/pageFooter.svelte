@@ -6,7 +6,9 @@
     import { page } from "$app/stores";
 </script>
 
-<div class="footer {$screenSize < 800 ? 'cropped' : ''} {$screenType < 3 ? 'mobile' : ''}">
+<div class="footer"
+		class:cropped={$screenSize < 800}
+		class:mobile={$screenType < 3}>
 	<div class="left">
 		{#if $page.url.hostname !== "localhost"} <!-- dev check -->
 			<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>
@@ -16,14 +18,12 @@
 		<p id="splash">
 			Splash text by <span>{$splashText?.[2]?.user ?? submitters?.thea?.user ?? "[NOT FOUND]"}</span>
 		</p><p>
-			Website developed and created by Thea Vanherst @ <span>vanh.art</span>
+			Website developed and created by Thea Vanherst @ <a href="https://github.com/TheaVanherst/VanH.svelte/">vanh.art</a>
 		</p>
 	</div>
 </div>
 
 <style lang="scss">
-	@import "./src/commonStyles.scss";
-
 	* {	transition: ease .3s; }
 
 	.cropped {
@@ -50,12 +50,11 @@
 		position: 	relative;
 		bottom: 	0;
 
-		p:hover {
-			span {
+
+		a { color: white;
+			&:hover {
 				animation:
-					colorRotateFadeIn .3s linear,
-					colorRotate 1s .3s linear infinite;
-			}}
+					colorRotate 3s linear infinite;}}
 
 		.left {	margin: 0 15px 0 15px;
 				width:	max-content;
@@ -69,4 +68,8 @@
 			p {		text-align: right;
 					color: var(--accent10);}
 			span {	color: var(--accent9);}}}
+
+	#splash {
+		span:hover {
+			color: var(--accent1);}}
 </style>

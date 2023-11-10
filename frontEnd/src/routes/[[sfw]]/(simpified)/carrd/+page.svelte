@@ -33,7 +33,7 @@
 									<SanityImage image={social.platformName.socialLogo}/>
 								</div>
 								<div class="text">
-									<h3 class="selectInv"> {social.platformName.socialName} </h3>
+									<h3> {social.platformName.socialName} </h3>
 								</div>
 							</div>
 						</RainbowButtonWrap>
@@ -71,12 +71,7 @@
 			margin: 	auto 0;
 			max-width: 	90px;
 			max-height: 90px;
-			aspect-ratio: 1/1;
-		}
-		&:hover {
-			h3 {	@include rainbowTransition();}
-			img {	transform: 	scale(1.1) rotate(6deg);}}
-
+			aspect-ratio: 1/1;}
 		.socialCard {
 			background: 	var(--TransBlack);
 			border-left: 	1px solid var(--accent6);

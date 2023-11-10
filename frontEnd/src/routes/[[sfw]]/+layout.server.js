@@ -3,6 +3,7 @@ import client from "$lib/sanityClient.js";
 import { socialPlatformQuery } from "$lib/queries/websiteSettings.js";
 
 export async function load({ params }) {
+
     const [allQueries] = await Promise.all([client.fetch(`{
         "featuredSocials" :
             *[ _type == 'featuredSocials' ]{

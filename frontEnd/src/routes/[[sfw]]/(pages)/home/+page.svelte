@@ -3,11 +3,11 @@
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 
-	import CharacterFeature from "$root/components/sections/homePage/characters/characterShowcase.svelte";
-    import WorkshopFeature 	from "$root/components/sections/homePage/embedded/workshopFeature.svelte";
-    import GithubFeature 	from "$root/components/sections/homePage/embedded/githubFeature.svelte";
-    import KofiCards from "$root/components/sections/homePage/kofiCards.svelte";
-    import QandaFeature 	from "$root/components/sections/homePage/qandaFeature.svelte";
+	import CharacterFeature from "$root/components/pageSpecific/homePage/characters/characterShowcase.svelte";
+    import WorkshopFeature 	from "$root/components/pageSpecific/homePage/embedded/workshopFeature.svelte";
+    import GithubFeature 	from "$root/components/pageSpecific/homePage/embedded/githubFeature.svelte";
+    import KofiCards from "$root/components/pageSpecific/homePage/kofiCards.svelte";
+    import QandaFeature 	from "$root/components/pageSpecific/homePage/qandaFeature.svelte";
 
     export let data;
 </script>

@@ -5,7 +5,7 @@
     import { dataSetStore } from "$lib/pageSettings/pageSettings.js";
     import { queryFilter } 	from "$lib/controllers/searchController.js";
 
-    import ArtworkCard 	from "$root/components/generic/containers/artworkCard.svelte";
+    import ArtworkCard from "$root/components/pageSpecific/artworkPages/artworkCard.svelte";
 
     export let data;
     let filteredData = data.designs;

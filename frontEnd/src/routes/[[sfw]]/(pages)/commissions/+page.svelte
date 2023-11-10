@@ -9,7 +9,7 @@
 
     import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
     import ImageTag 		from "$root/components/generic/imageContainers/imageTag.svelte";
-    import CommissionPrices from "$root/components/sections/commissionPage/commissionPrices.svelte";
+   	import CommissionPrices from "$root/components/pageSpecific/commissionPage/commissionPrices.svelte";
 
     export let data;
 </script>
@@ -21,7 +21,7 @@
 				<swiper-slide>
 					<div class="imageCard wideBorder">
 						<SanityImage image="{image.imageRender}"/>
-						<ImageTag position={[0,0]}>
+						<ImageTag>
 							<p>{image.styleType}, {image.renderType}</p>
 						</ImageTag>
 					</div>

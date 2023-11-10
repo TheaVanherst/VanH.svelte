@@ -8,7 +8,7 @@ export const load = async ({ fetch, url }) => {
     // pageData.currentPage = parseInt(url.searchParams.get("page")) || 0;
     // pageData.currentPosition = pageData.currentPage * pageData.itemsPerPage;
     // pageData.futurePosition = (pageData.currentPosition + 1) * pageData.itemsPerPage;
-    // pageData.maxPosition = await client.fetch(`count(*[_type == 'artworks'])`)
+    // pageData.maxPosition = await client.fetch(`count(*[_type == 'artworkPages'])`)
     // pageData.maxPages = Math.ceil(pageData.maxPosition / pageData.itemsPerPage);
 
     const [allQueries] = await Promise.all([client.fetch(`{

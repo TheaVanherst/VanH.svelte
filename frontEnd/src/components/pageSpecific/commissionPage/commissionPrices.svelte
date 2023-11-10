@@ -16,7 +16,7 @@
 			{#if $nsfw}
 				<div class="previewBanner regularBorder imageWrapper">
 					<SanityImage image={commissionType.previewImage}/>
-					<ImageTag position={[0,0]} border="shortBorder">
+					<ImageTag>
 						<p>{commissionType.styleType}</p>
 					</ImageTag>
 				</div>

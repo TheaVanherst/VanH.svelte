@@ -21,7 +21,7 @@ export { deviceType };
 
 const
     directory =     writable({raw: "/", stripped: '/'}), // directory string
-    rootPath =      writable("/"); // the root directory (/home)
+    rootPath =      writable("/"); // the root directory (/homePage)
 const
     pageLoaded =    writable(false), // ensures that the layout is loaded
     transitioning = writable(true); // detects page changes

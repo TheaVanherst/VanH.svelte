@@ -1,22 +1,25 @@
 <script>
-    import Container 		from "$root/components/generic/containers/container.svelte";
-    import RedirectBuilder 	from "$root/components/generic/controllers/redirectBuilder.svelte";
     import { slide } from "svelte/transition";
 
+    import Container 		from "$root/components/generic/containers/container.svelte";
+    import RedirectBuilder 	from "$root/components/generic/controllers/redirectBuilder.svelte";
+
+    // setup
     import { socialMediaVisibility, navigationVisibility } from "$lib/controllers/pageControllers.js";
     $socialMediaVisibility = 	false;
     $navigationVisibility = 	false;
 
+    // makes up for the lack of transitional handler
     import { afterNavigate, beforeNavigate } from "$app/navigation";
-    afterNavigate(() => {	active = true;});
-    beforeNavigate(() => {	active = false;});
+    import { transitioning } from "$lib/controllers/pageControllers.js";
+
+    afterNavigate(() => {	$transitioning = false;});
+    beforeNavigate(() => {	$transitioning = true;});
 
     export let data;
-
-    let active = false;
 </script>
 
-{#if active}
+{#if  !$transitioning}
 	<div class="center" transition:slide>
 		<Container>
 			<div class="wrapper">
@@ -26,16 +29,20 @@
 					<p>Do you wish to filter the website of any NSFW content?</p>
 				</div>
 
-				<div class="buttonWrapper">
-					<div class="button regularBorder filter">
-						<RedirectBuilder internal={true} url={"/home"} nsfwPointer={false}>
-							<h4>Filter</h4>
+				<div class="buttonTable">
+					<div class="buttonWrapper">
+						<RedirectBuilder url={"/homePage"} nsfwPointer={false}>
+							<div class="button regularBorder filter">
+								<h4>Filter</h4>
+							</div>
 						</RedirectBuilder>
 					</div>
 
-					<div class="button regularBorder unfilter">
-						<RedirectBuilder internal={true} url={"/home"} nsfwPointer={true}>
-							<h4>Continue</h4>
+					<div class="buttonWrapper">
+						<RedirectBuilder url={"/homePage"} nsfwPointer={true}>
+							<div class="button regularBorder unfilter">
+								<h4>Continue</h4>
+							</div>
 						</RedirectBuilder>
 					</div>
 				</div>
@@ -50,7 +57,7 @@
 		width: 		100%;
 		margin: 	20px auto auto auto;}
 
-	.wrapper, .textWrapper, .buttonWrapper {
+	.wrapper, .textWrapper, .buttonTable {
 		display: 	grid;
 		gap: 		10px;}
 
@@ -60,11 +67,13 @@
 			margin: 	0 auto;
 			text-align: center;}}
 
-	.buttonWrapper {
-		display: flex;}
+	.buttonTable {
+		display: flex;
+
+		.buttonWrapper {
+			width: 50%;}}
 
 	.button {
-		width: 50%;
 		transition: background .3s ease;
 
 		h4 {

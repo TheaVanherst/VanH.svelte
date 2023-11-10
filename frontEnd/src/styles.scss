@@ -56,14 +56,10 @@ body {
 	color:	 		var(--accent9);
 
 	overflow-x:         hidden;
-	scroll-behavior:    smooth;
-
-	&::selection {
-		color:  var(--accent6);}}
+	scroll-behavior:    smooth;}
 
 .noScroll {
-	overflow: hidden;
-}
+	overflow: hidden;}
 
 // cursor defaults
 
@@ -80,16 +76,12 @@ a {         cursor: crosshair;}
 /* style formatting */
 
 a { text-decoration:    none;
-	&::selection {
-		color: var(--accent2);}
 	* { color: var(--accent9);}}
 
 b {
 	color: var(--accent3);}
 
 h1, h2, h3, h4, h5 {
-	&::selection {
-		color: var(--accent6);}
 
 	vertical-align: middle;
 	font-family:    "Playfair Display", serif;
@@ -98,10 +90,6 @@ h1, h2, h3, h4, h5 {
 	position:   relative;
 	margin:     0;
 	padding:    0;}
-
-.selectInv {
-	&::selection {
-		color:  var(--accent2);}}
 
 h1 {font-size: 2.00rem; line-height: 2.00rem;   text-transform: uppercase;}
 h2 {font-size: 1.75rem; line-height: 1.75rem;   text-transform: uppercase;}
@@ -114,8 +102,6 @@ p { font-size:      12px;
 	white-space:    break-spaces;
 	line-height:    120%;
 	color:	 		var(--accent9);
-	&::selection {
-		color:      var(--accent6);}
 	margin: 		0;}
 
 .subtitle {
@@ -136,23 +122,15 @@ p { font-size:      12px;
 
 	span {
 		transition: color .3s ease-in-out;
-		color: var(--accent1);
-		&::selection {
-			color: var(--accent1);};}
+		color: var(--accent3);;}
 
 	&:hover {
 		> span {
-			color: var(--accent3);
-			&::selection {
-				color: var(--accent3)!important;}}}}
+			color: var(--accent2);}}}
 /* list formatting */
 
 title {
 	display: none;}
-
-span {
-	&::selection {
-		color:      var(--accent1);}}
 
 ul {
 	padding: 0 0 0 15px;
@@ -162,8 +140,6 @@ ul {
 		font-family:    "Helvetica", Sans-serif;
 		font-size:      12px;
 		line-height:    110%;
-		&::selection {
-			color:      var(--accent6);}
 
 		&::marker {
 			font-weight: 	700;

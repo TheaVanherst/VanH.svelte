@@ -1,22 +1,18 @@
 <script>
 	import { slide } 	from "svelte/transition";
-    import { onMount } 	from "svelte";
-    import { page } 	from "$app/stores";
 
     import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
+    import { transitioning } 	from "$lib/controllers/pageControllers.js";
 
-    import { navigationVisibility, socialMediaVisibility, transitioning
-							  } from "$lib/controllers/pageControllers.js";
     import { dataSetStore } 	from "$lib/pageSettings/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/searchController.js";
-    import { afterNavigate, beforeNavigate } from "$app/navigation";
-
-    $socialMediaVisibility = 	true;
-    $navigationVisibility = 	true;
 
     export let data;
 
     // generic query functions
+
+    import { page } 	from "$app/stores";
+
     const paramLocalUpdate = () => {
         value = $page.url.searchParams.get("query") || "";
         value = decodeURIComponent(value.replaceAll('-',' '))
@@ -28,6 +24,10 @@
         $dataSetStore.page = 		0;}
 
 	// page direction amendments & functionality
+
+    import { onMount } 	from "svelte";
+    import { afterNavigate, beforeNavigate } from "$app/navigation";
+
     onMount(() => {paramLocalUpdate();});
     afterNavigate((e) => {
         if (e.delta || e.type === "enter") {
@@ -40,6 +40,7 @@
             queryReset();}});
 
     // search functionality
+
     const hardSearch = (query = "", page = 0) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         $transitioning = true;

@@ -1,4 +1,7 @@
 <script>
+    import { register } from 'swiper/element/bundle';
+    import { onMount } from "svelte";
+
     import { screenType } 	from '$lib/controllers/pageControllers.js';
 
 	export let
@@ -10,12 +13,7 @@
 	export let
         footerAdd = true;
 
-    import { register } from 'swiper/element/bundle';
-    import { onMount } from "svelte";
-
-    onMount(() => {
-        register();
-	})
+    onMount(() => {register();})
 </script>
 
 {#if !customCalc}
@@ -55,8 +53,8 @@
 	swiper-container::part(bullet),
 	swiper-container::part(bullet-active) {
 		border-radius:  3px;
-		width: 	        35px;
-		height:         3px;}
+		width: 	        30px;
+		height:         4px;}
 	swiper-container::part(bullet) {
 		background: var(--accent2);
 		opacity:    1;

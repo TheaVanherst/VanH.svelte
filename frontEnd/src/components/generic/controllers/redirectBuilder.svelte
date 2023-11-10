@@ -18,7 +18,7 @@
             $nsfw = p
             newRoute = (p ? '/nsfw' : '') + e;}
         else {
-            newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
+            newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e + "/";}
 
         if (newRoute !== $directory.raw && !$transitioning) {
             $rootPath = e;

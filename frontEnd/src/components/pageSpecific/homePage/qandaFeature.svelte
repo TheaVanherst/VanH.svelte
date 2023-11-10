@@ -46,18 +46,17 @@
 </Container>
 
 <style lang="scss">
-	@import "../../../commonStyles.scss";
-
 	* {	transition: .3s ease; }
 
-	.q {
-		text-transform: initial!important;}
+	.q {text-transform: initial!important;}
 
 	.row:hover {
 		.profileIcon {
 			transform: scale(1.2);}
 		.q {margin: 4px 0 4px 20px;}
-		.s {margin: 2px 0 0 75px;}}
+		.s {margin: 2px 0 0 75px;}
+		span {color: var(--accent1);}
+	}
 
 	.profileIcon {
 		aspect-ratio: 	1/1;
@@ -79,4 +78,6 @@
 		.s {margin: 2px 0 0 15px;}
 		.a {margin: 4px 4px 4px 4px;
 			text-align: right;}}
+
+	span {	color: var(--accent9);}
 </style>
