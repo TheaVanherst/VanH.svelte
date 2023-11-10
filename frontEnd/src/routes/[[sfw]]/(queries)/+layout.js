@@ -1,7 +1,6 @@
 
-import { socialMediaVisibility, navigationVisibility } from "$lib/controllers/pageControllers.js";
+import { navigationSettings } from "$lib/pageSettings/redirectHandling.js";
 
-export async function load () {
-    socialMediaVisibility.set(true);
-    navigationVisibility.set(true);
+export function load () {
+    navigationSettings.set({ logo: true, navigation: true, socials: true, search: true });
 }

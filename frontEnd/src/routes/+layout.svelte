@@ -12,7 +12,8 @@
     import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
     import FullscreenGallery from "$root/components/generic/controllers/fullscreenGallery.svelte";
 
-    import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded } from "$lib/controllers/pageControllers.js";
+    import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded
+    	} from "$lib/pageSettings/redirectHandling.js";
     import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
@@ -23,7 +24,8 @@
             case Device.isPhone:  	$deviceType = 0; break;
             case Device.isTablet: 	$deviceType = 1; break;
             default:      			$deviceType = 2; break;}
-        $pageLoaded = true;});
+        $pageLoaded = true;
+    });
 
     $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
     $: $deviceType === 2 ?

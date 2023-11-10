@@ -2,7 +2,7 @@
     import { fly } from "svelte/transition";
     import {quartIn, quartOut} from "svelte/easing";
 
-    import {screenSize} from "$lib/controllers/pageControllers.js";
+    import {screenSize} from "$lib/pageSettings/redirectHandling.js";
 
     const
 		getRandomInt = (max) => {

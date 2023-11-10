@@ -4,7 +4,7 @@
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
     import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
 
-    import { deviceType } from "$lib/controllers/pageControllers.js";
+    import { deviceType } from "$lib/pageSettings/redirectHandling.js";
 
     export let
 		image = undefined;

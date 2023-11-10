@@ -1,7 +1,7 @@
 <script>
     import { clickOutside } from "$lib/transitions/transitionPresets.js";
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
-    import { directory } 	from "$lib/controllers/pageControllers.js";
+    import { directory } 	from "$lib/pageSettings/redirectHandling.js";
 
     import SanityGalleries 	from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage 		from "$root/serializer/types/sanityImage.svelte";

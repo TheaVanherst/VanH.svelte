@@ -1,5 +1,5 @@
 <script>
-	import { screenType } from "$lib/controllers/pageControllers.js";
+	import { screenType } from "$lib/pageSettings/redirectHandling.js";
 
     import Container from "../../../generic/containers/container.svelte";
 	import GithubCard from "$root/components/pageSpecific/homePage/embedded/githubCard.svelte";

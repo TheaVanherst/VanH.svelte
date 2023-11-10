@@ -1,6 +1,6 @@
 <script>
-    import { scrollPos } from '$lib/controllers/pageControllers.js';
-    import { deviceType } from "$lib/controllers/pageControllers.js";
+    import { scrollPos } from '$lib/pageSettings/redirectHandling.js';
+    import { deviceType } from "$lib/pageSettings/redirectHandling.js";
 
     // TODO: NOTE;
     // Not using --ypos, and trying to use $scrollPos causes a slight delay when scrolling.

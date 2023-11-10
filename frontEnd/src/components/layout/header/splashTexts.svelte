@@ -2,7 +2,7 @@
 	import { fly, scale } from "svelte/transition";
 
     import { splash } from "$lib/databases/splashTextDatabase.js";
-    import { nsfw } from "$lib/controllers/pageControllers.js";
+    import { nsfw } from "$lib/pageSettings/redirectHandling.js";
     import { splashText } from "$lib/pageSettings/pageSettings.js";
 
 	let text = "undefined?",

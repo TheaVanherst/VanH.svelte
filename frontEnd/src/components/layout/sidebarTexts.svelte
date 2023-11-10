@@ -1,6 +1,6 @@
 <script>
     import { horizontalSlide } from "$lib/transitions/transitionPresets.js";
-    import { screenType } 	from '$lib/controllers/pageControllers.js';
+    import { screenType } 	from '$lib/pageSettings/redirectHandling.js';
 
 	export let
 		titlecard,

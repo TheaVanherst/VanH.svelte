@@ -1,5 +1,5 @@
 <script>
-    import { directionProcessing, directory, nsfw, rootPath, transitioning } from '$lib/controllers/pageControllers.js';
+    import { directionProcessing, directory, nsfw, transitioning } from '$lib/pageSettings/redirectHandling.js';
     import { pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { goto } from "$app/navigation";
@@ -18,10 +18,9 @@
             $nsfw = p
             newRoute = (p ? '/nsfw' : '') + e;}
         else {
-            newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e + "/";}
+            newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
 
-        if (newRoute !== $directory.raw && !$transitioning) {
-            $rootPath = e;
+        if (newRoute + "/" !== $directory.raw && !$transitioning) {
 
 			directionProcessing($directory.raw, newRoute, newRoute, paraLength);
             $transitioning = true;

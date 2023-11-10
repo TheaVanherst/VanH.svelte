@@ -3,7 +3,7 @@ import { get } from "svelte/store"
 import { page } from '$app/stores';
 import { goto } from "$app/navigation";
 
-import { direction, nsfw } from "$lib/controllers/pageControllers.js";
+import { direction, nsfw } from "$lib/pageSettings/redirectHandling.js";
 import { dataSetStore } from "$lib/pageSettings/pageSettings.js";
 
 const

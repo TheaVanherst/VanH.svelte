@@ -1,7 +1,7 @@
 
-import {navigationVisibility, socialMediaVisibility} from "$lib/controllers/pageControllers.js";
+import { nsfw } from "$lib/pageSettings/redirectHandling.js";
 
-export function load () {
-    socialMediaVisibility.set(true);
-    navigationVisibility.set(true);
-}
+export async function load({ params }) {
+    nsfw.set(params.sfw === 'nsfw');
+        // needs to be done locally.
+};

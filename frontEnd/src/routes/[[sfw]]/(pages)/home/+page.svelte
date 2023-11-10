@@ -1,5 +1,5 @@
 <script>
-    import {nsfw} from "$lib/controllers/pageControllers.js";
+    import {nsfw} from "$lib/pageSettings/redirectHandling.js";
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 

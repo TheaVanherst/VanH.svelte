@@ -2,7 +2,7 @@
     import ProfileBar 			from "$root/components/layout/header/bannerAnimation.svelte";
     import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
 
-    import { deviceType, pageLoaded } from "$lib/controllers/pageControllers.js";
+    import { deviceType, pageLoaded } from "$lib/pageSettings/redirectHandling.js";
 
     let hover = false;
 </script>

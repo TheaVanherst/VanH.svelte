@@ -1,8 +1,11 @@
 
 import client from "$lib/sanityClient.js";
 import { socialPlatformQuery } from "$lib/queries/websiteSettings.js";
+import {navigationSettings} from "$lib/pageSettings/redirectHandling.js";
 
-export async function load({ params }) {
+export async function load () {
+    navigationSettings.set({ logo: true, navigation: false, socials: false, search: false });
+        // needs to be done on the server to allow the +page to be prioritized.
 
     const [allQueries] = await Promise.all([client.fetch(`{
         "featuredSocials" :
@@ -20,7 +23,5 @@ export async function load({ params }) {
     )]);
 
     return {
-        dParams: params.sfw,
-        featured: allQueries.featuredSocials[0].socialMedia
-    }
+        featured: allQueries.featuredSocials[0].socialMedia}
 }

@@ -1,5 +1,5 @@
 <script>
-	import {screenType} from "$lib/controllers/pageControllers.js";
+	import {screenType} from "$lib/pageSettings/redirectHandling.js";
 
     import SanityImage 	from "$root/serializer/types/sanityImage.svelte";
     import Container 	from "../../generic/containers/container.svelte";

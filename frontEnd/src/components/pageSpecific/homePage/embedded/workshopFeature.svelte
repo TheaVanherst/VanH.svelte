@@ -6,7 +6,7 @@
     import WorkshopCard 	from "$root/components/pageSpecific/homePage/embedded/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/homePage/embedded/workshopSnippet.svelte";
 
-    import { screenSize, deviceType, nsfw } from '$lib/controllers/pageControllers.js';
+    import { screenSize, deviceType, nsfw } from '$lib/pageSettings/redirectHandling.js';
 
     let moreToggle = false;
 

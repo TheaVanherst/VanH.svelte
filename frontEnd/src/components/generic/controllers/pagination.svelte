@@ -2,7 +2,7 @@
 	import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
     import { urlSerializer } from "$lib/controllers/searchController.js";
-    import { direction } from "$lib/controllers/pageControllers.js";
+    import { direction } from "$lib/pageSettings/redirectHandling.js";
 
     export let
 		rows, trimmedRows, perPage,

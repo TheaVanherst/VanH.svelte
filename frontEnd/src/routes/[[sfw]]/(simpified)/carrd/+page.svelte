@@ -1,5 +1,5 @@
 <script>
-	import { nsfw } from "$lib/controllers/pageControllers.js";
+	import { nsfw } from "$lib/pageSettings/redirectHandling.js";
 
     import SanityImage 			from "$root/serializer/types/sanityImage.svelte";
     import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";

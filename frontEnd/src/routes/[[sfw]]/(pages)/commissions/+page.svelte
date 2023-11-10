@@ -1,6 +1,6 @@
 <script>
-    import { screenType } 	from '$lib/controllers/pageControllers.js';
-    import { nsfw } from "$lib/controllers/pageControllers.js";
+    import { screenType } 	from '$lib/pageSettings/redirectHandling.js';
+    import { nsfw } from "$lib/pageSettings/redirectHandling.js";
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";

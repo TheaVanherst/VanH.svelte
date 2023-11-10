@@ -3,7 +3,7 @@
     import CharacterCard 	from "$root/components/generic/imageContainers/showcaseCard.svelte";
     import InfoPlate 			from "$root/components/pageSpecific/homePage/characters/characterInfoPlate.svelte";
 
-    import { nsfw } from "$lib/controllers/pageControllers.js";
+    import { nsfw } from "$lib/pageSettings/redirectHandling.js";
     export let dataset = {};
 </script>
 

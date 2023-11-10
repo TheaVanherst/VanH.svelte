@@ -2,7 +2,7 @@
     import { register } from 'swiper/element/bundle';
     import { onMount } from "svelte";
 
-    import { screenType } 	from '$lib/controllers/pageControllers.js';
+    import { screenType } 	from '$lib/pageSettings/redirectHandling.js';
 
 	export let
 		maxWidth = 3,

@@ -4,52 +4,38 @@
     import Container 		from "$root/components/generic/containers/container.svelte";
     import RedirectBuilder 	from "$root/components/generic/controllers/redirectBuilder.svelte";
 
-    // setup
-    import { socialMediaVisibility, navigationVisibility } from "$lib/controllers/pageControllers.js";
-    $socialMediaVisibility = 	false;
-    $navigationVisibility = 	false;
-
-    // makes up for the lack of transitional handler
-    import { afterNavigate, beforeNavigate } from "$app/navigation";
-    import { transitioning } from "$lib/controllers/pageControllers.js";
-
-    afterNavigate(() => {	$transitioning = false;});
-    beforeNavigate(() => {	$transitioning = true;});
-
     export let data;
 </script>
 
-{#if  !$transitioning}
-	<div class="center" transition:slide>
-		<Container>
-			<div class="wrapper">
-				<div class="textWrapper">
-					<h2>NSFW Content</h2>
-					<p>This website contains NSFW content, 'NSFW' meaning "Not Safe For Work" & is not suitable for all audiences, especially those under the age of 18.</p>
-					<p>Do you wish to filter the website of any NSFW content?</p>
+<div class="center" transition:slide>
+	<Container>
+		<div class="wrapper">
+			<div class="textWrapper">
+				<h2>NSFW Content</h2>
+				<p>This website contains NSFW content, 'NSFW' meaning "Not Safe For Work" & is not suitable for all audiences, especially those under the age of 18.</p>
+				<p>Do you wish to filter the website of any NSFW content?</p>
+			</div>
+
+			<div class="buttonTable">
+				<div class="buttonWrapper">
+					<RedirectBuilder url={"/home"} nsfwPointer={false}>
+						<div class="button regularBorder filter">
+							<h4>Filter</h4>
+						</div>
+					</RedirectBuilder>
 				</div>
 
-				<div class="buttonTable">
-					<div class="buttonWrapper">
-						<RedirectBuilder url={"/homePage"} nsfwPointer={false}>
-							<div class="button regularBorder filter">
-								<h4>Filter</h4>
-							</div>
-						</RedirectBuilder>
-					</div>
-
-					<div class="buttonWrapper">
-						<RedirectBuilder url={"/homePage"} nsfwPointer={true}>
-							<div class="button regularBorder unfilter">
-								<h4>Continue</h4>
-							</div>
-						</RedirectBuilder>
-					</div>
+				<div class="buttonWrapper">
+					<RedirectBuilder url={"/home"} nsfwPointer={true}>
+						<div class="button regularBorder unfilter">
+							<h4>Continue</h4>
+						</div>
+					</RedirectBuilder>
 				</div>
 			</div>
-		</Container>
-	</div>
-{/if}
+		</div>
+	</Container>
+</div>
 
 <style lang="scss">
 	.center {

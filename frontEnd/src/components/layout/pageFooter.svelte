@@ -1,5 +1,5 @@
 <script>
-    import { screenSize, screenType } 	from '$lib/controllers/pageControllers.js';
+    import { screenSize, screenType } 	from '$lib/pageSettings/redirectHandling.js';
     import { splashText } from "$lib/pageSettings/pageSettings.js";
     import { submitters } from "$lib/databases/splashTextDatabase.js";
 
