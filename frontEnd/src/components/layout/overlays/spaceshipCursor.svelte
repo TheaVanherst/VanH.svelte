@@ -1,12 +1,12 @@
 <script>
     import mousePosition from "$lib/controllers/mousePosition.js";
-    import {screenSize} from "$lib/pageSettings/redirectHandling.js";
+    import { deviceData } from "$lib/pageSettings/redirectHandling.js";
     import { fly } from "svelte/transition";
 
     import { spring } from 'svelte/motion';
 
     let position = spring(
-        {	x: -($screenSize / 2),
+        {	x: -($deviceData.screenSize / 2),
 			y: -100},
         { stiffness: 0.1, damping: 0.6}
     );

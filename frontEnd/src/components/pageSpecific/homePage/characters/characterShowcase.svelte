@@ -3,14 +3,14 @@
     import CharacterCard 	from "$root/components/generic/imageContainers/showcaseCard.svelte";
     import InfoPlate 			from "$root/components/pageSpecific/homePage/characters/characterInfoPlate.svelte";
 
-    import { nsfw } from "$lib/pageSettings/redirectHandling.js";
+    import { navStatus } from "$lib/pageSettings/redirectHandling.js";
     export let dataset = {};
 </script>
 
 {#if dataset}
 	<Carousel>
 		{#each dataset as char}
-			{#if char && char.nsfw && $nsfw || !char.nsfw}
+			{#if char && char.nsfw && $navStatus.nsfw || !char.nsfw}
 				<swiper-slide>
 					<div class="card">
 						<CharacterCard image={char.render}>

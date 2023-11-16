@@ -3,7 +3,7 @@ import { get } from "svelte/store"
 import { page } from '$app/stores';
 import { goto } from "$app/navigation";
 
-import { direction, nsfw } from "$lib/pageSettings/redirectHandling.js";
+import { navStatus } from "$lib/pageSettings/redirectHandling.js";
 import { dataSetStore } from "$lib/pageSettings/pageSettings.js";
 
 const
@@ -14,11 +14,11 @@ const
         goto(pageData);
     },
     queryFilter = (dataSet, sfwFilter = false) => {
-        direction.set([0,0]);
+        navStatus.update(e => ({...e, direction: [0,0]}));
         return dataSet.filter(item => {
             let array = (get(dataSetStore).searchQuery.toLowerCase() || "").split(' ');
             if (sfwFilter) {
-                array.push(get(nsfw) ? "" : "!nsfw");}
+                array.push(get(navStatus).nsfw ? "" : "!nsfw");}
             return array.every(el => item.searchTerms.toLowerCase().includes(el))
         }) ?? [];
     }

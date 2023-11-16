@@ -1,7 +1,7 @@
 
-import { nsfw } from "$lib/pageSettings/redirectHandling.js";
+import { navStatus } from "$lib/pageSettings/redirectHandling.js";
 
 export async function load({ params }) {
-    nsfw.set(params.sfw === 'nsfw');
+    navStatus.update(e => ({...e, nsfw: (params.sfw === 'nsfw')}));
         // needs to be done locally.
 };

@@ -1,5 +1,5 @@
 <script>
-    import { screenSize, screenType } 	from '$lib/pageSettings/redirectHandling.js';
+    import { deviceData } 	from '$lib/pageSettings/redirectHandling.js';
     import { splashText } from "$lib/pageSettings/pageSettings.js";
     import { submitters } from "$lib/databases/splashTextDatabase.js";
 
@@ -7,8 +7,8 @@
 </script>
 
 <div class="footer"
-		class:cropped={$screenSize < 800}
-		class:mobile={$screenType < 3}>
+		class:cropped={$deviceData.screenSize < 800}
+		class:mobile={$deviceData.screenType < 3}>
 	<div class="left">
 		{#if $page.url.hostname !== "localhost"} <!-- dev check -->
 			<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=154101&s=7'>

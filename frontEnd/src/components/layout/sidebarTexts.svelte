@@ -1,6 +1,6 @@
 <script>
     import { horizontalSlide } from "$lib/transitions/transitionPresets.js";
-    import { screenType } 	from '$lib/pageSettings/redirectHandling.js';
+    import { navStatus } 	from '$lib/pageSettings/redirectHandling.js';
 
 	export let
 		titlecard,
@@ -8,9 +8,9 @@
 </script>
 
 
-<div class="wrapper {$screenType > 2 ? 'textVis' : 'textHidden'} {icon ? 'icon' : ''}">
+<div class="wrapper {$navStatus.screenType > 2 ? 'textVis' : 'textHidden'} {icon ? 'icon' : ''}">
 	<div class="sideBar">
-		{#if $screenType > 2}
+		{#if $navStatus.screenType > 2}
 			<h1 transition:horizontalSlide={{axis: 'x', duration: 300}}>
 				{#if icon}
 					<img src="/icons/{icon}">
@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="offset">
-		{#if $screenType < 3}
+		{#if $navStatus.screenType < 3}
 			<div class="divider"
 				 transition:horizontalSlide={{axis: 'y', duration: 300}}>
 				{#if icon}

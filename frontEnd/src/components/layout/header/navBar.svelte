@@ -1,23 +1,23 @@
 <script>
-    import { slide } 	from 'svelte/transition';
+    import { slide } from 'svelte/transition';
 
-    import { nsfw, screenType } from '$lib/pageSettings/redirectHandling.js';
-    import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
-    import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
+    import { navStatus } 		from '$lib/pageSettings/redirectHandling.js';
+    import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
-    import { navigationDirectories } from '$lib/pageSettings/navigationDirectories.js';
+    import { navigationDirectories } 	from '$lib/pageSettings/navigationDirectories.js';
 
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import { navigationSettings, directory } from "$lib/pageSettings/redirectHandling.js";
+    import SanityImage 					from "$root/serializer/types/sanityImage.svelte";
+    import { navigation, directory } 	from "$lib/pageSettings/redirectHandling.js";
 
     export let socials;
 </script>
 
 <div class="navigationBar">
-	{#if $navigationSettings.navigation}
+	{#if $navigation.navigation}
 		<div transition:slide={{duration: 200}} id="navigation">
 			{#each navigationDirectories as item}
-				{#if item.nsfw && $nsfw || !item.nsfw}
+				{#if item.nsfw && $navStatus.nsfw || !item.nsfw}
 					<RedirectBuilder url="{item.path}" internal={true} redirectName={item.pagePreview}>
 						<div class="navButton" class:currentRoot={$directory.root === item.path}>
 							<h5> {item.title} </h5>
@@ -28,16 +28,16 @@
 		</div>
 	{/if}
 
-	{#if $navigationSettings.socials}
+	{#if $navigation.socials}
 		<div transition:slide={{duration: 200}} id="socials">
-			{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$nsfw || $nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
+			{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$navStatus.nsfw || $navStatus.nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
 				<RedirectBuilder url={item.platformName.socialURL + item.url}>
-					<RainbowButtonWrap padding="{$screenType > 2 ? [5,10] : [6,6]}">
+					<RainbowButtonWrap padding="{$navStatus.screenType > 2 ? [5,10] : [6,6]}">
 						<div class="central">
-							<div class="mediaIcon" class:largerIcon={$screenType < 3}>
+							<div class="mediaIcon" class:largerIcon={$navStatus.screenType < 3}>
 								<SanityImage image={item.platformName.socialLogo}/>
 							</div>
-							{#if $screenType > 2}
+							{#if $navStatus.screenType > 2}
 								<h3> {item.platformName.socialNickname} </h3>
 							{/if}
 						</div>

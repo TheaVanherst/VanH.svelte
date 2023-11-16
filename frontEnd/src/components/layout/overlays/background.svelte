@@ -1,19 +1,14 @@
 <script>
-    import { scrollPos } from '$lib/pageSettings/redirectHandling.js';
-    import { deviceType } from "$lib/pageSettings/redirectHandling.js";
-
-    // TODO: NOTE;
-    // Not using --ypos, and trying to use $scrollPos causes a slight delay when scrolling.
-    // do not change this - I promise you this is the most reliable.
+    import { deviceData } from "$lib/pageSettings/redirectHandling.js";
 
     const levels = [4,3,2]
 </script>
 
-{#if $deviceType > 0}
+{#if $deviceData.deviceType > 0}
     <parallax>
         {#each levels as level}
             <div class="spaceBg{level - 1}"
-                style="background-position-y: calc({-$scrollPos * (0.3 * level)}px);"></div>
+                style="background-position-y: calc({-$deviceData.scrollPos * (0.3 * level)}px);"></div>
         {/each}
     </parallax>
 {:else}

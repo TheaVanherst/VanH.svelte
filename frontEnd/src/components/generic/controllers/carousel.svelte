@@ -1,8 +1,8 @@
 <script>
-    import { register } from 'swiper/element/bundle';
-    import { onMount } from "svelte";
+    import { register } 	from 'swiper/element/bundle';
+    import { onMount } 		from "svelte";
 
-    import { screenType } 	from '$lib/pageSettings/redirectHandling.js';
+    import { deviceData } 	from '$lib/pageSettings/redirectHandling.js';
 
 	export let
 		maxWidth = 3,
@@ -18,7 +18,7 @@
 
 {#if !customCalc}
 	<swiper-container
-			slides-per-view={$screenType <= maxWidth ? $screenType : maxWidth}
+			slides-per-view={$deviceData.screenType <= maxWidth ? $deviceData.screenType : maxWidth}
 			centeredSlidesBounds={centered}
 			grabCursor={true}
 			class="wideBorder {footerAdd ? 'margin' : ''}"

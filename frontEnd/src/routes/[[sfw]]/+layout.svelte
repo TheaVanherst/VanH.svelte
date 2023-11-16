@@ -1,13 +1,11 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
-    import { navigationSettings } from "$lib/pageSettings/redirectHandling.js";
+    import {navigation, navStatus} from "$lib/pageSettings/redirectHandling.js";
 
     export let data;
 
     import { slide } 	from "svelte/transition";
-
     import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
-    import { transitioning } 	from "$lib/pageSettings/redirectHandling.js";
 
     import { dataSetStore } 	from "$lib/pageSettings/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/searchController.js";
@@ -34,10 +32,10 @@
     onMount(() => { paramLocalUpdate(); });
     afterNavigate((e) => {
         if (e.delta || e.type === "enter") {
-            $transitioning = true;
+            $navStatus.transitioning = true;
             paramLocalUpdate();
             setTimeout(() => { // this allows the pagination to update
-                $transitioning = false;},300);}});
+                $navStatus.transitioning = false;},300);}});
     beforeNavigate((e) => {
         if (e.from.route.id !== e?.to?.route?.id) {
             queryReset();}});
@@ -46,7 +44,7 @@
 
     const hardSearch = (query = "", page = 0) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        $transitioning = true;
+        $navStatus.transitioning = true;
         setTimeout(() => { // this allows the pagination to update
             $dataSetStore.searchQuery = query;
             $dataSetStore.page = 		page;
@@ -54,19 +52,19 @@
                 'query': $dataSetStore.searchQuery,
                 'page': $dataSetStore.page});}, 300);
         setTimeout(() => { // this allows the pagination to update
-            $transitioning = false;}, 300);};
+            $navStatus.transitioning = false;}, 300);};
 
     let value;
 </script>
 
 <div class="flexBox">
-	{#if $navigationSettings.navigation || $navigationSettings.socials || $navigationSettings.logo }
+	{#if $navigation.navigation || $navigation.socials || $navigation.logo }
 		<div transition:slide>
 			<NavigationComponent socials={data.featured}/>
 		</div>
 	{/if}
 
-	{#if $navigationSettings.search}
+	{#if $navigation.search}
 		<div class="searchBarWrapper" transition:slide>
 			<div class="searchBar">
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>

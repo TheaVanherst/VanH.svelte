@@ -1,6 +1,8 @@
 
 const redirector = " 𝚊𝚝"
 
+// ---------------------
+
 const navigationDirectories =
     [
         {   title: "Home",  imagePath: undefined,   path: "/home",        nsfw:false,   pagePreview: "𝐇𝐨𝐦𝐞" + redirector},

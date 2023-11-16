@@ -11,11 +11,7 @@ export { messengerEnabled }
 
 // ---------------------
 
-const fullscreenGallery = writable({
-    gallery: undefined,
-    citation: undefined,
-    currentImage: 0,
-    galleryDesc: undefined });
+const fullscreenGallery = writable({gallery: undefined, citation: undefined, currentImage: 0, galleryDesc: undefined });
 
 const galleryChange = (item, citation,id = 0) => {
     if (item) {

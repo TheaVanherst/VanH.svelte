@@ -1,21 +1,21 @@
 <script>
-    import { scale, fly } 	from 'svelte/transition';
+    import { scale, fly } 		from 'svelte/transition';
 
-    import { screenType } 	from '$lib/pageSettings/redirectHandling.js';
+    import { deviceData } 		from '$lib/pageSettings/redirectHandling.js';
     import { messengerEnabled } from "$lib/pageSettings/pageSettings.js";
 
-    import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
-    import GenericButton from "$root/components/generic/wrappers/genericButton.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
+    import GenericButton 		from "$root/components/generic/wrappers/genericButton.svelte";
 
     let chatBox = false;
 	let transitionSpeed = 250;
 
 	let directions;
-    $: directions = $screenType < 3 ? [0, 150] : [150, 0];
+    $: directions = $deviceData.screenType < 3 ? [0, 150] : [150, 0];
 </script>
 
 <div id="messageController"
-	 class="{$screenType < 3 ? 'mobile' : ''}">
+	 class="{$deviceData.screenType < 3 ? 'mobile' : ''}">
 	{#if !chatBox && $messengerEnabled}
 		<div class="open"
 			 in:scale={{delay: transitionSpeed}}

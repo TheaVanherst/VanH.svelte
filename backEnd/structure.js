@@ -43,9 +43,11 @@ const structure = (S) =>
       ...S.documentTypeListItems()
         .filter(
           (listItem) => [
-            'donationTier',
+            'explicitTags','nsfwTags','genericTags','genreTag'
           ].includes(listItem.getId())
         ),
+
+      S.divider(),
 
       S.listItem()
         .title('Page Data')

@@ -4,7 +4,7 @@
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
     import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
 
-    import { deviceType } from "$lib/pageSettings/redirectHandling.js";
+    import { deviceData } from "$lib/pageSettings/redirectHandling.js";
 
     export let
 		image = undefined;
@@ -14,7 +14,7 @@
 
 <div class="characterCard wideBorder"
 	 on:click={() => {active = !active}}
-	 on:mouseenter={() => {$deviceType === 2 ? active = true : false}}
+	 on:mouseenter={() => {$deviceData.deviceType === 2 ? active = true : false}}
 	 on:mouseleave={() => {active = false}}>
 
 	<div class="imageWrapper">

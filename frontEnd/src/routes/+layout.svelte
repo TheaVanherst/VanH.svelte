@@ -10,10 +10,9 @@
     import Background 			from "$root/components/layout/overlays/background.svelte";
     import MessengerPlugin 		from "$root/components/layout/overlays/messengerPlugin.svelte";
     import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
-    import FullscreenGallery from "$root/components/generic/controllers/fullscreenGallery.svelte";
+    import FullscreenGallery 	from "$root/components/generic/controllers/fullscreenGallery.svelte";
 
-    import { scrollPos, screenSize, deviceType, transitioning, screenType, bandWidths, pageLoaded
-    	} from "$lib/pageSettings/redirectHandling.js";
+    import { navStatus, deviceData } from "$lib/pageSettings/redirectHandling.js";
     import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
@@ -21,15 +20,26 @@
 
     onMount(async () => {
         switch (true) {
-            case Device.isPhone:  	$deviceType = 0; break;
-            case Device.isTablet: 	$deviceType = 1; break;
-            default:      			$deviceType = 2; break;}
-        $pageLoaded = true;
+            case Device.isPhone:  	$deviceData.deviceType = 0; break;
+            case Device.isTablet: 	$deviceData.deviceType = 1; break;
+            default:      			$deviceData.deviceType = 2; break;}
+        $navStatus.loaded = true;
     });
 
-    $: $screenType = $screenSize > bandWidths[1] ? 3 : $screenSize < bandWidths[2] ? 1 : 2;
-    $: $deviceType === 2 ?
-		$transitioning !== true ?
+    let screenSize = 0,
+        scrollPos = 0;
+
+    $: $deviceData.screenSize = screenSize;
+    $: $deviceData.scrollPos = scrollPos;
+
+    $: $deviceData.screenType =
+		$deviceData.screenSize > $deviceData.bandWidths[1] ?
+			3 :
+			$deviceData.screenSize < $deviceData.bandWidths[2] ?
+				1 :
+				2;
+    $: $deviceData.deviceType === 2 ?
+		$navStatus.transitioning !== true ?
 			titlebarScroller(`${websiteTag} // ${$pageName} `)
 			: $pageTitlebar = loadingIco
 		: $pageTitlebar = websiteTag;
@@ -39,21 +49,21 @@
 	<title>{$pageTitlebar}</title>
 </svelte:head>
 
-<svelte:window bind:innerWidth={$screenSize} bind:scrollY={$scrollPos} />
+<svelte:window bind:innerWidth={screenSize} bind:scrollY={scrollPos} />
 
 <Background/>
 <MessengerPlugin/>
 
-{#if $deviceType === 2}
+{#if $deviceData.deviceType === 2}
 	<CometGenerator/>
 	<SpaceshipCursor/>
 {/if}
 
 <FullscreenGallery/>
 
-{#if $pageLoaded}
+{#if $navStatus.loaded}
 	<div id="scrollParent">
-		<div id="layout" class="wrapCorrection" style="{$deviceType < 2 ? 'overflow-x: hidden' : ''}">
+		<div id="layout" class="wrapCorrection" style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
 				<Header/>
 			</div>
@@ -61,7 +71,7 @@
 			<slot/>
 
 			<div in:fly={{y: 100, duration: 500, delay: 350 }}>
-				{#if $pageLoaded} <!-- this is a placeholder -->
+				{#if $navStatus.loaded} <!-- this is a placeholder -->
 						<PageFooter/>
 				{/if}
 			</div>

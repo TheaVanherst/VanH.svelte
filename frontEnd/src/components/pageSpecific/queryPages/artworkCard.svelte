@@ -21,8 +21,8 @@
 			(postData?.commissionData?.characters ? postData.commissionData.characters?.length : 0);
 
     const
-		imageClick = () => {	active ? active = !active : false;},
-		cardFloatClick = () => {active = active ? active : !active;}
+		imageClick = () => {	active ? active = !active : console.log("YES");},
+		cardFloatClick = () => {active = active ? active : !active;};
 </script>
 
 <div class="postWrapper wideBorder"
@@ -32,8 +32,10 @@
 	 on:mouseleave={() => hover = false}>
 
 	<div class="galleryWrapper">
-		<div class="gallery" on:click={imageClick}>
-			<SanityGalleries portableText={postData.gallery}/>
+		<div class="gallery" on:click={imageClick} class:clickable={active}>
+			<div>
+				<SanityGalleries portableText={postData.gallery}/>
+			</div>
 		</div>
 		<div on:click={cardFloatClick}>
 			<ImageFloatCard hover={hover} active={active} accent={true}>
@@ -48,19 +50,21 @@
 							{postData.commissionData.commissionType} for:
 						</p>
 						{#each postData.commissionData.characters as character}
-							<div class="characterCard">
-								<div class="icon mediaIcon shortBorder">
-									<SanityImage image={character.owner.userPortrait}/>
+							<RedirectBuilder url="{$directory.stripped}?query={character.owner.handle.toLowerCase()}">
+								<div class="characterCard">
+									<div class="mediaIcon shortBorder">
+										<SanityImage image={character.owner.userPortrait}/>
+									</div>
+									<h4>{character.owner.handle}</h4>
 								</div>
-								<h4>{character.owner.handle}</h4>
-							</div>
+							</RedirectBuilder>
 						{/each}
 					{/if}
 					{#if postData.authors.length > 0}
 						<p> With additional help from: </p>
 						{#each postData.authors as author}
 							<div class="characterCard">
-								<div class="icon mediaIcon shortBorder">
+								<div class="mediaIcon shortBorder">
 									<SanityImage image={author.author.userPortrait}/>
 								</div>
 								<h4>{author.author.fullName}</h4>
@@ -91,26 +95,26 @@
 							Featured Character{arrayLength > 1 ? 's' : ''}:
 						</p>
 						{#each postData.characters as character}
-<!--							<RedirectBuilder url="{$directory.stripped}?query={character.nickName.toLowerCase()}">-->
+							<RedirectBuilder url="{$directory.stripped}?query={character.fullName.toLowerCase()}">
 								<div class="characterCard">
-									<div class="icon mediaIcon shortBorder">
+									<div class="mediaIcon shortBorder">
 										<SanityImage image={character.charIcon}/>
 									</div>
 									<h4>{character.fullName}</h4>
 								</div>
-<!--							</RedirectBuilder>-->
+							</RedirectBuilder>
 						{/each}
 					{/if}
 					{#if !!postData.commissionData?.characters}
 						{#each postData.commissionData.characters as character}
-<!--							<RedirectBuilder url="{$directory.stripped}?query={character.nickName.toLowerCase()}">-->
+							<RedirectBuilder url="{$directory.stripped}?query={character.fullName.toLowerCase()}">
 								<div class="characterCard">
-									<div class="icon mediaIcon shortBorder">
+									<div class="mediaIcon shortBorder">
 										<SanityImage image={character.charIcon}/>
 									</div>
 									<h4>{character.fullName}</h4>
 								</div>
-<!--							</RedirectBuilder>-->
+							</RedirectBuilder>
 						{/each}
 					{/if}
 
@@ -156,28 +160,35 @@
 		bottom: 	0;
 		margin:	 	10px;}
 
+	.clickable {	pointer-events: all;
+		> div {		pointer-events: none;}}
+
 	.postWrapper {
 		width: 		100%;
 		overflow: 	hidden;
 		.galleryWrapper {
 			position: 	relative;}}
 
-	.alt {
-		margin: -5px 0 0 0;}
+	.alt {	margin: -5px 0 0 0;}
 
 	p {		margin: 7px 0;}
 	p + p {	margin: 5px 0;}
 
 	.characterCard {
-		display: 	flex;
-		width: 		100%;
-		margin: 	5px 0;
-		gap: 		10px;
+		display: 		flex;
 		vertical-align: bottom;
-		> * {
-			margin: 	auto 0;}
-		.icon {
-			overflow:	hidden;}}
+		transition: 	ease .3s;
+
+		width: 		100%;
+		margin: 	2px -3px ;
+		padding:    4px;
+		gap: 		10px;
+		border-radius: 20px;
+
+		&:hover {		background: var(--accent2);
+			h4 {		color: 		white;}}
+		> * {			margin: 	auto 0;}
+		.mediaIcon {	overflow:	hidden;}}
 
 	.links {
 		gap: 		5px;

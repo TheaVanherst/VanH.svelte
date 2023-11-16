@@ -6,7 +6,7 @@
     import WorkshopCard 	from "$root/components/pageSpecific/homePage/embedded/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/homePage/embedded/workshopSnippet.svelte";
 
-    import { screenSize, deviceType, nsfw } from '$lib/pageSettings/redirectHandling.js';
+    import { deviceData, navStatus } from '$lib/pageSettings/redirectHandling.js';
 
     let moreToggle = false;
 
@@ -24,14 +24,14 @@
 		</Carousel>
 	{/if}
 	<div class="navWrapper">
-		{#if deviceType < 2}
+		{#if $deviceData.deviceType < 2}
 			{#if moreToggle && dataset[1]} <!-- prevents crashes -->
 				<div class="mobileOffset" transition:slide>
 					<Carousel
-						customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
+						customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}
 						pagination={false} footerAdd={false}>
 						{#each dataset[1] as workshopItem}
-							{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
+							{#if workshopItem.NSFW && $navStatus.nsfw || !workshopItem.NSFW}
 								<swiper-slide>
 									<WorkshopSnippet item={workshopItem}/>
 								</swiper-slide>
@@ -55,10 +55,10 @@
 			<div class="desktopOffset">
 				{#if dataset[1]} <!-- prevents crashes -->
 					<Carousel
-							customCalc={$screenSize < 800 ? $screenSize / 85 : 800 / 85}
+							customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}
 							pagination={false} footerAdd={false}>
 						{#each dataset[1] as workshopItem}
-							{#if workshopItem.NSFW && $nsfw || !workshopItem.NSFW}
+							{#if workshopItem.NSFW && $navStatus.nsfw || !workshopItem.NSFW}
 								<swiper-slide>
 									<WorkshopSnippet item={workshopItem}/>
 								</swiper-slide>

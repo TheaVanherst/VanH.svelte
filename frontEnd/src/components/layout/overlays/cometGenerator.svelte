@@ -2,7 +2,7 @@
     import { fly } from "svelte/transition";
     import {quartIn, quartOut} from "svelte/easing";
 
-    import {screenSize} from "$lib/pageSettings/redirectHandling.js";
+    import { deviceData } from "$lib/pageSettings/redirectHandling.js";
 
     const
 		getRandomInt = (max) => {
@@ -24,7 +24,7 @@
         clear = setInterval(() => {
             ms = getRandomInt(5000);
 
-            xPosition = getRandomInt($screenSize) + 200;
+            xPosition = getRandomInt($deviceData.screenSize) + 200;
             yPosition = getRandomInt(outerHeight + 100) - 300;
             rScale = getRandomInt(3) + 0.2;
 

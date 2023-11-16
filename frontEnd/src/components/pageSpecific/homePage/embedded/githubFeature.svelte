@@ -1,5 +1,5 @@
 <script>
-	import { screenType } from "$lib/pageSettings/redirectHandling.js";
+	import { deviceData } from "$lib/pageSettings/redirectHandling.js";
 
     import Container from "../../../generic/containers/container.svelte";
 	import GithubCard from "$root/components/pageSpecific/homePage/embedded/githubCard.svelte";
@@ -9,7 +9,7 @@
 
 <Container>
 	<div class="table"
-		class:full={$screenType < 2}>
+		class:full={$deviceData.screenType < 2}>
 		{#each dataset as dataEntry}
 			<div class="cell">
 				<GithubCard data={dataEntry}/>

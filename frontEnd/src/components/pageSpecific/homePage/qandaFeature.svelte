@@ -1,5 +1,5 @@
 <script>
-	import {screenType} from "$lib/pageSettings/redirectHandling.js";
+	import { deviceData } from "$lib/pageSettings/redirectHandling.js";
 
     import SanityImage 	from "$root/serializer/types/sanityImage.svelte";
     import Container 	from "../../generic/containers/container.svelte";
@@ -10,7 +10,7 @@
 <Container>
 	{#each dataset[0].questions as qa}
 		<div class="row">
-			{#if $screenType > 2}
+			{#if $deviceData.screenType > 2}
 				<div class="profileIcon anon">
 					{#if qa.user}
 						<SanityImage image={qa.user.userPortrait}/>

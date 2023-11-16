@@ -1,15 +1,15 @@
 <script>
+    import { deviceData, navStatus } from "$lib/pageSettings/redirectHandling.js";
+
     import ProfileBar 			from "$root/components/layout/header/bannerAnimation.svelte";
     import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
-
-    import { deviceType, pageLoaded } from "$lib/pageSettings/redirectHandling.js";
 
     let hover = false;
 </script>
 
 <div class="bannerWrapper">
-	{#if $pageLoaded} <!-- this is a placeholder -->
-		{#if $deviceType === 2}
+	{#if $navStatus.loaded} <!-- this is a placeholder -->
+		{#if $deviceData.deviceType === 2}
 			<div class="desktop">
 				<SplashTexts/>
 				<ProfileBar>
@@ -22,7 +22,7 @@
 					</div>
 				</ProfileBar>
 			</div>
-		{:else if $deviceType === 1}
+		{:else if $deviceData.deviceType === 1}
 			<div class="tablet">
 				<div class="logo">
 					<img src="/branding/vanhlogo.webp">

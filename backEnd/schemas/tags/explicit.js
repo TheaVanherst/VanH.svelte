@@ -8,7 +8,13 @@ const
     type: 'document',
     fields: [
       defineField({
-        name: 'title', title: 'Title', type: 'string'})],
+        name: 'title', title: 'Title', type: 'string'}),
+      defineField({
+        name: 'relatedTags', title: 'Related Tags',
+        description: 'Alternate tags in relation to the focus tag',
+        type: 'text', rows: 3,
+      }),
+    ],
     icon: CircleIcon,
     preview: {
       select: {title: 'title', desc: 'description'},

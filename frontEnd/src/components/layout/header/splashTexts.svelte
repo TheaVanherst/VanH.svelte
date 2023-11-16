@@ -2,7 +2,7 @@
 	import { fly, scale } from "svelte/transition";
 
     import { splash } from "$lib/databases/splashTextDatabase.js";
-    import { nsfw } from "$lib/pageSettings/redirectHandling.js";
+    import { navStatus } from "$lib/pageSettings/redirectHandling.js";
     import { splashText } from "$lib/pageSettings/pageSettings.js";
 
 	let text = "undefined?",
@@ -12,7 +12,7 @@
     const
 		picker = () => {
 			numberGen = Math.floor(Math.random() * splash.length);
-			splash[numberGen][0] === true && !$nsfw || !splash?.[numberGen]?.[1] ?
+			splash[numberGen][0] === true && !$navStatus.nsfw || !splash?.[numberGen]?.[1] ?
 				picker() : generator();},
 
 		generator = () => {

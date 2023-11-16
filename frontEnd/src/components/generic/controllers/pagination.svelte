@@ -2,7 +2,7 @@
 	import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
     import { urlSerializer } from "$lib/controllers/searchController.js";
-    import { direction } from "$lib/pageSettings/redirectHandling.js";
+    import { directory } from "$lib/pageSettings/redirectHandling.js";
 
     export let
 		rows, trimmedRows, perPage,
@@ -20,7 +20,7 @@
 		toTop = () => {
             window.scrollTo({top: 0, behavior: 'smooth'});},
 		serializer = () => {
-            $direction = [0,0];
+            $directory.direction = [0,0];
             setTimeout(() => { // this allows the pagination to update
                 urlSerializer({'page': currentPage});
             }, 500);},
