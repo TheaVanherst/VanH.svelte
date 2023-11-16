@@ -1,16 +1,17 @@
 <script>
     import { clickOutside } from "$lib/transitions/transitionPresets.js";
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
-    import { directory } 	from "$lib/pageSettings/redirectHandling.js";
+    import { directoryData } 	from "$lib/pageSettings/redirectHandling.js";
 
     import SanityGalleries 	from "$root/serializer/types/sanityGalleries.svelte";
     import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
 
     import RedirectBuilder from "$root/components/generic/controllers/redirectBuilder.svelte";
 
-	import DividedTag 		from "$root/components/generic/wrappers/dividedTag.svelte";
+	import DividedTag 		from "$root/components/generic/wrappers/pilledTag.svelte";
+    import SocialMediaTag 	from "$root/components/generic/wrappers/inlineRedirectTag.svelte";
     import ImageFloatCard 	from "$root/components/generic/imageContainers/imageFloatCard.svelte";
-    import InlineTag 		from "$root/components/generic/wrappers/inlineTag.svelte";
+    import InlineTag 		from "$root/components/generic/wrappers/inlineGenreTag.svelte";
 
     export let postData;
 
@@ -21,7 +22,7 @@
 			(postData?.commissionData?.characters ? postData.commissionData.characters?.length : 0);
 
     const
-		imageClick = () => {	active ? active = !active : console.log("YES");},
+		imageClick = () => {	active ? active = !active : false;},
 		cardFloatClick = () => {active = active ? active : !active;};
 </script>
 
@@ -42,23 +43,34 @@
 				<h4 slot="title">{postData.pieceName}</h4>
 				<div slot="desc">
 					<h4>{postData.pieceName}</h4>
-					<p>
-						{!!postData.description ? postData.description : ''}
-					</p>
-					{#if !!postData.commissionData}
-						<p class="altTitle">
-							{postData.commissionData.commissionType} for:
+					{#if !!postData.description}
+						<p>
+							{postData.description}
 						</p>
-						{#each postData.commissionData.characters as character}
-							<RedirectBuilder url="{$directory.stripped}?query={character.owner.handle.toLowerCase()}">
-								<div class="characterCard">
-									<div class="mediaIcon shortBorder">
-										<SanityImage image={character.owner.userPortrait}/>
-									</div>
-									<h4>{character.owner.handle}</h4>
+					{/if}
+					{#if !!postData.commissionData}
+						<div class="commissionWrapper">
+							<p class="altTitle">
+								{postData.commissionData.commissionType} for:
+							</p>
+							{#each postData.commissionData.characters as character}
+								<div class="commissioner">
+									<RedirectBuilder url="{$directoryData.stripped}?query={character.owner.handle.toLowerCase()}">
+										<div class="characterCard">
+											<div class="mediaIcon shortBorder">
+												<SanityImage image={character.owner.userPortrait}/>
+											</div>
+											<h4>{character.owner.handle}</h4>
+										</div>
+									</RedirectBuilder>
+									{#if character.owner?.socialMedia?.length > 0}
+										{#each character.owner.socialMedia as social}
+											<SocialMediaTag data={social}/>
+										{/each}
+									{/if}
 								</div>
-							</RedirectBuilder>
-						{/each}
+							{/each}
+						</div>
 					{/if}
 					{#if postData.authors.length > 0}
 						<p> With additional help from: </p>
@@ -69,8 +81,14 @@
 								</div>
 								<h4>{author.author.fullName}</h4>
 							</div>
+							{#if author.author?.socialMedia?.length > 0}
+								{#each author.author.socialMedia as social}
+									<SocialMediaTag data={social}/>
+								{/each}
+							{/if}
 						{/each}
 					{/if}
+
 					{#if postData.gallery.styleType && postData.gallery.renderType}
 						<p>
 							{#if postData.gallery.styleType && postData.gallery.renderType}
@@ -81,21 +99,26 @@
 							{/if}
 						</p>
 					{/if}
+
 					{#if postData.tags?.length > 0}
-						{#each postData.tags as tag}
-							<RedirectBuilder url="{$directory.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
-								<InlineTag tag={tag}/>
-							</RedirectBuilder>
-						{/each}
+						<div class="postTags">
+							{#each postData.tags as tag}
+								<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
+									<InlineTag tag={tag}/>
+								</RedirectBuilder>
+							{/each}
+						</div>
 					{/if}
 				</div>
 				<div slot="alt">
-					{#if !!postData.characters}
+					{#if !!postData.characters || !!postData.commissionData?.characters}
 						<p>
 							Featured Character{arrayLength > 1 ? 's' : ''}:
 						</p>
+					{/if}
+					{#if !!postData.characters}
 						{#each postData.characters as character}
-							<RedirectBuilder url="{$directory.stripped}?query={character.fullName.toLowerCase()}">
+							<RedirectBuilder url="{$directoryData.stripped}?query={character.fullName.toLowerCase()}">
 								<div class="characterCard">
 									<div class="mediaIcon shortBorder">
 										<SanityImage image={character.charIcon}/>
@@ -107,7 +130,7 @@
 					{/if}
 					{#if !!postData.commissionData?.characters}
 						{#each postData.commissionData.characters as character}
-							<RedirectBuilder url="{$directory.stripped}?query={character.fullName.toLowerCase()}">
+							<RedirectBuilder url="{$directoryData.stripped}?query={character.fullName.toLowerCase()}">
 								<div class="characterCard">
 									<div class="mediaIcon shortBorder">
 										<SanityImage image={character.charIcon}/>
@@ -164,15 +187,20 @@
 		> div {		pointer-events: none;}}
 
 	.postWrapper {
-		width: 		100%;
-		overflow: 	hidden;
+			width: 		100%;
+			overflow: 	hidden;
 		.galleryWrapper {
 			position: 	relative;}}
 
-	.alt {	margin: -5px 0 0 0;}
-
 	p {		margin: 7px 0;}
 	p + p {	margin: 5px 0;}
+
+	.commissionWrapper {	margin: 5px 0;
+		.commissioner {		margin: 0 0 5px 0;}
+		.altTitle {			margin: 10px 0 2px 0;}}
+
+	.postTags {
+			margin: 0 0 -5px 0;}
 
 	.characterCard {
 		display: 		flex;
@@ -180,7 +208,7 @@
 		transition: 	ease .3s;
 
 		width: 		100%;
-		margin: 	2px -3px ;
+		margin: 	0px -3px 5px -3px ;
 		padding:    4px;
 		gap: 		10px;
 		border-radius: 20px;

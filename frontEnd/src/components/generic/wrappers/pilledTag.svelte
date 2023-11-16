@@ -25,8 +25,7 @@
 			padding: 	2px 3px 1px 3px;
 			display: 	inline-flex;
 			:global(span) {
-				margin: 0 5px;}
-		}
+				margin: 0 5px;}}
 
 		:global(span) {
 			margin: 	1px 0 0;}

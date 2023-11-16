@@ -12,7 +12,7 @@
     import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
     import FullscreenGallery 	from "$root/components/generic/controllers/fullscreenGallery.svelte";
 
-    import { navStatus, deviceData } from "$lib/pageSettings/redirectHandling.js";
+    import { navigationControls, deviceData } from "$lib/pageSettings/redirectHandling.js";
     import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
@@ -23,7 +23,7 @@
             case Device.isPhone:  	$deviceData.deviceType = 0; break;
             case Device.isTablet: 	$deviceData.deviceType = 1; break;
             default:      			$deviceData.deviceType = 2; break;}
-        $navStatus.loaded = true;
+        $navigationControls.loaded = true;
     });
 
     let screenSize = 0,
@@ -39,7 +39,7 @@
 				1 :
 				2;
     $: $deviceData.deviceType === 2 ?
-		$navStatus.transitioning !== true ?
+		$navigationControls.transitioning !== true ?
 			titlebarScroller(`${websiteTag} // ${$pageName} `)
 			: $pageTitlebar = loadingIco
 		: $pageTitlebar = websiteTag;
@@ -61,7 +61,7 @@
 
 <FullscreenGallery/>
 
-{#if $navStatus.loaded}
+{#if $navigationControls.loaded}
 	<div id="scrollParent">
 		<div id="layout" class="wrapCorrection" style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
@@ -71,7 +71,7 @@
 			<slot/>
 
 			<div in:fly={{y: 100, duration: 500, delay: 350 }}>
-				{#if $navStatus.loaded} <!-- this is a placeholder -->
+				{#if $navigationControls.loaded}
 						<PageFooter/>
 				{/if}
 			</div>

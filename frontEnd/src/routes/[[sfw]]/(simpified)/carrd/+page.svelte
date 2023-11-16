@@ -1,5 +1,5 @@
 <script>
-	import { navStatus } from "$lib/pageSettings/redirectHandling.js";
+	import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
 
     import SanityImage 			from "$root/serializer/types/sanityImage.svelte";
     import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";
@@ -24,7 +24,7 @@
 			<h4>{section.chunkName}</h4>
 		</div>
 		{#each section.chunkSocials as social}
-			{#if !social.nsfw && !$navStatus.nsfw || $navStatus.nsfw}
+			{#if !social.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
 				<div class="link">
 					<RedirectBuilder url={social.platformName.socialURL + social.url}>
 						<RainbowButtonWrap bottom={10} padding={[9,15]}>

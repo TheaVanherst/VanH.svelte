@@ -1,8 +1,9 @@
 <script>
 	import RainbowButtonWrap from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
+    import GenericButton from "$root/components/generic/wrappers/genericButton.svelte";
 
     import { urlSerializer } from "$lib/controllers/searchController.js";
-    import { directory } from "$lib/pageSettings/redirectHandling.js";
+    import { directoryData } from "$lib/pageSettings/redirectHandling.js";
 
     export let
 		rows, trimmedRows, perPage,
@@ -20,7 +21,7 @@
 		toTop = () => {
             window.scrollTo({top: 0, behavior: 'smooth'});},
 		serializer = () => {
-            $directory.direction = [0,0];
+            $directoryData.direction = [0,0];
             setTimeout(() => { // this allows the pagination to update
                 urlSerializer({'page': currentPage});
             }, 500);},
@@ -46,29 +47,31 @@
 </script>
 
 <div class='pagination'>
-	<div on:click={() => nextPage(false)}
+	<div class="directionButton"
+		 on:click={() => nextPage(false)}
 		 class:disabled={currentPage === 0}>
-		<RainbowButtonWrap>
+		<GenericButton hovered={currentPage === 0}>
 			<img src="/icons/leftIcon.webp">
-		</RainbowButtonWrap>
+		</GenericButton>
 	</div>
 
 	{#each fakeArray as _, index (index)}
-		<div class:disabled={currentPage === index}
+		<div class="pageButton"
+			 class:disabled={currentPage === index}
 			 on:click={() => directPage(index)}>
-			<RainbowButtonWrap>
+			<GenericButton hovered={currentPage === index}>
 				<div class="pageNumber">
-					<h4>{index + 1}</h4>
 				</div>
-			</RainbowButtonWrap>
+			</GenericButton>
 		</div>
 	{/each}
 
-	<div on:click={() => nextPage(true)}
+	<div class="directionButton"
+		 on:click={() => nextPage(true)}
 		 class:disabled={lastPage}>
-		<RainbowButtonWrap>
+		<GenericButton hovered={lastPage}>
 			<img src="/icons/rightIcon.webp">
-		</RainbowButtonWrap>
+		</GenericButton>
 	</div>
 </div>
 
@@ -80,15 +83,27 @@
 		pointer-events: 	all;
 		gap: 				5px;}
 
-	.disabled {
-		opacity: 		0.6;
-		pointer-events: none;}
 
-	.pageNumber {
-		height: 22px;
-		width: 	12px;
+	.pageButton {
+		&.disabled {
+			pointer-events: none;}
+		.pageNumber {
+			height: 22px;
+			width: 	12px;}
 		h4 {
-			width: max-content;
+			width: 	max-content;
 			margin: -3px auto 0 auto;
-			color: 	black;	}}
+			color: 	black;}}
+
+	.directionButton {
+		&.disabled {
+			pointer-events: none;
+			img {
+				filter: invert(1);}}
+		img {
+			margin: 0 0 -4px 1px;
+			transition: filter ease .4s;}
+		&:hover {
+			img {
+				filter: invert(1);}}}
 </style>

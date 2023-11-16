@@ -1,5 +1,5 @@
 <script>
-    import { directionProcessing, directory, navStatus } from '$lib/pageSettings/redirectHandling.js';
+    import { directionProcessing, directoryData, navigationControls } from '$lib/pageSettings/redirectHandling.js';
     import { pageName } from "$lib/controllers/titlebarScoller.js";
 
     import { goto } from "$app/navigation";
@@ -15,20 +15,20 @@
         let newRoute;
 
         if (p !== null) {
-            $navStatus.nsfw = p
+            $navigationControls.nsfw = p
             newRoute = (p ? '/nsfw' : '') + e;}
         else {
             newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
 
-        if (newRoute + "/" !== $directory.raw && !$navStatus.transitioning) {
+        if (newRoute + "/" !== $directoryData.raw && !$navigationControls.transitioning) {
 
-			directionProcessing($directory.raw, newRoute, newRoute, paraLength);
-            $navStatus.transitioning = true;
+			directionProcessing($directoryData.raw, newRoute, newRoute, paraLength);
+            $navigationControls.transitioning = true;
             window.scrollTo({top: 0, behavior: 'smooth'});
 
             setTimeout(async () => {
                 await goto(newRoute);
-                $navStatus.transitioning = false;}, 350);}
+                $navigationControls.transitioning = false;}, 350);}
 
     	if (n) { // this sets a custom page name.
             $pageName = n;}

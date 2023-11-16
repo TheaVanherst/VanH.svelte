@@ -58,10 +58,9 @@
 				{/if}
 				{#if $fullscreenGallery?.citation[position]}
 					<div class="imageCitation">
-<!--						<ImageTag border="shortBorder" position="relative">-->
-<!--							<p>{$fullscreenGallery?.citation[position]}</p>-->
-<!--						</ImageTag>-->
-
+						<ImageTag border="shortBorder" position="relative">
+							<p>{$fullscreenGallery?.citation[position]}</p>
+						</ImageTag>
 					</div>
 				{/if}
 			</div>

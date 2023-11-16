@@ -1,5 +1,5 @@
 <script>
-    import { navStatus } from "$lib/pageSettings/redirectHandling.js";
+    import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
 
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
 	import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
@@ -13,7 +13,7 @@
 <div class="colourWrapper">
 	{#each prices as commissionType}
 		<div class="commType">
-			{#if $navStatus.nsfw}
+			{#if $navigationControls.nsfw}
 				<div class="previewBanner regularBorder imageWrapper">
 					<SanityImage image={commissionType.previewImage}/>
 					<ImageTag>

@@ -31,6 +31,10 @@ export const load = async ({ fetch, url }) => {
                         profileBanner,
                         'slug': slug.current,
                         userPortrait,
+                        'socialMedia': socialMedia[]{
+                            url,
+                            platformName->
+                        }
                     },
                     'participation': participation->emoji + " " + participation->title,
                 },
@@ -61,7 +65,10 @@ export const load = async ({ fetch, url }) => {
                             handle,
                             userPortrait,
                             slug,
-                            socialMedia
+                            'socialMedia': socialMedia[]{
+                                url,
+                                platformName->
+                            }
                         }
                     }
                 },

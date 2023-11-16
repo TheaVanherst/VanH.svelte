@@ -1,25 +1,25 @@
 <script>
     import { slide } from 'svelte/transition';
 
-    import { navStatus } 		from '$lib/pageSettings/redirectHandling.js';
     import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
 
+    import { navigationControls, deviceData } 	from '$lib/pageSettings/redirectHandling.js';
     import { navigationDirectories } 	from '$lib/pageSettings/navigationDirectories.js';
 
     import SanityImage 					from "$root/serializer/types/sanityImage.svelte";
-    import { navigation, directory } 	from "$lib/pageSettings/redirectHandling.js";
+    import { navigationData, directoryData } 	from "$lib/pageSettings/redirectHandling.js";
 
     export let socials;
 </script>
 
 <div class="navigationBar">
-	{#if $navigation.navigation}
+	{#if $navigationData.navigation}
 		<div transition:slide={{duration: 200}} id="navigation">
 			{#each navigationDirectories as item}
-				{#if item.nsfw && $navStatus.nsfw || !item.nsfw}
+				{#if item.nsfw && $navigationControls.nsfw || !item.nsfw}
 					<RedirectBuilder url="{item.path}" internal={true} redirectName={item.pagePreview}>
-						<div class="navButton" class:currentRoot={$directory.root === item.path}>
+						<div class="navButton" class:currentRoot={$directoryData.root === item.path}>
 							<h5> {item.title} </h5>
 						</div>
 					</RedirectBuilder>
@@ -28,16 +28,16 @@
 		</div>
 	{/if}
 
-	{#if $navigation.socials}
+	{#if $navigationData.socials}
 		<div transition:slide={{duration: 200}} id="socials">
-			{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$navStatus.nsfw || $navStatus.nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
+			{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$deviceData.nsfw || $deviceData.nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
 				<RedirectBuilder url={item.platformName.socialURL + item.url}>
-					<RainbowButtonWrap padding="{$navStatus.screenType > 2 ? [5,10] : [6,6]}">
+					<RainbowButtonWrap padding="{$deviceData.screenType > 2 ? [5,10] : [6,6]}">
 						<div class="central">
-							<div class="mediaIcon" class:largerIcon={$navStatus.screenType < 3}>
+							<div class="mediaIcon" class:largerIcon={$deviceData.screenType < 3}>
 								<SanityImage image={item.platformName.socialLogo}/>
 							</div>
-							{#if $navStatus.screenType > 2}
+							{#if $deviceData.screenType > 2}
 								<h3> {item.platformName.socialNickname} </h3>
 							{/if}
 						</div>

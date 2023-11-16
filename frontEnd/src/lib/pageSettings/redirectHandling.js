@@ -2,12 +2,12 @@
 import { get, writable } from "svelte/store";
 
 const
-    directory =     writable({ raw: "/", stripped: '/', root: '/' }),
-    navStatus =     writable({ direction: [0,0], nsfw: false, loaded: false, transitioning: true }),
-    deviceData =    writable({ scrollPos: 0, screenSize: 0, screenType: 0, deviceType: 0, bandWidths: [850, 600, 500]}),
-    navigation =    writable({ logo: true, navigation: false, socials: false, search: false});
+    directoryData =         writable({ raw: "/", stripped: '/', root: '/' }),
+    navigationControls =    writable({ direction: [0,0], nsfw: false, loaded: false, transitioning: true }),
+    deviceData =            writable({ scrollPos: 0, screenSize: 0, screenType: 0, deviceType: 0, bandWidths: [850, 600, 500]}),
+    navigationData =        writable({ logo: true, navigation: false, socials: false, search: false});
 
-export { directory, navStatus, deviceData, navigation };
+export { directoryData, navigationControls, deviceData, navigationData };
 
 // ---------------------
 
@@ -19,7 +19,7 @@ const
             previousPage = p.split("/"),
             currentPage = c.split("/"),
             directoryProcessor = (!b ? b : c ?? "") + "/",
-            nsfwState = get(navStatus).nsfw;
+            nsfwState = get(navigationControls).nsfw;
 
         let pyo = navigationDirectories.findIndex(e => e.path === "/" + currentPage[1 + f]),
             cyo = navigationDirectories.findIndex(e => e.path === "/" + previousPage[1 + f]);
@@ -28,10 +28,9 @@ const
         if (pyo ^ cyo || previousPage[nsfwCheck] !== currentPage[nsfwCheck]) { // only moves if x isn't
             directionOffset = pyo > cyo ? 1 : -1;} // upwards / downwards
 
+        navigationControls.update(e => ({...e, direction: [directionOffset]}));
 
-        navStatus.update(e => ({...e, direction: [directionOffset]}));
-
-        directory.set({ raw: directoryProcessor, root: "/" + currentPage[nsfwCheck],
+        directoryData.set({ raw: directoryProcessor, root: "/" + currentPage[nsfwCheck],
             stripped: (nsfwState ? directoryProcessor.replaceAll("/nsfw",'') : directoryProcessor)});
     };
 

@@ -1,10 +1,12 @@
 <script>
 	export let
 		borders = "small",
-		icon = undefined
+		icon = undefined,
+        hovered = false;
 </script>
 
-<div class="neonButton {borders}">
+<div class="neonButton {borders}"
+	class:hovered={hovered}>
 	{#if icon}
 		<img src="{icon}.webp">
 	{:else}
@@ -37,7 +39,7 @@
 		img {
 			position: 	relative;}
 
-		&:hover {
+		&:hover, &.hovered {
 			background: var(--accent2);
 			img {
 				filter: invert(1);}}}

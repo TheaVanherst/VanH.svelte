@@ -1,6 +1,6 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
-    import {navigation, navStatus} from "$lib/pageSettings/redirectHandling.js";
+    import {navigationData, navigationControls} from "$lib/pageSettings/redirectHandling.js";
 
     export let data;
 
@@ -32,10 +32,10 @@
     onMount(() => { paramLocalUpdate(); });
     afterNavigate((e) => {
         if (e.delta || e.type === "enter") {
-            $navStatus.transitioning = true;
+            $navigationControls.transitioning = true;
             paramLocalUpdate();
             setTimeout(() => { // this allows the pagination to update
-                $navStatus.transitioning = false;},300);}});
+                $navigationControls.transitioning = false;},300);}});
     beforeNavigate((e) => {
         if (e.from.route.id !== e?.to?.route?.id) {
             queryReset();}});
@@ -44,7 +44,7 @@
 
     const hardSearch = (query = "", page = 0) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        $navStatus.transitioning = true;
+        $navigationControls.transitioning = true;
         setTimeout(() => { // this allows the pagination to update
             $dataSetStore.searchQuery = query;
             $dataSetStore.page = 		page;
@@ -52,19 +52,19 @@
                 'query': $dataSetStore.searchQuery,
                 'page': $dataSetStore.page});}, 300);
         setTimeout(() => { // this allows the pagination to update
-            $navStatus.transitioning = false;}, 300);};
+            $navigationControls.transitioning = false;}, 300);};
 
     let value;
 </script>
 
 <div class="flexBox">
-	{#if $navigation.navigation || $navigation.socials || $navigation.logo }
+	{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
 		<div transition:slide>
 			<NavigationComponent socials={data.featured}/>
 		</div>
 	{/if}
 
-	{#if $navigation.search}
+	{#if $navigationData.search}
 		<div class="searchBarWrapper" transition:slide>
 			<div class="searchBar">
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>

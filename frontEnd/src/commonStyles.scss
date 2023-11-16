@@ -44,6 +44,21 @@
 		color: 			var(--accent9);
 		font-weight: 	700;}}
 
+// TODO: generic containers
+
+.inlineTag {
+	display: 	inline-flex;
+	margin: 	0 7px 0 0;
+	padding: 	3.5px 3px 2px 3px;
+
+	border-radius: 	12px;
+	overflow: 		hidden;
+	transition: 	.3s ease background, .2s ease color;
+
+	> * {
+		vertical-align: bottom;}
+}
+
 // TODO: generic texts
 
 .externalCitation {
@@ -119,10 +134,10 @@ a {
 		height: 100%;}}
 
 .inlineIcon {
-	height: 14px;
-	width:  14px;
-	aspect-ratio:   1/1;
-	display: flex;
-
-	margin: auto 0;
-	border-radius: 50%;}
+	height: 12px;
+	width:  12px;
+	aspect-ratio:  1/1;
+	border-radius: 50%;
+	display:    flex;
+	margin:     auto 0;
+	padding:    1px;}

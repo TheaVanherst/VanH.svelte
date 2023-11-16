@@ -12,7 +12,7 @@
 		tagText = colours[placement].text;
 </script>
 
-<p style="
+<p class="inlineTag" style="
 	--tagColour: {tagColour};
 	--textColour: {tagText}">
 		{tag.title}
@@ -20,16 +20,10 @@
 
 <style lang="scss">
 	p {
+		margin: 	0 4px 5px 0;
 		padding: 	2px 8px 1px 8px;
-		margin: 	0 5px 5px 0;
-
-		width:	 max-content;
-		display: inline-flex;
-
 		border: 		1px solid var(--tagColour);
 		background: 	transparent;
-		border-radius: 	10px;
-		transition: 	.3s ease background, .2s ease color;
 
 		&:hover {
 			color: 		var(--textColour);

@@ -1,5 +1,5 @@
 <script>
-    import { deviceData, navStatus } from "$lib/pageSettings/redirectHandling.js";
+    import { deviceData, navigationControls } from "$lib/pageSettings/redirectHandling.js";
 
     import ProfileBar 			from "$root/components/layout/header/bannerAnimation.svelte";
     import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
@@ -8,7 +8,7 @@
 </script>
 
 <div class="bannerWrapper">
-	{#if $navStatus.loaded} <!-- this is a placeholder -->
+	{#if $navigationControls.loaded} <!-- this is a placeholder -->
 		{#if $deviceData.deviceType === 2}
 			<div class="desktop">
 				<SplashTexts/>

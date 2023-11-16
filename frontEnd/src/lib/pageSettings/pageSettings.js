@@ -11,23 +11,28 @@ export { messengerEnabled }
 
 // ---------------------
 
-const fullscreenGallery = writable({gallery: undefined, citation: undefined, currentImage: 0, galleryDesc: undefined });
+const fullscreenGallery = writable({
+    gallery: undefined, citation: undefined,
+    componentUrl: undefined, componentData: undefined,
+    currentImage: 0, galleryDesc: undefined });
 
 const galleryChange = (item, citation,id = 0) => {
     if (item) {
         document.body.classList.add("noScroll");
         messengerEnabled.set(false);
-        fullscreenGallery.set({
+        fullscreenGallery.update(e =>({
+            ...e,
             gallery: item.flat(),
             citation: citation.flat(),
-            currentImage: id});}
+            currentImage: id}));}
     else {
         document.body.classList.remove("noScroll");
         messengerEnabled.set(true);
-        fullscreenGallery.set({
+        fullscreenGallery.update(e =>({
+            ...e,
             gallery: undefined,
             citation: undefined,
-            currentImage: 0 });}};
+            currentImage: 0 }));}};
 
 export { fullscreenGallery, galleryChange }
 

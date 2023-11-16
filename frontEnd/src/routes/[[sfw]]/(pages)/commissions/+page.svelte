@@ -1,5 +1,5 @@
 <script>
-    import { navStatus, deviceData } from '$lib/pageSettings/redirectHandling.js';
+    import { navigationControls, deviceData } from '$lib/pageSettings/redirectHandling.js';
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
@@ -16,7 +16,7 @@
 <SidebarTexts titlecard="Examples" icon="galleryIcon.webp">
 	<Carousel>
 		{#each data.commissionPrices[0].PreviewImages as image}
-			{#if !$navStatus.nsfw && image.nsfwRender !== true || $navStatus.nsfw}
+			{#if !$navigationControls.nsfw && image.nsfwRender !== true || $navigationControls.nsfw}
 				<swiper-slide>
 					<div class="imageCard wideBorder">
 						<SanityImage image="{image.imageRender}"/>
@@ -31,7 +31,7 @@
 </SidebarTexts>
 
 <SidebarTexts titlecard="General">
-	{#if $navStatus.nsfw}
+	{#if $navigationControls.nsfw}
 		<div class="table"
 			 class:full={$deviceData.screenType < 2}>
 			<div class="column">

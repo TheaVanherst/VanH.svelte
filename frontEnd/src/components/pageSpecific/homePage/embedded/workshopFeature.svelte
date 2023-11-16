@@ -6,7 +6,7 @@
     import WorkshopCard 	from "$root/components/pageSpecific/homePage/embedded/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/homePage/embedded/workshopSnippet.svelte";
 
-    import { deviceData, navStatus } from '$lib/pageSettings/redirectHandling.js';
+    import { deviceData, navigationControls } from '$lib/pageSettings/redirectHandling.js';
 
     let moreToggle = false;
 
@@ -31,7 +31,7 @@
 						customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}
 						pagination={false} footerAdd={false}>
 						{#each dataset[1] as workshopItem}
-							{#if workshopItem.NSFW && $navStatus.nsfw || !workshopItem.NSFW}
+							{#if workshopItem.NSFW && $navigationControls.nsfw || !workshopItem.NSFW}
 								<swiper-slide>
 									<WorkshopSnippet item={workshopItem}/>
 								</swiper-slide>
@@ -58,7 +58,7 @@
 							customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}
 							pagination={false} footerAdd={false}>
 						{#each dataset[1] as workshopItem}
-							{#if workshopItem.NSFW && $navStatus.nsfw || !workshopItem.NSFW}
+							{#if workshopItem.NSFW && $navigationControls.nsfw || !workshopItem.NSFW}
 								<swiper-slide>
 									<WorkshopSnippet item={workshopItem}/>
 								</swiper-slide>

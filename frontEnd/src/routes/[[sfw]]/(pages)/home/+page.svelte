@@ -1,5 +1,5 @@
 <script>
-    import { navStatus } from "$lib/pageSettings/redirectHandling.js";
+    import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
 
     import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
 
@@ -27,7 +27,7 @@
 			dataset={[data.workshopData, data.workshopSnippet]}/>
 </SidebarTexts>
 
-{#if $navStatus.nsfw}
+{#if $navigationControls.nsfw}
 	<SidebarTexts titlecard="Support" icon="kofiLogo.webp">
 		<KofiCards
 				tiers={data.donationData[0].tiers}/>
