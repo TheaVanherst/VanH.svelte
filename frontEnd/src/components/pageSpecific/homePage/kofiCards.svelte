@@ -45,9 +45,6 @@
 </div>
 
 <style lang="scss">
-	.cardsWrapper {
-		margin: 	0 5px 15px 5px;}
-
 	.contents {
 		height: 	100%;
 		width: 		100%;

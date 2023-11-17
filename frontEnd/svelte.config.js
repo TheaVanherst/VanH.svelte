@@ -6,7 +6,7 @@ import path from 'path';
 const config = {
 	kit: {
 		adapter: adapter({
-			fallback: 'index.html'
+			fallback: '/error.svelte'
 		}),
 		alias: {
 			$routes: 		path.resolve('./src/routes'),

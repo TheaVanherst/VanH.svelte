@@ -8,7 +8,9 @@
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
 
     export let data;
+
     let filteredData = data.designs;
+    let pagedData;
 
     data.designs =
 		data.designs.map(artwork => ({
@@ -26,8 +28,6 @@
 			).toLowerCase()}));
 
     $: $dataSetStore.searchQuery && (filteredData = $dataSetStore.searchQuery === "" ? data.designs : queryFilter(data.designs, true));
-
-    let pagedData;
 </script>
 
 <div class="center">
@@ -39,7 +39,7 @@
 				animate= {false}
 				let:item>
 			<div class="designPost">
-				<ArtworkCard postData={item}/>
+				<ArtworkCard data={item}/>
 			</div>
 		</Masonry>
 	{/if}

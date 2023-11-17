@@ -12,18 +12,17 @@ export { messengerSettings }
 // ---------------------
 
 const fullscreenGalleryStore = writable({
-    gallery: undefined, citation: undefined,
+    gallery: undefined,
     componentUrl: undefined, componentData: undefined,
     currentImage: 0, galleryDesc: undefined });
 
-const galleryChange = (item, citation,id = 0) => {
+const galleryChange = (item, id = 0) => {
     if (item) {
         document.body.classList.add("noScroll");
         messengerSettings.set(false);
         fullscreenGalleryStore.update(e =>({
             ...e,
             gallery: item.flat(),
-            citation: citation.flat(),
             currentImage: id}));}
     else {
         document.body.classList.remove("noScroll");
@@ -31,7 +30,6 @@ const galleryChange = (item, citation,id = 0) => {
         fullscreenGalleryStore.update(e =>({
             ...e,
             gallery: undefined,
-            citation: undefined,
             currentImage: 0 }));}};
 
 export { fullscreenGalleryStore, galleryChange }

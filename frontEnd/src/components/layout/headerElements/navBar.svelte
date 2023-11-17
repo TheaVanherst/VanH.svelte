@@ -31,7 +31,7 @@
 	{#if $navigationData.socials}
 		<div transition:slide={{duration: 200}} id="socials">
 			{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$deviceData.nsfw || $deviceData.nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
-				<RedirectBuilder url={item.platformName.socialURL + item.url}>
+				<a href="https://{item.platformName.socialURL + item.url}">
 					<RainbowButtonWrap padding="{$deviceData.screenType > 2 ? [5,10] : [6,6]}">
 						<div class="central">
 							<div class="mediaIcon" class:largerIcon={$deviceData.screenType < 3}>
@@ -42,7 +42,7 @@
 							{/if}
 						</div>
 					</RainbowButtonWrap>
-				</RedirectBuilder>
+				</a>
 			{/each}
 		</div>
 	{/if}

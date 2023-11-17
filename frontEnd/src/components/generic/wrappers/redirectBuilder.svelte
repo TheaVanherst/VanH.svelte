@@ -4,6 +4,7 @@
 
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
+    import { galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
 
     export let
         url = 		'',
@@ -25,6 +26,8 @@
 			directionProcessing($directoryData.raw, newRoute, newRoute, paraLength);
             $navigationControls.transitioning = true;
             window.scrollTo({top: 0, behavior: 'smooth'});
+
+            galleryChange;
 
             setTimeout(async () => {
                 await goto(newRoute);

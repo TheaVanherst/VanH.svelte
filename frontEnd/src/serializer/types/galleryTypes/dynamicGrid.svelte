@@ -10,7 +10,7 @@
     {#each push as row, x}
         <div class="row">
             {#each row as image, i}
-                <div class="col regularBorder" on:click={() => galleryChange(push, citation, i)}>
+                <div class="col regularBorder" on:click={() => galleryChange(push, i)}>
                     <CitedImage image={image} citation={citation[x][i]}/>
                 </div>
             {/each}

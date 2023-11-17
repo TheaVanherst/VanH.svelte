@@ -6,7 +6,7 @@
 
     const scrollIntoView = async ({target}) => {
         document.querySelector("#a"+randomId).scrollLeft =
-            document.querySelector(target.getAttribute('href')).offsetLeft;}
+        document.querySelector(target.getAttribute('href')).offsetLeft;}
 
     let x = 0;
     export let push;

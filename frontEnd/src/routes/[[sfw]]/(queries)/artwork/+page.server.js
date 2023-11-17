@@ -1,16 +1,7 @@
 
 import client from "$lib/sanityClient.js";
 
-export const load = async ({ fetch, url }) => {
-
-    // let pageData = {}
-    // pageData.itemsPerPage = 10;
-    // pageData.currentPage = parseInt(url.searchParams.get("page")) || 0;
-    // pageData.currentPosition = pageData.currentPage * pageData.itemsPerPage;
-    // pageData.futurePosition = (pageData.currentPosition + 1) * pageData.itemsPerPage;
-    // pageData.maxPosition = await client.fetch(`count(*[_type == 'queryPages'])`)
-    // pageData.maxPages = Math.ceil(pageData.maxPosition / pageData.itemsPerPage);
-
+export const load = async () => {
     let [allQueries] = await Promise.all([client.fetch(`{
         "artworks":
             *[ _type == 'artworks'][] | order(publishedAt desc) {
@@ -80,8 +71,6 @@ export const load = async ({ fetch, url }) => {
             }
         }`
     )]);
-
-    // allQueries.pageData = pageData;
 
     return allQueries
 };
