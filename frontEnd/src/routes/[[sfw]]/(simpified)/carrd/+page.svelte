@@ -1,9 +1,9 @@
 <script>
-	import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
+	import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import SanityImage 			from "$root/serializer/types/sanityImage.svelte";
-    import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";
-    import RainbowButtonWrap 	from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
 
     export let data;
 </script>

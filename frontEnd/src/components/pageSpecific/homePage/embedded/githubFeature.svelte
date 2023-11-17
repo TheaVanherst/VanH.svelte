@@ -1,5 +1,5 @@
 <script>
-	import { deviceData } from "$lib/pageSettings/redirectHandling.js";
+	import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import Container from "../../../generic/containers/container.svelte";
 	import GithubCard from "$root/components/pageSpecific/homePage/embedded/githubCard.svelte";

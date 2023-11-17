@@ -1,4 +1,3 @@
-
 <script>
 	export let hover = false;
 </script>
@@ -49,5 +48,4 @@
 	.outline {
 		:global(span) {
 			color:  var(--accent10);}}
-
 </style>

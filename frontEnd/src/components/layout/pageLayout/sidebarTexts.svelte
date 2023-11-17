@@ -1,6 +1,6 @@
 <script>
-    import { horizontalSlide } from "$lib/transitions/transitionPresets.js";
-    import { navigationControls } 	from '$lib/pageSettings/redirectHandling.js';
+    import { horizontalSlide } from "$lib/controllers/transitionPresets.js";
+    import { navigationControls } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
 
 	export let
 		titlecard,

@@ -44,6 +44,22 @@
 		color: 			var(--accent9);
 		font-weight: 	700;}}
 
+.pagingDot {
+	width: 		30px;
+	height: 	30px;
+	margin:     auto 0;
+	border-radius: 	var(--bordernormal);
+	background: 	var(--TransWhite);
+
+	transition: background .3s ease;
+
+	&:hover {
+		background:     var(--accent6);}
+
+	&.active {
+		background:     var(--accent2);
+		pointer-events: none;}}
+
 // TODO: generic containers
 
 .inlineTag {

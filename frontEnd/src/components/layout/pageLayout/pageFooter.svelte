@@ -1,7 +1,7 @@
 <script>
-    import { deviceData } 	from '$lib/pageSettings/redirectHandling.js';
-    import { splashText } from "$lib/pageSettings/pageSettings.js";
-    import { submitters } from "$lib/databases/splashTextDatabase.js";
+    import { deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { splashTextData } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { submitters } from "$lib/localDatabases/splashTextDatabase.js";
 
     import { page } from "$app/stores";
 </script>
@@ -16,7 +16,7 @@
 	</div>
 	<div class="right">
 		<p id="splash">
-			Splash text by <span>{$splashText?.[2]?.user ?? submitters?.thea?.user ?? "[NOT FOUND]"}</span>
+			Splash text by <span>{$splashTextData?.[2]?.user ?? submitters?.thea?.user ?? "[NOT FOUND]"}</span>
 		</p><p>
 			Website developed and created by Thea Vanherst @ <a href="https://github.com/TheaVanherst/VanH.svelte/">vanh.art</a>
 		</p>

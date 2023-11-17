@@ -11,7 +11,7 @@ export { directoryData, navigationControls, deviceData, navigationData };
 
 // ---------------------
 
-import { navigationDirectories } from "$lib/pageSettings/navigationDirectories.js";
+import { navigationDirectories } from "$lib/controllers/layoutControllers/navigationDirectories.js";
 
 const
     directionProcessing = async (p,c,b = null, f = 0) => {

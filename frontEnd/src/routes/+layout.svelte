@@ -3,17 +3,17 @@
     import { fly } 				from 'svelte/transition';
 
     // page visuals
-    import Header 				from "$root/components/layout/header/header.svelte";
-    import PageFooter 			from "$root/components/layout/pageFooter.svelte";
+    import Header 				from "$root/components/layout/headerElements/header.svelte";
+    import PageFooter 			from "$root/components/layout/pageLayout/pageFooter.svelte";
 
-    import SpaceshipCursor 		from "$root/components/layout/overlays/spaceshipCursor.svelte";
-    import Background 			from "$root/components/layout/overlays/background.svelte";
-    import MessengerPlugin 		from "$root/components/layout/overlays/messengerPlugin.svelte";
-    import CometGenerator 		from "$root/components/layout/overlays/cometGenerator.svelte";
-    import FullscreenGallery 	from "$root/components/generic/controllers/fullscreenGallery.svelte";
+    import SpaceshipCursor 		from "$root/components/layout/stylingComponents/spaceshipCursor.svelte";
+    import Background 			from "$root/components/layout/stylingComponents/background.svelte";
+    import MessengerPlugin 		from "$root/components/layout/pageLayout/messengerPlugin.svelte";
+    import CometGenerator 		from "$root/components/layout/stylingComponents/cometGenerator.svelte";
+    import FullscreenGallery 	from "$root/components/layout/fullscreenGallery.svelte";
 
-    import { navigationControls, deviceData } from "$lib/pageSettings/redirectHandling.js";
-    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/titlebarScoller.js";
+    import { navigationControls, deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
 
     import { onMount } from "svelte";
     import Device from "svelte-device-info";

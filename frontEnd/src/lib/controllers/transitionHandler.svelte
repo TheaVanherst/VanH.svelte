@@ -6,7 +6,7 @@
     import { afterNavigate, beforeNavigate } from "$app/navigation";
     import { navigating, updated } from "$app/stores";
 
-    import { directionProcessing, directoryData, navigationControls } from '$lib/pageSettings/redirectHandling.js';
+    import { directionProcessing, directoryData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
 
     afterNavigate((n) => {
         if ( n.type = "enter" || $navigating?.willUnload === true ) {  // this fixes an issue where the url doesn't update from the initial layout load.

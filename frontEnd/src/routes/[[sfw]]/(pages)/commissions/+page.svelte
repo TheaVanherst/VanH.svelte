@@ -1,13 +1,13 @@
 <script>
-    import { navigationControls, deviceData } from '$lib/pageSettings/redirectHandling.js';
+    import { navigationControls, deviceData } from '$lib/controllers/layoutControllers/redirectHandling.js';
 
-    import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
+    import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
     import SectionListCard 	from "$root/components/generic/containers/sectionListCard.svelte";
-    import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
+    import Carousel 		from "$root/components/generic/containers/carousel.svelte";
 
     import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
-    import ImageTag 		from "$root/components/generic/imageContainers/imageTag.svelte";
+    import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
    	import CommissionPrices from "$root/components/pageSpecific/commissionPage/commissionPrices.svelte";
 
     export let data;

@@ -1,6 +1,6 @@
 <script>
 	import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import Carousel from "$root/components/generic/controllers/carousel.svelte";
+    import Carousel from "$root/components/generic/containers/carousel.svelte";
 
 	export let tiers = [];
 </script>

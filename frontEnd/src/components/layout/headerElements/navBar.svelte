@@ -1,14 +1,14 @@
 <script>
     import { slide } from 'svelte/transition';
 
-    import RedirectBuilder 		from "$root/components/generic/controllers/redirectBuilder.svelte";
-    import RainbowButtonWrap 	from "$root/components/generic/wrappers/rainbowButtonWrap.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
 
-    import { navigationControls, deviceData } 	from '$lib/pageSettings/redirectHandling.js';
-    import { navigationDirectories } 	from '$lib/pageSettings/navigationDirectories.js';
+    import { navigationControls, deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { navigationDirectories } 	from '$lib/controllers/layoutControllers/navigationDirectories.js';
 
     import SanityImage 					from "$root/serializer/types/sanityImage.svelte";
-    import { navigationData, directoryData } 	from "$lib/pageSettings/redirectHandling.js";
+    import { navigationData, directoryData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let socials;
 </script>

@@ -1,8 +1,8 @@
 <script>
-    import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
-	import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
+	import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
     export let
 		prices = [],

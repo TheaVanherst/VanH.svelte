@@ -1,6 +1,6 @@
 <script>
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import FlyInCard from "$root/components/generic/imageContainers/flyInClamp.svelte";
+    import FlyInCard from "$root/components/generic/containers/imageContainers/showcaseFlyIn.svelte";
 
 	export let data;
 
@@ -14,7 +14,10 @@
 			<div class="imageWrapper">
 				<SanityImage image={data.previewImage}/>
 			</div>
-			<FlyInCard title={data.itemName} desc={data.shortDesc} hover={active}/>
+			<FlyInCard {active}>
+				<h5 slot="title"> {data.itemName} </h5>
+				<span slot="desc">{data.shortDesc}</span>
+			</FlyInCard>
 		</div>
 		<div class="referral" style="background: var(--accent{data.accentColour})">
 			<p>TheaVanherst/{data.slug}</p>

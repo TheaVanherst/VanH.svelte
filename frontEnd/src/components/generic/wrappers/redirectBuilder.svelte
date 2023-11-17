@@ -1,6 +1,6 @@
 <script>
-    import { directionProcessing, directoryData, navigationControls } from '$lib/pageSettings/redirectHandling.js';
-    import { pageName } from "$lib/controllers/titlebarScoller.js";
+    import { directionProcessing, directoryData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
 
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";

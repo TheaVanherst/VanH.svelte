@@ -16,7 +16,7 @@
 
 	{#if active}
 		<div class="gameIcon shortBorder" transition:fly={{x: 20}}>
-				<SanityImage image={item.gameLogo}/>
+			<SanityImage image={item.gameLogo}/>
 		</div>
 	{/if}
 </a>

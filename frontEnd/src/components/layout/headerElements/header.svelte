@@ -1,8 +1,8 @@
 <script>
-    import { deviceData, navigationControls } from "$lib/pageSettings/redirectHandling.js";
+    import { deviceData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import ProfileBar 			from "$root/components/layout/header/bannerAnimation.svelte";
-    import SplashTexts 			from "$root/components/layout/header/splashTexts.svelte";
+    import ProfileBar 			from "$root/components/layout/headerElements/bannerAnimation.svelte";
+    import SplashTexts 			from "$root/components/layout/headerElements/splashTexts.svelte";
 
     let hover = false;
 </script>

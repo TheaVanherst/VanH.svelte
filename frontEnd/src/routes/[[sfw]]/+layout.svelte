@@ -1,14 +1,14 @@
 <script>
-    import NavigationComponent 	from "$root/components/layout/header/navBar.svelte";
-    import {navigationData, navigationControls} from "$lib/pageSettings/redirectHandling.js";
+    import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
+    import {navigationData, navigationControls} from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let data;
 
     import { slide } 	from "svelte/transition";
-    import TransitionHandler 	from "$lib/transitions/transitionHandler.svelte";
+    import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
-    import { dataSetStore } 	from "$lib/pageSettings/pageSettings.js";
-    import { urlSerializer } 	from "$lib/controllers/searchController.js";
+    import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
 
     // generic query functions
 

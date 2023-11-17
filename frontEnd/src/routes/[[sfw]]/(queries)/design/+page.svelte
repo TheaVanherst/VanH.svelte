@@ -1,9 +1,9 @@
 <script>
     import Masonry 		from 'svelte-bricks';
-    import Pagination 	from "$root/components/generic/controllers/pagination.svelte";
+    import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
 
-    import { dataSetStore } from "$lib/pageSettings/pageSettings.js";
-    import { queryFilter } 	from "$lib/controllers/searchController.js";
+    import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { queryFilter } 	from "$lib/controllers/layoutControllers/searchController.js";
 
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
 

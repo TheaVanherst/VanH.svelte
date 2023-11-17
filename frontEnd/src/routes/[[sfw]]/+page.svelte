@@ -2,7 +2,7 @@
     import { slide } from "svelte/transition";
 
     import Container 		from "$root/components/generic/containers/container.svelte";
-    import RedirectBuilder 	from "$root/components/generic/controllers/redirectBuilder.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
     export let data;
 </script>

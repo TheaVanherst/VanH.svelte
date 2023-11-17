@@ -1,12 +1,12 @@
 <script>
     import { slide } from 'svelte/transition';
 
-    import Carousel 		from "$root/components/generic/controllers/carousel.svelte";
+    import Carousel 		from "$root/components/generic/containers/carousel.svelte";
     import Container 		from "$root/components/generic/containers/container.svelte";
     import WorkshopCard 	from "$root/components/pageSpecific/homePage/embedded/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/homePage/embedded/workshopSnippet.svelte";
 
-    import { deviceData, navigationControls } from '$lib/pageSettings/redirectHandling.js';
+    import { deviceData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
 
     let moreToggle = false;
 

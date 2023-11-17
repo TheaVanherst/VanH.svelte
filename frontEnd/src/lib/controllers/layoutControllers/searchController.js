@@ -3,8 +3,8 @@ import { get } from "svelte/store"
 import { page } from '$app/stores';
 import { goto } from "$app/navigation";
 
-import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
-import { dataSetStore } from "$lib/pageSettings/pageSettings.js";
+import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
 
 const
     urlSerializer = (values) => {

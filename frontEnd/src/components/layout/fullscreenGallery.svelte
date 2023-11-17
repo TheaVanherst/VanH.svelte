@@ -1,19 +1,19 @@
 <script>
 	import { fade } from "svelte/transition";
 
-	import { fullscreenGallery, galleryChange } from "$lib/pageSettings/pageSettings.js";
+	import { fullscreenGalleryStore, galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
     import SanityImage from "$root/serializer/types/sanityImage.svelte";
-    import ImageTag from "$root/components/generic/imageContainers/imageTag.svelte";
+    import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
-    import { clickOutside } from "$lib/transitions/transitionPresets.js";
+    import { clickOutside } from "$lib/controllers/transitionPresets.js";
 
 	let position = 0,
 		maxPosition = 0;
 
 	const
 		updateCall = () => {
-            maxPosition = $fullscreenGallery?.gallery.length - 1;
-            position = $fullscreenGallery.currentImage;},
+            maxPosition = $fullscreenGalleryStore?.gallery.length - 1;
+            position = $fullscreenGalleryStore.currentImage;},
 		gallerySwap = () => {
             position < maxPosition ? position++ : galleryExit();},
 		galleryExit = () => {
@@ -21,45 +21,35 @@
             galleryChange(undefined);}
 </script>
 
-{#if $fullscreenGallery.gallery}
+{#if $fullscreenGalleryStore.gallery}
 	<div class="overlay"
 		 	use:updateCall
 			in:fade={{delay:250}}
 		 	out:fade>
-		<div class="circleWrapper">
-			<div class="pageCircleBar">
-				{#each $fullscreenGallery?.gallery as dot, i}
-					{#if i < position}
-						<div class="circle">
-						</div>
-					{/if}
-				{/each}
-				{#key position}
-					<div class="pageNumber">
-						<p>{position + 1} / {maxPosition + 1}</p>
-					</div>
-				{/key}
-				{#each $fullscreenGallery?.gallery as dot, i}
-					{#if i > position}
-						<div class="circle">
-						</div>
-					{/if}
-				{/each}
-			</div>
-		</div>
 		<div class="wrapper"
 				use:clickOutside
 			 	on:click_outside={() => galleryExit()}>
+			<div class="circleWrapper">
+				<div class="pageCircleBar">
+					{#each $fullscreenGalleryStore?.gallery as dot, i}
+						<div class="pagingDot"
+							 class:active={i === position}
+							 on:click={() => {position = i}}>
+						</div>
+					{/each}
+				</div>
+			</div>
+
 			<div class="positionSet" on:click={() => gallerySwap()}>
-				{#if $fullscreenGallery?.gallery[position]}
+				{#if $fullscreenGalleryStore?.gallery[position]}
 					<div class="image wideBorder">
-						<SanityImage image={$fullscreenGallery.gallery[position]}/>
+						<SanityImage image={$fullscreenGalleryStore.gallery[position]}/>
 					</div>
 				{/if}
-				{#if $fullscreenGallery?.citation[position]}
+				{#if $fullscreenGalleryStore?.citation[position]}
 					<div class="imageCitation">
 						<ImageTag border="shortBorder" position="relative">
-							<p>{$fullscreenGallery?.citation[position]}</p>
+							<p>{$fullscreenGalleryStore?.citation[position]}</p>
 						</ImageTag>
 					</div>
 				{/if}
@@ -81,7 +71,7 @@
 	.wrapper {
 		margin: 	auto;
 		.positionSet {
-			margin: 50px 15px 15px;}}
+			margin: 15px;}}
 
 	.imageCitation {
 		margin: 	0 auto;
@@ -101,25 +91,20 @@
 
 	.circleWrapper {
 		position: 	absolute;
-		width: 		100%;
 		display: 	flex;
 
+		width: 	100%;
+		bottom: 0;
+		left: 	0;
+
 		.pageCircleBar {
-			margin: 	0 auto;
 			display: 	flex;
-			padding: 	15px;
 			height: 	max-content;
+
+			margin: 	0 auto;
+			padding: 	15px;
 			gap: 		5px;
 
-			.circle {
-				width: 		12px;
-				height: 	12px;
-				margin: 	auto 0;
-				border-radius: 	50%;
-				background: 	var(--TransWhite);}
-			.pageNumber {
-				padding: 		2px 20px 1px;
-				border-radius: 	15px;
-				background: 	var(--accent9);
-				p {	color: 		var(--accent10);}}}}
+			.pagingDot {
+				border-radius: 	5px;}}}
 </style>

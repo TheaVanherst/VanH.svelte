@@ -1,7 +1,7 @@
 
 import client from "$lib/sanityClient.js";
 import { socialPlatformQuery } from "$lib/queries/websiteSettings.js";
-import {navigationData} from "$lib/pageSettings/redirectHandling.js";
+import {navigationData} from "$lib/controllers/layoutControllers/redirectHandling.js";
 
 export async function load () {
     navigationData.set({ logo: true, navigation: false, socials: false, search: false });

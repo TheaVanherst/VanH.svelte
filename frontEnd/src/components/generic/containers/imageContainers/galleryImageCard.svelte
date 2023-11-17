@@ -69,5 +69,5 @@
 
 	.infoPlate {
 		max-height: calc(100% - 10px);
-		overflow: scroll;}
+		overflow: 	hidden scroll;}
 </style>

@@ -1,9 +1,9 @@
 <script>
-    import Carousel from "$root/components/generic/controllers/carousel.svelte";
-    import CharacterCard 	from "$root/components/generic/imageContainers/showcaseCard.svelte";
-    import InfoPlate 			from "$root/components/pageSpecific/homePage/characters/characterInfoPlate.svelte";
+    import Carousel 		from "$root/components/generic/containers/carousel.svelte";
+    import CharacterCard 	from "$root/components/pageSpecific/homePage/characters/showcaseCard.svelte";
+    import InfoPlate 		from "$root/components/pageSpecific/homePage/characters/characterInfoPlate.svelte";
 
-    import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
     export let dataset = {};
 </script>
 

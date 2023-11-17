@@ -1,7 +1,7 @@
 <script>
-    import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import SidebarTexts 	from "$root/components/layout/sidebarTexts.svelte";
+    import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
 
 	import CharacterFeature from "$root/components/pageSpecific/homePage/characters/characterShowcase.svelte";
     import WorkshopFeature 	from "$root/components/pageSpecific/homePage/embedded/workshopFeature.svelte";

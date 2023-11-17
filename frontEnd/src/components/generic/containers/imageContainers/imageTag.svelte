@@ -9,9 +9,7 @@
 </script>
 
 {#if !active}
-	<div class="developmentIcon
-		{border}"
-		 style="position:{position}"
+	<div class="developmentIcon {border}" style="position:{position}"
 		 transition:fly={{y: (positionArray[0] * 50), duration: 400 }}>
 			<slot/>
 	</div>

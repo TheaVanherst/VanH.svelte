@@ -1,9 +1,9 @@
 <script>
 	import { fly, scale } from "svelte/transition";
 
-    import { splash } from "$lib/databases/splashTextDatabase.js";
-    import { navigationControls } from "$lib/pageSettings/redirectHandling.js";
-    import { splashText } from "$lib/pageSettings/pageSettings.js";
+    import { splash } from "$lib/localDatabases/splashTextDatabase.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { splashTextData } from "$lib/controllers/layoutControllers/pageSettings.js";
 
 	let text = "undefined?",
 		numberGen = 0,
@@ -18,7 +18,7 @@
 		generator = () => {
             rainbow = false;
 
-			$splashText = splash[numberGen];
+			$splashTextData = splash[numberGen];
             text = splash[numberGen][1];
     	}
 
