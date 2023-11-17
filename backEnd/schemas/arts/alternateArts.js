@@ -51,9 +51,6 @@ export default defineType({
       description: 'Searchable Tags',
       type: 'array', group: 'MetaData',
       of: [{
-        name: 'nsfwTag', type: 'reference',
-        to: {type: 'nsfwTags'},
-      },{
         name: 'explicitTag', type: 'reference',
         to: {type: 'explicitTags'},
       },{
@@ -62,6 +59,12 @@ export default defineType({
       },{
         name: 'genreTag', type: 'reference',
         to: {type: 'genreTag'},
+      },{
+        name: 'designTag', type: 'reference',
+        to: {type: 'designTags'},
+      },{
+        name: 'cultureTag', type: 'reference',
+        to: {type: 'cultureTags'},
       }],
       validation: Rule => Rule.required().unique(),
     }),

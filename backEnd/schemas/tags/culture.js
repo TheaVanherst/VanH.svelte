@@ -1,10 +1,10 @@
 
 import { defineField, defineType } from 'sanity'
-import { CircleIcon } from '@sanity/icons'
+import { EarthAmericasIcon } from '@sanity/icons'
 
 const
-  internalTags = defineType({
-    name: 'explicitTags', title: 'Explicit Content Tags',
+  cultureTags = defineType({
+    name: 'cultureTags', title: 'Pop-Culture Tags',
     type: 'document',
     fields: [
       defineField({
@@ -14,11 +14,11 @@ const
         description: 'Alternate tags in relation to the focus tag (Seperated by spaces)',
         type: 'text', rows: 3,
       })],
-    icon: CircleIcon,
+    icon: EarthAmericasIcon,
     preview: {
       select: {title: 'title', desc: 'description'},
       prepare: ({title, emoji, desc}) => {
         return {title: `${title}`, subtitle: desc}}}
   });
 
-export default internalTags;
+export default cultureTags;

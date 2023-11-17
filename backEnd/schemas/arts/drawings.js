@@ -109,6 +109,9 @@ export default defineType({
       },{
         name: 'genreTag', type: 'reference',
         to: {type: 'genreTag'},
+      },{
+        name: 'cultureTag', type: 'reference',
+        to: {type: 'cultureTags'},
       }],
       validation: Rule => Rule.required().unique(),
     }),

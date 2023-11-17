@@ -5,15 +5,13 @@
 
     import { spring } from 'svelte/motion';
 
+    let initialized = false;
     let position = spring(
-        {	x: -($deviceData.screenSize / 2),
-			y: -100},
-        { stiffness: 0.1, damping: 0.6}
-    );
+        { x: -($deviceData.screenSize / 2), y: -100 },
+        { stiffness: 0.1, damping: 0.6}),
+        shoot = {};
 
-    $: $mousePosition.x !== position.x ? position.set({ x: $mousePosition.x, y: $mousePosition.y}) : false;
-
-    let shoot = {}
+    $: $mousePosition.x && position.set({ x: $mousePosition.x, y: $mousePosition.y});
 </script>
 
 <svelte:window on:mousedown={() => shoot = {}}/>
@@ -87,9 +85,7 @@
 			top: 	32px;
 			left: 	-24px;
 			width: 	48px;
-			height: 49px;
-			object-position:
-					-48px*2 0;}}
+			height: 49px;}}
 
 	@keyframes xMovement {
 		0% {	margin-left: -10px;}

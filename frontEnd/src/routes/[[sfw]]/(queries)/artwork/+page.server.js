@@ -66,6 +66,7 @@ export const load = async () => {
                 
                 'tags': tagData[]|order(_type desc)-> {
                     title,
+                    relatedTags,
                     'type': _type
                 }
             }

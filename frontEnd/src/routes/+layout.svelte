@@ -1,8 +1,7 @@
 <script>
     import '../styles.scss';
-    import { fly } 				from 'svelte/transition';
+    import { fly, fade } 				from 'svelte/transition';
 
-    // page visuals
     import Header 				from "$root/components/layout/headerElements/header.svelte";
     import PageFooter 			from "$root/components/layout/pageLayout/pageFooter.svelte";
 
@@ -26,18 +25,13 @@
         $navigationControls.loaded = true;
     });
 
-    let screenSize = 0,
-        scrollPos = 0;
+    let screenSize = 0, scrollPos = 0;
 
     $: $deviceData.screenSize = screenSize;
     $: $deviceData.scrollPos = scrollPos;
-
     $: $deviceData.screenType =
-		$deviceData.screenSize > $deviceData.bandWidths[1] ?
-			3 :
-			$deviceData.screenSize < $deviceData.bandWidths[2] ?
-				1 :
-				2;
+		$deviceData.screenSize > $deviceData.bandWidths[1] ? 3 :
+			$deviceData.screenSize < $deviceData.bandWidths[2] ? 1 : 2;
     $: $deviceData.deviceType === 2 ?
 		$navigationControls.transitioning !== true ?
 			titlebarScroller(`${websiteTag} // ${$pageName} `)
@@ -52,16 +46,17 @@
 <svelte:window bind:innerWidth={screenSize} bind:scrollY={scrollPos} />
 
 <Background/>
-<MessengerPlugin/>
+<CometGenerator/>
+<SpaceshipCursor/>
 
-{#if $deviceData.deviceType === 2}
-	<CometGenerator/>
-	<SpaceshipCursor/>
+{#if $navigationControls?.loaded}
+	<div transition:fade>
+		<MessengerPlugin/>
+		<FullscreenGallery/>
+	</div>
 {/if}
 
-<FullscreenGallery/>
-
-{#if $navigationControls.loaded}
+{#if $navigationControls?.loaded}
 	<div id="scrollParent">
 		<div id="layout" class="wrapCorrection" style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
@@ -71,9 +66,7 @@
 			<slot/>
 
 			<div in:fly={{y: 100, duration: 500, delay: 350 }}>
-				{#if $navigationControls.loaded}
-						<PageFooter/>
-				{/if}
+				<PageFooter/>
 			</div>
 		</div>
 	</div>

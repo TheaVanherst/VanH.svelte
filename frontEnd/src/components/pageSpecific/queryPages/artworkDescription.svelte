@@ -11,7 +11,6 @@
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/inlineGenreTag.svelte";
 
-
     export let
 		data,
 		hover = true,
@@ -19,7 +18,7 @@
 		absolute = false;
 </script>
 
-<ImageFloatCard {hover} {active} {absolute} accent={true}>
+<ImageFloatCard {hover} {active} {absolute}>
 	<h4 slot="title">{data.pieceName}</h4>
 	<div slot="desc">
 		<h4>{data.pieceName}</h4>
@@ -31,7 +30,7 @@
 				<p class="altTitle">{data.commissionData.commissionType} for:</p>
 				{#each data.commissionData.characters as character}
 					<div class="commissioner">
-						<RedirectBuilder url="{$directoryData.stripped}?query={character.owner.handle.toLowerCase()}">
+						<RedirectBuilder url="{$directoryData.stripped}?query=@{character.owner.handle.toLowerCase()}">
 							<div class="characterCard">
 								<div class="mediaIcon shortBorder">
 									<SanityImage image={character.owner.userPortrait}/>
@@ -51,12 +50,14 @@
 		{#if data.authors.length > 0}
 			<p> With additional help from: </p>
 			{#each data.authors as author}
-				<div class="characterCard">
-					<div class="mediaIcon shortBorder">
-						<SanityImage image={author.author.userPortrait}/>
+				<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','-')}">
+					<div class="characterCard">
+						<div class="mediaIcon shortBorder">
+							<SanityImage image={author.author.userPortrait}/>
+						</div>
+						<h4>{author.author.fullName}</h4>
 					</div>
-					<h4>{author.author.fullName}</h4>
-				</div>
+				</RedirectBuilder>
 				{#if author.author?.socialMedia?.length > 0}
 					{#each author.author.socialMedia as social}
 						<SocialMediaTag data={social}/>
@@ -84,13 +85,11 @@
 		{/if}
 	</div>
 
-
-
 	<div slot="alt">
 		{#if !!data.characters || !!data.commissionData?.characters}
 			<p>Featured Character{[].concat(data?.commissionData?.characters, data?.characters).filter(Boolean).length > 1 ? 's' : ''}:</p>
 			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as character}
-				<RedirectBuilder url="{$directoryData.stripped}?query={character.fullName.toLowerCase()}">
+				<RedirectBuilder url="{$directoryData.stripped}?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
 					<div class="characterCard">
 						<div class="mediaIcon shortBorder">
 							<SanityImage image={character.charIcon}/>
@@ -131,10 +130,6 @@
 </ImageFloatCard>
 
 <style lang="scss">
-	.galleryCard {
-		max-width: 600px;
-		width: 100%;}
-
 	p {		margin: 7px 0 7px 0;}
 	p + p {	margin: 5px 0 5px 0;}
 
@@ -156,7 +151,7 @@
 	.commissionWrapper {	margin: 5px 0 5px 0;
 		.commissioner {		margin: 0 0 5px 0;}
 		.altTitle {	margin: 10px 0 2px 0;}}
-	.postTags {		margin: 0 0 -5px 0;}
+	.postTags {		margin: 5px 0 -5px 0;}
 	.footer {
 		.links {	gap: 		5px;
 					display: 	grid;}}

@@ -1,5 +1,5 @@
 <script>
-	import { fade, fly } from "svelte/transition";
+	import { fade } from "svelte/transition";
 
 	import { fullscreenGalleryStore, galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";

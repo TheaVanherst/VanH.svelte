@@ -7,7 +7,7 @@
     import { galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
 
     export let
-        url = 		'',
+        url = '',
 		redirectName = undefined,
 		nsfwPointer = undefined;
 
@@ -22,22 +22,19 @@
             newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
 
         if (newRoute + "/" !== $directoryData.raw && !$navigationControls.transitioning) {
-
+            galleryChange;
 			directionProcessing($directoryData.raw, newRoute, newRoute, paraLength);
             $navigationControls.transitioning = true;
             window.scrollTo({top: 0, behavior: 'smooth'});
-
-            galleryChange;
-
             setTimeout(async () => {
                 await goto(newRoute);
-                $navigationControls.transitioning = false;}, 350);}
+                $navigationControls.transitioning = false;}, 200);}
 
     	if (n) { // this sets a custom page name.
             $pageName = n;}
     }
 </script>
 
-<a href="{url}" target="" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
+<a href="{url}" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
 	<slot/>
 </a>

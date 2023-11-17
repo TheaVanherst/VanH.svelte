@@ -2,7 +2,6 @@
 	import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import SanityImage 			from "$root/serializer/types/sanityImage.svelte";
-    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
 
     export let data;
@@ -26,7 +25,7 @@
 		{#each section.chunkSocials as social}
 			{#if !social.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
 				<div class="link">
-					<RedirectBuilder url={social.platformName.socialURL + social.url}>
+					<a href="https://{social.platformName.socialURL + social.url}" target="_blank">
 						<RainbowButtonWrap bottom={10} padding={[9,15]}>
 							<div class="central">
 								<div class="mediaIcon">
@@ -37,7 +36,7 @@
 								</div>
 							</div>
 						</RainbowButtonWrap>
-					</RedirectBuilder>
+					</a>
 				</div>
 			{/if}
 		{/each}
@@ -45,10 +44,6 @@
 </div>
 
 <style lang="scss">
-	@import "../../../../commonStyles";
-
-	* { transition: .2s ease}
-
 	.wrapper {
 		margin: 	0 auto;
 		max-width: 	450px;}

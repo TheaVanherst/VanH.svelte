@@ -14,7 +14,7 @@ const
         goto(pageData);
     },
     queryFilter = (dataSet, sfwFilter = false) => {
-        navigationControls.update(e => ({...e, direction: [0,0]}));
+        navigationControls.update(e => ({...e, direction: 0}));
         return dataSet.filter(item => {
             let array = (get(dataSetStore).searchQuery.toLowerCase() || "").split(' ');
             if (sfwFilter) {

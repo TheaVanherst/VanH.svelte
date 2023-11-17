@@ -3,12 +3,11 @@
 
     import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
-
-    import { navigationControls, deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
-    import { navigationDirectories } 	from '$lib/controllers/layoutControllers/navigationDirectories.js';
-
     import SanityImage 					from "$root/serializer/types/sanityImage.svelte";
-    import { navigationData, directoryData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
+
+    import { navigationControls, deviceData,
+       		 navigationData, directoryData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { navigationDirectories } 	from '$lib/controllers/layoutControllers/navigationDirectories.js';
 
     export let socials;
 </script>
@@ -18,7 +17,7 @@
 		<div transition:slide={{duration: 200}} id="navigation">
 			{#each navigationDirectories as item}
 				{#if item.nsfw && $navigationControls.nsfw || !item.nsfw}
-					<RedirectBuilder url="{item.path}" internal={true} redirectName={item.pagePreview}>
+					<RedirectBuilder url="{item.path}" redirectName={item.pagePreview}>
 						<div class="navButton" class:currentRoot={$directoryData.root === item.path}>
 							<h5> {item.title} </h5>
 						</div>
@@ -31,7 +30,7 @@
 	{#if $navigationData.socials}
 		<div transition:slide={{duration: 200}} id="socials">
 			{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$deviceData.nsfw || $deviceData.nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
-				<a href="https://{item.platformName.socialURL + item.url}">
+				<a href="https://{item.platformName.socialURL + item.url}" target="_blank">
 					<RainbowButtonWrap padding="{$deviceData.screenType > 2 ? [5,10] : [6,6]}">
 						<div class="central">
 							<div class="mediaIcon" class:largerIcon={$deviceData.screenType < 3}>

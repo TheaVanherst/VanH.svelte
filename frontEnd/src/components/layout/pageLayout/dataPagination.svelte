@@ -1,11 +1,10 @@
 <script>
     import { urlSerializer } from "$lib/controllers/layoutControllers/searchController.js";
-    import { directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let
 		rows, trimmedRows, perPage,
-		goto, currentPage = 0,
-        lastPage;
+		goto, currentPage = 0, lastPage;
 
     let totalRows, totalPages,
         start, end;
@@ -15,17 +14,16 @@
     $: currentPage  = Number(goto) ?? 0;
 
 	const
-		toTop = () => {
-            window.scrollTo({top: 0, behavior: 'smooth'});},
-		serializer = () => {
-            $directoryData.direction = [0,0];
-            setTimeout(() => { // this allows the pagination to update
-                urlSerializer({'page': currentPage});
-            }, 500);},
 		directPage = (index) => {
-            toTop();
-            setTimeout(() => {currentPage = index;}, 500);
-            serializer();}
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            $navigationControls.direction = 0;
+            setTimeout(() => {
+                currentPage = index;}, 500);
+            setTimeout(() => {
+                $navigationControls.transitioning = true;}, 250);
+            setTimeout(() => {
+                urlSerializer({'page': currentPage});
+                $navigationControls.transitioning = false;}, 500);}
 
     $: start = currentPage * perPage;
     $: end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;

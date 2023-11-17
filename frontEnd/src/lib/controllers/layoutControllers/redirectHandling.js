@@ -17,23 +17,24 @@ const
     directionProcessing = async (p,c,b = null, f = 0) => {
         let directionOffset = 0,
             previousPage = p.split("/"),
-            currentPage = c.split("/"),
-            directoryProcessor = (!b ? b : c ?? "") + "/",
-            nsfwState = get(navigationControls).nsfw;
+            currentPage = c.split("/");
+
+        let nsfwState = get(navigationControls).nsfw,
+            nsfwCheck = nsfwState ? 2 : 1;
 
         let pyo = navigationDirectories.findIndex(e => e.path === "/" + currentPage[1 + f]),
-            cyo = navigationDirectories.findIndex(e => e.path === "/" + previousPage[1 + f]);
+            cyo = navigationDirectories.findIndex(e => e.path === "/" + previousPage[1 + f]),
+            qsd = ((!b ? b : c ?? "") + "/").split("?");
 
-        let nsfwCheck = nsfwState ? 2 : 1;
         if (pyo ^ cyo || previousPage[nsfwCheck] !== currentPage[nsfwCheck]) { // only moves if x isn't
             directionOffset = pyo > cyo ? 1 : -1;} // upwards / downwards
 
         navigationControls.update(e => ({...e, direction: [directionOffset]}));
-
-        directoryData.set({ raw: directoryProcessor, root: "/" + currentPage[nsfwCheck],
-            stripped: (nsfwState ? directoryProcessor.replaceAll("/nsfw",'') : directoryProcessor)});
+        directoryData.set({ raw: qsd[0], root: "/" + currentPage[nsfwCheck], query: qsd[1],
+            stripped: (get(navigationControls).nsfw ? qsd[0].replaceAll("/nsfw",'') : qsd[0])});
     };
 
 export { directionProcessing };
+
 
 // TODO: USERINTERFACE CONTROLLERS

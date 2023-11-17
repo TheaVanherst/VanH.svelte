@@ -9,7 +9,7 @@
     import { directionProcessing, directoryData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
 
     afterNavigate((n) => {
-        if ( n.type = "enter" || $navigating?.willUnload === true ) {  // this fixes an issue where the url doesn't update from the initial layout load.
+        if ( n.from === null && n.willUnload === false ) {  // this fixes an issue where the url doesn't update from the initial layout load.
             $navigationControls.transitioning = false;
             let to = (n.to.url.pathname).slice(0, -1);
 			to = to === "" ? "/" : to;
@@ -39,13 +39,13 @@
 			 in:fly={{
         	easing: 	cubicOut,
         	delay: 		175, // specifically for social media transitions
-            duration:   250,
-            x: transitionSpeed * $navigationControls.direction}}
+            duration:   225,
+            x: $navigationControls.direction * transitionSpeed}}
 			 out:fly={{
            	easing: 	cubicOut,
-            duration:   250,
-            x: transitionSpeed * -$navigationControls.direction}}>
-			<div>
+            duration:   225,
+            x: -$navigationControls.direction * transitionSpeed}}>
+			<div class="pageData">
 				<slot/>
 			</div>
 		</div>
@@ -60,14 +60,13 @@
 
 <style lang="scss">
 	.parentElement {
-		position: relative;
-	}
+		position: relative;}
 
 	.transitionWrapper {
 		position: 	static;
 		margin-top: 15px;
 
-		div {
+		.pageData {
 			position: 	fixed;
 			display: 	contents;
 			max-width: 	100%;}}

@@ -1,16 +1,12 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
-    import {navigationData, navigationControls} from "$lib/controllers/layoutControllers/redirectHandling.js";
-
-    export let data;
+    import { navigationData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import { slide } 	from "svelte/transition";
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
 
     import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
-
-    // generic query functions
 
     import { page } 	from "$app/stores";
 
@@ -24,16 +20,17 @@
         $dataSetStore.searchQuery = "";
         $dataSetStore.page = 		0;}
 
-    // page direction amendments & functionality
-
     import { onMount } 	from "svelte";
     import { afterNavigate, beforeNavigate } from "$app/navigation";
 
-    onMount(() => { paramLocalUpdate(); });
+    onMount(() => {
+        if ($navigationData.search){
+            paramLocalUpdate();}});
     afterNavigate((e) => {
+        if ($navigationData.search){
+            paramLocalUpdate();}
         if (e.delta || e.type === "enter") {
             $navigationControls.transitioning = true;
-            paramLocalUpdate();
             setTimeout(() => { // this allows the pagination to update
                 $navigationControls.transitioning = false;},300);}});
     beforeNavigate((e) => {
@@ -54,17 +51,18 @@
         setTimeout(() => { // this allows the pagination to update
             $navigationControls.transitioning = false;}, 300);};
 
+    export let data;
     let value;
 </script>
 
 <div class="flexBox">
-	{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
+	{#if $navigationData?.navigation || $navigationData?.socials || $navigationData?.logo }
 		<div transition:slide>
 			<NavigationComponent socials={data.featured}/>
 		</div>
 	{/if}
 
-	{#if $navigationData.search}
+	{#if $navigationData?.search}
 		<div class="searchBarWrapper" transition:slide>
 			<div class="searchBar">
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>

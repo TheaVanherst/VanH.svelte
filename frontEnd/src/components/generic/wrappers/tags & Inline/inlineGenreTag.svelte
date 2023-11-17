@@ -1,9 +1,12 @@
 <script>
 	const colours = [
         { name:'nsfwTags', 		colour:'#ff0582', text: '#fff'},
-        { name:'genericTags', 	colour:'#c9c9c9', text: '#000' },
-        { name:'genreTag', 		colour:'#ffac40', text: '#000' },
-        { name:'explicitTags',	colour:'#a83fff', text: '#fff'}];
+        { name:'genericTags', 	colour:'#c9c9c9', text: '#000'},
+        { name:'genreTag', 		colour:'#ffac40', text: '#000'},
+        { name:'explicitTags',	colour:'#f367ff', text: '#fff'},
+        { name:'designTags',    colour:'#00ff6f', text: '#000'},
+        { name:'cultureTags',   colour:'#8400ff', text: '#fff'}
+	];
 
 	export let tag;
 
@@ -15,7 +18,7 @@
 <p class="inlineTag" style="
 	--tagColour: {tagColour};
 	--textColour: {tagText}">
-		{tag.title}
+		{tag.title.replaceAll("_"," ")}
 </p>
 
 <style lang="scss">

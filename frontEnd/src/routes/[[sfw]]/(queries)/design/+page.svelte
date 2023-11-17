@@ -18,8 +18,7 @@
 			searchTerms: (
 				`${artwork.pieceName.replaceAll(" ","_")} ${artwork.slug} ` +
 				`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
-				`${artwork.gallery.images.map(i => i.desc).join(' ')} ` +
-                (!!artwork.tags ? `${artwork.tags.map(i => `${i.title} `).join('')} ` : '') +
+                (!!artwork.tags ? `${artwork.tags.map(i => `${i.title}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '') +
                 (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} ${artist.author.handle} ${artist.author.slug} `).join('') : '') +
                 (!!artwork.characters ? artwork.characters?.map(character => `${character.fullName} ${character.nickName} `).join('') : '') +
                 (!!artwork.commissionData ?

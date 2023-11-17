@@ -4,11 +4,16 @@ import { EyeOpenIcon } from '@sanity/icons'
 
 const
   internalTags = defineType({
-    name: 'genericTags', title: 'Generic Tags',
+    name: 'genericTags', title: 'Generic Content Tags',
     type: 'document',
     fields: [
       defineField({
-        name: 'title', title: 'Title', type: 'string'})],
+        name: 'title', title: 'Title', type: 'string'}),
+      defineField({
+        name: 'relatedTags', title: 'Related Tags',
+        description: 'Alternate tags in relation to the focus tag (Seperated by spaces)',
+        type: 'text', rows: 3,
+      })],
     icon: EyeOpenIcon,
     preview: {
       select: {title: 'title', desc: 'description'},
