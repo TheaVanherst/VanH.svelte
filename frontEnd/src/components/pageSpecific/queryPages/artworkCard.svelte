@@ -13,11 +13,10 @@
     const
 		imageClick = () => {
         	if (active) {
-                active = !active
-			} else {
-                $fullscreenGalleryStore.componentUrl = ArtworkDescription
-                $fullscreenGalleryStore.componentData = data
-			}},
+                active = !active;}
+            else {
+                $fullscreenGalleryStore.componentUrl = ArtworkDescription;
+                $fullscreenGalleryStore.componentData = data;}},
 		cardFloatClick = () => {active = active ? active : !active;};
 </script>
 

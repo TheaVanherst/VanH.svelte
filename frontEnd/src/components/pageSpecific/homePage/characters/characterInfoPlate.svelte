@@ -82,7 +82,7 @@
 <div class="plate regularBorder">
 	<div class="description">
 		<p class="subtitle">Description</p>
-		<p>{data.description}</p>
+		<p id="bio">{data.description}</p>
 	</div>
 </div>
 
@@ -133,8 +133,12 @@
 
 	.description {
 			padding: 	0 0 8px 2px;
+		#bio {
+			white-space: pre-wrap;
+		}
 		&:last-of-type {
-			padding:	 0 0 0 2px;}}
+			padding:	 0 0 0 2px;
+			word-break: unset}}
 
 	.plate {
 		background: white;

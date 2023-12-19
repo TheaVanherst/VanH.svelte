@@ -6,12 +6,14 @@ import path from 'path';
 const config = {
 	kit: {
 		adapter: adapter({
-			fallback: '/error.svelte'}),
+			fallback: 'fallback.html' }),
 		alias: {
 			$routes: 		path.resolve('./src/routes'),
-			$root: 			path.resolve('./src')},
+			$root: 			path.resolve('./src'),
+		},
 		prerender: {
-			entries: ['*','/','/nsfw/','/home/','/nsfw/home/','/commissions/','/nsfw/commissions/','/carrd/','/nsfw/carrd/','/artwork/','/nsfw/artwork/','/design/','/nsfw/design/'],},
+			entries: ['*','/','/nsfw/','/home/','/nsfw/home/','/commissions/','/nsfw/commissions/','/carrd/','/nsfw/carrd/','/artwork/','/nsfw/artwork/','/design/','/nsfw/design/'],
+		},
 	},
 	preprocess: preprocess(),
 };

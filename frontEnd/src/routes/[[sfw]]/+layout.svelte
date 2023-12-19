@@ -9,6 +9,8 @@
     import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
 
     import { page } 	from "$app/stores";
+    import { onMount } 	from "svelte";
+    import { afterNavigate, beforeNavigate } from "$app/navigation";
 
     const paramLocalUpdate = () => {
         value = $page.url.searchParams.get("query") || "";
@@ -20,8 +22,7 @@
         $dataSetStore.searchQuery = "";
         $dataSetStore.page = 		0;}
 
-    import { onMount } 	from "svelte";
-    import { afterNavigate, beforeNavigate } from "$app/navigation";
+    export let data;
 
     onMount(() => {
         if ($navigationData.search){
@@ -51,18 +52,17 @@
         setTimeout(() => { // this allows the pagination to update
             $navigationControls.transitioning = false;}, 300);};
 
-    export let data;
     let value;
 </script>
 
 <div class="flexBox">
-	{#if $navigationData?.navigation || $navigationData?.socials || $navigationData?.logo }
+	{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
 		<div transition:slide>
 			<NavigationComponent socials={data.featured}/>
 		</div>
 	{/if}
 
-	{#if $navigationData?.search}
+	{#if $navigationData.search}
 		<div class="searchBarWrapper" transition:slide>
 			<div class="searchBar">
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>

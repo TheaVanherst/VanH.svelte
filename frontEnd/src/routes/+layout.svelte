@@ -1,5 +1,7 @@
 <script>
     import '../styles.scss';
+    import '../commonStyles.scss';
+
     import { fly, fade } 				from 'svelte/transition';
 
     import Header 				from "$root/components/layout/headerElements/header.svelte";
@@ -37,6 +39,8 @@
 			titlebarScroller(`${websiteTag} // ${$pageName} `)
 			: $pageTitlebar = loadingIco
 		: $pageTitlebar = websiteTag;
+
+    export let data;
 </script>
 
 <svelte:head>
@@ -47,16 +51,14 @@
 
 <Background/>
 <CometGenerator/>
-<SpaceshipCursor/>
 
 {#if $navigationControls?.loaded}
 	<div transition:fade>
+		<SpaceshipCursor/>
 		<MessengerPlugin/>
 		<FullscreenGallery/>
 	</div>
-{/if}
 
-{#if $navigationControls?.loaded}
 	<div id="scrollParent">
 		<div id="layout" class="wrapCorrection" style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->

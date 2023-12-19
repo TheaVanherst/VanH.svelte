@@ -69,6 +69,7 @@
 		    scroll-snap-align:  start;
 		    width:      100%;
 		    position:   relative;
+            background: var(--TransBlack);
 
 		    label {
 			    padding:    10px 10px;

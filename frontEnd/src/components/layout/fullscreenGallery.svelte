@@ -115,9 +115,9 @@
 				width: 	max-content;}}}
 
 	.imageContainer {
-		background: var(--TransBlack);
 		.image {
 			border-radius: 	var(--bordernormal);
+			background: 	var(--TransBlack);
 			overflow: 		hidden;}
 
 		:global(img){

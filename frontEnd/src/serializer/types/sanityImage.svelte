@@ -21,7 +21,7 @@
 {#if browser && !!image?.asset}
 	<div class:loaded>
 		<img loading="lazy"
-			 src =   { urlFor(image).width(1200) }
+			 src =   { urlFor(image).width(1000)}
 			 alt =   { image?.alt }
 			 bind:this={ loadCheck }/>
 	</div>

@@ -32,7 +32,7 @@
             width: 100%;
 
             .col {
-                background:   var(--backgroundAccent2);
+                background: var(--TransBlack);
 
                 overflow: hidden;
                 width:    50%;

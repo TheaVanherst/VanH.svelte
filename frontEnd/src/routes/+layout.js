@@ -1,3 +1,3 @@
 
 export const trailingSlash = 'always';
-export const prerender = 'auto';
+export const prerender = true;

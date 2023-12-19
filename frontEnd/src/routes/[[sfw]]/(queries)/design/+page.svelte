@@ -22,34 +22,36 @@
                 (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} ${artist.author.handle} ${artist.author.slug} `).join('') : '') +
                 (!!artwork.characters ? artwork.characters?.map(character => `${character.fullName} ${character.nickName} `).join('') : '') +
                 (!!artwork.commissionData ?
-                    `${artwork.commissionData?.commissionType} ` +
+                    `${artwork.commissionData?.commissionType} commission commissioned` +
                     artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join('') : '')
 			).toLowerCase()}));
 
     $: $dataSetStore.searchQuery && (filteredData = $dataSetStore.searchQuery === "" ? data.designs : queryFilter(data.designs, true));
 </script>
 
-<div class="center">
-	{#if pagedData}
-		<Masonry
-				items=	{pagedData}
-				gap=	{10}
-				idKey=	{`slug`}
-				animate= {false}
-				let:item>
-			<div class="designPost">
-				<ArtworkCard data={item}/>
-			</div>
-		</Masonry>
-	{/if}
-	{#if filteredData}
-		<Pagination
-				rows={filteredData} perPage={15}
-				goto={$dataSetStore.page}
-				bind:currentPage={$dataSetStore.page}
-				bind:trimmedRows={pagedData}/>
-	{/if}
-</div>
+{#if data.designs && data.designs.length > 0}
+	<div class="center">
+		{#if pagedData}
+			<Masonry
+					items=	{pagedData}
+					gap=	{10}
+					idKey=	{`slug`}
+					animate= {false}
+					let:item>
+				<div class="designPost">
+					<ArtworkCard data={item}/>
+				</div>
+			</Masonry>
+		{/if}
+		{#if filteredData}
+			<Pagination
+					rows={filteredData} perPage={15}
+					goto={$dataSetStore.page}
+					bind:currentPage={$dataSetStore.page}
+					bind:trimmedRows={pagedData}/>
+		{/if}
+	</div>
+{/if}
 
 <style lang="scss">
 	.center {

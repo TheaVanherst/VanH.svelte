@@ -54,3 +54,5 @@ export const load = async ({ fetch, url }) => {
 
     return allQueries
 };
+
+export const prerender = true;

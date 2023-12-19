@@ -6,17 +6,17 @@
     import { queryFilter } 	from "$lib/controllers/layoutControllers/searchController.js";
 
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
+    import {navigationControls} from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let data;
 
-    let filteredData = data.artworks;
     let pagedData;
 
     data.artworks =
 		data.artworks.map(artwork => ({
 			...artwork,
 			searchTerms: (
-				(artwork.sfw ? `!nsfw `: `nsfw `) +
+				(artwork.sfw ? `!!sfw `: `!!nsfw `) +
 				`${artwork.pieceName.replaceAll(" ","_")} ${artwork.slug} ` +
 				`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
 				(!!artwork.tags ? `${artwork.tags.map(i => `${i.title}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '') +
@@ -27,7 +27,8 @@
 					artwork.commissionData?.characters?.map(character => `:${character.fullName} @${character.owner.handle} `).join('') : '')
 			).toLowerCase()}));
 
-    $: $dataSetStore.searchQuery && (filteredData = $dataSetStore.searchQuery === "" ? data.artworks : queryFilter(data.artworks, true));
+    let filteredData = queryFilter(data.artworks, $navigationControls.nsfw);
+    $: $dataSetStore.searchQuery && queryFilter(data.artworks);
 </script>
 
 <div class="center">

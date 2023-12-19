@@ -24,13 +24,14 @@ const
 
         let pyo = navigationDirectories.findIndex(e => e.path === "/" + currentPage[1 + f]),
             cyo = navigationDirectories.findIndex(e => e.path === "/" + previousPage[1 + f]),
-            qsd = ((!b ? b : c ?? "") + "/").split("?");
+            rrd = ((!b ? b : c ?? "") + "/"),
+            qsd = rrd.split("?");
 
         if (pyo ^ cyo || previousPage[nsfwCheck] !== currentPage[nsfwCheck]) { // only moves if x isn't
             directionOffset = pyo > cyo ? 1 : -1;} // upwards / downwards
 
         navigationControls.update(e => ({...e, direction: [directionOffset]}));
-        directoryData.set({ raw: qsd[0], root: "/" + currentPage[nsfwCheck], query: qsd[1],
+        directoryData.set({ raw: rrd, root: "/" + currentPage[nsfwCheck], query: qsd[1],
             stripped: (get(navigationControls).nsfw ? qsd[0].replaceAll("/nsfw",'') : qsd[0])});
     };
 

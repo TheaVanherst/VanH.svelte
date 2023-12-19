@@ -13,12 +13,13 @@ const
             v ? pageData.searchParams.set(encodeURIComponent(k), encodeURIComponent(v)) : pageData.searchParams.delete(k);}
         goto(pageData);
     },
-    queryFilter = (dataSet, sfwFilter = false) => {
+    queryFilter = (dataSet) => {
         navigationControls.update(e => ({...e, direction: 0}));
+        let searchQuery = (get(dataSetStore).searchQuery).toLowerCase() ?? "";
+        if (!get(navigationControls).nsfw ) {
+            searchQuery += " !!sfw";}
         return dataSet.filter(item => {
-            let array = (get(dataSetStore).searchQuery.toLowerCase() || "").split(' ');
-            if (sfwFilter) {
-                array.push(get(navigationControls).nsfw ? "" : "!nsfw");}
+            let array = searchQuery.split(' ');
             return array.every(el => item.searchTerms.toLowerCase().includes(el))
         }) ?? [];
     }

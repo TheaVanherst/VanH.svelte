@@ -35,7 +35,7 @@
 			.col {
 				display:    flex;
 				overflow:   hidden;
-				background: var(--backgroundAccent2);
+                background: var(--TransBlack);
             }
         }
     }

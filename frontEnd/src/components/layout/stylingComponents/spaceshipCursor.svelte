@@ -5,11 +5,10 @@
 
     import { spring } from 'svelte/motion';
 
-    let initialized = false;
+    let shoot = {};
     let position = spring(
-        { x: -($deviceData.screenSize / 2), y: -100 },
-        { stiffness: 0.1, damping: 0.6}),
-        shoot = {};
+        {	x: -($deviceData.screenSize / 2), y: -100 },
+        { 	stiffness: 0.1, damping: 0.6 });
 
     $: $mousePosition.x && position.set({ x: $mousePosition.x, y: $mousePosition.y});
 </script>
@@ -85,7 +84,9 @@
 			top: 	32px;
 			left: 	-24px;
 			width: 	48px;
-			height: 49px;}}
+			height: 49px;
+			object-position:
+					-48px*2 0;}}
 
 	@keyframes xMovement {
 		0% {	margin-left: -10px;}
@@ -116,7 +117,5 @@
 		70% {	opacity:0.7; 	transform: scale(0.8, 1);}
 		72% {	opacity:0.2; 	transform: scale(0.7, 1);}
 		77% {	opacity:.9; 	transform: scale(1.1, 1);}
-		100% {	opacity:.9; 	transform: scale(1, 1);}
-	}
-
+		100% {	opacity:.9; 	transform: scale(1, 1);}}
 </style>
