@@ -1,4 +1,5 @@
 <script>
+    import RollupButton from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
     import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/inlineRedirectTag.svelte";
     import { slide } 	from 'svelte/transition';
 
@@ -10,15 +11,9 @@
 	<div class="expandedSlot">
 		<slot/>
 	</div>
-	<div class="filterBar">
-		{#if !!socials && socials.length > 0}
-			<div class="expandIcon"
-				 on:mousedown={() => active = !active}
-				 class:active={active}>
-				<img src="/icons/downIcon.webp">
-			</div>
-		{/if}
-	</div>
+	{#if !!socials && socials.length > 0}
+		<RollupButton bind:active invert={true}/>
+	{/if}
 </div>
 {#if active}
 	<div class="socialInline" transition:slide>
@@ -31,33 +26,7 @@
 <style lang="scss">
 	.inlineRedirect {
 		width: 		100%;
-		display: 	inline-flex;
-		gap: 		10px;
+		display: 	flex;
 		.expandedSlot {
 			width: 	100%;}}
-
-	.expandIcon {
-		border-radius: 	50%;
-		width: 			33px;
-		height: 		33px;
-		display: 		flex;
-		transition: 	background .5s ease, transform .3s ease;
-
-		img {
-			top: 		1px;
-			padding: 	5.5px;
-			margin: 	auto;
-
-			position: 	relative;
-			height: 	max-content;
-			transition: filter .2s ease;}
-
-		&:hover {
-			background: var(--accent10);
-			img {
-				filter: 	invert(1);}}
-
-		&.active {
-			transform: 	rotate(180deg);}
-	}
 </style>

@@ -5,7 +5,7 @@ const
     directoryData =         writable({ raw: "/", stripped: '/', root: '/' }),
     navigationControls =    writable({ direction: [0,0], nsfw: false, loaded: false, transitioning: true }),
     deviceData =            writable({ scrollPos: 0, screenSize: 0, screenType: 0, deviceType: 0, bandWidths: [850, 600, 500]}),
-    navigationData =        writable({ logo: true, navigation: false, socials: false, search: false});
+    navigationData =        writable({ logo: true, navigation: false, socials: false, search: false, filtering: false});
 
 export { directoryData, navigationControls, deviceData, navigationData };
 

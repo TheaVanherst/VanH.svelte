@@ -1,15 +1,18 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
-    import { navigationData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationData, navigationControls, directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import { slide } 	from "svelte/transition";
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RollupButton 		from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
+    import InlineTag 			from "$root/components/generic/wrappers/tags & Inline/inlineGenreTag.svelte";
 
     import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
 
     import { page } 	from "$app/stores";
     import { onMount } 	from "svelte";
+    import { slide } 	from "svelte/transition";
     import { afterNavigate, beforeNavigate } from "$app/navigation";
 
     const paramLocalUpdate = () => {
@@ -53,11 +56,14 @@
             $navigationControls.transitioning = false;}, 300);};
 
     let value;
+	let active = false;
+
+    $: $navigationData.search === false ? active = false : false;
 </script>
 
 <div class="flexBox">
 	{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
-		<div transition:slide>
+		<div class="inlineWrapper" transition:slide>
 			<NavigationComponent socials={data.featured}/>
 		</div>
 	{/if}
@@ -68,7 +74,25 @@
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>
 					<input type="search" class="input" placeholder="Search..." bind:value={value}/>
 				</form>
+				<RollupButton bind:active/>
 			</div>
+		</div>
+	{/if}
+
+	{#if active && $navigationData.search}
+		<div class="tableGroup wideBorder" transition:slide>
+			{#each Object.entries(data.tags) as tagSet, i}
+				{#if !tagSet[1][1] && !$navigationControls.nsfw || $navigationControls.nsfw}
+					<h4>{tagSet[0].replaceAll("Tags","").replaceAll("Tag","")} Tags</h4>
+					<div class="tagGroup">
+						{#each tagSet[1][0] as tag, e}
+							<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
+								<InlineTag tag={tag} active={(tag.title.toLowerCase()) === value}/>
+							</RedirectBuilder>
+						{/each}
+					</div>
+				{/if}
+			{/each}
 		</div>
 	{/if}
 
@@ -80,11 +104,33 @@
 <style lang="scss">
 	.flexBox { // this fixes issues with the footer that I can't be fucked to fix.
 		position: 	relative;
-
 		z-index: 	1;
 		width: 		100%;
-		margin: 	0 0 auto 0;}
+		margin: 	0 0 auto 0}
 
 	.searchBarWrapper {
-		margin: 10px auto 15px auto; }
+		margin: 10px auto 0 auto;
+		.searchBar {
+			display: flex;
+			margin: 0 auto;
+			form {
+				display: contents;}}}
+
+	.tableGroup {
+		background: var(--TransWhite);
+		padding: 	15px;
+		margin: 	15px 0 0 0;
+		max-height: 	200px;
+		overflow: 	scroll;
+
+		h4 {
+			color: 	black;
+			padding: 0 0 5px 0;}
+
+		.tagGroup {
+			padding: 	5px 5px;
+			display: 		flex;
+			flex-wrap: 		wrap;
+			flex-direction: row;
+			color: 		black;}}
 </style>

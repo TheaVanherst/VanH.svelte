@@ -29,15 +29,15 @@
 
 	{#if $navigationData.socials}
 		<div transition:slide={{duration: 200}} id="socials">
-			{#each socials.map(e => e.chunkSocials.map(i => !i.nsfw && !$deviceData.nsfw || $deviceData.nsfw ? i : undefined)).flat().filter(Boolean).slice(0, 5) as item}
-				<a href="https://{item.platformName.socialURL + item.url}" target="_blank">
+			{#each socials.socialMedia.map(e => e.chunkSocials.flat()).map(i => !i.nsfw && !$deviceData.nsfw || $deviceData.nsfw ? i : undefined).flat().filter(Boolean).slice(0, 5) as social}
+				<a href="https://{social.platformName.socialURL + social.url}" target="_blank">
 					<RainbowButtonWrap padding="{$deviceData.screenType > 2 ? [5,10] : [6,6]}">
 						<div class="central">
 							<div class="mediaIcon" class:largerIcon={$deviceData.screenType < 3}>
-								<SanityImage image={item.platformName.socialLogo}/>
+								<SanityImage image={social.platformName.socialLogo}/>
 							</div>
 							{#if $deviceData.screenType > 2}
-								<h3> {item.platformName.socialNickname} </h3>
+								<h3> {social.platformName.socialNickname} </h3>
 							{/if}
 						</div>
 					</RainbowButtonWrap>

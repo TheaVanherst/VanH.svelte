@@ -9,6 +9,7 @@
 	];
 
 	export let tag;
+    export let active;
 
     let placement = colours.findIndex(x => x.name === tag.type),
 		tagColour = colours[placement].colour,
@@ -17,7 +18,8 @@
 
 <p class="inlineTag" style="
 	--tagColour: {tagColour};
-	--textColour: {tagText}">
+	--textColour: {tagText}"
+	class:active >
 		{tag.title.replaceAll("_"," ")}
 </p>
 
@@ -25,10 +27,11 @@
 	p {
 		margin: 	0 4px 5px 0;
 		padding: 	2px 8px 1px 8px;
-		border: 		1px solid var(--tagColour);
-		background: 	transparent;
+		border: 	1px solid var(--tagColour);
+		background: transparent;
+		color: 		inherit;
 
-		&:hover {
+		&:hover, &.active {
 			color: 		var(--textColour);
 			background: var(--tagColour);}}
 </style>
