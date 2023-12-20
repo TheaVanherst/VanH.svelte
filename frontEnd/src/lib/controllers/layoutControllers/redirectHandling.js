@@ -36,6 +36,3 @@ const
     };
 
 export { directionProcessing };
-
-
-// TODO: USERINTERFACE CONTROLLERS

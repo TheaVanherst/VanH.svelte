@@ -20,5 +20,6 @@
         display:    grid;
 
         div {
-            overflow: hidden;}}
+            min-height: 150px;
+            overflow:   hidden;}}
 </style>

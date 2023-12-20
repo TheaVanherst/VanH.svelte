@@ -20,7 +20,7 @@
         if (n.delta !== 0 && n.type === "popstate") {
             let to = (n.to.url.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
 
-            await directionProcessing($directoryData.raw, to, null, 0);
+            await directionProcessing($directoryData.raw, to, to, 0);
             $navigationControls.transitioning = true;
             setTimeout(async () => {
                 $navigationControls.transitioning = false;

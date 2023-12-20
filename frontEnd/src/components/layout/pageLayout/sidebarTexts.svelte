@@ -1,16 +1,14 @@
 <script>
     import { horizontalSlide } from "$lib/controllers/transitionPresets.js";
-    import { navigationControls } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
 
-	export let
-		titlecard,
-		icon = undefined;
+	export let titlecard, icon = undefined;
 </script>
 
 
-<div class="wrapper {$navigationControls.screenType > 2 ? 'textVis' : 'textHidden'} {icon ? 'icon' : ''}">
+<div class="wrapper {$deviceData.screenType > 2 ? 'textVis' : 'textHidden'} {icon ? 'icon' : ''}">
 	<div class="sideBar">
-		{#if $navigationControls.screenType > 2}
+		{#if $deviceData.screenType > 2}
 			<h1 transition:horizontalSlide={{axis: 'x', duration: 300}}>
 				{#if icon}
 					<img src="/icons/{icon}">
@@ -21,7 +19,7 @@
 	</div>
 
 	<div class="offset">
-		{#if $navigationControls.screenType < 3}
+		{#if $deviceData.screenType < 3}
 			<div class="divider"
 				 transition:horizontalSlide={{axis: 'y', duration: 300}}>
 				{#if icon}

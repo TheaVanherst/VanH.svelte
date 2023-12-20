@@ -54,7 +54,9 @@
 
 {#if $navigationControls?.loaded}
 	<div transition:fade>
-		<SpaceshipCursor/>
+		{#if $deviceData.deviceType === 2}
+			<SpaceshipCursor/>
+		{/if}
 		<MessengerPlugin/>
 		<FullscreenGallery/>
 	</div>

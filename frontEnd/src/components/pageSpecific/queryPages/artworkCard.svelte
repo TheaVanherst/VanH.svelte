@@ -24,7 +24,7 @@
 	 on:mouseenter={() => hover = true}
 	 use:clickOutside
 	 on:click_outside={() => hover = active = false}
-	 on:mouseleave={() => hover = false}>
+	 on:mouseleave={() => hover = active = false}>
 
 	<div class="galleryWrapper">
 		<div class="galleryContainer" on:click={imageClick} class:clickable={active}>
@@ -41,6 +41,7 @@
 <style lang="scss">
 	.galleryWrapper {
 		position: 	relative;
+		overflow: hidden;
 		.galleryContainer {
 			pointer-events: all;
 			&.clickable {

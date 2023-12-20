@@ -38,3 +38,9 @@
 <a href="{url}" target="" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
 	<slot/>
 </a>
+
+<style lang="scss">
+	a {
+		color: inherit;
+	}
+</style>

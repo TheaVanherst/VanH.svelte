@@ -1,5 +1,6 @@
 <script>
 	import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
     import { heightBuilder, standardTinyhand, standardShorthand } from "$lib/builders/measurementConverters.js";
 
@@ -14,62 +15,57 @@
 	};
 </script>
 
-<div class="plate regularBorder">
-	<div class="table">
-		<div class="cell">
-			<div class="characterIcon">
-				<SanityImage image={data.icon}/>
+<div class="plate regularBorder redirect">
+	<RedirectBuilder url="/artwork/?query=:{data.slug.toLowerCase().replaceAll(' ','-')}">
+		<div class="table">
+			<div class="cell">
+				<div class="characterIcon">
+					<SanityImage image={data.icon}/>
+				</div>
+			</div>
+			<div class="cell">
+				<h4>{data.fullName}</h4>
+				<p>{data.job}</p>
 			</div>
 		</div>
-		<div class="cell">
-			<h4>{data.fullName}</h4>
-			<p>{data.job}</p>
-		</div>
-	</div>
+	</RedirectBuilder>
 </div>
 
 <div class="plate regularBorder">
-	<p class="subtitle">Life</p>
-	{#if data.sexuality || data.partners}
-		<div class="description">
-			{#if data.sexuality}
-				<p><span>Sexuality</span>:{data.sex} {data.sexuality}</p>
-			{/if}
-			{#if data.partners}
-				<p>
-					<span>Partner{data.partners.length > 1 ? 's' : ''}</span>:
-					{#each data.partners as partner, i}
-						{partner.fullName}{data.partners.length > 1 && data.partners.length - 1 > i ? ', ' : ''}
-					{/each}
-				</p>
-			{/if}
-			{#if data.species}
-				<p><span>Species</span>: {data.species}</p>
-			{/if}
-		</div>
-	{/if}
-	{#if data.nationality || data.timePeriod || data.age}
-		<div class="description">
-			{#if data.nationality}
-				<p><span>Nationality</span>: {data.nationality}</p>
-			{/if}
-			{#if data.timePeriod}
-				<p><span>Time period</span>: {data.timePeriod}</p>
-			{/if}
-			{#if data.birthday}
-				<p><span>Birthday</span>: {standardShorthand(data.birthday)}</p>
-			{/if}
-			{#if data.age}
-				<p><span>Age</span>: {data.age}</p>
-			{/if}
-		</div>
-	{/if}
+	<div class="description">
+		{#if !!data.sexuality}
+			<p><span>Sexuality</span>:{data.sex} {data.sexuality}</p>
+		{/if}
+		<!--{#if !!data.partners}-->
+		<!--	<p>-->
+		<!--		<span>Partner{data.partners.length > 1 ? 's' : ''}</span>:-->
+		<!--		{#each data.partners as partner, i}-->
+		<!--			{partner.fullName}{data.partners.length > 1 && data.partners.length - 1 > i ? ', ' : ''}-->
+		<!--		{/each}-->
+		<!--	</p>-->
+		<!--{/if}-->
+		{#if !!data.species}
+			<p><span>Species</span>: {data.species}</p>
+		{/if}
+		{#if !!data.nationality}
+			<p><span>Nationality</span>: {data.nationality}</p>
+		{/if}
+		{#if !!data.timePeriod}
+			<p><span>Time period</span>: {data.timePeriod}</p>
+		{/if}
+		{#if !!data.birthday}
+			<p><span>Birthday</span>: {standardShorthand(data.birthday)}</p>
+		{/if}
+		{#if !!data.age}
+			<p><span>Age</span>: {data.age}</p>
+		{/if}
+	</div>
 </div>
 
 <div class="plate regularBorder">
 	<div class="description">
 		<p class="subtitle">Height</p>
-		{#if data.heights}
+		{#if data.heights.length > 0}
 			{#each data.heights as heightset}
 				<p class="{heightset.loreType.replace(' ','')}Height">
 					<span>{heightset.loreType}</span>: {heightBuilder(heightset.height)}
@@ -103,7 +99,6 @@
 </div>
 
 <style lang="scss">
-
 	.table {
 		display: 	flex;
 		gap: 		10px;
@@ -143,5 +138,16 @@
 	.plate {
 		background: white;
 		padding: 	10px;
-		margin: 	5px;}
+		margin: 	5px;
+
+		&.redirect {
+			transition: color .3s ease, background .3s ease;
+			&:hover {
+				background: var(--accent2);
+				p, h4 {
+					color: white;
+				}
+			}
+		}
+	}
 </style>

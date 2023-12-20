@@ -8,21 +8,19 @@
 	<div class="icon inlineIcon">
 		<SanityImage image={data.platformName.socialLogo}/>
 	</div>
-	<p>
-		/ {data.url}
-	</p>
+	<p> / {data.url} </p>
 </a>
 
 <style lang="scss">
-	a {
-		background: var(--accent10);
-		.icon {
-			filter: invert(1);
+	a { .icon {
 			margin:	0 0 0 2px;
 			display: flex;}
 		p {	margin: 0 5px;
-			color: 	white;}
+			color: 	black;}
 
 		&:hover {
-			background: 	var(--accent2);}}
+			background: 	var(--accent2);
+			.icon {
+				filter: invert(1);}
+			p {	color: 	white;}}}
 </style>

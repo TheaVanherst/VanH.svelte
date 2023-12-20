@@ -33,6 +33,7 @@
 			flex-direction: column;
 
 			.col {
+                min-height: 150px;
 				display:    flex;
 				overflow:   hidden;
                 background: var(--TransBlack);

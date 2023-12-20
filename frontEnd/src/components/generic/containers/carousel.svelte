@@ -45,8 +45,16 @@
 	swiper-container::part(bullet),
 	swiper-container::part(bullet-active) {
 		border-radius:  3px;
-		width: 	        30px;
+		width: 			30px;
 		height:         4px;}
+	swiper-container::part(pagination) {
+		display: flex;
+		white-space: nowrap;
+		position: relative;
+		max-width: 	100%;
+		width: 		max-content;
+		margin: 	20px auto 0 auto;}
+
 	swiper-container::part(bullet) {
 		background: 	var(--accent2);
 		opacity:    	1;
@@ -55,5 +63,5 @@
 		background: 	white;}
 
 	swiper-container.margin::part(container) { // bad work around.
-		padding-bottom: 28px;}
+		padding-bottom: 4px;}
 </style>

@@ -34,8 +34,9 @@
 	        .col {
                 background: var(--TransBlack);
 
-		        overflow: hidden;
-		        width:    50%;
+		        overflow:   hidden;
+		        width:      50%;
+                min-height: 150px;
 
 		        &:only-child {
 			        width:    inherit;}}}}

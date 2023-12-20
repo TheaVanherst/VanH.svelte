@@ -7,7 +7,7 @@
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
     import DividedTag 		from "$root/components/generic/wrappers/tags & Inline/pilledTag.svelte";
-    import SocialMediaTag 	from "$root/components/generic/wrappers/tags & Inline/inlineRedirectTag.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/inlineGenreTag.svelte";
 
@@ -30,19 +30,16 @@
 				<p class="altTitle">{data.commissionData.commissionType} for:</p>
 				{#each data.commissionData.characters as character}
 					<div class="commissioner">
-						<RedirectBuilder url="{$directoryData.stripped}?query=@{character.owner.handle.toLowerCase()}">
-							<div class="characterCard">
-								<div class="mediaIcon shortBorder">
-									<SanityImage image={character.owner.userPortrait}/>
+						<SocialsFoldable socials={character.owner.socialMedia}>
+							<RedirectBuilder url="{$directoryData.stripped}?query=@{character.owner.handle.toLowerCase()}">
+								<div class="characterCard">
+									<div class="mediaIcon shortBorder">
+										<SanityImage image={character.owner.userPortrait}/>
+									</div>
+									<h4>{character.owner.handle}</h4>
 								</div>
-								<h4>{character.owner.handle}</h4>
-							</div>
-						</RedirectBuilder>
-						{#if character.owner?.socialMedia?.length > 0}
-							{#each character.owner.socialMedia as social}
-								<SocialMediaTag data={social}/>
-							{/each}
-						{/if}
+							</RedirectBuilder>
+						</SocialsFoldable>
 					</div>
 				{/each}
 			</div>
@@ -50,19 +47,16 @@
 		{#if data.authors.length > 0}
 			<p> With additional help from: </p>
 			{#each data.authors as author}
-				<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','-')}">
-					<div class="characterCard">
-						<div class="mediaIcon shortBorder">
-							<SanityImage image={author.author.userPortrait}/>
+				<SocialsFoldable socials={author.author.socialMedia}>
+					<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','-')}">
+						<div class="characterCard" class:socialFold={author?.author?.socialMedia?.length > 0}>
+							<div class="mediaIcon shortBorder">
+								<SanityImage image={author.author.userPortrait}/>
+							</div>
+							<h4>{author.author.fullName}</h4>
 						</div>
-						<h4>{author.author.fullName}</h4>
-					</div>
-				</RedirectBuilder>
-				{#if author.author?.socialMedia?.length > 0}
-					{#each author.author.socialMedia as social}
-						<SocialMediaTag data={social}/>
-					{/each}
-				{/if}
+					</RedirectBuilder>
+				</SocialsFoldable>
 			{/each}
 		{/if}
 
@@ -101,30 +95,27 @@
 		{/if}
 		<p>{createdPush(data.publishedAt)}</p>
 		{#if data.imageRefId || data.photoshopRefId}
-			<div class="footer">
-				<p class="links">
-					{#if data.imageRefId}
-						<a href={data.imageRefId} target="_blank">
-							<DividedTag hover={true}>
-								<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
-								<span slot="title">Archive</span>
-								<div slot="descIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
-								<span slot="desc">Tier 1 or higher</span>
-							</DividedTag>
-						</a>
-					{/if}
-					{#if data.photoshopRefId}
-						<a href={data.imageRefId} target="_blank">
-							<DividedTag hover={true}>
-								<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
-								<span slot="title">Photoshop</span>
-								<div slot="descIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
-								<span slot="desc">Tier 3</span>
-							</DividedTag>
-						</a>
-					{/if}
-				</p>
-			</div>
+			<p>Membership features:</p>
+			<p class="footer">
+				{#if data.imageRefId}
+					<a href={data.imageRefId} target="_blank">
+						<DividedTag hover={true}>
+							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+							<span slot="title">Archive</span>
+							<span slot="desc">Tier 1 or higher</span>
+						</DividedTag>
+					</a>
+				{/if}
+				{#if data.photoshopRefId}
+					<a href={data.imageRefId} target="_blank">
+						<DividedTag hover={true}>
+							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+							<span slot="title">Photoshop</span>
+							<span slot="desc">Tier 3 or higher</span>
+						</DividedTag>
+					</a>
+				{/if}
+			</p>
 		{/if}
 	</div>
 </ImageFloatCard>

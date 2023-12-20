@@ -39,13 +39,13 @@
 						{/each}
 					</Carousel>
 				</div>
-				<div class="navigationButton vertical close"
+				<div class="navigationButton down close"
 					on:mousedown={() => moreToggle = false}
 					in:slide out:slide>
 					<img src="/icons/upIcon.webp">
 				</div>
 			{:else}
-				<div class="navigationButton vertical open"
+				<div class="navigationButton up open"
 					on:mousedown={() => moreToggle = true}
 					in:slide={{delay: 300 }} out:slide>
 					<img src="/icons/downIcon.webp">
@@ -75,6 +75,10 @@
 	.mobileOffset {	margin: -10px 10px -7px 0;}
 	.desktopOffset {margin: -8px 0 -10px 0}
 	.navWrapper {	margin: 0 auto;
-		.close {	margin: 6px auto 0;}
-		.open {		margin: -2px auto 0;}}
+		.navigationButton {
+			margin: 0 auto;
+
+			&.open {
+				margin-top: 10px;
+			}}}
 </style>
