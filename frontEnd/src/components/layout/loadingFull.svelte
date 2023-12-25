@@ -36,11 +36,11 @@
 			top: 	calc(((100% - $size) / 2) - ($border));
 			left: 	calc(((100% - $size) / 2) - ($border));}
 
-		&.in {		@include cgm(20px, 5px, var(--accent6));
+		&.in {		@include cgm(20px, 5px, var(--accent3));
 					animation: spin 3s linear reverse infinite}
-		&.out {		@include cgm(50px, 5px, var(--accent6));
+		&.out {		@include cgm(50px, 5px, var(--accent3));
 					animation: spin 3s linear infinite}
-		&.outer {	@include cgm(40px, 1px, var(--accent3));
+		&.outer {	@include cgm(40px, 1px, var(--accent2));
 					animation: spin 4s linear infinite}}
 
 	@keyframes spin {

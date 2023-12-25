@@ -56,7 +56,7 @@
 				height: 100%;}
 
 			overflow: 	hidden;
-			border: 	1px solid var(--accent2);}
+			border: 	1px solid var(--accent7);}
 		.logo {
 			position: 	absolute;
 			z-index: 	1;

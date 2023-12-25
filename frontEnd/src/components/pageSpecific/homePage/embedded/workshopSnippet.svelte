@@ -1,6 +1,6 @@
 <script>
     import { fly } from 'svelte/transition';
-	import SanityImage from "$root/serializer/types/sanityImage.svelte";
+	import SanityImage from "$root/serializer/sanityImage.svelte";
 
 	export let item;
 

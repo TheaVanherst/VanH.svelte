@@ -56,7 +56,7 @@
 		margin: 	20px auto 0 auto;}
 
 	swiper-container::part(bullet) {
-		background: 	var(--accent2);
+		background: 	var(--accent7);
 		opacity:    	1;
 		transition: 	ease .3s;}
 	swiper-container::part(bullet-active) {

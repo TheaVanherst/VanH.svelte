@@ -39,7 +39,7 @@
 
 	.footer {
 		background-color: 			var(--TransBlack);
-		border-top: 				1px solid var(--accent2);
+		border-top: 				1px solid var(--accent7);
 		border-top-left-radius: 	var(--borderWide);
 		border-top-right-radius: 	var(--borderWide);
 
@@ -66,10 +66,10 @@
 		.right {	margin: 0 15px 0 auto;
 					width:	max-content;
 			p {		text-align: right;
-					color: var(--accent10);}
-			span {	color: var(--accent9);}}}
+					color: var(--accent9);}
+			span {	color: var(--accent10);}}}
 
 	#splash {
 		span:hover {
-			color: var(--accent1);}}
+			color: var(--accent6);}}
 </style>

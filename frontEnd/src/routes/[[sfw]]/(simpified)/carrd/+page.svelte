@@ -1,7 +1,7 @@
 <script>
 	import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import SanityImage 			from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage 			from "$root/serializer/sanityImage.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
 
     export let data;
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 	</div>
-	{#each data.featured as section}
+	{#each data.socialMedia as section}
 		<div class="sectionTitle">
 			<h4>{section.chunkName}</h4>
 		</div>
@@ -55,7 +55,7 @@
 			max-width: max-content;
 
 			background: var(--TransBlack);
-			border-bottom: 1px solid var(--accent2);}}
+			border-bottom: 1px solid var(--accent7);}}
 
 	.link {
 		margin: 	0 auto 10px auto;}
@@ -69,7 +69,7 @@
 			aspect-ratio: 1/1;}
 		.socialCard {
 			background: 	var(--TransBlack);
-			border-left: 	1px solid var(--accent6);
+			border-left: 	1px solid var(--accent3);
 
 			width: 		inherit;
 			margin: 	auto 15px;

@@ -70,9 +70,9 @@
 			transition: color .3s ease;
 		}
 
-		&.filter {	background: var(--accent9);}
-		&.unfilter {background: var(--accent6);}
-		&:hover {	background: var(--accent2);
-			h4 {	color: 		var(--accent9);}}
+		&.filter {	background: var(--accent10);}
+		&.unfilter {background: var(--accent3);}
+		&:hover {	background: var(--accent7);
+			h4 {	color: 		var(--accent10);}}
 	}
 </style>

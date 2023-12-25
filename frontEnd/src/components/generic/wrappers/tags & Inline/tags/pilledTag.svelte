@@ -18,7 +18,7 @@
 		display: 		inline-flex;
 		border-radius: 	10px;
 		overflow: 		hidden;
-		border: 		1px var(--accent10) solid;
+		border: 		1px var(--accent9) solid;
 
 		> div {
 			padding: 	2px 3px 1px 3px;
@@ -30,22 +30,22 @@
 			margin: 	1px 0 0;}
 
 		&.hover:hover {
-			border-color: 	var(--accent2);
+			border-color: 	var(--accent7);
 			.fill {
-				background: var(--accent2);}
+				background: var(--accent7);}
 			.outline {
 				:global(span) {
-					color:  var(--accent2);}}}}
+					color:  var(--accent7);}}}}
 
 	.fill {
 		transition: background .2s ease-in-out;
-		background: var(--accent10);
-		color: 		var(--accent9);
+		background: var(--accent9);
+		color: 		var(--accent10);
 
 		:global(span) {
 			color: white;}}
 
 	.outline {
 		:global(span) {
-			color:  var(--accent10);}}
+			color:  var(--accent9);}}
 </style>

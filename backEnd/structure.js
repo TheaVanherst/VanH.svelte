@@ -6,7 +6,7 @@ const structure = (S) =>
     .items([
 
       ...S.documentTypeListItems()
-        .filter((listItem) => ['artworks','alternateArts'].includes(listItem.getId())),
+        .filter((listItem) => ['artworks','alternateArts','erotica'].includes(listItem.getId())),
 
       S.divider(),
 

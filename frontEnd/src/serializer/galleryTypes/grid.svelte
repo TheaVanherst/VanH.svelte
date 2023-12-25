@@ -1,16 +1,16 @@
 <script>
-    import CitedImage from "$root/serializer/types/citedImage.svelte";
+    import CitedImage from "$root/serializer/citedImage.svelte";
     import { galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
 
     export let push;
     export let citation;
 </script>
 
-<div class="dynamicGrid">
+<div class="grid">
     {#each push as row, x}
         <div class="row">
             {#each row as image, i}
-                <div class="col regularBorder" on:click={() => galleryChange(push, i)}>
+                <div class="col regularBorder" on:click={() => galleryChange(push, i + (x * 2))}>
                     <CitedImage image={image} citation={citation[x][i]}/>
                 </div>
             {/each}
@@ -19,25 +19,25 @@
 </div>
 
 <style lang="scss">
-    .dynamicGrid {
+	.grid {
         display: grid;
         gap: var(--imageSpacing);
         vertical-align: bottom;
 
         .row {
-            vertical-align: bottom;
-            display: flex;
+	        vertical-align: bottom;
+	        display: flex;
             gap: var(--imageSpacing);
 
-            width: 100%;
+	        min-width: 100%;
 
-            .col {
+	        .col {
                 background: var(--TransBlack);
 
-                overflow:   hidden;
-                width:      50%;
+		        overflow:   hidden;
+		        width:      50%;
                 min-height: 150px;
 
-                &:only-child {
-                    width:    inherit;}}}}
+		        &:only-child {
+			        width:    inherit;}}}}
 </style>

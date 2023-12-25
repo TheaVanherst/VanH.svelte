@@ -3,13 +3,15 @@
 
     import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
-    import SanityImage 					from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage 					from "$root/serializer/sanityImage.svelte";
 
     import { navigationControls, deviceData,
        		 navigationData, directoryData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
     import { navigationDirectories } 	from '$lib/controllers/layoutControllers/navigationDirectories.js';
 
-    export let socials;
+    export let socials = {};
+    const socialMedia = socials.map(e => e);
+    	// Needed; fixes an issue where the socialmedias loaded in the layout will unload - this just retains the store locally.
 </script>
 
 <div class="navigationBar">
@@ -27,9 +29,9 @@
 		</div>
 	{/if}
 
-	{#if $navigationData.socials}
+	{#if $navigationData.socials && socialMedia.length > 0}
 		<div transition:slide={{duration: 200}} id="socials">
-			{#each socials.socialMedia.map(e => e.chunkSocials.flat()).map(i => !i.nsfw && !$deviceData.nsfw || $deviceData.nsfw ? i : undefined).flat().filter(Boolean).slice(0, 5) as social}
+			{#each socialMedia.map(e => e.chunkSocials.flat()).map(i => !i.nsfw && !$deviceData.nsfw || $deviceData.nsfw ? i : undefined).flat().slice(0, 5) as social}
 				<a href="https://{social.platformName.socialURL + social.url}" target="_blank">
 					<RainbowButtonWrap padding="{$deviceData.screenType > 2 ? [5,10] : [6,6]}">
 						<div class="central">
@@ -48,8 +50,6 @@
 </div>
 
 <style lang="scss">
-	@import "../../../commonStyles";
-
 	.navigationBar {
 		position: 	relative;
 		gap: 		10px;
@@ -62,10 +62,17 @@
 			padding: 		0 5px;
 			width: 			max-content;}}
 
+	.navIcon {
+		padding: 	4px;
+		border: 	1px solid var(--accent7);
+		margin: 	5px;
+		img {
+			filter: invert(1);}}
+
 	#navigation {
 		display: 		flex;
 		background: 	var(--TransBlack);
-		border-bottom: 	1px solid var(--accent2);
+		border-bottom: 	1px solid var(--accent7);
 
 		.navButton {padding:				10px;
 					transition: ease .3s;
@@ -75,7 +82,12 @@
 			&.currentRoot {
 				h5 {	text-decoration-color: white;
 						text-underline-offset: 0.2em;}}
-			&:hover {	@include rainbowTransition();}}}
+			&:hover {
+				filter:
+					brightness(0) 	saturate(100%)
+					invert(15%) 	sepia(75%)
+					saturate(5273%) hue-rotate(271deg)
+					brightness(97%) contrast(132%);}}}
 
 	#socials {
 		display: flex;

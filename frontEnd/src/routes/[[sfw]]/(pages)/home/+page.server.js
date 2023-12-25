@@ -14,9 +14,7 @@ export async function load () {
                     ${characterData.images}
                     ${characterData.sex}
                     ${characterData.height}
-                    ${characterData.creation}
-                }
-            },
+                    ${characterData.creation}}},
         "workshopData":
             *[ _type == 'workshopItem'] | order(_updatedAt desc) []{
                 itemName,

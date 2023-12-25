@@ -65,11 +65,11 @@
 
 	.wrapper {		margin: 	8px 12px 10px 10px;}
 	.titleCard {	background: var(--TransWhite);}
-	.accent {		background: var(--accent9);}
+	.accent {		background: var(--accent10);}
 	.previewCard.hovered .titleCard {
-					background: var(--accent9);}
+					background: var(--accent10);}
 	.previewCard:hover .titleCard {
-					border: 	1px solid var(--accent2);}
+					border: 	1px solid var(--accent7);}
 
 	.infoPlate {
 		max-height: calc(100% - 10px);

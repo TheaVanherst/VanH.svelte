@@ -1,5 +1,5 @@
 <script>
-	import SanityImage from "$root/serializer/types/sanityImage.svelte";
+	import SanityImage from "$root/serializer/sanityImage.svelte";
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
     import { heightBuilder, standardTinyhand, standardShorthand } from "$lib/builders/measurementConverters.js";
@@ -120,7 +120,7 @@
 	h4, p { 	white-space: normal;
 				color: 	black;}
 	h4 { 		margin: 0 0 5px 0;}
-	p span { 	color: 	var(--accent2); }
+	p span { 	color: 	var(--accent7); }
 
 	.subtitle {
 		text-decoration: underline;
@@ -143,7 +143,7 @@
 		&.redirect {
 			transition: color .3s ease, background .3s ease;
 			&:hover {
-				background: var(--accent2);
+				background: var(--accent7);
 				p, h4 {
 					color: white;
 				}

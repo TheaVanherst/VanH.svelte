@@ -1,6 +1,6 @@
 <script>
 	export let
-		border = 2,
+		border = 7,
 		padding = [15,15,15,15]
 </script>
 

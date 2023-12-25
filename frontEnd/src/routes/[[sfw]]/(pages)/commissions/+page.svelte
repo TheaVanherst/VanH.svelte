@@ -6,7 +6,7 @@
     import SectionListCard 	from "$root/components/generic/containers/sectionListCard.svelte";
     import Carousel 		from "$root/components/generic/containers/carousel.svelte";
 
-    import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
    	import CommissionPrices from "$root/components/pageSpecific/commissionPage/commissionPrices.svelte";
 

@@ -1,5 +1,5 @@
 <script>
-	import SanityImage from "$root/serializer/types/sanityImage.svelte";
+	import SanityImage from "$root/serializer/sanityImage.svelte";
     import Carousel from "$root/components/generic/containers/carousel.svelte";
 
 	export let tiers = [];
@@ -51,7 +51,7 @@
 
 		overflow: 	hidden;
 		display: 	inline-flex;
-		background: var(--accent9);
+		background: var(--accent10);
 
 		.card {
 			width: 		100%;
@@ -81,7 +81,7 @@
 		* {	color: black;}}
 
 	.joinButton {
-		background: var(--accent10);
+		background: var(--accent9);
 		margin: 	10px 0 15px 0;
 		padding: 	8px;
 		border-radius: 20px;
@@ -94,7 +94,7 @@
 
 	a:hover {
 		.joinButton {
-			background: var(--accent2);}}
+			background: var(--accent7);}}
 
 	ul {	margin: 		10px 0 5px 0;
 			padding-left: 	15px!important;

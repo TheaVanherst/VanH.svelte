@@ -2,7 +2,7 @@
     import { clickOutside } from "$lib/controllers/transitionPresets.js";
     import { fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
 
-    import SanityGalleries 	from "$root/serializer/types/sanityGalleries.svelte";
+    import SanityGalleries 	from "$root/serializer/sanityGalleries.svelte";
     import ArtworkDescription from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
 
     export let data;

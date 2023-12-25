@@ -34,13 +34,13 @@
 		border-radius: 	var(--bordernormal);
 
 		background: 	white;
-		border: 1px solid var(--accent2);
+		border: 1px solid var(--accent7);
 
 		img {
 			position: 	relative;}
 
 		&:hover, &.hovered {
-			background: var(--accent2);
+			background: var(--accent7);
 			img {
 				filter: invert(1);}}}
 </style>

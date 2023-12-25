@@ -1,74 +1,41 @@
 
 import client from "$lib/sanityClient.js";
+import { characterData } from "$lib/queries/characterData.js";
+import { authorQueries } from "$lib/queries/authorQueries.js";
+import { genericRequests } from "$lib/queries/genericQueries.js";
 
 export const load = async () => {
     let [allQueries] = await Promise.all([client.fetch(`{
         "artworks":
             *[ _type == 'artworks'][] | order(publishedAt desc) {
-                _id,
-                pieceName,
-                description,
-                
-                "sfw": !NSFW,
-               
-                'slug': slug.current,
-                publishedAt,
-                
+                ${genericRequests.info},
+                ${genericRequests.sfw},
                 'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd']{
                     ...,
                     'author': author->{
-                        fullName,
-                        handle,
-                        profileBanner,
-                        'slug': slug.current,
-                        userPortrait,
-                        'socialMedia': socialMedia[]{
-                            url,
-                            platformName->
-                        }
+                        ${authorQueries.info},
+                        ${authorQueries.icon},
+                        ${authorQueries.socials}
                     },
                     'participation': participation->emoji + " " + participation->title,
                 },
-                
-                'gallery': gallery {
-                    images,
-                    display,
-                    'renderType': renderType->renderName,
-                    'styleType': styleType->styleName
-                },
-                
                 'photoshopRefId': discordReferences.photoshopRef,
                 'imageRefId': discordReferences.archiveRef,
                 'characters': characters[]->{
-                    fullName,
-                    charIcon,
-                    fursona,
-                    nickName
+                    ...,
+                    ${characterData.preview},
+                    ${characterData.info}
                 },
-                
                 'commissionData': commissionData {
                     'commissionType': artType->typeName,
                     'characters': characters[]-> {
-                        charIcon,
-                        fullName,
-                        ...,
-                        'owner': owner-> {
-                            handle,
-                            userPortrait,
-                            slug,
-                            'socialMedia': socialMedia[]{
-                                url,
-                                platformName->
-                            }
-                        }
+                        ${characterData.commInfo},
+                        ${characterData.preview},
+                        ${characterData.ownership},
                     }
                 },
-                
-                'tags': tagData[]|order(_type desc)-> {
-                    title,
-                    relatedTags,
-                    'type': _type
-                }
+                ${genericRequests.gallery}
+                ${genericRequests.tags}
             }
         }`
     )]);

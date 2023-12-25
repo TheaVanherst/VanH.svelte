@@ -9,6 +9,9 @@ const characterData = {
         fullName,
         nickName,
         'description': desc,`,
+    commInfo: `
+        charIcon,
+        fullName`,
     lore: `
         job,
         lore,`,
@@ -19,6 +22,8 @@ const characterData = {
         timePeriod,
         birthday,
         age,`,
+    preview: `
+        'icon': charIcon`,
     images: `
         'icon': charIcon,
         'render': fullRender,`,
@@ -43,6 +48,16 @@ const characterData = {
         prevcreation,
         'developmentStatus': 
             developmentStatus->emoji + " " + developmentStatus->statusName,`,
+    ownership: `
+        'owner': owner-> {
+            handle,
+            userPortrait,
+            slug,
+            'socialMedia': socialMedia[]{
+                url,
+                platformName->
+            }
+        }`,
 }
 
 export { characterData }

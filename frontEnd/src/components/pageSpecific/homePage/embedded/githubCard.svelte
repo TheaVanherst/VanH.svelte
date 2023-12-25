@@ -1,5 +1,5 @@
 <script>
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage from "$root/serializer/sanityImage.svelte";
     import FlyInCard from "$root/components/generic/containers/imageContainers/showcaseFlyIn.svelte";
 
 	export let data;
@@ -30,7 +30,7 @@
 
 	a:hover {
 		.referral {
-			background: var(--accent2)!important;
+			background: var(--accent7)!important;
 			p {	color: 	white!important;}}}
 
 	.slide {
@@ -48,7 +48,7 @@
 	.referral { // fallback colour
 		padding: 	7px 9px 6px 9px;
 		overflow: 	hidden;
-		background: var(--accent9);
+		background: var(--accent10);
 
 		p {
 			color: 			black;

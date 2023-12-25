@@ -1,15 +1,15 @@
 <script>
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
+
     import { directoryData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
-
-    import SanityImage 		from "$root/serializer/types/sanityImage.svelte";
-
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
-    import DividedTag 		from "$root/components/generic/wrappers/tags & Inline/pilledTag.svelte";
-    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
+    import SanityImage 		from "$root/serializer/sanityImage.svelte";
+
+    import DividedTag 		from "$root/components/generic/wrappers/tags & Inline/tags/pilledTag.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
-    import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/inlineGenreTag.svelte";
+    import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
 
     export let
 		data,
@@ -134,7 +134,7 @@
 		margin: 		0px -3px 1px -1px ;
 		border-radius: 	20px;
 
-		&:hover {		background: var(--accent2);
+		&:hover {		background: var(--accent7);
 			h4 {		color: 		white;}}
 		> * {			margin: 	auto 0;}
 		.mediaIcon {	overflow:	hidden;}}

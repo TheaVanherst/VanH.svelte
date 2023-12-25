@@ -11,7 +11,8 @@ import commissionTypes    from './pageSpecific/commissions/commissionTypes';
 import commissionPricing  from './pageSpecific/commissions/commissionPricing'
 
 import artworks         from './arts/drawings';
-import alternateArts    from './arts/alternateArts'
+import alternateArts    from './arts/alternateArts';
+import erotica          from './arts/erotica'
 import commissionType   from './arts/commissionTypes';
 import renderType       from './arts/renderType';
 import styleType        from './arts/styleType';
@@ -56,6 +57,8 @@ const dataTypes = [
   renderType,
   styleType,
   purchaseTypes,
+
+  erotica,
 
   // art tag data
   genericTags,

@@ -1,30 +1,36 @@
 
 import client from "$lib/sanityClient.js";
 import { socialPlatformQuery } from "$lib/queries/websiteSettings.js";
-import {navigationData} from "$lib/controllers/layoutControllers/redirectHandling.js";
+import { navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
 export async function load () {
     navigationData.set({ logo: true, navigation: false, socials: false, search: false });
         // needs to be done on the server to allow the +page to be prioritized.
 
+    const seachQuery = `| order(title asc) {title, relatedTags, 'type': _type}`
+        // saves copy-paste work
     return {
-        featured:
+        socialMedia:
             await client.fetch(`
-                *[ _type == 'featuredSocials' ][0]{
+                *[ _type == 'featuredSocials' ][0].
                     socialMedia[]{
                         chunkName,
                         chunkSocials[]{
                             ${socialPlatformQuery},
                             nsfw,
-                            url}}}`),
+                            url}}`),
+        characters:
+            await client.fetch(`*[_type == 'characterOrder'].characters[]->{charIcon, nickName}`),
+            // fetches & deals with character searches
         tags:
-            await client.fetch(`{
-                "cultureTags": [*[_type == 'cultureTags'] | order(title asc) {title, relatedTags, 'type': _type}, false],
-                "designTags": [*[_type == 'designTags'] | order(title asc) {title, relatedTags, 'type': _type}, false],
-                "explicitTags": [*[_type == 'explicitTags']| order(title asc) {title, relatedTags, 'type': _type}, true],
-                "genreTag": [*[_type == 'genreTag'] | order(title asc) {title, relatedTags, 'type': _type}, false],
-                "genericTags": [*[_type == 'genericTags'] | order(title asc) {title, relatedTags, 'type': _type}, false],
-                "nsfwTags": [*[_type == 'nsfwTags'] | order(title asc) {title, relatedTags, 'type': _type}, true]
-            }`)
+            Object.entries(
+                await client.fetch(`{
+                    "cultureTags": [*[_type == 'cultureTags']` + seachQuery + `, false],
+                    "designTags": [*[_type == 'designTags']` + seachQuery + `, false],
+                    "explicitTags": [*[_type == 'explicitTags']` + seachQuery + `, true],
+                    "genreTag": [*[_type == 'genreTag']` + seachQuery + `, false],
+                    "genericTags": [*[_type == 'genericTags']` + seachQuery + `, false],
+                    "nsfwTags": [*[_type == 'nsfwTags']` + seachQuery + `, true]}`))
+                // array is stored as [{data}, {NSFW front-end check}]
     };
 }

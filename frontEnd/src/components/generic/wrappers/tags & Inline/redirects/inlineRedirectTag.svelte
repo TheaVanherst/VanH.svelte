@@ -1,5 +1,5 @@
 <script>
-	import SanityImage from "$root/serializer/types/sanityImage.svelte";
+	import SanityImage from "$root/serializer/sanityImage.svelte";
 
 	export let data = undefined;
 </script>
@@ -19,7 +19,7 @@
 			color: 	black;}
 
 		&:hover {
-			background: 	var(--accent2);
+			background: 	var(--accent7);
 			.icon {
 				filter: invert(1);}
 			p {	color: 	white;}}}

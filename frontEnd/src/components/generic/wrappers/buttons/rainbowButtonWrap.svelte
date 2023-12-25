@@ -36,7 +36,7 @@
 			position: 	absolute;
 			z-index: 	-2;
 
-			background: conic-gradient(var(--accent2), var(--accent2));
+			background: conic-gradient(var(--accent7), var(--accent7));
 			content: 	"";}
 
 		position: relative;
@@ -51,9 +51,9 @@
 		&:hover {
 				transform: 	scale(1.1);
 			&:before {
-				background: conic-gradient(var(--accent2),
-					var(--accent5), var(--accent6), var(--accent3),
-					var(--accent7), var(--accent1), var(--accent2));
+				background: conic-gradient(var(--accent7),
+					var(--accent4), var(--accent3), var(--accent2),
+					var(--accent1), var(--accent6), var(--accent7));
 				animation: spin 2s infinite linear;}
 			.flex {
 				margin: 	2px;

@@ -4,7 +4,7 @@
 	import { fullscreenGalleryStore, galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage from "$root/serializer/sanityImage.svelte";
     import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
     import { clickOutside } from "$lib/controllers/transitionPresets.js";

@@ -16,21 +16,23 @@ import { navigationDirectories } from "$lib/controllers/layoutControllers/naviga
 const
     directionProcessing = async (p,c,b = null, f = 0) => {
         let directionOffset = 0,
+            // strips the current url redirects
             previousPage = p.split("/"),
             currentPage = c.split("/");
 
-        let nsfwState = get(navigationControls).nsfw,
-            nsfwCheck = nsfwState ? 2 : 1;
-
+        let nsfwCheck = get(navigationControls).nsfw ? 2 : 1; //gets the nsfw state
+            //checks relative directory via the directories
         let pyo = navigationDirectories.findIndex(e => e.path === "/" + currentPage[1 + f]),
             cyo = navigationDirectories.findIndex(e => e.path === "/" + previousPage[1 + f]),
-            rrd = ((!b ? b : c ?? "") + "/"),
-            qsd = rrd.split("?");
+
+            //genuinely, I can't remember what this does.
+            rrd = b + "/", //corrects the page url to the front-end one, which requires a "/"
+            qsd = rrd.split("?"); //removes queries from the search
 
         if (pyo ^ cyo || previousPage[nsfwCheck] !== currentPage[nsfwCheck]) { // only moves if x isn't
             directionOffset = pyo > cyo ? 1 : -1;} // upwards / downwards
 
-        navigationControls.update(e => ({...e, direction: [directionOffset]}));
+        navigationControls.update(e => ({...e, direction: [directionOffset]})); //forwards the page direction to the store
         directoryData.set({ raw: rrd, root: "/" + currentPage[nsfwCheck], query: qsd[1],
             stripped: (get(navigationControls).nsfw ? qsd[0].replaceAll("/nsfw",'') : qsd[0])});
     };

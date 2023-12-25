@@ -1,5 +1,5 @@
 <script>
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage from "$root/serializer/sanityImage.svelte";
 
 	export let
         featured = false,
@@ -31,11 +31,11 @@
 	:global(.card.white *) {
 		color: black;
 		&::selection, ::selection {
-			color:      var(--accent2);}}
+			color:      var(--accent7);}}
 	:global(.card.black *) {
 		color: white;
 		&::selection, ::selection {
-			color: var(--accent6);}}
+			color: var(--accent3);}}
 
 	.card {
 		width: 		100%;
@@ -58,7 +58,7 @@
 			background: var(--TransWhite);}}
 
 	.card.black {
-		border: 	1px solid var(--accent9);
+		border: 	1px solid var(--accent10);
 		background: black;
 		.banner {		height:	 	150px;}
 		.titleCard {	background: var(--TransBlack);}}

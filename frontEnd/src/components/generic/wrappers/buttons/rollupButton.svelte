@@ -2,7 +2,8 @@
 	export let
 		active = false,
 		hover = false,
-		invert = false;
+		invert = false,
+		padding = "5"
 </script>
 
 <div class="aspectMask">
@@ -11,7 +12,7 @@
 		 class:invert
 		 class:regular={!invert}
 		 on:mousedown={() => active=!active}>
-		<div class="iconCrop">
+		<div class="iconCrop" style="padding:{padding}px">
 			<img src="/icons/downIcon.webp">
 		</div>
 	</div>
@@ -19,11 +20,10 @@
 
 <style lang="scss">
 	.aspectMask {
-		margin: 0 15px;}
+		margin: auto 8px;}
 	.foldable {
 		border-radius: 	50%;
 		aspect-ratio: 	1/1;
-		height: 		calc(100% - 2px);
 
 		.iconCrop {
 			aspect-ratio: 	1/1;
@@ -40,17 +40,17 @@
 		transition: background .5s ease, transform .3s ease;
 
 		&.regular {
-			border: 1px solid var(--accent2);
+			border: 1px solid var(--accent7);
 			background: var(--TransBlack);
 			img {	filter: 	invert(1);}
-			&.active {	background: var(--accent9);
+			&.active {	background: var(--accent10);
 				transform: rotate(180deg);
 				img {	filter: 	invert(0);}}
-			&:hover {	background: var(--accent2);
+			&:hover {	background: var(--accent7);
 				img {	filter: 	invert(1);}}}
 		&.invert {
 			&.active {
 				transform: rotate(180deg);}
-			&:hover {	background: var(--accent2);
+			&:hover {	background: var(--accent7);
 				img {	filter: 	invert(1);}}}}
 </style>

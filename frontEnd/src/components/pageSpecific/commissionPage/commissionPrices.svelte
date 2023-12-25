@@ -1,7 +1,7 @@
 <script>
     import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage from "$root/serializer/sanityImage.svelte";
 	import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
     export let
@@ -89,7 +89,7 @@
 					color: 	$colour;}}
 
 			span {
-				color: 		var(--accent3);
+				color: 		var(--accent2);
 				font-style: italic;}
 			h5 {
 				padding: 	0 0 0 0;
@@ -97,18 +97,18 @@
 				height: 	max-content;
 				display: 	grid;
 
-				&:nth-of-type(1){ span {color:var(--accent1);}}
-				&:nth-of-type(2){ span {color:var(--accent6);}}
-				&:nth-of-type(3){ span {color:var(--accent3);}}
-				&:nth-of-type(4){ span {color:var(--accent7);}}
-				&:nth-of-type(5){ span {color:var(--accent2);}}
-				&:nth-of-type(6){ span {color:var(--accent5);}}}}
-		&:nth-child(1) { border-left: 1px solid var(--accent2);}
-		&:nth-child(2) { border-left: 1px solid var(--accent1);}
-		&:nth-child(3) { border-left: 1px solid var(--accent7);}
-		&:nth-child(4) { border-left: 1px solid var(--accent3);}
-		&:nth-child(5) { border-left: 1px solid var(--accent6);}
-		&:nth-child(6) { border-left: 1px solid var(--accent5);}}
+				&:nth-of-type(1){ span {color:var(--accent6);}}
+				&:nth-of-type(2){ span {color:var(--accent3);}}
+				&:nth-of-type(3){ span {color:var(--accent2);}}
+				&:nth-of-type(4){ span {color:var(--accent1);}}
+				&:nth-of-type(5){ span {color:var(--accent7);}}
+				&:nth-of-type(6){ span {color:var(--accent4);}}}}
+		&:nth-child(1) { border-left: 1px solid var(--accent7);}
+		&:nth-child(2) { border-left: 1px solid var(--accent6);}
+		&:nth-child(3) { border-left: 1px solid var(--accent1);}
+		&:nth-child(4) { border-left: 1px solid var(--accent2);}
+		&:nth-child(5) { border-left: 1px solid var(--accent3);}
+		&:nth-child(6) { border-left: 1px solid var(--accent4);}}
 
 	.additionalPurchases {
 		.type {		padding: 	3px 5px 3px 15px;
@@ -119,10 +119,10 @@
 						border-left: 	1px solid $colour;
 				span {	color: 			$colour;}}
 
-			&:nth-child(1) { @include cbc(var(--accent6));}
-			&:nth-child(2) { @include cbc(var(--accent3));}
-			&:nth-child(3) { @include cbc(var(--accent5));}
-			&:nth-child(4) { @include cbc(var(--accent7));}
-			&:nth-child(5) { @include cbc(var(--accent1));}
-			&:nth-child(6) { @include cbc(var(--accent2));}}}
+			&:nth-child(1) { @include cbc(var(--accent3));}
+			&:nth-child(2) { @include cbc(var(--accent2));}
+			&:nth-child(3) { @include cbc(var(--accent4));}
+			&:nth-child(4) { @include cbc(var(--accent1));}
+			&:nth-child(5) { @include cbc(var(--accent6));}
+			&:nth-child(6) { @include cbc(var(--accent7));}}}
 </style>

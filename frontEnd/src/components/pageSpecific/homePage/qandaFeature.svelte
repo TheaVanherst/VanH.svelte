@@ -1,7 +1,7 @@
 <script>
 	import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import SanityImage 	from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage 	from "$root/serializer/sanityImage.svelte";
     import Container 	from "../../generic/containers/container.svelte";
 
     export let dataset = [];
@@ -55,7 +55,7 @@
 			transform: scale(1.2);}
 		.q {margin: 4px 0 4px 20px;}
 		.s {margin: 2px 0 0 75px;}
-		span {color: var(--accent1);}
+		span {color: var(--accent6);}
 	}
 
 	.profileIcon {
@@ -79,5 +79,5 @@
 		.a {margin: 4px 4px 4px 4px;
 			text-align: right;}}
 
-	span {	color: var(--accent9);}
+	span {	color: var(--accent10);}
 </style>

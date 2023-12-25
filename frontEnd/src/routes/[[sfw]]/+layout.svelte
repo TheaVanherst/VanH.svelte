@@ -4,8 +4,10 @@
 
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
     import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+
+    import SanityImage 			from "$root/serializer/sanityImage.svelte";
     import RollupButton 		from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
-    import InlineTag 			from "$root/components/generic/wrappers/tags & Inline/inlineGenreTag.svelte";
+    import InlineTag 			from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
 
     import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
@@ -64,7 +66,7 @@
 <div class="flexBox">
 	{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
 		<div class="inlineWrapper" transition:slide>
-			<NavigationComponent socials={data.featured}/>
+			<NavigationComponent socials={data.socialMedia}/>
 		</div>
 	{/if}
 
@@ -74,20 +76,32 @@
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>
 					<input type="search" class="input" placeholder="Search..." bind:value={value}/>
 				</form>
-				<RollupButton bind:active/>
+				<RollupButton bind:active padding={8}/>
 			</div>
 		</div>
 	{/if}
 
-	{#if active && $navigationData.search}
+	{#if active && data.tags && $navigationData.search}
 		<div class="tableGroup wideBorder" transition:slide>
-			{#each Object.entries(data.tags) as tagSet, i}
+			<h4>Characters</h4>
+			<div class="characterInline">
+				{#each data.characters as character, c}
+					<div class="characterIcon">
+						<RedirectBuilder url="{$directoryData.stripped}?query=:{character.nickName.toLowerCase().replaceAll(' ','-')}">
+							<div class="profileIcon" class:active={value.includes(character.nickName.toLowerCase())}>
+								<SanityImage image={character.charIcon}/>
+							</div>
+						</RedirectBuilder>
+					</div>
+				{/each}
+			</div>
+			{#each data.tags as tagSet, i}
 				{#if !tagSet[1][1] && !$navigationControls.nsfw || $navigationControls.nsfw}
 					<h4>{tagSet[0].replaceAll("Tags","").replaceAll("Tag","")} Tags</h4>
 					<div class="tagGroup">
 						{#each tagSet[1][0] as tag, e}
 							<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
-								<InlineTag tag={tag} active={(tag.title.toLowerCase()) === value}/>
+								<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/>
 							</RedirectBuilder>
 						{/each}
 					</div>
@@ -102,11 +116,16 @@
 </div>
 
 <style lang="scss">
+	h4 {
+		width: 100%;
+		color: 	black;
+		padding: 0 0 5px 0;}
+
 	.flexBox { // this fixes issues with the footer that I can't be fucked to fix.
 		position: 	relative;
 		z-index: 	1;
 		width: 		100%;
-		margin: 	0 0 auto 0}
+		margin: 	0 0 auto 0;}
 
 	.searchBarWrapper {
 		margin: 10px auto 0 auto;
@@ -116,21 +135,34 @@
 			form {
 				display: contents;}}}
 
+	.characterInline {
+		display: 	inline-block;
+		margin: 	5px 0 3px 5px;
+		.characterIcon {
+			display: 	inline-block;
+			margin: 	0 5px 5px 0;
+			.profileIcon {
+					transition: opacity .2s ease, border .3s ease;
+					background: transparent;
+					border: 	1px solid white;
+					opacity: 	0.6;
+				&.active {
+					border: 	1px solid var(--accent9);
+					opacity: 	1;}
+				&:hover {
+					opacity: 	1;}}}}
+
 	.tableGroup {
 		background: var(--TransWhite);
 		padding: 	15px;
 		margin: 	15px 0 0 0;
-		max-height: 	200px;
+		max-height: 200px;
 		overflow: 	scroll;
 
-		h4 {
-			color: 	black;
-			padding: 0 0 5px 0;}
-
 		.tagGroup {
-			padding: 	5px 5px;
+			padding: 		5px 5px;
 			display: 		flex;
 			flex-wrap: 		wrap;
 			flex-direction: row;
-			color: 		black;}}
+			color: 			black;}}
 </style>

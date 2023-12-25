@@ -1,16 +1,16 @@
 
 /* Root variables formatting */
 :root {
-	--accent9:  #ffffff;
-	--accent10: #48575a;
-	--accent11: #0c0021;
-	--accent2:  #8c00ff;
-	--accent1:  #ff0582;
-	--accent4:  #ff00fb;
-	--accent5:  #00ffff;
-	--accent6:  #00ff59;
-	--accent3:  #ffcc00;
-	--accent7:  #ff8800;
+	--accent10: #ffffff;
+	--accent9:  #48575a;
+	--accent8:  #0c0021;
+	--accent7:  #8c00ff;
+	--accent6:  #ff0582;
+	--accent5:  #ff00fb;
+	--accent4:  #00ffff;
+	--accent3:  #00ff59;
+	--accent2:  #ffcc00;
+	--accent1:  #ff8800;
 
 	--TransBlack: rgba(0, 0, 0, 0.6);
 	--TransWhite: rgba(255, 255, 255, 0.9);
@@ -25,7 +25,7 @@
 
 /* document formatting */
 
-* { scrollbar-color:    var(--accent2) transparent;
+* { scrollbar-color:    var(--accent7) transparent;
 	scrollbar-width:    thin;
 
 	&::-webkit-scrollbar {
@@ -34,11 +34,11 @@
 		background: 	transparent;}
 	&::-webkit-scrollbar-thumb {
 		border-radius: 	2px;
-		background: 	var(--accent2);}
+		background: 	var(--accent7);}
 	&::-webkit-scrollbar-thumb:hover {
-		background: 	var(--accent1);}
+		background: 	var(--accent6);}
 	&::-webkit-scrollbar-thumb:active {
-		background: 	var(--accent6);}}
+		background: 	var(--accent3);}}
 
 html {
 	margin-left: calc(100vw - 100%); }
@@ -51,7 +51,7 @@ body {
 
 	background:		#000;
 	font-family:    "Georgia", serif;
-	color:	 		var(--accent9);
+	color:	 		var(--accent10);
 
 	overflow-x:         hidden;
 	scroll-behavior:    smooth;}
@@ -74,10 +74,10 @@ a {         cursor: crosshair;}
 /* style formatting */
 
 a { text-decoration:    none;
-	* { color: var(--accent9);}}
+	* { color: var(--accent10);}}
 
 b {
-	color: var(--accent3);}
+	color: var(--accent2);}
 
 h1, h2, h3, h4, h5 {
 
@@ -99,7 +99,7 @@ p { font-size:      12px;
 	font-family:    "Arial", Sans-serif, serif;
 	white-space:    break-spaces;
 	line-height:    120%;
-	color:	 		var(--accent9);
+	color:	 		var(--accent10);
 	margin: 		0;}
 
 .subtitle {
@@ -113,18 +113,18 @@ p { font-size:      12px;
 .citation {
 	font-size: 		10px;
 	font-family: 	"Helvetica", Sans-serif;
-	color:          var(--accent9);
+	color:          var(--accent10);
 
 	position: 	relative;
 	display: 	block;
 
 	span {
 		transition: color .3s ease-in-out;
-		color: var(--accent3);;}
+		color: var(--accent2);;}
 
 	&:hover {
 		> span {
-			color: var(--accent2);}}}
+			color: var(--accent7);}}}
 /* list formatting */
 
 title {
@@ -149,8 +149,8 @@ ul {
 
 
 .quote {
-	border-left: 	1px solid var(--accent10);
-	border-right: 	1px solid var(--accent10);
+	border-left: 	1px solid var(--accent9);
+	border-right: 	1px solid var(--accent9);
 	padding: 		10px;
 
 	position:       relative;

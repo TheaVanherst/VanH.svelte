@@ -7,17 +7,17 @@
 		brightness(97%) contrast(132%);}
 
 @keyframes colorRotateFadeIn {
-	from {  color: var(--accent9);}
-	to {    color: var(--accent3);}};
+	from {  color: var(--accent10);}
+	to {    color: var(--accent2);}};
 
 @keyframes colorRotate {
-	0% {	color: var(--accent3);}
-	15% {	color: var(--accent7);}
-	30% {	color: var(--accent1);}
-	50% {	color: var(--accent2);}
-	65% {	color: var(--accent5);}
-	80% {	color: var(--accent6);}
-	100% {	color: var(--accent3);}}
+	0% {	color: var(--accent2);}
+	15% {	color: var(--accent1);}
+	30% {	color: var(--accent6);}
+	50% {	color: var(--accent7);}
+	65% {	color: var(--accent4);}
+	80% {	color: var(--accent3);}
+	100% {	color: var(--accent2);}}
 
 @keyframes spin {
 	from {	transform: translate(-50%,-50%) rotate(360deg);}
@@ -36,12 +36,12 @@
 		width: 		500px;
 
 		border-radius: 20px;
-		border: 	1px solid var(--accent2);
+		border: 	1px solid var(--accent7);
 		outline: 	none;
 		background: var(--TransBlack);
 
 		font-family: 	"Playfair Display", serif;
-		color: 			var(--accent9);
+		color: 			var(--accent10);
 		font-weight: 	700;}}
 
 .pagingDot {
@@ -54,10 +54,10 @@
 	transition: background .3s ease;
 
 	&:hover {
-		background:     var(--accent6);}
+		background:     var(--accent3);}
 
 	&.active {
-		background:     var(--accent2);
+		background:     var(--accent7);
 		pointer-events: none;}}
 
 // TODO: generic containers
@@ -85,9 +85,9 @@
 	position: 	    relative;
 	display: 	    block;
 
-	border-right:       1px solid var(--accent3);
+	border-right:       1px solid var(--accent2);
 	&.hover:hover {
-		border-right:   1px solid var(--accent2);}}
+		border-right:   1px solid var(--accent7);}}
 
 // TODO: cropping
 
@@ -109,7 +109,7 @@
 
 a {
 	.socialIco {
-		background-color: var(--accent9);
+		background-color: var(--accent10);
 		padding: 	4px;
 		margin: 	5px;
 		right: 		0;
@@ -134,20 +134,20 @@ a {
 	overflow: 		hidden;}
 
 .profileIcon {
-	width: 	        40px;
-	height:         40px;
+	width: 	        42px;
+	height:         42px;
 	aspect-ratio:   1/1;
 	border-radius:  50%;
 	overflow: 		hidden;}
 
 .mediaIcon {
-	margin: auto 0;
 	width:  24px;
 	height: 24px;
+	aspect-ratio:  1/1;
 	border-radius:  50%;
-	img {
-		width:  100%;
-		height: 100%;}}
+	display:    flex;
+	margin:     auto 0;
+	padding:    1px;}
 
 .inlineIcon {
 	height: 12px;
@@ -159,7 +159,7 @@ a {
 	padding:    1px;}
 
 .navigationButton {
-	background: var(--accent2);
+	background: var(--accent7);
 	width: min-content;
 
 	border-radius: var(--bordersmall);

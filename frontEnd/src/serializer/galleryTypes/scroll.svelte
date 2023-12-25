@@ -1,5 +1,5 @@
 <script>
-    import CitedImage from "$root/serializer/types/citedImage.svelte";
+    import CitedImage from "$root/serializer/citedImage.svelte";
 
     export let push;
     export let citation;

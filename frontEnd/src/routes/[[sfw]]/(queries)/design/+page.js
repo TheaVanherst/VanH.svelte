@@ -1,6 +1,9 @@
 
 import client from "$lib/sanityClient.js";
 
+import { authorQueries } from "$lib/queries/authorQueries.js";
+import { genericRequests } from "$lib/queries/genericQueries.js";
+
 export const load = async ({ fetch, url }) => {
 
     // let pageData = {}
@@ -14,38 +17,16 @@ export const load = async ({ fetch, url }) => {
     const [allQueries] = await Promise.all([client.fetch(`{
         "designs":
             *[ _type == 'alternateArts'][] | order(publishedAt desc) {
-                _id,
-                pieceName,
-                description,
-               
-                "sfw": !NSFW,
-               
-                'slug': slug.current,
-                publishedAt,
-                
+                ${genericRequests.info},
+                ${genericRequests.sfw},
                 'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd']{
-                    ...,
                     'author': author->{
-                        fullName,
-                        handle,
-                        profileBanner,
-                        'slug': slug.current,
-                        userPortrait,
-                    },
-                    'participation': participation->emoji + " " + participation->title,
-                },
-                
-                'gallery': gallery {
-                    images,
-                    display,
-                    'renderType': renderType->renderName,
-                    'styleType': styleType->styleName
-                },
-                
-                'tags': tagData[]|order(_type desc)-> {
-                    title,
-                    'type': _type
-                }
+                        ${authorQueries.info},
+                        ${authorQueries.icon},
+                        ${authorQueries.socials}},
+                    'participation': participation->emoji + " " + participation->title},
+                ${genericRequests.gallery},
+                ${genericRequests.tags}
             }
         }`
     )]);

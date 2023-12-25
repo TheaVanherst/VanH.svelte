@@ -1,5 +1,5 @@
 <script>
-    import SanityImage from "$root/serializer/types/sanityImage.svelte";
+    import SanityImage from "$root/serializer/sanityImage.svelte";
     //TODO: THIS ALL NEEDS RE-DOING BECAUSE IT'S REALLY BAD
 
     let randomId = Math.floor(Math.random() * 999);
@@ -54,7 +54,7 @@
 		&::-webkit-scrollbar-thumb {
 			border-radius: 	2px;
 			border: 		1px solid var(--background);
-			background: 	var(--accent1);}
+			background: 	var(--accent6);}
 		&::-webkit-scrollbar-thumb:hover {
 			background: 	var(--darkAccent1);}
     }
@@ -79,7 +79,7 @@
 
 			    position:   absolute;
 			    z-index:    100;
-                background: var(--accent1);
+                background: var(--accent6);
 			    transition: background .2s ease-out;
 
                 > * {
@@ -91,7 +91,7 @@
 			    &.next {    right:      0;}
 			    &.prev {    left:       0;
                     > * {   transform:  scale(-1, 1);}}
-			    &:hover {   background: var(--accent2);
+			    &:hover {   background: var(--accent7);
                     > * {   filter:     invert(1);} }
             }
         }

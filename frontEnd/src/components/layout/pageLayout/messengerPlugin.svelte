@@ -81,7 +81,7 @@
 		overflow: 	hidden;
 		position: 	fixed;
 
-		border: 	1px solid var(--accent2);
+		border: 	1px solid var(--accent7);
 		margin: 	15px;
 
 		height: 	calc(100% - 30px);

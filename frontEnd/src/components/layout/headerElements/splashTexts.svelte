@@ -71,7 +71,7 @@
 		font-family: 	"Lucida Console", Monospace;
 		font-weight: 	800;
 		font-size: 		20px;
-		color: 			var(--accent3);
+		color: 			var(--accent2);
 		text-align: 	center;
 		user-select: 	none;
 
