@@ -9,7 +9,7 @@
 	];
 
 	export let tag;
-    export let active;
+    export let active = false;
 
     let placement = colours.findIndex(x => x.name === tag.type),
 		tagColour = colours[placement].colour,

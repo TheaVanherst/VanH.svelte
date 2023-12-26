@@ -6,21 +6,21 @@
     import { afterNavigate, beforeNavigate } from "$app/navigation";
     import { navigating, updated } from "$app/stores";
 
-    import { directionProcessing, directoryData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { directoryProcessing, directoryData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
 
     afterNavigate((n) => {
         if ( n.from === null && n.willUnload === false ) {  // this fixes an issue where the url doesn't update from the initial layout load.
             $navigationControls.transitioning = false;
             let to = (n.to.url.pathname).slice(0, -1);
 			to = to === "" ? "/" : to;
-			directionProcessing(to, to, to, 0);}
+			directoryProcessing(to, to, 0);}
     }); //resets x, y positions
 
     beforeNavigate(async (n, willUnload, to ) => {
         if (n.delta !== 0 && n.type === "popstate") {
             let to = (n.to.url.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
 
-            await directionProcessing($directoryData.raw, to, to, 0);
+            await directoryProcessing($directoryData.raw, to, 0);
             $navigationControls.transitioning = true;
             setTimeout(async () => {
                 $navigationControls.transitioning = false;

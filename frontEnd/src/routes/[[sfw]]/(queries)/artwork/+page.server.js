@@ -1,8 +1,8 @@
 
 import client from "$lib/sanityClient.js";
-import { characterData } from "$lib/queries/characterData.js";
-import { authorQueries } from "$lib/queries/authorQueries.js";
-import { genericRequests } from "$lib/queries/genericQueries.js";
+import { characterData } from "$lib/queryPresets/characterData.js";
+import { authorQueries } from "$lib/queryPresets/authorQueries.js";
+import { genericRequests } from "$lib/queryPresets/genericQueries.js";
 
 export const load = async () => {
     let [allQueries] = await Promise.all([client.fetch(`{
@@ -15,26 +15,21 @@ export const load = async () => {
                     'author': author->{
                         ${authorQueries.info},
                         ${authorQueries.icon},
-                        ${authorQueries.socials}
-                    },
-                    'participation': participation->emoji + " " + participation->title,
-                },
+                        ${authorQueries.socials}},
+                    'participation': participation->emoji + " " + participation->title},
                 'photoshopRefId': discordReferences.photoshopRef,
                 'imageRefId': discordReferences.archiveRef,
                 'characters': characters[]->{
                     ...,
                     ${characterData.preview},
-                    ${characterData.info}
-                },
+                    ${characterData.info}},
                 'commissionData': commissionData {
                     'commissionType': artType->typeName,
                     'characters': characters[]-> {
                         ${characterData.commInfo},
                         ${characterData.preview},
-                        ${characterData.ownership},
-                    }
-                },
-                ${genericRequests.gallery}
+                        ${characterData.ownership}}},
+                ${genericRequests.gallery},
                 ${genericRequests.tags}
             }
         }`

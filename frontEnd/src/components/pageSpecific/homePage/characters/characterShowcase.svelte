@@ -10,7 +10,7 @@
 {#if dataset}
 	<Carousel>
 		{#each dataset as char}
-			{#if char && char.nsfw && $navigationControls.nsfw || !char.nsfw}
+			{#if char && $navigationControls.localNsfwCheck(char.nsfw)}
 				<swiper-slide>
 					<div class="card">
 						<CharacterCard image={char.render}>

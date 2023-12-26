@@ -57,8 +57,8 @@
         setTimeout(() => { // this allows the pagination to update
             $navigationControls.transitioning = false;}, 300);};
 
-    let value;
-	let active = false;
+    let value,
+		active = false;
 
     $: $navigationData.search === false ? active = false : false;
 </script>
@@ -132,6 +132,7 @@
 		.searchBar {
 			display: flex;
 			margin: 0 auto;
+			padding-left: 10px;
 			form {
 				display: contents;}}}
 

@@ -16,7 +16,7 @@
 <SidebarTexts titlecard="Examples" icon="galleryIcon.webp">
 	<Carousel>
 		{#each data.commissionPrices[0].PreviewImages as image}
-			{#if !$navigationControls.nsfw && image.nsfwRender !== true || $navigationControls.nsfw}
+			{#if $navigationControls.localNsfwCheck(image.nsfwRender)}
 				<swiper-slide>
 					<div class="imageCard wideBorder">
 						<SanityImage image="{image.imageRender}"/>

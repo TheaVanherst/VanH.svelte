@@ -6,7 +6,7 @@
 	import CharacterFeature from "$root/components/pageSpecific/homePage/characters/characterShowcase.svelte";
     import WorkshopFeature 	from "$root/components/pageSpecific/homePage/embedded/workshopFeature.svelte";
     import GithubFeature 	from "$root/components/pageSpecific/homePage/embedded/githubFeature.svelte";
-    import KofiCards from "$root/components/pageSpecific/homePage/kofiCards.svelte";
+    import KofiCards 		from "$root/components/pageSpecific/homePage/kofiCards.svelte";
     import QandaFeature 	from "$root/components/pageSpecific/homePage/qandaFeature.svelte";
 
     export let data;
@@ -24,7 +24,7 @@
 
 <SidebarTexts titlecard="Workshop" icon="steamLogo.webp">
 	<WorkshopFeature
-			dataset={[data.workshopData, data.workshopSnippet]}/>
+			dataset={{full: data.workshopData, snippets: data.workshopSnippet}}/>
 </SidebarTexts>
 
 {#if $navigationControls.nsfw}

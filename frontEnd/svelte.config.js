@@ -19,7 +19,7 @@ const config = {
 				'/carrd/','/nsfw/carrd/',
 				'/artwork/','/nsfw/artwork/',
 				'/design/','/nsfw/design/',
-				'/erotica/'
+				'/erotica/','/erotica/[slug]'
 			],
 		},
 	},

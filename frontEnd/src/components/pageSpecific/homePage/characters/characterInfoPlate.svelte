@@ -16,7 +16,7 @@
 </script>
 
 <div class="plate regularBorder redirect">
-	<RedirectBuilder url="/artwork/?query=:{data.slug.toLowerCase().replaceAll(' ','-')}">
+	<RedirectBuilder url="/artwork/?query=:{data.slug.replaceAll(' ','-')}">
 		<div class="table">
 			<div class="cell">
 				<div class="characterIcon">
@@ -34,31 +34,17 @@
 <div class="plate regularBorder">
 	<div class="description">
 		{#if !!data.sexuality}
-			<p><span>Sexuality</span>:{data.sex} {data.sexuality}</p>
-		{/if}
-		<!--{#if !!data.partners}-->
-		<!--	<p>-->
-		<!--		<span>Partner{data.partners.length > 1 ? 's' : ''}</span>:-->
-		<!--		{#each data.partners as partner, i}-->
-		<!--			{partner.fullName}{data.partners.length > 1 && data.partners.length - 1 > i ? ', ' : ''}-->
-		<!--		{/each}-->
-		<!--	</p>-->
-		<!--{/if}-->
+			<p><span>Sexuality</span>:{data.sex} {data.sexuality}</p>{/if}
 		{#if !!data.species}
-			<p><span>Species</span>: {data.species}</p>
-		{/if}
+			<p><span>Species</span>: {data.species}</p>{/if}
 		{#if !!data.nationality}
-			<p><span>Nationality</span>: {data.nationality}</p>
-		{/if}
+			<p><span>Nationality</span>: {data.nationality}</p>{/if}
 		{#if !!data.timePeriod}
-			<p><span>Time period</span>: {data.timePeriod}</p>
-		{/if}
+			<p><span>Time period</span>: {data.timePeriod}</p>{/if}
 		{#if !!data.birthday}
-			<p><span>Birthday</span>: {standardShorthand(data.birthday)}</p>
-		{/if}
+			<p><span>Birthday</span>: {standardShorthand(data.birthday)}</p>{/if}
 		{#if !!data.age}
-			<p><span>Age</span>: {data.age}</p>
-		{/if}
+			<p><span>Age</span>: {data.age}</p>{/if}
 	</div>
 </div>
 
@@ -123,17 +109,16 @@
 	p span { 	color: 	var(--accent7); }
 
 	.subtitle {
-		text-decoration: underline;
-		padding: 		0 0 5px 0;}
+		text-decoration: 	underline;
+		padding: 			0 0 5px 0;}
 
 	.description {
-			padding: 	0 0 8px 2px;
+			padding: 		0 0 8px 2px;
 		#bio {
-			white-space: pre-wrap;
-		}
+			white-space: 	pre-wrap;}
 		&:last-of-type {
-			padding:	 0 0 0 2px;
-			word-break: unset}}
+			padding:	 	0 0 0 2px;
+			word-break: 	unset;}}
 
 	.plate {
 		background: white;
@@ -145,9 +130,5 @@
 			&:hover {
 				background: var(--accent7);
 				p, h4 {
-					color: white;
-				}
-			}
-		}
-	}
+					color: white;}}}}
 </style>

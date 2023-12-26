@@ -10,7 +10,8 @@
 <a href="https://steamcommunity.com/sharedfiles/filedetails/?id={dataEntry.url}" target="_blank">
 	<div class="workshopItem regularBorder"
 		 class:hovered={active}
-		 on:mouseenter={() => active=true} on:mouseleave={() => active=false}>
+		 on:mouseenter={() => active=true}
+		 on:mouseleave={() => active=false}>
 
 		<div class="workshopPreview regularBorder">
 			<div class="regularBorder imageWrapper">

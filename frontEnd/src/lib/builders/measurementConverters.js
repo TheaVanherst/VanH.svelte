@@ -32,9 +32,14 @@ const
             let rawNumber = parseInt(trueLength[0].padEnd(trueLength[1], "0"));
             return nFormatter(rawNumber,2) + " kilometres";
         }
+    },
+    readingTime = (a = "") => {
+        const wpm = 225;
+        const words = a.map(o => o.children).map(a => a.map(e => e.text)).flat().join().trim().split(/\s+/).length;
+        return Math.ceil(words / wpm);
     };
 
-export { heightBuilder }
+export { heightBuilder, readingTime }
 
 const
     standardTinyhand = (n) => {

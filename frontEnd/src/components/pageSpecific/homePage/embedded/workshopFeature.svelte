@@ -8,67 +8,67 @@
 
     import { deviceData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
 
-    let moreToggle = false;
+    export let dataset;
 
-    export let dataset = undefined;
+    let active = false;
 </script>
 
 <Container>
-	{#if dataset[0]} <!-- prevents crashes -->
+	{#if dataset.full}
 		<Carousel>
-			{#each dataset[0] as workshopItem}
+			{#each dataset.full as workshopItem}
 				<swiper-slide>
 					<WorkshopCard dataEntry={workshopItem}/>
 				</swiper-slide>
 			{/each}
 		</Carousel>
 	{/if}
-	<div class="navWrapper">
-		{#if $deviceData.deviceType < 2}
-			{#if moreToggle && dataset[1]} <!-- prevents crashes -->
-				<div class="mobileOffset" transition:slide>
-					<Carousel
-						customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}
-						pagination={false} footerAdd={false}>
-						{#each dataset[1] as workshopItem}
-							{#if workshopItem.NSFW && $navigationControls.nsfw || !workshopItem.NSFW}
-								<swiper-slide>
-									<WorkshopSnippet item={workshopItem}/>
-								</swiper-slide>
-							{/if}
-						{/each}
-					</Carousel>
-				</div>
-				<div class="navigationButton down close"
-					on:mousedown={() => moreToggle = false}
-					in:slide out:slide>
-					<img src="/icons/upIcon.webp">
-				</div>
+	{#if dataset.snippets}
+		<div class="navWrapper">
+			{#if $deviceData.deviceType < 2}
+				{#if active}
+					<div class="mobileOffset" transition:slide>
+						<Carousel
+								customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}
+								pagination={false} footerAdd={false}>
+							{#each dataset.snippets as workshopItem}
+								{#if $navigationControls.localNsfwCheck(workshopItem?.NSFW)}
+									<swiper-slide>
+										<WorkshopSnippet item={workshopItem}/>
+									</swiper-slide>
+								{/if}
+							{/each}
+						</Carousel>
+					</div>
+					<div class="navigationButton down close"
+						on:mousedown={() => active = false}
+						in:slide out:slide>
+						<img src="/icons/upIcon.webp">
+					</div>
+				{:else}
+					<div class="navigationButton up open"
+						on:mousedown={() => active = true}
+						in:slide={{delay: 100 }} out:slide>
+						<img src="/icons/downIcon.webp">
+					</div>
+				{/if}
 			{:else}
-				<div class="navigationButton up open"
-					on:mousedown={() => moreToggle = true}
-					in:slide={{delay: 300 }} out:slide>
-					<img src="/icons/downIcon.webp">
-				</div>
-			{/if}
-		{:else}
-			<div class="desktopOffset">
-				{#if dataset[1]} <!-- prevents crashes -->
+				<div class="desktopOffset">
 					<Carousel
 							customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}
 							pagination={false} footerAdd={false}>
-						{#each dataset[1] as workshopItem}
-							{#if workshopItem.NSFW && $navigationControls.nsfw || !workshopItem.NSFW}
+						{#each dataset.snippets as workshopItem}
+							{#if $navigationControls.localNsfwCheck(workshopItem?.NSFW)}
 								<swiper-slide>
 									<WorkshopSnippet item={workshopItem}/>
 								</swiper-slide>
 							{/if}
 						{/each}
 					</Carousel>
-				{/if}
-			</div>
-		{/if}
-	</div>
+				</div>
+			{/if}
+		</div>
+	{/if}
 </Container>
 
 <style lang="scss">
@@ -77,8 +77,6 @@
 	.navWrapper {	margin: 0 auto;
 		.navigationButton {
 			margin: 0 auto;
-
-			&.open {
-				margin-top: 10px;
-			}}}
+			&.close {
+				margin-top: 10px;}}}
 </style>

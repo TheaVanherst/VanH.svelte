@@ -24,9 +24,9 @@
 		{#if internal.redirect && internal.user}
 			<InternalRedirectTag redirect="/{internal.redirect}?query={internal.user}" user="{internal.user}"/>
 		{/if}
-		{#each socials as social}
-			<SocialMediaTag data={social}/>
-		{/each}
+		{#if socials.length > 0}
+			<SocialMediaTag data={socials[0]}/>
+		{/if}
 	</div>
 {/if}
 
