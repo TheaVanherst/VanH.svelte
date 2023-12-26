@@ -137,7 +137,9 @@
 		&:hover {		background: var(--accent7);
 			h4 {		color: 		white;}}
 		> * {			margin: 	auto 0;}
-		.mediaIcon {	overflow:	hidden;}}
+		.mediaIcon {	aspect-ratio:   1/1;
+						border-radius:  50%;
+						overflow:	hidden;}}
 
 	.commissionWrapper {	margin: 5px 0 5px 0;
 		.commissioner {		margin: 0 0 5px 0;}

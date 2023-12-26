@@ -11,7 +11,8 @@
 
     export let socials = {};
     const socialMedia = socials.map(e => e);
-    	// Needed; fixes an issue where the socialmedias loaded in the layout will unload - this just retains the store locally.
+    	// Needed; fixes an issue where the socialmedias loaded in the layout will unload -
+		// this just retains the store locally.
 </script>
 
 <div class="navigationBar">
@@ -21,7 +22,16 @@
 				{#if item.nsfw && $navigationControls.nsfw || !item.nsfw}
 					<RedirectBuilder url="{item.path}" redirectName={item.pagePreview}>
 						<div class="navButton" class:currentRoot={$directoryData.root === item.path}>
-							<h5> {item.title} </h5>
+							{#if $deviceData.screenType > 2}
+								<div class="inlineIcon">
+									<img src="/icons/{item.imagePath}.webp"/>
+								</div>
+								<h5>{item.title}</h5>
+							{:else}
+								<div class="mediaIcon">
+									<img src="/icons/{item.imagePath}.webp"/>
+								</div>
+							{/if}
 						</div>
 					</RedirectBuilder>
 				{/if}
@@ -74,14 +84,33 @@
 		background: 	var(--TransBlack);
 		border-bottom: 	1px solid var(--accent7);
 
-		.navButton {padding:				10px;
-					transition: ease .3s;
-			h5 {	text-transform: 		uppercase;
-					text-underline-offset: 	0.6em;
-					text-decoration:	 	underline 1px transparent;}
+		.navButton {
+			display: 	flex;
+			padding:	10px;
+			transition: ease .3s;
+
+			h5 {
+				text-transform: 		uppercase;
+				text-underline-offset: 	0.6em;
+				text-decoration:	 	underline 1px transparent;
+				height: 	max-content;
+				padding: 	0 0 2px;
+				margin: 	auto 0;}
+			.inlineIcon {
+				height: 	18px;
+				width: 		18px;
+				padding: 	0 7px 1px 0;}
+			img {
+				filter: 	invert(1);}
+
 			&.currentRoot {
-				h5 {	text-decoration-color: white;
-						text-underline-offset: 0.2em;}}
+				h5 {	text-decoration-color: 	white;
+						text-underline-offset: 	0.2em;}
+				.mediaIcon img {
+					filter:
+						invert(73%) sepia(58%)
+						saturate(769%) hue-rotate(357deg)
+						brightness(101%) contrast(107%);}}
 			&:hover {
 				filter:
 					brightness(0) 	saturate(100%)
@@ -90,8 +119,8 @@
 					brightness(97%) contrast(132%);}}}
 
 	#socials {
-		display: flex;
-		gap: 10px;
+		display: 	flex;
+		gap: 		10px;
 		.central {
 			gap: 		5px;
 			display: 	flex;
