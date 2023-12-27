@@ -5,7 +5,7 @@
 </script>
 
 <a class="inlineTag" href="https://www.{data.platformName.socialURL + data.url}" target="_blank">
-	<div class="icon inlineIcon">
+	<div class="icon inlineIcon rounded">
 		<SanityImage image={data.platformName.socialLogo}/>
 	</div>
 	<p> / {data.url} </p>

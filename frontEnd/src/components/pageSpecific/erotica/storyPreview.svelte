@@ -43,7 +43,7 @@
 			{#each story.characters as character, c}
 				<RedirectBuilder url="{$directoryData.stripped}?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
 					<div class="characterCard">
-						<div class="mediaIcon shortBorder">
+						<div class="mediaIcon rounded">
 							<SanityImage image={character.charIcon}/>
 						</div>
 						<h5>{character.fullName}</h5>
@@ -54,7 +54,7 @@
 		<div class="writers">
 			<div class="icons">
 				{#each story.authors as author, a}
-					<div class="mediaIcon">
+					<div class="mediaIcon rounded">
 						<SanityImage image={author.author.userPortrait}/>
 					</div>
 				{/each}
@@ -76,7 +76,8 @@
 			border-bottom: 	1px solid var(--accent7);
 			.bannerTitle {
 				background: var(--accent7);
-				h4 {	color: 	white;}}
+				h4 {
+					color: 	white;}}
 			.transform {
 				transform: 	scale(1.1);}}}
 
@@ -141,9 +142,4 @@
 		.creation {
 			margin: 	auto 18px auto 8px;
 			padding: 	2px 0 0 0;}}
-
-	.mediaIcon {
-		aspect-ratio:   1/1;
-		border-radius:  50%;
-		overflow:		hidden;}
 </style>

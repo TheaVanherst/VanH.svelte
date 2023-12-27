@@ -88,7 +88,7 @@
 				{#each data.characters as character, c}
 					<div class="characterIcon">
 						<RedirectBuilder url="{$directoryData.stripped}?query=:{character.nickName.toLowerCase().replaceAll(' ','-')}">
-							<div class="profileIcon" class:active={value.includes(character.nickName.toLowerCase())}>
+							<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
 								<SanityImage image={character.charIcon}/>
 							</div>
 						</RedirectBuilder>

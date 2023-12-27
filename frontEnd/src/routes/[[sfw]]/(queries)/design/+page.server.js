@@ -34,5 +34,3 @@ export const load = async ({ fetch, url }) => {
             `)
     };
 };
-
-export const prerender = true;

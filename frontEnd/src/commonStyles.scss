@@ -120,7 +120,6 @@ a {
 	.imageWrapper {
 		img {
 			transition: transform .3s cubic-bezier(0.33, 1, 0.68, 1);}}
-
 	&:hover {
 		.imageWrapper {
 			img {
@@ -129,22 +128,16 @@ a {
 .enlargedIcon {
 	max-width: 	    70px;
 	max-height:     70px;
-	aspect-ratio:   1/1;
-	border-radius:  50%;
 	overflow: 		hidden;}
 
 .profileIcon {
 	width: 	        42px;
 	height:         42px;
-	aspect-ratio:   1/1;
-	border-radius:  50%;
 	overflow: 		hidden;}
 
 .mediaIcon {
-	width:  24px;
-	height: 24px;
-	aspect-ratio:  1/1;
-	border-radius: 50%;
+	width:      24px;
+	height:     24px;
 	display:    flex;
 	margin:     auto 0;
 	padding:    1px;}
@@ -152,11 +145,14 @@ a {
 .inlineIcon {
 	height: 12px;
 	width:  12px;
-	aspect-ratio:  1/1;
-	border-radius: 50%;
 	display:    flex;
 	margin:     auto 0;
 	padding:    1px;}
+
+.rounded {
+	aspect-ratio:  1/1;
+	border-radius: 50%;
+	overflow: hidden;}
 
 .navigationButton {
 	background: var(--accent7);

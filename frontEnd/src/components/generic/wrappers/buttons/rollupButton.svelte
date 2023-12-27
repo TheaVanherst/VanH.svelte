@@ -7,12 +7,12 @@
 </script>
 
 <div class="aspectMask">
-	<div class="foldable"
+	<div class="foldable rounded"
 		 class:active
 		 class:invert
 		 class:regular={!invert}
 		 on:mousedown={() => active=!active}>
-		<div class="iconCrop" style="padding:{padding}px">
+		<div class="iconCrop rounded" style="padding:{padding}px">
 			<img src="/icons/downIcon.webp">
 		</div>
 	</div>
@@ -22,11 +22,7 @@
 	.aspectMask {
 		margin: auto 8px;}
 	.foldable {
-		border-radius: 	50%;
-		aspect-ratio: 	1/1;
-
 		.iconCrop {
-			aspect-ratio: 	1/1;
 			margin:	 		auto;
 			display: 		flex;}
 
@@ -43,7 +39,9 @@
 			border: 1px solid var(--accent7);
 			background: var(--TransBlack);
 			img {	filter: 	invert(1);}
-			&.active {	background: var(--accent10);
+			&.active {
+				background: var(--accent10);
+				border: 1px solid var(--accent10);
 				transform: rotate(180deg);
 				img {	filter: 	invert(0);}}
 			&:hover {	background: var(--accent7);

@@ -51,13 +51,18 @@
 			{/if}
 
 			<div class="characters">
+				<div class="mediaIcon artSearcher">
+					<img src="/icons/galleryIcon.webp">
+				</div>
 				{#each data.erotica.characters as character, c}
-					<div class="characterCard">
-						<div class="mediaIcon shortBorder">
-							<SanityImage image={character.charIcon}/>
+					<RedirectBuilder url="/artwork?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
+						<div class="characterCard">
+							<div class="mediaIcon rounded">
+								<SanityImage image={character.charIcon}/>
+							</div>
+							<h4>{character.fullName}</h4>
 						</div>
-						<h4>{character.fullName}</h4>
-					</div>
+					</RedirectBuilder>
 				{/each}
 			</div>
 		</div>
@@ -73,7 +78,7 @@
 				<SocialsFoldable socials={author.author.socialMedia} padding={7} internal={{user:`@${author.author.handle.toLowerCase()}`,redirect:'artwork'}}>
 					<div class="card">
 						<div class="authorIcon">
-							<div class="profileIcon">
+							<div class="profileIcon rounded">
 								<SanityImage image={author.author.userPortrait}/>
 							</div>
 						</div>
@@ -107,7 +112,8 @@
 		.titleCard {
 			display: flex;
 			padding: 3px 0;
-			#back {	padding: 	10px;
+			#back {
+				padding: 	10px;
 				margin: 	0 15px 0 5px;
 				img {
 					transition: filter .3s ease;
@@ -137,11 +143,6 @@
 		.description {	margin: 	15px;
 			> * {	margin-bottom: 	8px;}}
 		.postTags {	margin-bottom: 	8px;}}
-
-	.mediaIcon {
-		aspect-ratio:   1/1;
-		border-radius:  50%;
-		overflow:		hidden;}
 
 	.writers {
 		padding: 	15px;
@@ -176,6 +177,9 @@
 		flex-wrap: 	wrap;
 		gap: 		10px;
 
+		.artSearcher {
+			filter: invert(1);}
+
 		.characterCard {
 			display: 		flex;
 			width: 			max-content;
@@ -188,8 +192,10 @@
 			margin: 		0 0 0 -1px;
 			border-radius: 	20px;
 
-			h4 {			color: 		black;}
-			> * {			margin: 	auto 0;}}}
+			h4 {		color: 		black;}
+			&:hover {	background: var(--accent7);
+				h4 {	color: 		white;}}
+			> * {		margin: 	auto 0;}}}
 
 	.blockText {
 		padding: 28px 25px 25px;}

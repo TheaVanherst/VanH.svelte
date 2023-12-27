@@ -33,7 +33,7 @@
 						<SocialsFoldable socials={character.owner.socialMedia}>
 							<RedirectBuilder url="{$directoryData.stripped}?query=@{character.owner.handle.toLowerCase()}">
 								<div class="characterCard">
-									<div class="mediaIcon shortBorder">
+									<div class="mediaIcon rounded">
 										<SanityImage image={character.owner.userPortrait}/>
 									</div>
 									<h4>{character.owner.handle}</h4>
@@ -48,9 +48,10 @@
 			<p> With additional help from: </p>
 			{#each data.authors as author}
 				<SocialsFoldable socials={author.author.socialMedia}>
+<!--					internal={{user:author.author.handle, redirect:`design?query=:${author.author.handle}`}}-->
 					<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','-')}">
 						<div class="characterCard" class:socialFold={author?.author?.socialMedia?.length > 0}>
-							<div class="mediaIcon shortBorder">
+							<div class="mediaIcon rounded">
 								<SanityImage image={author.author.userPortrait}/>
 							</div>
 							<h4>{author.author.fullName}</h4>
@@ -85,7 +86,7 @@
 			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as character}
 				<RedirectBuilder url="{$directoryData.stripped}?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
 					<div class="characterCard">
-						<div class="mediaIcon shortBorder">
+						<div class="mediaIcon rounded">
 							<SanityImage image={character.charIcon}/>
 						</div>
 						<h4>{character.fullName}</h4>
@@ -136,10 +137,7 @@
 
 		&:hover {		background: var(--accent7);
 			h4 {		color: 		white;}}
-		> * {			margin: 	auto 0;}
-		.mediaIcon {	aspect-ratio:   1/1;
-						border-radius:  50%;
-						overflow:	hidden;}}
+		> * {			margin: 	auto 0;}}
 
 	.commissionWrapper {	margin: 5px 0 5px 0;
 		.commissioner {		margin: 0 0 5px 0;}

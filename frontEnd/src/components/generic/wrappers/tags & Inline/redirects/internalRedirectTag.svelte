@@ -7,7 +7,7 @@
 
 <RedirectBuilder url="{redirect}">
 	<div class="inlineTag">
-		<div class="icon inlineIcon">
+		<div class="icon inlineIcon rounded">
 			<img src="/icons/vanhSocial.webp">
 		</div>
 		<p> / {user} </p>
