@@ -29,5 +29,3 @@ export const load = async () => {
             ),
     };
 }
-
-export const prerender = 'auto';

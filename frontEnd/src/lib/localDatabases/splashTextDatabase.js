@@ -7,7 +7,8 @@ const submitters = {
     jolly: {    user: "Mr Jolly" },
     rust: {     user: "Chidi" },
     atlas: {    user: "Atlas" },
-    pizza: {    user: "PizzaEgger"}};
+    pizza: {    user: "PizzaEgger"},
+    lunar: {    user: "Lunar57"}};
 
 const splash = [
     [false, "Now with even more characters!"],
@@ -220,7 +221,22 @@ const splash = [
     [false, "I'm experiencing child like wonder!"],
     [false, "A 'Transitional Directory Controller'? What?"],
     [false, "'Accelerationism'? Is that a fast car?"],
-    [false, "Your local socialist!"]
+    [false, "Your local socialist!"],
+    [false, "Dad, what's is 'FNAF lore'?"],
+    [false, "Shitpost Boutique!"],
+    [false, "THE VAHNHATTAN PROJECT"],
+    [true,  "Suck on this springcock", submitters.alex],
+    [true,  "@TheaVanherst ANNAL 1800?", submitters.alex],
+    [true,  "nah, analchist", submitters.alex],
+    [true,  "lightnin mcqueen is the arsehole and im the cock", submitters.jolly],
+    [true,  "You can't say moon without 'moo'!", submitters.lunar],
+    [false, "Brain stupid!", submitters.lunar],
+    [true,  "I'm fi-UCKED", submitters.stella],
+    [true,  "574 INCHES OF Fat milky Borzoi JUGS", submitters.stella],
+    [true,  "E621's 'Demon_Core_In_Ass' tag!"],
+    [true,  "Rule 34, if it exist there is porn of it.", submitters.lunar],
+    [false, "Don't trust Blender's 'edit' mode's symmetry.", submitters.lunar],
+    [false, "Moon Jumpscare!"],
 ]
 
 export { splash, submitters }

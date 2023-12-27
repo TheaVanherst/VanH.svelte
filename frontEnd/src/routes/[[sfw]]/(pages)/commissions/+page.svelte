@@ -4,7 +4,7 @@
     import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
     import SectionListCard 	from "$root/components/generic/containers/sectionListCard.svelte";
-    import Carousel 		from "$root/components/generic/containers/carousel.svelte";
+    import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";

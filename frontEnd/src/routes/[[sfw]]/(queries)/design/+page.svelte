@@ -3,32 +3,21 @@
     import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
 
     import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { queryFilter } 	from "$lib/controllers/layoutControllers/searchController.js";
+    import { queryFilter, searchTermBuilder } 	from "$lib/controllers/layoutControllers/searchController.js";
 
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
-    import {navigationControls} from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let data;
-
-    let pagedData;
-
     data.designs =
-		data.designs.map(artwork => ({
-			...artwork,
+		data.designs.map(a => ({ ...a,
 			searchTerms: (
-                (artwork.sfw ? `!!sfw `: `!!nsfw `) +
-				`${artwork.pieceName.replaceAll(" ","_")} ${artwork.slug} ` +
-				`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
-                (!!artwork.tags ? `${artwork.tags.map(i => `${i.title}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '') +
-                (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} @${artist.author.handle}`).join('') : '') +
-                (!!artwork.characters ? artwork.characters?.map(character => `:${character.fullName} :${character.nickName} `).join('') : '') +
-                (!!artwork.commissionData ?
-                    `${artwork.commissionData?.commissionType} commission commissioned` +
-                    artwork.commissionData?.characters?.map(character => `${character.fullName} ${character.owner.handle} `).join('') : '')
-			).toLowerCase()}));
+                searchTermBuilder.sfw(a) + searchTermBuilder.title(a) + searchTermBuilder.renderStyle(a) +
+                searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
+                searchTermBuilder.commissions(a)).toLowerCase()}));
 
-    let filteredData = queryFilter(data.designs, $navigationControls.nsfw);
-    $: $dataSetStore.searchQuery && (filteredData = $dataSetStore.searchQuery === "" ? data.designs : queryFilter(data.designs, true));
+    let pagedData, filteredData = queryFilter(data.designs, $navigationControls.nsfw);
+    $: $dataSetStore.searchQuery && queryFilter(data.designs);
 </script>
 
 {#if data.designs && data.designs.length > 0}
@@ -47,10 +36,10 @@
 		{/if}
 		{#if filteredData}
 			<Pagination
-					rows={filteredData} perPage={15}
-					goto={$dataSetStore.page}
-					bind:currentPage={$dataSetStore.page}
-					bind:trimmedRows={pagedData}/>
+				rows={filteredData} perPage={15}
+				goto={$dataSetStore.page}
+				bind:currentPage={$dataSetStore.page}
+				bind:trimmedRows={pagedData}/>
 		{/if}
 	</div>
 {/if}

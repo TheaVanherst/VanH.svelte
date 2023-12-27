@@ -5,9 +5,10 @@ import { authorQueries } from "$lib/queryPresets/authorQueries.js";
 import { genericRequests } from "$lib/queryPresets/genericQueries.js";
 
 export const load = async () => {
-    let [allQueries] = await Promise.all([client.fetch(`{
-        "artworks":
-            *[ _type == 'artworks'][] | order(publishedAt desc) {
+    return {
+        artworks:
+            await client.fetch(`
+                *[ _type == 'artworks'][] | order(publishedAt desc) {
                 ${genericRequests.info},
                 ${genericRequests.sfw},
                 'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd']{
@@ -31,9 +32,6 @@ export const load = async () => {
                         ${characterData.ownership}}},
                 ${genericRequests.gallery},
                 ${genericRequests.tags}
-            }
-        }`
-    )]);
-
-    return allQueries
+            }`)
+        };
 };

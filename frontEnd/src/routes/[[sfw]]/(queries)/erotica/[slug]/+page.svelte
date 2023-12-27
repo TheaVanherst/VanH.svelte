@@ -1,5 +1,4 @@
 <script>
-    import { createdPush } 		from "$lib/builders/dateBuilder.js";
     import { directoryData, navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
@@ -8,7 +7,6 @@
 
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
-	import { readingTime } 	from "$lib/builders/measurementConverters.js";
 
     import { onDestroy } from "svelte";
 
@@ -40,11 +38,10 @@
 			<SanityImage image={data.erotica.image}/>
 		</div>
 	</div>
-	<p class="publishedAt">{createdPush(data.erotica.publishedAt)}</p>
+
 	<div class="descriptionWrapper">
 		<div class="description">
 			<p>{data.erotica.description}</p>
-			<em>{readingTime(data.erotica.story)} minute estimated read time.</em>
 			{#if data.erotica.tags?.length > 0}
 				<div class="postTags">
 					{#each data.erotica.tags as tag}
@@ -64,30 +61,30 @@
 				{/each}
 			</div>
 		</div>
-
-		<div class="writers">
-			{#each data.erotica.authors as author, a}
-				<div class="authorCard">
-					<SocialsFoldable socials={author.author.socialMedia} padding={7} internal={{user:`@${author.author.handle.toLowerCase()}`,redirect:'artwork'}}>
-						<div class="card">
-							<div class="authorIcon">
-								<div class="profileIcon">
-									<SanityImage image={author.author.userPortrait}/>
-								</div>
-							</div>
-							<div class="handles">
-								<h4>{author.author.fullName}</h4>
-								<p>@{author.author.handle} - {author.participation}</p>
-							</div>
-						</div>
-					</SocialsFoldable>
-				</div>
-			{/each}
-		</div>
 	</div>
 
 	<div class="blockText">
 		<PortableText data={data.erotica.story}/>
+	</div>
+
+	<div class="writers">
+		{#each data.erotica.authors as author, a}
+			<div class="authorCard">
+				<SocialsFoldable socials={author.author.socialMedia} padding={7} internal={{user:`@${author.author.handle.toLowerCase()}`,redirect:'artwork'}}>
+					<div class="card">
+						<div class="authorIcon">
+							<div class="profileIcon">
+								<SanityImage image={author.author.userPortrait}/>
+							</div>
+						</div>
+						<div class="handles">
+							<h4>{author.author.fullName}</h4>
+							<p>@{author.author.handle} - {author.participation}</p>
+						</div>
+					</div>
+				</SocialsFoldable>
+			</div>
+		{/each}
 	</div>
 </div>
 
@@ -101,12 +98,7 @@
 		overflow: 		hidden;
 		transition: 	border .3s ease;
 		.transform {
-			transition: transform .3s ease;}
-
-		.publishedAt {
-			background: var(--accent7);
-			padding: 	6px 15px 5px 15px;
-			transition: background .3s ease, color .3s ease;}}
+			transition: transform .3s ease;}}
 
 	.titlecardWrapper {
 		transition: 	background .3s ease, border .3s ease;
@@ -143,7 +135,6 @@
 	.descriptionWrapper {
 					border-bottom: 	1px solid var(--accent7);
 		.description {	margin: 	15px;
-			em { 	display: 		block; }
 			> * {	margin-bottom: 	8px;}}
 		.postTags {	margin-bottom: 	8px;}}
 

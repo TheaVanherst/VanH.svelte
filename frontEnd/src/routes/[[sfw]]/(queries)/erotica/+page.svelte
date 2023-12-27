@@ -3,27 +3,19 @@
     import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
 
     import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { queryFilter } 	from "$lib/controllers/layoutControllers/searchController.js";
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
-    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
 
+    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import StoryPreview from "$root/components/pageSpecific/erotica/storyPreview.svelte";
 
 	export let data;
-
-    let pagedData;
-
     data.erotica =
-        data.erotica.map(artwork => ({
-            ...artwork,
+        data.erotica.map(a => ({ ...a,
             searchTerms: (
-                `${artwork.pieceName.replaceAll(" ","_")} ${artwork.slug} ` +
-                (!!artwork.tags ? `${artwork.tags.map(i => `${i.title}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '') +
-                (!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} @${artist.author.handle}`).join('') : '') +
-                (!!artwork.characters ? artwork.characters?.map(character => `:${character.fullName} :${character.nickName} `).join('') : '')
-            ).toLowerCase()}));
+                searchTermBuilder.title(a) + searchTermBuilder.tags(a) +
+				searchTermBuilder.authors(a) + searchTermBuilder.characters(a))}));
 
-    let filteredData = queryFilter(data.erotica, $navigationControls.nsfw);
+    let pagedData, filteredData = queryFilter(data.erotica);
     $: $dataSetStore.searchQuery && queryFilter(data.erotica);
 </script>
 

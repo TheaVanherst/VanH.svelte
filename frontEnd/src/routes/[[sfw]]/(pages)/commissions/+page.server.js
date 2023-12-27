@@ -2,39 +2,35 @@
 import client from "$lib/sanityClient.js";
 
 export async function load () {
-    const [allQueries] = await Promise.all([client.fetch(`{
-        "commissionData":
-            *[ _type == 'commissionData']{
-                ...
-            },
-        "commissionTypes":
-            *[ _type == 'commissionTypes']{
-                ...
-            },
-        "commissionPrices":
-            *[ _type == 'commissionPrices']{
-                ...,
-                'PreviewImages': PreviewImages[]{
+    return {
+        commissionData:
+            await client.fetch(`
+                *[ _type == 'commissionData']{...}`),
+        commissionTypes:
+            await client.fetch(`
+                *[ _type == 'commissionTypes']{...}`),
+        commissionPrices:
+            await client.fetch(`
+                *[ _type == 'commissionPrices']{
                     ...,
-                    'renderType': renderType->renderName,
-                    'styleType': styleType->styleName
-                },
-                'prices': prices[]{
-                    ...,
-                    'styleType': styleType->styleName,
-                    'styleTypes': styleTypes[]{
+                    'PreviewImages': PreviewImages[]{
                         ...,
-                        'renderType': renderType->renderName
+                        'renderType': renderType->renderName,
+                        'styleType': styleType->styleName
+                    },
+                    'prices': prices[]{
+                        ...,
+                        'styleType': styleType->styleName,
+                        'styleTypes': styleTypes[]{
+                            ...,
+                            'renderType': renderType->renderName
+                        }
+                    },
+                    'additionalPurchases': additionalPurchases[]{
+                        additionalPrice,
+                        'additionalItem': additionalPurchases->purchaseName,
+                        'additionalDescription': additionalPurchases->additionalDescription
                     }
-                },
-                'additionalPurchases': additionalPurchases[]{
-                    additionalPrice,
-                    'additionalItem': additionalPurchases->purchaseName,
-                    'additionalDescription': additionalPurchases->additionalDescription
-                }
-            },
-        }`
-    )]);
-
-    return allQueries
+                }`),
+    };
 }

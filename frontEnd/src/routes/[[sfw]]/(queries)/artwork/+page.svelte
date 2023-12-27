@@ -3,31 +3,20 @@
     import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
 
     import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { queryFilter } 	from "$lib/controllers/layoutControllers/searchController.js";
+    import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
 
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
-    import {navigationControls} from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let data;
-
-    let pagedData;
-
     data.artworks =
-		data.artworks.map(artwork => ({
-			...artwork,
-			searchTerms: (
-				(artwork.sfw ? `!!sfw `: `!!nsfw `) +
-				`${artwork.pieceName.replaceAll(" ","_")} ${artwork.slug} ` +
-				`${artwork.gallery.renderType} ${artwork.gallery.styleType} ` +
-				(!!artwork.tags ? `${artwork.tags.map(i => `${i.title}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '') +
-				(!!artwork.authors ? artwork.authors.map(artist => `${artist.author.fullName} @${artist.author.handle}`).join('') : '') +
-				(!!artwork.characters ? artwork.characters?.map(character => `:${character.fullName} :${character.nickName} `).join('') : '') +
-				(!!artwork.commissionData ?
-					`${artwork.commissionData?.commissionType} ` +
-					artwork.commissionData?.characters?.map(character => `:${character.fullName} @${character.owner.handle} `).join('') : '')
-			).toLowerCase()}));
+		data.artworks.map(a => ({ ...a,
+            searchTerms: (
+                searchTermBuilder.sfw(a) + searchTermBuilder.title(a) + searchTermBuilder.renderStyle(a) +
+                searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
+                searchTermBuilder.commissions(a)).toLowerCase()}));
 
-    let filteredData = queryFilter(data.artworks, $navigationControls.nsfw);
+    let pagedData, filteredData = queryFilter(data.artworks, $navigationControls.nsfw);
     $: $dataSetStore.searchQuery && queryFilter(data.artworks);
 </script>
 
@@ -46,10 +35,10 @@
 	{/if}
 	{#if filteredData}
 		<Pagination
-				rows={filteredData} perPage={10}
-				goto={$dataSetStore.page}
-				bind:currentPage={$dataSetStore.page}
-				bind:trimmedRows={pagedData}/>
+			rows={filteredData} perPage={10}
+			goto={$dataSetStore.page}
+			bind:currentPage={$dataSetStore.page}
+			bind:trimmedRows={pagedData}/>
 	{/if}
 </div>
 

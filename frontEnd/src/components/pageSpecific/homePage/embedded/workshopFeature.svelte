@@ -1,7 +1,7 @@
 <script>
     import { slide } from 'svelte/transition';
 
-    import Carousel 		from "$root/components/generic/containers/carousel.svelte";
+    import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
     import Container 		from "$root/components/generic/containers/container.svelte";
     import WorkshopCard 	from "$root/components/pageSpecific/homePage/embedded/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/homePage/embedded/workshopSnippet.svelte";

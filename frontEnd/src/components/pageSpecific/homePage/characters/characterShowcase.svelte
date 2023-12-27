@@ -1,5 +1,5 @@
 <script>
-    import Carousel 		from "$root/components/generic/containers/carousel.svelte";
+    import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
     import CharacterCard 	from "$root/components/pageSpecific/homePage/characters/showcaseCard.svelte";
     import InfoPlate 		from "$root/components/pageSpecific/homePage/characters/characterInfoPlate.svelte";
 

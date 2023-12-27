@@ -30,4 +30,4 @@ export const load = async ({ params }) => {
                 }[0]`
             ),
     };
-}
+};

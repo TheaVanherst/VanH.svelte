@@ -34,7 +34,7 @@ const
         }
     },
     readingTime = (a = "") => {
-        const wpm = 225;
+        const wpm = 265;
         const words = a.map(o => o.children).map(a => a.map(e => e.text)).flat().join().trim().split(/\s+/).length;
         return Math.ceil(words / wpm);
     };

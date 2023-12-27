@@ -61,8 +61,7 @@
 		overflow: 	hidden;
 		padding: 	0 2px;
 		:global(span) {
-			color: black;}
-	}
+			color: black;}}
 
 	.container > div {
 		overflow: 	hidden;
