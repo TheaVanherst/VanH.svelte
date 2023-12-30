@@ -13,13 +13,13 @@ const config = {
 		},
 		prerender: {
 			entries: [
-				'*','/','/nsfw/',
-				'/home/','/nsfw/home/',
-				'/commissions/','/nsfw/commissions/',
-				'/carrd/','/nsfw/carrd/',
-				'/artwork/','/nsfw/artwork/',
-				'/design/','/nsfw/design/',
-				'/erotica/','/erotica/[slug]'
+				'*','/','/afterdark/',
+				'/home/','/afterdark/home/',
+				'/commissions/','/afterdark/commissions/',
+				'/carrd/','/afterdark/carrd/',
+				'/artwork/','/afterdark/artwork/',
+				'/design/','/afterdark/design/',
+				'/afterdark/erotica/','/afterdark/erotica/[slug]'
 			],
 		},
 	},
