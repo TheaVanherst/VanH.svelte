@@ -7,27 +7,32 @@
 
 
 <div class="wrapper {$deviceData.screenType > 2 ? 'textVis' : 'textHidden'} {icon ? 'icon' : ''}">
-	<div class="sideBar">
-		{#if $deviceData.screenType > 2}
-			<h1 transition:horizontalSlide={{axis: 'x', duration: 300}}>
-				{#if icon}
+	{#if $deviceData.screenType > 2 && titlecard}
+		<div class="sideBar" transition:horizontalSlide={{axis: 'x', duration: 300}}>
+			{#if icon}
+				<div class="profileIcon">
 					<img src="/icons/{icon}">
-				{/if}
+				</div>
+			{/if}
+			<h1>
 				{titlecard}
 			</h1>
-		{/if}
-	</div>
+		</div>
+	{/if}
 
 	<div class="offset">
-		{#if $deviceData.screenType < 3}
-			<div class="divider"
-				 transition:horizontalSlide={{axis: 'y', duration: 300}}>
+		{#if titlecard && $deviceData.screenType < 3}
+			<div class="titleBar" transition:horizontalSlide={{axis: 'y', duration: 300}}>
 				{#if icon}
-					<img src="/icons/{icon}">
+					<div class="profileIcon">
+						<img src="/icons/{icon}">
+					</div>
 				{/if}
-				<h2>
-					{titlecard}
-				</h2>
+				<div class="divider">
+					<h2>
+						{titlecard}
+					</h2>
+				</div>
 			</div>
 		{/if}
 		<slot/>
@@ -37,31 +42,57 @@
 <style lang="scss">
 	* {	transition: ease .5s;}
 
-	h1, h2 {	text-transform:	uppercase;
-				height: max-content;}
-	img {		filter: invert(1);
-				height: 32px;}
+	h1, h2 {
+		text-transform:	uppercase;
+		margin: 0 auto;
+		padding: 0 0 0 2px;
+		height: max-content;}
+
+	.profileIcon {
+		height: 32px;
+		img {	filter: invert(1);}}
 
 	.wrapper {			display: flex;
-		&.textVis {		gap: 	10px;
-			.offset { 	width: 	calc(100% - 2rem - 10px);}}
+		&.textVis {
+			.offset { 	width: calc(100% - 2rem - 15px);}} //needed or this breaks the site.
 		&.textHidden {	gap: 	0;
-			.offset {	max-width: 	100%;}}}
+			.offset {	width: 	100%;}}}
 
 	.offset {
-		.divider {	display: 		flex;
-					border-left: 	3px solid var(--accent7);
+		margin: 0 0 0 auto;
+		.divider {	border-left: 	3px solid var(--accent7);
 					background: 	var(--TransBlack);
-					padding: 	0 0 0 15px;
-					margin: 	0 0 15px 0;
+					padding: 	0 0 0 10px;
 			img {	margin: 	auto 0;}
 			h2 {	padding: 	6px 10px 10px 10px;}}}
 
-	.sideBar {	display: 		inline-grid;
-		img {	margin: 		0 0 15px -4px;
-				position: 		relative;}
+	.sideBar {
+		display: 	flex;
+		flex-wrap: 	wrap;
+		gap: 	10px;
+		margin: 10px 0;
+		height: fit-content;
+		width: 	min-content;
+
+		.profileIcon {
+			margin: 0 auto;
+			width: 32px;}
+
+		img {	position: 		relative;}
 		h1 {	writing-mode: 	vertical-rl;
-				text-orientation: 	mixed;
-				margin:			10px 0 0 0;}}
+				text-orientation: 	mixed;}}
+
+	.titleBar {
+		display: flex;
+		flex-wrap: nowrap;
+		margin: 0 0 15px 0;
+
+		.profileIcon {
+			margin: 6px 10px;}
+
+		.divider {
+			width: 100%;
+		}
+	}
 
 </style>

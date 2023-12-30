@@ -17,6 +17,7 @@
 	<Carousel>
 		{#each data.commissionPrices[0].PreviewImages as image}
 			{#if $navigationControls.localNsfwCheck(image.nsfwRender)}
+<!--				this is fucking broke, don't ask why.-->
 				<swiper-slide>
 					<div class="imageCard wideBorder">
 						<SanityImage image="{image.imageRender}"/>

@@ -6,7 +6,7 @@ export async function load () {
     return {
         characterData:
             await client.fetch(`
-                *[ _type == 'characterOrder'] | order(_updatedAt desc) []{
+                *[ _type == 'characterOrder'] | order(_updatedAt desc) [0]{
                     characters[]->{
                         ${characterData.core}
                         ${characterData.info}
@@ -44,10 +44,10 @@ export async function load () {
                     'slug': slug.current}`),
         donationData:
             await client.fetch(`
-                *[_type == 'donationData'][] {...}`),
+                *[_type == 'donationData'][0] {...}`),
         qAndA:
             await client.fetch(`
-                *[_type == 'questionAnswer'][] {
+                *[_type == 'questionAnswer'][0] {
                     answerer->{
                         userPortrait},
                     questions[]{

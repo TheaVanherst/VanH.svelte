@@ -14,11 +14,10 @@ const
         goto(pageData);
     },
     queryFilter = (dataSet) => {
-        navigationControls.update(e => ({...e, direction: 0}));
         let searchQuery = (get(dataSetStore).searchQuery).toLowerCase() ?? "";
             // just ensures everything is lowercase.
-        if (!get(navigationControls).nsfw ) {
-            searchQuery += " !!sfw";}
+        if (!get(navigationControls).nsfw) {
+            searchQuery += " !!sfw ";}
         // adds a NSFW absolute filter to allow users to filter for only SFW content.
         return dataSet.filter(i => {
             let array = searchQuery.split(' ');
@@ -31,9 +30,9 @@ export { urlSerializer, queryFilter }
 const
     searchTermBuilder = {
         sfw:
-            e => e?.sfw ? `!!sfw `: `!!nsfw ` ?? '',
+            e => (!e?.nsfw ? `!!sfw `: `!!nsfw ` ?? '') + (!e?.sfw ? '!!risky ' : ''),
         title:
-            e => `${e.pieceName.replaceAll(" ","_")} ${e.slug} `,
+            e => `${e.pieceName.replaceAll(" ","_")} ${e.slug} @vanh `,
         renderStyle:
             e => `${e.gallery.renderType} ${e.gallery.styleType} `,
         tags:
@@ -41,14 +40,14 @@ const
                 i => `${i.title.replace(' ','_')}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '',
         authors:
             e => !!e.authors ? e.authors.map(
-                a => `${a.author.fullName} @${a.author.handle}`).join('') : '',
+                a => `@${a.author.fullName.replaceAll(' ','_')} @${a.author.handle.replaceAll(' ','_')}`).join('') : '',
         characters:
             e => !!e.characters ? e.characters?.map(
-                c => `:${c.fullName} :${c.nickName} `).join('') : '',
+                c => `:${c.fullName.replaceAll(' ','_')} :${c?.nickName?.replaceAll(' ','_')}`).join('') : '',
         commissions:
             e => !!e.commissionData ?
                 `${e.commissionData?.commissionType} commission commissioned` + e.commissionData?.characters?.map(
-                    c => `${c.fullName} ${c.owner.handle} `).join('') : ''
+                    c => `:${c.fullName.replaceAll(' ','_')} @${c.owner.handle.replaceAll(' ','_')} `).join('') : ''
     };
 
 export { searchTermBuilder }

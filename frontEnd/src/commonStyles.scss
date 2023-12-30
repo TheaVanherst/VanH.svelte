@@ -165,3 +165,37 @@ a {
 	&.up {
 		padding: 2px 10px 0;}
 }
+
+.blurred {
+	&:before, &:after {
+		z-index:    10;
+		left:       50%;
+		transform:  translateX(-50%);
+
+		position:   absolute;
+		transition: opacity .6s ease;
+
+		font-family:    Arial, serif;
+		background:     var(--TransBlack);
+		border-radius:  var(--bordernormal);}
+	&:before {
+		content: 'Content warning';
+		padding:        5px 20px;
+		top: 100px;}
+	&:after {
+		content:    'hover to preview';
+		padding:    3px 10px;
+		font-size:  80%;
+		top:        130px;}
+
+	img {
+		transition: filter 1s ease;
+		filter: blur(10px);}
+
+	&:hover {
+		&:before, &:after {
+			opacity: 0;}
+		img {
+			filter: blur(0);}}
+
+}

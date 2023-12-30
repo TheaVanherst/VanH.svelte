@@ -19,4 +19,4 @@ const
       to: { type: 'author' },
     });
 
-export {authorBlock}
+export { authorBlock }

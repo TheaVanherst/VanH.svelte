@@ -31,7 +31,7 @@
 				{#each data.commissionData.characters as character}
 					<div class="commissioner">
 						<SocialsFoldable socials={character.owner.socialMedia}>
-							<RedirectBuilder url="{$directoryData.stripped}?query=@{character.owner.handle.toLowerCase()}">
+							<RedirectBuilder url="{$directoryData.stripped}?query=@{character.owner.handle.toLowerCase().replaceAll(' ','_')}">
 								<div class="characterCard">
 									<div class="mediaIcon rounded">
 										<SanityImage image={character.owner.userPortrait}/>
@@ -49,7 +49,7 @@
 			{#each data.authors as author}
 				<SocialsFoldable socials={author.author.socialMedia}>
 <!--					internal={{user:author.author.handle, redirect:`design?query=:${author.author.handle}`}}-->
-					<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','-')}">
+					<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','_')}">
 						<div class="characterCard" class:socialFold={author?.author?.socialMedia?.length > 0}>
 							<div class="mediaIcon rounded">
 								<SanityImage image={author.author.userPortrait}/>
@@ -72,7 +72,7 @@
 		{#if data.tags?.length > 0}
 			<div class="postTags">
 				{#each data.tags as tag}
-					<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
+					<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
 						<InlineTag tag={tag}/>
 					</RedirectBuilder>
 				{/each}
@@ -84,7 +84,7 @@
 		{#if !!data.characters || !!data.commissionData?.characters}
 			<p>Featured Character{[].concat(data?.commissionData?.characters, data?.characters).filter(Boolean).length > 1 ? 's' : ''}:</p>
 			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as character}
-				<RedirectBuilder url="{$directoryData.stripped}?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
+				<RedirectBuilder url="{$directoryData.stripped}?query=:{(character.nickName ?? character.fullName).toLowerCase().replaceAll(' ','_')}">
 					<div class="characterCard">
 						<div class="mediaIcon rounded">
 							<SanityImage image={character.charIcon}/>

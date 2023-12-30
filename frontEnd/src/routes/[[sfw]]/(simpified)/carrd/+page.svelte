@@ -1,5 +1,6 @@
 <script>
-	import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+	import { fade } from "svelte/transition";
+    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
@@ -23,8 +24,9 @@
 			<h4>{section.chunkName}</h4>
 		</div>
 		{#each section.chunkSocials as social}
-			{#if !social.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
-				<div class="link">
+			{#if $navigationControls.localNsfwCheck(social.nsfw)}
+				<div class="link" in:fade={{delay: 250, duration: 0}}>
+<!--					this compensates for the transitional handler-->
 					<a href="https://{social.platformName.socialURL + social.url}" target="_blank">
 						<RainbowButtonWrap bottom={10} padding={[9,15]}>
 							<div class="central">

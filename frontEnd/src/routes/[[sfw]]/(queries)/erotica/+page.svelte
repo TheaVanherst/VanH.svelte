@@ -6,7 +6,7 @@
     import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
 
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
-    import StoryPreview from "$root/components/pageSpecific/erotica/storyPreview.svelte";
+    import StoryPreview from "$root/components/pageSpecific/queryPages/storyPreview.svelte";
 
 	export let data;
     data.erotica =

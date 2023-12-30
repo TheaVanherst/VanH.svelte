@@ -11,19 +11,20 @@
 		redirectName = undefined,
 		nsfwPointer = undefined;
 
-    const redirectCheck = (e, n, p = null) => {
+    const redirectCheck = (e, n, p = undefined) => {
         let paraLength = Object.keys($page.params).length;
         let newRoute;
 
-        if (p !== null) {
+        if (p !== undefined) { // protects from false redirects
             $navigationControls.nsfw = p
-            newRoute = (p ? '/nsfw' : '') + e;}
+            newRoute = (p ? `/${$directoryData.nsfwKeyword}` : '') + e;}
         else {
             newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
+        // this allows plain redirects via. eg. /artwork, and adds the NSFW filter keyword.
 
         if (newRoute + "/" !== $directoryData.raw && !$navigationControls.transitioning) {
             galleryChange();
-			directoryProcessing($directoryData.raw, newRoute, paraLength);
+			directoryProcessing($directoryData.raw, newRoute);
             $navigationControls.transitioning = true;
             window.scrollTo({top: 0, behavior: 'smooth'});
             setTimeout(async () => {
@@ -34,7 +35,7 @@
             $pageName = n;}}
 </script>
 
-<a href="{$navigationControls.nsfw ? '/nsfw' : ''}{url}" target="" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
+<a href="{$navigationControls.nsfw ? `/${$directoryData.nsfwKeyword}` : ''}{url}" target="" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
 	<slot/>
 </a>
 

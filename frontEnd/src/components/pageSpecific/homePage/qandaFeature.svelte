@@ -4,18 +4,18 @@
     import SanityImage 	from "$root/serializer/sanityImage.svelte";
     import Container 	from "../../generic/containers/container.svelte";
 
-    export let dataset = [];
+    export let dataset;
 </script>
 
 <Container>
-	{#each dataset[0].questions as qa}
+	{#each dataset.questions as qa}
 		<div class="row">
 			{#if $deviceData.screenType > 2}
-				<div class="profileIcon anon">
+				<div class="profileIcon anon rounded">
 					{#if qa.user}
 						<SanityImage image={qa.user.userPortrait}/>
 					{:else}
-						<SanityImage image={dataset[0].anon.userPortrait}/>
+						<SanityImage image={dataset.anon.userPortrait}/>
 					{/if}
 				</div>
 			{/if}
@@ -28,7 +28,7 @@
 						{#if qa.user}
 							Question submitted by: <span>{qa.user.handle}</span>
 						{:else}
-							Question submitted by {dataset[0].anon.handle}.
+							Question submitted by {dataset.anon.handle}.
 						{/if}
 					</p>
 				</div>
@@ -38,8 +38,8 @@
 					</p>
 				</div>
 			</div>
-			<div class="profileIcon thea">
-				<SanityImage image={dataset[0].answerer.userPortrait}/>
+			<div class="profileIcon thea rounded">
+				<SanityImage image={dataset.answerer.userPortrait}/>
 			</div>
 		</div>
 	{/each}

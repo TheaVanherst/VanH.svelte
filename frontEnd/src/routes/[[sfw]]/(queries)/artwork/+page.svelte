@@ -6,7 +6,6 @@
     import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
 
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let data;
     data.artworks =
@@ -16,7 +15,7 @@
                 searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
                 searchTermBuilder.commissions(a)).toLowerCase()}));
 
-    let pagedData, filteredData = queryFilter(data.artworks, $navigationControls.nsfw);
+    let pagedData, filteredData = queryFilter(data.artworks);
     $: $dataSetStore.searchQuery && queryFilter(data.artworks);
 </script>
 

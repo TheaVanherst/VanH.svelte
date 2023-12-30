@@ -12,29 +12,24 @@
     export let data;
 </script>
 
-<SidebarTexts titlecard="Characters" icon="aboutIcon.webp">
-	<CharacterFeature
-			dataset={data.characterData[0].characters}/>
+<SidebarTexts titlecard="Characters" icon="profileIcon.webp">
+	<CharacterFeature dataset={data.characterData.characters}/>
 </SidebarTexts>
 
-<SidebarTexts titlecard="Github" icon="githubLogo.webp">
-	<GithubFeature
-			dataset={data.githubData}/>
+<SidebarTexts titlecard="Github" icon="githubLogoLined.webp">
+	<GithubFeature dataset={data.githubData}/>
 </SidebarTexts>
 
-<SidebarTexts titlecard="Workshop" icon="steamLogo.webp">
-	<WorkshopFeature
-			dataset={{full: data.workshopData, snippets: data.workshopSnippet}}/>
+<SidebarTexts titlecard="Workshop" icon="steamLogoLined.webp">
+	<WorkshopFeature dataset={{full: data.workshopData, snippets: data.workshopSnippet}}/>
 </SidebarTexts>
 
 {#if $navigationControls.nsfw}
 	<SidebarTexts titlecard="Support" icon="kofiLogo.webp">
-		<KofiCards
-				tiers={data.donationData[0].tiers}/>
+		<KofiCards tiers={data.donationData.tiers}/>
 	</SidebarTexts>
 {/if}
 
 <SidebarTexts titlecard="Q&A" icon="commentIcon.webp">
-	<QandaFeature
-			dataset={data.qAndA}/>
+	<QandaFeature dataset={data.qAndA}/>
 </SidebarTexts>

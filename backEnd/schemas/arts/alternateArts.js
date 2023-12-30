@@ -15,6 +15,17 @@ export default defineType({
     { name: 'MetaData', title: 'Archive / Metadata',
       icon: ArchiveIcon },
   ],
+  orderings: [
+    {
+      title: 'Published Date, New',
+      name: 'releaseDateDesc',
+      by: [{field: 'publishedAt', direction: 'desc'}]
+    },{
+      title: 'Published Date, Old',
+      name: 'releaseDateDesc',
+      by: [{field: 'publishedAt', direction: 'asc'}]
+    }
+  ],
   fields: [
     // TODO: User Data
     defineField({
@@ -105,10 +116,22 @@ export default defineType({
     }),
 
     defineField({
-      name: 'NSFW', title: 'Preview Blur',
-      description: 'Should we blur this image?',
-      type: 'boolean', group: 'MetaData',
-      initialValue: false,
+      name: 'imageVisibility', title: 'Image Visibility',
+      type: 'object',
+      fields: [
+        {
+          name: 'NSFW', title: 'After Dark Mode',
+          description: 'Should we hide this image?',
+          type: 'boolean', initialValue: false,
+          hidden: ({ parent }) => parent?.SFW
+        },{
+          name: 'SFW', title: 'Preview Blur',
+          description: 'Should we blur this image?',
+          type: 'boolean', initialValue: false,
+          hidden: ({ parent }) => parent?.NSFW
+        }
+      ],
+      group: 'MetaData',
     }),
 
     defineField({

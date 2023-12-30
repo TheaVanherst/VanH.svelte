@@ -23,8 +23,7 @@ export async function load () {
                         'styleType': styleType->styleName,
                         'styleTypes': styleTypes[]{
                             ...,
-                            'renderType': renderType->renderName
-                        }
+                            'renderType': renderType->renderName}
                     },
                     'additionalPurchases': additionalPurchases[]{
                         additionalPrice,

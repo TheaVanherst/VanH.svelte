@@ -1,18 +1,20 @@
 
 const genericRequests = {
     gallery: `
-        'gallery': gallery {
-            images,
-            display,
-            'renderType': renderType->renderName,
-            'styleType': styleType->styleName
-        }`,
+        'gallery': 
+            gallery {
+                images,
+                display,
+                'renderType': renderType->renderName,
+                'styleType': styleType->styleName
+            }`,
     tags: `
-        'tags': tagData[]|order(_type desc)-> {
-            title,
-            relatedTags,
-            'type': _type
-        }`,
+        'tags': 
+            tagData[]|order(_type desc)-> {
+                title,
+                relatedTags,
+                'type': _type
+            }`,
     info: `
         _id,
         pieceName,
@@ -20,7 +22,8 @@ const genericRequests = {
         'slug': slug.current,
         publishedAt`,
     sfw:
-        `"sfw": !NSFW`
+        `'nsfw': imageVisibility.NSFW,
+         'sfw': imageVisibility.SFW`
 }
 
 export { genericRequests }

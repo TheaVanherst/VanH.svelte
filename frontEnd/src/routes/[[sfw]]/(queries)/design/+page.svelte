@@ -3,10 +3,9 @@
     import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
 
     import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { queryFilter, searchTermBuilder } 	from "$lib/controllers/layoutControllers/searchController.js";
+    import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
 
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let data;
     data.designs =
@@ -16,7 +15,7 @@
                 searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
                 searchTermBuilder.commissions(a)).toLowerCase()}));
 
-    let pagedData, filteredData = queryFilter(data.designs, $navigationControls.nsfw);
+    let pagedData, filteredData = queryFilter(data.designs);
     $: $dataSetStore.searchQuery && queryFilter(data.designs);
 </script>
 
