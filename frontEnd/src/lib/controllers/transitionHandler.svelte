@@ -10,15 +10,15 @@
 
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
-    afterNavigate((n) => {
+    afterNavigate(async (n) => { // This compensates for page refreshes / initial page loading
         if ( n.from === null && n.willUnload === false ) {  // this fixes an issue where the url doesn't update from the initial layout load.
             $navigationControls.transitioning = false;
             let to = (n.to.url.pathname).slice(0, -1);
 			to = to === "" ? "/" : to;
-			directoryProcessing(to, to);}
+            await directoryProcessing(to, to);}
     }); //resets x, y positions
 
-    beforeNavigate(async (n, willUnload, to ) => {
+    beforeNavigate(async (n, willUnload, to) => {
         if (n.delta !== 0 && n.type === "popstate") {
             let to = (n.to.url.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
             await directoryProcessing($directoryData.raw, to);

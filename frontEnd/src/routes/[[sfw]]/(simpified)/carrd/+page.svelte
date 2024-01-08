@@ -47,7 +47,7 @@
 
 <style lang="scss">
 	.wrapper {
-		margin: 	0 auto;
+		margin: 	0 auto 35px auto;
 		max-width: 	450px;}
 
 	.sectionTitle {

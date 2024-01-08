@@ -46,12 +46,13 @@ const
             rrd = c + "/", //corrects the page url to the front-end one, which requires a "/"
             qsd = rrd.split("?"); //removes queryPresets from the search
 
-        if (currentPage.length ^ previousPage.length && pyo ^ cyo) {
+        if (currentPage.length ^ previousPage.length && pyo ^ cyo) { // initial page load
             directionOffset = [0,0]; // deals with larger transitions.
-        } else {
+        } else if (currentPage.length === previousPage.length && pyo === cyo) { // for pages transitioning in both directions
+            directionOffset = [0,0]; // deals with larger transitions.
+        } else { // literally everything else
             directionOffset[1] = currentPage.length ^ previousPage.length ? currentPage.length > previousPage.length ? 1 : -1 : 0;
-            directionOffset[0] = directionOffset[1] === 0 ? pyo > cyo ? 1 : -1 : 0;
-        }
+            directionOffset[0] = directionOffset[1] === 0 ? pyo > cyo ? 1 : -1 : 0;}
 
         navigationControls.update(e => ({...e, direction: directionOffset})); //forwards the page direction to the store
         directoryData.update(e => ({...e, raw: rrd, root: "/" + currentPage[nsfwCheck], query: qsd[1],
