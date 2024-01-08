@@ -54,4 +54,11 @@ export default defineType({
       to: {type: 'author'}
     }),
   ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Homepage Q&A",
+      }
+    }
+  },
 })

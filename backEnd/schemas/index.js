@@ -6,10 +6,6 @@ import questionAndAnswers from './pageSpecific/home/questionAndAnswers';
 import donationData       from './pageSpecific/home/donationData';
 import characterOrder     from './pageSpecific/home/characterOrder'
 
-import commissionData     from './pageSpecific/commissions/commissionTerms';
-import commissionTypes    from './pageSpecific/commissions/commissionTypes';
-import commissionPricing  from './pageSpecific/commissions/commissionPricing'
-
 import artworks         from './arts/drawings';
 import alternateArts    from './arts/alternateArts';
 import erotica          from './arts/erotica'
@@ -27,6 +23,7 @@ import author         from './authorData/author';
 import authorTags     from './authorData/authorTags';
 import internalTags   from './authorData/internalTag';
 
+import commissions   from './pageSpecific/commissions'
 import commissioners from './authorData/commissioners';
 import altCharacters from './characterData/altCharacters'
 
@@ -75,9 +72,7 @@ const dataTypes = [
   donationData,
   characterOrder,
 
-  commissionData,
-  commissionTypes,
-  commissionPricing,
+  commissions,
 
   character,
     sexTags,

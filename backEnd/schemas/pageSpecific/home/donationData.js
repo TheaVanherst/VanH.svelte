@@ -90,4 +90,11 @@ export default defineType({
       type: 'text',
     }),
   ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Donation Tiers",
+      }
+    }
+  },
 })

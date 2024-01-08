@@ -23,7 +23,7 @@ const characterData = {
         birthday,
         age,`,
     preview: `
-        'icon': charIcon`,
+        charIcon`,
     images: `
         'icon': charIcon,
         'render': fullRender,`,

@@ -1,61 +1,118 @@
 
 import {defineField, defineType} from 'sanity'
+import {AccessDeniedIcon, BillIcon, BlockContentIcon, BookIcon} from '@sanity/icons'
 
 export default defineType({
-  name: 'commissionPrices',
+  name: 'commissions',
+  title: 'commission data',
   type: 'document',
+  groups: [
+    { name: 'general', title: "General", default: true,
+      icon: BlockContentIcon },
+    { name: 'dnd', title: "Ds&Ds",
+      icon: AccessDeniedIcon },
+    { name: 'prices', title: 'Prices',
+      icon: BillIcon },
+    { name: 'tnc', title: 'T&Cs',
+      icon: BookIcon },
+  ],
   fields: [
-    // TODO: User Data
-
     defineField({
-      name: 'PreviewImages', title: 'Preview Images',
-      type: 'array',
+      name: 'commissionExamples', title: 'Preview-able Commissions',
+      type: 'array', group: 'general',
       of: [
         defineField({
-          name: 'ImageSet', title: 'Render Preview',
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'imageRender', title: 'Render',
-              type: 'image',
-              validation: Rule => Rule.required()
-            }),
-            defineField({
-              name: 'styleType', title: 'Style information',
-              type: 'reference',
-              to: { type: 'styleType' },
-            }),
-            defineField({
-              name: 'renderType', title: 'Render information',
-              type: 'reference',
-              to: { type: 'renderType' },
-            }),
-            defineField({
-              name: 'nsfwRender', title: 'Should this be hidden for SFW users?',
-              type: 'boolean',
-              initialValue: false,
-            }),
-          ],
-          preview: {
-            select: {
-              render: 'renderType.renderName',
-              style:  'styleType.styleName',
-              icon:   'imageRender'
-            },
-            prepare: ({ render, style, icon }) => {
-              return {
-                title: `${render}, ${style}`,
-                media: icon
-              }
-            }
-          }
+          name: 'imageRender', title: 'Render',
+          type: 'reference',
+          to: [{type: 'artworks'}],
+          validation: Rule => Rule.required()
         }),
       ],
     }),
 
     defineField({
+      name: 'commissionInstructions', title: 'How to Commission',
+      description: 'Instructions on how the user can commission, and general notices.',
+      type: 'blockContent', group: 'general', rows: 20,
+      validation: Rule => Rule.required(),
+    }),
+
+    defineField({
+      name: 'dosList', title: "Do's",
+      type: 'object', group: 'dnd',
+      fields: [
+        defineField({
+          name: 'title', title: "Do's Title",
+          type: 'string',
+          validation: Rule => Rule.required()
+        }),
+        defineField({
+          name: 'desc', title: "Do's Description",
+          type: 'string',
+        }),
+        defineField({
+          name: 'banner',
+          title: 'Banner Image',
+          type: 'image',
+        }),
+        defineField({
+          name: 'list', title: "Do list",
+          type: 'array',
+          of: [
+            {
+              name: 'item',
+              title: 'A will do element',
+              type: 'string',
+              validation: Rule => Rule.required()
+            }
+          ],
+          validation: Rule => Rule.required()
+        }),
+      ]
+    }),
+
+    defineField({
+      name: 'dontsList', title: "Dont's",
+      type: 'object', group: 'dnd',
+      fields: [
+        defineField({
+          name: 'title', title: "Dont's Title",
+          type: 'string',
+          validation: Rule => Rule.required()
+        }),
+        defineField({
+          name: 'desc', title: "Dont's Description",
+          type: 'string',
+        }),
+        defineField({
+          name: 'banner',
+          title: 'Banner Image',
+          type: 'image',
+        }),
+        defineField({
+          name: 'list', title: "Dont list",
+          type: 'array',
+          of: [
+            {
+              name: 'item',
+              title: 'A will do element',
+              type: 'string',
+              validation: Rule => Rule.required()
+            }
+          ],
+          validation: Rule => Rule.required()
+        }),
+      ]
+    }),
+
+    defineField({
+      name: 'exclusionText', title: 'Exclusion Text',
+      type: 'string', group: 'dnd',
+    }),
+
+    defineField({
       name: 'prices', title: 'Prices',
-      type: 'array',
+      type: 'array', group: 'prices',
       of: [
         defineField({
           name: 'priceList', title: 'Price List',
@@ -69,7 +126,7 @@ export default defineType({
             defineField({
               name: 'styleDescription', title: 'Style Description',
               type: 'text',
-              rows: 2,
+              rows: 5,
             }),
             defineField({
               name: 'previewImage',
@@ -165,9 +222,9 @@ export default defineType({
               media:  'previewImage'
             },
             prepare: ({
-              name, media,
-              style1, style2, style3, style4, style5,
-              price1, price2, price3, price4, price5 }) => {
+                        name, media,
+                        style1, style2, style3, style4, style5,
+                        price1, price2, price3, price4, price5 }) => {
 
               let
                 styles = [style1,style2,style3,style4,style5],
@@ -188,9 +245,10 @@ export default defineType({
         }),
       ]
     }),
+
     defineField({
       name: 'additionalPurchases', title: 'Additional Purchases',
-      type: 'array',
+      type: 'array', group: 'prices',
       of: [
         defineField({
           name: 'additionalSet', title: 'Price Set',
@@ -224,10 +282,27 @@ export default defineType({
         }),
       ]
     }),
+
     defineField({
-      name: 'whatsIncluded', title: "What's included?",
-      type: 'text',
-      rows: 8,
+      name: 'priceNotices', title: 'Price Notices',
+      description: 'Things to note regarding commission prices & purchases',
+      type: 'blockContent', group: 'prices', rows: 10,
+      validation: Rule => Rule.required(),
     }),
+
+    defineField({
+      name: 'terms', title: 'Terms & Conditions',
+      description: 'Final words of note regarding terms and conditions.',
+      type: 'blockContent', group: 'tnc', rows: 40,
+      validation: Rule => Rule.required(),
+    }),
+
   ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Commission Data"
+      }
+    }
+  },
 })

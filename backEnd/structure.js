@@ -35,7 +35,7 @@ const structure = (S) =>
       S.divider(),
 
       S.listItem()
-        .title('Page Data')
+        .title('Page Settings')
         .child(
           S.list()
             .title('Pages')
@@ -43,24 +43,20 @@ const structure = (S) =>
             .items([
               S.listItem().title('Q&A Section')
                 .child(S.document().schemaType('questionAnswer').documentId('questionAnswer')),
-              S.listItem().title('Donation Data')
-                .child(S.document().schemaType('donationData').documentId('donationData')),
-              S.listItem().title('Character Orders')
-                .child(S.document().schemaType('characterOrder').documentId('characterList')),
-
-              S.divider(),
-
               S.listItem().title('Carrd Links')
                 .child(S.document().schemaType('featuredSocials').documentId('featuredSocials')),
 
               S.divider(),
 
-              S.listItem().title('Commission Terms')
-                .child(S.document().schemaType('commissionData').documentId('commissionData')),
-              S.listItem().title("Commission Dos and Donts")
-                .child(S.document().schemaType('commissionTypes').documentId('commissionTypes')),
-              S.listItem().title("Commission Pricing")
-                .child(S.document().schemaType('commissionPrices').documentId('commissionPrices')),
+              S.listItem().title('Character Orders')
+                .child(S.document().schemaType('characterOrder').documentId('characterList')),
+
+              S.divider(),
+
+              S.listItem().title('Donation Data')
+                .child(S.document().schemaType('donationData').documentId('donationData')),
+              S.listItem().title("Commission Data")
+                .child(S.document().schemaType('commissions').documentId('commissions')),
 
               S.divider(),
             ])

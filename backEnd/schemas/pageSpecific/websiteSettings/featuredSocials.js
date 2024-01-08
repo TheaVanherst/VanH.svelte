@@ -64,13 +64,23 @@ export default defineType({
         preview: {
           select: {
             chunkName: 'chunkName',
+            icon: 'chunkSocials.0.platformName.socialLogo'
           },
-          prepare(selection) {
-            const {chunkName} = selection
-            return {title: chunkName}
+          prepare: ({chunkName, icon}) => {
+            return {
+              title: chunkName,
+              media: icon
+            }
           }
         },
       }]
     }),
   ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Social Media Groups",
+      }
+    }
+  },
 })

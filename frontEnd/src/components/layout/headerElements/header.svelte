@@ -1,6 +1,8 @@
 <script>
     import { deviceData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
+    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
+
     import ProfileBar 			from "$root/components/layout/headerElements/bannerAnimation.svelte";
     import SplashTexts 			from "$root/components/layout/headerElements/splashTexts.svelte";
 
@@ -8,18 +10,17 @@
 </script>
 
 <div class="bannerWrapper">
-	{#if $navigationControls.loaded} <!-- this is a placeholder -->
+	{#if $navigationControls.loaded}
 		{#if $deviceData.deviceType === 2}
 			<div class="desktop">
 				<SplashTexts/>
 				<ProfileBar>
-					<div on:mouseenter={() => hover = true}
-						 on:mouseleave={() => hover = false}>
-						<slot/>
+					<slot/>
+					<RedirectBuilder url="/home">
 						<div class="branding">
 							<img src="/branding/vanhlogo.webp"/>
 						</div>
-					</div>
+					</RedirectBuilder>
 				</ProfileBar>
 			</div>
 		{:else if $deviceData.deviceType === 1}
@@ -80,7 +81,12 @@
 			position: 	absolute;
 			transform: 	translate(-50%, 50%);
 			height: 	100%;
+
+			&:hover {
+				img {
+					transform: scale(1.1) translate(0, -46%);}}
 			img {
+				transition: .3s transform ease;
 				margin: 	5px 0 0 0;
 				transform: 	translate(0, -50%);
 				height: 	110%;}}}

@@ -26,7 +26,7 @@
 		{#each section.chunkSocials as social}
 			{#if $navigationControls.localNsfwCheck(social.nsfw)}
 				<div class="link" in:fade={{delay: 250, duration: 0}}>
-<!--					this compensates for the transitional handler-->
+					<!-- this compensates for the transitional handler -->
 					<a href="https://{social.platformName.socialURL + social.url}" target="_blank">
 						<RainbowButtonWrap bottom={10} padding={[9,15]}>
 							<div class="central">

@@ -14,16 +14,17 @@ export const load = async () => {
                     image,
                     story,
                    
-                    'characters': characters[]->{
+                    characters[]-> {
                         ...,
                         ${characterData.preview},
                         ${characterData.info}},
-                    'authors': authors[]{
+                    authors[] {
                         author->{
                             ${authorQueries.info},
                             ${authorQueries.icon},
                             ${authorQueries.socials}},
-                        'participation': participation->title},
+                        'participation': participation->title
+                        },
                     ${genericRequests.tags}
                 }`
             ),

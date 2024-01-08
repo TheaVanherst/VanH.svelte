@@ -7,7 +7,7 @@ export async function load () {
         characterData:
             await client.fetch(`
                 *[ _type == 'characterOrder'] | order(_updatedAt desc) [0]{
-                    characters[]->{
+                    characters[]-> {
                         ${characterData.core}
                         ${characterData.info}
                         ${characterData.lore}

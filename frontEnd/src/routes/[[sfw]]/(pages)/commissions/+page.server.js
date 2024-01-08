@@ -1,35 +1,30 @@
 
 import client from "$lib/sanityClient.js";
 
+import { genericRequests } from "$lib/queryPresets/genericQueries.js";
+
 export async function load () {
     return {
         commissionData:
             await client.fetch(`
-                *[ _type == 'commissionData']{...}`),
-        commissionTypes:
-            await client.fetch(`
-                *[ _type == 'commissionTypes']{...}`),
-        commissionPrices:
-            await client.fetch(`
-                *[ _type == 'commissionPrices']{
+                *[ _type == 'commissions'][0]{
                     ...,
-                    'PreviewImages': PreviewImages[]{
+                    commissionExamples[]-> {
+                        ${genericRequests.info},
+                        ${genericRequests.sfw},
+                        ${genericRequests.gallery}},
+                    commissionData {
+                        'commissionType': artType->typeName},
+                    prices[] {
                         ...,
-                        'renderType': renderType->renderName,
-                        'styleType': styleType->styleName
-                    },
-                    'prices': prices[]{
-                        ...,
-                        'styleType': styleType->styleName,
-                        'styleTypes': styleTypes[]{
-                            ...,
-                            'renderType': renderType->renderName}
-                    },
-                    'additionalPurchases': additionalPurchases[]{
+                        'styleName': styleType->styleName,
+                        styleTypes[] {
+                            renderTypePrice,
+                            'renderType': renderType->renderName}},
+                    additionalPurchases[] {
                         additionalPrice,
                         'additionalItem': additionalPurchases->purchaseName,
-                        'additionalDescription': additionalPurchases->additionalDescription
-                    }
-                }`),
-    };
+                        'additionalDescription': additionalPurchases->additionalDescription}
+                }`)
+    }
 }

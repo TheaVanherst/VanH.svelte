@@ -179,9 +179,10 @@ a {
 		background:     var(--TransBlack);
 		border-radius:  var(--bordernormal);}
 	&:before {
-		content: 'Content warning';
-		padding:        5px 20px;
-		top: 100px;}
+		content:        'Content warning';
+		white-space:    nowrap;
+		padding:    5px 20px;
+		top:        100px;}
 	&:after {
 		content:    'hover to preview';
 		padding:    3px 10px;

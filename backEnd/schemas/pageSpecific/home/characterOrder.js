@@ -16,5 +16,12 @@ export default defineType({
         disableNew: true,
       }
     }),
-  ]
+  ],
+  preview: {
+    prepare: () => {
+      return {
+        title: "Specified Character Orders",
+      }
+    }
+  },
 });

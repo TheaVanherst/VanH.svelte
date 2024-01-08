@@ -30,4 +30,16 @@ export default defineType({
       type: 'image',
     }),
   ],
+  preview: {
+    select: {
+      socialName: 'socialName',
+      media: 'socialLogo'
+    },
+    prepare: ({socialName, media}) => {
+      return {
+        title: socialName,
+        media: media
+      }
+    }
+  },
 })
