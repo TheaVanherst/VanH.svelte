@@ -18,7 +18,7 @@
 
 			<div class="buttonTable">
 				<div class="buttonWrapper">
-					<RedirectBuilder url={"/home"} nsfwPointer={false}>
+					<RedirectBuilder url={"/featured"} nsfwPointer={false}>
 						<div class="button regularBorder filter">
 							<h4>Filter</h4>
 						</div>
@@ -26,7 +26,7 @@
 				</div>
 
 				<div class="buttonWrapper">
-					<RedirectBuilder url={"/home"} nsfwPointer={true}>
+					<RedirectBuilder url={"/featured"} nsfwPointer={true}>
 						<div class="button regularBorder unfilter">
 							<h4>Continue</h4>
 						</div>

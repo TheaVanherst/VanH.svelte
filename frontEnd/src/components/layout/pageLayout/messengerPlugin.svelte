@@ -20,7 +20,7 @@
         if ($navigationControls.nsfw !== false) {
             const placement = navigationDirectories.findIndex(e => e.path === $directoryData.root);
 			if (navigationDirectories[placement].nsfw) {
-                directoryProcessing('/home', '/home');}}}
+                directoryProcessing('/featured', '/featured');}}}
 </script>
 
 <div id="messageController"

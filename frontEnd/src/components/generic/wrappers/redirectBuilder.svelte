@@ -3,7 +3,6 @@
     import { pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
 
     import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
     import { galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
 
     export let
@@ -12,14 +11,13 @@
 		nsfwPointer = undefined;
 
     const redirectCheck = (e, n, p = undefined) => {
-        let paraLength = Object.keys($page.params).length;
         let newRoute;
 
         if (p !== undefined) { // protects from false redirects
             $navigationControls.nsfw = p
             newRoute = (p ? `/${$directoryData.nsfwKeyword}` : '') + e;}
         else {
-            newRoute = (paraLength > 0 ? `/${$page.params.sfw}` : "") + e;}
+            newRoute = $directoryData.nsfwUrlCheck() + e;}
         // this allows plain redirects via. eg. /artwork, and adds the NSFW filter keyword.
 
         if (newRoute + "/" !== $directoryData.raw && !$navigationControls.transitioning) {
@@ -29,14 +27,16 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
             setTimeout(async () => {
                 await goto(newRoute);
-                $navigationControls.transitioning = false;}, 250);}
+                $navigationControls.transitioning = false;
+            }, 250);}
 
     	if (n) { // this sets a custom page name.
             $pageName = n;}}
 </script>
 
-<a href="{$navigationControls.nsfw ? `/${$directoryData.nsfwKeyword}` : ''}{url}" target="" on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
-	<slot/>
+<a 	href="{$navigationControls.nsfw ? `/${$directoryData.nsfwKeyword}` : ''}{url}" target=""
+   	on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
+		<slot/>
 </a>
 
 <style lang="scss">

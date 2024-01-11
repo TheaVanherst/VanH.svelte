@@ -15,7 +15,7 @@ const githubDatabase = [
         color:      1,
         description:
             "Vanh.art is an open source project! If you're interested in using this website as a basis to start " +
-            "your own home-esc site, the source code is right here."
+            "your own featured-esc site, the source code is right here."
     },{
         name:       "VanH.art/nge",
         url:        "VanH.nge",

@@ -23,14 +23,13 @@ export async function load () {
             await client.fetch(`*[_type == 'characterOrder'].characters[]->{charIcon, nickName}`),
             // fetches & deals with character searches
         tags:
-            Object.entries(
-                await client.fetch(`{
-                    "cultureTags": [*[_type == 'cultureTags']` + seachQuery + `, false],
-                    "designTags": [*[_type == 'designTags']` + seachQuery + `, false],
-                    "explicitTags": [*[_type == 'explicitTags']` + seachQuery + `, true],
-                    "genreTag": [*[_type == 'genreTag']` + seachQuery + `, false],
-                    "genericTags": [*[_type == 'genericTags']` + seachQuery + `, false],
-                    "nsfwTags": [*[_type == 'nsfwTags']` + seachQuery + `, true]}`))
-                // array is stored as [{data}, {NSFW front-end check}]
+            await client.fetch(`
+                [{"category": "design",      "tags": *[_type == 'designTags']` + seachQuery + `,    "nsfw": false},
+                {"category": "explicit",    "tags": *[_type == 'explicitTags']` + seachQuery + `,   "nsfw": true},
+                {"category": "genre",       "tags": *[_type == 'genreTag']` + seachQuery + `,       "nsfw": false},
+                {"category": "generic",     "tags": *[_type == 'genericTags']` + seachQuery + `,    "nsfw": false},
+                {"category": "nsfw",        "tags": *[_type == 'nsfwTags']` + seachQuery + `,       "nsfw": true}]
+            `)
+            //{"category": "culture",    "tags": *[_type == 'cultureTags']` + seachQuery + `,    "nsfw": false},
     };
 }

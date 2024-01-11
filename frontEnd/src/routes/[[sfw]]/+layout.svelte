@@ -1,9 +1,9 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
-    import { navigationData, navigationControls, directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
-    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import { slide } 			from "svelte/transition";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
     import RollupButton 		from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
@@ -14,7 +14,6 @@
 
     import { page } 	from "$app/stores";
     import { onMount } 	from "svelte";
-    import { slide } 	from "svelte/transition";
     import { afterNavigate, beforeNavigate } from "$app/navigation";
 
     const paramLocalUpdate = () => {
@@ -45,6 +44,10 @@
 
     // search functionality
 
+    let value,
+		active = false;
+
+    // generic search.
     const hardSearch = (query = "", page = 0) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         $navigationControls.transitioning = true;
@@ -57,8 +60,11 @@
         setTimeout(() => { // this allows the pagination to update
             $navigationControls.transitioning = false;}, 300);};
 
-    let value,
-		active = false;
+    // constructs a search param from tag data.
+    const queryBuilder = (e => {
+        e = e.toLowerCase() // forces the query to be in lowercase by the new element also being lowercase.
+        hardSearch((value.includes(e) ? value.replaceAll(`${e}`, '') : value + ` ${e}`).split(" ").filter(n => n).join("-"))
+    });
 
     $: $navigationData.search === false ? active = false : false;
 </script>
@@ -87,22 +93,22 @@
 			<div class="characterInline">
 				{#each data.characters as character, c}
 					<div class="characterIcon">
-						<RedirectBuilder url="{$directoryData.stripped}?query=:{character.nickName.toLowerCase().replaceAll(' ','-')}">
+						<div on:mousedown={() => queryBuilder(":" + character.nickName)}>
 							<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
 								<SanityImage image={character.charIcon}/>
 							</div>
-						</RedirectBuilder>
+						</div>
 					</div>
 				{/each}
 			</div>
 			{#each data.tags as tagSet, i}
-				{#if !tagSet[1][1] && !$navigationControls.nsfw || $navigationControls.nsfw}
-					<h4>{tagSet[0].replaceAll("Tags","").replaceAll("Tag","")} Tags</h4>
+				{#if !tagSet.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
+					<h4>{tagSet.category} Tags</h4>
 					<div class="tagGroup">
-						{#each tagSet[1][0] as tag, e}
-							<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
+						{#each tagSet.tags as tag, e}
+							<div on:mousedown={() => queryBuilder(tag.title)}>
 								<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/>
-							</RedirectBuilder>
+							</div>
 						{/each}
 					</div>
 				{/if}
@@ -157,7 +163,7 @@
 		background: var(--TransWhite);
 		padding: 	15px;
 		margin: 	15px 0 0 0;
-		max-height: 200px;
+		max-height: 300px;
 		overflow: 	scroll;
 
 		.tagGroup {

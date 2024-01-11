@@ -1,5 +1,5 @@
 <script>
-    import { deviceData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { deviceData, navigationControls, directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
@@ -16,8 +16,8 @@
 				<SplashTexts/>
 				<ProfileBar>
 					<slot/>
-					<RedirectBuilder url="/home">
-						<div class="branding">
+					<RedirectBuilder url="/featured">
+						<div class="branding" class:disabled={$directoryData.root === "/featured"}>
 							<img src="/branding/vanhlogo.webp"/>
 						</div>
 					</RedirectBuilder>
@@ -79,15 +79,14 @@
 
 		.branding {
 			position: 	absolute;
-			transform: 	translate(-50%, 50%);
+			transform: 	translate(-50%, 0);
 			height: 	100%;
 
-			&:hover {
-				img {
-					transform: scale(1.1) translate(0, -46%);}}
+			&.disabled {
+				pointer-events: none;}
+			&:not(.disabled):hover img {
+				transform: scale(1.1);}
 			img {
 				transition: .3s transform ease;
-				margin: 	5px 0 0 0;
-				transform: 	translate(0, -50%);
 				height: 	110%;}}}
 </style>
