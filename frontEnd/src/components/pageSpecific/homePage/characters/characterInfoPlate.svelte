@@ -2,17 +2,22 @@
 	import SanityImage from "$root/serializer/sanityImage.svelte";
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
-    import { heightBuilder, standardTinyhand, standardShorthand } from "$lib/builders/measurementConverters.js";
+    import { standardTinyhand, standardShorthand } from "$lib/builders/measurementConverters.js";
 
     export let data = {}
 
-    const iterationBuilder = (c,s) => {
-        let returnString = "";
-        if (c){			returnString += standardTinyhand(c);
-            if (s) {	returnString += " - " + standardTinyhand(s);}}
-        else if (s){	returnString += standardTinyhand(s);}
-        return returnString;
-	};
+    const
+		iterationBuilder = (c,s) => {
+			let returnString = "";
+			if (c){			returnString += standardTinyhand(c);
+				if (s) {	returnString += " - " + standardTinyhand(s);}}
+			else if (s){	returnString += standardTinyhand(s);}
+			return returnString;
+		},
+
+		ftConverter = (h) => {
+        	return h.measurement === 'ft' ? h.height.toString().replaceAll(".","'") + h.measurement.replaceAll("ft","''") : h.height + h.measurement;
+    	};
 </script>
 
 <div class="plate regularBorder redirect">
@@ -44,7 +49,7 @@
 		{#if !!data.birthday}
 			<p><span>Birthday</span>: {standardShorthand(data.birthday)}</p>{/if}
 		{#if !!data.age}
-			<p><span>Age</span>: {data.age}</p>{/if}
+			<p><span>Age</span>: {data.age.years} {data.age.measurement} years</p>{/if}
 	</div>
 </div>
 
@@ -53,8 +58,8 @@
 		<p class="subtitle">Height</p>
 		{#if data.heights.length > 0}
 			{#each data.heights as heightset}
-				<p class="{heightset.loreType.replace(' ','')}Height">
-					<span>{heightset.loreType}</span>: {heightBuilder(heightset.height)}
+				<p class="{heightset.loreType}Height">
+					<span>{heightset.loreType}</span>: {ftConverter(heightset.lowestHeight)} {!!heightset?.maxHeight?.height ? " - " + ftConverter(heightset.maxHeight) : ''}
 				</p>
 			{/each}
 		{/if}

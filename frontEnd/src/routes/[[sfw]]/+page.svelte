@@ -10,31 +10,15 @@
 <div class="center" transition:slide>
 	<Container>
 		<div class="wrapper">
-			<div class="textWrapper">
-				<h2>NSFW Content</h2>
-				<p>This website contains NSFW content, 'NSFW' meaning "Not Safe For Work" & is not suitable for all audiences, especially those under the age of 18.</p>
-				<p>Do you wish to filter the website of any NSFW content?</p>
-			</div>
-
-			<div class="buttonTable">
-				<div class="buttonWrapper">
-					<RedirectBuilder url={"/featured"} nsfwPointer={false}>
-						<div class="button regularBorder filter">
-							<h4>Filter</h4>
-						</div>
-					</RedirectBuilder>
-				</div>
-
-				<div class="buttonWrapper">
-					<RedirectBuilder url={"/featured"} nsfwPointer={true}>
-						<div class="button regularBorder unfilter">
-							<h4>Continue</h4>
-						</div>
-					</RedirectBuilder>
-				</div>
-			</div>
+			<p>Welcome to VanH. This site is still in development, this page is just filler until I find better use for it.</p>
+			<p>Please report any bugs to me directly, or in that chatbox.</p>
 		</div>
 	</Container>
+	<RedirectBuilder url={"/featured"}>
+		<div class="button regularBorder unfilter">
+			<h4>Continue To Site</h4>
+		</div>
+	</RedirectBuilder>
 </div>
 
 <style lang="scss">
@@ -43,7 +27,7 @@
 		width: 		100%;
 		margin: 	20px auto auto auto;}
 
-	.wrapper, .textWrapper, .buttonTable {
+	.wrapper {
 		display: 	grid;
 		gap: 		10px;}
 
@@ -52,12 +36,6 @@
 			display: 	flex;
 			margin: 	0 auto;
 			text-align: center;}}
-
-	.buttonTable {
-		display: flex;
-
-		.buttonWrapper {
-			width: 50%;}}
 
 	.button {
 		transition: background .3s ease;
@@ -73,6 +51,5 @@
 		&.filter {	background: var(--accent10);}
 		&.unfilter {background: var(--accent3);}
 		&:hover {	background: var(--accent7);
-			h4 {	color: 		var(--accent10);}}
-	}
+			h4 {	color: 		var(--accent10);}}}
 </style>

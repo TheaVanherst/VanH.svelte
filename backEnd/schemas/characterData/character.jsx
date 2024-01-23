@@ -93,9 +93,28 @@ export default defineType({
     }),
     defineField({
       name: 'age', title: 'Age',
-      type: 'number',
-      validation: Rule => Rule.required().precision(2),
-      group: 'about'
+      type: 'object', group: 'about',
+      fields: [
+        {
+          name: 'years', title: 'Years',
+          type: 'number',
+          validation: Rule => Rule.positive().precision(2),
+        },{
+          name: 'measurement', title: 'Max height',
+          description: 'Measurement type',
+          type: 'string', initialValue: 'years',
+          options: {
+            list: [
+              { title: 'years',     value: "" },
+              { title: 'thousand',  value: "thousand" },
+              { title: 'million',   value: "million" },
+              { title: 'billion',   value: "billion" },
+              { title: 'trillion',  value: "trillion" },
+            ],
+          },
+          hidden: ({ parent }) => parent?.years
+        },
+      ],
     }),
     defineField({
       name: 'birthday', title: 'Birthday',
@@ -194,29 +213,72 @@ export default defineType({
               to: { type: 'heightTag' }
             }),
             defineField({
-              name: 'canonHeightLow', title: 'Lowest height',
-              description: 'The Lowest range / default height of the character in cm.',
-              type: 'number',
-              validation: Rule => Rule.required().positive().precision(2),
+              name: 'lowestHeight', title: 'Lowest height',
+              type: 'object',
+              fields: [
+                {
+                  name: 'height', title: 'Height Range',
+                  type: 'number',
+                  validation: Rule => Rule.positive().precision(2),
+                },{
+                  name: 'measurement', title: 'Max height',
+                  type: 'string', initialValue: 'cm',
+                  options: {
+                    list: [
+                      { title: 'Cm',          value: "cm" },
+                      { title: 'Feet',        value: "ft" },
+                      { title: 'Metres',      value: "m" },
+                      { title: 'Kilometres',  value: "km" },
+                      { title: 'Miles',       value: "miles" },
+                      { title: 'Megametres',  value: "Mm" },
+                      { title: 'Gigametres',  value: "Gm" },
+                      { title: 'Terametres',  value: "Tm" },
+                      { title: 'Light years', value: "Ly" }
+                    ]},
+                  hidden: ({ parent }) => parent?.height
+                }],
             }),
             defineField({
-              name: 'canonHeightHigh', title: 'Max Height Range',
-              description: 'The maximum height of the character (if applicable) in cm.',
-              type: 'number',
-              validation: Rule => Rule.positive().precision(2),
+              name: 'maxHeight', title: 'Max height',
+              type: 'object',
+              fields: [
+                {
+                  name: 'height', title: 'Height Range',
+                  type: 'number',
+                  validation: Rule => Rule.positive().precision(2),
+                },{
+                  name: 'measurement', title: 'Max height',
+                  type: 'string', initialValue: 'cm',
+                  options: {
+                    list: [
+                      { title: 'Cm',          value: "cm" },
+                      { title: 'Feet',        value: "ft" },
+                      { title: 'Metres',      value: "m" },
+                      { title: 'Kilometres',  value: "km" },
+                      { title: 'Miles',       value: "miles" },
+                      { title: 'Megametres',  value: "Mm" },
+                      { title: 'Gigametres',  value: "Gm" },
+                      { title: 'Terametres',  value: "Tm" },
+                      { title: 'Light years', value: "Ly" }
+                    ]},
+                  hidden: ({ parent }) => parent?.height
+                }],
+              hidden: ({ parent }) => parent?.lowestHeight?.height
             }),
+
           ],
           preview: {
             select: {
               title: 'loreType.loreType',
-              minHeight: 'canonHeightLow',
-              maxHeight: 'canonHeightHigh',
+              minHeight: 'lowestHeight.height',
+              minType: 'lowestHeight.measurement',
+              maxHeight: 'maxHeight.height',
+              maxType: 'maxHeight.measurement'
             },
-            prepare: ({ title, minHeight, maxHeight }) => {
+            prepare: ({ title, minHeight, minType, maxHeight, maxType }) => {
               return {
-                title: `${title} - ${maxHeight ? 'Minimum' : ''} Height: ${minHeight}cm ${maxHeight ? "- " + maxHeight + 'cm' : ''}`
-              }
-            }
+                title: `${title} - ${maxHeight ? 'Minimum' : ''} Height: ${minHeight}${minType} ${maxHeight ? "- " + maxHeight + maxType : ''}`
+              }}
           }
         }),
       ],
@@ -229,21 +291,14 @@ export default defineType({
     select: {
       title: 'fullName',
       job: 'job',
-      age: 'age',
+      age: 'age.years',
+      ageMeasurement: 'age.measurement',
       media: 'charIcon'
     },
-    prepare: ({ title, age, job, media }) => {
-
-      let trueAge = undefined;
-      if (age - Math.floor(age) !== 0){
-        let naughtGen = (age + "").split(".");
-        trueAge = naughtGen[0].toString().padEnd(naughtGen[1], "0");
-        trueAge = Math.floor(trueAge) ;
-      }
-
+    prepare: ({ title, age, job, media, ageMeasurement }) => {
       return {
         title: `${title}`,
-        subtitle: (trueAge ? trueAge.toLocaleString("en-US") : age) + 'y/o , ' + job + ' ',
+        subtitle: age + ' ' + ageMeasurement + ' y/o , ' + job + ' ',
         media: media,
       }
     }

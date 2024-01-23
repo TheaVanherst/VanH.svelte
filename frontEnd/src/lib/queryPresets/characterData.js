@@ -21,7 +21,8 @@ const characterData = {
         nationality,
         timePeriod,
         birthday,
-        age,`,
+        age { 
+            years, measurement},`,
     preview: `
         charIcon`,
     images: `
@@ -39,10 +40,10 @@ const characterData = {
                 'charIcon': charIcon
             },`,
     height: `
-        'heights':
-            heights[]{
-                'loreType': loreType->loreType,
-                'height': canonHeightLow},`,
+        heights[]{
+            'loreType': loreType->loreType,
+            lowestHeight { measurement, height },
+            maxHeight{  measurement, height }},`,
     creation: `
         creation,
         prevcreation,

@@ -1,7 +1,7 @@
 
 import { defineType} from 'sanity'
 import { TagsIcon }    from '@sanity/icons'
-import { emojiTags, icon } from '../../lib/blocks/emojiTagData'
+import { emojiTags, icon } from '../../lib/emojiTagData'
 
 const
   artCategories = defineType({
