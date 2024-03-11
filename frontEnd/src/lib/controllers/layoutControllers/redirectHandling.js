@@ -7,9 +7,14 @@ const redirector = " 𝚊𝚝";
 const navigationDirectories =
     [
         {   title: "Home",      imagePath: "houseIcon",         path: "/featured",        nsfw:false,   pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
-        {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",     nsfw:false,   pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector},
-        {   title: "Design",    imagePath: "colourWheel",       path: "/design",      nsfw:false,   pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector},
-        {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",     nsfw:true,    pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector},
+        {   title: "Artwork",   imagePath: "artworksIcon",      pages: [
+            {   title: "Art",           imagePath: "galleryIcon",       path: "/artwork",     nsfw:false,   pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector},
+            {   title: "Design",        imagePath: "colourWheel",       path: "/design",      nsfw:false,   pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector}
+        ]},
+        {   title: "Alternate", imagePath: "commissionedIcon",  pages: [
+            {   title: "Erotica",       imagePath: "bookIcon",          path: "/erotica",     nsfw:true,    pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector},
+            // {   title: "Personas",      imagePath: "charactersIcon",    path: "/personas",    nsfw:false,   pagePreview: "𝗖𝗵𝗮𝗿𝗮𝗰𝘁𝗲𝗿𝘀" + redirector}
+        ]},
         // {   title: "Characters",imagePath: "homeIcon",   path: "/artwork",     nsfw:false,   pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector},
         {   title: "Slots",     imagePath: "tagIcon",           path: "/commissions", nsfw:false,   pagePreview: "𝕊𝕝𝕠𝕥𝕤" + redirector},
         {   title: "Carrd",     imagePath: "profileIcon",       path: "/carrd",       nsfw:false,   pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector},
@@ -41,8 +46,8 @@ const
             nsfwCheck = get(navigationControls).nsfw ? 2 : 1; //gets the nsfw state
 
             //checks relative directory via the directories
-        let pyo = navigationDirectories.findIndex(e => e.path === "/" + currentPage[nsfwCheck]),
-            cyo = navigationDirectories.findIndex(e => e.path === "/" + previousPage[nsfwCheck]),
+        let pyo = navigationDirectories.findIndex(e => e.pages ? e.pages.map(i => i.path).includes("/" + currentPage[nsfwCheck]) : e.path === "/" + currentPage[nsfwCheck]),
+            cyo = navigationDirectories.findIndex(e => e.pages ? e.pages.map(i => i.path).includes("/" + previousPage[nsfwCheck]) : e.path === "/" + previousPage[nsfwCheck]),
             rrd = c + "/", //corrects the page url to the front-end one, which requires a "/"
             qsd = rrd.split("?"); //removes queryPresets from the search
 

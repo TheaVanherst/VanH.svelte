@@ -69,7 +69,7 @@
 
 	.transitionWrapper {
 		position: 	static;
-		margin-top: 15px;
+		margin: 	15px 0;
 
 		.pageData {
 			position: 	fixed;

@@ -7,17 +7,8 @@
     export let data = {}
 
     const
-		iterationBuilder = (c,s) => {
-			let returnString = "";
-			if (c){			returnString += standardTinyhand(c);
-				if (s) {	returnString += " - " + standardTinyhand(s);}}
-			else if (s){	returnString += standardTinyhand(s);}
-			return returnString;
-		},
-
-		ftConverter = (h) => {
-        	return h.measurement === 'ft' ? h.height.toString().replaceAll(".","'") + h.measurement.replaceAll("ft","''") : h.height + h.measurement;
-    	};
+		iterationBuilder = (c,s) => c ? s ? `${standardTinyhand(c)} - ${standardTinyhand(s)}` : standardTinyhand(c) : s ? standardTinyhand(s) : "",
+		ftConverter = (h) => h.measurement === 'ft' ? h.height.toString().replaceAll(".","'") + h.measurement.replaceAll("ft","''") : h.height + h.measurement;
 </script>
 
 <div class="plate regularBorder redirect">

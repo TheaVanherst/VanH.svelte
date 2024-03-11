@@ -14,19 +14,20 @@
 
     const
 		imageClick = () => {
-        	if (active) {
-                active = !active;}
+        	if (active) { active = !active;}
             else {
                 $fullscreenGalleryStore.componentUrl = ArtworkDescription;
                 $fullscreenGalleryStore.componentData = data;}},
 		cardFloatClick = () => {active = active ? active : !active;};
+
+    let timer;
 </script>
 
 <div class="wideBorder"
-	 on:mouseenter={() => hover = true}
+	 on:mouseenter={() => {hover = true; clearInterval(timer);}}
 	 use:clickOutside
 	 on:click_outside={() => hover = active = false}
-	 on:mouseleave={() => hover = active = false}>
+	 on:mouseleave={() => {timer = setInterval(function () {hover= active = false;}, 500)}}>
 
 	<div class="galleryWrapper">
 		<div class="galleryContainer" on:click={imageClick} class:clickable={active}>

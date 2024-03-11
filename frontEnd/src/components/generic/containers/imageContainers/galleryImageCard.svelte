@@ -2,9 +2,9 @@
     import { fly } from "svelte/transition";
 
     export let
-		active = false,
-		hover = false,
-		absolute = false
+		active = 	false,
+		hover = 	false,
+		absolute = 	false
 </script>
 
 {#if !active}
