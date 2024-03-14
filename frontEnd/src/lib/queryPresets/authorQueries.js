@@ -6,13 +6,24 @@ const authorQueries = {
         'slug': slug.current`,
     icon: `
         userPortrait`,
+    branding: `
+        userPortrait,
+        profileBanner`,
     socials: `
         'socialMedia': socialMedia[]{
             url,
-            platformName->
-        }`,
+            platformName->}`,
     participation: `
-        'participation': participation->emoji + " " + participation->title`
+        'participation': participation->emoji + " " + participation->title`,
+    internals: `
+        authorTag[]-> {
+            emoji,
+            title},
+        internalRole[]-> {
+           emoji,
+           title}`,
+    about: `
+        shortDesc`
 }
 
 export { authorQueries }

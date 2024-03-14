@@ -5,7 +5,7 @@
     import { slide } 	from 'svelte/transition';
 
 	export let socials = [];
-    export let internal = {user:undefined, redirect:undefined};
+    export let internal = undefined;
     export let padding;
     let active = false;
 
@@ -21,8 +21,8 @@
 </div>
 {#if active}
 	<div class="socialInline" transition:slide>
-		{#if internal.redirect && internal.user}
-			<InternalRedirectTag redirect="/{internal.redirect}?query={internal.user}" user="{internal.user}"/>
+		{#if internal}
+			<InternalRedirectTag redirect="/authors/{internal}" user="{internal}"/>
 		{/if}
 		{#if socials.length > 0}
 			<SocialMediaTag data={socials[0]}/>

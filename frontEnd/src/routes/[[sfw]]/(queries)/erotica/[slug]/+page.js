@@ -1,13 +1,13 @@
 
 import client from "$lib/sanityClient.js";
-import { characterData } from "$lib/queryPresets/characterData.js";
-import { authorQueries } from "$lib/queryPresets/authorQueries.js";
-import { genericRequests } from "$lib/queryPresets/genericQueries.js";
-import { navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+
+import { characterData }    from "$lib/queryPresets/characterData.js";
+import { authorQueries }    from "$lib/queryPresets/authorQueries.js";
+import { genericRequests }  from "$lib/queryPresets/genericQueries.js";
+
+export const prerender = false;
 
 export const load = async ({ params }) => {
-    navigationData.set({ logo: true, navigation: true, socials: true, search: false });
-
     return {
         erotica:
             await client.fetch(`
@@ -25,7 +25,8 @@ export const load = async ({ params }) => {
                             ${authorQueries.info},
                             ${authorQueries.icon},
                             ${authorQueries.socials}},
-                        'participation': participation->title},
+                        'participation': participation->title
+                    },
                     ${genericRequests.tags}
                 }[0]`
             ),

@@ -6,21 +6,22 @@ import path from 'path';
 const config = {
 	kit: {
 		adapter: adapter({
-			fallback: 'error.html' }),
+			fallback: 'App.html' }),
 		alias: {
 			$routes: 		path.resolve('./src/routes'),
 			$root: 			path.resolve('./src'),
 		},
 		prerender: {
-			crawl: true,
 			entries: [
 				'*','/','/afterdark/',
 				'/featured/','/afterdark/featured/',
 				'/commissions/','/afterdark/commissions/',
-				'/carrd/','/afterdark/carrd/',
 				'/artwork/','/afterdark/artwork/',
 				'/design/','/afterdark/design/',
-				'/afterdark/erotica/','/afterdark/erotica/[slug]'
+				'/afterdark/erotica/',
+				'/carrd/','/afterdark/carrd/',
+				'/personas','/afterdark/personas',
+				'/authors','/afterdark/authors',
 			],
 		},
 	},

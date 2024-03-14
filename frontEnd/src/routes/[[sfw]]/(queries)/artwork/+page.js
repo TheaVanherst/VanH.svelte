@@ -4,6 +4,8 @@ import { characterData } from "$lib/queryPresets/characterData.js";
 import { authorQueries } from "$lib/queryPresets/authorQueries.js";
 import { genericRequests } from "$lib/queryPresets/genericQueries.js";
 
+export const ssr = false;
+
 export const load = async () => {
     return {
         artworks:

@@ -12,7 +12,6 @@
 
     const redirectCheck = (e, n, p = undefined) => {
         let newRoute;
-
         if (p !== undefined) { // protects from false redirects
             $navigationControls.nsfw = p
             newRoute = (p ? `/${$directoryData.nsfwKeyword}` : '') + e;}
@@ -34,8 +33,8 @@
             $pageName = n;}}
 </script>
 
-<a 	href="{$navigationControls.nsfw ? `/${$directoryData.nsfwKeyword}` : ''}{url}" target=""
-   	on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
+<a href="{$navigationControls.nsfw ? `/${$directoryData.nsfwKeyword}`  : ''}{url}" target=""
+   	on:mouseup|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
 		<slot/>
 </a>
 

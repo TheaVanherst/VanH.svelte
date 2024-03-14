@@ -32,10 +32,6 @@
 	</Carousel>
 {/if}
 
-<a class="citation externalCitation hover" href="https://twitter.com/stellaempyrea" target="_blank">
-	Big thanks to <span>Stella</span> for writing the character descriptions.
-</a>
-
 <style lang="scss">
 	.citation {
 		margin: 	-4px 0 10px auto;}

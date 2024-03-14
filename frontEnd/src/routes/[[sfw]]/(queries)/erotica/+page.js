@@ -1,9 +1,11 @@
 
 import client from "$lib/sanityClient.js";
 
-import { characterData } from "$lib/queryPresets/characterData.js";
-import { authorQueries } from "$lib/queryPresets/authorQueries.js";
-import { genericRequests } from "$lib/queryPresets/genericQueries.js";
+import { characterData }    from "$lib/queryPresets/characterData.js";
+import { authorQueries }    from "$lib/queryPresets/authorQueries.js";
+import { genericRequests }  from "$lib/queryPresets/genericQueries.js";
+
+export const ssr = false;
 
 export const load = async () => {
     return {
@@ -24,9 +26,9 @@ export const load = async () => {
                             ${authorQueries.icon},
                             ${authorQueries.socials}},
                         'participation': participation->title
-                        },
+                    },
                     ${genericRequests.tags}
                 }`
-            ),
+            )
     };
 }

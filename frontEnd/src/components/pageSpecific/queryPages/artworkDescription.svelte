@@ -47,8 +47,7 @@
 		{#if data.authors.length > 0}
 			<p> With additional help from: </p>
 			{#each data.authors as author}
-				<SocialsFoldable socials={author.author.socialMedia}>
-<!--					internal={{user:author.author.handle, redirect:`design?query=:${author.author.handle}`}}-->
+				<SocialsFoldable socials={author.author.socialMedia} internal="{author.author.handle.toLowerCase()}">
 					<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','_')}">
 						<div class="characterCard" class:socialFold={author?.author?.socialMedia?.length > 0}>
 							<div class="mediaIcon rounded">

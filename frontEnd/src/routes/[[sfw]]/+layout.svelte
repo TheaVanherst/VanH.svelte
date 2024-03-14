@@ -1,6 +1,6 @@
 <script>
     import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
-    import { navigationData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationData, navigationControls, directoryData, navigationDirectories } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
     import { slide } 			from "svelte/transition";
@@ -43,7 +43,6 @@
             queryReset();}});
 
     // search functionality
-
     let value,
 		active = false;
 
@@ -63,8 +62,7 @@
     // constructs a search param from tag data.
     const queryBuilder = (e => {
         e = e.toLowerCase() // forces the query to be in lowercase by the new element also being lowercase.
-        hardSearch((value.includes(e) ? value.replaceAll(`${e}`, '') : value + ` ${e}`).split(" ").filter(n => n).join("-"))
-    });
+        hardSearch((value.includes(e) ? value.replaceAll(`${e}`, '') : value + ` ${e}`).split(" ").filter(n => n).join("-"))});
 
     $: $navigationData.search === false ? active = false : false;
 </script>
@@ -89,30 +87,39 @@
 
 	{#if active && data.tags && $navigationData.search}
 		<div class="tableGroup wideBorder" transition:slide>
-			<h4>Characters</h4>
-			<div class="characterInline">
-				{#each data.characters as character, c}
-					<div class="characterIcon">
-						<div on:mousedown={() => queryBuilder(":" + character.nickName)}>
-							<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
-								<SanityImage image={character.charIcon}/>
+
+			{#if navigationDirectories[$directoryData.rootInt[0]]?.pages?.[$directoryData.rootInt[1]].characters}
+				<h4>Characters</h4>
+				<div class="characterInline">
+					{#each data.characters as character, c}
+						<div class="characterIcon">
+							<div on:mousedown={() => queryBuilder(":" + character.nickName)}>
+								<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
+									<SanityImage image={character.charIcon}/>
+								</div>
 							</div>
 						</div>
-					</div>
-				{/each}
-			</div>
+					{/each}
+				</div>
+			{/if}
+
 			{#each data.tags as tagSet, i}
 				{#if !tagSet.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
-					<h4>{tagSet.category} Tags</h4>
-					<div class="tagGroup">
-						{#each tagSet.tags as tag, e}
-							<div on:mousedown={() => queryBuilder(tag.title)}>
-								<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/>
+					{#if navigationDirectories[$directoryData.rootInt[0]]?.pages?.[$directoryData.rootInt[1]]?.queryTypes?.includes(tagSet.category) || $directoryData.rootInt[1] === undefined}
+						<div transition:slide>
+							<h4>{tagSet.category} Tags</h4>
+							<div class="tagGroup">
+								{#each tagSet.tags as tag, e}
+									<div on:mousedown={() => queryBuilder(tag.title)}>
+										<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/>
+									</div>
+								{/each}
 							</div>
-						{/each}
-					</div>
-				{/if}
+						</div>
+					{/if}
+                {/if}
 			{/each}
+
 		</div>
 	{/if}
 

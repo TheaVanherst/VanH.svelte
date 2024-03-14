@@ -1,10 +1,11 @@
 <script>
-    import { directoryData, navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import PortableText 	from "$root/serializer/portableText.svelte";
 
+    import BackButton 		from "$root/components/generic/wrappers/buttons/backButton.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
 
@@ -19,119 +20,88 @@
     let story = data.erotica;
 </script>
 
-<div class="customWidth titlecardWrapper wideBorder">
-	<RedirectBuilder url="{$directoryData.root}">
-		<div class="titleCard">
-			<div id="back" class="mediaIcon">
-				<img src="/icons/leftIcon.webp">
-			</div>
-			<div class="bannerTitle">
-				<h1>{data.erotica.pieceName}</h1>
+<div class="customWidth">
+	<BackButton>
+		<h1>{data.erotica.pieceName}</h1>
+	</BackButton>
+
+	<div class="container wideBorder">
+		<div class="banner">
+			<div class="transform">
+				<SanityImage image={data.erotica.image}/>
 			</div>
 		</div>
-	</RedirectBuilder>
-</div>
 
-<div class="container customWidth wideBorder">
-	<div class="banner">
-		<div class="transform">
-			<SanityImage image={data.erotica.image}/>
-		</div>
-	</div>
+		<div class="descriptionWrapper">
+			<div class="description">
+				<p>{data.erotica.description}</p>
+				{#if data.erotica.tags?.length > 0}
+					<div class="postTags">
+						{#each data.erotica.tags as tag}
+							<InlineTag tag={tag}/>
+						{/each}
+					</div>
+				{/if}
 
-	<div class="descriptionWrapper">
-		<div class="description">
-			<p>{data.erotica.description}</p>
-			{#if data.erotica.tags?.length > 0}
-				<div class="postTags">
-					{#each data.erotica.tags as tag}
-						<InlineTag tag={tag}/>
+				<div class="characters">
+					<div class="mediaIcon artSearcher">
+						<img src="/icons/galleryIcon.webp">
+					</div>
+					{#each data.erotica.characters as character, c}
+						<RedirectBuilder url="/artwork?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
+							<div class="characterCard">
+								<div class="mediaIcon rounded">
+									<SanityImage image={character.charIcon}/>
+								</div>
+								<h4>{character.fullName}</h4>
+							</div>
+						</RedirectBuilder>
 					{/each}
 				</div>
-			{/if}
-
-			<div class="characters">
-				<div class="mediaIcon artSearcher">
-					<img src="/icons/galleryIcon.webp">
-				</div>
-				{#each data.erotica.characters as character, c}
-					<RedirectBuilder url="/artwork?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
-						<div class="characterCard">
-							<div class="mediaIcon rounded">
-								<SanityImage image={character.charIcon}/>
-							</div>
-							<h4>{character.fullName}</h4>
-						</div>
-					</RedirectBuilder>
-				{/each}
 			</div>
 		</div>
-	</div>
 
-	<div class="blockText">
-		<PortableText data={data.erotica.story}/>
-	</div>
+		<div class="blockText">
+			<PortableText data={data.erotica.story}/>
+		</div>
 
-	<div class="writers">
-		{#each data.erotica.authors as author, a}
-			<div class="authorCard">
-				<SocialsFoldable socials={author.author.socialMedia} padding={7} internal={{user:`@${author.author.handle.toLowerCase()}`,redirect:'artwork'}}>
-					<div class="card">
-						<div class="authorIcon">
-							<div class="profileIcon rounded">
-								<SanityImage image={author.author.userPortrait}/>
+		<div class="writers">
+			{#each data.erotica.authors as author, a}
+				<div class="authorCard">
+					<SocialsFoldable socials={author.author.socialMedia} padding={7} internal="{author.author.handle.toLowerCase()}">
+						<div class="card">
+							<div class="authorIcon">
+								<div class="profileIcon rounded">
+									<SanityImage image={author.author.userPortrait}/>
+								</div>
+							</div>
+							<div class="handles">
+								<h4>{author.author.fullName}</h4>
+								<p>@{author.author.handle} - {author.participation}</p>
 							</div>
 						</div>
-						<div class="handles">
-							<h4>{author.author.fullName}</h4>
-							<p>@{author.author.handle} - {author.participation}</p>
-						</div>
-					</div>
-				</SocialsFoldable>
-			</div>
-		{/each}
+					</SocialsFoldable>
+				</div>
+			{/each}
+		</div>
 	</div>
 </div>
 
 <style lang="scss">
 	.customWidth {
-		background: 	var(--TransBlack);
-		max-width: 		650px;
-		margin: 		0 auto 15px auto;}
+		gap: 		15px;
+		display: 	grid;
+		max-width: 	650px;
+		margin: 	0 auto 15px auto;
+
+		> * {
+			background: 	var(--TransBlack);}}
 
 	.container {
 		overflow: 		hidden;
 		transition: 	border .3s ease;
 		.transform {
 			transition: transform .3s ease;}}
-
-	.titlecardWrapper {
-		transition: 	background .3s ease, border .3s ease;
-		border-bottom: 	1px solid var(--accent7);
-
-		.titleCard {
-			display: flex;
-			padding: 3px 0;
-			#back {
-				padding: 	10px;
-				margin: 	0 15px 0 5px;
-				img {
-					transition: filter .3s ease;
-					filter: 	invert(1);}}
-			.bannerTitle {
-				margin: 		auto 0;
-				padding-bottom: 3px;
-				h1 {
-					text-transform: capitalize;}}}
-
-		&:hover {
-			background: 	var(--accent3);
-			border-bottom: 	1px solid var(--accent3);
-			#back {
-				img {	filter: invert(0);}}
-			.bannerTitle {
-				h1 {	color: 	black;}}}}
-
 
 	.banner {
 		position: 	relative;

@@ -14,7 +14,7 @@ const characterData = {
         fullName`,
     lore: `
         job,
-        lore,`,
+        'lore': biography,`,
     context: `
         'sex': sex->emoji,
         species,

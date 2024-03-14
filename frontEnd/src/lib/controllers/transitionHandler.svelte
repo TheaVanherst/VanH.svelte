@@ -10,7 +10,7 @@
 
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
-    afterNavigate(async (n) => { // This compensates for page refreshes / initial page loading
+    afterNavigate(async (n) => { // compensates for page refreshes / initial page loading
         if ( n.from === null && n.willUnload === false ) {  // this fixes an issue where the url doesn't update from the initial layout load.
             $navigationControls.transitioning = false;
             let to = (n.to.url.pathname).slice(0, -1);
@@ -37,7 +37,7 @@
 </script>
 
 <div class="parentElement">
-	{#if !$navigationControls.transitioning && !$navigating}
+	{#if !$navigationControls.transitioning}
 		<div class="transitionWrapper"
 			 in:transition={{
         	easing: 	cubicOut,
@@ -47,6 +47,7 @@
             y: $navigationControls.direction[1] * transitionSpeed[1]}}
 			 out:transition={{
            	easing: 	cubicOut,
+           	delay: 		65,
             duration:   225,
             x: -$navigationControls.direction[0] * transitionSpeed[0],
             y: -$navigationControls.direction[1] * transitionSpeed[1]}}>
