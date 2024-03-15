@@ -53,7 +53,19 @@
 	{/if}
 </div>
 
+<div class="hidden">
+	{#if !!data.authorData}
+		{#each data.authorData as author}
+			<a href="/authors/{author.slug}"></a>
+		{/each}
+	{/if}
+</div>
+
 <style lang="scss">
+	.hidden {
+		opacity: 0;
+	}
+
 	.wrapper {
 		max-width: 	450px;
 		margin: 	0 auto;

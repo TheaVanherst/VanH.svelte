@@ -8,13 +8,13 @@
 </script>
 
 <div class="wrapper">
-	<BackButton>
-		<h1>
-			{data.authorData.fullName}
-		</h1>
-	</BackButton>
+	{#if data?.authorData}
+		<BackButton>
+			<h1>
+				{data.authorData.fullName}
+			</h1>
+		</BackButton>
 
-	{#if !!data.authorData}
 		<div class="authorCard" transition:fade>
 			<div class="profileBanner">
 				<div class="banner">
@@ -33,7 +33,7 @@
 
 			<div class="title">
 				<h3 class="userName">{data.authorData.fullName}</h3>
-				<p class="handle"><span>@</span>{data.authorData.handle}, {data.authorData.internalRole[0].title}</p>
+				<p class="handle"><span>@</span>{data.authorData.handle}{data.authorData.internalRole[0] ? "," + data.authorData.internalRole[0].title : ""}</p>
 			</div>
 
 			<div class="descriptionWrapper">

@@ -75,7 +75,7 @@
 	{/if}
 
 	{#if $navigationData.search}
-		<div class="searchBarWrapper" transition:slide>
+		<div class="searchBarWrapper" in:slide={{delay: 125}} out:slide={{delay: 175}}>
 			<div class="searchBar">
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>
 					<input type="search" class="input" placeholder="Search..." bind:value={value}/>

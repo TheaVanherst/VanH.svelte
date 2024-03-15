@@ -47,7 +47,6 @@
             y: $navigationControls.direction[1] * transitionSpeed[1]}}
 			 out:transition={{
            	easing: 	cubicOut,
-           	delay: 		65,
             duration:   225,
             x: -$navigationControls.direction[0] * transitionSpeed[0],
             y: -$navigationControls.direction[1] * transitionSpeed[1]}}>

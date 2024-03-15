@@ -6,8 +6,9 @@ import { authorQueries }    from "$lib/queryPresets/authorQueries.js";
 import { genericRequests }  from "$lib/queryPresets/genericQueries.js";
 
 export const prerender = false;
+export const ssr = false;
 
-export const load = async ({ params }) => {
+export const load = async ({ params}) => {
     return {
         erotica:
             await client.fetch(`

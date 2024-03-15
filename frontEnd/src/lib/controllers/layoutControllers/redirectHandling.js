@@ -39,20 +39,21 @@ export { directoryData, navigationControls, deviceData, navigationData };
 // ---------------------
 
 const
-    directoryProcessing = async (p, c) => {
-        p = p.slice(-1) === "/" ? p.slice(0, -1) : p;
-        c = c.slice(-1) === "/" ? c.slice(0, -1) : c;
+    directoryProcessing = async (previousRaw, currentRaw) => {
         const
-            previousPage = p.split("/"),
-            currentPage = c.split("/"),
+            slicer = i => i.slice(-1) === "/" ? i.slice(0, -1) : i,
+            indexCheck = i => navigationDirectories.findIndex(e => e.pages ? e.pages.map(a => a.path).includes("/" + i) : e.path === "/" + i);
+
+        previousRaw = slicer(previousRaw);
+        currentRaw = slicer(currentRaw);
+
+        const
+            previousPage = previousRaw.split("/"),
+            currentPage = currentRaw.split("/"),
             nsfwCheck = get(navigationControls).nsfw ? 2 : 1;
 
-        const indexCheck = (p) => {
-            return navigationDirectories.findIndex(e => e.pages ? e.pages.map(i => i.path).includes("/" + p) : e.path === "/" + p);}
-
         const
-            queryStripped = (c + "/").split("?"),
-                //removes queryPresets from the search
+            queryStripped = (currentRaw + "/").split("?"), //removes queryPresets from the search
             prevPageId = indexCheck(currentPage[nsfwCheck]),
             currPageId = indexCheck(previousPage[nsfwCheck]);
 
@@ -63,21 +64,21 @@ const
         let directionOffset = [0,0];
 
         if (currentPage.length ^ previousPage.length && prevPageId ^ currPageId) {
-            directionOffset = [0,0];
                 // initial page load
         } else if (currentPage.length === previousPage.length && prevPageId === currPageId) {
-            directionOffset = [0,0];
                 // for pages transitioning in both directions
         } else {
             directionOffset[1] = currentPage.length ^ previousPage.length ? currentPage.length > previousPage.length ? 1 : -1 : 0;
             directionOffset[0] = directionOffset[1] === 0 ? prevPageId > currPageId ? 1 : -1 : 0;}
                 // literally everything else
 
-        navigationControls.update(e => ({...e,
+        navigationControls.update(e => ({ ...e,
             direction: directionOffset}));
-        directoryData.update(e => ({...e,
-            raw: c + "/", root: "/" + currentPage[nsfwCheck],
-            query: queryStripped[1], stripped: strippedUrl, rootInt: [prevPageId, pageIndex]}));
+        directoryData.update(e => ({ ...e,
+            raw: currentRaw + "/", root: "/" + currentPage[nsfwCheck],
+            query: queryStripped[1],
+            stripped: strippedUrl,
+            rootInt: [prevPageId, pageIndex]}));
     };
 
 export { directoryProcessing };
