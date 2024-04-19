@@ -279,18 +279,31 @@ export default defineType({
               validation: Rule => Rule.required()
             }),
             defineField({
-              name: 'additionalPriceTag', title: 'Can this art type cost more?',
-              type: 'boolean',
+              name: 'purchaseType', title: 'Additional cost type',
+              type: 'object',
+              fields: [
+                {
+                  name: 'costMore', title: 'Additional costs?',
+                  description: 'Can this art type cost more?',
+                  type: 'boolean', initialValue: false,
+                  hidden: ({ parent }) => parent?.costPercentage === true
+                },{
+                  name: 'costPercentage', title: 'Percentage',
+                  description: 'Is this additional price tag a percentage?',
+                  type: 'boolean', initialValue: false,
+                  hidden: ({ parent }) => parent?.costMore === true
+                }
+              ],
             }),
           ],
           preview: {
             select: {
               name: 'additionalPurchases.purchaseName',
+              type: 'purchaseType.costPercentage',
               price: 'additionalPrice'
             },
-            prepare: ({ name, price }) => {
-              return {title: name + ": £" + price,}
-            }
+            prepare: ({ name, price, type }) => {
+              return {title: name + ": " + (type === true ? `${price}%` : `£${price}`)}}
           }
         }),
       ]

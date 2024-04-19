@@ -24,9 +24,9 @@
 						<ImageTag>
 							<p>{artwork.gallery.renderType}, {artwork.gallery.styleType}</p>
 						</ImageTag>
-<!--						<RedirectBuilder url="/artwork/?query={artwork.pieceName.toLowerCase().replaceAll(' ','_')}">-->
+						<RedirectBuilder url="/artwork/?query={artwork.pieceName.toLowerCase().replaceAll(' ','_')}">
 							<h4 class="artworkTitle regularBorder">{artwork.pieceName}</h4>
-<!--						</RedirectBuilder>-->
+						</RedirectBuilder>
 					</div>
 				</swiper-slide>
 			{/if}
@@ -82,7 +82,7 @@
 			{#each data.commissionData.additionalPurchases as type}
 				<div class="type">
 					<h5>
-						<span>{type.additionalItem}:</span> £{type.additionalPrice}.00{type.additionalPriceTag ? '+' : ''}</h5>
+						<span>{type.additionalItem}:</span> +{type?.purchaseType?.costPercentage ? `${type.additionalPrice}%` : `£${type.additionalPrice}.00`}{type.additionalPriceTag ? '+' : ''}</h5>
 					<p>
 						{type.additionalDescription}
 					</p>
@@ -120,9 +120,9 @@
 		background: var(--TransWhite);
 		color: 		black;
 		transition: .3s ease background, .3s ease color;
-		//&:hover {
-		//	color: white;
-		//	background: var(--accent7);}
+		&:hover {
+			color: white;
+			background: var(--accent7);}
 	}
 
 	.imageCard {

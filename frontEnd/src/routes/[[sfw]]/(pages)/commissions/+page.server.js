@@ -24,8 +24,10 @@ export async function load () {
                             'renderType': renderType->renderName}},
                     additionalPurchases[] {
                         additionalPrice,
+                        purchaseType,
                         'additionalItem': additionalPurchases->purchaseName,
-                        'additionalDescription': additionalPurchases->additionalDescription}
+                        'additionalDescription': additionalPurchases->additionalDescription,
+                    }
                 }`)
     }
 }

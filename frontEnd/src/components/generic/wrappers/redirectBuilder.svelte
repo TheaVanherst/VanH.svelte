@@ -34,7 +34,7 @@
 </script>
 
 <a href="{$navigationControls.nsfw ? `/${$directoryData.nsfwKeyword}`  : ''}{url}" target=""
-   	on:mouseup|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
+   	on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}> <!-- NEEDS to be a click, otherwise it doesn't register queries. -->
 		<slot/>
 </a>
 

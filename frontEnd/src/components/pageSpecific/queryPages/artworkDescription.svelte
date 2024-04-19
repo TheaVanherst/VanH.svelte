@@ -26,10 +26,9 @@
             if (!uniqueCheck.includes(e.owner.handle)){
                 uniqueCheck.push(e.owner.handle);
                 returnArray.push(e.owner);}});
-        return returnArray;
-    }
+        return returnArray;}
 
-	if (data?.commissionData?.characters.length > 1) {
+	if (data?.commissionData?.characters) {
         characterOwners = uniqueOwnerCheck(data?.commissionData?.characters);}
 </script>
 
