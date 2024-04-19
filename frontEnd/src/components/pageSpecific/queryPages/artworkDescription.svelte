@@ -16,6 +16,21 @@
 		hover = true,
 		active  = true,
 		absolute = false;
+
+	let characterOwners;
+
+    const uniqueOwnerCheck = (i) => {
+        let uniqueCheck = [], returnArray = [];
+
+        i.forEach(e => {
+            if (!uniqueCheck.includes(e.owner.handle)){
+                uniqueCheck.push(e.owner.handle);
+                returnArray.push(e.owner);}});
+        return returnArray;
+    }
+
+	if (data?.commissionData?.characters.length > 1) {
+        characterOwners = uniqueOwnerCheck(data?.commissionData?.characters);}
 </script>
 
 <ImageFloatCard {hover} {active} {absolute}>
@@ -28,15 +43,15 @@
 		{#if !!data.commissionData}
 			<div class="commissionWrapper">
 				<p class="altTitle">{data.commissionData.commissionType} for:</p>
-				{#each data.commissionData.characters as character}
+				{#each characterOwners as owner}
 					<div class="commissioner">
-						<SocialsFoldable socials={character.owner.socialMedia}>
-							<RedirectBuilder url="{$directoryData.stripped}?query=@{character.owner.handle.toLowerCase().replaceAll(' ','_')}">
+						<SocialsFoldable socials={owner.socialMedia}>
+							<RedirectBuilder url="{$directoryData.stripped}?query=@{owner.handle.toLowerCase().replaceAll(' ','_')}">
 								<div class="characterCard">
 									<div class="mediaIcon rounded">
-										<SanityImage image={character.owner.userPortrait}/>
+										<SanityImage image={owner.userPortrait}/>
 									</div>
-									<h4>{character.owner.handle}</h4>
+									<h4>{owner.handle}</h4>
 								</div>
 							</RedirectBuilder>
 						</SocialsFoldable>

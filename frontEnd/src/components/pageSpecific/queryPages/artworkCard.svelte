@@ -1,5 +1,5 @@
 <script>
-    import { clickOutside } from "$lib/controllers/transitionPresets.js";
+    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
     import { fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
 
     import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";

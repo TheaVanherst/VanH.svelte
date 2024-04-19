@@ -3,7 +3,6 @@
 
     import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";
-    import SectionListCard 	from "$root/components/generic/containers/sectionListCard.svelte";
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
@@ -25,9 +24,9 @@
 						<ImageTag>
 							<p>{artwork.gallery.renderType}, {artwork.gallery.styleType}</p>
 						</ImageTag>
-						<RedirectBuilder url="/artwork/?query={artwork.pieceName.toLowerCase().replaceAll(' ','_')}">
+<!--						<RedirectBuilder url="/artwork/?query={artwork.pieceName.toLowerCase().replaceAll(' ','_')}">-->
 							<h4 class="artworkTitle regularBorder">{artwork.pieceName}</h4>
-						</RedirectBuilder>
+<!--						</RedirectBuilder>-->
 					</div>
 				</swiper-slide>
 			{/if}
@@ -35,41 +34,7 @@
 	</Carousel>
 </SidebarTexts>
 
-<SidebarTexts titlecard="How To Commission" icon="documentIcon.webp">
-	{#if $navigationControls.nsfw}
-		<div class="table"
-			 class:full={$deviceData.screenType < 2}>
-			<div class="column">
-				<SectionListCard image={data.commissionData.dosList.banner}>
-					<div slot="title">
-						<h5>{data.commissionData.dosList.title}</h5>
-						<p>{data.commissionData.dosList.desc}</p>
-					</div>
-					<ul>
-						{#each data.commissionData.dosList.list as bonus}
-							<li>{bonus}</li>
-						{/each}
-					</ul>
-				</SectionListCard>
-			</div>
-			<div class="column">
-				<SectionListCard image={data.commissionData.dontsList.banner}>
-					<div slot="title">
-						<h5>{data.commissionData.dontsList.title}</h5>
-						<p>{data.commissionData.dontsList.desc}</p>
-					</div>
-					<ul>
-						{#each data.commissionData.dontsList.list as bonus}
-							<li>{bonus}</li>
-						{/each}
-					</ul>
-				</SectionListCard>
-			</div>
-		</div>
-		<p class="citation externalCitation">
-			{data.commissionData.exclusionText}
-		</p>
-	{/if}
+<SidebarTexts titlecard="How To" icon="documentIcon.webp">
 	<Container>
 		<div class="chunk">
 			<PortableText data={data.commissionData.commissionInstructions}/>
@@ -79,44 +44,45 @@
 
 <SidebarTexts titlecard="Prices" icon="billIcon.webp">
 	<Container>
-		<div class="colourWrapper">
-			{#each data.commissionData.prices as commissionType}
-				<div class="commType">
-					{#if $navigationControls.nsfw}
-						<div class="previewBanner regularBorder imageWrapper">
-							<SanityImage image={commissionType.previewImage}/>
-							<ImageTag>
-								<p>{commissionType.styleName}</p>
-							</ImageTag>
-						</div>
-					{/if}
-					<div class="commissionDetails">
-						<p>
-							{commissionType.styleDescription}
-						</p>
-						<div class="prices">
-							{#each commissionType.styleTypes as type}
-								<h5>
-									<span>{type.renderType}:</span> £{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''}
-								</h5>
-							{/each}
-							{#each commissionType.additionalPurchases as type}
-								<h5>
-									<span>{type.renderType}:</span> (+£{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''})
-								</h5>
-							{/each}
-						</div>
+		{#each data.commissionData.prices as commissionType}
+			<div class="commType">
+				<h2>{commissionType.styleName}</h2>
+				{#if $navigationControls.nsfw}
+					<div class="previewBanner imageWrapper">
+						{#each commissionType.previewImages as preview, i}
+							{#if i < $deviceData.screenType}
+								<div class="regularBorder imageWrapper">
+									<SanityImage image={preview}/>
+								</div>
+							{/if}
+						{/each}
+					</div>
+				{/if}
+				<div class="commissionDetails">
+					<p>
+						{commissionType.styleDescription}
+					</p>
+					<div class="prices">
+						{#each commissionType.styleTypes as type}
+							<h5>
+								<span>{type.renderType}:</span> £{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''}
+							</h5>
+						{/each}
+						{#each commissionType.additionalPurchases as type}
+							<h5>
+								<span>{type.renderType}:</span> (+£{type.renderTypePrice}.00{type.additionalPriceTag ? '+' : ''})
+							</h5>
+						{/each}
 					</div>
 				</div>
-			{/each}
-		</div>
+			</div>
+		{/each}
 		<h3>Additional purchases</h3>
 		<div class="additionalPurchases">
 			{#each data.commissionData.additionalPurchases as type}
 				<div class="type">
 					<h5>
-						<span>{type.additionalItem}:</span> £{type.additionalPrice}.00{type.additionalPriceTag ? '+' : ''}
-					</h5>
+						<span>{type.additionalItem}:</span> £{type.additionalPrice}.00{type.additionalPriceTag ? '+' : ''}</h5>
 					<p>
 						{type.additionalDescription}
 					</p>
@@ -154,9 +120,10 @@
 		background: var(--TransWhite);
 		color: 		black;
 		transition: .3s ease background, .3s ease color;
-		&:hover {
-			color: white;
-			background: var(--accent7);}}
+		//&:hover {
+		//	color: white;
+		//	background: var(--accent7);}
+	}
 
 	.imageCard {
 		height: 	500px;
@@ -167,40 +134,19 @@
 			&:first-letter {
 				text-transform: capitalize;}}}
 
-	.citation {
-		margin: 0 0 15px auto;}
-
-	.table {
-		width:	 	100%;
-		display: 	inline-flex;
-		gap: 	 	10px;
-		margin: 	0 0 15px 0;
-
-		.column {
-			width: 	50%;
-			display: flex;}
-
-		&.full {
-			display: block;
-			.column {
-				margin: 0 0 15px 0;
-				width: 	100%;
-				&:last-of-type {
-					margin: 0 0 0 0;}}}}
-
-	.bottom {	margin: 	0 0 27px 10px;}
-
 	p { &:last-child {
 		margin: 0;}}
-	h3 {margin-bottom: 15px;}
-
-	.previewBanner {
-		margin: 	0 0 15px 0;
-		height: 	150px;}
+	h3, h2 {margin-bottom: 15px;}
 
 	.commType {
 		padding: 	0 0 8px 15px;
 		margin: 	10px 0 10px 0;
+
+		.previewBanner {
+			margin: 	0 0 15px 0;
+			gap: 		5px;
+			height: 	400px;
+		}
 
 		.commissionDetails {
 			p {padding: 	0 0 10px 0;}}

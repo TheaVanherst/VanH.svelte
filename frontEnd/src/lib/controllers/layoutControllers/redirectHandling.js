@@ -5,23 +5,23 @@ import { get, writable } from "svelte/store";
 
 const redirector = " 𝚊𝚝";
 const navigationDirectories = [
-        {   title: "Featured",      imagePath: "houseIcon",         path: "/featured",    nsfw:false,   pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
+        {   title: "Featured",      imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
         {   title: "Artwork",       imagePath: "artworksIcon",      pages: [
-            {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",     nsfw:false,   pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
+            {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",       nsfw:false,     pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
                     characters: true, queryTypes: ["explicit","genre","generic","nsfw"]},
-            {   title: "Design",    imagePath: "colourWheel",       path: "/design",      nsfw:false,   pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
+            {   title: "Design",    imagePath: "colourWheel",       path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
                     characters: true, queryTypes: ["design","genre","generic"]}
         ]},
-        {   title: "Alternate",     imagePath: "commissionedIcon",  pages: [
-            {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",     nsfw:true,    pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector,
+        {   title: "Universe",     imagePath: "commissionedIcon",  pages: [
+            {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",       nsfw:true,      pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector,
                     characters: true, queryTypes: ["explicit","nsfw"]},
             // {   title: "Lore",      imagePath: "charactersIcon",    path: "/personas",    nsfw:false,   pagePreview: "𝗖𝗵𝗮𝗿𝗮𝗰𝘁𝗲𝗿𝘀" + redirector}
         ]},
-        {   title: "Profile",      imagePath: "profileIcon",   pages: [
-            {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",     nsfw:false,   pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
-            {   title: "Slots",     imagePath: "tagIcon",           path: "/commissions", nsfw:false,   pagePreview: "𝕊𝕝𝕠𝕥𝕤" + redirector},
-            {   title: "Carrd",     imagePath: "shareIcon",         path: "/carrd",       nsfw:false,   pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector},
-            // {   title: "Personas",      imagePath: "charactersIcon",    path: "/personas",    nsfw:false,   pagePreview: "𝗖𝗵𝗮𝗿𝗮𝗰𝘁𝗲𝗿𝘀" + redirector}
+        {   title: "Portfolio",      imagePath: "profileIcon",   pages: [
+            // {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",     nsfw:false,    pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
+            {   title: "Slots",     imagePath: "tagIcon",           path: "/commissions",   nsfw:false,     pagePreview: "𝕊𝕝𝕠𝕥𝕤" + redirector},
+            {   title: "Carrd",     imagePath: "shareIcon",         path: "/carrd",         nsfw:false,     pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector},
+            // {   title: "Members",   imagePath: "kofiLogo",          path: "/members",       nsfw:false,     pagePreview: "𝓜𝓮𝓶𝓫𝓮𝓻𝓼" + redirector}
         ]}];
 
 export { navigationDirectories };

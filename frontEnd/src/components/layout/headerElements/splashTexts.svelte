@@ -5,9 +5,12 @@
     import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
     import { splashTextData } from "$lib/controllers/layoutControllers/pageSettings.js";
 
-	let text = "undefined?",
-		numberGen = 0,
-        rainbow = false;
+    export let hover = false;
+    export let timer;
+
+	let splashText = 	"undefined?",
+		numberGen = 	0,
+        rainbowEffect = false;
 
     const
 		picker = () => {
@@ -16,11 +19,9 @@
 				picker() : generator();},
 
 		generator = () => {
-            rainbow = false;
-
-			$splashTextData = splash[numberGen];
-            text = splash[numberGen][1];
-    	}
+            rainbowEffect = 	false;
+			$splashTextData = 	splash[numberGen];
+            splashText = 		splash[numberGen][1];}
 
     picker();
 
@@ -30,16 +31,18 @@
 </script>
 
 <div class="wrapper"
-	 on:mouseup={() => picker()}
-	 on:mousedown={() => rainbow = true}
+	 on:mouseover={	() => {hover = true; clearInterval(timer);}}
+	 on:mouseleave={() => {timer = setInterval(function () {hover = false;}, 1000)}}
+	 on:mouseup={	() => picker()}
+	 on:mousedown={	() => rainbowEffect = true}
 	 in:fly={{duration: 500, delay: 1050 }}>
 	<div id="splash" style="top: {y}px; right: -{x}px">
 		<div class="transform">
-			{#key text}
+			{#key splashText}
 				<p 	in:scale={{  duration: 300, delay: 450 }}
 				   	out:scale={{ duration: 300 }}
-					class:animation={rainbow}>
-					{text}
+					class:animation={rainbowEffect}>
+					{splashText}
 				</p>
 			{/key}
 		</div>

@@ -1,14 +1,15 @@
 
 const submitters = {
-    thea: {     user: "Thea Vanherst" },
-    stella: {   user: "Stella" },
+    thea: {     user: "@TheaVanherst" },
+    stella: {   user: "@StellaEmpyrea" },
     alex: {     user: "Alex_Miles" },
-    xal: {      user: "Xaleya" },
+    xal: {      user: "@Crusaya" },
     jolly: {    user: "Mr Jolly" },
     rust: {     user: "Chidi" },
     atlas: {    user: "Atlas" },
     pizza: {    user: "PizzaEgger"},
-    lunar: {    user: "Lunar57"}};
+    riggi: {    user: "@GalaxyTigress"},
+    lunar: {    user: "@RealLunar57"}};
 
 const splash = [
     [false, "Now with even more characters!"],
@@ -237,6 +238,7 @@ const splash = [
     [true,  "Rule 34, if it exist there is porn of it.", submitters.lunar],
     [false, "Don't trust Blender's 'edit' mode's symmetry.", submitters.lunar],
     [false, "Moon Jumpscare!"],
+    [false, "Remember; No micro.", submitters.riggi]
 ]
 
 export { splash, submitters }

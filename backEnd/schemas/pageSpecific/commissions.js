@@ -134,6 +134,19 @@ export default defineType({
               type: 'image',
             }),
             defineField({
+              name: 'previewImages', title: 'Commission type previews',
+              type: 'array',
+              of: [
+                defineField({
+                  name: 'imagePreview', title: 'Preview',
+                  type: 'reference',
+                  to: [{type: 'artworks'}],
+                  validation: Rule => Rule.required()
+                }),
+              ],
+              validation: rule => rule.max(3).min(3).required()
+            }),
+            defineField({
               name: 'styleTypes', title: 'Style type',
               type: 'array',
               of: [

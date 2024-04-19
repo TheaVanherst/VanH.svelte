@@ -1,8 +1,5 @@
 <script>
     import { deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
-    import { splashTextData } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { submitters } from "$lib/localDatabases/splashTextDatabase.js";
-
     import { page } from "$app/stores";
 </script>
 
@@ -15,11 +12,7 @@
 		{/if}
 	</div>
 	<div class="right">
-		<p id="splash">
-			Splash text by <span>{$splashTextData?.[2]?.user ?? submitters?.thea?.user ?? "[NOT FOUND]"}</span>
-		</p><p>
-			Website developed and created by Thea Vanherst @ <a href="https://github.com/TheaVanherst/VanH.svelte/">vanh.art</a>
-		</p>
+		<p> Website developed and created by Thea Vanherst @ <a href="https://github.com/TheaVanherst/VanH.svelte/">vanh.art</a></p>
 	</div>
 </div>
 
@@ -68,8 +61,4 @@
 			p {		text-align: right;
 					color: var(--accent9);}
 			span {	color: var(--accent10);}}}
-
-	#splash {
-		span:hover {
-			color: var(--accent6);}}
 </style>

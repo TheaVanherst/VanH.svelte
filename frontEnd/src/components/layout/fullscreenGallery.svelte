@@ -7,7 +7,7 @@
     import SanityImage from "$root/serializer/sanityImage.svelte";
     import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
-    import { clickOutside } from "$lib/controllers/transitionPresets.js";
+    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
 
 	let position = 0,
 		maxPosition = 0;

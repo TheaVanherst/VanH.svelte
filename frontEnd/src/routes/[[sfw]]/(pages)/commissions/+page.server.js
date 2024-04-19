@@ -17,6 +17,7 @@ export async function load () {
                         'commissionType': artType->typeName},
                     prices[] {
                         ...,
+                        'previewImages': previewImages[]->gallery.images[0],
                         'styleName': styleType->styleName,
                         styleTypes[] {
                             renderTypePrice,

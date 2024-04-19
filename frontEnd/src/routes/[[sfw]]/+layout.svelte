@@ -2,7 +2,7 @@
     import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
     import { navigationData, navigationControls, directoryData, navigationDirectories } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
+    import TransitionHandler 	from "$lib/controllers/layoutControllers/transitionHandler.svelte";
     import { slide } 			from "svelte/transition";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";

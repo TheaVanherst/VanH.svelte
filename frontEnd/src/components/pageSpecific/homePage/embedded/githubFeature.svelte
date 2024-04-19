@@ -24,7 +24,7 @@
 		flex-wrap: 	wrap;
 		gap: 	 	10px;
 
-		.cell {		width: calc(50% - 5px);}
+		.cell {		width: calc(50% - 6px);}
 		&.full {
 			.cell {	width: 100%;}}}
 </style>

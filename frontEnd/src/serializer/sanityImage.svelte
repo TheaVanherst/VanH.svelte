@@ -7,7 +7,7 @@
     import client from "$lib/sanityClient.js";
     export let image = null;
 
-    let loadCheck = undefined;
+    let loadCheck;
     let loaded = 	false;
 
     onMount(() => {

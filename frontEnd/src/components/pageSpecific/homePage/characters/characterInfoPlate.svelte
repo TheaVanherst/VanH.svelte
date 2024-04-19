@@ -12,7 +12,8 @@
 </script>
 
 <div class="plate regularBorder redirect">
-	<RedirectBuilder url="/artwork/?query=:{data.slug.replaceAll(' ','-')}">
+<!--	<RedirectBuilder url="/artwork/?query=:{data.slug.replaceAll(' ','-')}">-->
+<!--	this is broke, and I have NO clue why.-->
 		<div class="table">
 			<div class="cell">
 				<div class="characterIcon">
@@ -24,7 +25,7 @@
 				<p>{data.job}</p>
 			</div>
 		</div>
-	</RedirectBuilder>
+<!--	</RedirectBuilder>-->
 </div>
 
 <div class="plate regularBorder">

@@ -85,10 +85,7 @@ export default defineType({
         }),
       ]
     }),
-    defineField({
-      name: 'personalMessage', title: 'Personalised Donation Message',
-      type: 'text',
-    }),
+
   ],
   preview: {
     prepare: () => {
