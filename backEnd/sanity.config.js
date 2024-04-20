@@ -6,6 +6,7 @@ import { visionTool } from '@sanity/vision'
 
 import { schemaTypes } from './schemas'
 import { structure }    from './structure'
+import { table } from '@sanity/table';
 
 import {enhancedGroups} from './lib/dynamicFieldRemap'
 
@@ -17,9 +18,8 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    deskTool({
-      structure
-    }),
+    deskTool({structure}),
+    table(),
     visionTool()
   ],
 

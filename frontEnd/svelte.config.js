@@ -23,7 +23,7 @@ const config = {
 				'/carrd/','/afterdark/carrd/',
 				'/personas','/afterdark/personas',
 				'/authors','/afterdark/authors',
-				'/members','/afterdark/members',
+				'/members','/afterdark/members'
 			],
 		},
 	},

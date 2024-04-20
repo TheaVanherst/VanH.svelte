@@ -238,7 +238,14 @@ const splash = [
     [true,  "Rule 34, if it exist there is porn of it.", submitters.lunar],
     [false, "Don't trust Blender's 'edit' mode's symmetry.", submitters.lunar],
     [false, "Moon Jumpscare!"],
-    [false, "Remember; No micro.", submitters.riggi]
+    [true,  "gott ist tot", submitters.stella],
+    [false,  "god is dead, and I'M the victor!"],
+    [false,  "get owned theologists", submitters.stella],
+    [false,  "It all returns to nothing", submitters.stella],
+    [false,  "we are the hope of the godless 🎵"],
+    [false,  "get me thirty minutes... in a room alone with god~ 🎵"],
+    [false,  "a glint of white to hide the knife 🎵"],
+    [false,  "let him know who took his throne 🎵"],
 ]
 
 export { splash, submitters }

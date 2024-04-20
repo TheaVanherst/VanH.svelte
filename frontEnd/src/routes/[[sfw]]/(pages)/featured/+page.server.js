@@ -44,7 +44,9 @@ export async function load () {
                     'slug': slug.current}`),
         donationData:
             await client.fetch(`
-                *[_type == 'donationData'][0] {...}`),
+                *[_type == 'donationData'][0] {
+                    tiers
+                }`),
         qAndA:
             await client.fetch(`
                 *[_type == 'questionAnswer'][0] {

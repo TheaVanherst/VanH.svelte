@@ -2,7 +2,7 @@
 /* Root variables formatting */
 :root {
 	--accent10: #ffffff;
-	--accent9:  #48575a;
+	--accent9:  #333639FF;
 	--accent8:  #0c0021;
 	--accent7:  #8c00ff;
 	--accent6:  #ff0582;
@@ -50,7 +50,7 @@ body {
 	position:   relative;
 
 	background:		#000;
-	font-family:    "Georgia", serif;
+	font-family:    "Helvetica", Sans-serif;
 	color:	 		var(--accent10);
 
 	overflow-x:         hidden;

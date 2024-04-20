@@ -52,7 +52,12 @@ export default defineType({
             }),
             defineField({
               name: 'tierRedirect',
-              title: 'Tier Redirect URL',
+              title: 'Ko-fi Redirect URL',
+              type: 'string',
+            }),
+            defineField({
+              name: 'altRedirect',
+              title: 'Patreon Redirect URL',
               type: 'string',
             }),
             defineField({
@@ -85,7 +90,14 @@ export default defineType({
         }),
       ]
     }),
-
+    defineField({
+      name: 'requestText', title: 'Personal message',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'donationTierData', title: 'Donation Tier Benefits',
+      type: 'table',
+    })
   ],
   preview: {
     prepare: () => {

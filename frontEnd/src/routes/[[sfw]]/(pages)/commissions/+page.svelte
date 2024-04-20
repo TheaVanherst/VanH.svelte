@@ -20,7 +20,9 @@
 			{#if $navigationControls.localNsfwCheck(artwork.nsfw)}
 				<swiper-slide>
 					<div class="imageCard wideBorder">
-						<SanityImage image="{artwork.gallery.images[0]}"/>
+						{#if !!artwork.gallery.images[0]}
+							<SanityImage image="{artwork.gallery.images[0]}"/>
+						{/if}
 						<ImageTag>
 							<p>{artwork.gallery.renderType}, {artwork.gallery.styleType}</p>
 						</ImageTag>
@@ -49,8 +51,8 @@
 				<h2>{commissionType.styleName}</h2>
 				{#if $navigationControls.nsfw}
 					<div class="previewBanner imageWrapper">
-						{#each commissionType.previewImages as preview, i}
-							{#if i < $deviceData.screenType}
+						{#each commissionType?.previewImages as preview, i}
+							{#if i < $deviceData?.screenType}
 								<div class="regularBorder imageWrapper">
 									<SanityImage image={preview}/>
 								</div>

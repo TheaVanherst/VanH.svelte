@@ -3,40 +3,52 @@
     import Carousel from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
 	export let tiers = [];
+    export let customSize = 2.7
 </script>
 
 <div class="cardsWrapper">
-	<Carousel maxWidth={2.5} centered={true}>
+	<Carousel maxWidth={customSize} centered={true}>
 		{#each tiers as tier, i}
 			<swiper-slide style="height:auto;">
-				<a href={tier.tierRedirect} target="_blank">
-					<div class="contents wideBorder">
-						<div class="card">
-							<div class="imageWrapper tierImage">
-								<SanityImage image={tier.bannerImage}/>
-								<div class="titleWrapper">
-									<div class="titles regularBorder">
-										<h3>{tier.tierEmoji}{tier.tierName}</h3>
-										<p>{tier.tierDesc}</p>
-									</div>
+				<div class="contents wideBorder">
+					<div class="card">
+						<div class="imageWrapper tierImage">
+							<SanityImage image={tier.bannerImage}/>
+							<div class="titleWrapper">
+								<div class="titles regularBorder">
+									<h3>{tier.tierEmoji}{tier.tierName}</h3>
+									<p>{tier.tierDesc}</p>
 								</div>
-							</div>
-							<div class="desc">
-								<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
-								<div class="joinButton">
-									<p class="subtitle">Join</p>
-								</div>
-								<ul>
-									{#each tier.tierPerks as perk, i}
-										<li class="{i === 0 && tier.boldFirst ? 'bold' : ''}">
-											{perk}
-										</li>
-									{/each}
-								</ul>
 							</div>
 						</div>
+						<div class="desc">
+							<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
+							<div class="buttonRow">
+								{#if tier.tierRedirect}
+									<a href={tier.tierRedirect} target="_blank">
+										<div class="joinButton kofi">
+											<img src="/icons/kofiFilled.webp">
+										</div>
+									</a>
+								{/if}
+								{#if tier.altRedirect}
+									<a href={tier.altRedirect} target="_blank">
+										<div class="joinButton patreon">
+											<img src="/icons/patreonFilled.webp">
+										</div>
+									</a>
+								{/if}
+							</div>
+							<ul>
+								{#each tier.tierPerks as perk, i}
+									<li class="{i === 0 && tier.boldFirst ? 'bold' : ''}">
+										{perk}
+									</li>
+								{/each}
+							</ul>
+						</div>
 					</div>
-				</a>
+				</div>
 			</swiper-slide>
 		{/each}
 	</Carousel>
@@ -78,21 +90,37 @@
 	.desc {	padding: 10px;
 		* {	color: black;}}
 
-	.joinButton {
-		background: var(--accent9);
-		margin: 	10px 0 15px 0;
-		padding: 	8px;
-		border-radius: 20px;
+	.buttonRow {
+		display: flex;
+		gap: 10px;
+		> * {
+			display: 	flex;
+			width: 		100%;
+			margin: 0 	auto;}
+		.joinButton {
+			margin: 	10px 0 5px 0;
+			width: 		100%;
+			padding: 		5px;
+			border-radius: 	20px;
 
-		transition: background .2s ease-in-out;
-
-		p { color: 	white;
-			width: 	max-content;
-			margin: 0 auto;}}
+			background: var(--accent9);
+			transition: background .2s ease-in-out;
+			img {
+				height: 24px;
+				width: 	24px;
+				margin: 0 auto;
+				display: flex;
+				filter: invert(1);}
+			p { color: 	white;
+				width: 	max-content;
+				margin: 0 auto;}}
+	}
 
 	a:hover {
 		.joinButton {
-			background: var(--accent7);}}
+			&.patreon {	background: var(--accent7);}
+			&.kofi {		background: var(--accent6);} }
+	}
 
 	ul {	margin: 		10px 0 5px 0;
 			padding-left: 	15px!important;
