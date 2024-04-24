@@ -7,6 +7,7 @@ const redirector = " 𝚊𝚝";
 const navigationDirectories = [
         {   title: "Featured",      imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
         {   title: "Artwork",       imagePath: "artworksIcon",      pages: [
+            {   title: "Latest",    imagePath: "highlightedIcon",   path: "/latest",        nsfw: true,     pagePreview: "𝘍𝘦𝘢𝘵𝘶𝘳𝘦𝘥" + redirector},
             {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",       nsfw:false,     pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
                     characters: true, queryTypes: ["explicit","genre","generic","nsfw"]},
             {   title: "Design",    imagePath: "colourWheel",       path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,

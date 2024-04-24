@@ -7,22 +7,21 @@
     export let dataset = [];
 </script>
 
-<Container>
-	<div class="table"
-		class:full={$deviceData.screenType < 2}>
-		{#each dataset as dataEntry}
-			<div class="cell">
-				<GithubCard data={dataEntry}/>
-			</div>
-		{/each}
-	</div>
-</Container>
+<div class="table"
+	 class:full={$deviceData.screenType < 2}>
+	{#each dataset as dataEntry}
+		<div class="cell">
+			<GithubCard data={dataEntry}/>
+		</div>
+	{/each}
+</div>
 
 <style lang="scss">
 	.table {
 		display: 	flex;
 		flex-wrap: 	wrap;
 		gap: 	 	10px;
+		margin-bottom: 15px;
 
 		.cell {		width: calc(50% - 6px);}
 		&.full {

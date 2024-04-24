@@ -109,20 +109,11 @@ export default defineType({
       description: 'Searchable Tags',
       type: 'array', group: 'archive',
       of: [{
-        name: 'nsfwTag', type: 'reference',
-        to: {type: 'nsfwTags'},
-      },{
-        name: 'explicitTag', type: 'reference',
-        to: {type: 'explicitTags'},
-      },{
-        name: 'genericTag', type: 'reference',
-        to: {type: 'genericTags'},
-      },{
-        name: 'genreTag', type: 'reference',
-        to: {type: 'genreTag'},
-      },{
-        name: 'cultureTag', type: 'reference',
-        to: {type: 'cultureTags'},
+        type: 'reference',
+        to: [
+          {type: 'nsfwTags'}, {type: 'explicitTags'},
+          {type: 'genericTags'}, {type: 'genreTag'},
+          {type: 'cultureTags'}],
       }],
       validation: Rule => Rule.required().unique(),
     }),

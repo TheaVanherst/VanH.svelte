@@ -18,6 +18,8 @@
 	.table {
         gap:        5px;
         display:    grid;
+        height:     100%;
+        width:      auto;
 
         div {
             min-height: 150px;

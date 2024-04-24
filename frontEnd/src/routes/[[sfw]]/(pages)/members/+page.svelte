@@ -1,7 +1,5 @@
 <script>
     import KofiCards 		from "$root/components/pageSpecific/homePage/kofiCards.svelte";
-    import PortableText from "$root/serializer/portableText.svelte";
-
 	export let data;
 
     let tierTitles = data.donationData.tierData[0];
@@ -10,10 +8,6 @@
 <KofiCards tiers={data.donationData.tiers}/>
 
 <div class="table wideBorder">
-<!--	<div class="personalMessage">-->
-<!--		<PortableText data={data.donationData.requestText}/>-->
-<!--	</div>-->
-
 	<h2 class="tableTitle"> Compare tiers & features </h2>
 
 	{#each data.donationData.tierData as row, i}

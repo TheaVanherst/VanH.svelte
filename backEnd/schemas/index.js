@@ -9,6 +9,7 @@ import characterOrder     from './pageSpecific/home/characterOrder'
 import artworks         from './arts/drawings';
 import alternateArts    from './arts/alternateArts';
 import erotica          from './arts/erotica'
+
 import commissionType   from './arts/commissionTypes';
 import renderType       from './arts/renderType';
 import styleType        from './arts/styleType';
@@ -34,6 +35,7 @@ import githubItems      from './alternateWorks/githubItems';
 
 import socialMedia      from './pageSpecific/websiteSettings/socialMedia';
 import featuredSocials  from './pageSpecific/websiteSettings/featuredSocials';
+import featuredArtwork  from './pageSpecific/websiteSettings/featuredArtwork'
 
 import genericTags    from './tags/generic';
 import fetishTags     from './tags/fetish';
@@ -91,7 +93,8 @@ const dataTypes = [
   commissioners,
 
   socialMedia,
-  featuredSocials
+  featuredSocials,
+  featuredArtwork
 ]
 
 export const schemaTypes = dataTypes;

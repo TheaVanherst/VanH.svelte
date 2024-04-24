@@ -59,6 +59,10 @@ const structure = (S) =>
                 .child(S.document().schemaType('commissions').documentId('commissions')),
 
               S.divider(),
+
+              S.listItem().title("Featured Works")
+                .child(S.document().schemaType('featuredWorks').documentId('featuredWorks')),
+
             ])
         ),
       S.divider(),

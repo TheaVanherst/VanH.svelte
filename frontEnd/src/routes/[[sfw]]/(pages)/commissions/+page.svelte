@@ -124,8 +124,7 @@
 		transition: .3s ease background, .3s ease color;
 		&:hover {
 			color: white;
-			background: var(--accent7);}
-	}
+			background: var(--accent7);}}
 
 	.imageCard {
 		height: 	500px;
@@ -147,8 +146,7 @@
 		.previewBanner {
 			margin: 	0 0 15px 0;
 			gap: 		5px;
-			height: 	400px;
-		}
+			height: 	400px;}
 
 		.commissionDetails {
 			p {padding: 	0 0 10px 0;}}

@@ -9,6 +9,7 @@ const submitters = {
     atlas: {    user: "Atlas" },
     pizza: {    user: "PizzaEgger"},
     riggi: {    user: "@GalaxyTigress"},
+    luna: {     user: "@MissMixTape"},
     lunar: {    user: "@RealLunar57"}};
 
 const splash = [
@@ -239,13 +240,19 @@ const splash = [
     [false, "Don't trust Blender's 'edit' mode's symmetry.", submitters.lunar],
     [false, "Moon Jumpscare!"],
     [true,  "gott ist tot", submitters.stella],
-    [false,  "god is dead, and I'M the victor!"],
-    [false,  "get owned theologists", submitters.stella],
-    [false,  "It all returns to nothing", submitters.stella],
-    [false,  "we are the hope of the godless 🎵"],
-    [false,  "get me thirty minutes... in a room alone with god~ 🎵"],
-    [false,  "a glint of white to hide the knife 🎵"],
-    [false,  "let him know who took his throne 🎵"],
+    [false, "god is dead, and I'M the victor!"],
+    [false, "get owned theologists", submitters.stella],
+    [false, "It all returns to nothing", submitters.stella],
+    [false, "we are the hope of the godless 🎵"],
+    [false, "get me thirty minutes... in a room alone with god~ 🎵"],
+    [false, "a glint of white to hide the knife 🎵"],
+    [false, "let him know who took his throne 🎵"],
+    [false, "Where's theapology?", submitters.xal],
+    [false, "I hope it doesn't rain-...deer", submitters.luna],
+    [false, "Dunkin' doe-...nuts!", submitters.luna],
+    [false, "Hello, it's me; Jim Generic."],
+    [false, "I can smell girlfailure pussy a mile away"],
+    [true, "I am the one who cocks.", submitters.xal],
 ]
 
 export { splash, submitters }

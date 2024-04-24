@@ -1,6 +1,7 @@
 
 import client from "$lib/sanityClient.js";
 import { characterData } from "$lib/queryPresets/characterData.js";
+import {defaultArtwork} from "$lib/queryPresets/genericQueries.js";
 
 export async function load () {
     return {
@@ -17,6 +18,10 @@ export async function load () {
                         ${characterData.height}
                         ${characterData.creation}
                     }}`),
+        artworks:
+            await client.fetch(`
+                *[ _type == 'artworks'][] | order(publishedAt desc)[0...5] {
+                    ${defaultArtwork}}`),
         workshopData:
             await client.fetch(`
                 *[ _type == 'workshopItem'] | order(_updatedAt desc) []{

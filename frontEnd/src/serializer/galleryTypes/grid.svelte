@@ -20,9 +20,12 @@
 
 <style lang="scss">
 	.grid {
-        display: grid;
-        gap: var(--imageSpacing);
+        display:        grid;
+        gap:            var(--imageSpacing);
         vertical-align: bottom;
+
+        height:     100%;
+        width:      auto;
 
         .row {
 	        vertical-align: bottom;

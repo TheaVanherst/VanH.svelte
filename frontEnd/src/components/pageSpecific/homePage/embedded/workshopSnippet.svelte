@@ -25,7 +25,7 @@
 	a {
 		width: 		80px;
 		height: 	70px;
-		margin: 	10px 0 10px -5px;
+		margin: 	10px 0 0px -5px;
 		opacity: 	0.75;
 
 		display: 	flex;
@@ -36,7 +36,7 @@
 			overflow: 	hidden;
 			margin: 	0 5px;
 			width: 		100%;
-			height: 	100%}
+			height: 	100%;}
 
 		.gameIcon {
 			position: 	absolute;
