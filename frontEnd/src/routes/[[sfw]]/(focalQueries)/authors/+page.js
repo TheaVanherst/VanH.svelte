@@ -3,7 +3,7 @@ import client from "$lib/sanityClient.js"
 
 import { authorQueries } from "$lib/queryPresets/authorQueries.js";
 
-export async function load () {
+export const load = async () => {
     return {
         authorData:
             await client.fetch(`
@@ -12,7 +12,7 @@ export async function load () {
                     ${authorQueries.branding},
                     ${authorQueries.internals},
                     ${authorQueries.about},
-                    ${authorQueries.socials}
+                    ${authorQueries.socials},
                 }`)
     };
 }

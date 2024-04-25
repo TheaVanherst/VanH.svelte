@@ -9,6 +9,7 @@
     import StoryPreview from "$root/components/pageSpecific/queryPages/storyPreview.svelte";
 
 	export let data;
+
     data.erotica =
         data.erotica.map(a => ({ ...a,
             searchTerms: (

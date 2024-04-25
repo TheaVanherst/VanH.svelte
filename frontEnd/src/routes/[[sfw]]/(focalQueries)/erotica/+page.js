@@ -13,9 +13,7 @@ export const load = async () => {
                     ${genericRequests.info},
                     image,
                     story,
-                   
                     characters[]-> {
-                        ...,
                         ${characterData.preview},
                         ${characterData.info}},
                     authors[] {
@@ -23,8 +21,7 @@ export const load = async () => {
                             ${authorQueries.info},
                             ${authorQueries.icon},
                             ${authorQueries.socials}},
-                        'participation': participation->title
-                    },
+                        'participation': participation->title},
                     ${genericRequests.tags}
                 }`
             )

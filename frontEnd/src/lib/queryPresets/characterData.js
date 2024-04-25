@@ -62,3 +62,17 @@ const characterData = {
 }
 
 export { characterData }
+
+const characterProfileData =
+    `
+        ${characterData.core}
+        ${characterData.info}
+        ${characterData.lore}
+        ${characterData.context}
+        ${characterData.images}
+        ${characterData.sex}
+        ${characterData.height}
+        ${characterData.creation}
+    `;
+
+export { characterProfileData }

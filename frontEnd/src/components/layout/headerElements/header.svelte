@@ -11,7 +11,7 @@
     import { submitters } from "$lib/localDatabases/splashTextDatabase.js";
 
     let hover = false;
-    let timer;
+    let timer = undefined;
 </script>
 
 <div class="bannerWrapper">

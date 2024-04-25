@@ -1,10 +1,10 @@
 <script>
-    import { fly } from 'svelte/transition';
-
-    import SanityImage from "$root/serializer/sanityImage.svelte";
-    import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
+    import { fly } 	from 'svelte/transition';
 
     import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+
+    import SanityImage 	from "$root/serializer/sanityImage.svelte";
+    import ImageTag 	from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
     export let
 		image = undefined;

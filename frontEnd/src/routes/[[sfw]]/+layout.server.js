@@ -1,14 +1,14 @@
 
 import client from "$lib/sanityClient.js";
-import { socialPlatformQuery } from "$lib/queryPresets/websiteSettings.js";
-import { navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-export async function load () {
+import { socialPlatformQuery }  from "$lib/queryPresets/websiteSettings.js";
+import { navigationData }       from "$lib/controllers/layoutControllers/redirectHandling.js";
+
+export const load = async () => {
     navigationData.set({ logo: true, navigation: true, socials: true, search: false });
         // needs to be done on the server to allow the +page to be prioritized.
 
-    const seachQuery = `| order(title asc) {title, relatedTags, 'type': _type}`
-        // saves copy-paste work
+    const seachQuery = `| order(title asc) {title, relatedTags, 'type': _type}` // saves copy-paste work
     return {
         socialMedia:
             await client.fetch(`

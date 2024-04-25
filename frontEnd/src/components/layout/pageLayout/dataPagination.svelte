@@ -1,6 +1,6 @@
 <script>
-    import { urlSerializer } from "$lib/controllers/layoutControllers/searchController.js";
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { urlSerializer } 		from "$lib/controllers/layoutControllers/searchController.js";
+    import { navigationControls } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     export let
 		rows, trimmedRows, perPage,
@@ -13,6 +13,8 @@
     $: totalPages = Math.ceil(totalRows / perPage);
     $: currentPage  = Number(goto) ?? 0;
 
+    let fakeArray = Array(totalPages);
+
 	const
 		directPage = (index) => {
             window.scrollTo({top: 0, behavior: 'smooth'});
@@ -23,17 +25,14 @@
                 $navigationControls.transitioning = true;}, 250);
             setTimeout(() => {
                 urlSerializer({'page': currentPage});
-                $navigationControls.transitioning = false;}, 500);}
+                $navigationControls.transitioning = false;}, 500);},
+        pageCountUpdate = () => {
+            fakeArray = [...Array(totalPages).keys()];
+            lastPage = currentPage >= totalPages - 1;};
 
     $: start = currentPage * perPage;
     $: end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
     $: trimmedRows = rows.slice(start, end + 1) ?? [];
-
-	let fakeArray = Array(totalPages);
-    const pageCountUpdate = () => {
-        fakeArray = [...Array(totalPages).keys()];
-        lastPage = currentPage >= totalPages - 1;};
-
     $: totalPages && pageCountUpdate();
 </script>
 

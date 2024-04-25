@@ -1,5 +1,6 @@
 <script>
 	import { fade } from "svelte/transition";
+
     import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";

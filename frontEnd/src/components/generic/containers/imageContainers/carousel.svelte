@@ -1,7 +1,7 @@
 <script>
     import { register } 	from 'swiper/element/bundle';
     import { onMount } 		from "svelte";
-    import { Pagination } from 'swiper/modules';
+    import { Pagination } 	from 'swiper/modules';
 
     import { deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
 
@@ -14,8 +14,7 @@
     const clickablePagination = {
         clickable: true,
         renderBullet: function (index, className) {
-            return `<span class="` + className + `">` + `</span>`;
-        },
+            return `<span class="` + className + `">` + `</span>`;},
     };
 
     onMount(() => {register();})

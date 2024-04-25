@@ -41,7 +41,7 @@
 {/if}
 
 <SidebarTexts titlecard="Workshop" icon="steamLogoLined.webp">
-	<WorkshopFeature dataset={{full: data.workshopData, snippets: data.workshopSnippet}}/>
+	<WorkshopFeature dataset={data.workshopData}/>
 </SidebarTexts>
 
 {#if $navigationControls.nsfw}

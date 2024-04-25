@@ -1,32 +1,31 @@
 <script>
-    import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
+    import { page } 	from "$app/stores";
+    import { onMount } 	from "svelte";
+    import { afterNavigate, beforeNavigate } from "$app/navigation";
+
+    import { slide } 			from "svelte/transition";
+
+    import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
     import { navigationData, navigationControls, directoryData, navigationDirectories } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/layoutControllers/transitionHandler.svelte";
-    import { slide } 			from "svelte/transition";
+   	import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
     import RollupButton 		from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
     import InlineTag 			from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
 
-    import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
-
-    import { page } 	from "$app/stores";
-    import { onMount } 	from "svelte";
-    import { afterNavigate, beforeNavigate } from "$app/navigation";
-
-    const paramLocalUpdate = () => {
-        value = $page.url.searchParams.get("query") || "";
-        value = decodeURIComponent(value.replaceAll('-',' '))
-        $dataSetStore.page = $page.url.searchParams.get("page") || 0;
-        $dataSetStore.searchQuery = value;};
-    const queryReset = () => {
-        value = "";
-        $dataSetStore.searchQuery = "";
-        $dataSetStore.page = 		0;}
-
-    export let data;
+    const
+		paramLocalUpdate = () => {
+			value = $page.url.searchParams.get("query") || "";
+			value = decodeURIComponent(value.replaceAll('-',' '))
+			$dataSetStore.page = $page.url.searchParams.get("page") || 0;
+			$dataSetStore.searchQuery = value;},
+    	queryReset = () => {
+			value = "";
+			$dataSetStore.searchQuery = "";
+			$dataSetStore.page = 		0;}
 
     onMount(() => {
         if ($navigationData.search){
@@ -42,27 +41,30 @@
         if (e.from.route.id !== e?.to?.route?.id) {
             queryReset();}});
 
+    export let data;
+
     // search functionality
     let value,
 		active = false;
 
     // generic search.
-    const hardSearch = (query = "", page = 0) => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        $navigationControls.transitioning = true;
-        setTimeout(() => { // this allows the pagination to update
-            $dataSetStore.searchQuery = query;
-            $dataSetStore.page = 		page;
-            urlSerializer({
-                'query': $dataSetStore.searchQuery,
-                'page': $dataSetStore.page});}, 300);
-        setTimeout(() => { // this allows the pagination to update
-            $navigationControls.transitioning = false;}, 300);};
+    const
+		hardSearch = (query = "", page = 0) => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+			$navigationControls.transitioning = true;
+			setTimeout(() => { // this allows the pagination to update
+				$dataSetStore.searchQuery = query;
+				$dataSetStore.page = 		page;
+				urlSerializer({
+					'query': $dataSetStore.searchQuery,
+					'page': $dataSetStore.page});}, 300);
+			setTimeout(() => { // this allows the pagination to update
+				$navigationControls.transitioning = false;}, 300);},
 
-    // constructs a search param from tag data.
-    const queryBuilder = (e => {
-        e = e.toLowerCase() // forces the query to be in lowercase by the new element also being lowercase.
-        hardSearch((value.includes(e) ? value.replaceAll(`${e}`, '') : value + ` ${e}`).split(" ").filter(n => n).join("-"))});
+    	// constructs a search param from tag data.
+    	queryBuilder = (e => {
+			e = e.toLowerCase() // forces the query to be in lowercase by the new element also being lowercase.
+			hardSearch((value.includes(e) ? value.replaceAll(`${e}`, '') : value + ` ${e}`).split(" ").filter(n => n).join("-"))});
 
     $: $navigationData.search === false ? active = false : false;
 </script>

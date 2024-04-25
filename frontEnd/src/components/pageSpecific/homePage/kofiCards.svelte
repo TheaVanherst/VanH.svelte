@@ -3,56 +3,54 @@
     import Carousel from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
 	export let tiers = [];
-    export let customSize = 2.7
+    export let customSize = 2.5
 </script>
 
-<div class="cardsWrapper">
-	<Carousel maxWidth={customSize} centered={true}>
-		{#each tiers as tier, i}
-			<swiper-slide style="height:auto;">
-				<div class="contents wideBorder">
-					<div class="card">
-						<div class="imageWrapper tierImage">
-							<SanityImage image={tier.bannerImage}/>
-							<div class="titleWrapper">
-								<div class="titles regularBorder">
-									<h3>{tier.tierEmoji}{tier.tierName}</h3>
-									<p>{tier.tierDesc}</p>
-								</div>
+<Carousel maxWidth={customSize}>
+	{#each tiers as tier, i}
+		<swiper-slide style="height:auto;">
+			<div class="contents wideBorder">
+				<div class="card">
+					<div class="imageWrapper tierImage">
+						<SanityImage image={tier.bannerImage}/>
+						<div class="titleWrapper">
+							<div class="titles regularBorder">
+								<h3>{tier.tierEmoji}{tier.tierName}</h3>
+								<p>{tier.tierDesc}</p>
 							</div>
-						</div>
-						<div class="desc">
-							<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
-							<div class="buttonRow">
-								{#if tier.tierRedirect}
-									<a href={tier.tierRedirect} target="_blank">
-										<div class="joinButton kofi">
-											<img src="/icons/kofiFilled.webp">
-										</div>
-									</a>
-								{/if}
-								{#if tier.altRedirect}
-									<a href={tier.altRedirect} target="_blank">
-										<div class="joinButton patreon">
-											<img src="/icons/patreonFilled.webp">
-										</div>
-									</a>
-								{/if}
-							</div>
-							<ul>
-								{#each tier.tierPerks as perk, i}
-									<li class="{i === 0 && tier.boldFirst ? 'bold' : ''}">
-										{perk}
-									</li>
-								{/each}
-							</ul>
 						</div>
 					</div>
+					<div class="desc">
+						<p class="price fancy">£{tier?.tierCost?.price.toFixed(2)}{tier?.tierCost?.additional ? " or more" : ""} {tier?.tierCost?.recurring ? "monthly" : "single"} donation</p>
+						<div class="buttonRow">
+							{#if tier.tierRedirect}
+								<a href={tier.tierRedirect} target="_blank">
+									<div class="joinButton kofi">
+										<img src="/icons/kofiFilled.webp">
+									</div>
+								</a>
+							{/if}
+							{#if tier.altRedirect}
+								<a href={tier.altRedirect} target="_blank">
+									<div class="joinButton patreon">
+										<img src="/icons/patreonFilled.webp">
+									</div>
+								</a>
+							{/if}
+						</div>
+						<ul>
+							{#each tier.tierPerks as perk, i}
+								<li class="{i === 0 && tier.boldFirst ? 'bold' : ''}">
+									{perk}
+								</li>
+							{/each}
+						</ul>
+					</div>
 				</div>
-			</swiper-slide>
-		{/each}
-	</Carousel>
-</div>
+			</div>
+		</swiper-slide>
+	{/each}
+</Carousel>
 
 <style lang="scss">
 	.contents {

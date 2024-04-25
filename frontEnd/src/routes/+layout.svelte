@@ -4,6 +4,12 @@
 
     import { fly, fade } 				from 'svelte/transition';
 
+    import { onMount } from "svelte";
+    import Device from "svelte-device-info";
+
+    import { navigationControls, deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
+
     import Header 				from "$root/components/layout/headerElements/header.svelte";
     import PageFooter 			from "$root/components/layout/pageLayout/pageFooter.svelte";
 
@@ -12,12 +18,6 @@
     import MessengerPlugin 		from "$root/components/layout/pageLayout/messengerPlugin.svelte";
     import CometGenerator 		from "$root/components/layout/stylingComponents/cometGenerator.svelte";
     import FullscreenGallery 	from "$root/components/layout/fullscreenGallery.svelte";
-
-    import { navigationControls, deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
-    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
-
-    import { onMount } from "svelte";
-    import Device from "svelte-device-info";
 
     onMount(async () => {
         switch (true) {

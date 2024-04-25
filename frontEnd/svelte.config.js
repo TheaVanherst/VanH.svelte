@@ -19,6 +19,7 @@ const config = {
 				'/commissions/','/afterdark/commissions/',
 				'/artwork/','/afterdark/artwork/',
 				'/design/','/afterdark/design/',
+				'/afterdark/latest',
 				'/afterdark/erotica/',
 				'/carrd/','/afterdark/carrd/',
 				'/personas','/afterdark/personas',

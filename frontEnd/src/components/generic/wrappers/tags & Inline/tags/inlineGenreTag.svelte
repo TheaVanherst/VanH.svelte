@@ -1,16 +1,16 @@
 <script>
-	const colours = [
+	export let
+		tag,
+		colour = undefined,
+		active = false;
+
+    const colours = [
         { name:'nsfwTags', 		colour:'#ff0582', text: '#fff'},
         { name:'genericTags', 	colour:'#c9c9c9', text: '#000'},
         { name:'genreTag', 		colour:'#ffac40', text: '#000'},
         { name:'explicitTags',	colour:'#f367ff', text: '#fff'},
         { name:'designTags',    colour:'#00ff6f', text: '#000'},
-        { name:'cultureTags',   colour:'#8400ff', text: '#fff'}
-	];
-
-	export let tag;
-    export let colour = undefined;
-    export let active = false;
+        { name:'cultureTags',   colour:'#8400ff', text: '#fff'}];
 
     let placement = colours.findIndex(x => x.name === tag.type),
 		tagColour = colours[placement].colour,

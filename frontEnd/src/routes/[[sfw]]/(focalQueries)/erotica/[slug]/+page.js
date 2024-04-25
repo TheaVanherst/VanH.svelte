@@ -8,7 +8,7 @@ import { genericRequests }  from "$lib/queryPresets/genericQueries.js";
 export const prerender = false;
 export const ssr = false;
 
-export const load = async ({ params}) => {
+export const load = async ({ params }) => {
     return {
         erotica:
             await client.fetch(`
@@ -16,9 +16,7 @@ export const load = async ({ params}) => {
                     ${genericRequests.info},
                     image,
                     story,
-
                     'characters': characters[]->{
-                        ...,
                         ${characterData.preview},
                         ${characterData.info}},
                     'authors': authors[]{
@@ -26,8 +24,7 @@ export const load = async ({ params}) => {
                             ${authorQueries.info},
                             ${authorQueries.icon},
                             ${authorQueries.socials}},
-                        'participation': participation->title
-                    },
+                        'participation': participation->title},
                     ${genericRequests.tags}
                 }[0]`
             ),

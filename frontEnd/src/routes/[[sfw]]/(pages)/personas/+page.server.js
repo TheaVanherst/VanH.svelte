@@ -1,8 +1,9 @@
 
 import client from "$lib/sanityClient.js";
+
 import { characterData } from "$lib/queryPresets/characterData.js";
 
-export async function load () {
+export const load = async () => {
     return {
         characterData:
             await client.fetch(`

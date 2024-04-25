@@ -5,8 +5,7 @@ const // global emojis to indicate edited / published
 
 const createdPush = (creationDate, dateLength, string) => { // generic date builder.
         string = string ?? publishedEmoji + " Published";
-        return string + " " + nth(new Date(creationDate), dateLength ? dateLength : "shortDate");
-    },
+        return string + " " + nth(new Date(creationDate), dateLength ? dateLength : "shortDate");},
 
     updatedPush = (updatedDate, string = null) => {
         updatedDate = new Date(updatedDate); // builds date to be standardized to js
@@ -16,18 +15,15 @@ const createdPush = (creationDate, dateLength, string) => { // generic date buil
         // if (604800 > relativeTime(updatedDate))
         //     clock = ` at ${new Intl.DateTimeFormat('en-GB', {timeStyle: 'short'}).format(updatedDate)}`;
 
-        return string + time_ago(updatedDate);
-    },
+        return string + time_ago(updatedDate);},
 
     dTypes = { // date type converter
         fullDate : {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'},
         shortDate : {year: 'numeric', month: 'long', day: 'numeric'},
-        tinyDate : {year: 'numeric', month: 'short', day: 'numeric'}
-    },
+        tinyDate : {year: 'numeric', month: 'short', day: 'numeric'}},
 
     relativeTime = (time) => { // relativity builder
-        return (+new Date() - time) / 1000;
-    },
+        return (+new Date() - time) / 1000;},
 
     shifter = (d) => {
         if (d > 3 && d < 21) {
@@ -36,13 +32,11 @@ const createdPush = (creationDate, dateLength, string) => { // generic date buil
             case 1:     return "st";
             case 2:     return "nd";
             case 3:     return "rd";
-            default:    return "th";}
-    },
+            default:    return "th";}},
 
     nth = (d,l) => {
         let spl = d.toLocaleDateString("en-GB", dTypes[l]).split(" ");
-        return spl[1] + " " + spl[0] + shifter(parseInt(spl[0])) + ", " + spl[2];
-    },
+        return spl[1] + " " + spl[0] + shifter(parseInt(spl[0])) + ", " + spl[2];},
 
     time_ago = (time) => {
         // context checks

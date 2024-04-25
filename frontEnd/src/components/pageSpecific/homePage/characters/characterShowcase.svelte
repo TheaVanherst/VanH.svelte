@@ -4,6 +4,7 @@
     import InfoPlate 		from "$root/components/pageSpecific/homePage/characters/characterInfoPlate.svelte";
 
     import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+
     export let dataset = {};
 </script>
 

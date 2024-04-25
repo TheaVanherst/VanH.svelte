@@ -2,14 +2,14 @@
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
 
     import { directoryData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
-    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
 
     import DividedTag 		from "$root/components/generic/wrappers/tags & Inline/tags/pilledTag.svelte";
+    import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
-    import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
 
     export let
 		data,
@@ -61,7 +61,7 @@
 		{#if data.authors.length > 0}
 			<p> With additional help from: </p>
 			{#each data.authors as author}
-				<SocialsFoldable socials={author.author.socialMedia} internal="{author.author.handle.toLowerCase()}">
+				<SocialsFoldable socials={author.author.socialMedia} internal="{author.author.handle.toLowerCase()}" searchable={author.searchable}>
 					<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','_')}">
 						<div class="characterCard" class:socialFold={author?.author?.socialMedia?.length > 0}>
 							<div class="mediaIcon rounded">
@@ -114,7 +114,7 @@
 				{#if data.imageRefId}
 					<a href={data.imageRefId} target="_blank">
 						<DividedTag hover={true}>
-							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp" alt=""></div>
 							<span slot="title">Archive</span>
 							<span slot="desc">Tier 1 or higher</span>
 						</DividedTag>
@@ -123,7 +123,7 @@
 				{#if data.photoshopRefId}
 					<a href={data.imageRefId} target="_blank">
 						<DividedTag hover={true}>
-							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp"></div>
+							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp" alt=""></div>
 							<span slot="title">Photoshop</span>
 							<span slot="desc">Tier 3 or higher</span>
 						</DividedTag>
@@ -156,7 +156,4 @@
 		.commissioner {		margin: 0 0 5px 0;}
 		.altTitle {	margin: 10px 0 2px 0;}}
 	.postTags {		margin: 5px 0 -5px 0;}
-	.footer {
-		.links {	gap: 		5px;
-					display: 	grid;}}
 </style>

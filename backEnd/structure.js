@@ -7,11 +7,8 @@ const structure = (S) =>
 
       ...S.documentTypeListItems()
         .filter((listItem) => ['artworks','alternateArts','erotica'].includes(listItem.getId())),
-
-      S.divider(),
-
       ...S.documentTypeListItems()
-        .filter((listItem) => ['githubItem', 'workshopItem','workshopSnippet'].includes(listItem.getId())),
+        .filter((listItem) => ['githubItem', 'workshopItem'].includes(listItem.getId())),
 
       S.divider(),
 
@@ -60,9 +57,10 @@ const structure = (S) =>
 
               S.divider(),
 
-              S.listItem().title("Featured Works")
+              S.listItem().title("Highlighted Art")
                 .child(S.document().schemaType('featuredWorks').documentId('featuredWorks')),
-
+              S.listItem().title("Highlighted Workshop Items")
+                .child(S.document().schemaType('highlightedWorkshop').documentId('highlightedWorkshop')),
             ])
         ),
       S.divider(),

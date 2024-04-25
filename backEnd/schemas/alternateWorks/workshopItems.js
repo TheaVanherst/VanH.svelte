@@ -6,7 +6,7 @@ import { SquareIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'workshopItem',
-  title: 'Embedded Item',
+  title: 'Workshop Item',
   type: 'document',
   fields: [
     // TODO: User Data
@@ -17,12 +17,12 @@ export default defineType({
     defineField({
       name: 'slug', title: 'Slug',
       type: 'slug',
-      validation: Rule => Rule.required(),
       options: {
         source: 'handle',
         maxLength: 16,
         isUnique: slugUniqueCheck
-      }
+      },
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'url',
@@ -58,6 +58,14 @@ export default defineType({
       to: { type: 'gameTag' }
     }),
     defineField({
+      name: 'characters', title: 'Characters',
+      type: 'array',
+      of: [{
+        type: 'reference',
+        to: [{type: 'character'}]
+      }],
+    }),
+    defineField({
       name: 'author', title: 'Author',
       type: 'array',
       of: [
@@ -69,10 +77,16 @@ export default defineType({
         ]
     }),
     defineField({
-      name: 'featured',     title: 'Featured Toggle',
-      type: 'boolean',
-      initialValue: false,
-      description: 'Should this item be featured?',
+      name: 'publishedAt', title: 'Published at',
+      type: 'datetime',
+      validation: Rule => Rule.required(),
+      initialValue: (new Date()).toISOString(),
+    }),
+    defineField({
+      name: 'NSFW', title: 'After Dark Mode',
+      description: 'Should we hide this image?',
+      type: 'boolean', initialValue: false,
+      hidden: ({ parent }) => parent?.SFW
     }),
   ],
 
@@ -82,12 +96,12 @@ export default defineType({
       title: 'itemName',
       shortDesc: 'shortDesc',
       media: 'previewImage',
-      featured: 'featured'
+      nsfw: 'NSFW'
     },
-    prepare: ({ title, shortDesc, media, featured }) => {
+    prepare: ({ title, shortDesc, media, nsfw }) => {
       return {
-        title: (featured ? '⚪' : '🔴') + ' ' + title,
-        subtitle: shortDesc,
+        title: title,
+        subtitle: `${nsfw ? '🔞' : ''} ${shortDesc}`,
         media: media,
       }
     }

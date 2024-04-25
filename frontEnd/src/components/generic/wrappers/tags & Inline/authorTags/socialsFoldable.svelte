@@ -1,12 +1,17 @@
 <script>
-    import RollupButton from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
-    import InternalRedirectTag from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectTag.svelte";
-    import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineRedirectTag.svelte";
     import { slide } 	from 'svelte/transition';
 
-	export let socials = [];
-    export let internal = undefined;
-    export let padding;
+    import RollupButton from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
+
+    import InternalRedirectTag from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectTag.svelte";
+    import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineRedirectTag.svelte";
+
+	export let
+		socials = [],
+        padding = undefined,
+		internal = undefined,
+		searchable = false;
+
     let active = false;
 
 </script>
@@ -21,7 +26,7 @@
 </div>
 {#if active}
 	<div class="socialInline" transition:slide>
-		{#if internal}
+		{#if internal && searchable}
 			<InternalRedirectTag redirect="/authors/{internal}" user="{internal}"/>
 		{/if}
 		{#if socials.length > 0}

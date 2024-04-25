@@ -1,4 +1,6 @@
 <script>
+    import { onDestroy } from "svelte";
+
     import { navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
@@ -9,14 +11,13 @@
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
 
-    import { onDestroy } from "svelte";
-
     onDestroy(() => {
         navigationData.update(e => ({...e, search: true }));});
     // this ensures that the search bar returns for pages on the current root, and will hide if not -
     // otherwise the new root layout will handle it.
 
     export let data;
+    
     let story = data.erotica;
 </script>
 

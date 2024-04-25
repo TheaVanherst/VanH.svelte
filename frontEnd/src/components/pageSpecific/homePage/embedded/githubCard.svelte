@@ -20,7 +20,7 @@
 			</FlyInCard>
 		</div>
 		<div class="referral" style="background: var(--accent{data.accentColour})">
-			<p>TheaVanherst/{data.slug}</p>
+			<p>TheaVanherst/{data.itemName.replaceAll(' ','-').toLowerCase()}</p>
 		</div>
 	</div>
 </a>

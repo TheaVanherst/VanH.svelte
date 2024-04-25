@@ -1,8 +1,9 @@
-import {defineField, defineType} from 'sanity'
+
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'featuredWorks',
-  title: 'Featured Artworks',
+  title: 'Highlighted Artworks',
   type: 'document',
   fields: [
     defineField({
@@ -20,7 +21,7 @@ export default defineType({
   preview: {
     prepare: () => {
       return {
-        title: "Social Media Groups",
+        title: "Highlighted artworks",
       }
     }
   },

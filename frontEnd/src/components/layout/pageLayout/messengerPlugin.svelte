@@ -1,33 +1,34 @@
 <script>
     import { scale, fly } 		from 'svelte/transition';
 
-    import { deviceData, directoryProcessing } from '$lib/controllers/layoutControllers/redirectHandling.js';
-    import { messengerSettings } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { directoryData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import {
+        deviceData, directoryProcessing,
+		directoryData, navigationControls,
+		navigationDirectories } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { messengerSettings } 	from "$lib/controllers/layoutControllers/pageSettings.js";
 
     import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
     import GenericButton 		from "$root/components/generic/wrappers/buttons/genericButton.svelte";
-    import { navigationDirectories } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    let chatBox = false;
-	let transitionSpeed = 250;
+    let chatBox = false,
+		directions;
 
-	let directions;
+    const
+		pageCheck = () => {
+			if ($navigationControls.nsfw !== false) {
+				const placement = navigationDirectories.findIndex(e => e.path === $directoryData.root);
+				if (navigationDirectories[placement].nsfw) {
+					directoryProcessing('/featured', '/featured');}}};
+
     $: directions = $deviceData.screenType < 3 ? [0, 150] : [150, 0];
-
-    const pageCheck = () => {
-        if ($navigationControls.nsfw !== false) {
-            const placement = navigationDirectories.findIndex(e => e.path === $directoryData.root);
-			if (navigationDirectories[placement].nsfw) {
-                directoryProcessing('/featured', '/featured');}}}
 </script>
 
 <div id="messageController"
 	 class="{$deviceData.screenType < 3 ? 'mobile' : ''}">
 	{#if !chatBox && $messengerSettings}
 		<div class="open"
-			 in:scale={{delay: transitionSpeed}}
+			 in:scale={{delay: 250}}
 			 out:scale
 			 on:click={() => {chatBox = !chatBox}}>
 			<RainbowButtonWrap padding={[5,5]}>
@@ -46,7 +47,7 @@
 			 in:fly={{
 				x: directions[0],
 				y: directions[1],
-				delay:transitionSpeed}}
+				delay:250}}
 			 out:fly={{
 				x: directions[0],
 				y: directions[1]}}>

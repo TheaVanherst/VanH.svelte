@@ -1,6 +1,7 @@
 
 const authorQueries = {
     info: `
+        searchable,
         fullName,
         handle,
         'slug': slug.current`,

@@ -1,9 +1,12 @@
 <script>
-	import {PortableText} from "@portabletext/svelte";
+	import { PortableText } from "@portabletext/svelte";
 
     //blocks
 	import customHeading from "$root/serializer/contentBlock/customHeading.svelte";
     import defaultText from "$root/serializer/contentBlock/defaultText.svelte";
+
+    // listItems
+	import listItems from "$root/serializer/contentBlock/listItems.svelte";
 
 	// marks
 	import floatController from "$root/serializer/contentBlock/floatController.svelte";
@@ -29,9 +32,8 @@
 		  	h4: customHeading,
 		  	h5: customHeading
 		},
-		list: {
-		},
 		listItem: {
+            normal: listItems,
 		},
         marks: {
             floatRight:     floatController,

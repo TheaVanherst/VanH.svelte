@@ -1,14 +1,15 @@
 <script>
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
-    export let redirect;
-    export let user;
+    export let
+		redirect,
+		user;
 </script>
 
 <RedirectBuilder url="{redirect}">
 	<div class="inlineTag">
 		<div class="icon inlineIcon rounded">
-			<img src="/icons/vanhSocial.webp">
+			<img src="/icons/vanhSocial.webp" alt="">
 		</div>
 		<p> / {user} </p>
 	</div>

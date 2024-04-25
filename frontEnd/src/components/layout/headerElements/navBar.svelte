@@ -4,17 +4,19 @@
     import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
+
     import { navigationControls, deviceData,
-       		 navigationData, directoryData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
-    import { navigationDirectories } from "$lib/controllers/layoutControllers/redirectHandling.js";
+       		 navigationData, directoryData,
+        	 navigationDirectories } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
 
-    export let socials = 	{};
-    const socialMedia = 	socials.map(e => e);
+    export let
+		socials = 	{};
 
-	let desktop = 	false;
+    const socialMedia = socials.map(e => e);
+	let desktop = 		false;
+    let currentId = 	undefined;
+
     $: desktop = 	$deviceData.screenType > 2;
-
-    let currentId = undefined;
 </script>
 
 <div class="navigationBar">

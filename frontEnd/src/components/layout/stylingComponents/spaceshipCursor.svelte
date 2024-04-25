@@ -1,14 +1,15 @@
 <script>
-    import mousePosition from "$lib/controllers/stylingControllers/spaceshipController.js";
-    import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
-    import { fly } from "svelte/transition";
+    import { fly } 		from "svelte/transition";
+    import { spring } 	from 'svelte/motion';
 
-    import { spring } from 'svelte/motion';
+    import mousePosition 	from "$lib/controllers/stylingControllers/spaceshipController.js";
+    import { deviceData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    let shoot = {};
-    let position = spring(
-        {	x: -($deviceData.screenSize / 2), y: -100 },
-        { 	stiffness: 0.1, damping: 0.6 });
+    let shoot = {},
+    	position =
+			spring(
+				{	x: -($deviceData.screenSize / 2), y: -100 },
+				{ 	stiffness: 0.1, damping: 0.6 });
 
     $: $mousePosition.x && position.set({ x: $mousePosition.x, y: $mousePosition.y});
 </script>

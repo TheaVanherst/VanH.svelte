@@ -5,8 +5,7 @@ import { defaultDesign } from "$lib/queryPresets/genericQueries.js";
 
 export const ssr = false;
 
-export const load = async ({ fetch, url }) => {
-
+export const load = async () => {
     // let pageData = {}
     // pageData.itemsPerPage = 10;
     // pageData.currentPage = parseInt(url.searchParams.get("page")) || 0;

@@ -1,6 +1,6 @@
 <script>
     import { deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
-    import { page } from "$app/stores";
+    import { page } 		from "$app/stores";
 </script>
 
 <div class="footer"
@@ -12,7 +12,7 @@
 		{/if}
 	</div>
 	<div class="right">
-		<p> Website developed and created by Thea Vanherst @ <a href="https://github.com/TheaVanherst/VanH.svelte/">vanh.art</a></p>
+		<p> Website developed and created by Thea Vanherst <br> Rights reserved <a href="https://github.com/TheaVanherst/VanH.svelte/">VanH.art</a></p>
 	</div>
 </div>
 
@@ -45,9 +45,12 @@
 
 
 		a { color: white;
+			animation:
+					colorRotateFadeout .3s ease;
 			&:hover {
 				animation:
-					colorRotate 3s linear infinite;}}
+					colorRotateFadeIn .3s ease,
+					colorRotate 2s .3s linear infinite;}}
 
 		.left {	margin: 0 15px 0 15px;
 				width:	max-content;

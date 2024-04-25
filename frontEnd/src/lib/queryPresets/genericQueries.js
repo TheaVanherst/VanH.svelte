@@ -29,6 +29,8 @@ const genericRequests = {
          'sfw': imageVisibility.SFW`
 };
 
+export { genericRequests }
+
 const
     defaultArtwork =
         `
@@ -70,4 +72,4 @@ const
              ${genericRequests.tags}
         `;
 
-export { genericRequests, defaultArtwork, defaultDesign}
+export { defaultArtwork, defaultDesign}

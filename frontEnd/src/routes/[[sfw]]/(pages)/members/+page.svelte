@@ -1,8 +1,7 @@
 <script>
     import KofiCards 		from "$root/components/pageSpecific/homePage/kofiCards.svelte";
-	export let data;
 
-    let tierTitles = data.donationData.tierData[0];
+	export let data;
 </script>
 
 <KofiCards tiers={data.donationData.tiers}/>
@@ -13,7 +12,7 @@
 	{#each data.donationData.tierData as row, i}
 		{#if row[1] === "titleGap" || i === 0}
 			<div class="subsection">
-				{#each tierTitles as title, e}
+				{#each data.donationData.tierData[0] as title, e}
 					{#if e === 0}
 						<div class="cell categoryTitle">
 							<h5>

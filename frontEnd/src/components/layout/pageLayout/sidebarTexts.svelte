@@ -1,8 +1,10 @@
 <script>
-    import { horizontalSlide } from "$lib/controllers/layoutControllers/transitionPresets.js";
-    import { deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { horizontalSlide } 	from "$lib/controllers/layoutControllers/transitionPresets.js";
+    import { deviceData } 		from '$lib/controllers/layoutControllers/redirectHandling.js';
 
-	export let titlecard, icon = undefined;
+	export let
+		titlecard,
+		icon = undefined;
 </script>
 
 

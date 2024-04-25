@@ -9,6 +9,9 @@
 @keyframes colorRotateFadeIn {
 	from {  color: var(--accent10);}
 	to {    color: var(--accent2);}};
+@keyframes colorRotateFadeout {
+	from {  color: var(--accent2);}
+	to {    color: var(--accent10);}};
 
 @keyframes colorRotate {
 	0% {	color: var(--accent2);}

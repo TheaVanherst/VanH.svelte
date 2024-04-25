@@ -1,17 +1,18 @@
 <script>
-    import { createdPush } 	from "$lib/builders/dateBuilder.js";
+    import { createdPush } 		from "$lib/builders/dateBuilder.js";
     import { directoryData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
-    import { readingTime } from "$lib/builders/measurementConverters.js";
+    import { readingTime } 		from "$lib/builders/measurementConverters.js";
 
-    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
-    import SanityImage from "$root/serializer/sanityImage.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
 
     export let story;
 
+    let active = false;
+
     let authorCredit = `${story.authors.map(e => e.author.fullName)}`;
     	authorCredit = (authorCredit.replace(',', ", ")).replace(/,(?=[^,]+$)/, ' and');
-	let active = false;
 </script>
 
 <div class="container wideBorder"

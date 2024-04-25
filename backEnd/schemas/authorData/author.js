@@ -116,6 +116,11 @@ export default defineType({
           to: {type: 'internalTags'}},
       ]
     }),
+    defineField({
+      name: 'searchable', title: 'Searchability',
+      description: 'Is this author searchable via. the author page?',
+      type: 'boolean', initialValue: true,
+    }),
   ],
 
   icon: UserIcon,
@@ -125,12 +130,13 @@ export default defineType({
       shortDesc: 'shortDesc',
       media: 'userPortrait',
       artIcon: 'authorTag.0.emoji',
-      intIcon: 'internalRole.0.emoji'
+      intIcon: 'internalRole.0.emoji',
+      search: 'searchable',
     },
-    prepare: ({ title, shortDesc, media, artIcon, intIcon }) => {
+    prepare: ({ title, shortDesc, media, artIcon, intIcon, search }) => {
       return {
         title: `${title} ${artIcon} ${intIcon}`,
-        subtitle: shortDesc,
+        subtitle: `${search ? '🟢' : '🔴'} ${shortDesc}`,
         media: media,
       }
     }

@@ -1,7 +1,8 @@
+
 import client from "$lib/sanityClient.js";
 
-export async function load () {
-    let data = {
+export const load = async () => {
+    return {
         donationData:
             await client.fetch(`
                 *[_type == 'donationData'][0] {
@@ -10,5 +11,4 @@ export async function load () {
                     tiers
                 }`)
     }
-    return data;
 }

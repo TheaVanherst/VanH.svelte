@@ -1,8 +1,8 @@
 <script>
-    import { fly } from "svelte/transition";
-    import {quartIn, quartOut} from "svelte/easing";
+    import { fly } 					from "svelte/transition";
+    import { quartIn, quartOut } 	from "svelte/easing";
 
-    import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { deviceData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     const
 		getRandomInt = (max) => {

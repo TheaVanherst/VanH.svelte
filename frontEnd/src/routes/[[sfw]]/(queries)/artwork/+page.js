@@ -1,5 +1,6 @@
 
 import client from "$lib/sanityClient.js";
+
 import { defaultArtwork } from "$lib/queryPresets/genericQueries.js";
 
 export const ssr = false;

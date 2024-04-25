@@ -7,23 +7,27 @@
     import SanityGalleries 	from "$root/serializer/sanityGalleries.svelte";
     import ArtworkDescription from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
 
-    export let data,
-        newTag = true,
-        disableNew = false;
+    export let
+		data,
+        newTag = 		true,
+        disableNew = 	false;
 
-    let active = false,
-		hover = false;
+    let active = 	false,
+		hover = 	false,
+        timer;
+
+    const
+        newAddition = (new Date() - new Date(data.publishedAt)) / (1000 * 3600 * 24) < 7;
 
     const
 		imageClick = () => {
-        	if (active) { active = !active;}
+        	if (active) {
+                active = !active;}
             else {
                 $fullscreenGalleryStore.componentUrl = ArtworkDescription;
                 $fullscreenGalleryStore.componentData = data;}},
-		cardFloatClick = () => {active = active ? active : !active;},
-     	newAddition = (new Date() - new Date(data.publishedAt)) / (1000 * 3600 * 24) < 7
-
-    let timer;
+		cardFloatClick = () => {
+        	active = active ? active : !active;};
 </script>
 
 <div class="interactionWrapper wideBorder" class:glow={newAddition && !disableNew}

@@ -1,5 +1,5 @@
 
-import { get, writable } from "svelte/store";
+import { writable } from "svelte/store";
 
 const splashTextData = writable(undefined);
 export { splashTextData }

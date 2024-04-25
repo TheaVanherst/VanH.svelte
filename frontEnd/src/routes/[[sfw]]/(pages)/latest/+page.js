@@ -8,7 +8,7 @@ export const load = async () => {
     return {
         artworks:
             await client.fetch(`
-                *[ _type == 'artworks'][] | order(publishedAt desc)[0...10] {
+                *[ _type == 'artworks'][] | order(publishedAt desc)[0...8] {
                     ${defaultArtwork}}`),
         designs:
             await client.fetch(`

@@ -29,13 +29,13 @@ import commissioners from './authorData/commissioners';
 import altCharacters from './characterData/altCharacters'
 
 import workshopItems    from './alternateWorks/workshopItems';
-import workshopSnippet  from './alternateWorks/workshopSnippet';
 import workshopGameTag  from './alternateWorks/workshopGameTag';
 import githubItems      from './alternateWorks/githubItems';
 
 import socialMedia      from './pageSpecific/websiteSettings/socialMedia';
 import featuredSocials  from './pageSpecific/websiteSettings/featuredSocials';
-import featuredArtwork  from './pageSpecific/websiteSettings/featuredArtwork'
+import featuredArtwork  from './pageSpecific/websiteSettings/featuredArtwork';
+import featuredWorkshop from './pageSpecific/websiteSettings/featuredWorkshop'
 
 import genericTags    from './tags/generic';
 import fetishTags     from './tags/fetish';
@@ -83,7 +83,6 @@ const dataTypes = [
   altCharacters,
 
   workshopItems,
-  workshopSnippet,
     workshopGameTag,
   githubItems,
 
@@ -91,10 +90,11 @@ const dataTypes = [
     authorTags,
     internalTags,
   commissioners,
-
   socialMedia,
+
   featuredSocials,
-  featuredArtwork
+  featuredArtwork,
+  featuredWorkshop,
 ]
 
 export const schemaTypes = dataTypes;

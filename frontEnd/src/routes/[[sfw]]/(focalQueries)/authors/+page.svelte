@@ -2,7 +2,6 @@
     import { fade } from "svelte/transition";
 
 	import SanityImage from "$root/serializer/sanityImage.svelte";
-    import SocialsFoldable from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
     export let data;
@@ -11,44 +10,46 @@
 <div class="wrapper">
 	{#if !!data.authorData}
 		{#each data.authorData as author}
-			<RedirectBuilder url="/authors/{author.slug}">
-				<div class="authorCard" transition:fade>
-					<div class="profileBanner">
-						<div class="banner">
-							{#if author.profileBanner}
-								<SanityImage image={author.profileBanner}/>
-							{/if}
-						</div>
-						<div class="Icon">
-							<div class="rounded">
-								{#if author.userPortrait}
-									<SanityImage image={author.userPortrait}/>
+			{#if author.searchable}
+				<RedirectBuilder url="/authors/{author.slug}">
+					<div class="authorCard" transition:fade>
+						<div class="profileBanner">
+							<div class="banner">
+								{#if author.profileBanner}
+									<SanityImage image={author.profileBanner}/>
 								{/if}
 							</div>
+							<div class="Icon">
+								<div class="rounded">
+									{#if author.userPortrait}
+										<SanityImage image={author.userPortrait}/>
+									{/if}
+								</div>
+							</div>
+						</div>
+
+						<div class="title">
+							<h3 class="userName">{author.fullName}</h3>
+							<p class="handle"><span>@</span>{author.handle}, {author.internalRole[0].title}</p>
+						</div>
+
+						<div class="descriptionWrapper">
+	<!--						<SocialsFoldable socials={author.socialMedia} padding={8}>-->
+								{#if author?.authorTag?.length > 0}
+									<div class="authorTags">
+										{#each author.authorTag as tag}
+											<p>{tag.emoji} {tag.title}</p>
+										{/each}
+									</div>
+								{/if}
+								<p class="description">
+									{author.shortDesc}
+								</p>
+	<!--						</SocialsFoldable>-->
 						</div>
 					</div>
-
-					<div class="title">
-						<h3 class="userName">{author.fullName}</h3>
-						<p class="handle"><span>@</span>{author.handle}, {author.internalRole[0].title}</p>
-					</div>
-
-					<div class="descriptionWrapper">
-<!--						<SocialsFoldable socials={author.socialMedia} padding={8}>-->
-							{#if author?.authorTag?.length > 0}
-								<div class="authorTags">
-									{#each author.authorTag as tag}
-										<p>{tag.emoji} {tag.title}</p>
-									{/each}
-								</div>
-							{/if}
-							<p class="description">
-								{author.shortDesc}
-							</p>
-<!--						</SocialsFoldable>-->
-					</div>
-				</div>
-			</RedirectBuilder>
+				</RedirectBuilder>
+			{/if}
 		{/each}
 	{/if}
 </div>

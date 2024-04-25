@@ -1,5 +1,6 @@
 <script>
     import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+
     import SanityImage from "$root/serializer/sanityImage.svelte";
     import PortableText from "$root/serializer/portableText.svelte";
 

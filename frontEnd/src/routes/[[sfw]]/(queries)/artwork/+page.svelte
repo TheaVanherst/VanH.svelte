@@ -8,6 +8,9 @@
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
 
     export let data;
+
+    let pagedData, filteredData = queryFilter(data.artworks);
+
     data.artworks =
 		data.artworks.map(a => ({ ...a,
             searchTerms: (
@@ -15,7 +18,6 @@
                 searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
                 searchTermBuilder.commissions(a)).toLowerCase()}));
 
-    let pagedData, filteredData = queryFilter(data.artworks);
     $: $dataSetStore.searchQuery && queryFilter(data.artworks);
 </script>
 
