@@ -1,13 +1,20 @@
 
 const
-    workshopPreview =
-        `
+    workshopQuery = {
+        previews: `
             itemName,
             url,
-            previewImage,
             shortDesc,
             NSFW,
-            'gameLogo': gameTags->gameLogo
-        `
+            previewImage,
+            'gameLogo': gameTags->gameLogo,
+            'slug': slug.current,`,
+        creation: `
+            author[]->,
+            publishedAt,`,
+        expanded: `
+            desc,
+            'banner': workshopBanner,`
+    };
 
-export { workshopPreview }
+export { workshopQuery }

@@ -44,7 +44,7 @@
 		.container {
 			overflow: 	hidden;
 			background: white;
-			padding: 	7px;
+			padding: 	5px 6px 6px 6px;
 			margin: 	5px;}}
 
 	.title {

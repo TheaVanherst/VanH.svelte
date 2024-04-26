@@ -253,6 +253,7 @@ const splash = [
     [false, "Hello, it's me; Jim Generic."],
     [false, "I can smell girlfailure pussy a mile away"],
     [true, "I am the one who cocks.", submitters.xal],
+    [true, "JESSIE! WE NEED TO COCK.", submitters.xal],
 ]
 
 export { splash, submitters }

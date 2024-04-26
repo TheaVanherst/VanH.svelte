@@ -3,14 +3,15 @@ import client from "$lib/sanityClient.js";
 
 import { characterProfileData }    from "$lib/queryPresets/characterData.js";
 import { defaultArtwork }   from "$lib/queryPresets/genericQueries.js";
-import { workshopPreview }  from "$lib/queryPresets/workshopQueries.js";
+import { workshopQuery } from "$lib/queryPresets/workshopQueries.js";
 
 export const load = async () => {
     return {
         characterData:
             await client.fetch(`
                 *[ _type == 'characterOrder'] | order(_updatedAt desc) [0]{
-                    characters[]-> {${characterProfileData}}}`),
+                    characters[]-> {
+                        ${characterProfileData}}}`),
         artworks:
             await client.fetch(`
                 *[ _type == 'artworks'][] | order(publishedAt desc)[0...5] {
@@ -20,11 +21,11 @@ export const load = async () => {
                 full:
                     await client.fetch(`
                         *[ _type == 'highlightedWorkshop'] | order(_updatedAt desc).featuredWorkshopFull[]-> {
-                            ${workshopPreview}}`),
+                            ${workshopQuery.previews}}`),
                 snippets:
                     await client.fetch(`
                         *[ _type == 'highlightedWorkshop'] | order(_updatedAt desc).featuredWorkshopSnippets[]-> {
-                            ${workshopPreview}}`)
+                            ${workshopQuery.previews}}`)
             },
         githubData:
             await client.fetch(`

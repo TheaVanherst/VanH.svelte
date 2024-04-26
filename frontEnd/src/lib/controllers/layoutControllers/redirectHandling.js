@@ -6,19 +6,21 @@ import { get, writable } from "svelte/store";
 const redirector = " 𝚊𝚝";
 const navigationDirectories = [
         {   title: "Featured",      imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
-        {   title: "Artwork",       imagePath: "artworksIcon",      pages: [
+        {   title: "Creations",     imagePath: "artworksIcon",      pages: [
             {   title: "Latest",    imagePath: "highlightedIcon",   path: "/latest",        nsfw: true,     pagePreview: "𝘍𝘦𝘢𝘵𝘶𝘳𝘦𝘥" + redirector},
             {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",       nsfw:false,     pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
                     characters: true, queryTypes: ["explicit","genre","generic","nsfw"]},
             {   title: "Design",    imagePath: "colourWheel",       path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
-                    characters: true, queryTypes: ["design","genre","generic"]}
+                    characters: true, queryTypes: ["design","genre","generic"]},
+            {   title: "Mods",      imagePath: "workshopIcon",      path: "/workshop",      nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
+                    characters: true, queryTypes: ["design"]}
         ]},
-        {   title: "Universe",     imagePath: "commissionedIcon",  pages: [
+        {   title: "Universe",      imagePath: "universeIcon",      pages: [
             {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",       nsfw:true,      pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector,
                     characters: true, queryTypes: ["explicit","nsfw"]},
             // {   title: "Lore",      imagePath: "charactersIcon",    path: "/personas",    nsfw:false,   pagePreview: "𝗖𝗵𝗮𝗿𝗮𝗰𝘁𝗲𝗿𝘀" + redirector}
         ]},
-        {   title: "Portfolio",      imagePath: "profileIcon",   pages: [
+        {   title: "Portfolio",     imagePath: "profileIcon",   pages: [
             {   title: "Slots",     imagePath: "tagIcon",           path: "/commissions",   nsfw:false,     pagePreview: "𝕊𝕝𝕠𝕥𝕤" + redirector},
             {   title: "Members",   imagePath: "kofiLogo",          path: "/members",       nsfw:true,      pagePreview: "𝓜𝓮𝓶𝓫𝓮𝓻𝓼" + redirector},
             {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",       nsfw:false,     pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
@@ -58,10 +60,6 @@ const
             prevPageId = indexCheck(currentPage[nsfwCheck]),
             currPageId = indexCheck(previousPage[nsfwCheck]);
 
-        const
-            pageIndex = navigationDirectories[prevPageId]?.pages?.findIndex(e => e.path === "/" + currentPage[nsfwCheck]) ?? undefined,
-            strippedUrl = get(navigationControls).nsfw ? queryStripped[0].replaceAll(`/${get(directoryData).nsfwKeyword}`,'') : queryStripped[0];
-
         let directionOffset = [0,0];
 
         if (currentPage.length ^ previousPage.length && prevPageId ^ currPageId) {
@@ -78,8 +76,8 @@ const
         directoryData.update(e => ({ ...e,
             raw: currentRaw + "/", root: "/" + currentPage[nsfwCheck],
             query: queryStripped[1],
-            stripped: strippedUrl,
-            rootInt: [prevPageId, pageIndex]}));
+            stripped: get(navigationControls).nsfw ? queryStripped[0].replaceAll(`/${get(directoryData).nsfwKeyword}`,'') : queryStripped[0],
+            rootInt: [prevPageId, navigationDirectories[prevPageId]?.pages?.findIndex(e => e.path === "/" + currentPage[nsfwCheck]) ?? undefined]}));
     };
 
 export { directoryProcessing };

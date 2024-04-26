@@ -1,5 +1,6 @@
 <script>
     import SanityImage from "$root/serializer/sanityImage.svelte";
+
     import FlyInCard from "$root/components/generic/containers/textContainers/blankFlyIn.svelte";
 
 	export let dataEntry
@@ -20,7 +21,9 @@
 			<FlyInCard {active}>
 				<h5 slot="title"> {dataEntry.itemName} </h5>
 				<div slot="icon">
-					<SanityImage image={dataEntry.gameLogo}/>
+					<div class="shortBorder imageWrapper">
+						<SanityImage image={dataEntry.gameLogo}/>
+					</div>
 				</div>
 				<span slot="desc">{dataEntry.shortDesc}</span>
 			</FlyInCard>

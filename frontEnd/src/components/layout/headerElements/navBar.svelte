@@ -125,7 +125,7 @@
 		.navButton {
 			position: 	relative;
 			display: 	flex;
-			padding:	8px;
+			padding:	8px 11px 7px 9px;
 			transition: ease .3s;
 			z-index: 	10;
 
@@ -151,7 +151,7 @@
 					min-width: 	100%;
 					top: 		100%;
 					left: 		-1px;
-					padding-bottom: 1px;
+					padding-bottom: 3px;
 
 					background: black;
 					border:		1px solid var(--accent7);

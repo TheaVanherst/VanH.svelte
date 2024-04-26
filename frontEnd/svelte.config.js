@@ -16,13 +16,18 @@ const config = {
 			entries: [
 				'*','/','/afterdark/',
 				'/featured/','/afterdark/featured/',
-				'/commissions/','/afterdark/commissions/',
+
+				'/afterdark/latest',
 				'/artwork/','/afterdark/artwork/',
 				'/design/','/afterdark/design/',
-				'/afterdark/latest',
+				'/workshop','/afterdark/workshop/',
+
 				'/afterdark/erotica/',
-				'/carrd/','/afterdark/carrd/',
+
 				'/personas','/afterdark/personas',
+
+				'/carrd/','/afterdark/carrd/',
+				'/commissions/','/afterdark/commissions/',
 				'/authors','/afterdark/authors',
 				'/members','/afterdark/members'
 			],
