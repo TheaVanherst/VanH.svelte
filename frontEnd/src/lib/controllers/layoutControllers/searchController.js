@@ -32,7 +32,7 @@ const
         sfw:
             e => (!e?.nsfw ? `!!sfw `: `!!nsfw ` ?? '') + (!e?.sfw ? '!!risky ' : ''),
         title:
-            e => `${e.pieceName.replaceAll(" ","_")} ${e.slug} @vanh `,
+            e => `${e.pieceName?.replaceAll(" ","_")} ${e.slug} `,
         renderStyle:
             e => `${e.gallery.renderType} ${e.gallery.styleType} `,
         tags:
@@ -40,7 +40,7 @@ const
                 i => `${i.title.replace(' ','_')}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '',
         authors:
             e => !!e.authors ? e.authors.map(
-                a => `@${a.author.fullName.replaceAll(' ','_')} @${a.author.handle.replaceAll(' ','_')}`).join('') : '',
+                a => `@${a.fullName.replaceAll(' ','_')} @${a.handle.replaceAll(' ','_')}`).join('') : '',
         characters:
             e => !!e.characters ? e.characters?.map(
                 c => `:${c.fullName.replaceAll(' ','_')} :${c?.nickName?.replaceAll(' ','_')}`).join('') : '',

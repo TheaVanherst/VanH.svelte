@@ -13,7 +13,9 @@ const authorQueries = {
     socials: `
         'socialMedia': socialMedia[]{
             url,
-            platformName->}`,
+            platformName->{
+                socialLogo,
+                socialURL}}`,
     participation: `
         'participation': participation->emoji + " " + participation->title`,
     internals: `

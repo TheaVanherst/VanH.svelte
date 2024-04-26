@@ -9,7 +9,7 @@
 
     import BackButton 		from "$root/components/generic/wrappers/buttons/backButton.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
-    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
 
     onDestroy(() => {
         navigationData.update(e => ({...e, search: true }));});

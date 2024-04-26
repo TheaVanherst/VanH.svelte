@@ -5,7 +5,10 @@
     import imageUrlBuilder from "@sanity/image-url";
 
     import client from "$lib/sanityClient.js";
-    export let image = null;
+
+    export let
+		image = null,
+		width = 1000;
 
     let loadCheck;
     let loaded = 	false;
@@ -21,7 +24,7 @@
 {#if browser && !!image?.asset}
 	<div class:loaded>
 		<img loading="lazy"
-			 src =   { urlFor(image).width(1000)}
+			 src =   { urlFor(image).width(width)}
 			 alt =   { image?.alt }
 			 bind:this={ loadCheck }/>
 	</div>

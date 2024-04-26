@@ -1,14 +1,12 @@
 <script>
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
 
-    import { directoryData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
-
-    import SanityImage 		from "$root/serializer/sanityImage.svelte";
+    import { directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import DividedTag 		from "$root/components/generic/wrappers/tags & Inline/tags/pilledTag.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
     import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
-    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/authorTags/socialsFoldable.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
 
     export let
@@ -44,16 +42,7 @@
 				<p class="altTitle">{data.commissionData.commissionType} for:</p>
 				{#each characterOwners as owner}
 					<div class="commissioner">
-						<SocialsFoldable socials={owner.socialMedia}>
-							<RedirectBuilder url="{$directoryData.stripped}?query=@{owner.handle.toLowerCase().replaceAll(' ','_')}">
-								<div class="characterCard">
-									<div class="mediaIcon rounded">
-										<SanityImage image={owner.userPortrait}/>
-									</div>
-									<h4>{owner.handle}</h4>
-								</div>
-							</RedirectBuilder>
-						</SocialsFoldable>
+						<SocialsFoldable author={owner}/>
 					</div>
 				{/each}
 			</div>
@@ -61,16 +50,7 @@
 		{#if data.authors.length > 0}
 			<p> With additional help from: </p>
 			{#each data.authors as author}
-				<SocialsFoldable socials={author.author.socialMedia} internal="{author.author.handle.toLowerCase()}" searchable={author.searchable}>
-					<RedirectBuilder url="{$directoryData.stripped}?query=@{author.author.handle.toLowerCase().replaceAll(' ','_')}">
-						<div class="characterCard" class:socialFold={author?.author?.socialMedia?.length > 0}>
-							<div class="mediaIcon rounded">
-								<SanityImage image={author.author.userPortrait}/>
-							</div>
-							<h4>{author.author.fullName}</h4>
-						</div>
-					</RedirectBuilder>
-				</SocialsFoldable>
+				<SocialsFoldable author={author}/>
 			{/each}
 		{/if}
 
@@ -97,14 +77,7 @@
 		{#if !!data.characters || !!data.commissionData?.characters}
 			<p>Featured Character{[].concat(data?.commissionData?.characters, data?.characters).filter(Boolean).length > 1 ? 's' : ''}:</p>
 			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as character}
-				<RedirectBuilder url="{$directoryData.stripped}?query=:{(character.nickName ?? character.fullName).toLowerCase().replaceAll(' ','_')}">
-					<div class="characterCard">
-						<div class="mediaIcon rounded">
-							<SanityImage image={character.charIcon}/>
-						</div>
-						<h4>{character.fullName}</h4>
-					</div>
-				</RedirectBuilder>
+				<SocialsFoldable author={character} character={true}/>
 			{/each}
 		{/if}
 		<p>{createdPush(data.publishedAt)}</p>
@@ -137,20 +110,6 @@
 <style lang="scss">
 	p {		margin: 7px 0 7px 0;}
 	p + p {	margin: 5px 0 5px 0;}
-
-	.characterCard {
-		display: 		flex;
-		vertical-align: bottom;
-		transition: 	ease .3s;
-
-		padding:    	4px;
-		gap: 			10px;
-		margin: 		0px -3px 1px -1px ;
-		border-radius: 	20px;
-
-		&:hover {		background: var(--accent7);
-			h4 {		color: 		white;}}
-		> * {			margin: 	auto 0;}}
 
 	.commissionWrapper {	margin: 5px 0 5px 0;
 		.commissioner {		margin: 0 0 5px 0;}

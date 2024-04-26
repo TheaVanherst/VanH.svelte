@@ -36,12 +36,10 @@ const
         `
             ${genericRequests.info},
             ${genericRequests.sfw},
-            'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd']{
-                author-> {
-                    ${authorQueries.info},
-                    ${authorQueries.icon},
-                    ${authorQueries.socials}},
-            'participation': participation->emoji + " " + participation->title},
+            'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd'].author->{
+                ${authorQueries.info},
+                ${authorQueries.icon},
+                ${authorQueries.socials}},
             'photoshopRefId': discordReferences.photoshopRef,
             'imageRefId': discordReferences.archiveRef,
                 characters[]-> {
@@ -60,14 +58,10 @@ const
         `
             ${genericRequests.info},
             ${genericRequests.sfw},
-            'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd']{
-                author-> {
-                    ${authorQueries.info},
-                    ${authorQueries.icon},
-                    ${authorQueries.socials}
-                },
-                'participation': participation->emoji + " " + participation->title
-            },
+            'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd'].author->{
+                 ${authorQueries.info},
+                 ${authorQueries.icon},
+                 ${authorQueries.socials}},
             ${genericRequests.gallery},
              ${genericRequests.tags}
         `;

@@ -5,13 +5,16 @@
 
     import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
+
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
 
     export let story;
 
     let active = false;
 
-    let authorCredit = `${story.authors.map(e => e.author.fullName)}`;
+    console.log(story)
+    let authorCredit = `${story.authors.map(e => e.fullName)}`;
     	authorCredit = (authorCredit.replace(',', ", ")).replace(/,(?=[^,]+$)/, ' and');
 </script>
 
@@ -42,21 +45,14 @@
 
 		<div class="characters">
 			{#each story.characters as character, c}
-				<RedirectBuilder url="{$directoryData.stripped}?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
-					<div class="characterCard">
-						<div class="mediaIcon rounded">
-							<SanityImage image={character.charIcon}/>
-						</div>
-						<h5>{character.fullName}</h5>
-					</div>
-				</RedirectBuilder>
+				<SocialsFoldable author={character} character={true}/>
 			{/each}
 		</div>
 		<div class="writers">
 			<div class="icons">
 				{#each story.authors as author, a}
 					<div class="mediaIcon rounded">
-						<SanityImage image={author.author.userPortrait}/>
+						<SanityImage image={author.userPortrait}/>
 					</div>
 				{/each}
 			</div>

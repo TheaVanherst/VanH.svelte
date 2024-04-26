@@ -1,4 +1,6 @@
 
+import { authorQueries } from "$lib/queryPresets/authorQueries.js";
+
 const
     workshopQuery = {
         previews: `
@@ -10,7 +12,10 @@ const
             'gameLogo': gameTags->gameLogo,
             'slug': slug.current,`,
         creation: `
-            author[]->,
+            "authors": author[]->{
+                ${authorQueries.info},
+                ${authorQueries.icon},
+                ${authorQueries.socials}},
             publishedAt,`,
         expanded: `
             desc,

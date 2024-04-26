@@ -16,12 +16,10 @@ export const load = async () => {
                     characters[]-> {
                         ${characterData.preview},
                         ${characterData.info}},
-                    authors[] {
-                        author->{
-                            ${authorQueries.info},
-                            ${authorQueries.icon},
-                            ${authorQueries.socials}},
-                        'participation': participation->title},
+                    "authors": authors[].author->{
+                        ${authorQueries.info},
+                        ${authorQueries.icon},
+                        ${authorQueries.socials}},
                     ${genericRequests.tags}
                 }`
             )

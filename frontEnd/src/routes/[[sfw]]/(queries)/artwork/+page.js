@@ -10,6 +10,7 @@ export const load = async () => {
         artworks:
             await client.fetch(`
                 *[ _type == 'artworks'][] | order(publishedAt desc) {
-                    ${defaultArtwork}}`)
+                    ${defaultArtwork}
+                }`)
         };
 };
