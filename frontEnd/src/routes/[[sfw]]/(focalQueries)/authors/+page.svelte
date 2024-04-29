@@ -27,7 +27,7 @@
             }, 350);}
 
 	onMount(() => {
-        const initialSlug = $page.url.searchParams.get('user')
+        const initialSlug = $page.url.searchParams.get('user');
         currentAuthorSelected = data.authorData.map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0];})
 </script>
 

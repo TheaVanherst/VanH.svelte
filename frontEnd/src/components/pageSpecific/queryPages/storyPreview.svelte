@@ -27,6 +27,11 @@
 			<h4>{story.pieceName}</h4>
 		</div>
 	</div>
+	<div class="characters">
+		{#each story.characters as character}
+			<SocialsFoldable author={character} character={true}/>
+		{/each}
+	</div>
 	<div class="description">
 		<p>{story.description}</p>
 		<p>{createdPush(story.publishedAt)}</p>
@@ -40,34 +45,20 @@
 				{/each}
 			</div>
 		{/if}
-
-		<div class="characters">
-			{#each story.characters as character, c}
-				<SocialsFoldable author={character} character={true}/>
-			{/each}
-		</div>
-		<div class="writers">
-			<div class="icons">
-				{#each story.authors as author, a}
-					<div class="mediaIcon rounded">
-						<SanityImage image={author.userPortrait}/>
-					</div>
-				{/each}
-			</div>
-			<p class="creation">Created by {authorCredit}</p>
-		</div>
 	</div>
 </div>
 
 <style lang="scss">
 	.container {
-		transition: 	border .3s ease, background .2s ease;
-		background: 	var(--TransBlack);
-		border-bottom: 	1px solid var(--accent10);
+		transition: 	border .3s ease;
+		border-bottom: 	1px solid transparent;
 		overflow: 		hidden;
 
+		.description {
+			background: 	var(--TransBlack);}
 		&:hover {
-			background: 	black;
+			.description {
+				background: 	black;}
 			border-bottom: 	1px solid var(--accent7);
 			.bannerTitle {
 				background: var(--accent7);
@@ -97,44 +88,18 @@
 			transition: 	background .3s ease;}
 			h4 {	color: 	black;}}
 
-	.description {	padding: 	12px 0 10px 0;
-					margin: 	0 10px 0 10px;
-		em { 		display: 	block; }
+	.description {
+		transition: 	background .2s ease;
+		padding: 		12px 10px 10px 10px;
+		em { 	display: 	block; }
 		> *:not(:last-child) {	margin-bottom: 8px;}
 		.postTags {				margin-bottom: 6px;}}
 
 	.characters {
+		background: white;
 		display: 	flex;
 		flex-wrap: 	wrap;
+		padding: 	5px 8px;
 		gap: 		5px;
-		.characterCard {
-			display: 		flex;
-			width: 			max-content;
-			background: 	white;
-			vertical-align: bottom;
-			transition: 	ease .3s;
-
-			padding:    	2px 12px 2px 2px;
-			gap: 			10px;
-			margin: 		0 2px 1px -1px ;
-			border-radius: 	20px;
-
-			h5 {		color: 		black;}
-			&:hover {	background: var(--accent7);
-				h5 {	color: 		white;}}
-			> * {		margin: 	auto 0;}}}
-
-	.writers {
-		display: 	flex;
-		margin: 	-1px;
-		.icons {
-			display: 	flex;
-			.mediaIcon {
-				border: 	1px solid black;
-				z-index: 	1;
-				&:not(:first-of-type){
-					margin-left: 	-10px;}}}
-		.creation {
-			margin: 	auto 18px auto 8px;
-			padding: 	2px 0 0 0;}}
+	}
 </style>

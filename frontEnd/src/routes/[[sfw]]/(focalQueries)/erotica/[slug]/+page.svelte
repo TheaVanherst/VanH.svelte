@@ -3,7 +3,6 @@
 
     import { navigationData } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
-    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import PortableText 	from "$root/serializer/portableText.svelte";
 
@@ -13,8 +12,6 @@
 
     onDestroy(() => {
         navigationData.update(e => ({...e, search: true }));});
-    // this ensures that the search bar returns for pages on the current root, and will hide if not -
-    // otherwise the new root layout will handle it.
 
     export let data;
     
@@ -48,16 +45,11 @@
 					<div class="mediaIcon artSearcher">
 						<img src="/icons/galleryIcon.webp">
 					</div>
-					{#each data.erotica.characters as character, c}
-						<RedirectBuilder url="/artwork?query=:{(character.nickName ?? character.fullName).toLowerCase()}">
-							<div class="characterCard">
-								<div class="mediaIcon rounded">
-									<SanityImage image={character.charIcon}/>
-								</div>
-								<h4>{character.fullName}</h4>
-							</div>
-						</RedirectBuilder>
-					{/each}
+					<div class="characterWrapper">
+						{#each data.erotica.characters as character, c}
+							<SocialsFoldable author={character} character={true}/>
+						{/each}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -68,21 +60,7 @@
 
 		<div class="writers">
 			{#each data.erotica.authors as author, a}
-				<div class="authorCard">
-					<SocialsFoldable socials={author.author.socialMedia} padding={7} internal="{author.author.handle.toLowerCase()}">
-						<div class="card">
-							<div class="authorIcon">
-								<div class="profileIcon rounded">
-									<SanityImage image={author.author.userPortrait}/>
-								</div>
-							</div>
-							<div class="handles">
-								<h4>{author.author.fullName}</h4>
-								<p>@{author.author.handle} - {author.participation}</p>
-							</div>
-						</div>
-					</SocialsFoldable>
-				</div>
+				<SocialsFoldable author={author}/>
 			{/each}
 		</div>
 	</div>
@@ -93,10 +71,10 @@
 		gap: 		15px;
 		display: 	grid;
 		max-width: 	650px;
-		margin: 	0 auto 15px auto;
+		margin: 	0 auto 15px auto;}
 
-		> * {
-			background: 	var(--TransBlack);}}
+	.blockText, .descriptionWrapper, .banner {
+		background: 	var(--TransBlack);}
 
 	.container {
 		overflow: 		hidden;
@@ -118,30 +96,9 @@
 	.writers {
 		padding: 	15px;
 		gap: 		10px;
-		display: 	flex;
 		margin:    -1px;
-		border-top: 1px solid var(--accent9);
-
-		.authorCard {
-			background: 	white;
-			border-radius: 	11px;
-			width: 			max-content;
-			height: 		fit-content;
-			padding: 		2px 0 2px 2px;
-
-			.card {
-				display: 	flex;
-				width: 		max-content;
-				margin: 	5px 25px 5px 5px;
-
-				.authorIcon {	margin: 	auto 10px 0 0;}
-				.profileIcon { 	width: 		36px;
-					height: 	36px;}
-				.handles {		display: 	inline-block;}}
-
-			p, h4 {
-				white-space: 	nowrap;
-				color: 			black;}}}
+		background: var(--TransWhite);
+		border-top: 1px solid var(--accent9);}
 
 	.characters {
 		display: 	flex;
@@ -149,24 +106,16 @@
 		gap: 		10px;
 
 		.artSearcher {
+			display: flex;
 			filter: invert(1);}
 
-		.characterCard {
-			display: 		flex;
-			width: 			max-content;
-			background: 	white;
-			vertical-align: bottom;
-			transition: 	ease .3s;
+		.characterWrapper {
+			:global(h4) {
+				color: white;}
 
-			padding:    	4px 12px 4px 4px;
-			gap: 			10px;
-			margin: 		0 0 0 -1px;
-			border-radius: 	20px;
-
-			h4 {		color: 		black;}
-			&:hover {	background: var(--accent7);
-				h4 {	color: 		white;}}
-			> * {		margin: 	auto 0;}}}
+			gap: 12px;
+			display: flex;}
+	}
 
 	.blockText {
 		padding: 28px 25px 25px;}

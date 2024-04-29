@@ -1,7 +1,7 @@
 <script>
     import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
-    import { fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
 
+    import { fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import SanityGalleries 	from "$root/serializer/sanityGalleries.svelte";

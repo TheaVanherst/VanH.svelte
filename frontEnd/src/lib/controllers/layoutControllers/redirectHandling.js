@@ -53,9 +53,7 @@ const
         const
             previousPage = previousRaw.split("/"),
             currentPage = currentRaw.split("/"),
-            nsfwCheck = get(navigationControls).nsfw ? 2 : 1;
-
-        const
+            nsfwCheck = get(navigationControls).nsfw ? 2 : 1,
             queryStripped = (currentRaw + "/").split("?"), //removes queryPresets from the search
             prevPageId = indexCheck(currentPage[nsfwCheck]),
             currPageId = indexCheck(previousPage[nsfwCheck]);
@@ -74,7 +72,7 @@ const
         navigationControls.update(e => ({ ...e,
             direction: directionOffset}));
         directoryData.update(e => ({ ...e,
-            raw: currentRaw + "/", root: "/" + currentPage[nsfwCheck],
+            raw: currentRaw + "/", root: "/" + currentPage[nsfwCheck].split('?')[0],
             query: queryStripped[1],
             stripped: get(navigationControls).nsfw ? queryStripped[0].replaceAll(`/${get(directoryData).nsfwKeyword}`,'') : queryStripped[0],
             rootInt: [prevPageId, navigationDirectories[prevPageId]?.pages?.findIndex(e => e.path === "/" + currentPage[nsfwCheck]) ?? undefined]}));

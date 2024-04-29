@@ -11,19 +11,20 @@
     import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineRedirectTag.svelte";
 
 	export let
-        padding = undefined,
 		author = undefined,
 		authorSocials = true,
-		character = false;
+        character = false,
+		customColour = false,
+		customRoot = undefined;
 
     let active = false;
 </script>
 
-{#if !character}
+{#if character === false}
 	<div class="inlineRedirect">
 		<div class="expandedSlot">
-			<RedirectBuilder url="{$directoryData.stripped}?query=@{author.handle.toLowerCase().replaceAll(' ','_')}">
-				<div class="characterCard">
+			<RedirectBuilder url="{!customRoot ? customRoot : $directoryData.root}?query=@{author.handle.toLowerCase().replaceAll(' ','_')}">
+				<div class="characterCard" class:white={customColour}>
 					<div class="mediaIcon rounded">
 						<SanityImage image={author.userPortrait}/>
 					</div>
@@ -32,13 +33,13 @@
 			</RedirectBuilder>
 		</div>
 		{#if authorSocials && !!author.socialMedia}
-			<RollupButton bind:active invert={true} {padding}/>
+			<RollupButton bind:active invert={true}/>
 		{/if}
 	</div>
 	{#if active}
 		<div class="socialInline" transition:slide>
 			{#if author.searchable}
-				<InternalRedirectTag redirect="/authors/{author.handle.toLowerCase()}" user="{author.handle.toLowerCase()}"/>
+				<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" user="{author.handle.toLowerCase()}"/>
 			{/if}
 			{#if author.socialMedia.length > 0}
 				<SocialMediaTag data={author.socialMedia[0]}/>
@@ -48,8 +49,8 @@
 {:else}
 	<div class="inlineRedirect">
 		<div class="expandedSlot">
-			<RedirectBuilder url="{$directoryData.stripped}?query=:{(author.nickName ?? author.fullName).toLowerCase().replaceAll(' ','_')}">
-				<div class="characterCard">
+			<RedirectBuilder url="{!customRoot ? customRoot : $directoryData.root}?query=:{(author.nickName ?? author.fullName).toLowerCase().replaceAll(' ','_')}">
+				<div class="characterCard" class:white={customColour}>
 					<div class="mediaIcon rounded">
 						<SanityImage image={author.charIcon}/>
 					</div>
@@ -62,7 +63,7 @@
 
 <style lang="scss">
 	.inlineRedirect {
-		width: 		100%;
+		min-width: 	max-content;
 		display: 	flex;
 		.expandedSlot {
 			width: 	100%;}}
@@ -70,14 +71,18 @@
 	.characterCard {
 		display: 		flex;
 		vertical-align: bottom;
-		transition: 	ease .3s;
 
-		padding:    	4px;
-		gap: 			10px;
 		margin: 		0px -3px 1px -1px ;
+		padding:    	4px 12px 4px 4px;
+		gap: 			10px;
 		border-radius: 	20px;
 
-		&:hover {		background: var(--accent7);
-			h4 {		color: 		white;}}
-		> * {			margin: 	auto 0;}}
+		transition: 	ease .3s;
+
+			h4 { 	color: 		black; }
+		&.white {
+			h4 { 	color: 		white;}}
+		&:hover {	background: var(--accent7);
+			h4 {	color: 		white;}}
+		> * {		margin: 	auto 0;}}
 </style>

@@ -2,8 +2,7 @@
 	export let
 		active = false,
 		hover = false,
-		invert = false,
-		padding = "5"
+		invert = false;
 </script>
 
 <div class="aspectMask">
@@ -12,7 +11,7 @@
 		 class:invert
 		 class:regular={!invert}
 		 on:mousedown={() => active=!active}>
-		<div class="iconCrop rounded" style="padding:{padding}px">
+		<div class="iconCrop rounded">
 			<img src="/icons/downIcon.webp">
 		</div>
 	</div>
@@ -23,8 +22,9 @@
 		margin: auto 8px;}
 	.foldable {
 		.iconCrop {
-			margin:	 		auto;
-			display: 		flex;}
+			padding: 5px;
+			margin:	 auto;
+			display: flex;}
 
 		img {
 			position: 	relative;

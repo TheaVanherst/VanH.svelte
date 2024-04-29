@@ -17,6 +17,7 @@
 
 <style lang="scss">
 	.inlineTag {
+		white-space: nowrap;
 		.icon {
 			margin:	0 0 0 2px;
 			display: flex;}
