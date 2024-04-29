@@ -17,6 +17,7 @@
 
 <style lang="scss">
 	:global(.developmentIcon *) {
+		text-transform: capitalize!important;
 		color: 		black;}
 
 	.developmentIcon {
