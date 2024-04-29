@@ -15,14 +15,12 @@ export const load = async () => {
                     ${authorQueries.about},
                     ${authorQueries.socials},
                     "latestArtworks": *[_type == 'artworks' && references(^._id)] | order(publishedAt desc)[0...6] {
-                        publishedAt,
                         ${genericRequests.info},
                         ${genericRequests.sfw},
                         ${genericRequests.gallery},
                         ${authorQueries.referenceParticipation}
                     },
                     "latestDesigns": *[_type == 'alternateArts' && references(^._id)] | order(publishedAt desc)[0...3] {
-                        publishedAt,
                         ${genericRequests.info},
                         ${genericRequests.sfw},
                         ${genericRequests.gallery},

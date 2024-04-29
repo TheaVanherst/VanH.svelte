@@ -91,7 +91,7 @@
 
 <style lang="scss">
 	:global(p, h3, h2){
-		color: black;}
+		color: white;}
 
 	.gameThumbnail {
 		position: 	absolute;
@@ -109,7 +109,7 @@
 			width: 		100%;
 			top: 		0;
 			left: 		0;
-			background: var(--TransWhite);
+			background: var(--TransBlack);
 
 			> * {
 				width: 		100%;

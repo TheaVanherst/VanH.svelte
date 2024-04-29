@@ -19,7 +19,7 @@ const authorQueries = {
     participation: `
         'participation': participation->emoji + " " + participation->title`,
     referenceParticipation:`
-        'participation': authors[references(^.^._id)][0]{'string': participation->emoji + " " + participation->title}.string`,
+        'description': authors[references(^.^._id)][0]{'string': participation->emoji + " " + participation->title}.string`,
     internals: `
         authorTag[]-> {
             emoji,

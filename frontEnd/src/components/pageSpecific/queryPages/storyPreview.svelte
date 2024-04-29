@@ -10,10 +10,8 @@
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
 
     export let story;
-
     let active = false;
 
-    console.log(story)
     let authorCredit = `${story.authors.map(e => e.fullName)}`;
     	authorCredit = (authorCredit.replace(',', ", ")).replace(/,(?=[^,]+$)/, ' and');
 </script>

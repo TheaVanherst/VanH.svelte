@@ -47,14 +47,14 @@
 				{/each}
 			</div>
 		{/if}
-		{#if data.authors.length > 0}
+		{#if data.authors?.length > 0}
 			<p> With additional help from: </p>
 			{#each data.authors as author}
 				<SocialsFoldable author={author}/>
 			{/each}
 		{/if}
 
-		{#if data.gallery.styleType && data.gallery.renderType}
+		{#if data.gallery?.styleType && data.gallery?.renderType}
 			<p>
 				<DividedTag>
 					<span slot="title">{data.gallery.styleType}</span>
@@ -74,7 +74,7 @@
 	</div>
 
 	<div slot="alt">
-		{#if !!data.characters || !!data.commissionData?.characters}
+		{#if !!data?.characters || !!data.commissionData?.characters}
 			<p>Featured Character{[].concat(data?.commissionData?.characters, data?.characters).filter(Boolean).length > 1 ? 's' : ''}:</p>
 			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as character}
 				<SocialsFoldable author={character} character={true}/>

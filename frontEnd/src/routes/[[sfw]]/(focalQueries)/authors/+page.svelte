@@ -4,11 +4,10 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
 
-    import { directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { directoryData, navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
-    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
-    import ImageTag	 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
+    import ArtworkCard 		from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
 
     let currentAuthorSelected;
 
@@ -20,20 +19,20 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
             setTimeout(async () => {
                 if (currentAuthorSelected) {
-                    $page.url.searchParams.set('author',author.slug);
+                    $page.url.searchParams.set('user',author.slug);
 					await goto (`?${$page.url.searchParams.toString()}`);}
                 else {
-                    new URLSearchParams($page.url.searchParams.toString()).delete('author');
+                    new URLSearchParams($page.url.searchParams.toString()).delete('user');
                     await goto(`${$directoryData.raw}`);}
             }, 350);}
 
 	onMount(() => {
-        const initialSlug = $page.url.searchParams.get('author')
+        const initialSlug = $page.url.searchParams.get('user')
         currentAuthorSelected = data.authorData.map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0];})
 </script>
 
 {#if !!data.authorData && currentAuthorSelected === undefined}
-	<div class="authorSlideController" in:slide={{axis: 'x', delay: 150}} out:slide={{axis: 'x', delay: 100}}>
+	<div class="authorSlideController" in:slide={{axis: 'x', delay: 250}} out:slide={{axis: 'x', delay: 100}}>
 		<div class="authorMarginWrapper">
 			{#each data.authorData as author}
 				{#if author.searchable}
@@ -74,7 +73,7 @@
 {/if}
 
 {#if currentAuthorSelected}
-	<div class="focusedAuthorController" in:slide={{axis: 'x', delay: 150}} out:slide={{axis: 'x', delay: 100}}>
+	<div class="focusedAuthorController" in:slide={{axis: 'x', delay: 250}} out:slide={{axis: 'x', delay: 100}}>
 		<div class="focusedAuthorMarginWrapper">
 			<div class="authorSelection wideBorder">
 				{#each data.authorData as author}
@@ -109,7 +108,7 @@
 
 							<div class="title">
 								<h3 class="userName">{currentAuthorSelected.fullName}</h3>
-								<p class="handle"><span>@</span>{currentAuthorSelected.handle}{currentAuthorSelected.internalRole[0] ? "," + currentAuthorSelected.internalRole[0].title : ""}</p>
+								<p class="handle"><span>@</span>{currentAuthorSelected.handle}{currentAuthorSelected.internalRole[0] ? ", " + currentAuthorSelected.internalRole[0].title : ""}</p>
 							</div>
 
 							<div class="descriptionWrapper">
@@ -126,43 +125,27 @@
 							</div>
 						</div>
 
-						{#if currentAuthorSelected.latestArtworks.length > 0}
-							<div class="artworkFeature">
-								<h2>Latest Artworks</h2>
-								<div class="artworkGallery artwork imageWrapper">
-									{#each currentAuthorSelected.latestArtworks as artwork}
-										<RedirectBuilder url="/artwork/?query={artwork.pieceName.toLowerCase().replaceAll(' ','_')}">
-											<div class="imageCard imageWrapper wideBorder">
-												{#if !!artwork.gallery.images[0]}
-													<SanityImage image="{artwork.gallery.images[0]}"/>
-												{/if}
-												<ImageTag>
-													<p>{artwork.participation}</p>
-												</ImageTag>
-											</div>
-										</RedirectBuilder>
-									{/each}
+						{#if $navigationControls.nsfw}
+							{#if currentAuthorSelected.latestArtworks.length > 0}
+								<div class="artworkFeature">
+									<h2>Latest Artworks</h2>
+									<div class="artworkGallery artwork imageWrapper">
+										{#each currentAuthorSelected.latestArtworks as artwork}
+											<ArtworkCard data={artwork}/>
+										{/each}
+									</div>
 								</div>
-							</div>
-						{/if}
-						{#if currentAuthorSelected.latestDesigns.length > 0}
-							<div class="artworkFeature">
-								<h2>Latest Designs</h2>
-								<div class="artworkGallery designWork imageWrapper">
-									{#each currentAuthorSelected.latestDesigns as artwork}
-										<RedirectBuilder url="/artwork/?query={artwork.pieceName.toLowerCase().replaceAll(' ','_')}">
-											<div class="imageCard imageWrapper wideBorder">
-												{#if !!artwork.gallery.images[0]}
-													<SanityImage image="{artwork.gallery.images[0]}"/>
-												{/if}
-												<ImageTag>
-													<p>{artwork.participation}</p>
-												</ImageTag>
-											</div>
-										</RedirectBuilder>
-									{/each}
+							{/if}
+							{#if currentAuthorSelected.latestDesigns.length > 0}
+								<div class="artworkFeature">
+									<h2>Latest Designs</h2>
+									<div class="artworkGallery designWork imageWrapper">
+										{#each currentAuthorSelected.latestDesigns as artwork}
+											<ArtworkCard data={artwork}/>
+										{/each}
+									</div>
 								</div>
-							</div>
+							{/if}
 						{/if}
 					</div>
 				{/key}
@@ -174,6 +157,7 @@
 <style lang="scss">
 	.authorSlideController, .focusedAuthorController {
 		width: 100%;
+		margin-bottom: 15px;
 		.authorMarginWrapper, .focusedAuthorMarginWrapper {
 			gap: 		15px;
 			margin: 	0 auto;
@@ -275,9 +259,7 @@
 			&:hover {
 				opacity: 0.75;
 				&:not(.active) {
-					transform: scale(1.1);}
-				&.active {
-					transform: scale(0.9);}}}}
+					transform: scale(1.1);}}}}
 
 	.artworkFeature {
 		position: 	relative;
@@ -289,17 +271,5 @@
 		display: grid;
 		grid-template-columns: auto auto auto;
 		gap: 15px;
-		min-width: 100%;
-
-		.imageCard {
-			min-height: 100%;
-			min-width: 100%;
-			&.artwork {
-				height: 500px;}
-			&.designWork {
-				height: 400px;}
-			p {	text-transform: lowercase;
-				&:first-letter {
-					text-transform: capitalize;}}}
-	}
+		min-width: 100%;}
 </style>
