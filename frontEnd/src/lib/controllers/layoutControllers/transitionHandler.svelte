@@ -13,6 +13,7 @@
     afterNavigate(async (n) => { // compensates for page refreshes / initial page loading
         if ( n.from === null && n.willUnload === false ) {  // this fixes an issue where the url doesn't update from the initial layout load.
             $navigationControls.transitioning = false;
+            $directoryStatus.nsfwOptional = !!n.to.params.sfw ? $directoryStatus.nsfwKeyword : "";
             let to = n.to.url.search ? n.to.url.pathname + n.to.url.search : (n.to.url.pathname).slice(0, -1);
 			to = to === "" ? "/" : to;
             await directoryProcessing(to, to);}
