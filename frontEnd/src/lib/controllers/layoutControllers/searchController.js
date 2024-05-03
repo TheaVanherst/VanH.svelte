@@ -3,7 +3,7 @@ import { get } from "svelte/store"
 import { page } from '$app/stores';
 import { goto } from "$app/navigation";
 
-import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
 
 const
@@ -34,7 +34,7 @@ const
         title:
             e => `${e.pieceName?.replaceAll(" ","_")} ${e.slug} `,
         renderStyle:
-            e => `${e.gallery.renderType} ${e.gallery.styleType} `,
+            e => `${e.gallery.renderType?.replaceAll(' ','_')} ${e.gallery.styleType?.replaceAll(' ','_')} `,
         tags:
             e => !!e.tags ? `${e.tags.map(
                 i => `${i.title.replace(' ','_')}${(!!i?.relatedTags ? ` ${i.relatedTags}` : '')} `).join('')}` : '',

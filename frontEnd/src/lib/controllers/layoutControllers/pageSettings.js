@@ -19,18 +19,16 @@ const
 
     galleryChange = (item, id = 0) => {
         if (item) {
-            document.body.classList.add("noScroll");
-            messengerSettings.set(false);
             fullscreenGalleryStore.update(e =>({
                 ...e,
                 gallery: item.flat(),
                 currentImage: id}));}
         else {
-            document.body.classList.remove("noScroll");
-            messengerSettings.set(true);
             fullscreenGalleryStore.update(e =>({
                 ...e,
                 gallery: undefined,
+                componentData: undefined,
+                componentUrl: undefined,
                 currentImage: 0 }));}},
 
     dataSetStore = writable({page: 0, searchQuery: ""});

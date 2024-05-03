@@ -6,8 +6,8 @@
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
 
     import { navigationControls, deviceData,
-       		 navigationData, directoryData,
-        	 navigationDirectories } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+       		 navigationData, directoryStatus,
+        	 navigationDirectories } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
 
     export let
 		socials = 	{};
@@ -29,12 +29,12 @@
 							<div class="navButton dropDown" transition:slide={{duration: 200, axis: 'x'}}
 								 on:mouseover={() => currentId = id}
 								 on:mouseleave={() => currentId = 0}
-								 class:currentRoot={item.pages.map(e=>e.path).includes($directoryData.root)}
+								 class:currentRoot={item.pages.map(e=>e.path).includes($directoryStatus.currentRoot)}
 								 class:smallerIcon={desktop}>
 								<div class="mediaIcon">
 									<img src="/icons/{item.imagePath}.webp"/>
 								</div>
-								{#if desktop || item.pages.map(e=>e.path).includes($directoryData.root)}
+								{#if desktop || item.pages.map(e=>e.path).includes($directoryStatus.currentRoot)}
 									<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
 								{/if}
 
@@ -44,7 +44,7 @@
 											{#if page.nsfw && $navigationControls.nsfw || !page.nsfw}
 												<RedirectBuilder url="{page.path}" redirectName={page.pagePreview}>
 													<div class="navButton" transition:slide={{duration: 200, axis: 'x'}}
-														 class:currentRoot={$directoryData.root === page.path}
+														 class:currentRoot={$directoryStatus.currentRoot === page.path}
 														 class:smallerIcon={desktop}>
 														<div class="mediaIcon">
 															<img src="/icons/{page.imagePath}.webp"/>
@@ -62,12 +62,12 @@
 						{#if item.nsfw && $navigationControls.nsfw || !item.nsfw}
 							<RedirectBuilder url="{item.path}" redirectName={item.pagePreview}>
 								<div class="navButton" transition:slide={{duration: 200, axis: 'x'}}
-									 class:currentRoot={$directoryData.root === item.path}
+									 class:currentRoot={$directoryStatus.currentRoot === item.path}
 									 class:smallerIcon={desktop}>
 									<div class="mediaIcon">
 										<img src="/icons/{item.imagePath}.webp"/>
 									</div>
-									{#if desktop || $directoryData.root === item.path}
+									{#if desktop || $directoryStatus.currentRoot === item.path}
 										<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
 									{/if}
 								</div>

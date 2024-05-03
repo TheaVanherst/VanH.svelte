@@ -5,7 +5,7 @@
     import WorkshopCard 	from "$root/components/pageSpecific/homePage/embedded/workshopCard.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/homePage/embedded/workshopSnippet.svelte";
 
-    import { deviceData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { deviceData, navigationControls } from '$lib/controllers/layoutControllers/navigationHandling.js';
 
     export let dataset;
 

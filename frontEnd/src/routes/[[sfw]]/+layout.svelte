@@ -7,7 +7,7 @@
 
     import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
-    import { navigationData, navigationControls, directoryData, navigationDirectories } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationData, navigationControls, directoryStatus, navigationDirectories } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/layoutControllers/transitionHandler.svelte";
    	import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
@@ -50,8 +50,8 @@
     // generic search.
     const
 		hardSearch = (query = "", page = 0) => {
+            $navigationControls.transitioning = true;
 			window.scrollTo({ top: 0, behavior: 'smooth' });
-			$navigationControls.transitioning = true;
 			setTimeout(() => { // this allows the pagination to update
 				$dataSetStore.searchQuery = query;
 				$dataSetStore.page = 		page;
@@ -82,7 +82,7 @@
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>
 					<input type="search" class="input" placeholder="Search..." bind:value={value}/>
 				</form>
-				<RollupButton bind:active padding={8}/>
+				<RollupButton bind:active padding={3}/>
 			</div>
 		</div>
 	{/if}
@@ -90,7 +90,7 @@
 	{#if active && data.tags && $navigationData.search}
 		<div class="tableGroup wideBorder" transition:slide>
 
-			{#if navigationDirectories[$directoryData.rootInt[0]]?.pages?.[$directoryData.rootInt[1]].characters}
+			{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]].characters}
 				<h4>Characters</h4>
 				<div class="characterInline">
 					{#each data.characters as character, c}
@@ -107,7 +107,7 @@
 
 			{#each data.tags as tagSet, i}
 				{#if !tagSet.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
-					{#if navigationDirectories[$directoryData.rootInt[0]]?.pages?.[$directoryData.rootInt[1]]?.queryTypes?.includes(tagSet.category) || $directoryData.rootInt[1] === undefined}
+					{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]]?.queryTypes?.includes(tagSet.category) || $directoryStatus.rootIndex[1] === undefined}
 						<div transition:slide>
 							<h4>{tagSet.category} Tags</h4>
 							<div class="tagGroup">
@@ -145,9 +145,10 @@
 	.searchBarWrapper {
 		margin: 10px auto 0 auto;
 		.searchBar {
-			display: flex;
-			margin: 0 auto;
-			padding-left: 10px;
+			display: 	flex;
+			gap: 		10px;
+			margin: 	0 auto;
+			padding: 	0 0 0 10px;
 			form {
 				display: contents;}}}
 

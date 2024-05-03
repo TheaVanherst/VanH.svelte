@@ -1,6 +1,6 @@
 <script>
     import { horizontalSlide } 	from "$lib/controllers/layoutControllers/transitionPresets.js";
-    import { deviceData } 		from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { deviceData } 		from '$lib/controllers/layoutControllers/navigationHandling.js';
 
 	export let
 		titlecard,

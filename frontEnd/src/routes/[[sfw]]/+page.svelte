@@ -1,10 +1,17 @@
 <script>
     import { slide } from "svelte/transition";
+    import { onMount } from "svelte";
+
+    import { navigationData } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import Container 		from "$root/components/generic/containers/container.svelte";
     import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
 
     export let data;
+
+    onMount(async () => {
+        navigationData.set(e => ({...e, logo: true, navigation: false, socials: false, search: false }));
+	});
 </script>
 
 <div class="center" transition:slide>

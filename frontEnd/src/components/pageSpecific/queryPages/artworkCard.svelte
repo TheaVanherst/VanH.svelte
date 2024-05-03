@@ -2,7 +2,7 @@
     import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
 
     import { fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityGalleries 	from "$root/serializer/sanityGalleries.svelte";
     import ArtworkDescription from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
@@ -20,7 +20,7 @@
         newAddition = (new Date() - new Date(data.publishedAt)) / (1000 * 3600 * 24) < 7;
 
     const
-		imageClick = () => {
+        cardSelected = () => {
         	if (active) {
                 active = !active;}
             else {
@@ -43,7 +43,7 @@
 		</div>
 	{/if}
 	<div class="galleryWrapper">
-		<div class="galleryContainer" on:click={imageClick} class:clickable={active}>
+		<div class="galleryContainer" on:click={cardSelected} class:clickable={active}>
 			<div class="imageGallery" class:blurred={data.sfw && !$navigationControls.nsfw}>
 				<SanityGalleries portableText={data.gallery}/>
 			</div>

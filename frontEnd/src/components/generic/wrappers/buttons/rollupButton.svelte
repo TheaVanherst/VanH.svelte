@@ -1,15 +1,21 @@
 <script>
+    import { slide }	from "svelte/transition";
+
 	export let
 		active = false,
 		hover = false,
-		invert = false;
+		invert = false,
+		padding = 0,
+		border = true;
 </script>
 
-<div class="aspectMask">
+<div class="aspectMask" transition:slide>
 	<div class="foldable rounded"
 		 class:active
 		 class:invert
 		 class:regular={!invert}
+		 class:border={border}
+		 style="padding:{padding}px"
 		 on:mousedown={() => active=!active}>
 		<div class="iconCrop rounded">
 			<img src="/icons/downIcon.webp">
@@ -19,7 +25,7 @@
 
 <style lang="scss">
 	.aspectMask {
-		margin: auto 8px;}
+		margin: auto 0;}
 	.foldable {
 		.iconCrop {
 			padding: 5px;
@@ -35,13 +41,16 @@
 
 		transition: background .5s ease, transform .3s ease;
 
+		&.border {		border: 1px solid var(--accent7);
+			&.active {	border: 1px solid var(--accent10);}}
+		&:not(.border) {
+			margin: 0 1px 0 0;}
+
 		&.regular {
-			border: 1px solid var(--accent7);
 			background: var(--TransBlack);
 			img {	filter: 	invert(1);}
 			&.active {
 				background: var(--accent10);
-				border: 1px solid var(--accent10);
 				transform: rotate(180deg);
 				img {	filter: 	invert(0);}}
 			&:hover {	background: var(--accent7);

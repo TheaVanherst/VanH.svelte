@@ -1,6 +1,6 @@
 <script>
     import { urlSerializer } 		from "$lib/controllers/layoutControllers/searchController.js";
-    import { navigationControls } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     export let
 		rows, trimmedRows, perPage,

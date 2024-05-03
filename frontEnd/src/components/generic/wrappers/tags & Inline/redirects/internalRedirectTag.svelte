@@ -3,11 +3,12 @@
 
     export let
 		redirect,
-		user;
+		user,
+		inverted = false;
 </script>
 
 <RedirectBuilder url="{redirect}">
-	<div class="inlineTag">
+	<div class="inlineTag" class:inverted={inverted}>
 		<div class="icon inlineIcon rounded">
 			<img src="/icons/vanhSocial.webp" alt="">
 		</div>
@@ -23,6 +24,13 @@
 			display: flex;}
 		p {	margin: 0 5px;
 			color: 	black;}
+
+		&.inverted {
+			background: white;
+			p {
+				color: black;
+			}
+		}
 
 		&:hover {
 			background: 	var(--accent7);

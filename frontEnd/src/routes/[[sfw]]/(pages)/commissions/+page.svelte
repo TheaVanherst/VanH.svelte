@@ -1,5 +1,5 @@
 <script>
-    import { navigationControls, deviceData } from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { navigationControls, deviceData } from '$lib/controllers/layoutControllers/navigationHandling.js';
 
     import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/container.svelte";

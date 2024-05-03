@@ -1,7 +1,7 @@
 <script>
 	import { fade } from "svelte/transition";
 
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";

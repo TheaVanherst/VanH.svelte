@@ -3,7 +3,7 @@
     import { onMount } 		from "svelte";
     import { Pagination } 	from 'swiper/modules';
 
-    import { deviceData } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { deviceData } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
 
 	export let
 		maxWidth = 3,

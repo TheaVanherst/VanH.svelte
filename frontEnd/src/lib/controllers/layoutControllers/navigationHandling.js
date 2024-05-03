@@ -32,12 +32,28 @@ export { navigationDirectories };
 // ---------------------
 
 const
-    directoryData =         writable({ raw: "/", stripped: '/', root: '/', rootInt:[0,undefined], query: '', nsfwKeyword: 'afterdark', nsfwUrlCheck: () => get(navigationControls).nsfw ? "/" + get(directoryData).nsfwKeyword : ""}),
-    navigationControls =    writable({ direction: [0,0], nsfw: false, loaded: false, transitioning: true, localNsfwCheck: (e) => !e && !get(navigationControls).nsfw || get(navigationControls).nsfw }),
-    deviceData =            writable({ scrollPos: 0, screenSize: 0, screenType: 0, deviceType: 0, bandWidths: [850, 600, 500]}),
-    navigationData =        writable({ logo: true, navigation: false, socials: false, search: false, filtering: false});
+    directoryStatus =
+        writable({
+            rawDirectory: "/", strippedUrl: '/', currentRoot: '/',
+            rootIndex: [0,undefined],
+            query: '', nsfwKeyword: 'afterdark',
+            nsfwUrlCheck: () => get(navigationControls).nsfw ? "/" + get(directoryStatus).nsfwKeyword : ""}),
+    navigationControls =
+        writable({
+            direction: [0,0], nsfw: false,
+            loaded: false, transitioning: true,
+            localNsfwCheck: (e) => !e && !get(navigationControls).nsfw || get(navigationControls).nsfw }),
+    deviceData =
+        writable({
+            scrollPos: 0,
+            screenSize: 0, screenType: 0, deviceType: 0, bandWidths: [850, 600, 500]}),
+    navigationData =
+        writable({
+            logo: true,
+            navigation: false, socials: false,
+            search: false, filtering: false});
 
-export { directoryData, navigationControls, deviceData, navigationData };
+export { directoryStatus, navigationControls, deviceData, navigationData };
 
 // ---------------------
 
@@ -51,31 +67,32 @@ const
         currentRaw = slicer(currentRaw);
 
         const
-            previousPage = previousRaw.split("/"),
-            currentPage = currentRaw.split("/"),
-            nsfwCheck = get(navigationControls).nsfw ? 2 : 1,
-            queryStripped = (currentRaw + "/").split("?"), //removes queryPresets from the search
-            prevPageId = indexCheck(currentPage[nsfwCheck]),
-            currPageId = indexCheck(previousPage[nsfwCheck]);
+            previousPageArray = previousRaw.split("/"),
+            currentPageArray = currentRaw.split("/") ?? [''],
+            nsfwCheckBool = get(navigationControls).nsfw ? 2 : 1,
+            strippedRawQuery = (currentRaw).split("?"), //removes queryPresets from the search
+            prevPageIndex = indexCheck(currentPageArray[nsfwCheckBool]),
+            currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]);
 
         let directionOffset = [0,0];
 
-        if (currentPage.length ^ previousPage.length && prevPageId ^ currPageId) {
+        if (currentPageArray.length ^ previousPageArray.length && prevPageIndex ^ currPageIndex) {
                 // initial page load
-        } else if (currentPage.length === previousPage.length && prevPageId === currPageId) {
+        } else if (currentPageArray.length === previousPageArray.length && prevPageIndex === currPageIndex) {
                 // for pages transitioning in both directions
         } else {
-            directionOffset[1] = currentPage.length ^ previousPage.length ? currentPage.length > previousPage.length ? 1 : -1 : 0;
-            directionOffset[0] = directionOffset[1] === 0 ? prevPageId > currPageId ? 1 : -1 : 0;}
+            directionOffset[1] = currentPageArray.length ^ previousPageArray.length ? currentPageArray.length > previousPageArray.length ? 1 : -1 : 0;
+            directionOffset[0] = directionOffset[1] === 0 ? prevPageIndex > currPageIndex ? 1 : -1 : 0;}
                 // literally everything else
 
         navigationControls.update(e => ({ ...e,
             direction: directionOffset}));
-        directoryData.update(e => ({ ...e,
-            raw: currentRaw + "/", root: "/" + currentPage[nsfwCheck].split('?')[0],
-            query: queryStripped[1],
-            stripped: get(navigationControls).nsfw ? queryStripped[0].replaceAll(`/${get(directoryData).nsfwKeyword}`,'') : queryStripped[0],
-            rootInt: [prevPageId, navigationDirectories[prevPageId]?.pages?.findIndex(e => e.path === "/" + currentPage[nsfwCheck]) ?? undefined]}));
+        directoryStatus.update(e => ({ ...e,
+            rawDirectory: currentRaw,
+            currentRoot: "/" + currentPageArray[nsfwCheckBool],
+            query: strippedRawQuery[1] ? "/?" + strippedRawQuery[1] : "",
+            strippedUrl: get(navigationControls).nsfw ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`,'') : strippedRawQuery[0],
+            rootIndex: [prevPageIndex, navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined]}));
     };
 
 export { directoryProcessing };

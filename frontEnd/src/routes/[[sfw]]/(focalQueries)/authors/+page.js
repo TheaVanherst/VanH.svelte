@@ -14,13 +14,13 @@ export const load = async () => {
                     ${authorQueries.internals},
                     ${authorQueries.about},
                     ${authorQueries.socials},
-                    "latestArtworks": *[_type == 'artworks' && references(^._id)] | order(publishedAt desc)[0...6] {
+                    "latestArtworks": *[_type == 'artworks' && references(^._id)] | order(publishedAt desc)[0...12] {
                         ${genericRequests.info},
                         ${genericRequests.sfw},
                         ${genericRequests.gallery},
                         ${authorQueries.referenceParticipation}
                     },
-                    "latestDesigns": *[_type == 'alternateArts' && references(^._id)] | order(publishedAt desc)[0...3] {
+                    "latestDesigns": *[_type == 'alternateArts' && references(^._id) && imageVisibility.NSFW != true] | order(publishedAt desc)[0...3] {
                         ${genericRequests.info},
                         ${genericRequests.sfw},
                         ${genericRequests.gallery},

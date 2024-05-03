@@ -1,7 +1,7 @@
 <script>
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
 
-    import { directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import DividedTag 		from "$root/components/generic/wrappers/tags & Inline/tags/pilledTag.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
@@ -65,7 +65,7 @@
 		{#if data.tags?.length > 0}
 			<div class="postTags">
 				{#each data.tags as tag}
-					<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
+					<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
 						<InlineTag tag={tag}/>
 					</RedirectBuilder>
 				{/each}

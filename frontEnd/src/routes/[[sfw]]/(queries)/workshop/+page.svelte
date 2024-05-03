@@ -2,7 +2,7 @@
 	// import { slide, fade } from "svelte/transition";
 
     import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     // import PortableText from "$root/serializer/portableText.svelte";
     // import SanityImage from "$root/serializer/sanityImage.svelte";

@@ -1,7 +1,7 @@
 <script>
     import { slide } 	from 'svelte/transition';
 
-    import { directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import RollupButton from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
     import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
@@ -14,43 +14,49 @@
 		author = undefined,
 		authorSocials = true,
         character = false,
-		customColour = false,
-		customRoot = undefined;
+		customRoot = undefined,
+		inverted = false;
 
-    let active = false;
+    let active = false,
+        timer;
+
 </script>
 
 {#if character === false}
-	<div class="inlineRedirect">
-		<div class="expandedSlot">
-			<RedirectBuilder url="{!customRoot ? customRoot : $directoryData.root}?query=@{author.handle.toLowerCase().replaceAll(' ','_')}">
-				<div class="characterCard" class:white={customColour}>
-					<div class="mediaIcon rounded">
-						<SanityImage image={author.userPortrait}/>
+	<div class="authorCardWrapper">
+		<div class="inlineRedirect" class:inverted={inverted}
+			 on:mouseenter={() => {clearInterval(timer);}}
+			 on:mouseleave={() => {timer = setInterval(function () {active = false;}, 2000)}}>
+			<div class="expandedSlot">
+				<RedirectBuilder url="{!!customRoot ? customRoot : $directoryStatus.strippedUrl}?query=@{author.handle.toLowerCase().replaceAll(' ','_')}">
+					<div class="characterCard">
+						<div class="mediaIcon rounded">
+							<SanityImage image={author.userPortrait}/>
+						</div>
+						<h4>{author.handle}</h4>
 					</div>
-					<h4>{author.handle}</h4>
-				</div>
-			</RedirectBuilder>
+				</RedirectBuilder>
+			</div>
+			{#if authorSocials && !!author.socialMedia}
+				<RollupButton bind:active invert={!inverted} padding={0} border={false}/>
+			{/if}
 		</div>
-		{#if authorSocials && !!author.socialMedia}
-			<RollupButton bind:active invert={true}/>
+		{#if active}
+			<div class="marginGap" transition:slide>
+				{#if author.searchable}
+					<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" user="{author.handle.toLowerCase()}" inverted={inverted}/>
+				{/if}
+				{#if author.socialMedia.length > 0}
+					<SocialMediaTag data={author.socialMedia[0]} inverted={inverted}/>
+				{/if}
+			</div>
 		{/if}
 	</div>
-	{#if active}
-		<div class="socialInline" transition:slide>
-			{#if author.searchable}
-				<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" user="{author.handle.toLowerCase()}"/>
-			{/if}
-			{#if author.socialMedia.length > 0}
-				<SocialMediaTag data={author.socialMedia[0]}/>
-			{/if}
-		</div>
-	{/if}
 {:else}
-	<div class="inlineRedirect">
+	<div class="inlineRedirect" class:inverted={inverted}>
 		<div class="expandedSlot">
-			<RedirectBuilder url="{!customRoot ? customRoot : $directoryData.root}?query=:{(author.nickName ?? author.fullName).toLowerCase().replaceAll(' ','_')}">
-				<div class="characterCard" class:white={customColour}>
+			<RedirectBuilder url="{!!customRoot ? customRoot : $directoryStatus.strippedUrl}?query=:{(author.nickName ?? author.fullName).toLowerCase().replaceAll(' ','_')}">
+				<div class="characterCard" class:inverted={inverted}>
 					<div class="mediaIcon rounded">
 						<SanityImage image={author.charIcon}/>
 					</div>
@@ -62,26 +68,36 @@
 {/if}
 
 <style lang="scss">
+	.marginGap {
+		margin: 5px 0 auto 0;}
+
 	.inlineRedirect {
-		min-width: 	max-content;
-		display: 	flex;
+		position: relative;
+		vertical-align: top;
+		min-width: 		max-content;
+		display: 		inline-flex;
+
+		&.inverted {
+			border-radius: 19px;
+			border: 1px solid var(--accent7);
+			.characterCard {
+				:global {
+					h4 { 	color: 		white;}}}}
+
 		.expandedSlot {
 			width: 	100%;}}
 
 	.characterCard {
 		display: 		flex;
 		vertical-align: bottom;
-
-		margin: 		0px -3px 1px -1px ;
-		padding:    	4px 12px 4px 4px;
-		gap: 			10px;
+		margin: 		1px 1px 1px 1px ;
+		padding:    	3px 10px 3px 3px;
+		gap: 			5px;
 		border-radius: 	20px;
-
 		transition: 	ease .3s;
 
-			h4 { 	color: 		black; }
-		&.white {
-			h4 { 	color: 		white;}}
+		h4 { 	color: 		black; }
+
 		&:hover {	background: var(--accent7);
 			h4 {	color: 		white;}}
 		> * {		margin: 	auto 0;}}

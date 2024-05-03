@@ -7,7 +7,7 @@
     import { onMount } from "svelte";
     import Device from "svelte-device-info";
 
-    import { navigationControls, deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls, deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
     import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
 
     import Header 				from "$root/components/layout/headerElements/header.svelte";

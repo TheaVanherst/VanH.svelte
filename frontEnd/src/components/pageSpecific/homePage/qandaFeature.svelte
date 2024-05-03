@@ -1,5 +1,5 @@
 <script>
-	import { deviceData } from "$lib/controllers/layoutControllers/redirectHandling.js";
+	import { deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityImage 	from "$root/serializer/sanityImage.svelte";
     import Container 	from "$root/components/generic/containers/container.svelte";

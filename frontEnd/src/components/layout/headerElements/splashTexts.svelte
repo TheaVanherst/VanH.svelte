@@ -2,7 +2,7 @@
 	import { fly, scale } from "svelte/transition";
 
     import { splash } from "$lib/localDatabases/splashTextDatabase.js";
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
     import { splashTextData } from "$lib/controllers/layoutControllers/pageSettings.js";
 
     export let hover = false;

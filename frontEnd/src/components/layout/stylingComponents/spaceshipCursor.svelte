@@ -3,7 +3,7 @@
     import { spring } 	from 'svelte/motion';
 
     import mousePosition 	from "$lib/controllers/stylingControllers/spaceshipController.js";
-    import { deviceData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { deviceData } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     let shoot = {},
     	position =

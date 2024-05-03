@@ -68,13 +68,10 @@ export default defineType({
     defineField({
       name: 'author', title: 'Author',
       type: 'array',
-      of: [
-          {
-            type: 'reference',
-            validation: Rule => Rule.required(),
-            to: { type: 'author' }
-          }
-        ]
+      of: [{
+        type: 'reference',
+        validation: Rule => Rule.required(),
+        to: { type: 'author' }}]
     }),
     defineField({
       name: 'publishedAt', title: 'Published at',

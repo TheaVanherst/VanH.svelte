@@ -1,14 +1,14 @@
 <script>
 	import { fade } from "svelte/transition";
 
-    import { deviceData, navigationControls, directoryData } from "$lib/controllers/layoutControllers/redirectHandling.js";
-    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import { deviceData, navigationControls, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
     import ProfileBar 			from "$root/components/layout/headerElements/bannerAnimation.svelte";
 
     import SplashTexts 			from "$root/components/layout/headerElements/splashTexts.svelte";
-    import { splashTextData } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { submitters } from "$lib/localDatabases/splashTextDatabase.js";
+    import { splashTextData } 	from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { submitters } 		from "$lib/localDatabases/splashTextDatabase.js";
 
     let hover = false;
     let timer = undefined;
@@ -22,7 +22,7 @@
 				<ProfileBar>
 					<slot/>
 					<RedirectBuilder url="/featured">
-						<div class="branding" class:disabled={$directoryData.root === "/featured"}>
+						<div class="branding" class:disabled={$directoryStatus.currentRoot === "/featured"}>
 							<img src="/branding/vanhlogo.webp"/>
 						</div>
 					</RedirectBuilder>

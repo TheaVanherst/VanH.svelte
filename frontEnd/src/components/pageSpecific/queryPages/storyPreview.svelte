@@ -1,6 +1,6 @@
 <script>
     import { createdPush } 		from "$lib/builders/dateBuilder.js";
-    import { directoryData } 	from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { directoryStatus } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
     import { readingTime } 		from "$lib/builders/measurementConverters.js";
 
     import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
@@ -10,15 +10,15 @@
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
 
     export let story;
+
     let active = false;
 
-    let authorCredit = `${story.authors.map(e => e.fullName)}`;
-    	authorCredit = (authorCredit.replace(',', ", ")).replace(/,(?=[^,]+$)/, ' and');
 </script>
 
 <div class="container wideBorder"
 	on:mouseover={() => active = true}
-	on:mouseleave={() => active = false}>
+	on:mouseleave={() => active = false}
+	class:active={active}>
 	<div class="banner">
 		<div class="transform">
 			<SanityImage image={story.image}/>
@@ -27,21 +27,41 @@
 			<h4>{story.pieceName}</h4>
 		</div>
 	</div>
-	<div class="characters">
-		{#each story.characters as character}
-			<SocialsFoldable author={character} character={true}/>
-		{/each}
+	<div class="authors">
+		<div class="publishCard">
+			<h5 id="publishDate">{createdPush(story.publishedAt)}</h5>
+			<p id="publishCredits">Written & created by;</p>
+		</div>
+		<div class="authorList">
+			{#each story.authors as author}
+				<div on:click|stopPropagation>
+					<SocialsFoldable author={author}/>
+				</div>
+			{/each}
+		</div>
 	</div>
+
 	<div class="description">
-		<p>{story.description}</p>
-		<p>{createdPush(story.publishedAt)}</p>
+		<p>
+			{story.description}
+		</p>
 		<em>{readingTime(story.story)} minute estimated read time.</em>
+		<p>Featuring;</p>
+		<div class="characters">
+			{#each story.characters as character}
+				<div on:click|stopPropagation>
+					<SocialsFoldable author={character} character={true} inverted={true}/>
+				</div>
+			{/each}
+		</div>
 		{#if story.tags?.length > 0}
 			<div class="postTags">
 				{#each story.tags as tag}
-					<RedirectBuilder url="{$directoryData.stripped}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
-						<InlineTag tag={tag}/>
-					</RedirectBuilder>
+					<div on:click|stopPropagation>
+						<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
+							<InlineTag tag={tag}/>
+						</RedirectBuilder>
+					</div>
 				{/each}
 			</div>
 		{/if}
@@ -56,7 +76,7 @@
 
 		.description {
 			background: 	var(--TransBlack);}
-		&:hover {
+		&.active {
 			.description {
 				background: 	black;}
 			border-bottom: 	1px solid var(--accent7);
@@ -66,6 +86,25 @@
 					color: 	white;}}
 			.transform {
 				transform: 	scale(1.1);}}}
+
+	.authors {
+		padding: 	0 0 8px 0;
+		width: 		100%;
+		background: white;
+
+		.publishCard {
+			display: grid;
+			gap: 	6px;
+			padding: 12px 8px 0 12px;
+
+			p, h5 {	color: black;}
+			#publishCredits { padding: 0 0 0 3px; }
+			#publishDate { font-weight: 600; }}
+		.authorList {
+			padding: 	5px 8px 0 8px;
+			display: 	flex;
+			gap: 		5px;
+			width: 		max-content;}}
 
 	.banner {
 		position: 	relative;
@@ -90,16 +129,17 @@
 
 	.description {
 		transition: 	background .2s ease;
-		padding: 		12px 10px 10px 10px;
+		padding: 		15px 15px 12px 15px;
 		em { 	display: 	block; }
 		> *:not(:last-child) {	margin-bottom: 8px;}
-		.postTags {				margin-bottom: 6px;}}
-
-	.characters {
-		background: white;
-		display: 	flex;
-		flex-wrap: 	wrap;
-		padding: 	5px 8px;
-		gap: 		5px;
-	}
+		.characters {
+			gap: 		5px;
+			display: 	flex;
+			flex-wrap: 	wrap;}
+		.postTags {
+			margin: 15px 0 0 0;
+			padding: 15px 0 0 0;
+			border-top: 1px solid var(--accent9);
+			div {
+				display: contents;}}}
 </style>

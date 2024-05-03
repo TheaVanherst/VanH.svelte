@@ -1,10 +1,12 @@
 <script>
 	import SanityImage from "$root/serializer/sanityImage.svelte";
 
-	export let data = undefined;
+	export let
+		data = undefined,
+        inverted = false;
 </script>
 
-<a class="inlineTag" href="https://www.{data.platformName.socialURL + data.url}" target="_blank">
+<a class="inlineTag" href="https://www.{data.platformName.socialURL + data.url}" target="_blank"  class:inverted={inverted}>
 	<div class="icon inlineIcon rounded">
 		<SanityImage image={data.platformName.socialLogo}/>
 	</div>
@@ -17,6 +19,13 @@
 			display: flex;}
 		p {	margin: 0 5px;
 			color: 	black;}
+
+		&.inverted {
+			background: white;
+			p {
+				color: black;
+			}
+		}
 
 		&:hover {
 			background: 	var(--accent7);

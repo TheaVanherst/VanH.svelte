@@ -6,14 +6,14 @@
     import { afterNavigate, beforeNavigate } 	from "$app/navigation";
     import { navigating, updated } 				from "$app/stores";
 
-    import { directoryProcessing, directoryData, navigationControls } from '$lib/controllers/layoutControllers/redirectHandling.js';
+    import { directoryProcessing, directoryStatus, navigationControls } from '$lib/controllers/layoutControllers/navigationHandling.js';
 
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 
     afterNavigate(async (n) => { // compensates for page refreshes / initial page loading
         if ( n.from === null && n.willUnload === false ) {  // this fixes an issue where the url doesn't update from the initial layout load.
             $navigationControls.transitioning = false;
-            let to = (n.to.url.pathname).slice(0, -1);
+            let to = n.to.url.search ? n.to.url.pathname + n.to.url.search : (n.to.url.pathname).slice(0, -1);
 			to = to === "" ? "/" : to;
             await directoryProcessing(to, to);}
     }); //resets x, y positions
@@ -21,7 +21,7 @@
     beforeNavigate(async (n, willUnload, to) => {
         if (n.delta !== 0 && n.type === "popstate") {
             let to = (n.to.url.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
-            await directoryProcessing($directoryData.raw, to);
+            await directoryProcessing($directoryStatus.rawDirectory, to);
             $navigationControls.transitioning = true;
             setTimeout(async () => {
                 $navigationControls.transitioning = false;

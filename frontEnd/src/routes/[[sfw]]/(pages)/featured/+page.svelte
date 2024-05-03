@@ -1,7 +1,7 @@
 <script>
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
 

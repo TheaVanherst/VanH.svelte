@@ -2,9 +2,7 @@
     import { scale, fly } 		from 'svelte/transition';
 
     import {
-        deviceData, directoryProcessing,
-		directoryData, navigationControls,
-		navigationDirectories } 	from '$lib/controllers/layoutControllers/redirectHandling.js';
+        deviceData, navigationControls } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
     import { messengerSettings } 	from "$lib/controllers/layoutControllers/pageSettings.js";
 
     import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
@@ -13,13 +11,6 @@
 
     let chatBox = false,
 		directions;
-
-    const
-		pageCheck = () => {
-			if ($navigationControls.nsfw !== false) {
-				const placement = navigationDirectories.findIndex(e => e.path === $directoryData.root);
-				if (navigationDirectories[placement].nsfw) {
-					directoryProcessing('/featured', '/featured');}}};
 
     $: directions = $deviceData.screenType < 3 ? [0, 150] : [150, 0];
 </script>
@@ -36,8 +27,8 @@
 			</RainbowButtonWrap>
 		</div>
 
-		<RedirectBuilder url={$directoryData.stripped} nsfwPointer={!$navigationControls.nsfw}>
-			<div class="nsfwToggle profileIcon wideBorder" class:afterDark={$navigationControls.nsfw} on:click={pageCheck}>
+		<RedirectBuilder nsfwPointer={!$navigationControls.nsfw}>
+			<div class="nsfwToggle profileIcon wideBorder" class:afterDark={$navigationControls.nsfw}>
 				<img src="/icons/afterDarkIcon.webp">
 			</div>
 		</RedirectBuilder>

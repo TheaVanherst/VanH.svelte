@@ -12,7 +12,8 @@
     data.artworks =
 		data.artworks.map(a => ({ ...a,
             searchTerms: (
-                searchTermBuilder.sfw(a) + searchTermBuilder.title(a) + searchTermBuilder.renderStyle(a) +
+                // (a.tags.filter(t => t.title === "Coloured ")[0]?.title ?? "Grayscale ").toLowerCase() +
+				searchTermBuilder.sfw(a) + searchTermBuilder.title(a) + searchTermBuilder.renderStyle(a) +
                 searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
                 searchTermBuilder.commissions(a)).toLowerCase()}));
 

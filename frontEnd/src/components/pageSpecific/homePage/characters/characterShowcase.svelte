@@ -3,7 +3,7 @@
     import CharacterCard 	from "$root/components/pageSpecific/homePage/characters/showcaseCard.svelte";
     import InfoPlate 		from "$root/components/pageSpecific/homePage/characters/characterInfoPlate.svelte";
 
-    import { navigationControls } from "$lib/controllers/layoutControllers/redirectHandling.js";
+    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     export let dataset = {};
 </script>
