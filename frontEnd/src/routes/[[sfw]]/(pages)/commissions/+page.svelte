@@ -8,7 +8,7 @@
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
-	import RedirectBuilder  from "$root/components/generic/wrappers/redirectBuilder.svelte";
+	import RedirectBuilder  from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import PortableText from "$root/serializer/portableText.svelte";
 
     export let data;

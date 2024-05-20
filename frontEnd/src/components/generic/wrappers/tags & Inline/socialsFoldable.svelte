@@ -4,11 +4,11 @@
     import { directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import RollupButton from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
-    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import SanityImage from "$root/serializer/sanityImage.svelte";
 
     import InternalRedirectTag from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectTag.svelte";
-    import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineRedirectTag.svelte";
+    import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineSocialRedirect.svelte";
 
 	export let
 		author = undefined,
@@ -44,7 +44,7 @@
 		{#if active}
 			<div class="marginGap" transition:slide>
 				{#if author.searchable}
-					<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" user="{author.handle.toLowerCase()}" inverted={inverted}/>
+					<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" inverted={inverted}>{author.handle}</InternalRedirectTag>
 				{/if}
 				{#if author.socialMedia.length > 0}
 					<SocialMediaTag data={author.socialMedia[0]} inverted={inverted}/>
@@ -69,23 +69,23 @@
 
 <style lang="scss">
 	.marginGap {
-		margin: 5px 0 auto 0;}
+		margin: 		5px 0 auto 0;}
 
 	.inlineRedirect {
-		position: relative;
+		position: 		relative;
 		vertical-align: top;
 		min-width: 		max-content;
 		display: 		inline-flex;
 
 		&.inverted {
-			border-radius: 19px;
-			border: 1px solid var(--accent7);
+			border-radius: 	19px;
+			border: 		1px solid var(--accent7);
 			.characterCard {
 				:global {
 					h4 { 	color: 		white;}}}}
 
 		.expandedSlot {
-			width: 	100%;}}
+			width: 		100%;}}
 
 	.characterCard {
 		display: 		flex;
@@ -96,7 +96,7 @@
 		border-radius: 	20px;
 		transition: 	ease .3s;
 
-		h4 { 	color: 		black; }
+		h4 { color: 	black; }
 
 		&:hover {	background: var(--accent7);
 			h4 {	color: 		white;}}

@@ -17,20 +17,25 @@ const
         componentUrl: undefined, componentData: undefined,
         currentImage: 0, galleryDesc: undefined }),
 
-    galleryChange = (item, id = 0) => {
-        if (item) {
+    galleryChange = (id = 0) => {
+        if (id !== 0) {
             fullscreenGalleryStore.update(e =>({
                 ...e,
-                gallery: item.flat(),
                 currentImage: id}));}
         else {
             fullscreenGalleryStore.update(e =>({
                 ...e,
-                gallery: undefined,
                 componentData: undefined,
                 componentUrl: undefined,
                 currentImage: 0 }));}},
+    scrollIntoView = async (id) => {
+        const el = await document.querySelector(id);
 
+
+        if (!el) return;
+        el.scrollIntoView({
+            behavior: 'smooth'
+        });},
     dataSetStore = writable({page: 0, searchQuery: ""});
 
-export { fullscreenGalleryStore, galleryChange, dataSetStore }
+export { fullscreenGalleryStore, galleryChange, scrollIntoView, dataSetStore }

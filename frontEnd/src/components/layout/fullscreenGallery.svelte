@@ -1,47 +1,63 @@
 <script>
+    import { clickOutside } 		from "$lib/controllers/layoutControllers/transitionPresets.js";
+    import { page } 				from "$app/stores";
+    import { goto } 				from "$app/navigation";
+
 	import { fade } from "svelte/transition";
 
-	import { fullscreenGalleryStore, messengerSettings, galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import {deviceData, directoryStatus} from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { fullscreenGalleryStore, messengerSettings, galleryChange, dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { deviceData, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityImage 	from "$root/serializer/sanityImage.svelte";
     import ImageTag 	from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
-    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
-    import { onDestroy, onMount } from "svelte";
-    import { page } from "$app/stores";
-    import { goto } from "$app/navigation";
-
 	let position = 0,
 		maxPosition = 0;
 
-	const
+	const // basic gallery functionality
+		queryUpdate = () => {
+            let query = new URLSearchParams($page.url.searchParams.toString());
+            position !== 0 ? query.set('img', position) : query.delete('img');
+            goto (`?${query.toString()}`,{noScroll: true});},
 		customClickSelection = () => {
-            maxPosition = $fullscreenGalleryStore?.gallery.length - 1;
-            position = $fullscreenGalleryStore.currentImage;},
+            maxPosition = 	$fullscreenGalleryStore?.componentData?.gallery.length - 1;
+            position = 		$fullscreenGalleryStore.currentImage;
+            queryUpdate();},
+		imageUrlUpdate = () => {
+            position++
+            queryUpdate();},
 		gallerySwap = () => {
-            position < maxPosition ? position++ : galleryExit();},
+        	position < maxPosition ? imageUrlUpdate() : galleryExit();},
 		galleryExit = async () => {
             setTimeout(async () => {
-                if (!!$fullscreenGalleryStore.componentData.story) {
-                    new URLSearchParams($page.url.searchParams.toString()).delete('story');}
-                if (!!$fullscreenGalleryStore.componentData.story) {
-                    new URLSearchParams($page.url.searchParams.toString()).delete('img');
-                    new URLSearchParams($page.url.searchParams.toString()).delete('gallery');}
+                new URLSearchParams($page.url.searchParams.toString()).delete('story');
+                new URLSearchParams($page.url.searchParams.toString()).delete('img');
+                new URLSearchParams($page.url.searchParams.toString()).delete('gallery');
 
-                await goto(`${$directoryStatus.rawDirectory}`);
+                if ($fullscreenGalleryStore.componentData.story) {
+                    await goto(`${$directoryStatus.nsfwOptional + $directoryStatus.strippedUrl}`);}
+                else if ($fullscreenGalleryStore.componentData.gallery) {
+                    let currentPage = $dataSetStore.page !== 0 ? `?page=${$dataSetStore.page}` : ``;
+                    await goto(`${$directoryStatus.nsfwOptional + $directoryStatus.strippedUrl}${currentPage}`,{noScroll: true});}
+
+                // BROKEN SHIT I NEED TO GO AROUND TO.
+                $directoryStatus.query = '';
+                $directoryStatus.rawDirectory = $directoryStatus.nsfwOptional + $directoryStatus.strippedUrl
+
                 position = 0;
                 galleryChange(undefined);
-            }, 50);
-		}
+            }, 50);}
 
-	onMount(() => {
-        messengerSettings.set(true);
-        document.body.classList.remove("noScroll");});
+    // Manages the rest of the page on visibility
+	const
+		mounted = () => {
+			messengerSettings.set(false);
+			document.body.classList.add("noScroll");},
+		unmounted = () => {
+			document.body.classList.remove("noScroll");
+			messengerSettings.set(true);}
 
-	onDestroy(() => {
-        document.body.classList.add("noScroll");
-        messengerSettings.set(false);});
+	$: !!$fullscreenGalleryStore.componentData ? mounted() : unmounted();
 </script>
 
 {#if $fullscreenGalleryStore.componentData}
@@ -61,7 +77,7 @@
 			<div class="endButton wideBorder">
 				<h4>Fin.</h4>
 			</div>
-		{:else if $fullscreenGalleryStore.gallery}
+		{:else if $fullscreenGalleryStore?.componentData?.gallery}
 			<div class="galleryWrapper">
 				<div class="positionSet"
 					 use:customClickSelection
@@ -69,27 +85,27 @@
 					 on:click_outside={() => galleryExit()}>
 					<div class="circleWrapper">
 						<div class="pageCircleBar">
-							{#each $fullscreenGalleryStore?.gallery as dot, i}
+							{#each $fullscreenGalleryStore.componentData.gallery as dot, i}
 								<div class="pagingDot"
 									 class:active={i === position}
-									 on:click={() => {position = i}}>
+									 on:click={() => {position = i; queryUpdate();}}>
 								</div>
 							{/each}
 						</div>
 					</div>
-					{#if $fullscreenGalleryStore?.gallery[position]}
-						{#if $fullscreenGalleryStore.gallery[position].desc}
+					{#if $fullscreenGalleryStore.componentData?.gallery[position]}
+						{#if $fullscreenGalleryStore.componentData.gallery[position].desc}
 							<div class="imageCitationWrapper">
 								<div class="imageCitation">
 									<ImageTag border="shortBorder" position="relative">
-										<p>{$fullscreenGalleryStore.gallery[position].desc}</p>
+										<p>{$fullscreenGalleryStore.componentData.gallery[position].desc}</p>
 									</ImageTag>
 								</div>
 							</div>
 						{/if}
 						<div class="imageContainer">
-							<div class="image" on:click={() => gallerySwap()}>
-								<SanityImage image={$fullscreenGalleryStore.gallery[position]}/>
+							<div class="image" on:click={() => {gallerySwap(); queryUpdate();}}>
+								<SanityImage image={$fullscreenGalleryStore.componentData.gallery[position]}/>
 							</div>
 							{#if $fullscreenGalleryStore.componentUrl}
 								<div class="componentWrapper">
@@ -186,7 +202,6 @@
 		margin: 	0 10px 0 10px;
 		.component {
 			max-width: 	600px;
-			min-width: 	400px;
 			margin: 	35px auto 35px auto;}}
 
 	.mobile {

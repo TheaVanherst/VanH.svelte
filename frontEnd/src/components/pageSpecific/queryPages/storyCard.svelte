@@ -1,7 +1,7 @@
 <script>
 	import { directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
-    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import PortableText 	from "$root/serializer/portableText.svelte";
 
@@ -25,6 +25,9 @@
 			<p>{story.description}</p>
 			{#if story.tags?.length > 0}
 				<div class="postTags">
+					<div class="tagScrollWrapper">
+
+					</div>
 					{#each story.tags as tag}
 						<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
 							<InlineTag tag={tag}/>
@@ -34,9 +37,6 @@
 			{/if}
 
 			<div class="characters">
-				<div class="mediaIcon artSearcher">
-					<img src="/icons/galleryIcon.webp">
-				</div>
 				<div class="characterWrapper">
 					{#each story.characters as character, c}
 						<SocialsFoldable author={character} character={true} inverted={true}/>
@@ -103,7 +103,8 @@
 
 		.characterWrapper {
 			gap: 12px;
-			display: flex;}}
+			display: flex;
+			flex-wrap: inherit;}}
 
 	.blockText {
 		padding: 28px 25px 25px;}

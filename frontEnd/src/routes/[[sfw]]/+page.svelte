@@ -5,7 +5,7 @@
     import { navigationData } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import Container 		from "$root/components/generic/containers/container.svelte";
-    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
 
     export let data;
 

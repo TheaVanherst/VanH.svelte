@@ -3,7 +3,7 @@
 
     import { deviceData, navigationControls, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
-    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import ProfileBar 			from "$root/components/layout/headerElements/bannerAnimation.svelte";
 
     import SplashTexts 			from "$root/components/layout/headerElements/splashTexts.svelte";

@@ -48,6 +48,7 @@
 <style lang="scss">
 	.pagination {
 		display: 			flex;
+		flex-wrap: 			wrap;
 		align-items: 		center;
 		justify-content: 	center;
 		pointer-events: 	all;

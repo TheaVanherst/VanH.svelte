@@ -1,7 +1,7 @@
 <script>
     import { slide } from 'svelte/transition';
 
-    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
 

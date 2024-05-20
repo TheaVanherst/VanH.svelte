@@ -31,21 +31,21 @@
         $fullscreenGalleryStore.componentData = story;
 
         setTimeout(async () => {
-        if (!!$fullscreenGalleryStore.componentData) {
-            $page.url.searchParams.set('story',story.slug);
-            const newQuery = `?${$page.url.searchParams.toString()}`;
-            $directoryStatus.query = newQuery;
-            await goto (newQuery);}
-        else {
-            new URLSearchParams($page.url.searchParams.toString()).delete('story');
-            await goto(`${$directoryStatus.rawDirectory}`);}
+			if (!!$fullscreenGalleryStore.componentData) {
+				$page.url.searchParams.set('story',story.slug);
+				const newQuery = `?${$page.url.searchParams.toString()}`;
+				$directoryStatus.query = newQuery;
+				await goto (newQuery);}
+			else {
+				new URLSearchParams($page.url.searchParams.toString()).delete('story');
+				await goto(`/${$directoryStatus.nsfwKeyword + $directoryStatus.strippedUrl}`);}
         }, 250);}
 
     onMount(() => {
         const
             initialSlug = $page.url.searchParams.get('story');
         $fullscreenGalleryStore.componentUrl = StoryCard;
-        $fullscreenGalleryStore.componentData = data.erotica.map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0];
+        $fullscreenGalleryStore.componentData = structuredClone(data.erotica).map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0];
 	})
 </script>
 

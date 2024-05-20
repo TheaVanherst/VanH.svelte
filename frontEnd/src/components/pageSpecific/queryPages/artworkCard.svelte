@@ -17,15 +17,24 @@
         timer;
 
     const
-        newAddition = (new Date() - new Date(data.publishedAt)) / (1000 * 3600 * 24) < 7;
-
-    const
+        newAddition = (new Date() - new Date(data.publishedAt)) / (1000 * 3600 * 24) < 7,
         cardSelected = () => {
         	if (active) {
                 active = !active;}
             else {
-                $fullscreenGalleryStore.componentUrl = ArtworkDescription;
-                $fullscreenGalleryStore.componentData = data;}},
+                let dataReOrg = structuredClone(data);
+				let style = 	data.gallery.styleType,
+					render = 	data.gallery.renderType;
+
+                dataReOrg.gallery = 			dataReOrg.gallery.images.flat();
+
+                if (style && render) {
+                    dataReOrg.gallery.styleType = 	style;
+                    dataReOrg.gallery.renderType = 	render;}
+                // forces the gallery object to a 2d array, rather than 3d.
+
+                $fullscreenGalleryStore.componentUrl = 	ArtworkDescription;
+                $fullscreenGalleryStore.componentData = dataReOrg}},
 		cardFloatClick = () => {
         	active = active ? active : !active;};
 </script>

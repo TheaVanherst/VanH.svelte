@@ -90,6 +90,7 @@ const
         directoryStatus.update(e => ({ ...e,
             rawDirectory: currentRaw,
             currentRoot: "/" + (currentPageArray[nsfwCheckBool] ?? ""),
+            nsfwOptional: get(navigationControls).nsfw ? "/" + get(directoryStatus).nsfwKeyword : '',
             query: strippedRawQuery[1] ? "/?" + strippedRawQuery[1] : "",
             strippedUrl: get(navigationControls).nsfw ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`,'') : strippedRawQuery[0],
             rootIndex: [prevPageIndex, navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined]}));

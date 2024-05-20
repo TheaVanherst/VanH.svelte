@@ -1,9 +1,8 @@
 <script>
-    import RedirectBuilder from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
 
     export let
 		redirect,
-		user,
 		inverted = false;
 </script>
 
@@ -12,7 +11,7 @@
 		<div class="icon inlineIcon rounded">
 			<img src="/icons/vanhSocial.webp" alt="">
 		</div>
-		<p> / {user} </p>
+		<p> <slot/> </p>
 	</div>
 </RedirectBuilder>
 

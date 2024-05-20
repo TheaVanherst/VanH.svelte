@@ -1,11 +1,16 @@
 <script>
+    import { page } 	from "$app/stores";
+    import { goto } 	from "$app/navigation";
+    import { onMount } 	from "svelte";
+
     import Masonry 		from 'svelte-bricks';
     import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
 
-    import { dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { dataSetStore, fullscreenGalleryStore, scrollIntoView } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
 
     import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
+    import ArtworkDescription from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
 
     export let data;
     data.designs =
@@ -16,7 +21,41 @@
                 searchTermBuilder.commissions(a)).toLowerCase()}));
 
     let pagedData, filteredData = queryFilter(data.designs);
-    $: $dataSetStore.searchQuery && queryFilter(data.designs);
+
+    const artworkSelect = async (gallery) => {
+        setTimeout(async () => {
+            if (!!$fullscreenGalleryStore.componentData) {
+                $page.url.searchParams.set('gallery',gallery.slug);
+
+                if ($fullscreenGalleryStore.currentImage > 0) {
+                    $page.url.searchParams.set('img',$fullscreenGalleryStore.currentImage);}
+
+                const newQuery = `?${$page.url.searchParams.toString()}`;
+                await goto (newQuery,{noScroll: true});}
+        }, 250);}
+
+    onMount(() => {
+        const
+			initialSlug = 	$page.url.searchParams.get('gallery'),
+        	initialImageId = 	Number($page.url.searchParams.get('img'));
+
+        if (initialSlug) {
+            let dataReOrg = structuredClone(data.designs).map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0],
+            	style = 	dataReOrg.gallery.styleType,
+                render = 	dataReOrg.gallery.renderType;
+
+            dataReOrg.gallery = 			dataReOrg.gallery.images.flat();
+            dataReOrg.gallery.styleType = 	style;
+            dataReOrg.gallery.renderType = 	render;
+
+            $fullscreenGalleryStore.componentUrl = 	ArtworkDescription;
+            $fullscreenGalleryStore.componentData = dataReOrg;
+            if (initialImageId > 0) {
+                $fullscreenGalleryStore.currentImage = initialImageId;}
+
+            setTimeout(() => {
+                scrollIntoView(`#${initialSlug}`)}, 250)
+        }});
 </script>
 
 {#if data.designs && data.designs.length > 0}
@@ -28,7 +67,9 @@
 					idKey=	{`slug`}
 					animate= {false}
 					let:item>
-				<div class="designPost">
+				<div class="designPost"
+					 on:click={artworkSelect(item)}
+					 id="{item.slug}">
 					<ArtworkCard data={item}/>
 				</div>
 			</Masonry>

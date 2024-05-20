@@ -5,7 +5,7 @@
 
     import DividedTag 		from "$root/components/generic/wrappers/tags & Inline/tags/pilledTag.svelte";
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
-    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
 
@@ -34,6 +34,11 @@
 	<h4 slot="title">{data.pieceName}</h4>
 	<div slot="desc">
 		<h4>{data.pieceName}</h4>
+		{#if data.gallery.styleType && data.gallery.renderType}
+			<p id="renderType" class="citation">
+				{data.gallery.styleType}, {data.gallery.renderType}
+			</p>
+		{/if}
 		{#if !!data.description}
 			<p>{data.description}</p>
 		{/if}
@@ -54,21 +59,15 @@
 			{/each}
 		{/if}
 
-		{#if data.gallery?.styleType && data.gallery?.renderType}
-			<p>
-				<DividedTag>
-					<span slot="title">{data.gallery.styleType}</span>
-					<span slot="desc">{data.gallery.renderType}</span>
-				</DividedTag>
-			</p>
-		{/if}
 		{#if data.tags?.length > 0}
 			<div class="postTags">
-				{#each data.tags as tag}
-					<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
-						<InlineTag tag={tag}/>
-					</RedirectBuilder>
-				{/each}
+				<div class="tagScrollWrapper">
+					{#each data.tags as tag}
+						<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
+							<InlineTag tag={tag}/>
+						</RedirectBuilder>
+					{/each}
+				</div>
 			</div>
 		{/if}
 	</div>
@@ -111,8 +110,19 @@
 	p {		margin: 7px 0 7px 0;}
 	p + p {	margin: 5px 0 5px 0;}
 
+	#renderType {
+		margin-top: 2px;}
+
 	.commissionWrapper {	margin: 5px 0 5px 0;
 		.commissioner {		margin: 0 0 5px 0;}
-		.altTitle {	margin: 10px 0 2px 0;}}
-	.postTags {		margin: 5px 0 -5px 0;}
+		.altTitle {			margin: 10px 0 2px 0;}}
+
+	.postTags {	margin: 8px 0 -5px 0;
+		.tagScrollWrapper {
+			overflow-y: auto;
+			max-height: 74px;}}
+
+	.footer {
+		gap: 4px;
+		display: grid;}
 </style>

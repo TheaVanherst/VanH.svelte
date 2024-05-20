@@ -5,7 +5,7 @@
         deviceData, navigationControls } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
     import { messengerSettings } 	from "$lib/controllers/layoutControllers/pageSettings.js";
 
-    import RedirectBuilder 		from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
     import GenericButton 		from "$root/components/generic/wrappers/buttons/genericButton.svelte";
 
@@ -28,8 +28,11 @@
 		</div>
 
 		<RedirectBuilder nsfwPointer={!$navigationControls.nsfw}>
-			<div class="nsfwToggle profileIcon wideBorder" class:afterDark={$navigationControls.nsfw}>
-				<img src="/icons/afterDarkIcon.webp">
+			<div class="nsfwToggle profileIcon wideBorder"
+				 class:afterDark={$navigationControls.nsfw}
+				 in:scale={{delay: 250}}
+				 out:scale>
+					<img src="/icons/afterDarkIcon.webp">
 			</div>
 		</RedirectBuilder>
 	{:else if $messengerSettings}

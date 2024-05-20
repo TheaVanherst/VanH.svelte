@@ -30,11 +30,11 @@
                         navigationDirectories[arrayCheck2]?.pages[arrayCheck1[arrayCheck2]] :
                         navigationDirectories[arrayCheck2] ?? false;
 
-                newRoute = pageRoot.nsfw ? '/featured' : !!$directoryStatus.strippedUrl ? ($directoryStatus.strippedUrl + $directoryStatus.query) : "/";
-                $directoryStatus.nsfwOptional = $directoryStatus.nsfwKeyword;}
+                $directoryStatus.nsfwOptional = "";
+                newRoute = pageRoot.nsfw ? '/featured' : !!$directoryStatus.strippedUrl ? ($directoryStatus.strippedUrl + $directoryStatus.query) : "/";}
             else { // NSFW redirect
-                newRoute = "/" + $directoryStatus.nsfwKeyword + $directoryStatus.strippedUrl + $directoryStatus.query;
-                $directoryStatus.nsfwOptional = "";}}
+                $directoryStatus.nsfwOptional = $directoryStatus.nsfwKeyword;
+                newRoute = "/" + $directoryStatus.nsfwKeyword + $directoryStatus.strippedUrl + $directoryStatus.query;}}
         else {
             newRoute = $directoryStatus.nsfwUrlCheck() + e;}
 

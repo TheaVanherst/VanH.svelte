@@ -3,7 +3,7 @@
     import { directoryStatus } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
     import { readingTime } 		from "$lib/builders/measurementConverters.js";
 
-    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
 
     import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
@@ -77,15 +77,11 @@
 		.description {
 			background: 	var(--TransBlack);}
 		&.active {
-			.description {
-				background: 	black;}
 			border-bottom: 	1px solid var(--accent7);
-			.bannerTitle {
-				background: var(--accent7);
-				h4 {
-					color: 	white;}}
-			.transform {
-				transform: 	scale(1.1);}}}
+			.description {	background: black;}
+			.transform {	transform: 	scale(1.1);}
+			.bannerTitle {	background: var(--accent7);
+				h4 {		color: 	white;}}}}
 
 	.authors {
 		padding: 	0 0 8px 0;
@@ -93,13 +89,13 @@
 		background: white;
 
 		.publishCard {
-			display: grid;
-			gap: 	6px;
-			padding: 12px 8px 0 12px;
+			display: 	grid;
+			gap: 		6px;
+			padding: 	12px 8px 0 12px;
 
-			p, h5 {	color: black;}
-			#publishCredits { padding: 0 0 0 3px; }
-			#publishDate { font-weight: 600; }}
+			p, h5 {				color: 			black;}
+			#publishCredits { 	padding: 		0 0 0 3px; }
+			#publishDate { 		font-weight: 	600; }}
 		.authorList {
 			padding: 	5px 8px 0 8px;
 			display: 	flex;
@@ -130,15 +126,16 @@
 	.description {
 		transition: 	background .2s ease;
 		padding: 		15px 15px 12px 15px;
-		em { 	display: 	block; }
-		> *:not(:last-child) {	margin-bottom: 8px;}
+		em { display: 		block; }
+		> *:not(:last-child) {
+			margin-bottom: 	8px;}
 		.characters {
 			gap: 		5px;
 			display: 	flex;
 			flex-wrap: 	wrap;}
 		.postTags {
-			margin: 15px 0 0 0;
-			padding: 15px 0 0 0;
+			margin: 	15px 0 0 0;
+			padding: 	15px 0 0 0;
 			border-top: 1px solid var(--accent9);
 			div {
 				display: contents;}}}

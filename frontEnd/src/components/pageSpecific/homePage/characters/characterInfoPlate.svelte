@@ -2,7 +2,7 @@
     import { standardTinyhand, standardShorthand } from "$lib/builders/measurementConverters.js";
 
 	import SanityImage 		from "$root/serializer/sanityImage.svelte";
-    import RedirectBuilder 	from "$root/components/generic/wrappers/redirectBuilder.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
 
     export let data = {}
 
