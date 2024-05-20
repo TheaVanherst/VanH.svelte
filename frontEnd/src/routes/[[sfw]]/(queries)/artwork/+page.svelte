@@ -7,32 +7,34 @@
     import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
 
     import { dataSetStore, fullscreenGalleryStore, scrollIntoView } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
+    import { queryFilter, searchTermBuilder } 						from "$lib/controllers/layoutControllers/searchController.js";
 
-    import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
-    import ArtworkDescription from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
+    import ArtworkCard 			from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
+    import ArtworkDescription 	from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
 
-    export let data;
-    data.artworks =
-		data.artworks.map(a => ({ ...a,
-            searchTerms: (
-				searchTermBuilder.sfw(a) + searchTermBuilder.title(a) + searchTermBuilder.renderStyle(a) +
-                searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
-                searchTermBuilder.commissions(a)).toLowerCase()}));
+    export let
+		data;
+		data.artworks =
+			data.artworks.map(a => ({ ...a,
+				searchTerms: (
+					searchTermBuilder.sfw(a) + searchTermBuilder.title(a) + searchTermBuilder.renderStyle(a) +
+					searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
+					searchTermBuilder.commissions(a)).toLowerCase()}));
 
     let pagedData, filteredData = queryFilter(data.artworks);
 
-    const artworkSelect = async (gallery) => {
-        setTimeout(async () => {
-            if (!!$fullscreenGalleryStore.componentData) {
-                $page.url.searchParams.set('gallery',gallery.slug);
+    const
+		artworkSelect = async (gallery) => {
+			setTimeout(async () => {
+				if (!!$fullscreenGalleryStore.componentData) {
+					$page.url.searchParams.set('gallery',gallery.slug);
 
-                if ($fullscreenGalleryStore.currentImage > 0) {
-                    $page.url.searchParams.set('img',$fullscreenGalleryStore.currentImage);}
+					if ($fullscreenGalleryStore.currentImage > 0) {
+						$page.url.searchParams.set('img',$fullscreenGalleryStore.currentImage);}
 
-                const newQuery = `?${$page.url.searchParams.toString()}`;
-                await goto (newQuery,{noScroll: true});}
-        }, 250);}
+					const newQuery = `?${$page.url.searchParams.toString()}`;
+					await goto (newQuery,{noScroll: true});}
+			}, 250);}
 
     onMount(() => {
         const

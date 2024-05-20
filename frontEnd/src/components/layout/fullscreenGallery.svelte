@@ -1,12 +1,12 @@
 <script>
-    import { clickOutside } 		from "$lib/controllers/layoutControllers/transitionPresets.js";
-    import { page } 				from "$app/stores";
-    import { goto } 				from "$app/navigation";
+    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
+    import { page } 		from "$app/stores";
+    import { goto } 		from "$app/navigation";
 
 	import { fade } from "svelte/transition";
 
-    import { fullscreenGalleryStore, messengerSettings, galleryChange, dataSetStore } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { deviceData, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { fullscreenGalleryStore, messengerSettings, galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { deviceData, directoryStatus } 								from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityImage 	from "$root/serializer/sanityImage.svelte";
     import ImageTag 	from "$root/components/generic/containers/imageContainers/imageTag.svelte";
@@ -14,7 +14,7 @@
 	let position = 0,
 		maxPosition = 0;
 
-	const // basic gallery functionality
+	const
 		queryUpdate = () => {
             let query = new URLSearchParams($page.url.searchParams.toString());
             position !== 0 ? query.set('img', position) : query.delete('img');
@@ -30,17 +30,15 @@
         	position < maxPosition ? imageUrlUpdate() : galleryExit();},
 		galleryExit = async () => {
             setTimeout(async () => {
-                new URLSearchParams($page.url.searchParams.toString()).delete('story');
-                new URLSearchParams($page.url.searchParams.toString()).delete('img');
-                new URLSearchParams($page.url.searchParams.toString()).delete('gallery');
+                let query = new URLSearchParams($page.url.searchParams.toString());
+					query.delete('story');
+					query.delete('img');
+					query.delete('gallery');
 
-                if ($fullscreenGalleryStore.componentData.story) {
-                    await goto(`${$directoryStatus.nsfwOptional + $directoryStatus.strippedUrl}`);}
-                else if ($fullscreenGalleryStore.componentData.gallery) {
-                    let currentPage = $dataSetStore.page !== 0 ? `?page=${$dataSetStore.page}` : ``;
-                    await goto(`${$directoryStatus.nsfwOptional + $directoryStatus.strippedUrl}${currentPage}`,{noScroll: true});}
+                await goto(`?${query.toString()}`,{noScroll: true});
 
-                // BROKEN SHIT I NEED TO GO AROUND TO.
+				// Without this, there's a bug where the NSFW button would reactivate the gallery, as it retains the initial
+				// raw directory from the initial onmount call, and isn't stripped properly.
                 $directoryStatus.query = '';
                 $directoryStatus.rawDirectory = $directoryStatus.nsfwOptional + $directoryStatus.strippedUrl
 
@@ -48,7 +46,6 @@
                 galleryChange(undefined);
             }, 50);}
 
-    // Manages the rest of the page on visibility
 	const
 		mounted = () => {
 			messengerSettings.set(false);
