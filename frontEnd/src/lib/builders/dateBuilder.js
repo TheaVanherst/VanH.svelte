@@ -1,7 +1,7 @@
 
 const // global emojis to indicate edited / published
-    publishedEmoji = "📰",
-    EditedEmoji = "📑"
+    publishedEmoji =    "📰",
+    EditedEmoji =       "📑"
 
 const createdPush = (creationDate, dateLength, string) => { // generic date builder.
         string = string ?? publishedEmoji + " Published";

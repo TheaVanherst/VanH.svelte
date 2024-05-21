@@ -1,11 +1,13 @@
 <script>
-    import SanityImage from "$root/serializer/sanityImage.svelte";
-    import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
     import { fade } from "svelte/transition";
 
+    import SanityImage from "$root/serializer/sanityImage.svelte";
+    import ImageTag from "$root/components/generic/containers/imageContainers/imageTag.svelte";
+
     export let
-		citation = undefined,
-    	image = undefined;
+		citation = 	undefined,
+    	image = 	undefined;
+
     let active = false;
 </script>
 

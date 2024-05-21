@@ -1,9 +1,10 @@
 <script>
-    import CitedImage from "$root/serializer/citedImage.svelte";
-    import { galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import CitedImage           from "$root/serializer/citedImage.svelte";
+    import { galleryChange }    from "$lib/controllers/layoutControllers/pageSettings.js";
 
-    export let push;
-    export let citation;
+    export let
+            push,
+            citation;
 </script>
 
 <div class="dynamicGrid">
@@ -11,7 +12,7 @@
         <div class="row">
             {#each row as image, i}
                 <div class="col regularBorder" on:click={() => galleryChange(i)}>
-                    <CitedImage image={image} citation={citation[x][i]}/>
+                    <CitedImage {image} citation={citation[x][i]}/>
                 </div>
             {/each}
         </div>

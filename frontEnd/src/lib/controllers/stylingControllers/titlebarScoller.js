@@ -10,9 +10,9 @@ const
 
 export { websiteTag, loadingIco, pageName, pageTitlebar }
 
-let headerArray = [],
-    headerString = "",
-    offsetArray = [];
+let headerArray =   [],
+    headerString =  "",
+    offsetArray =   [];
 
 // TODO: Misc
 
@@ -20,8 +20,8 @@ let timeout;
 
 const
     unicodeArrFragmenter = (str) => {
-        let returnArray = [];
-        let rawParse = str.split('');
+        let returnArray =   [];
+        let rawParse =      str.split('');
 
         let unicodeLoop = 0,
             trueLength = 0;
@@ -31,8 +31,8 @@ const
 
             if (parsedUnicode.length > 2 && unicodeLoop < 1){
                 returnArray[trueLength] = 2;
-                unicodeLoop++
-            } else {
+                unicodeLoop++;}
+            else {
                 if (unicodeLoop !== 1) {
                     returnArray[trueLength] = 1;}
                 trueLength++
@@ -44,16 +44,14 @@ const
     titlebarScroller = (pageName) => {
         clearTimeout(timeout); // fallback to prevent overflow.
 
-        headerArray = pageName;
-        headerString = pageName;
-        offsetArray = unicodeArrFragmenter(`${headerArray}`);
-        headerArray = headerArray.split("");
-        headerString = headerArray.join("");
+        headerArray =   pageName;
+        headerString =  pageName;
+        offsetArray =   unicodeArrFragmenter(`${headerArray}`);
+        headerArray =   headerArray.split("");
+        headerString =  headerArray.join("");
         pageTitlebar.set(headerString);
 
-        timeout = setTimeout(() => {
-            printUpdate();
-        },250);
+        timeout = setTimeout(() => printUpdate(),250);
     },
 
     offsetShift = (a) => {

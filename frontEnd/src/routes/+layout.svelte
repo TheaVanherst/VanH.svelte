@@ -2,10 +2,10 @@
     import '../styles.scss';
     import '../commonStyles.scss';
 
-    import { fly, fade } 				from 'svelte/transition';
+    import { onMount } 	from "svelte";
+    import Device 		from "svelte-device-info";
 
-    import { onMount } from "svelte";
-    import Device from "svelte-device-info";
+    import { fly, fade } 				from 'svelte/transition';
 
     import { navigationControls, deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
     import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
@@ -27,10 +27,11 @@
         $navigationControls.loaded = true;
     });
 
-    let screenSize = 0, scrollPos = 0;
+    let screenSize = 	0,
+		scrollPos = 	0;
 
     $: $deviceData.screenSize = screenSize;
-    $: $deviceData.scrollPos = scrollPos;
+    $: $deviceData.scrollPos = 	scrollPos;
     $: $deviceData.screenType =
 		$deviceData.screenSize > $deviceData.bandWidths[1] ? 3 :
 			$deviceData.screenSize < $deviceData.bandWidths[2] ? 1 : 2;

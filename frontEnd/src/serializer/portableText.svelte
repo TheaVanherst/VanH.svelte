@@ -1,24 +1,21 @@
 <script>
 	import { PortableText } from "@portabletext/svelte";
-
     //blocks
-	import customHeading from "$root/serializer/contentBlock/customHeading.svelte";
-    import defaultText from "$root/serializer/contentBlock/defaultText.svelte";
-
+	import customHeading 	from "$root/serializer/contentBlock/customHeading.svelte";
+    import defaultText 		from "$root/serializer/contentBlock/defaultText.svelte";
     // listItems
-	import listItems from "$root/serializer/contentBlock/listItems.svelte";
-
+	import listItems 		from "$root/serializer/contentBlock/listItems.svelte";
 	// marks
-	import floatController from "$root/serializer/contentBlock/floatController.svelte";
-    import linkGenerator from "$root/serializer/contentBlock/linkGenerator.svelte";
-
+	import floatController 	from "$root/serializer/contentBlock/floatController.svelte";
+    import linkGenerator 	from "$root/serializer/contentBlock/linkGenerator.svelte";
 	//types
-	import sanityImage from "$root/serializer/sanityImage.svelte";
-    import sanityGalleries from "$root/serializer/sanityGalleries.svelte";
-    import separator from "$root/serializer/contentBlock/separator.svelte";
-    import blockQuote from "$root/serializer/contentBlock/blockQuote.svelte";
+	import sanityImage 		from "$root/serializer/sanityImage.svelte";
+    import sanityGalleries 	from "$root/serializer/sanityGalleries.svelte";
+    import separator 		from "$root/serializer/contentBlock/separator.svelte";
+    import blockQuote 		from "$root/serializer/contentBlock/blockQuote.svelte";
 
-	export let data;
+	export let
+		data;
 </script>
 
 <PortableText

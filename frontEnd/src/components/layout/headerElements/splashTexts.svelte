@@ -5,8 +5,9 @@
     import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
     import { splashTextData } from "$lib/controllers/layoutControllers/pageSettings.js";
 
-    export let hover = false;
-    export let timer;
+    export let
+		hover = false,
+    	timer;
 
 	let splashText = 	"undefined?",
 		numberGen = 	0,

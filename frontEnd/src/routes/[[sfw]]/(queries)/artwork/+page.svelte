@@ -32,17 +32,16 @@
 					if ($fullscreenGalleryStore.currentImage > 0) {
 						$page.url.searchParams.set('img',$fullscreenGalleryStore.currentImage);}
 
-					const newQuery = `?${$page.url.searchParams.toString()}`;
-					await goto (newQuery,{noScroll: true});}
+					await goto (`?${$page.url.searchParams.toString()}`,{noScroll: true});}
 			}, 250);}
 
     onMount(() => {
         const
-			initialSlug = 	$page.url.searchParams.get('gallery'),
+			initialSlug = 		$page.url.searchParams.get('gallery'),
 			initialImageId = 	Number($page.url.searchParams.get('img'));
 
         if (initialSlug) {
-            let dataReOrg = structuredClone(data.artworks).map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0],
+            let dataReOrg = structuredClone(data.artworks).map(i => (i.slug === initialSlug ? i : undefined)).filter(n => n)[0],
             	style = 	dataReOrg.gallery.styleType,
                 render = 	dataReOrg.gallery.renderType;
 
@@ -52,8 +51,7 @@
 
             $fullscreenGalleryStore.componentUrl = 	ArtworkDescription;
             $fullscreenGalleryStore.componentData = dataReOrg;
-            if (initialImageId > 0) {
-                $fullscreenGalleryStore.currentImage = initialImageId;}
+            $fullscreenGalleryStore.currentImage = 	initialImageId;
 
             setTimeout(() => {
                 scrollIntoView(`#${initialSlug}`)}, 250)

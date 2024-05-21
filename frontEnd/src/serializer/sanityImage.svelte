@@ -1,24 +1,21 @@
 <script>
-    import { onMount } from 'svelte'
-    import {browser} from '$app/environment'
-
-    import imageUrlBuilder from "@sanity/image-url";
+    import { onMount } from 'svelte';
+    import { browser } from '$app/environment';
 
     import client from "$lib/sanityClient.js";
+
+    import imageUrlBuilder from "@sanity/image-url";
 
     export let
 		image = null,
 		width = 1000;
 
-    let loadCheck;
-    let loaded = 	false;
+    let loadCheck,
+		loaded = false;
 
-    onMount(() => {
-        loadCheck.onload = () => {
-            loaded = true;};});
+    const urlFor = (source) => imageUrlBuilder(client).image(source);
 
-    const urlFor = (source) => {
-        return imageUrlBuilder(client).image(source);};
+    onMount(() => loadCheck.onload = () => loaded = true);
 </script>
 
 {#if browser && !!image?.asset}

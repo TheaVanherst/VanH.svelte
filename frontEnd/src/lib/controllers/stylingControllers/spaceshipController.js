@@ -60,12 +60,9 @@ export default readable({x:0, y:0, xTilt: 0}, (set) => {
             }, 250);
         },
 
-        move = (e) => {
-            if (Date.now() >= waitUntil) {
-                directionCalc(e.clientX, e.clientY)}}
+        move = (e) => Date.now() >= waitUntil ? directionCalc(e.clientX, e.clientY) : false;
 
     document.addEventListener("pointermove", move);
 
-    return () => {
-        document.removeEventListener("mousemove", move);}
+    return () => document.removeEventListener("mousemove", move);
 })

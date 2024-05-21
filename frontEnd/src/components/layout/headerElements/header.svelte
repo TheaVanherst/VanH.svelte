@@ -46,7 +46,7 @@
 			<div id="splash"
 				transition:fade
 				on:mouseover={	() => {hover = true; clearInterval(timer);}}
-				on:mouseleave={	() => {timer = setInterval(function () {hover = false;}, 1000)}}>
+				on:mouseleave={	() => timer = setInterval(function () {hover = false;}, 1000)}>
 					<p>Splash text by
 						{#key $splashTextData?.[2]?.user}
 							<span transition:fade>

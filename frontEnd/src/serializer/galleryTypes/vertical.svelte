@@ -1,15 +1,16 @@
 <script>
-    import CitedImage from "$root/serializer/citedImage.svelte";
-    import { galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import CitedImage           from "$root/serializer/citedImage.svelte";
+    import { galleryChange }    from "$lib/controllers/layoutControllers/pageSettings.js";
 
-    export let push;
-    export let citation;
+    export let
+        push,
+        citation;
 </script>
 
 <div class="table vertical">
     {#each push as image, i}
         <div class="regularBorder" on:click={() => galleryChange(i)}>
-            <CitedImage image={image} citation={citation[i]}/>
+            <CitedImage {image} citation={citation[i]}/>
         </div>
     {/each}
 </div>

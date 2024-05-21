@@ -8,8 +8,8 @@
 </script>
 
 <a href="https://steamcommunity.com/sharedfiles/filedetails/?id={item.url}" target="_blank"
-   on:mouseenter={() => {active = true;}}
-   on:mouseleave={() => {active = false;}}>
+   on:mouseenter={() => active = true}
+   on:mouseleave={() => active = false}>
 	<div class="thumbnail regularBorder">
 		<SanityImage image={item.previewImage}/>
 	</div>

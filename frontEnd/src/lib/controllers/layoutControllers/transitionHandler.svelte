@@ -32,9 +32,11 @@
             location.href = to.url.href;}
     }); //resets x, y positions
 
-    let transition
+    let transition,
+        transitionSpeed = [50, 20]; // transition position multipliers
+
     $:  transition = $navigationControls.direction[1] === 0 ? transitionFunctions["fly"] : transitionFunctions["fly"];
-    let transitionSpeed = [50, 20]; // transition position multipliers
+
 </script>
 
 <div class="parentElement">

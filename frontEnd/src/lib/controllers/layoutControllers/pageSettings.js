@@ -4,12 +4,8 @@ import { writable } from "svelte/store";
 const splashTextData = writable(undefined);
 export { splashTextData }
 
-// ---------------------
-
 const messengerSettings = writable(true);
 export { messengerSettings }
-
-// ---------------------
 
 const
     fullscreenGalleryStore = writable({
@@ -30,7 +26,6 @@ const
                 currentImage: 0 }));}},
     scrollIntoView = async (id) => {
         const el = await document.querySelector(id);
-
 
         if (!el) return;
         el.scrollIntoView({

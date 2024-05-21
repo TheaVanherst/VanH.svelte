@@ -1,8 +1,8 @@
 <script>
     import { scale, fly } 		from 'svelte/transition';
 
-    import {
-        deviceData, navigationControls } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
+    import { deviceData,
+			 navigationControls } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
     import { messengerSettings } 	from "$lib/controllers/layoutControllers/pageSettings.js";
 
     import RedirectBuilder 		from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";

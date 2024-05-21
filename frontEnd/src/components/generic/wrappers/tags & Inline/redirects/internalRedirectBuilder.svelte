@@ -13,7 +13,7 @@
     const redirectCheck = (e = "", n, p = undefined) => {
         let newRoute;
 
-        if (e === undefined) { // url fallback
+        if (e === "") { // url fallback
             e = $directoryStatus.currentRoot;}
 
         if (p !== undefined) { // forced NSFW change

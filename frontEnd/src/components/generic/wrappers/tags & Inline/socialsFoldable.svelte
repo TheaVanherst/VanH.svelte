@@ -25,8 +25,8 @@
 {#if character === false}
 	<div class="authorCardWrapper">
 		<div class="inlineRedirect" class:inverted={inverted}
-			 on:mouseenter={() => {clearInterval(timer);}}
-			 on:mouseleave={() => {timer = setInterval(function () {active = false;}, 2000)}}>
+			 on:mouseenter={() => clearInterval(timer)}
+			 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
 			<div class="expandedSlot">
 				<RedirectBuilder url="{!!customRoot ? customRoot : $directoryStatus.strippedUrl}?query=@{author.handle.toLowerCase().replaceAll(' ','_')}">
 					<div class="characterCard">

@@ -8,7 +8,6 @@
 
     import { dataSetStore, fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { queryFilter, searchTermBuilder } 		from "$lib/controllers/layoutControllers/searchController.js";
-    import { directoryStatus } 						from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import StoryPreview from "$root/components/pageSpecific/queryPages/storyPreview.svelte";
     import StoryCard 	from "$root/components/pageSpecific/queryPages/storyCard.svelte";
@@ -24,28 +23,21 @@
     let pagedData,
 		filteredData = queryFilter(data.erotica);
 
-    $: $dataSetStore.searchQuery && queryFilter(data.erotica);
-
     const
 		storySelect = async (story) => {
-			$fullscreenGalleryStore.componentUrl = 	StoryCard;
-			$fullscreenGalleryStore.componentData = story;
-
 			setTimeout(async () => {
+                $fullscreenGalleryStore.componentUrl = 	StoryCard;
+                $fullscreenGalleryStore.componentData = story;
+
 				if (!!$fullscreenGalleryStore.componentData) {
 					$page.url.searchParams.set('story',story.slug);
-					const newQuery = `?${$page.url.searchParams.toString()}`;
-					$directoryStatus.query = newQuery;
-					await goto (newQuery);
-				}
-			}, 250);}
+					await goto (`?${$page.url.searchParams.toString()}`);}
+			}, 250);};
 
     onMount(() => {
-        const
-            initialSlug = $page.url.searchParams.get('story');
         $fullscreenGalleryStore.componentUrl = StoryCard;
-        $fullscreenGalleryStore.componentData = structuredClone(data.erotica).map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0];
-	})
+        $fullscreenGalleryStore.componentData = structuredClone(data.erotica).map(i => (i.slug === $page.url.searchParams.get('story') ? i : undefined)).filter(n => n)[0];
+	});
 </script>
 
 <div class="center">
