@@ -43,7 +43,7 @@
 	 on:mouseenter={() => {hover = true; clearInterval(timer);}}
 	 use:clickOutside
 	 on:click_outside={() => hover = active = false}
-	 on:mouseleave={() => {timer = setInterval(function () {hover= active = false;}, 500)}}>
+	 on:mouseleave={() => {timer = setInterval(() => hover = active = false, 500)}}>
 	{#if newTag && newAddition && !disableNew}
 		<div class="newItem shortBorder">
 			<p>

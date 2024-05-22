@@ -154,15 +154,6 @@ a {
 	border-radius: 50%;
 	overflow: hidden;}
 
-.navigationButton {
-	background: var(--accent7);
-	width: min-content;
-
-	border-radius: var(--bordersmall);
-
-	&.down {    padding: 0 10px 2px;}
-	&.up {      padding: 2px 10px 0;}}
-
 .blurred {
 	&:before, &:after {
 		z-index:    10;

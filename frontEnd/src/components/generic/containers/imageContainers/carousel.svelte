@@ -44,7 +44,7 @@
 
 <style lang="scss">
 	.wideBorder {
-		overflow: hidden;}
+		overflow: 	hidden;}
 
 	swiper-container::part(button-prev),
 	swiper-container::part(button-next) {

@@ -45,9 +45,9 @@
 		{#if !!data.commissionData}
 			<div class="commissionWrapper">
 				<p class="altTitle">{data.commissionData.commissionType} for:</p>
-				{#each characterOwners as owner}
+				{#each characterOwners as author}
 					<div class="commissioner">
-						<SocialsFoldable author={owner}/>
+						<SocialsFoldable {author}/>
 					</div>
 				{/each}
 			</div>
@@ -55,7 +55,7 @@
 		{#if data.authors?.length > 0}
 			<p> With additional help from: </p>
 			{#each data.authors as author}
-				<SocialsFoldable author={author}/>
+				<SocialsFoldable {author}/>
 			{/each}
 		{/if}
 
@@ -64,7 +64,7 @@
 				<div class="tagScrollWrapper">
 					{#each data.tags as tag}
 						<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
-							<InlineTag tag={tag}/>
+							<InlineTag {tag}/>
 						</RedirectBuilder>
 					{/each}
 				</div>
@@ -75,8 +75,8 @@
 	<div slot="alt">
 		{#if !!data?.characters || !!data.commissionData?.characters}
 			<p>Featured Character{[].concat(data?.commissionData?.characters, data?.characters).filter(Boolean).length > 1 ? 's' : ''}:</p>
-			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as character}
-				<SocialsFoldable author={character} character={true}/>
+			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as author}
+				<SocialsFoldable {author} character={true}/>
 			{/each}
 		{/if}
 		<p>{createdPush(data.publishedAt)}</p>
