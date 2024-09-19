@@ -8,8 +8,8 @@
     import { directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
-    import AuthorPreview 	from "$root/components/pageSpecific/queryPages/authorPreview.svelte";
-    import AuthorCard from "$root/components/pageSpecific/queryPages/authorCard.svelte";
+    import AuthorPreview 	from "$root/components/pageSpecific/queryPages/author/authorPreview.svelte";
+    import AuthorCard from "$root/components/pageSpecific/queryPages/author/authorCard.svelte";
     import { onMount } from "svelte";
 
     let currentAuthorSelected;

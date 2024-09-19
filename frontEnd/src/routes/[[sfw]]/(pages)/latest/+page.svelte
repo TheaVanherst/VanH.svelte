@@ -22,7 +22,7 @@
 	</Carousel>
 </SidebarTexts>
 
-<SidebarTexts titlecard="Designs" icon="colourWheel.webp">
+<SidebarTexts titlecard="Recently Added Designs" icon="colourWheel.webp">
 	<div class="artworkFeature">
 		<Masonry
 				items=	{data.designs}
@@ -37,7 +37,7 @@
 	</div>
 </SidebarTexts>
 
-<SidebarTexts titlecard="Artwork" icon="galleryIcon.webp">
+<SidebarTexts titlecard="Recently Added Artwork" icon="galleryIcon.webp">
 	<div class="artworkFeature">
 		<Masonry
 				items=	{data.artworks}

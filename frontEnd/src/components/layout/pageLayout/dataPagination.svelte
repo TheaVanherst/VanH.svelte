@@ -47,10 +47,12 @@
 
 <style lang="scss">
 	.pagination {
-		display: 			flex;
-		flex-wrap: 			wrap;
+		margin: 	-4px auto;
+		gap: 		5px;
+		display: 	flex;
+		flex-wrap: 	wrap;
+
 		align-items: 		center;
 		justify-content: 	center;
-		pointer-events: 	all;
-		gap: 				5px;}
+		pointer-events: 	all;}
 </style>

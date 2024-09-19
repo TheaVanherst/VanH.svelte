@@ -44,8 +44,7 @@
     export let data;
 
     // search functionality
-    let value,
-		active = false;
+    let value, active = false;
 
     // generic search.
     const
@@ -72,19 +71,15 @@
 <div class="flexBox">
 	{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
 		<div class="inlineWrapper" transition:slide>
-			<NavigationComponent socials={data.socialMedia}/>
-		</div>
+			<NavigationComponent socials={data.socialMedia}/></div>
 	{/if}
 
 	{#if $navigationData.search}
 		<div class="searchBarWrapper" in:slide={{delay: 125}} out:slide={{delay: 175}}>
 			<div class="searchBar">
 				<form on:submit|preventDefault={() => hardSearch(value, 0)}>
-					<input type="search" class="input" placeholder="Search..." bind:value={value}/>
-				</form>
-				<RollupButton bind:active padding={3}/>
-			</div>
-		</div>
+					<input type="search" class="input" placeholder="Search..." bind:value={value}/></form>
+				<RollupButton bind:active padding={3}/></div></div>
 	{/if}
 
 	{#if active && data.tags && $navigationData.search}
@@ -97,10 +92,7 @@
 						<div class="characterIcon">
 							<div on:mousedown={() => queryBuilder(":" + character.nickName)}>
 								<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
-									<SanityImage image={character.charIcon}/>
-								</div>
-							</div>
-						</div>
+									<SanityImage image={character.charIcon}/></div></div></div>
 					{/each}
 				</div>
 			{/if}
@@ -113,15 +105,12 @@
 							<div class="tagGroup">
 								{#each tagSet.tags as tag, e}
 									<div on:mousedown={() => queryBuilder(tag.title)}>
-										<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/>
-									</div>
+										<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/></div>
 								{/each}
-							</div>
-						</div>
+						</div></div>
 					{/if}
                 {/if}
 			{/each}
-
 		</div>
 	{/if}
 
@@ -143,7 +132,7 @@
 		margin: 	0 0 auto 0;}
 
 	.searchBarWrapper {
-		margin: 10px auto 0 auto;
+		margin: 	10px auto 0 auto;
 		.searchBar {
 			display: 	flex;
 			gap: 		10px;

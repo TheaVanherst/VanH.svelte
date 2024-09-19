@@ -1,7 +1,7 @@
 <script>
     import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
 
-    import { fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { galleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityGalleries 	from "$root/serializer/sanityGalleries.svelte";
@@ -10,7 +10,8 @@
     export let
 		data,
         newTag = 		true,
-        disableNew = 	false;
+        disableNew = 	false,
+        shareIcons = 	false;
 
     let active = 	false,
 		hover = 	false,
@@ -26,24 +27,33 @@
 				let style = 	data.gallery.styleType,
 					render = 	data.gallery.renderType;
 
-                dataReOrg.gallery = 			dataReOrg.gallery.images.flat();
+                dataReOrg.gallery = dataReOrg.gallery.images.flat();
 
                 if (style && render) {
                     dataReOrg.gallery.styleType = 	style;
                     dataReOrg.gallery.renderType = 	render;}
                 // forces the gallery object to a 2d array, rather than 3d.
-
-                $fullscreenGalleryStore.componentUrl = 	ArtworkDescription;
-                $fullscreenGalleryStore.componentData = dataReOrg}},
+                galleryStore(ArtworkDescription,dataReOrg)}},
 		cardFloatClick = () => {
         	active = active ? active : !active;};
+
+    const
+		hovered = () => {
+			hover = true;
+			clearInterval(timer);},
+        unhovered = () => {
+			timer = setInterval(() => {
+				hover = active = false}, 500)},
+		clickOff = () => {
+            hover = false;
+			active = false;}
 </script>
 
 <div class="interactionWrapper wideBorder" class:glow={newAddition && !disableNew}
-	 on:mouseenter={() => {hover = true; clearInterval(timer);}}
 	 use:clickOutside
-	 on:click_outside={() => hover = active = false}
-	 on:mouseleave={() => {timer = setInterval(() => hover = active = false, 500)}}>
+	 on:mouseenter={hovered}
+	 on:click_outside={clickOff}
+	 on:mouseleave={unhovered}>
 	{#if newTag && newAddition && !disableNew}
 		<div class="newItem shortBorder">
 			<p>
@@ -65,7 +75,10 @@
 
 
 <style lang="scss">
-	.interactionWrapper, .galleryWrapper, .galleryContainer, .imageGallery {
+	.interactionWrapper,
+	.galleryWrapper,
+	.galleryContainer,
+	.imageGallery {
 		height: 100%;
 		width: auto;}
 
@@ -83,8 +96,6 @@
 				p {	font-weight: 700;
 					padding: 5px 12px 5px 12px;}}}}
 
-
-
 	.galleryWrapper {
 		position: 	relative;
 		overflow: hidden;
@@ -93,6 +104,7 @@
 			&.clickable {
 				.imageGallery {
 					pointer-events: none;}}}}
+
 	.galleryCard {
 		bottom: 0;}
 </style>

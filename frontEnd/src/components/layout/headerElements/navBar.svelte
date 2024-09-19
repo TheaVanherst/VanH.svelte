@@ -28,6 +28,8 @@
 				).filter(Boolean) ?? [true]).length > 0);}
 
     $: $navigationControls.nsfw ? nsfwUiUpdate() : nsfwUiUpdate();
+
+	// TODO: Mobile needs to have the ability to close the fold down menu on click.
 </script>
 
 {#if $navigationData.navigation}
@@ -37,13 +39,13 @@
 		<div transition:slide={{duration: 200}} id="navigation">
 			{#each navigationDirectories as item, id}
 				{#if navigationDirectories.directoryVisibility[id]}
-					<div class="transitionWrapper" transition:slide={{duration: 200, axis: 'x'}}>
+					<div transition:slide={{duration: 200, axis: 'x'}}>
 						{#if !!item.pages}
 							<div class="navButton dropDown"
 								class:currentRoot={item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
 								class:currentSubmenu={currentIdSelected === id}
 								on:mouseover={() => {currentIdSelected = id; clearInterval(timer);}}
-								on:mouseleave={() => timer = setInterval(() => currentIdSelected = undefined, 450)}
+								on:mouseleave={() => timer = setInterval(() => currentIdSelected = undefined, 250)}
 								transition:slide={{duration: 200, axis: 'x'}}>
 									<div class="mediaIcon"><img src="/icons/{item.imagePath}.webp"/></div>
 									{#if $deviceData.screenType > 2 || item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
@@ -107,7 +109,7 @@
 {/if}
 
 {#if $navigationData.socials && filteredSocialMedia.length > 0}
-	<div class="navigationWrapper" id="socials" transition:slide={{duration: 200}}>
+	<div class="navigationWrapper" class:compactMode={$deviceData.screenType <= 2} id="socials" transition:slide={{duration: 200}}>
 		{#each filteredSocialMedia as social}
 			<a href="https://{social.platformName.socialURL + social.url}" target="_blank" transition:slide={{duration: 200, axis: 'x'}}>
 				<RainbowButtonWrap padding="{$deviceData.screenType > 2 ? [5,10] : [6,6]}">
@@ -153,10 +155,9 @@
 		.socialMedia {
 			gap: 		5px;
 			display: 	flex;
-			.mediaIcon {
-				width: 	30px;
-				height:	30px;}
-			h3 {color:	black;}}}
+			h3 {color:		black;
+				margin: 	auto 0;
+				padding: 	0 0 3px 0;}}}
 	#navigation {
 		display: 	flex;
 		flex-wrap: 	nowrap;
@@ -213,8 +214,8 @@
 	.compactMode {
 		.social {
 			.mediaIcon {
-				width: 	24px!important;
-				height: 24px!important;}}
+				width: 	30px!important;
+				height: 30px!important;}}
 		#navigation {
 			.navButton {
 				&.currentSubmenu {

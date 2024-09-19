@@ -58,35 +58,27 @@
         }});
 </script>
 
-<div class="center">
-	{#if pagedData}
-		<Masonry
-				items=	{pagedData}
-				gap=	{10}
-				idKey=	{`slug`}
-				animate= {false}
-				let:item>
-			<div class="artPost"
-				 on:click={artworkSelect(item)}
-				 id="{item.slug}">
-				<ArtworkCard data={item}/>
-			</div>
-		</Masonry>
-	{/if}
-	{#if filteredData}
-		<Pagination
+{#if filteredData}
+	<Pagination
 			rows={filteredData} perPage={10}
 			goto={$dataSetStore.page}
 			bind:currentPage={$dataSetStore.page}
-			bind:trimmedRows={pagedData}/>
-	{/if}
-</div>
-
-<style lang="scss">
-	.center {
-		width: 	 100%;
-		margin:  0 auto 15px auto;
-		display: grid;
-		gap: 	 15px;
-	}
-</style>
+			bind:trimmedRows={pagedData}/> {/if}
+{#if pagedData}
+	<Masonry
+			items=	{pagedData}
+			gap=	{10}
+			idKey=	{`slug`}
+			animate= {false}
+			let:item>
+		<div class="artPost" id="{item.slug}"
+			 on:click={artworkSelect(item)}>
+			<ArtworkCard data={item}/>
+		</div>
+	</Masonry> {/if}
+{#if filteredData}
+	<Pagination
+			rows={filteredData} perPage={10}
+			goto={$dataSetStore.page}
+			bind:currentPage={$dataSetStore.page}
+			bind:trimmedRows={pagedData}/> {/if}

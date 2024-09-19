@@ -7,7 +7,7 @@
 
     import { fly, fade } 				from 'svelte/transition';
 
-    import { navigationControls, deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { navigationControls, deviceData, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
     import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
 
     import Header 				from "$root/components/layout/headerElements/header.svelte";
@@ -19,25 +19,26 @@
     import CometGenerator 		from "$root/components/layout/stylingComponents/cometGenerator.svelte";
     import FullscreenGallery 	from "$root/components/layout/fullscreenGallery.svelte";
 
-    onMount(async () => {
+    let screenSize = 	0,
+        scrollPos = 	0,
+        textscrollEnable = false;
+
+    onMount(() => {
         switch (true) {
             case Device.isPhone:  	$deviceData.deviceType = 0; break;
             case Device.isTablet: 	$deviceData.deviceType = 1; break;
-            default:      			$deviceData.deviceType = 2; break;}
+            default:      			$deviceData.deviceType = 2; textscrollEnable = true; break;}
         $navigationControls.loaded = true;
     });
-
-    let screenSize = 	0,
-		scrollPos = 	0;
 
     $: $deviceData.screenSize = screenSize;
     $: $deviceData.scrollPos = 	scrollPos;
     $: $deviceData.screenType =
 		$deviceData.screenSize > $deviceData.bandWidths[1] ? 3 :
 			$deviceData.screenSize < $deviceData.bandWidths[2] ? 1 : 2;
-    $: $deviceData.deviceType === 2 ?
+    $: textscrollEnable ?
 		$navigationControls.transitioning !== true ?
-			titlebarScroller(`${websiteTag} // ${$pageName} `)
+			titlebarScroller(`${$pageName} ${websiteTag} ~ `)
 			: $pageTitlebar = loadingIco
 		: $pageTitlebar = websiteTag;
 
@@ -63,7 +64,10 @@
 	</div>
 
 	<div id="scrollParent">
-		<div id="layout" class="wrapCorrection" style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}">
+		<div id="layout"
+			 class="wrapCorrection"
+			 class:dumbforceclip={$directoryStatus.currentRoot === "/"}
+			 style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
 				<Header/>
 			</div>
@@ -78,24 +82,26 @@
 {/if}
 
 <style lang="scss">
+	.dumbforceclip {
+		// compensates for the banner circles.
+		max-height: 100vh;
+		overflow: hidden;
+	}
+
 	#scrollParent {
 		min-height: 100vh;
-		max-width: 	100%;
+		max-height: 100vh;
 		margin: 	0 auto;}
-
 	#layout {
 		min-height: 100vh;
-
 		max-width: 	820px;
 		width: 		100%;
 		min-width: 	300px;
-
 		padding: 	0 15px;
 		margin: 	0 auto;
 
 		position: 			relative;
 		display: 			flex;
 		flex-direction: 	column;
-		justify-content: 	space-between;
-	}
+		justify-content: 	space-between;}
 </style>

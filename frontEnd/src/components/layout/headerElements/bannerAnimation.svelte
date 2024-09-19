@@ -1,25 +1,34 @@
+<script>
+	import { fade } from "svelte/transition";
+
+	export let extended
+</script>
 
 <div class="profileGraphic">
 	<div class="planetarySystem">
 		<div class="plane">
-			<div class="circle ring1 plan">
-				<div class="dot"></div>
-			</div>
-			<div class="circle ring2 plan">
-				<div class="dot"></div>
-			</div>
-			<div class="circle ring3 plan">
-				<div class="dot"></div>
-			</div>
-			<div class="circle ring4 plan">
-				<div class="dot"></div>
-			</div>
-			<div class="circle ring5 plan">
-				<div class="dot"></div>
-			</div>
-			<div class="circle ring6 plan">
-				<div class="dot"></div>
-			</div>
+			{#if extended}
+				<div transition:fade>
+					<div class="circle ring1 plan">
+						<div class="dot"></div>
+					</div>
+					<div class="circle ring2 plan">
+						<div class="dot"></div>
+					</div>
+					<div class="circle ring3 plan">
+						<div class="dot"></div>
+					</div>
+					<div class="circle ring4 plan">
+						<div class="dot"></div>
+					</div>
+					<div class="circle ring5 plan">
+						<div class="dot"></div>
+					</div>
+					<div class="circle ring6 plan">
+						<div class="dot"></div>
+					</div>
+				</div>
+			{/if}
 
 			<div class="plane tilt1">
 				<div class="circle decorationRing1"></div>

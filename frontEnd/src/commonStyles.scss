@@ -48,26 +48,27 @@
 		font-weight: 	700;}}
 
 .pagingDot {
-	width: 		30px;
-	height: 	30px;
+	width: 		24px;
+	height: 	24px;
 	margin:     auto 0;
-	border-radius: 	var(--bordernormal);
-	background: 	var(--TransWhite);
-
+	border-radius: 	50%;
+	border: 1px solid var(--accent7);
+	background: var(--TransBlack);
 	transition: background .3s ease;
 
 	&:hover {
-		background:     var(--accent3);}
+		background: var(--accent7);}
 
 	&.active {
-		background:     var(--accent7);
+		border: 1px solid var(--TransWhite);
+		background:     var(--accent10);
 		pointer-events: none;}}
 
 // TODO: generic containers
 
 .inlineTag {
 	display: 	inline-flex;
-	margin: 	0 7px 0 0;
+	margin: 	0 -2px 0 0;
 	padding: 	3.5px 3px 2px 3px;
 
 	border-radius: 	12px;

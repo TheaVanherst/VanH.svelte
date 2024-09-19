@@ -39,8 +39,7 @@
             newRoute = $directoryStatus.nsfwUrlCheck() + e;}
 
         // this allows plain redirects via. eg. /artwork, and adds the NSFW filter keyword.
-
-        if (newRoute + "/" !== $directoryStatus.rawDirectory && !$navigationControls.transitioning) {
+        if (newRoute !== $directoryStatus.rawDirectory && !$navigationControls.transitioning) {
             galleryChange();
 			directoryProcessing($directoryStatus.rawDirectory, newRoute);
 

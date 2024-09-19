@@ -63,14 +63,21 @@ export default defineType({
       title: 'Discord Referencing',
       type: 'object', group: 'MetaData',
       fields: [
-        defineField({
+        {
           name: 'photoshopRef', title: 'Photoshop Message ID',
           type: 'string',
-        }),
-        defineField({
+          hidden: ({parent}) => parent?.TooLarge,
+        },
+        {
+          name: 'TooLarge', title: 'Oversized Photoshop File',
+          description: 'Is the file larger than 500mb?',
+          type: 'boolean', initialValue: false,
+          hidden: ({parent}) => parent?.photoshopRef?.length > 0,
+        },
+        {
           name: 'archiveRef', title: 'Artchive Message ID',
           type: 'string',
-        }),
+        },
       ],
     }),
 

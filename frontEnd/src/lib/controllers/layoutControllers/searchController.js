@@ -7,11 +7,11 @@ import { navigationControls }   from "$lib/controllers/layoutControllers/navigat
 import { dataSetStore }         from "$lib/controllers/layoutControllers/pageSettings.js";
 
 const
-    urlSerializer = (values) => {
+    urlSerializer = (values, check= true) => {
         let pageData = get(page).url;
         for ( let [k, v] of Object.entries(values) ) {
             v ? pageData.searchParams.set(encodeURIComponent(k), encodeURIComponent(v)) : pageData.searchParams.delete(k);}
-        goto(pageData);
+        if (check) {goto(pageData);}
     },
     queryFilter = (dataSet) => {
         let searchQuery = (get(dataSetStore).searchQuery).toLowerCase() ?? "";

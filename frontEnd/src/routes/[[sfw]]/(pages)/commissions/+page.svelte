@@ -2,7 +2,7 @@
     import { navigationControls, deviceData } from '$lib/controllers/layoutControllers/navigationHandling.js';
 
     import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
-    import Container		from "$root/components/generic/containers/container.svelte";
+    import Container		from "$root/components/generic/containers/genericContainer.svelte";
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";

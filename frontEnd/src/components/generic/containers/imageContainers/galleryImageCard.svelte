@@ -72,6 +72,7 @@
 					border: 	1px solid var(--accent7);}
 
 	.infoPlate {
+		min-width: 	calc(100% - 10px);
 		max-height: calc(100% - 10px);
 		overflow: 	hidden scroll;}
 </style>

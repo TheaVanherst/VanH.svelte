@@ -1,7 +1,7 @@
 <script>
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
-    import WorkshopCard 	from "$root/components/pageSpecific/homePage/embedded/workshopCard.svelte";
-    import WorkshopSnippet 	from "$root/components/pageSpecific/homePage/embedded/workshopSnippet.svelte";
+    import WorkshopCard 	from "$root/components/pageSpecific/queryPages/workshop/workshopPreview.svelte";
+    import WorkshopSnippet 	from "$root/components/pageSpecific/queryPages/workshop/workshopSnippet.svelte";
 
     import { deviceData, navigationControls } from '$lib/controllers/layoutControllers/navigationHandling.js';
 
@@ -12,10 +12,10 @@
 
 {#if dataset.full}
 	<Carousel>
-		{#each dataset.full as workshopItem}
-			{#if $navigationControls.localNsfwCheck(workshopItem?.NSFW)}
+		{#each dataset.full as data}
+			{#if $navigationControls.localNsfwCheck(data?.NSFW)}
 				<swiper-slide>
-					<WorkshopCard dataEntry={workshopItem}/>
+					<WorkshopCard {data}/>
 				</swiper-slide>
 			{/if}
 		{/each}
@@ -26,10 +26,10 @@
 	<div class="navWrapper">
 		<div class="desktopOffset">
 			<Carousel customCalc={$deviceData.screenSize < 800 ? $deviceData.screenSize / 85 : 800 / 85}>
-				{#each dataset.snippets as workshopItem}
-					{#if $navigationControls.localNsfwCheck(workshopItem?.NSFW)}
+				{#each dataset.snippets as item}
+					{#if $navigationControls.localNsfwCheck(item?.NSFW)}
 						<swiper-slide>
-							<WorkshopSnippet item={workshopItem}/>
+							<WorkshopSnippet {item}/>
 						</swiper-slide>
 					{/if}
 				{/each}

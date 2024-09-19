@@ -30,20 +30,21 @@
         	position < maxPosition ? imageUrlUpdate() : galleryExit();},
 		galleryExit = async () => {
             setTimeout(async () => {
-                let query = new URLSearchParams($page.url.searchParams.toString());
-					query.delete('story');
-					query.delete('img');
-					query.delete('gallery');
+                if (!stopCheck) {
+					let query = new URLSearchParams($page.url.searchParams.toString());
+						query.delete('story');
+						query.delete('img');
+						query.delete('gallery');
+						query.delete('mod');
 
-                await goto(`?${query.toString()}`,{noScroll: true});
+					await goto(`?${query.toString()}`,{noScroll: true});
+					$directoryStatus.query = '';
+					$directoryStatus.rawDirectory = $directoryStatus.nsfwOptional + $directoryStatus.strippedUrl
 
-				// Without this, there's a bug where the NSFW button would reactivate the gallery, as it retains the initial
-				// raw directory from the initial onmount call, and isn't stripped properly.
-                $directoryStatus.query = '';
-                $directoryStatus.rawDirectory = $directoryStatus.nsfwOptional + $directoryStatus.strippedUrl
-
-                position = 0;
-                galleryChange(undefined);
+					position = 0;
+					galleryChange(undefined);
+                }
+                stopCheck = false;
             }, 50);}
 
 	const
@@ -55,6 +56,7 @@
 			messengerSettings.set(true);}
 
 	$: !!$fullscreenGalleryStore.componentData ? mounted() : unmounted();
+    let stopCheck = false; // fuck this tbh
 </script>
 
 {#if $fullscreenGalleryStore.componentData}
@@ -62,60 +64,54 @@
 		 class:mobile={$deviceData.deviceType < 2}
 		 transition:fade>
 		{#if $fullscreenGalleryStore.componentData.story}
-			<div class="galleryWrapper">
-				<div class="positionSet"
-					 use:clickOutside
-					 on:click_outside={() => galleryExit()}>
+			<div class="componentWrapper" on:click={() => {queryUpdate();}}
+				 use:clickOutside
+				 on:click_outside={() => {galleryExit();}}>
+				<div class="component">
 					<svelte:component
-							this={$fullscreenGalleryStore.componentUrl}
-							story={$fullscreenGalleryStore.componentData}/>
+						this={$fullscreenGalleryStore.componentUrl}
+						data={$fullscreenGalleryStore.componentData}/>
 				</div>
 			</div>
-			<div class="endButton wideBorder">
-				<h4>Fin.</h4>
-			</div>
 		{:else if $fullscreenGalleryStore?.componentData?.gallery}
-			<div class="galleryWrapper">
-				<div class="positionSet"
-					 use:customClickSelection
-					 use:clickOutside
-					 on:click_outside={() => galleryExit()}>
-					<div class="circleWrapper">
-						<div class="pageCircleBar">
-							{#each $fullscreenGalleryStore.componentData.gallery as dot, i}
-								<div class="pagingDot"
-									 class:active={i === position}
-									 on:click={() => {position = i; queryUpdate();}}>
-								</div>
-							{/each}
+			<div class="imageSelectionHolster"
+				 use:customClickSelection
+				 on:click={() => {stopCheck = true;}}>
+				<div class="selectionDots">
+					{#each $fullscreenGalleryStore.componentData.gallery as dot, i}
+						<div class="pagingDot" class:active={i === position}
+							 on:click={() => {position = i; queryUpdate();}}>
 						</div>
+					{/each}
+				</div>
+				{#if $fullscreenGalleryStore.componentData.gallery[position].desc}
+					<div class="imageCitation">
+						<ImageTag border="wideBorder" position="relative">
+							<p>{$fullscreenGalleryStore.componentData.gallery[position].desc}</p>
+						</ImageTag>
 					</div>
+				{/if}
+			</div>
+			<div class="generalImageWrapper imageWrapper"
+				 use:clickOutside
+				 on:click_outside={() => {galleryExit();}}>
+				<div class="verticalAlignmentHolster"
+					 on:click={() => {gallerySwap(); queryUpdate();}}>
 					{#if $fullscreenGalleryStore.componentData?.gallery[position]}
-						{#if $fullscreenGalleryStore.componentData.gallery[position].desc}
-							<div class="imageCitationWrapper">
-								<div class="imageCitation">
-									<ImageTag border="shortBorder" position="relative">
-										<p>{$fullscreenGalleryStore.componentData.gallery[position].desc}</p>
-									</ImageTag>
-								</div>
-							</div>
-						{/if}
-						<div class="imageContainer">
-							<div class="image" on:click={() => {gallerySwap(); queryUpdate();}}>
-								<SanityImage image={$fullscreenGalleryStore.componentData.gallery[position]}/>
-							</div>
-							{#if $fullscreenGalleryStore.componentUrl}
-								<div class="componentWrapper">
-									<div class="component">
-										<svelte:component
-												this={$fullscreenGalleryStore.componentUrl}
-												data={$fullscreenGalleryStore.componentData}/>
-									</div>
-								</div>
-							{/if}
+						<div class="Alignment">
+						<SanityImage image={$fullscreenGalleryStore.componentData.gallery[position]}/>
 						</div>
 					{/if}
 				</div>
+				{#if $fullscreenGalleryStore.componentUrl}
+					<div class="componentWrapper" on:click={() => {queryUpdate();}}>
+						<div class="component">
+							<svelte:component
+									this={$fullscreenGalleryStore.componentUrl}
+									data={$fullscreenGalleryStore.componentData}/>
+						</div>
+					</div>
+				{/if}
 			</div>
 		{/if}
 	</div>
@@ -124,82 +120,77 @@
 <style lang="scss">
 	.galleryElement {
         position: 	fixed;
-		display: 	grid;
 		overflow: 	hidden scroll;
 		z-index: 	10;
 		width: 		100%;
 		height: 	100vh;
-		background: var(--TransBlack);
+		background: var(--TransBlack);}
 
-		.galleryWrapper {
-			margin: 	auto;
-			.positionSet {
-				margin: 15px;}}}
+	// Paging Dots
 
-	// Erotica
-
-	.endButton {
-		pointer-events: none;
-		padding: 	6px 10px 150px 25px;
+	.imageSelectionHolster {
+		display: 	grid;
+		padding: 	15px 15px 11px 15px;
 		margin: 	0 auto;
-		max-width: 	620px;
-		h4 {
-			width: max-content;
-			margin: 0 10px 0 auto;}}
+		gap: 		5px;
+		height: 	min-content;
+		width: 		min-content;
+		pointer-events: none;
 
-	.mobile {
-		.endButton {
-			margin: 0 auto 35px auto;}}
+		> * {
+			display: 	flex;
+			margin: 	0 auto;}
+
+		.selectionDots {
+			pointer-events: all;
+			width: 		min-content;
+			gap: 		5px;}
+		.imageCitation {
+			margin: 	0 auto 0 auto;
+			width: 		max-content;}}
 
 	// Artwork
 
-	.componentWrapper, .circleWrapper {
-		pointer-events: none;
-		.pageCircleBar, .component {
+	.generalImageWrapper, .componentWrapper {
+		pointer-events: 	none;
+		.verticalAlignmentHolster.Alignment, .component {
 			pointer-events: all;}}
 
-	.circleWrapper {
-		position: 	absolute;
-		display: 	flex;
+	.generalImageWrapper {
+		max-width: 			fit-content;
+		margin: 			0 auto;
+		justify-content: 	center;
+		align-items: 		center;
+		display: 			grid;
+		overflow: 			initial;
 
-		width: 	100%;
-		top: 	0;
-		left: 	0;
-
-		.pageCircleBar {
-			display: 	flex;
-			margin: 	0 auto;
-			padding: 	15px;
-			gap: 		5px;}}
-
-	.imageCitationWrapper {
-		position: 	absolute;
-		z-index: 	1;
-		.imageCitation {
-			margin: 0 auto 0 auto;
-			width: 	max-content;}}
-
-	.imageContainer {
-		.image {
+		.verticalAlignmentHolster {
+			height: 		80vh;
+			max-height: 	100%;
 			border-radius: 	var(--bordernormal);
-			background: 	var(--TransBlack);
-			overflow: 		hidden;}
+			display: 		flex;
+			overflow: 		hidden;
+			margin: 		auto;
 
-		:global(img){
-			display: 	flex;
-			max-width: 	85vh;
-			max-height: 85vh;
-			object-fit: contain;}}
+			.Alignment {
+				margin: auto 0;
+				max-height: 80vh;
+				display: flex;
+			}
+			:global(.loaded){
+				height: auto;
+				display:flex;
+			}
+			:global(img){
+				display: 	flex;
+				object-fit: contain;}}}
 
 	.componentWrapper {
-		position: 	absolute;
 		display: 	flex;
-		width: 		calc(100% - 20px);
-		left: 		0;
-		margin: 	0 10px 0 10px;
+		margin: 	0 10px 100px 10px;
 		.component {
 			max-width: 	600px;
-			margin: 	35px auto 35px auto;}}
+			margin: 	35px auto 50px auto;}}
 
 	.mobile {
 		.positionSet {

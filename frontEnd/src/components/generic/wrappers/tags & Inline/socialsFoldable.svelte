@@ -23,10 +23,10 @@
 </script>
 
 {#if character === false}
-	<div class="authorCardWrapper">
-		<div class="inlineRedirect" class:inverted={inverted}
-			 on:mouseenter={() => clearInterval(timer)}
-			 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
+	<div class="authorCardWrapper"
+		 on:mouseenter={() => clearInterval(timer)}
+		 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
+		<div class="inlineRedirect" class:inverted={inverted}>
 			<div class="expandedSlot">
 				<RedirectBuilder url="{!!customRoot ? customRoot : $directoryStatus.strippedUrl}?query=@{author.handle.toLowerCase().replaceAll(' ','_')}">
 					<div class="characterCard">
@@ -44,11 +44,9 @@
 		{#if active}
 			<div class="marginGap" transition:slide>
 				{#if author.searchable}
-					<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" inverted={inverted}>{author.handle}</InternalRedirectTag>
-				{/if}
+					<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" inverted={inverted}>{author.handle}</InternalRedirectTag>{/if}
 				{#if author.socialMedia.length > 0}
-					<SocialMediaTag data={author.socialMedia[0]} inverted={inverted}/>
-				{/if}
+					<SocialMediaTag data={author.socialMedia[0]} inverted={inverted}/>{/if}
 			</div>
 		{/if}
 	</div>
@@ -69,7 +67,7 @@
 
 <style lang="scss">
 	.marginGap {
-		margin: 		5px 0 auto 0;}
+		margin: 		1px 0 auto 0;}
 
 	.inlineRedirect {
 		position: 		relative;

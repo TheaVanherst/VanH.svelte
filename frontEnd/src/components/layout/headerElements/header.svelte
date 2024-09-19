@@ -1,5 +1,6 @@
 <script>
-	import { fade } from "svelte/transition";
+	import { fade, slide } from "svelte/transition";
+    import { page } from "$app/stores";
 
     import { deviceData, navigationControls, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
@@ -10,56 +11,65 @@
     import { splashTextData } 	from "$lib/controllers/layoutControllers/pageSettings.js";
     import { submitters } 		from "$lib/localDatabases/splashTextDatabase.js";
 
-    let hover = false;
-    let timer = undefined;
+    import PageIntroduction 	from "$root/components/layout/stylingComponents/pageIntroduction.svelte";
+
+    let hover = false,
+    	timer = undefined;
 </script>
 
-<div class="bannerWrapper">
-	{#if $navigationControls.loaded}
-		{#if $deviceData.deviceType === 2}
-			<div class="desktop">
-				<SplashTexts bind:hover bind:timer/>
-				<ProfileBar>
-					<slot/>
-					<RedirectBuilder url="/featured">
-						<div class="branding" class:disabled={$directoryStatus.currentRoot === "/featured"}>
-							<img src="/branding/vanhlogo.webp"/>
-						</div>
-					</RedirectBuilder>
-				</ProfileBar>
-			</div>
-		{:else if $deviceData.deviceType === 1}
-			<div class="tablet">
-				<div class="logo">
-					<img src="/branding/vanhlogo.webp">
-				</div>
-				<div class="banner wideBorder">
-					<img src="/branding/tabletBanner.webp">
-				</div>
-			</div>
-		{:else}
-			<div class="mobile imageWrapper">
-				<img src="/branding/vanhlogo.webp">
-			</div>
-		{/if}
-		{#if hover}
-			<div id="splash"
-				transition:fade
-				on:mouseover={	() => {hover = true; clearInterval(timer);}}
-				on:mouseleave={	() => timer = setInterval(function () {hover = false;}, 1000)}>
-					<p>Splash text by
-						{#key $splashTextData?.[2]?.user}
-							<span transition:fade>
-								{$splashTextData?.[2]?.user ?? submitters?.thea?.user ?? "[NOT FOUND]"}
-							</span>
-						{/key}
-					</p>
-			</div>
-		{/if}
+<PageIntroduction visible="{$page.url.pathname === '/'}"/>
+
+<div class="websiteLoadinProcess"
+	 transition:slide={{axis: "y"}}
+	 class:transitioning={$navigationControls.transitioning}
+	 class:enabled={$page.url.pathname === "/"}></div>
+<!-- deals with introduction animation, LAZY. -->
+
+{#if $navigationControls.loaded}
+	{#if $deviceData.deviceType === 2}
+		<div class="desktop">
+			<SplashTexts bind:hover bind:timer/>
+			<ProfileBar extended={$page.url.pathname !== "/"}>
+				<RedirectBuilder url="/featured">
+					<div class="branding" class:disabled={$directoryStatus.currentRoot === "/featured"}>
+						<img src="/branding/vanhlogo.webp"/>
+					</div>
+				</RedirectBuilder>
+			</ProfileBar>
+		</div>
+	{:else if $deviceData.deviceType < 2}
+		<div class="tablet imageWrapper">
+			<img src="/branding/vanhlogo.webp"></div>
+	{:else}
+		<div class="mobile imageWrapper">
+			<img src="/branding/vanhlogo.webp"></div>
 	{/if}
-</div>
+
+	<!-- deals with introduction animation -->
+	{#if hover}
+		<div id="splash"
+			 transition:fade
+			 on:mouseover={	() => {hover = true; clearInterval(timer);}}
+			 on:mouseleave={() => timer = setInterval(function () {hover = false;}, 1000)}>
+			<p>Splash text by
+				{#key $splashTextData?.[2]?.user}
+					<span transition:fade>
+						{$splashTextData?.[2]?.user ?? submitters?.thea?.user ?? "[NOT FOUND]"}</span>
+				{/key}
+			</p>
+		</div>
+	{/if}
+{/if}
 
 <style lang="scss">
+	.websiteLoadinProcess {
+		height: 0;
+		width: 100%;
+		&.transitioning {
+			transition: ease-in-out height .5s;}
+		&.enabled {
+			height: calc(50vh - 200px);}}
+
 	#splash {
 		width: 		max-content;
 		margin: 	0 auto 0 auto;
@@ -93,30 +103,17 @@
 			margin: 5px 0 -10px -5px;
 			width: 	100%;}}
 
-	.tablet {	position: 	relative;
-				margin:	 	15px 0 10px 0;
-		> * {	height: 	200px;}
+	.tablet {
+		height: 	220px;
+		z-index: 	1;
+		width: 		100%;
+		margin: 	5px auto -10px auto;
 
-		.banner {
-			img {
-				display: flex;
-				height: 100%;}
-
-			overflow: 	hidden;
-			border: 	1px solid var(--accent7);}
-		.logo {
-			position: 	absolute;
-			z-index: 	1;
-			width: 		100%;
-
-			img {
-				margin: 	-10px 0 -10px -3px;
-				left: 		50%;
-				transform: 	translateX(-50%);
-				height: 	calc(100% + 20px);
-
-				position: 	relative;
-				display: 	block;}}}
+		img {
+			left: 		50%;
+			transform: 	translateX(-50%);
+			position: 	relative;
+			display: 	block;}}
 
 	.desktop {
 		position: 	relative;

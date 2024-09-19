@@ -13,7 +13,7 @@ const navigationDirectories = [
             {   title: "Design",    imagePath: "colourWheel",       path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
                     characters: true, queryTypes: ["design","genre","generic"]},
             {   title: "Mods",      imagePath: "workshopIcon",      path: "/workshop",      nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
-                    characters: true, queryTypes: ["design"]}
+                    characters: true, queryTypes: []}
         ]},
         {   title: "Universe",      imagePath: "universeIcon",      pages: [
             {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",       nsfw:true,      pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector,

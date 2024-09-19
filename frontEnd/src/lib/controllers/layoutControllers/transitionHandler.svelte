@@ -36,7 +36,6 @@
         transitionSpeed = [50, 20]; // transition position multipliers
 
     $:  transition = $navigationControls.direction[1] === 0 ? transitionFunctions["fly"] : transitionFunctions["fly"];
-
 </script>
 
 <div class="parentElement">

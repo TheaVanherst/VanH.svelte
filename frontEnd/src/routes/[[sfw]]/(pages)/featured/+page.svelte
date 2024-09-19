@@ -26,7 +26,7 @@
 
 {#if $navigationControls.nsfw}
 	<SidebarTexts titlecard="Artwork" icon="galleryIcon.webp">
-		<Carousel>
+		<Carousel maxWidth={2}>
 			{#each data.artworks as artwork, i}
 				<swiper-slide>
 					{#if !!artwork}

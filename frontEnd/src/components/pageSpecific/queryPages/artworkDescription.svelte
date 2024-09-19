@@ -8,6 +8,7 @@
     import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
+    import FoldedTags 		from "$root/components/generic/wrappers/tags & Inline/tags/foldedTags.svelte";
 
     export let
 		data,
@@ -88,7 +89,7 @@
 						<DividedTag hover={true}>
 							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp" alt=""></div>
 							<span slot="title">Archive</span>
-							<span slot="desc">Tier 1 or higher</span>
+							<span slot="desc">Tier 1</span>
 						</DividedTag>
 					</a>
 				{/if}
@@ -97,7 +98,7 @@
 						<DividedTag hover={true}>
 							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp" alt=""></div>
 							<span slot="title">Photoshop</span>
-							<span slot="desc">Tier 3 or higher</span>
+							<span slot="desc">Tier 3</span>
 						</DividedTag>
 					</a>
 				{/if}
@@ -107,6 +108,12 @@
 </ImageFloatCard>
 
 <style lang="scss">
+	.footer {
+		width: 100%;
+		margin: 0 auto 0 0;
+		display: flex;
+	}
+
 	p {		margin: 7px 0 7px 0;}
 	p + p {	margin: 5px 0 5px 0;}
 
@@ -123,6 +130,6 @@
 			max-height: 74px;}}
 
 	.footer {
-		gap: 4px;
+		gap: 0;
 		display: grid;}
 </style>

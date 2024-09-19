@@ -9,8 +9,8 @@
     import { dataSetStore, fullscreenGalleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { queryFilter, searchTermBuilder } 		from "$lib/controllers/layoutControllers/searchController.js";
 
-    import StoryPreview from "$root/components/pageSpecific/queryPages/storyPreview.svelte";
-    import StoryCard 	from "$root/components/pageSpecific/queryPages/storyCard.svelte";
+    import StoryPreview from "$root/components/pageSpecific/queryPages/erotica/storyPreview.svelte";
+    import StoryCard 	from "$root/components/pageSpecific/queryPages/erotica/storyCard.svelte";
 
 	export let data;
 
@@ -40,32 +40,28 @@
 	});
 </script>
 
-<div class="center">
-	{#if pagedData}
-		<Masonry
-				items=	{pagedData}
-				gap=	{10}
-				idKey=	{`slug`}
-				animate= {false}
-				let:item>
-			<div class="erotica" on:click={storySelect(item)}>
-				<StoryPreview story={item}/>
-			</div>
-		</Masonry>
-	{/if}
-	{#if filteredData}
-		<Pagination
+{#if filteredData}
+	<Pagination
+			rows={filteredData} perPage={10}
+			goto={$dataSetStore.page}
+			bind:currentPage={$dataSetStore.page}
+			bind:trimmedRows={pagedData}/> {/if}
+{#if pagedData}
+	<Masonry
+			items=	{pagedData}
+			gap=	{10}
+			idKey=	{`slug`}
+			animate= {false}
+			let:item>
+		<div class="erotica" on:click={storySelect(item)}>
+			<StoryPreview story={item}/>
+		</div>
+	</Masonry>
+{/if}
+{#if filteredData}
+	<Pagination
 			rows={filteredData} perPage={10}
 			goto={$dataSetStore.page}
 			bind:currentPage={$dataSetStore.page}
 			bind:trimmedRows={pagedData}/>
-	{/if}
-</div>
-
-<style lang="scss">
-	.center {
-		width: 	 100%;
-		margin:  0 auto 15px auto;
-		display: grid;
-		gap: 	 15px;}
-</style>
+{/if}
