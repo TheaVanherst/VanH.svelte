@@ -1,8 +1,5 @@
 <script>
-	import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
-
     import SanityImage from "$root/serializer/sanityImage.svelte";
-    import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
 
     export let author;
 </script>
@@ -37,34 +34,6 @@
 		</p>
 	</div>
 </div>
-
-{#if author.latestArtworks.length > 0}
-	<div class="artworkFeature">
-		<h2>Latest Artworks</h2>
-		<div class="artworkGallery artwork imageWrapper">
-			{#each author.latestArtworks.map(e => e.nsfw ? undefined : e).filter(e=>e).splice(-6,12) as artwork}
-				{#if $navigationControls.localNsfwCheck(artwork.NSFW)}
-					<ArtworkCard data={artwork}/>
-				{/if}
-			{/each}
-		</div>
-	</div>
-{/if}
-{#if author.latestDesigns.length > 0}
-	<div class="artworkFeature">
-		<h2>Latest Designs</h2>
-		<div class="artworkGallery designWork imageWrapper">
-			{#each author.latestDesigns as design}
-				{#if $navigationControls.localNsfwCheck(design.NSFW)}
-					<ArtworkCard data={design}/>
-				{/if}
-			{/each}
-		</div>
-	</div>
-{/if}
-
-{#if $navigationControls.nsfw}
-{/if}
 
 <style lang="scss">
 	.authorCard {
@@ -117,17 +86,4 @@
 			padding: 		2px 9px 2px 5px;
 			background: 	var(--accent9);
 			color: 			white;}}
-
-	.artworkFeature {
-		position: 	relative;
-		display: 	grid;
-		gap: 		15px;
-		margin: 	15px 0 0 0;}
-
-	.artworkGallery {
-		display: flex;
-		grid-template-columns: auto auto auto;
-		gap: 15px;
-		max-height: 500px;
-		min-width: 100%;}
 </style>

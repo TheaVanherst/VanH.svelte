@@ -41,6 +41,7 @@ const
                 ${authorQueries.icon},
                 ${authorQueries.socials}},
             'photoshopRefId': discordReferences.photoshopRef,
+            'archiveTooLarge': discordReferences.TooLarge,
             'imageRefId': discordReferences.archiveRef,
                 characters[]-> {
                     ${characterData.preview},

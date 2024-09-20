@@ -29,7 +29,13 @@
 		 class:copied on:click={()=>copy(urlRedirect)}>
 		<div class="button"
 			 	on:click={()=>copy(urlRedirect)}>
-			<img src="/icons/linkIcon.webp"/></div></div>
+			{#if !copied}
+				<img src="/icons/linkIcon.webp" transition:fade />
+			{:else}
+				<img src="/icons/celebratIcon.webp" transition:fade />
+			{/if}
+		</div>
+	</div>
 	{#if tagSet.length > 0}
 		<div class="buttonWrapper"
 				on:mouseenter={() => clearInterval(timer)}
@@ -59,9 +65,10 @@
 
 <style lang="scss">
 	.controls {
+		float: 		right;
 		display: 	table;
 		gap: 		5px;
-		margin: 	-35px -2px -2px auto;
+		margin: 	2px -2px -2px auto;
 
 		> *:first-child {
 			margin: 0 0 0 auto;}}
@@ -99,16 +106,14 @@
 			margin: auto;
 			display: flex;
 			padding: 6px;}
+		img:last-of-type:not(:first-child){
+			position: absolute;}
 
 		&.active {
 			background: var(--accent10);
 			img { filter: invert(0)}}}
 
-	#tagButton {
-		img:last-of-type:not(:first-child){
-			position: absolute;}}
-
-	.postTags {	margin: 	10px 0 0 0;
+	.postTags {	margin: 	12px 0 0 0;
 		div {	display: 	contents;}}
 
 </style>

@@ -87,7 +87,7 @@
 					<a href={data.imageRefId} target="_blank">
 						<DividedTag hover={true}>
 							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp" alt=""></div>
-							<span slot="title">Archive</span>
+							<span slot="title">Artchive</span>
 							<span slot="desc">Tier 1</span>
 						</DividedTag>
 					</a>
@@ -96,10 +96,18 @@
 					<a href={data.imageRefId} target="_blank">
 						<DividedTag hover={true}>
 							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp" alt=""></div>
-							<span slot="title">Photoshop</span>
+							<span slot="title">Source file</span>
 							<span slot="desc">Tier 3</span>
 						</DividedTag>
 					</a>
+				{:else if data.archiveTooLarge}
+					<div>
+						<DividedTag>
+							<div slot="titleIcon"><img class="inlineIcon" src="/externalIcons/discord.webp" alt=""></div>
+							<span slot="title">Source File</span>
+							<span slot="desc">Unavailable</span>
+						</DividedTag>
+					</div>
 				{/if}
 			</p>
 		{/if}

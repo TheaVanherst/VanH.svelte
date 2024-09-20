@@ -27,7 +27,7 @@
 	<div class="authors">
 		<div class="publishCard">
 			<h5>{createdPush(story.publishedAt)}</h5>
-			<p>Written & created by;</p>
+			<p class="citation">Written & created by;</p>
 		</div>
 		<div class="authorList">
 			{#each story.authors as author}
@@ -42,18 +42,19 @@
 		<p>
 			{story.description}
 		</p>
-		<em>{readingTime(story.story)} minute estimated read time.</em>
-		<p>Featuring;</p>
+		<em>{readingTime(story.story)}</em>
+		<p class="citation">Featured character{story.characters.length > 1 ? 's' : ''};</p>
 		<div class="characters">
 			{#each story.characters as character}
 				<div on:click|stopPropagation>
-					<SocialsFoldable author={character} character={true} inverted={true} />
+					<SocialsFoldable author={character} character={true} inverted={true}/>
+
 				</div>
 			{/each}
+			{#if story.tags?.length > 0}
+				<FoldedTags tagSet={story.tags} urlRedirect={story.slug} redirectType="story="/>
+			{/if}
 		</div>
-		{#if story.tags?.length > 0}
-			<FoldedTags tagSet={story.tags} urlRedirect={story.slug} redirectType="story="/>
-		{/if}
 	</div>
 </div>
 

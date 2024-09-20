@@ -27,28 +27,30 @@
         	active = false;}
 </script>
 
-<div class="workshopItem regularBorder"
-	 id={data.slug}
-	 class:hovered={active}
-	 on:click={onclick}
-	 on:mouseenter={hovered}
-	 on:mouseleave={unhovered}>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id={data.url}" target="_blank">
+	<div class="workshopItem regularBorder"
+		 id={data.slug}
+		 class:hovered={active}
 
-	<div class="workshopPreview regularBorder">
-		<div class="regularBorder imageWrapper">
-			<SanityImage image={data.previewImage}/>
-		</div>
-		<FlyInCard {active}>
-			<h5 slot="title"> {data.itemName} </h5>
-			<div slot="icon">
-				<div class="shortBorder imageWrapper">
-					<SanityImage image={data.gameLogo}/>
-				</div>
+		 on:mouseenter={hovered}
+		 on:mouseleave={unhovered}>
+
+		<div class="workshopPreview regularBorder">
+			<div class="regularBorder imageWrapper">
+				<SanityImage image={data.previewImage}/>
 			</div>
-			<span slot="desc">{data.shortDesc}</span>
-		</FlyInCard>
+			<FlyInCard {active}>
+				<h5 slot="title"> {data.itemName} </h5>
+				<div slot="icon">
+					<div class="shortBorder imageWrapper">
+						<SanityImage image={data.gameLogo}/>
+					</div>
+				</div>
+				<span slot="desc">{data.shortDesc}</span>
+			</FlyInCard>
+		</div>
 	</div>
-</div>
+</a>
 
 <style lang="scss">
 	.workshopItem {

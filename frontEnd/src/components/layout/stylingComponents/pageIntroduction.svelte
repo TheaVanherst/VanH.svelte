@@ -6,26 +6,41 @@
 
 {#if visible}
 	<div class="backgroundAnimationWrapper" transition:fade>
-		<div class="loader smaller regularBorder"></div>
-		<div class="loader animated regularBorder"></div>
-		<div class="loader faded regularBorder"></div>
+		<img class="stripeScan blueprintDesign"  src="/branding/CircuitTexture.webp"/>
+		<div class="stripeScan smaller regularBorder"></div>
+		<div class="stripeScan animated regularBorder"></div>
+		<div class="stripeScan faded regularBorder"></div>
 	</div>
-	<div class="GlobalWrapper" transition:slide={{duration: 200, axis: 'y'}}>
-
+	<div class="globalWrapper">
+		<div class="centrePosition">
+			<h3 class="entry shortBorder" transition:slide={{duration: 200, axis: 'y'}}>
+				Select to Enter
+			</h3>
+		</div>
 	</div>
 {/if}
 
 <style lang="scss">
-	.loader {
+	.stripeScan {
 		position: 		absolute;
 		display: 		inline-block;
 		box-sizing: 	border-box;
 		mask-repeat: 	no-repeat;
+		overflow: 		hidden;
 
 		margin: 	15px 0 0 0;
 		width: 		100%;
 		max-width:  calc(100% - 30px);
 		height: 	calc(100vh - 90px);}
+
+	.blueprintDesign {
+		mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0), black 5%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 90%);
+		animation: 	gradient 6s linear infinite;
+
+		background-size: 2em 2em;
+		object-fit: cover;
+		opacity: 0.5;
+		position: absolute;}
 
 	@mixin gradientGen($gridColour){
 		background:
@@ -36,23 +51,25 @@
 		@include gradientGen(var(--accent9));
 		animation: 	barStripe 2s linear infinite;
 		font-size: 	25px;
-		border: 	1px solid var(--accent9);
 		background-size: 1em 1em;}
 	.faded {
 		@include gradientGen(var(--accent7));
-		font-size: 	45px;
+		font-size: 	75px;
 		border: 	1px solid var(--accent7);
 		animation: 	barStripe 6s linear infinite;
-		opacity: 	0.4;
+		opacity: 	0.2;
 		background-size: 1em 1em;}
 	.animated {
 		@include gradientGen(var(--accent5));
-		font-size: 	45px;
+		font-size: 	75px;
 		animation: 	gradient 6s linear infinite;
 		border: 	solid 1px;
-		mask-image: linear-gradient(90deg, black 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 50%, black 50%, rgba(255, 255, 255, 0) 90%);
+		mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0), black 5%, rgba(255, 255, 255, 0) 90%);
 		background-size: 1em 1em;}
 
+	@keyframes zRotation {
+		from {	transform: rotateY(0);}
+		to {	transform: rotateY(-1turn);}}
 	@keyframes barStripe {
 		0% {	background-position: 2em 1em;}
 		100% {	background-position: 0 0;} }
@@ -63,10 +80,24 @@
 
 	// TextBox
 
-	.GlobalWrapper {
+	.globalWrapper {
 		position: 	absolute;
 		display: 	flex;
 		width: 		100%;
 		max-width:  calc(100% - 30px);
-		height: 	calc(100vh - 90px);}
+		height: 	calc(100vh - 90px);
+
+		.centrePosition {
+			position: relative;
+			width: max-content;
+			height: max-content;
+			margin: auto;}}
+
+	.entry {
+		padding: 	2px 27px 3px 27px;
+		top: 		200px;
+		z-index: 	10;
+		background: var(--accent3);
+		font-family: "Jura", sans-serif;
+		color: 		black;}
 </style>

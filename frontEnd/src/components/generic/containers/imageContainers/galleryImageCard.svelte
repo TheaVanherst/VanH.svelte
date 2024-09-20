@@ -43,26 +43,26 @@
 
 <style lang="scss">
 	:global(.card p, .card h3, .card h4) {
-		color: 		black;}
-	:global(.card span) {
-		color: 		white;}
+							color: 	black;}
+	:global(.card span) {	color: 	white;}
 
 	.previewCard, .infoPlate {
 		margin: 	5px;
-		bottom: 	0;}
-	.absolute {
-		position: absolute;}
+		bottom: 	0;
+		.titleCard, .descCard {
+			display: 	grid;
+			position: 	relative;
+			overflow: 	hidden;
 
-	.titleCard, .descCard {
-		display: 	grid;
-		position: 	relative;
-		overflow: 	hidden;
+			transition: ease background .3s, ease border .3s;
+			border: 	1px solid transparent;
+			> * {
+				display: block;}}}
 
-		transition: ease background .3s, ease border .3s;
-		border: 	1px solid transparent;
-		> * {
-			display: block;}}
-
+	.absolute {		position: 	absolute;}
+	.infoPlate {	min-width: 	calc(100% - 10px);
+					max-height: calc(100% - 10px);
+					overflow: 	hidden scroll;}
 	.wrapper {		margin: 	8px 12px 10px 10px;}
 	.titleCard {	background: var(--TransWhite);}
 	.accent {		background: var(--accent10);}
@@ -70,9 +70,4 @@
 					background: var(--accent10);}
 	.previewCard:hover .titleCard {
 					border: 	1px solid var(--accent7);}
-
-	.infoPlate {
-		min-width: 	calc(100% - 10px);
-		max-height: calc(100% - 10px);
-		overflow: 	hidden scroll;}
 </style>
