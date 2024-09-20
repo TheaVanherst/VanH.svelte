@@ -9,7 +9,7 @@
     import { dataSetStore, fullscreenGalleryStore, scrollIntoView } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { queryFilter, searchTermBuilder } 						from "$lib/controllers/layoutControllers/searchController.js";
 
-    import ArtworkCard 			from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
+    import ArtworkCard 			from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
     import ArtworkDescription 	from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
 
     export let
@@ -58,27 +58,25 @@
         }});
 </script>
 
-{#if filteredData}
-	<Pagination
-			rows={filteredData} perPage={10}
-			goto={$dataSetStore.page}
-			bind:currentPage={$dataSetStore.page}
-			bind:trimmedRows={pagedData}/> {/if}
-{#if pagedData}
-	<Masonry
-			items=	{pagedData}
-			gap=	{10}
-			idKey=	{`slug`}
-			animate= {false}
-			let:item>
-		<div class="artPost" id="{item.slug}"
-			 on:click={artworkSelect(item)}>
-			<ArtworkCard data={item}/>
-		</div>
-	</Masonry> {/if}
-{#if filteredData}
-	<Pagination
-			rows={filteredData} perPage={10}
-			goto={$dataSetStore.page}
-			bind:currentPage={$dataSetStore.page}
-			bind:trimmedRows={pagedData}/> {/if}
+{#if !!data.artworks && data?.artworks?.length > 0}
+	{#if filteredData}
+		<Pagination
+				rows={filteredData} perPage={10}
+				goto={$dataSetStore.page}
+				bind:currentPage={$dataSetStore.page}
+				bind:trimmedRows={pagedData}>
+			{#if pagedData}
+				<Masonry
+						items=	{pagedData}
+						gap=	{10}
+						idKey=	{`slug`}
+						animate= {false}
+						let:item>
+					<div class="artPost" id="{item.slug}"
+						 on:click={artworkSelect(item)}>
+						<ArtworkCard data={item}/>
+					</div>
+				</Masonry> {/if}
+		</Pagination>
+	{/if}
+{/if}

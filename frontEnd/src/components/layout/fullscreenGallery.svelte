@@ -187,7 +187,7 @@
 
 	.componentWrapper {
 		display: 	flex;
-		margin: 	0 10px 100px 10px;
+		margin: 	0 0 100px 0;
 		.component {
 			max-width: 	600px;
 			margin: 	35px auto 50px auto;}}

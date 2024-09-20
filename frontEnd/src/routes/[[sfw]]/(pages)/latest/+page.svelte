@@ -2,7 +2,7 @@
     import Masonry 	from 'svelte-bricks';
 
     import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
-    import ArtworkCard 		from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
+    import ArtworkCard 		from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
 	export let data;

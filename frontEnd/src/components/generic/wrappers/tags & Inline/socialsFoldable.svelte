@@ -42,11 +42,13 @@
 			{/if}
 		</div>
 		{#if active}
-			<div class="marginGap" transition:slide>
-				{#if author.searchable}
-					<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" inverted={inverted}>{author.handle}</InternalRedirectTag>{/if}
-				{#if author.socialMedia.length > 0}
-					<SocialMediaTag data={author.socialMedia[0]} inverted={inverted}/>{/if}
+			<div class="transitionFix" out:slide={{axis:'x', delay:100}} in:slide={{axis:'x'}}>
+				<div class="marginGap" out:slide in:slide={{ delay:300}}>
+					{#if author.searchable}
+						<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" inverted={inverted}>{author.handle}</InternalRedirectTag>{/if}
+					{#if author.socialMedia.length > 0}
+						<SocialMediaTag data={author.socialMedia[0]} inverted={inverted}/>{/if}
+				</div>
 			</div>
 		{/if}
 	</div>
@@ -54,7 +56,7 @@
 	<div class="inlineRedirect" class:inverted={inverted}>
 		<div class="expandedSlot">
 			<RedirectBuilder url="{!!customRoot ? customRoot : $directoryStatus.strippedUrl}?query=:{(author.nickName ?? author.fullName).toLowerCase().replaceAll(' ','_')}">
-				<div class="characterCard" class:inverted={inverted}>
+				<div class="characterCard characters" class:inverted={inverted}>
 					<div class="mediaIcon rounded">
 						<SanityImage image={author.charIcon}/>
 					</div>
@@ -66,6 +68,11 @@
 {/if}
 
 <style lang="scss">
+	.authorCardWrapper {
+		display: inline-grid;
+		margin: 0 0 auto 0;
+	}
+
 	.marginGap {
 		margin: 		1px 0 auto 0;}
 
@@ -98,5 +105,7 @@
 
 		&:hover {	background: var(--accent7);
 			h4 {	color: 		white;}}
+		&.characters {
+			padding:    	3px 15px 3px 3px;}
 		> * {		margin: 	auto 0;}}
 </style>

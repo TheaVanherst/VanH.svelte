@@ -26,8 +26,8 @@
 	</div>
 	<div class="authors">
 		<div class="publishCard">
-			<h5 id="publishDate">{createdPush(story.publishedAt)}</h5>
-			<p id="publishCredits">Written & created by;</p>
+			<h5>{createdPush(story.publishedAt)}</h5>
+			<p>Written & created by;</p>
 		</div>
 		<div class="authorList">
 			{#each story.authors as author}
@@ -73,23 +73,16 @@
 				h4 {		color: 	white;}}}}
 
 	.authors {
-		padding: 	0 0 8px 0;
-		width: 		100%;
 		background: white;
+		padding: 	10px 8px 8px 10px;
+		* { color: black; }
 
 		.publishCard {
-			display: 	grid;
-			gap: 		6px;
-			padding: 	12px 8px 0 12px;
-
-			p, h5 {				color: 			black;}
-			#publishCredits { 	padding: 		0 0 0 3px; }
-			#publishDate { 		font-weight: 	600; }}
+				display: grid;
+				gap: 	7px;
+			p { padding: 0 0 0 3px; }}
 		.authorList {
-			padding: 	5px 8px 0 8px;
-			display: 	flex;
-			gap: 		5px;
-			width: 		max-content;}}
+			display: 	flex;}}
 
 	.banner {
 		position: 	relative;
@@ -114,7 +107,7 @@
 
 	.description {
 		transition: 	background .2s ease;
-		padding: 		15px 15px 12px 15px;
+		padding: 		16px 15px;
 		em { display: 		block; }
 		p, em {
 			margin-bottom: 	8px;}
@@ -123,5 +116,5 @@
 			display: 	flex;
 			flex-wrap: 	wrap;
 			>*:last-child{
-				margin-right: 70px;}}}
+				margin-right: 50px;}}}
 </style>

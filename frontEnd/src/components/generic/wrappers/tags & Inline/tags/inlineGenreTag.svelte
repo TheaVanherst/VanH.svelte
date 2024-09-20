@@ -1,7 +1,6 @@
 <script>
 	export let
 		tag,
-		colour = undefined,
 		active = false;
 
     const colours = [
@@ -30,7 +29,7 @@
 		border: 	1px solid var(--tagColour);
 		transition: border .2s ease, background .3s ease;
 
-		background: transparent;
+		background: 'transparent';
 		color: 		inherit;
 
 		&:hover, &.active {

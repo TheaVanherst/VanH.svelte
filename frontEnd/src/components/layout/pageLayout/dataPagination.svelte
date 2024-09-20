@@ -45,6 +45,17 @@
 	{/each}
 </div>
 
+<slot/>
+
+<div class='pagination'>
+	{#each fakeArray as _, index (index)}
+		<div class="pagingDot"
+			 class:active={index === currentPage}
+			 on:click={() => directPage(index)}>
+		</div>
+	{/each}
+</div>
+
 <style lang="scss">
 	.pagination {
 		margin: 	-4px auto;

@@ -40,28 +40,25 @@
 	});
 </script>
 
-{#if filteredData}
-	<Pagination
-			rows={filteredData} perPage={10}
-			goto={$dataSetStore.page}
-			bind:currentPage={$dataSetStore.page}
-			bind:trimmedRows={pagedData}/> {/if}
-{#if pagedData}
-	<Masonry
-			items=	{pagedData}
-			gap=	{10}
-			idKey=	{`slug`}
-			animate= {false}
-			let:item>
-		<div class="erotica" on:click={storySelect(item)}>
-			<StoryPreview story={item}/>
-		</div>
-	</Masonry>
-{/if}
-{#if filteredData}
-	<Pagination
-			rows={filteredData} perPage={10}
-			goto={$dataSetStore.page}
-			bind:currentPage={$dataSetStore.page}
-			bind:trimmedRows={pagedData}/>
+{#if !!data.erotica && data?.erotica?.length > 0}
+	{#if filteredData}
+		<Pagination
+				rows={filteredData} perPage={10}
+				goto={$dataSetStore.page}
+				bind:currentPage={$dataSetStore.page}
+				bind:trimmedRows={pagedData}>
+			{#if pagedData}
+				<Masonry
+						items=	{pagedData}
+						gap=	{10}
+						idKey=	{`slug`}
+						animate= {false}
+						let:item>
+					<div class="erotica" on:click={storySelect(item)}>
+						<StoryPreview story={item}/>
+					</div>
+				</Masonry>
+			{/if}
+		</Pagination>
+	{/if}
 {/if}

@@ -11,7 +11,7 @@
     import KofiCards 		from "$root/components/pageSpecific/homePage/kofiCards.svelte";
     import QandaFeature 	from "$root/components/pageSpecific/homePage/qandaFeature.svelte";
 
-    import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
+    import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
 
     export let data;
 </script>

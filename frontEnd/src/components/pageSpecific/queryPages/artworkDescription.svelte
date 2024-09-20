@@ -8,7 +8,6 @@
     import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
     import ImageFloatCard 	from "$root/components/generic/containers/imageContainers/galleryImageCard.svelte";
-    import FoldedTags 		from "$root/components/generic/wrappers/tags & Inline/tags/foldedTags.svelte";
 
     export let
 		data,
@@ -45,7 +44,7 @@
 		{/if}
 		{#if !!data.commissionData}
 			<div class="commissionWrapper">
-				<p class="altTitle">{data.commissionData.commissionType} for:</p>
+				<p class="citation" >{data.commissionData.commissionType} for:</p>
 				{#each characterOwners as author}
 					<div class="commissioner">
 						<SocialsFoldable {author}/>
@@ -54,7 +53,7 @@
 			</div>
 		{/if}
 		{#if data.authors?.length > 0}
-			<p> With additional help from: </p>
+			<p class="citation"> With additional help from: </p>
 			{#each data.authors as author}
 				<SocialsFoldable {author}/>
 			{/each}
@@ -75,14 +74,14 @@
 
 	<div slot="alt">
 		{#if !!data?.characters || !!data.commissionData?.characters}
-			<p>Featured Character{[].concat(data?.commissionData?.characters, data?.characters).filter(Boolean).length > 1 ? 's' : ''}:</p>
+			<p class="citation">Featured Character{[].concat(data?.commissionData?.characters, data?.characters).filter(Boolean).length > 1 ? 's' : ''}:</p>
 			{#each [].concat(data?.commissionData?.characters, data?.characters).filter(Boolean) as author}
 				<SocialsFoldable {author} character={true}/>
 			{/each}
 		{/if}
 		<p>{createdPush(data.publishedAt)}</p>
 		{#if data.imageRefId || data.photoshopRefId}
-			<p>Membership features:</p>
+			<p class="citation">Membership features:</p>
 			<p class="footer">
 				{#if data.imageRefId}
 					<a href={data.imageRefId} target="_blank">
@@ -110,21 +109,18 @@
 <style lang="scss">
 	.footer {
 		width: 100%;
-		margin: 0 auto 0 0;
-		display: flex;
-	}
+		margin: 2px auto 2px 0;
+		display: flex;}
 
-	p {		margin: 7px 0 7px 0;}
-	p + p {	margin: 5px 0 5px 0;}
-
-	#renderType {
-		margin-top: 2px;}
+	div {
+		p {		margin: 7px 0 7px 0;}
+		p + p {	margin: 5px 0 5px 0;}
+		p.citation { 	margin: 9px 0 3px 0;}
+		p#renderType {	margin: 3px 0 9px 0;}}
 
 	.commissionWrapper {	margin: 5px 0 5px 0;
-		.commissioner {		margin: 0 0 5px 0;}
-		.altTitle {			margin: 10px 0 2px 0;}}
-
-	.postTags {	margin: 8px 0 -5px 0;
+		.commissioner {		margin: 0 0 5px 0;}}
+	.postTags {				margin: 8px 0 -5px 0;
 		.tagScrollWrapper {
 			overflow-y: auto;
 			max-height: 74px;}}

@@ -2,7 +2,7 @@
 	import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import SanityImage from "$root/serializer/sanityImage.svelte";
-    import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCard.svelte";
+    import ArtworkCard from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
 
     export let author;
 </script>

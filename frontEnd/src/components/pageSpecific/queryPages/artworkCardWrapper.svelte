@@ -10,8 +10,7 @@
     export let
 		data,
         newTag = 		true,
-        disableNew = 	false,
-        shareIcons = 	false;
+        disableNew = 	false;
 
     let active = 	false,
 		hover = 	false,
@@ -56,20 +55,14 @@
 	 on:mouseleave={unhovered}>
 	{#if newTag && newAddition && !disableNew}
 		<div class="newItem shortBorder">
-			<p>
-				NEW
-			</p>
-		</div>
+			<p>NEW</p></div>
 	{/if}
 	<div class="galleryWrapper">
 		<div class="galleryContainer" on:click={cardSelected} class:clickable={active}>
 			<div class="imageGallery" class:blurred={data.sfw && !$navigationControls.nsfw}>
-				<SanityGalleries portableText={data.gallery}/>
-			</div>
-		</div>
+				<SanityGalleries portableText={data.gallery}/></div></div>
 		<div class="galleryCard" on:click={cardFloatClick}>
-			<ArtworkDescription {data} {hover} {active} absolute={true}/>
-		</div>
+			<ArtworkDescription {data} {hover} {active} absolute={true}/></div>
 	</div>
 </div>
 
