@@ -31,6 +31,7 @@ const genericRequests = {
 
 export { genericRequests }
 
+//            'authors': authors[author->_id != '3ad85859-8afa-437f-a74b-d4e83d6d6bdd'].author->{
 const
     defaultArtwork =
         `

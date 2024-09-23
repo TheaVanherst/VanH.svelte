@@ -30,7 +30,7 @@
 					<slot name="desc"/>
 				</div>
 			</div>
-			{#if $$slots['alt']}
+			{#if !!$$slots['alt']}
 				<div class="accent">
 					<div class="wrapper">
 						<slot name="alt"/>
@@ -47,7 +47,6 @@
 	:global(.card span) {	color: 	white;}
 
 	.previewCard, .infoPlate {
-		margin: 	5px;
 		bottom: 	0;
 		.titleCard, .descCard {
 			display: 	grid;
@@ -60,9 +59,7 @@
 				display: block;}}}
 
 	.absolute {		position: 	absolute;}
-	.infoPlate {	min-width: 	calc(100% - 10px);
-					max-height: calc(100% - 10px);
-					overflow: 	hidden scroll;}
+	.infoPlate {	overflow: 	hidden scroll;}
 	.wrapper {		margin: 	8px 12px 10px 10px;}
 	.titleCard {	background: var(--TransWhite);}
 	.accent {		background: var(--accent10);}

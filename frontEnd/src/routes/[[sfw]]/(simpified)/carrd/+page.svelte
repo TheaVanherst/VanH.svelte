@@ -47,6 +47,9 @@
 </div>
 
 <style lang="scss">
+
+	h3 {	font-family: "Jura", sans-serif; }
+
 	.wrapper {
 		margin: 	0 auto 35px auto;
 		max-width: 	450px;}
@@ -87,6 +90,7 @@
 		.text {
 			width: 	max-content;
 			margin: 0 auto;
-			h3 {
-				color:	black;}}}
+			h3 {	color:	black;}}}
+
+
 </style>

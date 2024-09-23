@@ -44,15 +44,14 @@
 <style lang="scss">
 	* {	transition: ease .5s;}
 
-	h1, h2 {
-		text-transform:	uppercase;
-		margin: 0 auto;
-		padding: 0 0 0 2px;
-		height: max-content;}
+	h1, h2 {	font-family: 	"Jura", sans-serif;
+				text-transform:	uppercase;
+				margin: 		0 auto;
+				padding: 		0 0 0 2px;
+				height: 		max-content;}
 
-	.profileIcon {
-		height: 32px;
-		img {	filter: invert(1);}}
+	.profileIcon {	height: 32px;
+		img {		filter: invert(1);}}
 
 	.wrapper {			display: flex;
 		&.textVis {
@@ -60,41 +59,29 @@
 		&.textHidden {	gap: 	0;
 			.offset {	width: 	100%;}}}
 
-	.offset {
-		margin: 0 0 0 auto;
-		.divider {	border-left: 	3px solid var(--accent7);
-					background: 	var(--TransBlack);
+	.offset {		margin: 	0 0 0 auto;
+		.divider {	border-left: 3px solid var(--accent7);
+					background: var(--TransBlack);
 					padding: 	0 0 0 10px;
 			img {	margin: 	auto 0;}
 			h2 {	padding: 	6px 10px 10px 10px;}}}
 
-	.sideBar {
-		display: 	flex;
-		flex-wrap: 	wrap;
-		gap: 	10px;
-		margin: 10px 0;
-		height: fit-content;
-		width: 	min-content;
-
-		.profileIcon {
-			margin: 0 auto;
-			width: 32px;}
-
+	.sideBar {	display: 	flex;
+				flex-wrap: 	wrap;
+				gap: 		10px;
+				margin: 	10px 0;
+				height: 	fit-content;
+				width: 		min-content;
+		.profileIcon {	margin: 0 auto;
+						width: 	32px;}
 		img {	position: 		relative;}
 		h1 {	writing-mode: 	vertical-rl;
 				text-orientation: 	mixed;}}
 
-	.titleBar {
-		display: flex;
-		flex-wrap: nowrap;
-		margin: 0 0 15px 0;
-
-		.profileIcon {
-			margin: 6px 10px;}
-
-		.divider {
-			width: 100%;
-		}
-	}
+	.titleBar {			display: 	flex;
+						flex-wrap: 	nowrap;
+						margin:	 	0 0 15px 0;
+		.profileIcon {	margin: 	6px 10px;}
+		.divider {		width: 		100%;}}
 
 </style>

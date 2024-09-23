@@ -16,14 +16,17 @@
 		hover = 	false,
         timer;
 
+    // TODO: Note to self, this requires to remain seperated from the artwork card, specifically to have
+	// TODO: it be seperated in the fullscreen gallery. Don't merge.
+
     const
         newAddition = (new Date() - new Date(data.publishedAt)) / (1000 * 3600 * 24) < 7,
         cardSelected = () => {
         	if (active) {
                 active = !active;}
             else {
-                let dataReOrg = structuredClone(data);
-				let style = 	data.gallery.styleType,
+                let dataReOrg = structuredClone(data),
+					style = 	data.gallery.styleType,
 					render = 	data.gallery.renderType;
 
                 dataReOrg.gallery = dataReOrg.gallery.images.flat();
@@ -48,21 +51,27 @@
 			active = false;}
 </script>
 
-<div class="interactionWrapper wideBorder" class:glow={newAddition && !disableNew}
-	 use:clickOutside
-	 on:mouseenter={hovered}
-	 on:click_outside={clickOff}
-	 on:mouseleave={unhovered}>
+<div class="interactionWrapper wideBorder"
+	 	class:glow={newAddition && !disableNew}
+		 use:clickOutside
+		 on:mouseenter={hovered}
+		 on:click_outside={clickOff}
+		 on:mouseleave={unhovered}>
 	{#if newTag && newAddition && !disableNew}
 		<div class="newItem shortBorder">
 			<p>NEW</p></div>
 	{/if}
 	<div class="galleryWrapper">
-		<div class="galleryContainer" on:click={cardSelected} class:clickable={active}>
-			<div class="imageGallery" class:blurred={data.sfw && !$navigationControls.nsfw}>
+		<div class="galleryContainer"
+			 	on:click={cardSelected}
+			 	class:clickable={active}>
+			<div class="imageGallery"
+				 	class:blurred={data.sfw && !$navigationControls.nsfw}>
 				<SanityGalleries portableText={data.gallery}/></div></div>
-		<div class="galleryCard" on:click={cardFloatClick}>
-			<ArtworkDescription {data} {hover} {active} absolute={true}/></div>
+		<div class="galleryCard"
+			 	on:click={cardFloatClick}>
+			<ArtworkDescription {data} {hover} {active} absolute={true}/>
+		</div>
 	</div>
 </div>
 
@@ -71,33 +80,26 @@
 	.interactionWrapper,
 	.galleryWrapper,
 	.galleryContainer,
-	.imageGallery {
-		height: 100%;
-		width: auto;}
+	.imageGallery {	height: 100%;
+					width: auto;}
 
 	.interactionWrapper {
-		&.glow {
-			border-radius: 	9px;
-			border: 		2px solid var(--accent7);
+		&.glow {	border-radius: 	9px;
+					border: 		2px solid var(--accent7);
+			.newItem { position: 	absolute;
+					z-index: 		1;
+					background: 	var(--accent7);
+					margin:	 		5px;
+				p {	font-weight: 	700;
+					padding: 		5px 12px 5px 12px;}}}}
 
-			.newItem {
-				position: 	absolute;
-				z-index: 	1;
-				background: var(--accent7);
-				margin:	 	5px;
-
-				p {	font-weight: 700;
-					padding: 5px 12px 5px 12px;}}}}
-
-	.galleryWrapper {
-		position: 	relative;
-		overflow: hidden;
-		.galleryContainer {
-			pointer-events: all;
+	.galleryWrapper {			position: 		relative;
+								overflow: 		hidden;
+		.galleryContainer {		pointer-events: all;
 			&.clickable {
-				.imageGallery {
-					pointer-events: none;}}}}
-
-	.galleryCard {
-		bottom: 0;}
+				.imageGallery {	pointer-events: none;}}}}
+	.galleryCard {	bottom: 5px;
+					left: 5px;
+					width: calc(100% - 10px);
+					position: relative;}
 </style>

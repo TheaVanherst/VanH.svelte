@@ -1,5 +1,5 @@
 <script>
-    import KofiCards 		from "$root/components/pageSpecific/homePage/kofiCards.svelte";
+    import KofiCards 		from "$root/components/pageSpecific/kofiCards.svelte";
 
 	export let data;
 </script>

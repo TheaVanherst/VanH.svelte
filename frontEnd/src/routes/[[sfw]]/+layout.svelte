@@ -68,68 +68,60 @@
     $: $navigationData.search === false ? active = false : false;
 </script>
 
-<div class="flexBox">
-	{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
-		<div class="inlineWrapper" transition:slide>
-			<NavigationComponent socials={data.socialMedia}/></div>
-	{/if}
+{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
+	<div class="inlineWrapper" transition:slide>
+		<NavigationComponent socials={data.socialMedia}/></div>
+{/if}
 
-	{#if $navigationData.search}
-		<div class="searchBarWrapper" in:slide={{delay: 125}} out:slide={{delay: 175}}>
-			<div class="searchBar">
-				<form on:submit|preventDefault={() => hardSearch(value, 0)}>
-					<input type="search" class="input" placeholder="Search..." bind:value={value}/></form>
-				<RollupButton bind:active padding={3}/></div></div>
-	{/if}
+{#if $navigationData.search}
+	<div class="searchBarWrapper" in:slide={{delay: 125}} out:slide={{delay: 175}}>
+		<div class="searchBar">
+			<form on:submit|preventDefault={() => hardSearch(value, 0)}>
+				<input type="search" class="input" placeholder="Search..." bind:value={value}/></form>
+			<RollupButton bind:active padding={3}/></div></div>
+{/if}
 
-	{#if active && data.tags && $navigationData.search}
-		<div class="tableGroup wideBorder" transition:slide>
+{#if active && data.tags && $navigationData.search}
+	<div class="tableGroup wideBorder" transition:slide>
 
-			{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]].characters}
-				<h4>Characters</h4>
-				<div class="characterInline">
-					{#each data.characters as character, c}
-						<div class="characterIcon">
-							<div on:mousedown={() => queryBuilder(":" + character.nickName)}>
-								<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
-									<SanityImage image={character.charIcon}/></div></div></div>
-					{/each}
-				</div>
-			{/if}
+		{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]].characters}
+			<h4>Characters</h4>
+			<div class="characterInline">
+				{#each data.characters as character, c}
+					<div class="characterIcon">
+						<div on:mousedown={() => queryBuilder(":" + character.nickName)}>
+							<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
+								<SanityImage image={character.charIcon}/></div></div></div>
+				{/each}
+			</div>
+		{/if}
 
-			{#each data.tags as tagSet, i}
-				{#if !tagSet.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
-					{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]]?.queryTypes?.includes(tagSet.category) || $directoryStatus.rootIndex[1] === undefined}
-						<div transition:slide>
-							<h4>{tagSet.category} Tags</h4>
-							<div class="tagGroup">
-								{#each tagSet.tags as tag, e}
-									<div on:mousedown={() => queryBuilder(tag.title)}>
-										<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/></div>
-								{/each}
+		{#each data.tags as tagSet, i}
+			{#if !tagSet.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
+				{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]]?.queryTypes?.includes(tagSet.category) || $directoryStatus.rootIndex[1] === undefined}
+					<div transition:slide>
+						<h4>{tagSet.category} Tags</h4>
+						<div class="tagGroup">
+							{#each tagSet.tags as tag, e}
+								<div on:mousedown={() => queryBuilder(tag.title)}>
+									<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/></div>
+							{/each}
 						</div></div>
-					{/if}
-                {/if}
-			{/each}
-		</div>
-	{/if}
+				{/if}
+			{/if}
+		{/each}
+	</div>
+{/if}
 
-	<TransitionHandler>
-		<slot/>
-	</TransitionHandler>
-</div>
+<TransitionHandler>
+	<slot/>
+</TransitionHandler>
 
 <style lang="scss">
 	h4 {
 		width: 100%;
 		color: 	black;
 		padding: 0 0 5px 0;}
-
-	.flexBox { // this fixes issues with the footer that I can't be fucked to fix.
-		position: 	relative;
-		z-index: 	1;
-		width: 		100%;
-		margin: 	0 0 auto 0;}
 
 	.searchBarWrapper {
 		margin: 	10px auto 0 auto;

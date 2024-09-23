@@ -10,6 +10,8 @@
     import InternalRedirectTag from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectTag.svelte";
     import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineSocialRedirect.svelte";
 
+    import AuthorSnippet  from "$root/components/pageSpecific/queryPages/author/authorSnippet.svelte";
+
 	export let
 		author = undefined,
 		authorSocials = true,
@@ -101,7 +103,8 @@
 		border-radius: 	20px;
 		transition: 	ease .3s;
 
-		h4 { color: 	black; }
+		h4 { color: 	black;
+			 margin: 0 0 1px 0;}
 
 		&:hover {	background: var(--accent7);
 			h4 {	color: 		white;}}

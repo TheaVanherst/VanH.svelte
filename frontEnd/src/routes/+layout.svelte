@@ -69,14 +69,12 @@
 			 class:dumbforceclip={$directoryStatus.currentRoot === "/"}
 			 style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}">
 			<div in:fly={{y: -100, duration: 500, delay: 350 }}> <!-- this needs a better delay calc -->
-				<Header/>
+				<Header/></div>
+			<div class="enforcedHeight">
+				<slot/>
 			</div>
-
-			<slot/>
-
 			<div in:fly={{y: 100, duration: 500, delay: 350 }}>
-				<PageFooter/>
-			</div>
+				<PageFooter/></div>
 		</div>
 	</div>
 {/if}
@@ -85,8 +83,12 @@
 	.dumbforceclip {
 		// compensates for the banner circles.
 		max-height: 100vh;
-		overflow: hidden;
-	}
+		overflow: hidden;}
+	.enforcedHeight { // this fixes issues with the footer that I can't be fucked to fix.
+		position: 	relative;
+		z-index: 	1;
+		width: 		100%;
+		margin: 	0 0 auto 0;}
 
 	#scrollParent {
 		min-height: 100vh;

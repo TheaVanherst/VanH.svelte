@@ -57,6 +57,7 @@
 	* {	color: black;}
 
 	.storyElement {
+		pointer-events: all;
 		overflow: 	hidden;}
 
 	h1 {

@@ -28,7 +28,6 @@
 		padding: 	2px 8px 1px 8px;
 		border: 	1px solid var(--tagColour);
 		transition: border .2s ease, background .3s ease;
-
 		background: 'transparent';
 		color: 		inherit;
 

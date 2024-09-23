@@ -47,9 +47,7 @@
 		<div class="characters">
 			{#each story.characters as character}
 				<div on:click|stopPropagation>
-					<SocialsFoldable author={character} character={true} inverted={true}/>
-
-				</div>
+					<SocialsFoldable author={character} character={true} inverted={true}/></div>
 			{/each}
 			{#if story.tags?.length > 0}
 				<FoldedTags tagSet={story.tags} urlRedirect={story.slug} redirectType="story="/>

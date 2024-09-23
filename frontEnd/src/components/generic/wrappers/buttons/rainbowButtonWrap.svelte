@@ -2,17 +2,15 @@
 	export let
 		padding = [5, 10],
 		borderRad = 9,
-		bottom = 0;
-
-    let hover = false;
+		bottom = 0,
+		hover = false;
 </script>
 
 <div class="social"
-	 on:mouseenter={() => hover = true}
-	 on:mouseleave={() => hover = false}
-	style="
-		border-radius: {borderRad}px;
-		margin-bottom: {bottom}px">
+	 	on:mouseenter={() => hover = true}
+	 	on:mouseleave={() => hover = false}
+	 	class:hover
+		style="border-radius: {borderRad}px;margin-bottom: {bottom}px">
 	<div class="flex"
 		style="
 			padding: {!hover ? padding[0] : padding[0] - 1}px {!hover ? padding[1] : padding[1] - 1}px;
@@ -44,12 +42,11 @@
 
 		.flex {
 			background: white;
-
 			margin: 	1px;
 			display: 	flex;}
 
-		&:hover {
-				transform: 	scale(1.1);
+		&.hover {
+			transform: scale(1.1);
 			&:before {
 				background: conic-gradient(var(--accent7),
 					var(--accent4), var(--accent3), var(--accent2),

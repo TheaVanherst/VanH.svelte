@@ -64,7 +64,7 @@
 		 class:mobile={$deviceData.deviceType < 2}
 		 transition:fade>
 		{#if $fullscreenGalleryStore.componentData.story}
-			<div class="componentWrapper" on:click={() => {queryUpdate();}}
+			<div class="componentWrapper" id="erotica" on:click={() => {queryUpdate();}}
 				 use:clickOutside
 				 on:click_outside={() => {galleryExit();}}>
 				<div class="component">
@@ -98,9 +98,7 @@
 				<div class="verticalAlignmentHolster"
 					 on:click={() => {gallerySwap(); queryUpdate();}}>
 					{#if $fullscreenGalleryStore.componentData?.gallery[position]}
-						<div class="Alignment">
 						<SanityImage image={$fullscreenGalleryStore.componentData.gallery[position]}/>
-						</div>
 					{/if}
 				</div>
 				{#if $fullscreenGalleryStore.componentUrl}
@@ -153,46 +151,39 @@
 
 	.generalImageWrapper, .componentWrapper {
 		pointer-events: 	none;
-		.verticalAlignmentHolster.Alignment, .component {
+		.alignment, .component {
 			pointer-events: all;}}
 
 	.generalImageWrapper {
-		max-width: 			fit-content;
-		margin: 			0 auto;
 		justify-content: 	center;
 		align-items: 		center;
 		display: 			grid;
+		height: 			auto;
 		overflow: 			initial;
 
 		.verticalAlignmentHolster {
-			height: 		80vh;
-			max-height: 	100%;
-			border-radius: 	var(--bordernormal);
-			display: 		flex;
-			overflow: 		hidden;
-			margin: 		auto;
-
-			.Alignment {
-				margin: auto 0;
-				max-height: 80vh;
-				display: flex;
-			}
-			:global(.loaded){
-				height: auto;
-				display:flex;
-			}
+			display: 	flex;
+			margin: 	0 auto;
+			width: 		100%;
 			:global(img){
-				display: 	flex;
-				object-fit: contain;}}}
+				max-height: 80vh;
+				object-fit: contain;
+				pointer-events: all;
+			}
+		}
+	}
 
 	.componentWrapper {
 		display: 	flex;
 		margin: 	0 0 100px 0;
 		.component {
-			max-width: 	600px;
+			max-width: 	500px;
+			width: 		100%;
 			margin: 	35px auto 50px auto;}}
 
 	.mobile {
+		#erotica {
+			margin: 0 0 200px;}
 		.positionSet {
 			margin: 0;}
 		.componentWrapper {
@@ -204,4 +195,5 @@
 				overflow: 		hidden;}
 			:global(img){
 				max-width: 	100vh;}}}
+
 </style>

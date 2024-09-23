@@ -39,10 +39,9 @@
 			initialSlug = $page.url.searchParams.get('user');
         	currentAuthorSelected = data.authorData.map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0];
         setTimeout(() => {
-            transitionDelay = false;}, 50)
+            transitionDelay = false;}, 50);
         setTimeout(() => {
-            transition = transitionFunctions['slide']}, 250)
-    })
+            transition = transitionFunctions['slide']}, 250);})
 </script>
 
 {#if !!data.authorData && currentAuthorSelected === undefined && !transitionDelay}
@@ -96,10 +95,8 @@
 			margin: 	0 auto;
 			display: 	grid;}}
 
-	.authorSlideController {
-		float: right;
-		.authorMarginWrapper {
-			max-width: 	500px;}}
+	.authorSlideController {	float: 		right;
+		.authorMarginWrapper {	max-width: 	500px;}}
 
 	.keyAbsoluter {
 		min-width: 	300px;

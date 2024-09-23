@@ -17,7 +17,7 @@
 		copied = false,
 		timer;
 
-    const copy = (url) => {
+    const copy = () => {
         let urlQueryCheck = ($page.url.search !== "" ? $page.url.search + "&" : "?")
         navigator.clipboard.writeText($page.url.origin + $page.url.pathname + urlQueryCheck + redirectType + urlRedirect);
         copied = true;
@@ -26,9 +26,9 @@
 
 <div class="controls" class:inverted on:click|stopPropagation>
 	<div class="buttonWrapper"
-		 class:copied on:click={()=>copy(urlRedirect)}>
+		 class:copied on:click={()=>copy()}>
 		<div class="button"
-			 	on:click={()=>copy(urlRedirect)}>
+			 	on:click={()=>copy()}>
 			{#if !copied}
 				<img src="/icons/linkIcon.webp" transition:fade />
 			{:else}
@@ -52,14 +52,16 @@
 </div>
 
 {#if tagSet.length > 0 && active}
-	<div class="postTags" transition:slide on:click|stopPropagation
-		 on:mouseenter={() => clearInterval(timer)}
-		 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
-		{#each tagSet as tag}
-			<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
-				<InlineTag {tag}/>
-			</RedirectBuilder>
-		{/each}
+	<div id="horizontalWrapper" transition:slide={{axis:'x'}}>
+		<div class="postTags" in:slide={{delay:200}} out:slide on:click|stopPropagation
+			 on:mouseenter={() => clearInterval(timer)}
+			 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
+			{#each tagSet as tag}
+				<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
+					<InlineTag {tag}/>
+				</RedirectBuilder>
+			{/each}
+		</div>
 	</div>
 {/if}
 
@@ -113,7 +115,6 @@
 			background: var(--accent10);
 			img { filter: invert(0)}}}
 
-	.postTags {	margin: 	12px 0 0 0;
-		div {	display: 	contents;}}
+	.postTags {	margin: 	12px 0 0 0;}
 
 </style>

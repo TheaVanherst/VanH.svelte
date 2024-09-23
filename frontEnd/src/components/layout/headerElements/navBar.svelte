@@ -1,5 +1,5 @@
 <script>
-    import { slide } from 'svelte/transition';
+    import { slide, fly } from 'svelte/transition';
 
     import { navigationControls, deviceData, navigationData,
 		directoryStatus, navigationDirectories } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
@@ -30,54 +30,61 @@
     $: $navigationControls.nsfw ? nsfwUiUpdate() : nsfwUiUpdate();
 
 	// TODO: Mobile needs to have the ability to close the fold down menu on click.
+
+	$: console.log($directoryStatus.currentRoot );
 </script>
 
 {#if $navigationData.navigation}
 	<div class="navigationWrapper"
-		class:compactMode={$deviceData.screenType <= 2}
-		class:defaultMode={$deviceData.screenType > 2}>
+			class:compactMode={$deviceData.screenType <= 2}
+			class:defaultMode={$deviceData.screenType > 2}>
 		<div transition:slide={{duration: 200}} id="navigation">
+			<RedirectBuilder url="/">
+				<div class="navButton dropDown solo">
+					<div class="mediaIcon"><img src="/icons/exitIcon.webp"/></div>
+				</div>
+			</RedirectBuilder>
 			{#each navigationDirectories as item, id}
 				{#if navigationDirectories.directoryVisibility[id]}
 					<div transition:slide={{duration: 200, axis: 'x'}}>
 						{#if !!item.pages}
 							<div class="navButton dropDown"
-								class:currentRoot={item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
-								class:currentSubmenu={currentIdSelected === id}
-								on:mouseover={() => {currentIdSelected = id; clearInterval(timer);}}
-								on:mouseleave={() => timer = setInterval(() => currentIdSelected = undefined, 250)}
-								transition:slide={{duration: 200, axis: 'x'}}>
-									<div class="mediaIcon"><img src="/icons/{item.imagePath}.webp"/></div>
-									{#if $deviceData.screenType > 2 || item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
-										<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
-									{/if}
-									{#if $deviceData.screenType > 2 && id === currentIdSelected}
-										<div class="navDropdown" transition:slide>
-											{#each navigationDirectories[currentIdSelected]?.pages as page}
-												{#if $navigationControls.localNsfwCheck(page.nsfw)}
-													<RedirectBuilder url="{page.path}" redirectName={page.pagePreview}>
-														<div class="navButton" transition:slide={{duration: 200, axis: 'x'}}
+									class:currentRoot={item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
+									class:currentSubmenu={currentIdSelected === id}
+									on:mouseover={() => {currentIdSelected = id; clearInterval(timer);}}
+									on:mouseleave={() => timer = setInterval(() => currentIdSelected = undefined, 250)}
+									transition:slide={{duration: 200, axis: 'x'}}>
+								<div class="mediaIcon"><img src="/icons/{item.imagePath}.webp"/></div>
+								{#if $deviceData.screenType > 2 || item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
+									<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
+								{/if}
+								{#if $deviceData.screenType > 2 && id === currentIdSelected}
+									<div class="navDropdown" transition:slide>
+										{#each navigationDirectories[currentIdSelected]?.pages as page}
+											{#if $navigationControls.localNsfwCheck(page.nsfw)}
+												<RedirectBuilder url="{page.path}" redirectName={page.pagePreview}>
+													<div class="navButton" transition:slide={{duration: 200, axis: 'x'}}
 															class:currentRoot={$directoryStatus.currentRoot === page.path}>
-															<div class="mediaIcon">
-																<img src="/icons/{page.imagePath}.webp"/>
-															</div>
-															<h5>{page.title}</h5>
+														<div class="mediaIcon">
+															<img src="/icons/{page.imagePath}.webp"/>
 														</div>
-													</RedirectBuilder>
-												{/if}
-											{/each}
-										</div>
-									{/if}
+														<h5>{page.title}</h5>
+													</div>
+												</RedirectBuilder>
+											{/if}
+										{/each}
+									</div>
+								{/if}
 							</div>
 						{:else}
 							<RedirectBuilder url="{item.path}" redirectName={item.pagePreview}>
 								<div class="navButton"
-									class:currentRoot={$directoryStatus.currentRoot === item.path}
-									transition:slide={{duration: 200, axis: 'x'}}>
-										<div class="mediaIcon"><img src="/icons/{item.imagePath}.webp"/></div>
-										{#if $deviceData.screenType > 2 || $directoryStatus.currentRoot === item.path}
-											<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
-										{/if}
+										class:currentRoot={$directoryStatus.currentRoot === item.path}
+										transition:slide={{duration: 200, axis: 'x'}}>
+									<div class="mediaIcon"><img src="/icons/{item.imagePath}.webp"/></div>
+									{#if $deviceData.screenType > 2 || $directoryStatus.currentRoot === item.path}
+										<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
+									{/if}
 								</div>
 							</RedirectBuilder>
 						{/if}
@@ -155,9 +162,10 @@
 		.socialMedia {
 			gap: 		5px;
 			display: 	flex;
-			h3 {color:		black;
-				margin: 	auto 0;
-				padding: 	0 0 3px 0;}}}
+			h3 {	font-family: "Jura", sans-serif;
+					color:		black;
+					margin:	 	auto 0;
+					padding: 	0 0 1px 0;}}}
 	#navigation {
 		display: 	flex;
 		flex-wrap: 	nowrap;
@@ -194,6 +202,12 @@
 			border-top: 1px solid black;
 			border-bottom-right-radius: var(--borderWide);
 			border-bottom-left-radius: 	var(--borderWide);}
+
+		&.solo {
+			padding: 8px!important;
+			margin: 0 0 -1px -6px;
+			border-radius: 50%;}
+
 		&:hover {
 			background: var(--accent7);
 			> h5 {
@@ -239,8 +253,6 @@
 			border: 	1px solid var(--accent7);
 			background: var(--TransBlack);
 			&.currentRoot {
-				border: 	1px solid white;}
-			&:hover {
-				border: 	1px solid var(--accent7);
-				background: var(--accent7);}}}
+				background: var(--accent7);
+				border: 	1px solid var(--accent7);}}}
 </style>
