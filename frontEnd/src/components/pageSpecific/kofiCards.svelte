@@ -26,7 +26,7 @@
 							{#if tier.tierRedirect}
 								<a href={tier.tierRedirect} target="_blank">
 									<div class="joinButton kofi">
-										<img src="/icons/kofiFilled.webp">
+										<img src="/icons/kofiFilledIcon.webp">
 									</div>
 								</a>
 							{/if}

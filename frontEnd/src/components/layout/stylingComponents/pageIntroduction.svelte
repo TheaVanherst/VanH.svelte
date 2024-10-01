@@ -8,7 +8,10 @@
 
     export let visible = false;
     export let preScreenHover = false;
-    // manages load-in transitions .
+    // manages load-in transitions.
+
+	// TODO: for some reason, the button transitions really badly and it's glitchy as hell. Fix it.
+	// TODO: Also, make the button disappear on click.
 </script>
 
 {#if visible}

@@ -10,8 +10,6 @@
     import InternalRedirectTag from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectTag.svelte";
     import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineSocialRedirect.svelte";
 
-    import AuthorSnippet  from "$root/components/pageSpecific/queryPages/author/authorSnippet.svelte";
-
 	export let
 		author = undefined,
 		authorSocials = true,

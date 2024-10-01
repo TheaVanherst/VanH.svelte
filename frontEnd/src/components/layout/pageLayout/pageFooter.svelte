@@ -13,6 +13,7 @@
 	</div>
 	<div class="right">
 		<p> Website developed and created by Thea Vanherst <br> Rights reserved <a href="https://github.com/TheaVanherst/VanH.svelte/">VanH.art</a></p>
+		<img src="/icons/vanhSocial.webp">
 	</div>
 </div>
 
@@ -59,8 +60,13 @@
 				margin: 		auto 0;
 				vertical-align: bottom;}}
 
-		.right {	margin: 0 15px 0 auto;
-					width:	max-content;
+		.right {
+			display: flex;
+			gap: 15px;
+			margin: 0 15px 0 auto;
+			width:	max-content;
+			img {
+				filter: invert(1);}
 			p {		text-align: right;
 					color: var(--accent9);}
 			span {	color: var(--accent10);}}}

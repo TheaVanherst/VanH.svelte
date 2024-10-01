@@ -1,10 +1,10 @@
 <script>
-    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
+    import { fade } from "svelte/transition";
+
     import { page } 		from "$app/stores";
     import { goto } 		from "$app/navigation";
 
-	import { fade } from "svelte/transition";
-
+    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
     import { fullscreenGalleryStore, messengerSettings, galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
     import { deviceData, directoryStatus } 								from "$lib/controllers/layoutControllers/navigationHandling.js";
 
@@ -57,6 +57,9 @@
 
 	$: !!$fullscreenGalleryStore.componentData ? mounted() : unmounted();
     let stopCheck = false; // fuck this tbh
+
+	// TODO: Rewrite this to manage seperate components better. It's dog.
+	// TODO: honestly, just rewrite this to just be a framework, rather than requiring seperate instances for each slot type.
 </script>
 
 {#if $fullscreenGalleryStore.componentData}

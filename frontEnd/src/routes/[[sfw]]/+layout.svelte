@@ -1,9 +1,9 @@
 <script>
+    import { slide } 			from "svelte/transition";
+
     import { page } 	from "$app/stores";
     import { onMount } 	from "svelte";
     import { afterNavigate, beforeNavigate } from "$app/navigation";
-
-    import { slide } 			from "svelte/transition";
 
     import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
@@ -44,7 +44,8 @@
     export let data;
 
     // search functionality
-    let value, active = false;
+    let value,
+		active = false;
 
     // generic search.
     const
@@ -68,12 +69,13 @@
     $: $navigationData.search === false ? active = false : false;
 </script>
 
-{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo }
+{#if $navigationData.navigation || $navigationData.socials || $navigationData.logo}
 	<div class="inlineWrapper" transition:slide>
 		<NavigationComponent socials={data.socialMedia}/></div>
 {/if}
 
 {#if $navigationData.search}
+<!--	Search bar & character buttons-->
 	<div class="searchBarWrapper" in:slide={{delay: 125}} out:slide={{delay: 175}}>
 		<div class="searchBar">
 			<form on:submit|preventDefault={() => hardSearch(value, 0)}>
