@@ -12,7 +12,7 @@
 		centered = false;
 
     const clickablePagination = {
-        clickable: true,
+        clickable: pagination,
         renderBullet: function (index, className) {
             return `<span class="` + className + `">` + `</span>`;},
     };
@@ -42,7 +42,7 @@
 	{/if}
 </div>
 
-<style lang="scss">
+<style lang="scss"> 
 	.wideBorder {
 		overflow: 	hidden;}
 

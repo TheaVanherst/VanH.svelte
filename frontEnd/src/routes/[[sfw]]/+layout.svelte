@@ -98,7 +98,7 @@
 			</div>
 		{/if}
 
-		{#each data.tags as tagSet, i}
+		{#each data.tags as tagSet}
 			{#if !tagSet.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
 				{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]]?.queryTypes?.includes(tagSet.category) || $directoryStatus.rootIndex[1] === undefined}
 					<div transition:slide>

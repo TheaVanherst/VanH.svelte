@@ -28,9 +28,6 @@
 		> * {	margin: 	0 auto!important;}
 		.right {display: 	none;}}
 
-	.hitCounter {
-		padding: 10px;}
-
 	.footer {
 		background-color: 			var(--TransBlack);
 		border-top: 				1px solid var(--accent7);
@@ -68,6 +65,5 @@
 			img {
 				filter: invert(1);}
 			p {		text-align: right;
-					color: var(--accent9);}
-			span {	color: var(--accent10);}}}
+					color: var(--accent9);}}}
 </style>

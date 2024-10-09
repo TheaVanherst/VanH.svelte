@@ -3,10 +3,11 @@ import { get, writable } from "svelte/store";
 
 // ---------------------
 
-const redirector = " 𝚊𝚝";
-const navigationDirectories = [
+const
+    redirector = " 𝚊𝚝",
+    navigationDirectories = [
         {   title: "",              imagePath: "exitIcon",          path: "/",              nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector,   class:'inv'},
-        {   title: "Featured",      imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
+        {   title: "Home",          imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
         {   title: "Creations",     imagePath: "artworksIcon",      pages: [
             {   title: "Latest",    imagePath: "highlightIcon",     path: "/latest",        nsfw: true,     pagePreview: "𝘍𝘦𝘢𝘵𝘶𝘳𝘦𝘥" + redirector},
             {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",       nsfw:false,     pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
@@ -24,9 +25,9 @@ const navigationDirectories = [
         {   title: "Portfolio",     imagePath: "profileIcon",   pages: [
             {   title: "Slots",     imagePath: "tagIcon",           path: "/commissions",   nsfw:false,     pagePreview: "𝕊𝕝𝕠𝕥𝕤" + redirector},
             // {   title: "Members",   imagePath: "kofiLogo",       path: "/members",       nsfw:true,      pagePreview: "𝓜𝓮𝓶𝓫𝓮𝓻𝓼" + redirector},
-            {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",       nsfw:false,     pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
-            {   title: "Carrd",     imagePath: "profileIcon",       path: "/carrd",         nsfw:false,     pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector},
-        ]}];
+            // {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",       nsfw:false,     pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
+            {   title: "Carrd",     imagePath: "profileIcon",       path: "/carrd",         nsfw:false,     pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector}]}
+    ];
 
 export { navigationDirectories };
 
@@ -75,16 +76,23 @@ const
             prevPageIndex = indexCheck(currentPageArray[nsfwCheckBool]),
             currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]);
 
-        let directionOffset = [0,0];
+        let directionOffset = [];
 
         if (currentPageArray.length ^ previousPageArray.length && prevPageIndex ^ currPageIndex) {
                 // initial page load
+            directionOffset = [0,0];
         } else if (currentPageArray.length === previousPageArray.length && prevPageIndex === currPageIndex) {
                 // for pages transitioning in both directions
+            directionOffset = [0,0];
         } else {
             directionOffset[1] = currentPageArray.length ^ previousPageArray.length ? currentPageArray.length > previousPageArray.length ? 1 : -1 : 0;
             directionOffset[0] = directionOffset[1] === 0 ? prevPageIndex > currPageIndex ? 1 : -1 : 0;}
                 // literally everything else
+
+        const
+            strippedUrlCheck = get(navigationControls).nsfw ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`,'') : strippedRawQuery[0],
+            pageId = navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined
+                // ensures everything is synced on random page redirect
 
         navigationControls.update(e => ({ ...e,
             direction: directionOffset}));
@@ -93,8 +101,8 @@ const
             currentRoot: "/" + (currentPageArray[nsfwCheckBool] ?? ""),
             nsfwOptional: get(navigationControls).nsfw ? "/" + get(directoryStatus).nsfwKeyword : '',
             query: strippedRawQuery[1] ? "/?" + strippedRawQuery[1] : "",
-            strippedUrl: get(navigationControls).nsfw ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`,'') : strippedRawQuery[0],
-            rootIndex: [prevPageIndex, navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined]}));
+            strippedUrl: strippedUrlCheck,
+            rootIndex: [prevPageIndex, pageId]}));
     };
 
 export { directoryProcessing };

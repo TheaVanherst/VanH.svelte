@@ -17,8 +17,9 @@
 {#if visible}
 	<RedirectBuilder url="/featured">
 		<div class="hoverablitySelector"
-				 on:mouseover={()=>preScreenHover=true}
-				 on:mouseout={()=>preScreenHover=false}>
+			 	on:click={()=>visible=false}
+				on:mouseover={()=>preScreenHover=true}
+				on:mouseout={()=>preScreenHover=false}>
 			<div class="backgroundAnimationWrapper" transition:fade>
 				<img class="stripeScan blueprintDesign"  src="/branding/CircuitTexture.webp" alt="circuit texture"/>
 				<div class="stripeScan smaller regularBorder"></div>

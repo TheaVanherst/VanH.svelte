@@ -64,7 +64,7 @@
 			border-bottom: 1px solid var(--accent7);}}
 
 	.link {
-		margin: 	0 auto 10px auto;}
+		margin: 0 auto;}
 
 	.imageWrapper {
 		img {
@@ -91,6 +91,4 @@
 			width: 	max-content;
 			margin: 0 auto;
 			h3 {	color:	black;}}}
-
-
 </style>
