@@ -1,6 +1,5 @@
 <script>
     import { register } 	from 'swiper/element/bundle';
-    import { onMount } 		from "svelte";
     import { Pagination } 	from 'swiper/modules';
 
     import { deviceData } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
@@ -11,32 +10,32 @@
 		pagination = true,
 		centered = false;
 
+    register();
+
     const clickablePagination = {
         clickable: pagination,
         renderBullet: function (index, className) {
-            return `<span class="` + className + `">` + `</span>`;},
+            return `<span class="` + className + `" id="bulletPoint${index}">` + `</span>`;},
     };
 
-    onMount(() => {register();})
 </script>
 
 <div class="wideBorder">
 	{#if !customCalc}
 		<swiper-container
 				slides-per-view={$deviceData.screenType <= maxWidth ? $deviceData.screenType : maxWidth}
-				centeredSlidesBounds={centered}
-				grabCursor={true}
-				modules={[Pagination]} pagination={clickablePagination}
-				class="wideBorder"
-				navigation="true" space-between={10}>
+				centeredSlidesBounds={centered} grabCursor={true}
+				modules={[Pagination]} 			pagination={clickablePagination}
+				navigation="true" 				space-between={10}
+				class="wideBorder">
 			<slot/>
 		</swiper-container>
 	{:else}
 		<swiper-container
 				slides-per-view="{customCalc}"
-				class="wideBorder"
-				modules={[Pagination]} pagination={clickablePagination}
-				navigation="true" space-between={10}>
+				modules={[Pagination]} 			pagination={clickablePagination}
+				navigation="true" 				space-between={10}
+				class="wideBorder">
 			<slot/>
 		</swiper-container>
 	{/if}
@@ -53,9 +52,9 @@
 	swiper-container::part(bullet),
 	swiper-container::part(bullet-active) {
 		position: relative;
-		border-radius:  3px;
-		width: 			30px;
-		height:         5px;
+		border-radius:  12px;
+		width: 			10px;
+		height:         10px;
 		&:before {
 			position: absolute;
 			content: "";
@@ -72,13 +71,17 @@
 		margin: 	20px auto 3px auto;}
 
 	swiper-container::part(bullet) {
-		background: 	var(--accent7);
+		background: 	transparent;
+		border: 		2px solid var(--accent7);
 		opacity:    	1;
 		transition: 	ease .3s;
 		&:hover {
-			background: 	var(--accent3);}}
+			background: var(--accent7);
+			border: 	2px solid var(--accent7);}}
 	swiper-container::part(bullet-active) {
-		background: 	white;}
+		background: 	var(--accent10);
+		border: 		2px solid var(--accent10);
+	}
 
 	swiper-container.margin::part(container) { // bad work around.
 		padding-bottom: 5px;}

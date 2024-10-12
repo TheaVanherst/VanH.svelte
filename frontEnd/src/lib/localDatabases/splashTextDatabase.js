@@ -10,7 +10,8 @@ const submitters = {
     pizza: {    user: "PizzaEgger"},
     riggi: {    user: "@GalaxyTigress"},
     luna: {     user: "@MissMixTape"},
-    lunar: {    user: "@RealLunar57"}};
+    lunar: {    user: "@RealLunar57"},
+    yoLander: { user: "@valvetrova"}};
 
 const splash = [
     [false, "Now with even more characters!"],
@@ -252,8 +253,9 @@ const splash = [
     [false, "Dunkin' doe-...nuts!", submitters.luna],
     [false, "Hello, it's me; Jim Generic."],
     [false, "I can smell girlfailure pussy a mile away"],
-    [true, "I am the one who cocks.", submitters.xal],
-    [true, "JESSIE! WE NEED TO COCK.", submitters.xal],
+    [true,  "I am the one who cocks.", submitters.xal],
+    [true,  "JESSIE! WE NEED TO COCK.", submitters.xal],
+    [false, "Huh? Whuh?", submitters.yoLander],
 ]
 
 export { splash, submitters }

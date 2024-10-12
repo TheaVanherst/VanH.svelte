@@ -42,15 +42,19 @@
 				{#if navigationDirectories.directoryVisibility[id]}
 					<div transition:slide={{duration: 200, axis: 'x'}}>
 						{#if !!item.pages}
-							<div class="navButton dropDown {item.class ?? ''}"
+							<div class="navButton dropDown"
 									class:currentRoot={item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
 									class:currentSubmenu={currentIdSelected === id}
 									on:mouseover={() => {currentIdSelected = id; clearInterval(timer);}}
 									on:mouseleave={() => timer = setInterval(() => currentIdSelected = undefined, 250)}
 									transition:slide={{duration: 200, axis: 'x'}}>
-								<div class="mediaIcon"><img src="/icons/{item.imagePath}.webp"/></div>
+								<div class="mediaIcon">
+									<img src="/icons/{item.imagePath}.webp"/>
+								</div>
 								{#if $deviceData.screenType > 2 || item.pages.map(e => e.path).includes($directoryStatus.currentRoot)}
-									<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
+									<h5 transition:slide={{duration: 200, axis: 'x'}}>
+										{item.title}
+									</h5>
 								{/if}
 								{#if $deviceData.screenType > 2 && id === currentIdSelected}
 									<div class="navDropdown" transition:slide>
@@ -77,19 +81,29 @@
 								<div class="navButton {item.class ?? ''}"
 										class:currentRoot={$directoryStatus.currentRoot === item.path}
 										transition:slide={{duration: 200, axis: 'x'}}>
-									<div class="mediaIcon"><img src="/icons/{item.imagePath}.webp"/></div>
+									<div class="mediaIcon">
+										<img src="/icons/{item.imagePath}.webp"/>
+									</div>
 									{#if item.title}
 										{#if $deviceData.screenType > 2 || $directoryStatus.currentRoot === item.path}
-											<h5 transition:slide={{duration: 200, axis: 'x'}}>{item.title}</h5>
+											<h5 transition:slide={{duration: 200, axis: 'x'}}>
+												{item.title}
+											</h5>
 										{/if}
 									{/if}
 								</div>
 							</RedirectBuilder>
 						{/if}
 					</div>
-
 				{/if}
 			{/each}
+			<RedirectBuilder nsfwPointer={!$navigationControls.nsfw}>
+				<div class="navButton dropDown {$navigationControls.nsfw ? 'activeInv' : 'inv'}">
+					<div class="mediaIcon">
+						<img src="/icons/Plus18Icon.webp"/>
+					</div>
+				</div>
+			</RedirectBuilder>
 		</div>
 	</div>
 
@@ -103,7 +117,9 @@
 						<RedirectBuilder url="{page.path}" redirectName={page.pagePreview}>
 							<div class="navButton wideBorder"
 								 class:currentRoot={$directoryStatus.currentRoot === page.path}>
-								<div class="mediaIcon"><img src="/icons/{page.imagePath}.webp"/></div>
+								<div class="mediaIcon">
+									<img src="/icons/{page.imagePath}.webp"/>
+								</div>
 								<h5>{page.title}</h5>
 							</div>
 						</RedirectBuilder>
@@ -120,7 +136,9 @@
 			<a href="https://{social.platformName.socialURL + social.url}" target="_blank" transition:slide={{duration: 200, axis: 'x'}}>
 				<RainbowButtonWrap padding="{$deviceData.screenType > 2 ? [5,10] : [6,6]}">
 					<div class="socialMedia">
-						<div class="mediaIcon"><SanityImage image={social.platformName.socialLogo}/></div>
+						<div class="mediaIcon">
+							<SanityImage image={social.platformName.socialLogo}/>
+						</div>
 						{#if $deviceData.screenType > 2}
 							<h3> {social.platformName.socialNickname} </h3>
 						{/if}
@@ -168,22 +186,22 @@
 	#navigation {
 		display: 	flex;
 		flex-wrap: 	nowrap;
-
 		padding: 	0 6px;
 		margin: 	0 0 10px;
 		gap: 		1px;
-
 		background: 	var(--TransBlack);
 		border-bottom: 	1px solid var(--accent7);
-		border-radius: 	20px;}
+		border-radius: 	20px;
 
-	// DESKTOP
-
-	.defaultMode {
 		.navButton {
-			.mediaIcon {
-				height: 	18px;
-				width: 		18px;}}}
+			padding: 8px 11px 7px 9px;
+			&:not(.dropDown):hover {
+				filter: brightness(0) 	saturate(100%)
+				invert(15%) 	sepia(75%)
+				saturate(5273%) hue-rotate(271deg)
+				brightness(97%) contrast(132%);}}}
+
+	// menu drop-down
 
 	.dropDown {
 		border-top-right-radius: 	var(--borderWide);
@@ -194,7 +212,6 @@
 			top: 		100%;
 			left: 		-1px;
 			padding: 	0 0 3px;
-
 			position: 	absolute;
 			background: black;
 			border:		1px solid var(--accent7);
@@ -207,23 +224,28 @@
 			> h5 {
 				text-decoration-color: 	transparent;}}}
 
-	#navigation {
+	// small, rounded toggle buttons
+
+	#navigation > * {
+		&:first-child {  .inv, .activeInv { margin: 0 0 -1px -6px; }}
+		&:last-child {	 .inv, .activeInv { margin: 0 -6px -1px 0; }}}
+	.inv, .activeInv {	padding: 			9px!important;
+		border-radius: 		50%;}
+	.inv { &:hover {	background: var(--accent7);
+		filter: 	revert!important;}}
+	.activeInv {		background: var(--accent10);
+		img {			filter: 	revert;}
+		&:hover {		background: var(--accent7);
+			filter: 	revert!important;
+			img {		filter: 	invert(1)!important;}}}
+
+	// DESKTOP
+
+	.defaultMode {
 		.navButton {
-			padding:	8px 11px 7px 9px;
-			&:not(.dropDown):hover {
-				filter:
-					brightness(0) 	saturate(100%)
-					invert(15%) 	sepia(75%)
-					saturate(5273%) hue-rotate(271deg)
-					brightness(97%) contrast(132%);}}}
-
-	// class specific buttons
-
-	.inv {	padding: 			9px!important;
-			border-radius: 		50%;
-		&:first-child {	margin: 0 0 -1px -6px;}
-		&:hover {	background: var(--accent7);
-					filter: 	revert!important;}}
+			.mediaIcon {
+				height: 	18px;
+				width: 		18px;}}}
 
 	// MOBILE
 
@@ -245,10 +267,7 @@
 		box-sizing: border-box;
 		padding:	0 0 10px 0;
 
-		:global(a) {
-			flex: 1;
-		}
-
+		:global(a) {	flex: 1;}
 		.navButton {
 			padding: 	5px 15px 5px 10px;
 			margin: 	0 auto;

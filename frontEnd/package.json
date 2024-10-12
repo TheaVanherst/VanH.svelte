@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@portabletext/svelte": "^2.1.5"
+		"@portabletext/svelte": "^2.1.5",
+		"embla-carousel-svelte": "^8.3.0"
 	}
 }

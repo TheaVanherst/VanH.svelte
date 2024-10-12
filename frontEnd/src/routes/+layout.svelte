@@ -15,7 +15,6 @@
 
     import SpaceshipCursor 		from "$root/components/layout/stylingComponents/spaceshipCursor.svelte";
     import Background 			from "$root/components/layout/stylingComponents/background.svelte";
-    import MessengerPlugin 		from "$root/components/layout/pageLayout/messengerPlugin.svelte";
     import CometGenerator 		from "$root/components/layout/stylingComponents/cometGenerator.svelte";
     import FullscreenGallery 	from "$root/components/layout/fullscreenGallery.svelte";
 
@@ -59,7 +58,6 @@
 		{#if $deviceData.deviceType === 2}
 			<SpaceshipCursor/>
 		{/if}
-		<MessengerPlugin/>
 		<FullscreenGallery/>
 	</div>
 

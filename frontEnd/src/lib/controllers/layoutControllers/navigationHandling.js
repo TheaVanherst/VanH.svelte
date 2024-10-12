@@ -48,7 +48,7 @@ const
     deviceData =
         writable({
             scrollPos: 0,
-            screenSize: 0, screenType: 0, deviceType: 0, bandWidths: [850, 600, 500]}),
+            screenSize: 0, screenType: 0, deviceType: 0, bandWidths: [850, 625, 500]}),
     navigationData =
         writable({
             logo: true,

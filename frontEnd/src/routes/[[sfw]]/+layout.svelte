@@ -10,7 +10,7 @@
     import { navigationData, navigationControls, directoryStatus, navigationDirectories } from "$lib/controllers/layoutControllers/navigationHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/layoutControllers/transitionHandler.svelte";
-   	import NavigationComponent 	from "$root/components/layout/headerElements/navBar.svelte";
+   	import NavBar 	from "$root/components/layout/headerElements/navBar.svelte";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
     import RollupButton 		from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
@@ -71,7 +71,7 @@
 
 {#if $navigationData.navigation || $navigationData.socials || $navigationData.logo}
 	<div class="inlineWrapper" transition:slide>
-		<NavigationComponent socials={data.socialMedia}/></div>
+		<NavBar socials={data.socialMedia}/></div>
 {/if}
 
 {#if $navigationData.search}
@@ -108,7 +108,7 @@
 								<div on:mousedown={() => queryBuilder(tag.title)}>
 									<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/></div>
 							{/each}
-						</div></div>
+					</div></div>
 				{/if}
 			{/if}
 		{/each}
