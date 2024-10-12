@@ -3,7 +3,7 @@
 
 	export let
 		lineCount = 2,
-        active = false
+        active = 	false
 </script>
 
 {#if active}

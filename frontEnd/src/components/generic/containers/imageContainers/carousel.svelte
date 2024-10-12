@@ -2,22 +2,20 @@
     import { register } 	from 'swiper/element/bundle';
     import { Pagination } 	from 'swiper/modules';
 
-    import { deviceData } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
+    import { deviceData } 	from '$lib/settings/navigationHandling.js';
 
 	export let
-		maxWidth = 3,
-		customCalc = undefined,
-		pagination = true,
-		centered = false;
+		maxWidth = 		3,
+		customCalc = 	undefined,
+		pagination = 	true,
+		centered = 		false;
 
     register();
 
     const clickablePagination = {
         clickable: pagination,
         renderBullet: function (index, className) {
-            return `<span class="` + className + `" id="bulletPoint${index}">` + `</span>`;},
-    };
-
+            return `<span class="` + className + `" id="bulletPoint${index}">` + `</span>`;}};
 </script>
 
 <div class="wideBorder">
@@ -53,8 +51,8 @@
 	swiper-container::part(bullet-active) {
 		position: relative;
 		border-radius:  12px;
-		width: 			10px;
-		height:         10px;
+		width: 			14px;
+		height:         14px;
 		&:before {
 			position: absolute;
 			content: "";
@@ -72,15 +70,15 @@
 
 	swiper-container::part(bullet) {
 		background: 	transparent;
-		border: 		2px solid var(--accent7);
+		border: 		1px solid var(--accent7);
 		opacity:    	1;
 		transition: 	ease .3s;
 		&:hover {
 			background: var(--accent7);
-			border: 	2px solid var(--accent7);}}
+			border: 	1px solid var(--accent7);}}
 	swiper-container::part(bullet-active) {
 		background: 	var(--accent10);
-		border: 		2px solid var(--accent10);
+		border: 		1px solid var(--accent10);
 	}
 
 	swiper-container.margin::part(container) { // bad work around.

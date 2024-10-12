@@ -1,15 +1,15 @@
 <script>
-    import { navigationControls, deviceData } from '$lib/controllers/layoutControllers/navigationHandling.js';
+    import { navigationControls, deviceData } from '$lib/settings/navigationHandling.js';
 
-    import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
+    import SidebarTexts 	from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
     import Container		from "$root/components/generic/containers/genericContainer.svelte";
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
-	import RedirectBuilder  from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
-    import PortableText from "$root/serializer/portableText.svelte";
+	import RedirectBuilder  from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
+    import PortableText 	from "$root/serializer/portableText.svelte";
 
     export let data;
 </script>

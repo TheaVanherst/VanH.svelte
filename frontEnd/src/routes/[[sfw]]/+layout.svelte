@@ -1,20 +1,22 @@
 <script>
     import { slide } 			from "svelte/transition";
 
-    import { page } 	from "$app/stores";
-    import { onMount } 	from "svelte";
-    import { afterNavigate, beforeNavigate } from "$app/navigation";
+    import { page } 			from "$app/stores";
+    import { onMount } 			from "svelte";
+    import { afterNavigate, beforeNavigate }
+								from "$app/navigation";
 
-    import { dataSetStore } 	from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { urlSerializer } 	from "$lib/controllers/layoutControllers/searchController.js";
-    import { navigationData, navigationControls, directoryStatus, navigationDirectories } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { dataSetStore } 	from "$lib/settings/pageSettings.js";
+    import { urlSerializer } 	from "$lib/controllers/searchController.js";
+    import { navigationData, navigationControls, directoryStatus, navigationDirectories }
+								from "$lib/settings/navigationHandling.js";
 
-    import TransitionHandler 	from "$lib/controllers/layoutControllers/transitionHandler.svelte";
-   	import NavBar 	from "$root/components/layout/headerElements/navBar.svelte";
+    import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
+   	import NavBar 				from "$root/components/layout/coreLayoutComponents/headerElements/navBar.svelte";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
-    import RollupButton 		from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
-    import InlineTag 			from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
+    import RollupButton 		from "$root/components/generic/buttons/rollupButton.svelte";
+    import InlineTag 			from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
 
     const
 		paramLocalUpdate = () => {

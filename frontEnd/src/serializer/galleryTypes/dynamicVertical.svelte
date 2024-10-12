@@ -1,6 +1,6 @@
 <script>
     import CitedImage           from "$root/serializer/citedImage.svelte";
-    import { galleryChange }    from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { galleryChange }    from "$lib/settings/pageSettings.js";
 
     export let
             push,

@@ -1,23 +1,23 @@
 <script>
-	import { fade, slide } from "svelte/transition";
+	import { fade, slide } 		from "svelte/transition";
 
-    import { page } from "$app/stores";
-    import { deviceData, navigationControls, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { page } 			from "$app/stores";
+    import { deviceData, navigationControls, directoryStatus }
+								from "$lib/settings/navigationHandling.js";
 
-    import { splashTextData } 	from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { splashTextData } 	from "$lib/settings/pageSettings.js";
     import { submitters } 		from "$lib/localDatabases/splashTextDatabase.js";
 
-    import ProfileBar 			from "$root/components/layout/headerElements/bannerAnimation.svelte";
-    import SplashTexts 			from "$root/components/layout/headerElements/splashTexts.svelte";
-    import PageIntroduction 	from "$root/components/layout/stylingComponents/pageIntroduction.svelte";
-    import RedirectBuilder
-        from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
+    import ProfileBar 			from "$root/components/layout/coreLayoutComponents/headerElements/bannerAnimation.svelte";
+    import SplashTexts 			from "$root/components/layout/coreLayoutComponents/headerElements/splashTexts.svelte";
+    import PageIntroduction 	from "$root/components/layout/coreLayoutComponents/headerElements/pageIntroduction.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
 
     let hover = false,
     	timer = undefined;
 
-    let preScreenHover = false,
-		hoverDisable = false,
+    let preScreenHover = 	false,
+		hoverDisable = 		false,
         logoIntialization = false;
 
     $: hoverDisable =  $directoryStatus.currentRoot === "/featured";

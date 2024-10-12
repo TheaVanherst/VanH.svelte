@@ -4,10 +4,10 @@
     import { onMount } 	from "svelte";
 
     import Masonry 		from 'svelte-bricks';
-    import Pagination 	from "$root/components/layout/pageLayout/dataPagination.svelte";
+    import Pagination 	from "$root/components/layout/coreLayoutComponents/pageLayout/dataPagination.svelte";
 
-    import { dataSetStore, fullscreenGalleryStore, scrollIntoView } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { queryFilter, searchTermBuilder } 						from "$lib/controllers/layoutControllers/searchController.js";
+    import { dataSetStore, fullscreenGalleryStore, scrollIntoView } from "$lib/settings/pageSettings.js";
+    import { queryFilter, searchTermBuilder } 						from "$lib/controllers/searchController.js";
 
     import ArtworkCard 			from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
     import ArtworkDescription 	from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";

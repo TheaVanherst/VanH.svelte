@@ -1,5 +1,5 @@
 <script>
-    import { deviceData } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
+    import { deviceData } 	from '$lib/settings/navigationHandling.js';
     import { page } 		from "$app/stores";
 </script>
 

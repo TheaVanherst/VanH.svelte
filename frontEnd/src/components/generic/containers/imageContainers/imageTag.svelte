@@ -2,10 +2,10 @@
     import { fly } from 'svelte/transition';
 
 	export let
-		active = false,
+		active = 		false,
 		positionArray = [1,1],
-		position = 'absolute',
-		border = 'regularBorder';
+		position = 		'absolute',
+		border = 		'regularBorder';
 </script>
 
 {#if !active}

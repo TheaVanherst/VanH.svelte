@@ -1,6 +1,8 @@
 <script>
     import { onMount } from "svelte";
-    import { navigationData } from "$lib/controllers/layoutControllers/navigationHandling.js";
+
+    import { navigationData } from "$lib/settings/navigationHandling.js";
+
     export let data;
 
     onMount(async () => {

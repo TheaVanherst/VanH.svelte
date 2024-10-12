@@ -1,7 +1,7 @@
 <script>
 	export let
-		border = 7,
-		padding = [15,15,15,15]
+		border = 	7,
+		padding = 	[15,15,15,15];
 </script>
 
 <div

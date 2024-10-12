@@ -1,5 +1,5 @@
 
-import client from "$lib/sanityClient.js";
+import client from "$lib/settings/sanityClient.js";
 
 import { characterData } from "$lib/queryPresets/characterData.js";
 

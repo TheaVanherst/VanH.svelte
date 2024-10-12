@@ -2,8 +2,8 @@
 	import SanityImage from "$root/serializer/sanityImage.svelte";
 
 	export let
-		data = undefined,
-        inverted = false;
+		data = 		undefined,
+        inverted = 	false;
 </script>
 
 <a class="inlineTag" href="https://www.{data.platformName.socialURL + data.url}" target="_blank"  class:inverted={inverted}>

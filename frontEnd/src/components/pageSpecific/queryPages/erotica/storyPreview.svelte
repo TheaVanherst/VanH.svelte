@@ -4,8 +4,8 @@
 
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
 
-    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
-	import FoldedTags 		from "$root/components/generic/wrappers/tags & Inline/tags/foldedTags.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/socialsFoldable.svelte";
+	import FoldedTags 		from "$root/components/generic/wrappers/tags/foldedTags.svelte";
 
     export let story;
 

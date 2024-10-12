@@ -1,5 +1,5 @@
 <script>
-    import {fullscreenGalleryStore, galleryStore} from "$lib/controllers/layoutControllers/pageSettings.js";
+    import {fullscreenGalleryStore, galleryStore} from "$lib/settings/pageSettings.js";
 
     import SanityImage from "$root/serializer/sanityImage.svelte";
     import FlyInCard from "$root/components/generic/containers/textContainers/blankFlyIn.svelte";

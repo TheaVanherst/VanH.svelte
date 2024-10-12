@@ -1,11 +1,11 @@
 <script>
     import { slide } 	from 'svelte/transition';
 
-    import { deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { deviceData } from "$lib/settings/navigationHandling.js";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
-    import SocialMediaTag 		from "$root/components/generic/wrappers/tags & Inline/redirects/inlineSocialRedirect.svelte";
-    import InternalRedirectTag 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectTag.svelte";
+    import SocialMediaTag 		from "$root/components/generic/wrappers/redirects/inlineSocialRedirect.svelte";
+    import InternalRedirectTag 	from "$root/components/generic/wrappers/redirects/internalRedirectTag.svelte";
 
 	export let
 		authorData = undefined;

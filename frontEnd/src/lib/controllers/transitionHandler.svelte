@@ -6,7 +6,7 @@
     import { afterNavigate, beforeNavigate } 	from "$app/navigation";
     import { navigating, updated } 				from "$app/stores";
 
-    import { directoryProcessing, directoryStatus, navigationControls } from '$lib/controllers/layoutControllers/navigationHandling.js';
+    import { directoryProcessing, directoryStatus, navigationControls } from '$lib/settings/navigationHandling.js';
 
     import LoadingFull from "$root/components/layout/loadingFull.svelte";
 

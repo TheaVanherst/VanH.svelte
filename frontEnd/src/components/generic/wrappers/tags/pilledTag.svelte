@@ -1,5 +1,6 @@
 <script>
-	export let hover = false;
+	export let
+		hover = false;
 </script>
 
 <div class="externalInline" class:hover>

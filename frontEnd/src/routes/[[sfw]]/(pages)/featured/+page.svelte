@@ -1,16 +1,17 @@
 <script>
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
-    import { deviceData, navigationControls } from '$lib/controllers/layoutControllers/navigationHandling.js';
+    import { deviceData, navigationControls }
+							from '$lib/settings/navigationHandling.js';
 
-    import SidebarTexts 	from "$root/components/layout/pageLayout/sidebarTexts.svelte";
+    import SidebarTexts 	from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
 
     import ArtworkCard 		from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
     import WorkshopCard 	from "$root/components/pageSpecific/queryPages/workshop/workshopPreview.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/queryPages/workshop/workshopSnippet.svelte";
 
-    import SanityImage from "$root/serializer/sanityImage.svelte";
-    import FlyInCard from "$root/components/generic/containers/textContainers/blankFlyIn.svelte";
+    import SanityImage 		from "$root/serializer/sanityImage.svelte";
+    import FlyInCard 		from "$root/components/generic/containers/textContainers/blankFlyIn.svelte";
 
 	import CharacterFeature from "$root/components/pageSpecific/homePage/characterShowcase.svelte";
     import KofiCards 		from "$root/components/pageSpecific/kofiCards.svelte";
@@ -99,13 +100,25 @@
 	{/if}
 </SidebarTexts>
 
+<SidebarTexts titlecard="Designs" icon="galleryIcon.webp">
+	<Carousel maxWidth={3}>
+		{#each data.designs as artwork}
+			<swiper-slide>
+				<div class="artworkCard">
+					<ArtworkCard data={artwork} disableNew={true}/>
+				</div>
+			</swiper-slide>
+		{/each}
+	</Carousel>
+</SidebarTexts>
+
 {#if $navigationControls.nsfw}
 	<SidebarTexts titlecard="Support" icon="kofiLogo.webp">
 		<KofiCards tiers={data.donationData.tiers}/>
 	</SidebarTexts>
 {/if}
 
-<SidebarTexts titlecard="Q&A" icon="commentIcon.webp">
+<SidebarTexts titlecard="Q&A" icon="wrenchIcon.webp">
 	<QandaFeature dataset={data.qAndA}/>
 </SidebarTexts>
 

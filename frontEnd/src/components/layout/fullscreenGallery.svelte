@@ -1,12 +1,12 @@
 <script>
-    import { fade } from "svelte/transition";
+    import { fade } 	from "svelte/transition";
 
-    import { page } 		from "$app/stores";
-    import { goto } 		from "$app/navigation";
+    import { page } 	from "$app/stores";
+    import { goto } 	from "$app/navigation";
 
-    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
-    import { fullscreenGalleryStore, messengerSettings, galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { deviceData, directoryStatus } 								from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { clickOutside } 											from "$lib/scripts/transitionPresets.js";
+    import { fullscreenGalleryStore, messengerSettings, galleryChange } from "$lib/settings/pageSettings.js";
+    import { deviceData, directoryStatus } 								from "$lib/settings/navigationHandling.js";
 
     import SanityImage 	from "$root/serializer/sanityImage.svelte";
     import ImageTag 	from "$root/components/generic/containers/imageContainers/imageTag.svelte";
@@ -45,7 +45,7 @@
 					galleryChange(undefined);
                 }
                 stopCheck = false;
-            }, 50);}
+            }, 50);};
 
 	const
 		mounted = () => {

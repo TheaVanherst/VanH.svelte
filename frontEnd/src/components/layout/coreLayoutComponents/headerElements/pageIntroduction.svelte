@@ -1,13 +1,14 @@
 <script>
-	import { fade, slide } from "svelte/transition";
+	import { fade, slide } 		from "svelte/transition";
 
-    import { deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { deviceData } 		from "$lib/settings/navigationHandling.js";
 
-    import RedirectBuilder from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
-    import RainbowButtonWrap from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
-    export let visible = false;
-    export let preScreenHover = false;
+    export let
+		visible = false,
+    	preScreenHover = false;
     // manages load-in transitions.
 
 	// TODO: for some reason, the button transitions really badly and it's glitchy as hell. Fix it.
@@ -21,7 +22,7 @@
 				on:mouseover={()=>preScreenHover=true}
 				on:mouseout={()=>preScreenHover=false}>
 			<div class="backgroundAnimationWrapper" transition:fade>
-				<img class="stripeScan blueprintDesign"  src="/branding/CircuitTexture.webp" alt="circuit texture"/>
+				<img class="stripeScan blueprintDesign" src="/branding/CircuitTexture.webp" alt="circuit texture"/>
 				<div class="stripeScan smaller regularBorder"></div>
 				<div class="stripeScan animated regularBorder"></div>
 				<div class="stripeScan faded regularBorder"></div>

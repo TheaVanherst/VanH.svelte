@@ -2,11 +2,11 @@
 	import PortableText from "$root/serializer/portableText.svelte";
     import SanityImage from "$root/serializer/sanityImage.svelte";
 
-    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/socialsFoldable.svelte";
 
     export let data = {};
 
-    import { deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { deviceData } from "$lib/settings/navigationHandling.js";
 </script>
 
 <div class="featuredItem">

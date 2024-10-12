@@ -1,13 +1,13 @@
 <script>
-    import { onMount } from "svelte";
-    import { page } from "$app/stores";
+    import { onMount } 	from "svelte";
+    import { page } 	from "$app/stores";
 
-    import { fullscreenGalleryStore, scrollIntoView } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { queryFilter, searchTermBuilder } from "$lib/controllers/layoutControllers/searchController.js";
-    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { fullscreenGalleryStore, scrollIntoView } 	from "$lib/settings/pageSettings.js";
+    import { queryFilter, searchTermBuilder } 			from "$lib/controllers/searchController.js";
+    import { navigationControls } 						from "$lib/settings/navigationHandling.js";
 
-    import WorkshopPreview from "$root/components/pageSpecific/queryPages/workshop/workshopPreview.svelte";
-    import WorkshopCard from "$root/components/pageSpecific/queryPages/workshop/workshopCard.svelte";
+    import WorkshopPreview 	from "$root/components/pageSpecific/queryPages/workshop/workshopPreview.svelte";
+    import WorkshopCard 	from "$root/components/pageSpecific/queryPages/workshop/workshopCard.svelte";
 
 	export let data;
 

@@ -2,7 +2,7 @@
     import { fly } 					from "svelte/transition";
     import { quartIn, quartOut } 	from "svelte/easing";
 
-    import { deviceData } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { deviceData } 			from "$lib/settings/navigationHandling.js";
 
     const
 		getRandomInt = (max) => {
@@ -11,7 +11,7 @@
     let comet = {},
 		xPosition = 0,
 		yPosition = 0,
-        rScale = 1;
+        rScale = 	1;
 
     let outerHeight; // calculates page height
 
@@ -22,13 +22,13 @@
         clearInterval(clear);
 
         clear = setInterval(() => {
-            ms = getRandomInt(5000);
+            ms = 		getRandomInt(5000);
 
             xPosition = getRandomInt($deviceData.screenSize) + 200;
             yPosition = getRandomInt(outerHeight + 100) - 300;
-            rScale = getRandomInt(3) + 0.2;
+            rScale = 	getRandomInt(3) + 0.2;
 
-            comet = {};
+            comet = 	{};
         }, ms);
     }
 </script>

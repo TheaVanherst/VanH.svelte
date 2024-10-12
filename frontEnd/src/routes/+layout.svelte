@@ -2,25 +2,27 @@
     import '../styles.scss';
     import '../commonStyles.scss';
 
-    import { onMount } 	from "svelte";
-    import Device 		from "svelte-device-info";
+    import { fly, fade } 	from 'svelte/transition';
 
-    import { fly, fade } 				from 'svelte/transition';
+    import { onMount } 		from "svelte";
+    import Device 			from "svelte-device-info";
 
-    import { navigationControls, deviceData, directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
-    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
+    import { navigationControls, deviceData, directoryStatus }
+							from "$lib/settings/navigationHandling.js";
+    import { pageTitlebar, loadingIco, titlebarScroller, websiteTag, pageName }
+							from "$lib/layout/titlebarScoller.js";
 
-    import Header 				from "$root/components/layout/headerElements/header.svelte";
-    import PageFooter 			from "$root/components/layout/pageLayout/pageFooter.svelte";
+    import Header 				from "$root/components/layout/coreLayoutComponents/headerElements/header.svelte";
+    import PageFooter 			from "$root/components/layout/coreLayoutComponents/pageLayout/pageFooter.svelte";
 
-    import SpaceshipCursor 		from "$root/components/layout/stylingComponents/spaceshipCursor.svelte";
-    import Background 			from "$root/components/layout/stylingComponents/background.svelte";
-    import CometGenerator 		from "$root/components/layout/stylingComponents/cometGenerator.svelte";
+    import SpaceshipCursor 		from "$root/components/layout/coreLayoutComponents/idleElements/spaceshipCursor.svelte";
+    import Background 			from "$root/components/layout/coreLayoutComponents/idleElements/background.svelte";
+    import CometGenerator 		from "$root/components/layout/coreLayoutComponents/idleElements/cometGenerator.svelte";
     import FullscreenGallery 	from "$root/components/layout/fullscreenGallery.svelte";
 
-    let screenSize = 	0,
-        scrollPos = 	0,
-        textscrollEnable = false;
+    let screenSize = 		0,
+        scrollPos = 		0,
+        textscrollEnable = 	false;
 
     onMount(() => {
         switch (true) {

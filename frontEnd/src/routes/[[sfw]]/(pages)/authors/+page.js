@@ -1,8 +1,8 @@
 
-import client from "$lib/sanityClient.js"
+import client from "$lib/settings/sanityClient.js"
 
-import { authorQueries } from "$lib/queryPresets/authorQueries.js";
-import { genericRequests } from "$lib/queryPresets/genericQueries.js";
+import { authorQueries }    from "$lib/queryPresets/authorQueries.js";
+import { genericRequests }  from "$lib/queryPresets/genericQueries.js";
 
 export const load = async () => {
     return {

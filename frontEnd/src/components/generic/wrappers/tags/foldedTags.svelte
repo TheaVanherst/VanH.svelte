@@ -1,20 +1,20 @@
 <script>
-	import { slide, fade } from "svelte/transition";
+	import { slide, fade } 		from "svelte/transition";
 
-    import { page } from "$app/stores";
-    import { directoryStatus } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { page } 			from "$app/stores";
+    import { directoryStatus } 	from "$lib/settings/navigationHandling.js";
 
-    import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
-    import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
+    import InlineTag 			from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
 
     export let
 		tagSet,
 		urlRedirect,
 		redirectType,
-		inverted = false;
+		inverted = 		false;
 
-    let active = false,
-		copied = false,
+    let active = 		false,
+		copied = 		false,
 		timer;
 
     const copy = () => {

@@ -1,7 +1,7 @@
 <script>
     import { page } from '$app/stores';
 
-    import SidebarTexts     from "$root/components/layout/pageLayout/sidebarTexts.svelte";
+    import SidebarTexts from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
 </script>
 
 {#if $page?.error}

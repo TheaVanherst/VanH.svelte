@@ -1,15 +1,15 @@
 <script>
     import * as transitionFunctions from 'svelte/transition';
-    import { fade, slide } from "svelte/transition";
+    import { fade, slide } 			from "svelte/transition";
 
-    import { page } from "$app/stores";
-    import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
+    import { page } 	from "$app/stores";
+    import { goto } 	from "$app/navigation";
+    import { onMount } 	from "svelte";
 
-    import { directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { directoryStatus } from "$lib/settings/navigationHandling.js";
 
-    import SanityImage 		from "$root/serializer/sanityImage.svelte";
-    import AuthorCard from "$root/components/pageSpecific/queryPages/author/authorCard.svelte";
+    import SanityImage 	from "$root/serializer/sanityImage.svelte";
+    import AuthorCard 	from "$root/components/pageSpecific/queryPages/author/authorCard.svelte";
 
     let currentAuthorSelected;
 

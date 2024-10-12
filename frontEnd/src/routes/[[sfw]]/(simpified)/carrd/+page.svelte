@@ -1,10 +1,10 @@
 <script>
 	import { fade } from "svelte/transition";
 
-    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { navigationControls } from "$lib/settings/navigationHandling.js";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
-    import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
     export let data;
 </script>

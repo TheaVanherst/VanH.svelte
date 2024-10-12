@@ -1,23 +1,23 @@
 <script>
-    import { slide } 	from 'svelte/transition';
+    import { slide } 			from 'svelte/transition';
 
-    import { directoryStatus } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { directoryStatus } 	from "$lib/settings/navigationHandling.js";
 
-    import RollupButton from "$root/components/generic/wrappers/buttons/rollupButton.svelte";
-    import RedirectBuilder from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
-    import SanityImage from "$root/serializer/sanityImage.svelte";
+    import RollupButton 		from "$root/components/generic/buttons/rollupButton.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
+    import SanityImage 			from "$root/serializer/sanityImage.svelte";
 
-    import InternalRedirectTag from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectTag.svelte";
-    import SocialMediaTag from "$root/components/generic/wrappers/tags & Inline/redirects/inlineSocialRedirect.svelte";
+    import InternalRedirectTag 	from "$root/components/generic/wrappers/redirects/internalRedirectTag.svelte";
+    import SocialMediaTag 		from "$root/components/generic/wrappers/redirects/inlineSocialRedirect.svelte";
 
 	export let
-		author = undefined,
+		author = 		undefined,
 		authorSocials = true,
-        character = false,
-		customRoot = undefined,
-		inverted = false;
+        character = 	false,
+		customRoot = 	undefined,
+		inverted = 		false;
 
-    let active = false,
+    let active = 		false,
         timer;
 
 </script>

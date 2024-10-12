@@ -1,10 +1,10 @@
 
-import client from "$lib/sanityClient.js";
+import client from "$lib/settings/sanityClient.js";
 
 import { characterData }    from "$lib/queryPresets/characterData.js";
 import { authorQueries }    from "$lib/queryPresets/authorQueries.js";
 import { genericRequests }  from "$lib/queryPresets/genericQueries.js";
-import { navigationData }   from "$lib/controllers/layoutControllers/navigationHandling.js";
+import { navigationData }   from "$lib/settings/navigationHandling.js";
 
 export const load = async () => {
     navigationData.set({ logo: true, navigation: true, socials: true, search: true });

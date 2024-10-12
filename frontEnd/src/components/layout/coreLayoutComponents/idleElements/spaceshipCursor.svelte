@@ -2,8 +2,8 @@
     import { fly } 		from "svelte/transition";
     import { spring } 	from 'svelte/motion';
 
-    import mousePosition 	from "$lib/controllers/stylingControllers/spaceshipController.js";
-    import { deviceData } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import mousePosition 	from "$lib/layout/spaceshipController.js";
+    import { deviceData } 	from "$lib/settings/navigationHandling.js";
 
     let shoot = {},
     	position =

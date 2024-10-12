@@ -1,12 +1,12 @@
 <script>
-    import { slide } from 'svelte/transition';
+    import { slide } 			from 'svelte/transition';
 
-    import { navigationControls, deviceData, navigationData,
-		directoryStatus, navigationDirectories } 	from '$lib/controllers/layoutControllers/navigationHandling.js';
+    import { navigationControls, deviceData, navigationData, directoryStatus, navigationDirectories }
+								from '$lib/settings/navigationHandling.js';
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
-    import RedirectBuilder 		from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
-    import RainbowButtonWrap 	from "$root/components/generic/wrappers/buttons/rainbowButtonWrap.svelte";
+    import RedirectBuilder 		from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
+    import RainbowButtonWrap 	from "$root/components/generic/buttons/rainbowButtonWrap.svelte";
 
     export let
 		socials = {};

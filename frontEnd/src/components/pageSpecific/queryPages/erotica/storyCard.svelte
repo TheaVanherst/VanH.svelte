@@ -1,13 +1,13 @@
 <script>
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
-	import { directoryStatus, deviceData } from "$lib/controllers/layoutControllers/navigationHandling.js";
+	import { directoryStatus, deviceData } from "$lib/settings/navigationHandling.js";
 
-    import RedirectBuilder from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
+    import RedirectBuilder from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import PortableText 	from "$root/serializer/portableText.svelte";
 
-    import InlineTag 		from "$root/components/generic/wrappers/tags & Inline/tags/inlineGenreTag.svelte";
-    import SocialsFoldable 	from "$root/components/generic/wrappers/tags & Inline/socialsFoldable.svelte";
+    import InlineTag 		from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
+    import SocialsFoldable 	from "$root/components/generic/wrappers/socialsFoldable.svelte";
 
     export let data;
 </script>

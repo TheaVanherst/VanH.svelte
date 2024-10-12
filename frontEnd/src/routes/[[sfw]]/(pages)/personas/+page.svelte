@@ -1,7 +1,7 @@
 <script>
-    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { navigationControls } from "$lib/settings/navigationHandling.js";
 
-    import SanityImage from "$root/serializer/sanityImage.svelte";
+    import SanityImage 	from "$root/serializer/sanityImage.svelte";
     import PortableText from "$root/serializer/portableText.svelte";
 
 	export let data;

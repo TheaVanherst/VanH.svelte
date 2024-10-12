@@ -9,7 +9,6 @@ const
         {   title: "",              imagePath: "exitIcon",          path: "/",              nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector,   class:'inv'},
         {   title: "Home",          imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
         {   title: "Creations",     imagePath: "artworksIcon",      pages: [
-            {   title: "Latest",    imagePath: "highlightIcon",     path: "/latest",        nsfw: true,     pagePreview: "𝘍𝘦𝘢𝘵𝘶𝘳𝘦𝘥" + redirector},
             {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",       nsfw:false,     pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
                     characters: true, queryTypes: ["explicit","genre","generic","nsfw"]},
             {   title: "Design",    imagePath: "colourWheelIcon",   path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,

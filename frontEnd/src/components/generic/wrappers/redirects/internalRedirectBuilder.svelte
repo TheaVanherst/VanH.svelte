@@ -1,14 +1,15 @@
 <script>
-    import { goto } from "$app/navigation";
-    import { galleryChange } from "$lib/controllers/layoutControllers/pageSettings.js";
+    import { goto } 			from "$app/navigation";
+    import { galleryChange } 	from "$lib/settings/pageSettings.js";
 
-    import { directoryProcessing, directoryStatus, navigationControls, navigationDirectories } from '$lib/controllers/layoutControllers/navigationHandling.js';
-    import { pageName } from "$lib/controllers/stylingControllers/titlebarScoller.js";
+    import { directoryProcessing, directoryStatus, navigationControls, navigationDirectories }
+								from '$lib/settings/navigationHandling.js';
+    import { pageName }		 	from "$lib/layout/titlebarScoller.js";
 
     export let
-        url = undefined,
-		redirectName = undefined,
-		nsfwPointer = undefined;
+        url = 			undefined,
+		redirectName = 	undefined,
+		nsfwPointer = 	undefined;
 
     const redirectCheck = (e = "", n, p = undefined) => {
         let newRoute;

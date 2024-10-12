@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { browser } from '$app/environment';
 
-    import client from "$lib/sanityClient.js";
+    import client from "$lib/settings/sanityClient.js";
 
     import imageUrlBuilder from "@sanity/image-url";
 

@@ -1,8 +1,8 @@
 <script>
-    import { clickOutside } from "$lib/controllers/layoutControllers/transitionPresets.js";
+    import { clickOutside } from "$lib/scripts/transitionPresets.js";
 
-    import { galleryStore } from "$lib/controllers/layoutControllers/pageSettings.js";
-    import { navigationControls } from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { galleryStore } from "$lib/settings/pageSettings.js";
+    import { navigationControls } from "$lib/settings/navigationHandling.js";
 
     import SanityGalleries 	from "$root/serializer/sanityGalleries.svelte";
     import ArtworkDescription from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";

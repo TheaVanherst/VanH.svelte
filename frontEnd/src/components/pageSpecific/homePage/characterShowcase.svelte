@@ -1,20 +1,19 @@
 <script>
     import { fly } 	from 'svelte/transition';
 
-    import { clickOutside } 		from "$lib/controllers/layoutControllers/transitionPresets.js";
-    import { navigationControls } 	from "$lib/controllers/layoutControllers/navigationHandling.js";
+    import { clickOutside } 		from "$lib/scripts/transitionPresets.js";
+    import { navigationControls } 	from "$lib/settings/navigationHandling.js";
     import { standardShorthand, standardTinyhand } from "$lib/builders/measurementConverters.js";
 
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
-    import RedirectBuilder 	from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
+    import RedirectBuilder 	from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
 
     import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
     export let dataset = {};
 
     dataset.map(i=>{i.active = false; i.timer;})
-
 
     const
         iterationBuilder = (c,s) => c ? s ? `${standardTinyhand(c)} - ${standardTinyhand(s)}` : standardTinyhand(c) : s ? standardTinyhand(s) : "",

@@ -1,5 +1,5 @@
 <script>
-    import RedirectBuilder from "$root/components/generic/wrappers/tags & Inline/redirects/internalRedirectBuilder.svelte";
+    import RedirectBuilder from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
 
     export let
 		redirect,
