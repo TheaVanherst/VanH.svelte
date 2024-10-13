@@ -52,7 +52,7 @@
 			</div>
 		{/if}
 		{#if data.authors?.length > 0}
-			<p class="citation"> Created by: </p>
+			<p class="citation"> Created with the help of: </p>
 			{#each data.authors as author}
 				<SocialsFoldable {author}/>
 			{/each}

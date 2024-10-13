@@ -31,7 +31,13 @@
     onMount(() => { // jannk transition to stop sliding on initial page load-in
         const
 			initialSlug = $page.url.searchParams.get('user');
-        	currentAuthorSelected = data.authorData.map(i => {return i.slug === initialSlug ? i : data.authorData[0];}).filter(n => n)[0];
+        if (initialSlug) {
+            currentAuthorSelected = data.authorData.map(i => {return i.slug === initialSlug ? i : undefined;}).filter(n => n)[0];
+            console.log(initialSlug, currentAuthorSelected);}
+        else {
+            currentAuthorSelected = data.authorData[0];}
+
+
         setTimeout(() => {
             transition = transitionFunctions['slide']}, 250);})
 </script>
@@ -64,6 +70,9 @@
 			</div>
 		</div>
 	</div>
+	<p style="margin: 0 auto; display: flex; width: max-content;">
+		this page isn't done yet, lol!
+	</p>
 {/if}
 
 <style lang="scss">

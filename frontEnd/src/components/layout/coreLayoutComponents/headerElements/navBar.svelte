@@ -229,41 +229,39 @@
 	#navigation > * {
 		&:first-child {  .inv, .activeInv { margin: 0 0 -1px -6px; }}
 		&:last-child {	 .inv, .activeInv { margin: 0 -6px -1px 0; }}}
-	.inv, .activeInv {	padding: 			9px!important;
-		border-radius: 		50%;}
-	.inv { &:hover {	background: var(--accent7);
-		filter: 	revert!important;}}
-	.activeInv {		background: var(--accent10);
-		img {			filter: 	revert;}
-		&:hover {		background: var(--accent7);
+	.inv, .activeInv {	padding: 		8px!important;
+						border-radius: 	50%;}
+	.inv { &:hover {	background: 	var(--accent7);
+						filter: 		revert!important;}}
+	.activeInv {		background: 	var(--accent10);
+		img {			filter: 		revert;}
+		&:hover {		background: 	var(--accent7);
 			filter: 	revert!important;
-			img {		filter: 	invert(1)!important;}}}
+			img {		filter: 		invert(1)!important;}}}
 
 	// DESKTOP
 
 	.defaultMode {
 		.navButton {
-			.mediaIcon {
-				height: 	18px;
-				width: 		18px;}}}
+			.mediaIcon {	height: 	18px;
+							width: 		18px;}}}
 
 	// MOBILE
 
 	.compactMode {
 		.social {
-			.mediaIcon {
-				width: 	30px!important;
-				height: 30px!important;}}
+			.mediaIcon {	width: 	30px!important;
+							height: 30px!important;}}
 		#navigation {
 			.navButton {
 				&.currentSubmenu {
-					background: var(--accent7);}}}}
+							background: var(--accent7);}}}}
 
 	#seperatedMenu {
 		display: 	flex;
 		flex-wrap: 	wrap;
 		width: 		100%;
-		gap: 		15px;
+		gap: 		10px;
 		box-sizing: border-box;
 		padding:	0 0 10px 0;
 
