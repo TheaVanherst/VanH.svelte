@@ -45,7 +45,7 @@
 			<div class="transitionFix" out:slide={{axis:'x', delay:100}} in:slide={{axis:'x'}}>
 				<div class="marginGap" out:slide in:slide={{ delay:300}}>
 					{#if author.searchable}
-						<InternalRedirectTag redirect="/authors/?user={author.handle.toLowerCase()}" inverted={inverted}>{author.handle}</InternalRedirectTag>{/if}
+						<InternalRedirectTag redirect="/authors/?user={author.slug}" inverted={inverted}>{author.slug}</InternalRedirectTag>{/if}
 					{#if author.socialMedia.length > 0}
 						<SocialMediaTag data={author.socialMedia[0]} inverted={inverted}/>{/if}
 				</div>
