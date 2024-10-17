@@ -135,7 +135,7 @@
 	h4, p { 	white-space: normal;
 		color: 	black;}
 	h4 { 		margin: 0 0 5px 0;}
-	p span { 	color: 	var(--accent7); }
+	p span { 	color: 	var(--accent1); }
 
 	.card { height: 	520px;}
 
@@ -149,8 +149,8 @@
 		height:		100%;
 
 		&:hover	.title {
-				border: 	1px solid var(--accent7);
-				background: var(--accent10);}}
+				border: 	1px solid var(--accent1);
+				background: var(--pure1);}}
 
 	.previewCard {
 		position: 	absolute;
@@ -162,7 +162,7 @@
 			margin:     5px 5px 5px 5px;
 			padding: 	7px 10px 10px 10px;
 			border: 	1px solid transparent;
-			background: var(--TransWhite);}}
+			background: var(--transPure1);}}
 
 	.infoPlate {
 		position: 	absolute;
@@ -193,6 +193,6 @@
 		margin: 	5px;
 		&.redirect {	transition: color .3s ease,
 		background .3s ease;
-			&:hover {	background: var(--accent7);
+			&:hover {	background: var(--accent1);
 				p, h4 {	color: white;}}}}
 </style>

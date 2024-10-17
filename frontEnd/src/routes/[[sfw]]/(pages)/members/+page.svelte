@@ -61,8 +61,8 @@
 		flex-shrink: 	0;
 		list-style: 	none;
 
-		background: var(--TransBlack);
-		border: 1px solid var(--accent7);
+		background: var(--transPure2);
+		border: 1px solid var(--accent1);
 		padding: 	15px;}
 
 	.row, .subsection {
@@ -77,7 +77,7 @@
 				margin: 	0 auto;}}}
 
 	.row {			padding: 7px 0;
-		border-bottom: 	1px solid var(--accent9);}
+		border-bottom: 	1px solid var(--dark1);}
 	.subsection {	padding: 40px 0 8px;}
 
 	.checkWrapper {

@@ -8,6 +8,7 @@ const authorQueries = {
     icon: `
         userPortrait`,
     branding: `
+        shortDesc,
         userPortrait,
         profileBanner`,
     socials: `
@@ -17,7 +18,7 @@ const authorQueries = {
                 socialName,
                 socialLogo,
                 socialURL,
-                socialNickname,}}`,
+                socialNickname}}`,
     participation: `
         'participation': participation->emoji + " " + participation->title`,
     referenceParticipation:`
@@ -30,7 +31,7 @@ const authorQueries = {
            emoji,
            title}`,
     about: `
-        shortDesc`
+        bio`
 }
 
 export { authorQueries }

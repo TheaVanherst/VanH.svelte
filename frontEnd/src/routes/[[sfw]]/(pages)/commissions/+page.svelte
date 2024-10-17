@@ -1,15 +1,13 @@
 <script>
     import { navigationControls, deviceData } from '$lib/settings/navigationHandling.js';
 
-    import SidebarTexts 	from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
-    import Container		from "$root/components/generic/containers/genericContainer.svelte";
-    import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
-
-    import SanityImage 		from "$root/serializer/sanityImage.svelte";
-    import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
-
-	import RedirectBuilder  from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
+    import RedirectBuilder  from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
     import PortableText 	from "$root/serializer/portableText.svelte";
+    import SanityImage 		from "$root/serializer/sanityImage.svelte";
+
+    import SidebarTexts 	from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
+    import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
+    import ImageTag 		from "$root/components/generic/containers/imageContainers/imageTag.svelte";
 
     export let data;
 </script>
@@ -37,15 +35,13 @@
 </SidebarTexts>
 
 <SidebarTexts titlecard="How To" icon="documentIcon.webp">
-	<Container>
-		<div class="chunk">
-			<PortableText data={data.commissionData.commissionInstructions}/>
-		</div>
-	</Container>
+	<div class="container wideBorder">
+		<PortableText data={data.commissionData.commissionInstructions}/>
+	</div>
 </SidebarTexts>
 
 <SidebarTexts titlecard="Prices" icon="billIcon.webp">
-	<Container>
+	<div class="container wideBorder">
 		{#each data.commissionData.prices as commissionType}
 			<div class="commType">
 				<h2>{commissionType.styleName}</h2>
@@ -93,22 +89,17 @@
 		</div>
 
 		<PortableText data={data.commissionData.priceNotices}/>
-	</Container>
+	</div>
 </SidebarTexts>
 
 <SidebarTexts titlecard="T&C" icon="tierList.webp">
-	<Container>
-		<div class="chunk">
-			<PortableText data={data.commissionData.terms}/>
-		</div>
-	</Container>
+	<div class="container wideBorder">
+		<PortableText data={data.commissionData.terms}/>
+	</div>
 </SidebarTexts>
 
 <style lang="scss">
-	.chunk {	padding: 	1px 3px 1px 3px;
-		ul {	padding: 	0 0 3px 15px;
-			&:last-child {
-				margin-bottom: 0!important;}}
+	.container {
 		> * {	margin: 	0 0 10px 0;}
 		p { &:last-child {
 			margin: 	0 0 0 0;}}}
@@ -119,12 +110,12 @@
 		bottom: 	0;
 		position: 	absolute;
 
-		background: var(--TransWhite);
+		background: var(--transPure1);
 		color: 		black;
 		transition: .3s ease background, .3s ease color;
 		&:hover {
 			color: white;
-			background: var(--accent7);}}
+			background: var(--accent1);}}
 
 	.imageCard {
 		height: 	500px;
@@ -166,7 +157,7 @@
 					color: 	$colour;}}
 
 			span {
-				color: 		var(--accent2);
+				color: 		var(--alternateAccent3);
 				font-style: italic;}
 			h5 {
 				padding: 	0 0 0 0;
@@ -174,18 +165,18 @@
 				height: 	max-content;
 				display: 	grid;
 
-				&:nth-of-type(1){ span {color:var(--accent6);}}
-				&:nth-of-type(2){ span {color:var(--accent3);}}
-				&:nth-of-type(3){ span {color:var(--accent2);}}
-				&:nth-of-type(4){ span {color:var(--accent1);}}
-				&:nth-of-type(5){ span {color:var(--accent7);}}
-				&:nth-of-type(6){ span {color:var(--accent4);}}}}
-		&:nth-child(1) { border-left: 1px solid var(--accent7);}
-		&:nth-child(2) { border-left: 1px solid var(--accent6);}
-		&:nth-child(3) { border-left: 1px solid var(--accent1);}
-		&:nth-child(4) { border-left: 1px solid var(--accent2);}
-		&:nth-child(5) { border-left: 1px solid var(--accent3);}
-		&:nth-child(6) { border-left: 1px solid var(--accent4);}}
+				&:nth-of-type(1){ span {color:var(--alternateAccent2);}}
+				&:nth-of-type(2){ span {color:var(--accent2);}}
+				&:nth-of-type(3){ span {color:var(--alternateAccent3);}}
+				&:nth-of-type(4){ span {color:var(--alternateAccent1);}}
+				&:nth-of-type(5){ span {color:var(--accent1);}}
+				&:nth-of-type(6){ span {color:var(--brightAccent2);}}}}
+		&:nth-child(1) { border-left: 1px solid var(--accent1);}
+		&:nth-child(2) { border-left: 1px solid var(--alternateAccent2);}
+		&:nth-child(3) { border-left: 1px solid var(--alternateAccent1);}
+		&:nth-child(4) { border-left: 1px solid var(--alternateAccent3);}
+		&:nth-child(5) { border-left: 1px solid var(--accent2);}
+		&:nth-child(6) { border-left: 1px solid var(--brightAccent2);}}
 
 	.additionalPurchases {
 		.type {		padding: 	3px 5px 3px 15px;
@@ -196,10 +187,10 @@
 				border-left: 	1px solid $colour;
 				span {	color: 			$colour;}}
 
-			&:nth-child(1) { @include cbc(var(--accent3));}
-			&:nth-child(2) { @include cbc(var(--accent2));}
-			&:nth-child(3) { @include cbc(var(--accent4));}
-			&:nth-child(4) { @include cbc(var(--accent1));}
-			&:nth-child(5) { @include cbc(var(--accent6));}
-			&:nth-child(6) { @include cbc(var(--accent7));}}}
+			&:nth-child(1) { @include cbc(var(--accent2));}
+			&:nth-child(2) { @include cbc(var(--alternateAccent3));}
+			&:nth-child(3) { @include cbc(var(--brightAccent2));}
+			&:nth-child(4) { @include cbc(var(--alternateAccent1));}
+			&:nth-child(5) { @include cbc(var(--alternateAccent2));}
+			&:nth-child(6) { @include cbc(var(--accent1));}}}
 </style>

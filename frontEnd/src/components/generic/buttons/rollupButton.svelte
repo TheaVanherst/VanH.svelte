@@ -41,23 +41,23 @@
 
 		transition: background .5s ease, transform .3s ease;
 
-		&.border {		border: 1px solid var(--accent7);
-			&.active {	border: 1px solid var(--accent10);}}
+		&.border {		border: 1px solid var(--accent1);
+			&.active {	border: 1px solid var(--pure1);}}
 		&:not(.border) {
 			margin: 0 1px 0 0;}
 
 		&.regular {
-			background: var(--TransBlack);
+			background: var(--transPure2);
 			img {	filter: 	invert(1);}
 			&.active {
-				background: var(--accent10);
+				background: var(--pure1);
 				transform: rotate(180deg);
 				img {	filter: 	invert(0);}}
-			&:hover {	background: var(--accent7);
+			&:hover {	background: var(--accent1);
 				img {	filter: 	invert(1);}}}
 		&.invert {
 			&.active {
 				transform: rotate(180deg);}
-			&:hover {	background: var(--accent7);
+			&:hover {	background: var(--accent1);
 				img {	filter: 	invert(1);}}}}
 </style>

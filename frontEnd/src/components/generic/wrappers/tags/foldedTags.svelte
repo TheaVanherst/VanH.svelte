@@ -52,16 +52,14 @@
 </div>
 
 {#if tagSet.length > 0 && active}
-	<div id="horizontalWrapper" transition:slide={{axis:'x'}}>
-		<div class="postTags" in:slide={{delay:200}} out:slide on:click|stopPropagation
-			 on:mouseenter={() => clearInterval(timer)}
-			 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
-			{#each tagSet as tag}
-				<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
-					<InlineTag {tag}/>
-				</RedirectBuilder>
-			{/each}
-		</div>
+	<div class="postTags" transition:slide on:click|stopPropagation
+		 on:mouseenter={() => clearInterval(timer)}
+		 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
+		{#each tagSet as tag}
+			<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','_')}">
+				<InlineTag {tag}/>
+			</RedirectBuilder>
+		{/each}
 	</div>
 {/if}
 
@@ -70,50 +68,45 @@
 		float: 		right;
 		display: 	table;
 		gap: 		5px;
-		margin: 	2px -2px -2px auto;
-
+		margin: 	0px -2px 0 auto;
 		> *:first-child {
 			margin: 0 0 0 auto;}}
 
 	.buttonWrapper {
 		display: 	inline-flex;
 		gap: 		5px;
-		border-radius: 13px;
-		background: var(--accent9);
+		border-radius: 25px;
+		background: var(--dark1);
 		transition: background .3s ease;
 
-		&:hover {
-			background: var(--accent7);
-			.button {	background: var(--accent7);
-				img {filter: invert(1);}}}
+		&:hover {		background: var(--accent1);
+			.button {	background: var(--accent1);
+				img {	filter: 	invert(1);}}}
 
-		&.copied {
-			background: var(--accent10);
-			.button {
-				background: var(--accent10);
-				img { filter: invert(0);}}}}
+		&.copied {		background: var(--pure1);
+			.button {	background: var(--pure1);
+				img { 	filter: 	invert(0);}}}}
 
 	.button {
 		display: 		inline-flex;
 		white-space: 	nowrap;
 		border-radius: 	50%;
-
-		transition: background .3s ease;
+		transition: 	background .3s ease;
 
 		img {
 			transition: filter .3s ease;
-			filter: invert(1);
-			width: 	22px;
-			height: 22px;
-			margin: auto;
-			display: flex;
-			padding: 6px;}
+			filter: 	invert(1);
+			width: 		22px;
+			height: 	22px;
+			margin: 	auto;
+			display: 	flex;
+			padding: 	6px;}
 		img:last-of-type:not(:first-child){
-			position: absolute;}
+			position: 	absolute;}
 
 		&.active {
-			background: var(--accent10);
-			img { filter: invert(0)}}}
+			background: 	var(--pure1);
+			img { filter: 	invert(0)}}}
 
 	.postTags {	margin: 	12px 0 0 0;}
 

@@ -23,12 +23,12 @@
 <style lang="scss">
 	.dynamicVertical {
 		column-count:   2;
-		gap:            var(--imageSpacing);
+		gap:            var(--smallSpacing);
 		display:        flex;
 
 		.row {
 			width:  50%;
-			gap:    var(--imageSpacing);
+			gap:    var(--smallSpacing);
 
 			display:        grid;
 			flex-direction: column;
@@ -37,7 +37,7 @@
                 min-height: 150px;
 				display:    flex;
 				overflow:   hidden;
-                background: var(--TransBlack);
+                background: var(--transPure2);
             }
         }
     }

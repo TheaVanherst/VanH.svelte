@@ -75,7 +75,7 @@
 		font-family: 	"Lucida Console", Monospace;
 		font-weight: 	800;
 		font-size: 		20px;
-		color: 			var(--accent2);
+		color: 			var(--alternateAccent3);
 		text-align: 	center;
 		user-select: 	none;
 
@@ -94,13 +94,10 @@
 		&.animation {
 			animation:
 				colorRotate 1s linear infinite,
-				float 2.3s ease-in-out infinite;}
-	}
+				float 2.3s ease-in-out infinite;}}
 
 	@keyframes float {
 		0% {	transform: scale(1.2);}
 		50% {	transform: scale(1);}
 		100% {	transform: scale(1.2);}}
-
-
 </style>

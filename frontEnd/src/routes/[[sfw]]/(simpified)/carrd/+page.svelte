@@ -1,6 +1,4 @@
 <script>
-	import { fade } from "svelte/transition";
-
     import { navigationControls } from "$lib/settings/navigationHandling.js";
 
     import SanityImage 			from "$root/serializer/sanityImage.svelte";
@@ -24,23 +22,20 @@
 		<div class="sectionTitle">
 			<h4>{section.chunkName}</h4>
 		</div>
-		{#each section.chunkSocials as social}
+		{#each section.chunkSocials as social, i}
 			{#if $navigationControls.localNsfwCheck(social.nsfw)}
-				<div class="link" in:fade={{delay: 250, duration: 0}}>
-					<!-- this compensates for the transitional handler -->
-					<a href="https://{social.platformName.socialURL + social.url}" target="_blank">
-						<RainbowButtonWrap bottom={10} padding={[9,15]}>
-							<div class="central">
-								<div class="mediaIcon">
-									<SanityImage image={social.platformName.socialLogo}/>
-								</div>
-								<div class="text">
-									<h3> {social.platformName.socialName} </h3>
-								</div>
+				<a href="https://{social.platformName.socialURL + social.url}" target="_blank">
+					<RainbowButtonWrap bottom={10} padding={[9,15]}>
+						<div class="central">
+							<div class="mediaIcon">
+								<SanityImage image={social.platformName.socialLogo}/>
 							</div>
-						</RainbowButtonWrap>
-					</a>
-				</div>
+							<div class="text">
+								<h3> {social.platformName.socialName} </h3>
+							</div>
+						</div>
+					</RainbowButtonWrap>
+				</a>
 			{/if}
 		{/each}
 	{/each}
@@ -60,11 +55,8 @@
 			padding: 	10px 10px;
 			max-width: max-content;
 
-			background: var(--TransBlack);
-			border-bottom: 1px solid var(--accent7);}}
-
-	.link {
-		margin: 0 auto;}
+			background: var(--transPure2);
+			border-bottom: 1px solid var(--accent1);}}
 
 	.imageWrapper {
 		img {
@@ -74,8 +66,8 @@
 			max-height: 90px;
 			aspect-ratio: 1/1;}
 		.socialCard {
-			background: 	var(--TransBlack);
-			border-left: 	1px solid var(--accent3);
+			background: 	var(--transPure2);
+			border-left: 	1px solid var(--accent2);
 
 			width: 		inherit;
 			margin: 	auto 15px;
@@ -84,11 +76,11 @@
 			h3 {	padding: 0 0 10px 0;}
 			p {		padding: 0 0 3px 0;}}}
 
-	.central {
-			display: 	flex;
-			width: 		100%;
-		.text {
-			width: 	max-content;
-			margin: 0 auto;
-			h3 {	color:	black;}}}
+	a {				margin: 0 auto;
+		.central {	display: 	flex;
+					width: 		100%;
+			.text {	width: 	max-content;
+					margin: 0 auto;
+				h3 {color:	black;}}}}
+
 </style>

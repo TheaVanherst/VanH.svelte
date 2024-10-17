@@ -54,9 +54,9 @@
 				padding: 15px;
 				border-radius: var(--borderWide);
 
-				background: 	var(--TransBlack);
-				border-top: 	1px solid var(--accent7);
-				border-bottom: 	1px solid var(--accent7);
+				background: 	var(--transPure2);
+				border-top: 	1px solid var(--accent1);
+				border-bottom: 	1px solid var(--accent1);
 			}
 		}}
 </style>

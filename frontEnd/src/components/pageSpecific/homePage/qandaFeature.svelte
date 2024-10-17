@@ -2,12 +2,12 @@
 	import { deviceData } from "$lib/settings/navigationHandling.js";
 
     import SanityImage 	from "$root/serializer/sanityImage.svelte";
-    import Container 	from "$root/components/generic/containers/genericContainer.svelte";
 
-    export let dataset;
+    export let
+		dataset;
 </script>
 
-<Container>
+<div class="container wideBorder">
 	{#each dataset.questions as qa}
 		<div class="row">
 			{#if $deviceData.screenType > 2}
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 	{/each}
-</Container>
+</div>
 
 <style lang="scss">
 	* {	transition: .3s ease; }
@@ -55,7 +55,7 @@
 			transform: scale(1.2);}
 		.q {margin: 4px 0 4px 20px;}
 		.s {margin: 2px 0 0 75px;}
-		span {color: var(--accent6);}
+		span {color: var(--alternateAccent2);}
 	}
 
 	.profileIcon {
@@ -79,5 +79,5 @@
 		.a {margin: 4px 4px 4px 4px;
 			text-align: right;}}
 
-	span {	color: var(--accent10);}
+	span {	color: var(--pure1);}
 </style>

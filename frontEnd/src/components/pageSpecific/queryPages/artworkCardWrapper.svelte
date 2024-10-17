@@ -85,10 +85,10 @@
 
 	.interactionWrapper {
 		&.glow {	border-radius: 	9px;
-					border: 		2px solid var(--accent7);
+					border: 		2px solid var(--accent1);
 			.newItem { position: 	absolute;
 					z-index: 		1;
-					background: 	var(--accent7);
+					background: 	var(--accent1);
 					margin:	 		5px;
 				p {	font-weight: 	700;
 					padding: 		5px 12px 5px 12px;}}}}

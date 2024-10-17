@@ -73,7 +73,7 @@
 			width: 		100%;
 			top: 		0;
 			left: 		0;
-			background: var(--TransBlack);
+			background: var(--transPure2);
 
 			> * {
 				width: 		100%;
@@ -84,7 +84,7 @@
 				width: 		100%;}
 			.banner {
 				vertical-align: bottom;
-				background: var(--accent7);
+				background: var(--accent1);
 				height: 	200px;}}}
 
 	.dataWrapper {

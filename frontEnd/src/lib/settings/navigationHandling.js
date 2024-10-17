@@ -24,7 +24,7 @@ const
         {   title: "Portfolio",     imagePath: "profileIcon",   pages: [
             {   title: "Slots",     imagePath: "tagIcon",           path: "/commissions",   nsfw:false,     pagePreview: "𝕊𝕝𝕠𝕥𝕤" + redirector},
             // {   title: "Members",   imagePath: "kofiLogo",       path: "/members",       nsfw:true,      pagePreview: "𝓜𝓮𝓶𝓫𝓮𝓻𝓼" + redirector},
-            // {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",       nsfw:false,     pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
+            {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",       nsfw:false,     pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
             {   title: "Carrd",     imagePath: "profileIcon",       path: "/carrd",         nsfw:false,     pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector}]}
     ];
 

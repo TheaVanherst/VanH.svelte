@@ -27,7 +27,7 @@
 								<SanityImage image={authorData.profileBanner}/>
 							</div>
 						{/if}
-						<div class="authorCard">
+						<div class="selectionCarousel">
 							<div class="authorInfo">
 								<div class="authorIcon profileIcon regularBorder">
 									<SanityImage image={authorData.userPortrait}/>
@@ -71,11 +71,11 @@
 			margin: 	1px 0 auto 0;}
 		.authorBanner {
 			height: 	50px;}
-		.authorCard {
+		.selectionCarousel {
 			padding: 	8px;
 			gap: 		4px;
 			display: 	grid;
-			background: var(--TransWhite);
+			background: var(--transPure1);
 			.authorInfo {	display: 	flex;
 							gap: 		10px;}
 			.authorName {		margin: -1px 0 0 0;}

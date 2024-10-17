@@ -54,7 +54,7 @@
 		&::-webkit-scrollbar-thumb {
 			border-radius: 	2px;
 			border: 		1px solid var(--background);
-			background: 	var(--accent6);}
+			background: 	var(--alternateAccent2);}
 		&::-webkit-scrollbar-thumb:hover {
 			background: 	var(--darkAccent1);}
     }
@@ -69,7 +69,7 @@
 		    scroll-snap-align:  start;
 		    width:      100%;
 		    position:   relative;
-            background: var(--TransBlack);
+            background: var(--transPure2);
 
 		    label {
 			    padding:    10px 10px;
@@ -79,7 +79,7 @@
 
 			    position:   absolute;
 			    z-index:    100;
-                background: var(--accent6);
+                background: var(--alternateAccent2);
 			    transition: background .2s ease-out;
 
                 > * {
@@ -91,7 +91,7 @@
 			    &.next {    right:      0;}
 			    &.prev {    left:       0;
                     > * {   transform:  scale(-1, 1);}}
-			    &:hover {   background: var(--accent7);
+			    &:hover {   background: var(--accent1);
                     > * {   filter:     invert(1);} }
             }
         }

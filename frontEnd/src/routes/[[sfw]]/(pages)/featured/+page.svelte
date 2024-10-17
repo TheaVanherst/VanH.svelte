@@ -1,25 +1,27 @@
 <script>
-    import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
-
     import { deviceData, navigationControls }
 							from '$lib/settings/navigationHandling.js';
 
+    import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import SidebarTexts 	from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
-
     import ArtworkCard 		from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
+    import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
+
     import WorkshopCard 	from "$root/components/pageSpecific/queryPages/workshop/workshopPreview.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/queryPages/workshop/workshopSnippet.svelte";
-
-    import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import FlyInCard 		from "$root/components/generic/containers/textContainers/blankFlyIn.svelte";
 
 	import CharacterFeature from "$root/components/pageSpecific/homePage/characterShowcase.svelte";
     import KofiCards 		from "$root/components/pageSpecific/kofiCards.svelte";
     import QandaFeature 	from "$root/components/pageSpecific/homePage/qandaFeature.svelte";
 
-    export let data;
+    export let
+		data;
+    	data.githubData.map(i=>{i.active = false;})
 
-    data.githubData.map(i=>{i.active = false;})
+    const githubColourTranslation =
+		["alternateAccent1", "alternateAccent3", "accent2", null, null,
+		 "alternateAccent2", "accent1", "dark1", "dark2", "pure1"];
 </script>
 
 <SidebarTexts titlecard="Characters" icon="profileIcon.webp">
@@ -45,7 +47,7 @@
 									<span slot="desc">{github.shortDesc}</span>
 								</FlyInCard>
 							</div>
-							<div class="referral" style="background: var(--accent{github.accentColour})">
+							<div class="referral" style="background: var(--{githubColourTranslation[(github.accentColour - 1)]})">
 								<p>TheaVanherst/{github.itemName.replaceAll(' ','-').toLowerCase()}</p>
 							</div>
 						</div>
@@ -70,8 +72,7 @@
 	</SidebarTexts>
 {/if}
 
-<!-- workshop -->
-<SidebarTexts titlecard="Workshop" icon="steamLogoLined.webp">
+<SidebarTexts titlecard="Workshop" icon="steamLogo.webp">
 	{#if data.workshopData.full}
 		<Carousel>
 			{#each data.workshopData.full as data}
@@ -113,7 +114,7 @@
 </SidebarTexts>
 
 {#if $navigationControls.nsfw}
-	<SidebarTexts titlecard="Support" icon="kofiLogo.webp">
+	<SidebarTexts titlecard="Support" icon="patreonIcon.webp">
 		<KofiCards tiers={data.donationData.tiers}/>
 	</SidebarTexts>
 {/if}
@@ -140,7 +141,7 @@
 		* {	transition: .3s cubic-bezier(0.33, 1, 0.68, 1);}
 		a:hover {
 			.referral {
-				background: var(--accent7)!important;
+				background: var(--accent1)!important;
 				p {	color: 	white!important;}}}
 
 		.slide {
@@ -155,7 +156,7 @@
 		.referral { // fallback colour
 			padding: 	7px 9px 6px 9px;
 			overflow: 	hidden;
-			background: var(--accent10);
+			background: var(--pure1);
 			p {	color: 			black;
 				font-weight: 	600;
 				-webkit-box-orient: vertical;

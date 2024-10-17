@@ -112,7 +112,7 @@
 			white-space: 	nowrap;
 			margin: 		-19px 0 0 0;
 			font-family: 	"Lucida Console", Monospace;
-			color: 			var(--accent2);
+			color: 			var(--alternateAccent3);
 			text-shadow:
 					3px 3px 0 rgba(0, 0, 0.4),
 					-1px -1px 0 rgba(0, 0, 0.4),

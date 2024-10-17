@@ -3,31 +3,33 @@
 
 /* Root variables formatting */
 :root {
-	--accent10: #ffffff;
-	--accent9:  #333639FF;
-	--accent8:  #0c0021;
-	--accent7:  #8c00ff;
-	--accent6:  #ff0582;
-	--accent5:  #ff00fb;
-	--accent4:  #00ffff;
-	--accent3:  #00ff59;
-	--accent2:  #ffcc00;
-	--accent1:  #ff8800;
+	--pure1: #fff;
+	--transPure1: rgba(255, 255, 255, 0.9);
+	--pure2: #000;
+	--transPure2: rgba(0, 0, 0, 0.6);
 
-	--TransBlack: rgba(0, 0, 0, 0.6);
-	--TransWhite: rgba(255, 255, 255, 0.9);
+	--accent1:          #8c00ff;
+	--accent2:          #00ff59;
+	--alternateAccent1: #ff8800;
+	--alternateAccent2: #ff0582;
+	--alternateAccent3: #ffcc00;
+	--alternateAccent4: #00ffff;
+
+	--dark1:  #333639FF;
+	--dark2:  #0c0021;
 
 	--bordersmall: 3px;
 	--bordernormal: 6px;
 	--borderWide: 9px;
 
-	--imageSpacing: 5px;
-	--spacing: 15px;
+	--smallSpacing: 5px;
+	--normalSpacing: 10px;
+	--largeSpacing: 15px;
 }
 
 /* document formatting */
 
-* { scrollbar-color:    var(--accent7) transparent;
+* { scrollbar-color:    var(--accent1) transparent;
 	scrollbar-width:    thin;
 
 	&::-webkit-scrollbar {
@@ -36,11 +38,11 @@
 		background: 	transparent;}
 	&::-webkit-scrollbar-thumb {
 		border-radius: 	2px;
-		background: 	var(--accent7);}
+		background: 	var(--accent1);}
 	&::-webkit-scrollbar-thumb:hover {
-		background: 	var(--accent6);}
+		background: 	var(--alternateAccent2);}
 	&::-webkit-scrollbar-thumb:active {
-		background: 	var(--accent3);}}
+		background: 	var(--accent2);}}
 
 html {
 	margin-left: calc(100vw - 100%); }
@@ -53,7 +55,7 @@ body {
 
 	background:		#000;
 	font-family:    "Helvetica", Sans-serif;
-	color:	 		var(--accent10);
+	color:	 		var(--pure1);
 
 	overflow-x:         hidden;
 	scroll-behavior:    smooth;}
@@ -76,10 +78,14 @@ a {         cursor: crosshair;}
 /* style formatting */
 
 a { text-decoration:    none;
-	* { color: var(--accent10);}}
+	* { color: var(--pure1);}}
 
-b {
-	color: var(--accent2);}
+b {}
+c { font-size:     12px;
+	font-family:   "Jura", serif;
+	font-weight:   bold;
+	&.colour {  color: var(--accent1);}}
+
 
 h1, h2, h3, h4, h5 {
 
@@ -101,7 +107,7 @@ p { font-size:      12px;
 	font-family:    "Arial", Sans-serif, serif;
 	white-space:    break-spaces;
 	line-height:    120%;
-	color:	 		var(--accent10);
+	color:	 		var(--pure1);
 	margin: 		0;}
 
 .subtitle {
@@ -115,18 +121,18 @@ p { font-size:      12px;
 .citation {
 	font-size: 		10px;
 	font-family: 	"Helvetica", Sans-serif;
-	color:          var(--accent10);
+	color:          var(--pure1);
 
 	position: 	relative;
 	display: 	block;
 
 	span {
 		transition: color .3s ease-in-out;
-		color: var(--accent2);;}
+		color: var(--alternateAccent3);;}
 
 	&:hover {
 		> span {
-			color: var(--accent7);}}}
+			color: var(--accent1);}}}
 /* list formatting */
 
 title {
@@ -151,8 +157,8 @@ ul {
 
 
 .quote {
-	border-left: 	1px solid var(--accent9);
-	border-right: 	1px solid var(--accent9);
+	border-left: 	1px solid var(--dark1);
+	border-right: 	1px solid var(--dark1);
 	padding: 		10px;
 
 	position:       relative;

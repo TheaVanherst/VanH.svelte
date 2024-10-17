@@ -60,8 +60,8 @@
 			.offset {	width: 	100%;}}}
 
 	.offset {		margin: 	0 0 0 auto;
-		.divider {	border-left: 3px solid var(--accent7);
-					background: var(--TransBlack);
+		.divider {	border-left: 3px solid var(--accent1);
+					background: var(--transPure2);
 					padding: 	0 0 0 10px;
 			img {	margin: 	auto 0;}
 			h2 {	padding: 	6px 10px 10px 10px;}}}

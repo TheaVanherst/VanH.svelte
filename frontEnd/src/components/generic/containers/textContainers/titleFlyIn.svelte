@@ -39,7 +39,7 @@
 		.card {
 			margin:     5px 5px 5px 5px;
 			padding: 	9px 10px 8px 10px;
-			background: var(--TransWhite);
+			background: var(--transPure1);
 			:global(h4) {
 				padding-bottom: 2px;
 				color: black;}

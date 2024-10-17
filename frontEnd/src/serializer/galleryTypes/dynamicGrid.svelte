@@ -22,18 +22,18 @@
 <style lang="scss">
     .dynamicGrid {
         display: grid;
-        gap: var(--imageSpacing);
+        gap: var(--smallSpacing);
         vertical-align: bottom;
 
         .row {
             vertical-align: bottom;
             display: flex;
-            gap: var(--imageSpacing);
+            gap: var(--smallSpacing);
 
             width: 100%;
 
             .col {
-                background: var(--TransBlack);
+                background: var(--transPure2);
 
                 overflow:   hidden;
                 width:      50%;

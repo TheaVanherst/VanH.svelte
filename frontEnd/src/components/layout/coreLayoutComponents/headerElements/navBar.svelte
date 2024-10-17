@@ -189,8 +189,8 @@
 		padding: 	0 6px;
 		margin: 	0 0 10px;
 		gap: 		1px;
-		background: 	var(--TransBlack);
-		border-bottom: 	1px solid var(--accent7);
+		background: 	var(--transPure2);
+		border-bottom: 	1px solid var(--accent1);
 		border-radius: 	20px;
 
 		.navButton {
@@ -214,13 +214,13 @@
 			padding: 	0 0 3px;
 			position: 	absolute;
 			background: black;
-			border:		1px solid var(--accent7);
+			border:		1px solid var(--accent1);
 			border-top: 1px solid black;
 			border-bottom-right-radius: var(--borderWide);
 			border-bottom-left-radius: 	var(--borderWide);}
 
 		&:hover {
-			background: var(--accent7);
+			background: var(--accent1);
 			> h5 {
 				text-decoration-color: 	transparent;}}}
 
@@ -231,11 +231,11 @@
 		&:last-child {	 .inv, .activeInv { margin: 0 -6px -1px 0; }}}
 	.inv, .activeInv {	padding: 		8px!important;
 						border-radius: 	50%;}
-	.inv { &:hover {	background: 	var(--accent7);
+	.inv { &:hover {	background: 	var(--accent1);
 						filter: 		revert!important;}}
-	.activeInv {		background: 	var(--accent10);
+	.activeInv {		background: 	var(--pure1);
 		img {			filter: 		revert;}
-		&:hover {		background: 	var(--accent7);
+		&:hover {		background: 	var(--accent1);
 			filter: 	revert!important;
 			img {		filter: 		invert(1)!important;}}}
 
@@ -255,7 +255,7 @@
 		#navigation {
 			.navButton {
 				&.currentSubmenu {
-							background: var(--accent7);}}}}
+							background: var(--accent1);}}}}
 
 	#seperatedMenu {
 		display: 	flex;
@@ -269,9 +269,9 @@
 		.navButton {
 			padding: 	5px 15px 5px 10px;
 			margin: 	0 auto;
-			border: 	1px solid var(--accent7);
-			background: var(--TransBlack);
+			border: 	1px solid var(--accent1);
+			background: var(--transPure2);
 			&.currentRoot {
-				background: var(--accent7);
-				border: 	1px solid var(--accent7);}}}
+				background: var(--accent1);
+				border: 	1px solid var(--accent1);}}}
 </style>

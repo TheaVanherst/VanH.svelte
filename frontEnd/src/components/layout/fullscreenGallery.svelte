@@ -117,7 +117,7 @@
 		z-index: 	10;
 		width: 		100%;
 		height: 	100vh;
-		background: var(--TransBlack);}
+		background: var(--transPure2);}
 
 	// Paging Dots
 

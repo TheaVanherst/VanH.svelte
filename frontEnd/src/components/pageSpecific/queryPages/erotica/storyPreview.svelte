@@ -12,7 +12,7 @@
     let active = false;
 </script>
 
-<div class="container wideBorder"
+<div class="eroticaPreview wideBorder"
 	on:mouseover={() => active = true}
 	on:mouseleave={() => active = false}
 	class:active={active}>
@@ -57,18 +57,18 @@
 </div>
 
 <style lang="scss">
-	.container {
+	.eroticaPreview {
 		transition: 	border .3s ease;
 		border-bottom: 	1px solid transparent;
 		overflow: 		hidden;
 
 		.description {
-			background: 	var(--TransBlack);}
+			background: 	var(--transPure2);}
 		&.active {
-			border-bottom: 	1px solid var(--accent7);
+			border-bottom: 	1px solid var(--accent1);
 			.description {	background: black;}
 			.transform {	transform: 	scale(1.1);}
-			.bannerTitle {	background: var(--accent7);
+			.bannerTitle {	background: var(--accent1);
 				h4 {		color: 	white;}}}}
 
 	.authors {
@@ -100,7 +100,7 @@
 			padding: 	10px 12px 11px 12px;
 			margin:     5px 5px 5px 5px;
 
-			background: 	var(--TransWhite);
+			background: 	var(--transPure1);
 			transition: 	background .3s ease;}
 			h4 {	color: 	black;}}
 

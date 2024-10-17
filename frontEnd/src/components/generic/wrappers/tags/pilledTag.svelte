@@ -19,7 +19,7 @@
 		display: 		inline-flex;
 		border-radius: 	10px;
 		overflow: 		hidden;
-		border: 		1px var(--accent9) solid;
+		border: 		1px var(--dark1) solid;
 		margin: 		2px 0 2px 1px;
 
 		> div {
@@ -28,20 +28,20 @@
 			:global(span) {	margin: 0 5px;}}
 		:global(span) {		margin: 1px 0 0;}
 
-		&.hover:hover {			border-color: 	var(--accent7);
-			.fill {				background: var(--accent7);}
+		&.hover:hover {			border-color: 	var(--accent1);
+			.fill {				background: var(--accent1);}
 			.outline {
-				:global(span) {	color:  var(--accent7);}}}}
+				:global(span) {	color:  var(--accent1);}}}}
 
 	.fill {
 		transition: background .2s ease-in-out;
-		background: var(--accent9);
-		color: 		var(--accent10);
+		background: var(--dark1);
+		color: 		var(--pure1);
 
 		:global(span) {
 			color: 	white;}}
 
 	.outline {
 		:global(span) {
-			color:  var(--accent9);}}
+			color:  var(--dark1);}}
 </style>

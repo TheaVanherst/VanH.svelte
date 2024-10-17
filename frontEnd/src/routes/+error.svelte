@@ -5,32 +5,28 @@
 </script>
 
 {#if $page?.error}
-    <SidebarTexts titlecard="Error {$page?.status}">
-        <div class="container">
-            <img src="/branding/error.gif"/>
+    <SidebarTexts titlecard="Error {$page?.status}" icon="resetIcon.webp">
+        <div class="container wideBorder">
+            <img class="errorImage regularBorder imageWrapper" src="/branding/error.gif"/>
             <div class="caption">
-                <h3>{$page?.error?.message}</h3>
+                <h1>{$page?.error?.message}</h1>
             </div>
         </div>
     </SidebarTexts>
 {/if}
 
 <style lang="scss">
+
 	.container {
 		display:            flex;
-		border-radius:      5px;
-        background:         var(--TransBlack);
-        position:           relative;
-        margin-bottom:      15px;
+        background:         var(--transPure2);
+        border:             1px solid var(--accent1);
 
-        img {
+        .errorImage {
 			width:          60%;
-            object-fit:     cover;
             margin:         10px;
-            border-radius:  5px;
             overflow:       hidden;}
 
-        .caption {
-            padding: 15px;}
-	}
+        .caption {  padding: 15px;
+            > *:not(:first-child) {   padding-top: 8px;}}}
 </style>

@@ -84,7 +84,7 @@
 
 		&.inverted {
 			border-radius: 	19px;
-			border: 		1px solid var(--accent7);
+			border: 		1px solid var(--accent1);
 			.characterCard {
 				:global {
 					h4 { 	color: 		white;}}}}
@@ -104,7 +104,7 @@
 		h4 { color: 	black;
 			 margin: 0 0 1px 0;}
 
-		&:hover {	background: var(--accent7);
+		&:hover {	background: var(--accent1);
 			h4 {	color: 		white;}}
 		&.characters {
 			padding:    	3px 15px 3px 3px;}

@@ -64,17 +64,17 @@
 			linear-gradient(0deg, transparent 49%, $gridColour 50%, $gridColour 50%, transparent 51%, transparent),
 			linear-gradient(-90deg, transparent 49%, $gridColour 50%, $gridColour 50%, transparent 51%, transparent);}
 
-	.smaller {	@include gradientGen(var(--accent9));
+	.smaller {	@include gradientGen(var(--dark1));
 		background-size:	1em 1em;
 		animation: 			barStripe 2s linear infinite;
 		font-size: 			25px;}
-	.faded {	@include gradientGen(var(--accent7));
+	.faded {	@include gradientGen(var(--accent1));
 		background-size:	1em 1em;
 		font-size: 			75px;
-		border: 			1px solid var(--accent7);
+		border: 			1px solid var(--accent1);
 		animation: 			barStripe 6s linear infinite;
 		transition: 		opacity .3s ease;}
-	.animated {	@include gradientGen(var(--accent5));
+	.animated {	@include gradientGen(var(--brightAccent1));
 		background-size:	1em 1em;
 		animation: 			gradient 6s linear infinite;
 		mask-image: 		linear-gradient(90deg, rgba(255, 255, 255, 0), black 5%, rgba(255, 255, 255, 0) 90%);}

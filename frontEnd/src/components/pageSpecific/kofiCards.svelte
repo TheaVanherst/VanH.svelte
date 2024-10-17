@@ -59,7 +59,7 @@
 
 		overflow: 	hidden;
 		display: 	inline-flex;
-		background: var(--accent10);
+		background: var(--pure1);
 
 		.card {
 			width: 		100%;
@@ -77,7 +77,7 @@
 		width: 		100%;
 
 		.titles {
-			background: var(--TransWhite);
+			background: var(--transPure1);
 			margin: 	auto 5px 5px 5px;
 			padding: 	8px 10px;
 			width: 		100%;
@@ -101,7 +101,7 @@
 			padding: 		5px;
 			border-radius: 	20px;
 
-			background: var(--accent9);
+			background: var(--dark1);
 			transition: background .2s ease-in-out;
 			img {
 				height: 24px;
@@ -113,8 +113,8 @@
 
 	a:hover {
 		.joinButton {
-			&.patreon {	background: var(--accent7);}
-			&.kofi {		background: var(--accent6);} }
+			&.patreon {	background: var(--accent1);}
+			&.kofi {		background: var(--alternateAccent2);} }
 	}
 
 	ul {	margin: 		10px 0 5px 0;

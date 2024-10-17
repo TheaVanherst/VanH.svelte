@@ -7,20 +7,20 @@
 		brightness(97%) contrast(132%);}
 
 @keyframes colorRotateFadeIn {
-	from {  color: var(--accent10);}
-	to {    color: var(--accent2);}};
+	from {  color: var(--pure1);}
+	to {    color: var(--alternateAccent3);}};
 @keyframes colorRotateFadeout {
-	from {  color: var(--accent2);}
-	to {    color: var(--accent10);}};
+	from {  color: var(--alternateAccent3);}
+	to {    color: var(--pure1);}};
 
 @keyframes colorRotate {
-	0% {	color: var(--accent2);}
-	15% {	color: var(--accent1);}
-	30% {	color: var(--accent6);}
-	50% {	color: var(--accent7);}
-	65% {	color: var(--accent4);}
-	80% {	color: var(--accent3);}
-	100% {	color: var(--accent2);}}
+	0% {	color: var(--alternateAccent3);}
+	15% {	color: var(--alternateAccent1);}
+	30% {	color: var(--alternateAccent2);}
+	50% {	color: var(--accent1);}
+	65% {	color: var(--brightAccent2);}
+	80% {	color: var(--accent2);}
+	100% {	color: var(--alternateAccent3);}}
 
 @keyframes spin {
 	from {	transform: translate(-50%,-50%) rotate(360deg);}
@@ -39,12 +39,12 @@
 		width: 		500px;
 
 		border-radius: 20px;
-		border: 	1px solid var(--accent7);
+		border: 	1px solid var(--accent1);
 		outline: 	none;
-		background: var(--TransBlack);
+		background: var(--transPure2);
 
 		font-family: 	"Playfair Display", serif;
-		color: 			var(--accent10);
+		color: 			var(--pure1);
 		font-weight: 	700;}}
 
 .pagingDot {
@@ -52,16 +52,16 @@
 	height: 	24px;
 	margin:     auto 0;
 	border-radius: 	50%;
-	border: 1px solid var(--accent7);
-	background: var(--TransBlack);
+	border: 1px solid var(--accent1);
+	background: var(--transPure2);
 	transition: background .3s ease;
 
 	&:hover {
-		background: var(--accent7);}
+		background: var(--accent1);}
 
 	&.active {
-		border: 1px solid var(--TransWhite);
-		background:     var(--accent10);
+		border: 1px solid var(--transPure1);
+		background:     var(--pure1);
 		pointer-events: none;}}
 
 // TODO: generic containers
@@ -83,14 +83,14 @@
 .externalCitation {
 	width:          max-content;
 	padding:        3px 10px 3px 3px;
-	background:     var(--TransBlack);
+	background:     var(--transPure2);
 
 	position: 	    relative;
 	display: 	    block;
 
-	border-right:       1px solid var(--accent2);
+	border-right:       1px solid var(--alternateAccent3);
 	&.hover:hover {
-		border-right:   1px solid var(--accent7);}}
+		border-right:   1px solid var(--accent1);}}
 
 // TODO: cropping
 
@@ -108,11 +108,19 @@
 	position:       relative;
 	overflow:       hidden;}
 
+.container {
+	position: 		relative;
+	background: 	var(--transPure2);
+	border:         1px solid var(--accent1);
+
+	margin-bottom: 	15px;
+	padding: 		15px;}
+
 // TODO: icons
 
 a {
 	.socialIco {
-		background-color: var(--accent10);
+		background-color: var(--pure1);
 		padding: 	4px;
 		margin: 	5px;
 		right: 		0;
@@ -163,7 +171,7 @@ a {
 		transition: opacity .6s ease;
 
 		font-family:    Arial, serif;
-		background:     var(--TransBlack);
+		background:     var(--transPure2);
 		border-radius:  var(--bordernormal);}
 	&:before {
 		content:        'Content warning';

@@ -32,7 +32,7 @@
 		}
 
 		&:hover {
-			background: 	var(--accent7);
+			background: 	var(--accent1);
 			.icon {
 				filter: invert(1);}
 			p {	color: 	white;}}}

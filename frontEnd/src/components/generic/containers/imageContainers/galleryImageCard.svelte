@@ -61,10 +61,10 @@
 	.absolute {		position: 	absolute;}
 	.infoPlate {	overflow: 	hidden scroll;}
 	.wrapper {		margin: 	8px 12px 10px 10px;}
-	.titleCard {	background: var(--TransWhite);}
-	.accent {		background: var(--accent10);}
+	.titleCard {	background: var(--transPure1);}
+	.accent {		background: var(--pure1);}
 	.previewCard.hovered .titleCard {
-					background: var(--accent10);}
+					background: var(--pure1);}
 	.previewCard:hover .titleCard {
-					border: 	1px solid var(--accent7);}
+					border: 	1px solid var(--accent1);}
 </style>

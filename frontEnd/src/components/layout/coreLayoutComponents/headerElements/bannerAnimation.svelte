@@ -76,13 +76,13 @@
 			border-radius: 		50%;}
 
 		.circle {
-			&:nth-child(1) > .dot {background: var(--accent3);}
-			&:nth-child(2) > .dot {background: var(--accent4);}
-			&:nth-child(3) > .dot {background: var(--accent1);}
-			&:nth-child(4) > .dot {background: var(--accent6);}
-			&:nth-child(5) > .dot {background: var(--accent7);}
-			&:nth-child(6) > .dot {background: var(--accent3);}
-			&:nth-child(6) > .dot {background: var(--accent4);}
+			&:nth-child(1) > .dot {background: var(--accent2);}
+			&:nth-child(2) > .dot {background: var(--brightAccent2);}
+			&:nth-child(3) > .dot {background: var(--alternateAccent1);}
+			&:nth-child(4) > .dot {background: var(--alternateAccent2);}
+			&:nth-child(5) > .dot {background: var(--accent1);}
+			&:nth-child(6) > .dot {background: var(--accent2);}
+			&:nth-child(6) > .dot {background: var(--brightAccent2);}
 
 			@mixin cgm($ringSize, $border, $colour, $planetSize, $rotation){
 				border: 				$border solid $colour;
@@ -102,8 +102,8 @@
 					margin-top: 	calc(50% - ((($ringSize + $planetSize) / 2.85) - 4px));
 					margin-left: 	calc(50% - ((($ringSize + $planetSize) / 2.8) + 5px));}}
 
-			&.decorationRing1 {	@include cgm(250px, 15px, var(--accent7), 0px,  3s); }
-			&.decorationRing2 {	@include cgm(320px, 10px, var(--accent3), 0px,  3s); }
+			&.decorationRing1 {	@include cgm(250px, 15px, var(--accent1), 0px,  3s); }
+			&.decorationRing2 {	@include cgm(320px, 10px, var(--accent2), 0px,  3s); }
 
 			&.ring5 {	@include cgm(190px, 2px, #a955cb, 4px,  3s); }
 			&.ring2 {	@include cgm(300px, 2px, #5da4a4, 6px,  8s); }

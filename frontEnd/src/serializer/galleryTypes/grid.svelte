@@ -22,7 +22,7 @@
 <style lang="scss">
 	.grid {
         display:        grid;
-        gap:            var(--imageSpacing);
+        gap:            var(--smallSpacing);
         vertical-align: bottom;
 
         height:     100%;
@@ -31,12 +31,12 @@
         .row {
 	        vertical-align: bottom;
 	        display: flex;
-            gap: var(--imageSpacing);
+            gap: var(--smallSpacing);
 
 	        min-width: 100%;
 
 	        .col {
-                background: var(--TransBlack);
+                background: var(--transPure2);
 
 		        overflow:   hidden;
 		        width:      50%;

@@ -28,6 +28,6 @@
 		right: 	0;
 
 		font-weight: 700;
-		background: var(--TransWhite);
+		background: var(--transPure1);
 		color: 		black;}
 </style>

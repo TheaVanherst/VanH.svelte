@@ -70,15 +70,15 @@
 
 	swiper-container::part(bullet) {
 		background: 	transparent;
-		border: 		1px solid var(--accent7);
+		border: 		1px solid var(--accent1);
 		opacity:    	1;
 		transition: 	ease .3s;
 		&:hover {
-			background: var(--accent7);
-			border: 	1px solid var(--accent7);}}
+			background: var(--accent1);
+			border: 	1px solid var(--accent1);}}
 	swiper-container::part(bullet-active) {
-		background: 	var(--accent10);
-		border: 		1px solid var(--accent10);
+		background: 	var(--pure1);
+		border: 		1px solid var(--pure1);
 	}
 
 	swiper-container.margin::part(container) { // bad work around.

@@ -6,6 +6,6 @@
 
 <style>
 	.separator {
-		border-bottom: 1px solid var(--accent9);
+		border-bottom: 1px solid var(--dark1);
 		margin: 5px 15px 5px 10px;}
 </style>

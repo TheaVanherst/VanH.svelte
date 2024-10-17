@@ -149,13 +149,13 @@
 					border: 	1px solid white;
 					opacity: 	0.6;
 				&.active {
-					border: 	1px solid var(--accent9);
+					border: 	1px solid var(--dark1);
 					opacity: 	1;}
 				&:hover {
 					opacity: 	1;}}}}
 
 	.tableGroup {
-		background: var(--TransWhite);
+		background: var(--transPure1);
 		padding: 	15px;
 		margin: 	15px 0 0 0;
 		max-height: 300px;

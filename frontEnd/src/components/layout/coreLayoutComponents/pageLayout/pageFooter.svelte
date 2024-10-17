@@ -12,7 +12,7 @@
 		{/if}
 	</div>
 	<div class="right">
-		<p> Website developed and created by Thea Vanherst <br> Rights reserved <a href="https://github.com/TheaVanherst/VanH.svelte/">VanH.art</a></p>
+		<c> Website developed and created by Thea Vanherst <br> Rights reserved <a href="https://github.com/TheaVanherst/VanH.svelte/">VanH.art</a></c>
 		<img src="/icons/vanhSocial.webp">
 	</div>
 </div>
@@ -29,8 +29,8 @@
 		.right {display: 	none;}}
 
 	.footer {
-		background-color: 			var(--TransBlack);
-		border-top: 				1px solid var(--accent7);
+		background-color: 			var(--transPure2);
+		border-top: 				1px solid var(--accent1);
 		border-top-left-radius: 	var(--borderWide);
 		border-top-right-radius: 	var(--borderWide);
 
@@ -64,6 +64,6 @@
 			width:	max-content;
 			img {
 				filter: invert(1);}
-			p {		text-align: right;
-					color: var(--accent9);}}}
+			c {		text-align: right;
+					color: var(--dark1);}}}
 </style>

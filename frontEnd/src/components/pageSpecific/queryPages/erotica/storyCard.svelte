@@ -78,12 +78,12 @@
 			width: 	100%;}}
 
 	#storyBlock {
-		background: var(--TransBlack);
+		background: var(--transPure2);
 		padding: 	26px 28px 31px;}
 
 	#descriptionBlock {
 		padding: 	5px 15px 10px 15px;
-		background: var(--TransWhite);
+		background: var(--transPure1);
 		.writers {
 			gap: 		10px;
 			margin:    0 0 10px 0;}}
