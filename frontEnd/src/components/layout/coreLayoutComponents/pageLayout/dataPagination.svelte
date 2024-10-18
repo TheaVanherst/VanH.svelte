@@ -36,25 +36,33 @@
     $: totalPages && pageCountUpdate();
 </script>
 
-<div class='pagination'>
-	{#each fakeArray as _, index (index)}
-		<div class="pagingDot"
-			 class:active={index === currentPage}
-			 on:click={() => directPage(index)}>
-		</div>
-	{/each}
-</div>
+{#if lastPage !== undefined}
+	<div class='pagination'>
+		{#each fakeArray as _, index (index)}
+			<div class="pagingDot"
+				 class:active={index === currentPage}
+				 on:click={() => directPage(index)}>
+			</div>
+		{/each}
+	</div>
 
-<slot/>
+	<slot/>
 
-<div class='pagination'>
-	{#each fakeArray as _, index (index)}
-		<div class="pagingDot"
-			 class:active={index === currentPage}
-			 on:click={() => directPage(index)}>
-		</div>
-	{/each}
-</div>
+	<div class='pagination'>
+		{#each fakeArray as _, index (index)}
+			<div class="pagingDot"
+				 class:active={index === currentPage}
+				 on:click={() => directPage(index)}>
+			</div>
+		{/each}
+	</div>
+{:else}
+	<div class="noResults container wideBorder">
+		<p>
+			Nothing here but us deers.
+		</p>
+	</div>
+{/if}
 
 <style lang="scss">
 	.pagination {
@@ -66,4 +74,10 @@
 		align-items: 		center;
 		justify-content: 	center;
 		pointer-events: 	all;}
+
+	.noResults {
+		margin: 10px auto;
+		display: flex;
+		padding: 12px 18px;
+	}
 </style>

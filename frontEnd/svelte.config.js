@@ -17,7 +17,6 @@ const config = {
 				'*','/','/afterdark/',
 				'/featured/','/afterdark/featured/',
 
-				'/afterdark/latest',
 				'/artwork/','/afterdark/artwork/',
 				'/design/','/afterdark/design/',
 				'/workshop','/afterdark/workshop/',

@@ -1,6 +1,7 @@
 <script>
+
     import * as transitionFunctions from 'svelte/transition';
-    import { scale } 				from "svelte/transition";
+    import { scale, fly  } 				from "svelte/transition";
     import { cubicOut } 			from 'svelte/easing';
 
     import { afterNavigate, beforeNavigate } 	from "$app/navigation";
@@ -35,19 +36,19 @@
     let transition,
         transitionSpeed = [50, 20]; // transition position multipliers
 
-    $:  transition = $navigationControls.direction[1] === 0 ? transitionFunctions["fly"] : transitionFunctions["fly"];
+    $:  transition = $navigationControls.direction[1] === 0 ? transitionFunctions["fly"] : transitionFunctions["fade"];
 </script>
 
 <div class="parentElement">
 	{#if !$navigationControls.transitioning}
 		<div class="transitionWrapper"
-			 in:transition={{
+			 in:fly={{
         	easing: 	cubicOut,
         	delay: 		175, // specifically for social media transitions
             duration:   225,
             x: $navigationControls.direction[0] * transitionSpeed[0],
             y: $navigationControls.direction[1] * transitionSpeed[1]}}
-			 out:transition={{
+			 out:fly={{
            	easing: 	cubicOut,
             duration:   225,
             x: -$navigationControls.direction[0] * transitionSpeed[0],

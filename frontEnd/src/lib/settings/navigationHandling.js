@@ -74,34 +74,33 @@ const
             strippedRawQuery = (currentRaw).split("?"), //removes queryPresets from the search
             prevPageIndex = indexCheck(currentPageArray[nsfwCheckBool]),
             currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]);
+        const
+            strippedUrlCheck = get(navigationControls).nsfw ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`,'') : strippedRawQuery[0],
+            pageId = navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined
 
         let directionOffset = [];
 
         if (currentPageArray.length ^ previousPageArray.length && prevPageIndex ^ currPageIndex) {
-                // initial page load
-            directionOffset = [0,0];
-        } else if (currentPageArray.length === previousPageArray.length && prevPageIndex === currPageIndex) {
-                // for pages transitioning in both directions
-            directionOffset = [0,0];
-        } else {
-            directionOffset[1] = currentPageArray.length ^ previousPageArray.length ? currentPageArray.length > previousPageArray.length ? 1 : -1 : 0;
-            directionOffset[0] = directionOffset[1] === 0 ? prevPageIndex > currPageIndex ? 1 : -1 : 0;}
-                // literally everything else
-
-        const
-            strippedUrlCheck = get(navigationControls).nsfw ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`,'') : strippedRawQuery[0],
-            pageId = navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined
+            // initial page load
+            directionOffset =   [0,0]}
+        else if (currentPageArray.length === previousPageArray.length && prevPageIndex === currPageIndex) {
+            // transitioning in vertical direction
+            const pagesIdPos = e => navigationDirectories[prevPageIndex].pages.findIndex(i => e === i.path ? i.path : null) ?? 0;
+            directionOffset =   [0, pagesIdPos(previousRaw.replace('/afterdark','')) > pagesIdPos(currentRaw.replace('/afterdark','')) ? 1 : -1 ?? 0];}
+        else {
+            // transitioning in horizontal direction
+            directionOffset =   [prevPageIndex > currPageIndex ? 1 : -1 ?? 0, 0]}
                 // ensures everything is synced on random page redirect
 
         navigationControls.update(e => ({ ...e,
             direction: directionOffset}));
         directoryStatus.update(e => ({ ...e,
-            rawDirectory: currentRaw,
-            currentRoot: "/" + (currentPageArray[nsfwCheckBool] ?? ""),
-            nsfwOptional: get(navigationControls).nsfw ? "/" + get(directoryStatus).nsfwKeyword : '',
-            query: strippedRawQuery[1] ? "/?" + strippedRawQuery[1] : "",
-            strippedUrl: strippedUrlCheck,
-            rootIndex: [prevPageIndex, pageId]}));
+            rawDirectory:   currentRaw,
+            currentRoot:    "/" + (currentPageArray[nsfwCheckBool] ?? ""),
+            nsfwOptional:   get(navigationControls).nsfw ? "/" + get(directoryStatus).nsfwKeyword : '',
+            query:          strippedRawQuery[1] ? "?" + strippedRawQuery[1] : "",
+            strippedUrl:    strippedUrlCheck,
+            rootIndex:      [prevPageIndex, pageId]}));
     };
 
 export { directoryProcessing };
