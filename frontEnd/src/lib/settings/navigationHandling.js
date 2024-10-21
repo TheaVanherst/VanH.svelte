@@ -85,7 +85,7 @@ const
             directionOffset =   [0,0]}
         else if (currentPageArray.length === previousPageArray.length && prevPageIndex === currPageIndex) {
             // transitioning in vertical direction
-            const pagesIdPos = e => navigationDirectories[prevPageIndex].pages.findIndex(i => e === i.path ? i.path : null) ?? 0;
+            const pagesIdPos = e => navigationDirectories[prevPageIndex]?.pages?.findIndex(i => e === i.path ? i.path : null) ?? 0;
             directionOffset =   [0, pagesIdPos(previousRaw.replace('/afterdark','')) > pagesIdPos(currentRaw.replace('/afterdark','')) ? 1 : -1 ?? 0];}
         else {
             // transitioning in horizontal direction

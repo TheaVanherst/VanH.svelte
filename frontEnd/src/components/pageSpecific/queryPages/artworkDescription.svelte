@@ -65,7 +65,7 @@
 				<SocialsFoldable {author} character={true}/>
 			{/each}
 			{#if data.tags?.length > 0}
-				<FoldedTags tagSet={data.tags} urlRedirect={data.slug} redirectType="{($directoryStatus.rawDirectory).replaceAll('/','')}="/>
+				<FoldedTags tagSet={data.tags} urlRedirect={data.slug}/>
 			{/if}
 		{/if}
 		{#if data.imageRefId || data.photoshopRefId}

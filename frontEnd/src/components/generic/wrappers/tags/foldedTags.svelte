@@ -10,7 +10,6 @@
     export let
 		tagSet,
 		urlRedirect,
-		redirectType,
 		inverted = 		false;
 
     let active = 		false,
@@ -18,10 +17,14 @@
 		timer;
 
     const copy = () => {
-        let urlQueryCheck = ($page.url.search !== "" ? $page.url.search + "&" : "?")
-        navigator.clipboard.writeText($page.url.origin + $page.url.pathname + urlQueryCheck + redirectType + urlRedirect);
+        let redirectOutput = $page.url.origin + $page.url.pathname;
+        	redirectOutput += $page.url.search.includes("gallery") ?
+            ($page.url.search) :
+            ($page.url.search ? $page.url.search + "&" : "?") + "gallery=" + urlRedirect
+        navigator.clipboard.writeText(redirectOutput)
         copied = true;
         setTimeout(() => { copied = false; }, 3000);};
+    // this is lazy, but it works.
 </script>
 
 <div class="controls" class:inverted on:click|stopPropagation>
@@ -96,8 +99,8 @@
 		img {
 			transition: filter .3s ease;
 			filter: 	invert(1);
-			width: 		22px;
-			height: 	22px;
+			width: 		20px;
+			height: 	20px;
 			margin: 	auto;
 			display: 	flex;
 			padding: 	6px;}

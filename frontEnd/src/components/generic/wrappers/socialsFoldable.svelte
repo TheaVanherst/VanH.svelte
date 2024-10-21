@@ -1,6 +1,7 @@
 <script>
     import { slide } 			from 'svelte/transition';
 
+    import { page } from "$app/stores";
     import { directoryStatus } 	from "$lib/settings/navigationHandling.js";
 
     import RollupButton 		from "$root/components/generic/buttons/rollupButton.svelte";
@@ -19,7 +20,6 @@
 
     let active = 		false,
         timer;
-
 </script>
 
 {#if character === false}

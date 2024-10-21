@@ -31,6 +31,9 @@
 
 	// TODO: Mobile needs to have the ability to close the fold down menu on click.
 	// TODO: This entire UI needs to be reworked. It's fucking stupid.
+
+	// url={(!$navigationControls.nsfw ? '/' + $directoryStatus.nsfwKeyword : '') + $directoryStatus.strippedUrl}
+	// Code for the NSFW toggle to be able to pre-render the page.
 </script>
 
 {#if $navigationData.navigation}
@@ -194,7 +197,7 @@
 		border-radius: 	20px;
 
 		.navButton {
-			padding: 8px 11px 7px 9px;
+			padding: 7px 11px 7px 9px;
 			&:not(.dropDown):hover {
 				filter: brightness(0) 	saturate(100%)
 				invert(15%) 	sepia(75%)
