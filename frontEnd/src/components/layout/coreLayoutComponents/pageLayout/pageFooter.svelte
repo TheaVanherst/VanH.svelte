@@ -12,7 +12,7 @@
 		{/if}
 	</div>
 	<div class="right">
-		<c> Website developed and created by Thea Vanherst <br> Rights reserved <a href="https://github.com/TheaVanherst/VanH.svelte/">VanH.art</a></c>
+		<c> Developed by Thea Vanherst <br> Rights reserved <a href="https://github.com/TheaVanherst/VanH.svelte/">VanH.art</a></c>
 		<img src="/icons/vanhSocial.webp">
 	</div>
 </div>

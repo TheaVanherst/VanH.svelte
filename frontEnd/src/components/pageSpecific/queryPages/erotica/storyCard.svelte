@@ -10,6 +10,7 @@
     import SocialsFoldable 	from "$root/components/generic/wrappers/socialsFoldable.svelte";
 
     export let data;
+    console.log(data);
 </script>
 
 <h1>{data.pieceName}</h1>

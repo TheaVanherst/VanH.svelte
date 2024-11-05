@@ -1,43 +1,30 @@
 <script>
     import { page } 	from "$app/stores";
-    import { goto } 	from "$app/navigation";
     import { onMount } 	from "svelte";
 
     import Masonry 		from 'svelte-bricks';
     import Pagination 	from "$root/components/layout/coreLayoutComponents/pageLayout/dataPagination.svelte";
 
-    import { dataSetStore, fullscreenGalleryStore } from "$lib/settings/pageSettings.js";
-    import { queryFilter, searchTermBuilder } 		from "$lib/controllers/searchController.js";
+    import { dataSetStore } from "$lib/settings/pageSettings.js";
+    import { galleryManager, queryFilter, searchTermBuilder } from "$lib/controllers/searchController.js";
 
     import StoryPreview from "$root/components/pageSpecific/queryPages/erotica/storyPreview.svelte";
-    import StoryCard 	from "$root/components/pageSpecific/queryPages/erotica/storyCard.svelte";
 
-	export let data;
-
-    data.erotica =
-        data.erotica.map(a => ({ ...a,
-            searchTerms: (
-                searchTermBuilder.title(a) + searchTermBuilder.tags(a) +
-				searchTermBuilder.authors(a) + searchTermBuilder.characters(a))}));
+	export let
+		data;
+		data.erotica =
+			data.erotica.map(a => ({ ...a,
+				searchTerms: (
+					searchTermBuilder.title(a) + searchTermBuilder.tags(a) +
+					searchTermBuilder.authors(a) + searchTermBuilder.characters(a))}));
 
     let pagedData,
 		filteredData = queryFilter(data.erotica);
 
-    const
-		storySelect = async (story) => {
-			setTimeout(async () => {
-                $fullscreenGalleryStore.componentUrl = 	StoryCard;
-                $fullscreenGalleryStore.componentData = story;
-
-				if (!!$fullscreenGalleryStore.componentData) {
-					$page.url.searchParams.set('story',story.slug);
-					await goto (`?${$page.url.searchParams.toString()}`);}
-			}, 250);};
-
     onMount(() => {
-        $fullscreenGalleryStore.componentUrl = StoryCard;
-        $fullscreenGalleryStore.componentData = structuredClone(data.erotica).map(i => (i.slug === $page.url.searchParams.get('story') ? i : undefined)).filter(n => n)[0];
-	});
+        const
+            initialSlug = $page.url.searchParams.get('story');
+        	initialSlug ? galleryManager.textInitializing(data.erotica, initialSlug) : false; });
 </script>
 
 {#if !!data.erotica && data?.erotica?.length > 0}
@@ -54,7 +41,7 @@
 						idKey=	{`slug`}
 						animate= {false}
 						let:item>
-					<div class="erotica" on:click={storySelect(item)}>
+					<div class="erotica" on:click={galleryManager.storySelection(item)}>
 						<StoryPreview story={item}/>
 					</div>
 				</Masonry>

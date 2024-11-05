@@ -119,6 +119,7 @@
 					{#each navigationDirectories[currentIdSelected].pages as page}
 						<RedirectBuilder url="{page.path}" redirectName={page.pagePreview}>
 							<div class="navButton wideBorder"
+								 on:click={() => currentIdSelected = undefined}
 								 class:currentRoot={$directoryStatus.currentRoot === page.path}>
 								<div class="mediaIcon">
 									<img src="/icons/{page.imagePath}.webp"/>
@@ -257,6 +258,7 @@
 							height: 30px!important;}}
 		#navigation {
 			.navButton {
+
 				&.currentSubmenu {
 							background: var(--accent1);}}}}
 
@@ -275,6 +277,7 @@
 			border: 	1px solid var(--accent1);
 			background: var(--transPure2);
 			&.currentRoot {
+				pointer-events: none;
 				background: var(--accent1);
 				border: 	1px solid var(--accent1);}}}
 </style>

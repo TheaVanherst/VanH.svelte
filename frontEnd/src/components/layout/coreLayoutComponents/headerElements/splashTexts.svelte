@@ -93,7 +93,7 @@
 
 		&.animation {
 			animation:
-				colorRotate 1s linear infinite,
+				colorRotate 2s linear infinite,
 				float 2.3s ease-in-out infinite;}}
 
 	@keyframes float {

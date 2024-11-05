@@ -1,80 +1,49 @@
 <script>
     import { page } 	from "$app/stores";
-    import { goto } 	from "$app/navigation";
     import { onMount } 	from "svelte";
 
     import Masonry 		from 'svelte-bricks';
     import Pagination 	from "$root/components/layout/coreLayoutComponents/pageLayout/dataPagination.svelte";
 
-    import { dataSetStore, fullscreenGalleryStore, scrollIntoView } from "$lib/settings/pageSettings.js";
-    import { queryFilter, searchTermBuilder } 						from "$lib/controllers/searchController.js";
+    import { dataSetStore } 									from "$lib/settings/pageSettings.js";
+    import { queryFilter, searchTermBuilder, galleryManager }	from "$lib/controllers/searchController.js";
 
-    import ArtworkCard 			from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
-    import ArtworkDescription 	from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
+    import ArtworkCard 	from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
 
     export let
 		data;
-		data.designs =
+		data.designs = // TODO: this needs putting into the api request
 			data.designs.map(a => ({ ...a,
 				searchTerms: (
 					searchTermBuilder.sfw(a) + searchTermBuilder.title(a) + searchTermBuilder.renderStyle(a) +
 					searchTermBuilder.tags(a) + searchTermBuilder.authors(a) + searchTermBuilder.characters(a) +
 					searchTermBuilder.commissions(a)).toLowerCase()}));
 
-    let pagedData, filteredData = queryFilter(data.designs);
-
-    const
-		artworkSelect = async (gallery) => {
-			setTimeout(async () => {
-				if (!!$fullscreenGalleryStore.componentData) {
-					$page.url.searchParams.set('gallery',gallery.slug);
-
-					if ($fullscreenGalleryStore.currentImage > 0) {
-						$page.url.searchParams.set('img',$fullscreenGalleryStore.currentImage);}
-
-					await goto (`?${$page.url.searchParams.toString()}`,{noScroll: true});}
-			}, 250);}
+    let pagedQueryResults,
+        queryData = queryFilter(data.designs);
 
     onMount(() => {
         const
-			initialSlug = 		$page.url.searchParams.get('gallery'),
-        	initialImageId = 	Number($page.url.searchParams.get('img'));
-
-        if (initialSlug) {
-            let dataReOrg = structuredClone(data.designs).map(i => i.slug === initialSlug ? i : undefined).filter(n => n)[0],
-            	style = 	dataReOrg.gallery.styleType,
-                render = 	dataReOrg.gallery.renderType;
-
-            dataReOrg.gallery = 			dataReOrg.gallery.images.flat();
-            dataReOrg.gallery.styleType = 	style;
-            dataReOrg.gallery.renderType = 	render;
-
-            $fullscreenGalleryStore.componentUrl = 	ArtworkDescription;
-            $fullscreenGalleryStore.componentData = dataReOrg;
-            $fullscreenGalleryStore.currentImage = 	initialImageId;
-
-            setTimeout(() => {
-                scrollIntoView(`#${initialSlug}`)}, 250)
-        }});
+			initialSlug = $page.url.searchParams.get('gallery');
+        	initialSlug ? galleryManager.galleryInitializing(data.designs, initialSlug) : false; });
 </script>
 
 {#if !!data.designs && data?.designs?.length > 0}
-	{#if filteredData}
+	{#if queryData}
 		<Pagination
-				rows={filteredData} perPage={15}
+				rows={queryData} perPage={15}
 				goto={$dataSetStore.page}
 				bind:currentPage={$dataSetStore.page}
-				bind:trimmedRows={pagedData}>
-			{#if pagedData}
+				bind:trimmedRows={pagedQueryResults}>
+			{#if pagedQueryResults}
 				<Masonry
-						items=	{pagedData}
+						items=	{pagedQueryResults}
 						gap=	{10}
 						idKey=	{`slug`}
 						animate= {false}
 						let:item>
-					<div class="designPost"
-						 on:click={artworkSelect(item)}
-						 id="{item.slug}">
+					<div class="designPost" id="{item.slug}"
+						 on:click={galleryManager.artworkSelection(item)}>
 						<ArtworkCard data={item}/>
 					</div>
 				</Masonry>

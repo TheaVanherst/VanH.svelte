@@ -12,7 +12,7 @@
     let active = false;
 </script>
 
-<div class="eroticaPreview wideBorder"
+<div class="eroticaPreview wideBorder" id="{story.slug}"
 	on:mouseover={() => active = true}
 	on:mouseleave={() => active = false}
 	class:active={active}>
