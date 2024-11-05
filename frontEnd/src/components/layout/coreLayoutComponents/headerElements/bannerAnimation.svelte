@@ -1,10 +1,11 @@
 <script>
 	import { fade } from "svelte/transition";
+    export let afterdarkMode = false;
 </script>
 
 <div class="profileGraphic">
 	<div class="planetarySystem">
-		<div class="plane">
+		<div class="plane {afterdarkMode ? 'afterDark' : 'dayLight'}">
 			<div transition:fade>
 				<div class="circle ring1 plan">
 					<div class="dot"></div>
@@ -75,42 +76,46 @@
 			position: 			absolute;
 			border-radius: 		50%;}
 
-		.circle {
-			&:nth-child(1) > .dot {background: var(--accent2);}
-			&:nth-child(2) > .dot {background: var(--brightAccent2);}
-			&:nth-child(3) > .dot {background: var(--alternateAccent1);}
-			&:nth-child(4) > .dot {background: var(--alternateAccent2);}
-			&:nth-child(5) > .dot {background: var(--accent1);}
-			&:nth-child(6) > .dot {background: var(--accent2);}
-			&:nth-child(6) > .dot {background: var(--brightAccent2);}
+		@mixin cgm($ringSize, $border, $colour, $planetSize, $rotation){
+			border: 				$border solid $colour;
+			border-left-color: 		transparent;
+			border-right-color: 	transparent;
 
-			@mixin cgm($ringSize, $border, $colour, $planetSize, $rotation){
-				border: 				$border solid $colour;
-				border-left-color: 		transparent;
-				border-right-color: 	transparent;
+			width: 	$ringSize;
+			height: $ringSize;
+			top: 	calc(((100% - $ringSize) / 2) - ($border));
+			left: 	calc(((100% - $ringSize) / 2) - ($border));
 
-				width: 	$ringSize;
-				height: $ringSize;
-				top: 	calc(((100% - $ringSize) / 2) - ($border));
-				left: 	calc(((100% - $ringSize) / 2) - ($border));
+			animation: 	spin $rotation linear infinite;
 
-				animation: 	spin $rotation linear infinite;
+			> .dot {
+				width: 		$planetSize;
+				height: 	$planetSize;
+				background: $colour;
+				margin-top: 	calc(50% - ((($ringSize + $planetSize) / 2.85) - 4px));
+				margin-left: 	calc(50% - ((($ringSize + $planetSize) / 2.8) + 5px));}}
 
-				> .dot {
-					width: 		$planetSize;
-					height: 	$planetSize;
-					margin-top: 	calc(50% - ((($ringSize + $planetSize) / 2.85) - 4px));
-					margin-left: 	calc(50% - ((($ringSize + $planetSize) / 2.8) + 5px));}}
-
-			&.decorationRing1 {	@include cgm(250px, 15px, var(--accent1), 0px,  3s); }
-			&.decorationRing2 {	@include cgm(320px, 10px, var(--accent2), 0px,  3s); }
-
-			&.ring5 {	@include cgm(190px, 2px, #a955cb, 4px,  3s); }
-			&.ring2 {	@include cgm(300px, 2px, #5da4a4, 6px,  8s); }
-			&.ring3 {	@include cgm(350px, 2px, #bebe63, 7px,  12s);}
-			&.ring4 {	@include cgm(390px, 1px, #bb4c92, 10px, 10s);}
-			&.ring1 {	@include cgm(500px, 2px, #449b61, 5px,  43s);}
-			&.ring6 {	@include cgm(640px, 1px, #5da4a4, 4px, 167s);}}}
+		.afterDark {
+			.circle {
+				&.decorationRing1 {	@include cgm(250px, 15px, var(--pure1),   0px,  3s); }
+				&.decorationRing2 {	@include cgm(320px, 10px, var(--accent1), 0px,  3s); }
+				&.ring5 {	@include cgm(190px, 2px,  var(--accent1), 4px,  3s); }
+				&.ring2 {	@include cgm(300px, 2px,  var(--pure1), 6px,  8s); }
+				&.ring3 {	@include cgm(350px, 2px,  #bb4c92, 7px,  12s);}
+				&.ring4 {	@include cgm(390px, 1px,  var(--alternateAccent1), 10px, 10s);}
+				&.ring1 {	@include cgm(500px, 2px,  var(--accent1), 5px,  43s);}
+				&.ring6 {	@include cgm(640px, 1px,  var(--alternateAccent3), 4px, 167s);}}}
+		.dayLight {
+			.circle {
+				&.decorationRing1 {	@include cgm(250px, 15px, var(--accent1), 0px,  3s); }
+				&.decorationRing2 {	@include cgm(320px, 10px, var(--accent2), 0px,  3s); }
+				&.ring5 {	@include cgm(190px, 2px, #a955cb, 4px,  3s); }
+				&.ring2 {	@include cgm(300px, 2px, #5da4a4, 6px,  8s); }
+				&.ring3 {	@include cgm(350px, 2px, #bebe63, 7px,  12s);}
+				&.ring4 {	@include cgm(390px, 1px, #bb4c92, 10px, 10s);}
+				&.ring1 {	@include cgm(500px, 2px, #449b61, 5px,  43s);}
+				&.ring6 {	@include cgm(640px, 1px, #5da4a4, 4px, 167s);}}}
+	}
 
 	@keyframes rotateAnimation {
 		0% {	transform: rotateY(-30deg);}

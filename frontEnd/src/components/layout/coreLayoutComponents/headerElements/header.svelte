@@ -24,8 +24,7 @@
     $: logoIntialization = $page.url.pathname === "/" || $page.url.pathname === "/afterdark/";
     // TODO: this is jank, but removing it means that I can't access the header before the transition can
 	// TODO: lock it out. So I have to use the url before the transition via the $page.
-	// TODO: The $page data does not contain "/" with and without the optional params, so I can't remove it.
-	// TODO: DO NOT REMOVE THIS, DUMBASS.
+	// TODO: The $page data does not contain "/" with and without the optional params, DO NOT REMOVE THIS, DUMBASS.
 </script>
 
 <PageIntroduction visible={logoIntialization} bind:preScreenHover/>
@@ -39,11 +38,17 @@
 	{#if $navigationControls.loaded}
 		{#if $deviceData.deviceType === 2}
 			<div class="desktop">
-				<SplashTexts bind:hover bind:timer/>
-				<ProfileBar>
+				<div id="stupidClickOveride">
+					<SplashTexts bind:hover bind:timer/>
+				</div>
+				<ProfileBar afterdarkMode={$directoryStatus.nsfwOptional !== ''}>
 					<div class="branding">
 						<RedirectBuilder url="/featured">
-							<img src="/branding/vanhlogo.webp" alt="VanH logo"/>
+							{#if $directoryStatus.nsfwOptional !== ""}
+								<img src="/branding/vanhlogoAD.webp" alt="VanH logo" transition:fade/>
+							{:else}
+								<img src="/branding/vanhlogo.webp" alt="VanH logo" transition:fade/>
+							{/if}
 						</RedirectBuilder>
 					</div>
 				</ProfileBar>
@@ -51,7 +56,11 @@
 		{:else}
 			<div class="mobile branding imageWrapper">
 				<RedirectBuilder url="/featured">
-					<img src="/branding/vanhlogo.webp" alt="VanH logo"/>
+					{#if $directoryStatus.nsfwOptional !== ""}
+						<img src="/branding/vanhlogoAD.webp" alt="VanH logo" transition:fade/>
+					{:else}
+						<img src="/branding/vanhlogo.webp" alt="VanH logo" transition:fade/>
+					{/if}
 				</RedirectBuilder>
 			</div>
 		{/if}
@@ -71,6 +80,9 @@
 </div>
 
 <style lang="scss">
+	#stupidClickOveride {
+		pointer-events: all;}
+
 	.websiteLoadinProcess {		height: 		0;
 								width: 			100%;
 		&.transitioning {		transition:	 	ease-in-out height .5s;}}
@@ -95,7 +107,9 @@
 		.branding {	position: 	absolute;
 					height: 	100%;
 			img {	transition: .5s transform ease;
-					height: 	110%;}}}
+					height: 	110%;
+				&:first-child {	position: absolute;}
+				&:last-child {	position: relative;}}}}
 
 	.headerWrapper.hoverDisable {					pointer-events: none;
 													transform: 		revert}
