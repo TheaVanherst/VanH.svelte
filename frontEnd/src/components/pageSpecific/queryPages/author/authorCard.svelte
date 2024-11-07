@@ -73,7 +73,7 @@
 		background: 	var(--transPure2);
 		border-left: 	1px solid var(--accent2);
 		width: 			inherit;
-		margin: 		auto 15px;
+		margin: 		auto 0 auto 15px;
 		padding: 		5px 15px;
 
 		h3 {	padding: 	0 0 10px 0;}

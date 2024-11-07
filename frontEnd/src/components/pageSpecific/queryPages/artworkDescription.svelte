@@ -1,6 +1,5 @@
 <script>
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
-    import { directoryStatus } from "$lib/settings/navigationHandling.js";
 
     import DividedTag 		from "$root/components/generic/wrappers/tags/pilledTag.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/socialsFoldable.svelte";

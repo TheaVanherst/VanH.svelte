@@ -43,7 +43,7 @@
 {/if}
 
 <style lang="scss">
-	.hoverablitySelector { width: 	100%;
+	.hoverablitySelector { 	width: 	100%;
 							height: 100%;
 		&:hover { .faded {	opacity: 0.7;}}}
 

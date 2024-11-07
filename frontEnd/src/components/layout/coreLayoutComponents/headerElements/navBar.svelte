@@ -258,7 +258,7 @@
 							height: 30px!important;}}
 		#navigation {
 			.navButton {
-
+				padding: 7px 8px 8px 8px;
 				&.currentSubmenu {
 							background: var(--accent1);}}}}
 
@@ -275,6 +275,7 @@
 			padding: 	5px 15px 5px 10px;
 			margin: 	0 auto;
 			border: 	1px solid var(--accent1);
+			border-radius: 20px;
 			background: var(--transPure2);
 			&.currentRoot {
 				pointer-events: none;

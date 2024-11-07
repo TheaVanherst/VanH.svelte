@@ -105,11 +105,14 @@
 					padding: 	15px 0;
 					margin: 	0 auto;
 		.branding {	position: 	absolute;
-					height: 	100%;
-			img {	transition: .5s transform ease;
-					height: 	110%;
-				&:first-child {	position: absolute;}
-				&:last-child {	position: relative;}}}}
+					height: 	100%;}}
+
+	.branding {
+		img {
+			transition: .5s transform ease;
+			height: 	110%;
+			&:first-child {	position: absolute;}
+			&:last-child {	position: relative;}}}
 
 	.headerWrapper.hoverDisable {					pointer-events: none;
 													transform: 		revert}

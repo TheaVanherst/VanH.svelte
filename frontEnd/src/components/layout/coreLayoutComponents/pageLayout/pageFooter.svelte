@@ -40,7 +40,7 @@
 		display: 	flex;
 		position: 	relative;
 		bottom: 	0;
-
+		z-index: 	1;
 
 		a { color: white;
 			animation:
