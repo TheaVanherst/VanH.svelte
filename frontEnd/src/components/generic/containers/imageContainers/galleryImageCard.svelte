@@ -60,7 +60,8 @@
 
 	.absolute {		position: 	absolute;}
 	.infoPlate {	overflow: 	hidden scroll;}
-	.wrapper {		margin: 	8px 12px 10px 10px;}
+	.wrapper {		margin: 	8px 12px 10px 10px;
+					color: black;}
 	.titleCard {	background: var(--transPure1);}
 	.accent {		background: var(--pure1);}
 	.previewCard.hovered .titleCard {
