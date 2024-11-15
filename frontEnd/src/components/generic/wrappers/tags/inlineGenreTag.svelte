@@ -19,22 +19,24 @@
 <p class="inlineTag" style="
 	--tagColour: {tagColour};
 	--textColour: {tagText}" class:active>
-	{tag.title.replaceAll("_"," ")}
+	<b>#</b> {tag.title.replaceAll("_"," ")}
 </p>
 
 <style lang="scss">
-	p {
-		margin: 	0 4px 5px 0;
-		padding: 	2px 8px 1px 8px;
+	p, b {
+		color: 		inherit;
+		&:hover, &.active {
+			color: 		var(--textColour);}}
+
+	.inlineTag {
+		margin: 	0 3px 6px 0;
+		padding: 	3px 8px 2px 8px;
 		border: 	1px solid var(--tagColour);
 		transition: border .2s ease, background .3s ease;
 		background: 'transparent';
-		color: 		inherit;
 
 		&:hover, &.active {
-			color: 		var(--textColour);
 			background: var(--tagColour);}
 		&.active:hover {
-			border: 	1px solid var(--textColour);}
-	}
+			border: 	1px solid var(--textColour);}}
 </style>

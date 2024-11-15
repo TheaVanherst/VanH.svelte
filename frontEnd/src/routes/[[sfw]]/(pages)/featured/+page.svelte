@@ -2,60 +2,22 @@
     import { deviceData, navigationControls }
 							from '$lib/settings/navigationHandling.js';
 
-    import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import SidebarTexts 	from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
     import ArtworkCard 		from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
     import Carousel 		from "$root/components/generic/containers/imageContainers/carousel.svelte";
 
     import WorkshopCard 	from "$root/components/pageSpecific/queryPages/workshop/workshopPreview.svelte";
     import WorkshopSnippet 	from "$root/components/pageSpecific/queryPages/workshop/workshopSnippet.svelte";
-    import FlyInCard 		from "$root/components/generic/containers/textContainers/blankFlyIn.svelte";
 
 	import CharacterFeature from "$root/components/pageSpecific/homePage/characterShowcase.svelte";
     import KofiCards 		from "$root/components/pageSpecific/kofiCards.svelte";
     import QandaFeature 	from "$root/components/pageSpecific/homePage/qandaFeature.svelte";
 
-    export let
-		data;
-    	data.githubData.map(i=>{i.active = false;})
-
-    const githubColourTranslation =
-		["alternateAccent1", "alternateAccent3", "accent2", null, null,
-		 "alternateAccent2", "accent1", "dark1", "dark2", "pure1"];
+    export let data;
 </script>
 
 <SidebarTexts titlecard="Characters" icon="profileIcon.webp">
 	<CharacterFeature dataset={data.characterData.characters}/>
-</SidebarTexts>
-
-<SidebarTexts titlecard="Github" icon="githubLogoLined.webp">
-	<div id="github"
-		 class:full={$deviceData.screenType < 2}>
-		{#if !!data.githubData}
-			{#each data.githubData as github}
-				<div class="cell">
-					<a href="https://{github.url}" target="_blank">
-						<div class="slide regularBorder"
-							 on:mouseenter={() => github.active = true}
-							 on:mouseleave={() => github.active = false}>
-							<div class="thumbnail">
-								<div class="imageWrapper">
-									<SanityImage image={github.previewImage}/>
-								</div>
-								<FlyInCard active={github.active}>
-									<h5 slot="title"> {github.itemName} </h5>
-									<span slot="desc">{github.shortDesc}</span>
-								</FlyInCard>
-							</div>
-							<div class="referral" style="background: var(--{githubColourTranslation[(github.accentColour - 1)]})">
-								<p>TheaVanherst/{github.itemName.replaceAll(' ','-').toLowerCase()}</p>
-							</div>
-						</div>
-					</a>
-				</div>
-			{/each}
-		{/if}
-	</div>
 </SidebarTexts>
 
 {#if $navigationControls.nsfw}

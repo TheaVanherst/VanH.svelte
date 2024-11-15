@@ -1,9 +1,9 @@
 
 import client from "$lib/settings/sanityClient.js";
 
-import { characterProfileData }         from "$lib/queryPresets/characterData.js";
-import {defaultArtwork, defaultDesign}  from "$lib/queryPresets/genericQueries.js";
-import { workshopQuery }                from "$lib/queryPresets/workshopQueries.js";
+import { characterProfileData }             from "$lib/queryPresets/characterData.js";
+import { defaultArtwork, defaultDesign }    from "$lib/queryPresets/genericQueries.js";
+import { workshopQuery }                    from "$lib/queryPresets/workshopQueries.js";
 
 export const load = async () => {
     return {
@@ -12,11 +12,6 @@ export const load = async () => {
                 *[ _type == 'characterOrder'] | order(_updatedAt desc) [0]{
                     characters[]-> {
                         ${characterProfileData}}}`),
-        githubData:
-            await client.fetch(`
-                *[ _type == 'githubItem'] | order(_updatedAt desc) []{
-                    ...
-                }`),
         artworks:
             await client.fetch(`
                 *[ _type == 'artworks'][] | order(publishedAt desc)[0...5] {
