@@ -1,19 +1,19 @@
 <script>
 	import { fade } from "svelte/transition";
 
-    export let
-		top = 		false,
-		bottom = 	false;
+	export let scrollSpeed
 </script>
 
-{#if top}
-	<div class="top small" transition:fade={{duration: 100}}></div>
-	<div class="top large" transition:fade={{duration: 150}}></div>
+{#if scrollSpeed < 0}
+	<div class="top small" transition:fade={{duration: 150}}></div>
+	<div class="top large" transition:fade={{duration: 100}}></div>
 {/if}
+
 <slot/>
-{#if bottom}
-	<div class="bottom small" transition:fade={{duration: 100}}></div>
-	<div class="bottom large" transition:fade={{duration: 150}}></div>
+
+{#if scrollSpeed > 0}
+	<div class="bottom small" transition:fade={{duration: 150}}></div>
+	<div class="bottom large" transition:fade={{duration: 100}}></div>
 {/if}
 
 <style lang="scss">
@@ -22,7 +22,7 @@
 			linear-gradient(0deg, transparent 49%, $gridColour 50%, $gridColour 50%, transparent 51%, transparent),
 			linear-gradient(-90deg, transparent 49%, $gridColour 50%, $gridColour 50%, transparent 51%, transparent);}
 
-	div {
+	.top, .bottom {
 		position: 	fixed;
 		width: 		100vw;
 		&.small {

@@ -1,6 +1,4 @@
 <script>
-
-    import * as transitionFunctions from 'svelte/transition';
     import { scale, fly  } 				from "svelte/transition";
     import { cubicOut } 			from 'svelte/easing';
 
@@ -13,30 +11,45 @@
 
     afterNavigate(async (n) => { // compensates for page refreshes / initial page loading
         if ( n.from === null && n.willUnload === false ) {  // this fixes an issue where the url doesn't update from the initial layout load.
-            $navigationControls.transitioning = false;
-            $directoryStatus.nsfwOptional = !!n.to.params.sfw ? $directoryStatus.nsfwKeyword : "";
-            let to = n.to.url.search ? n.to.url.pathname + n.to.url.search : (n.to.url.pathname).slice(0, -1);
-			to = to === "" ? "/" : to;
-            await directoryProcessing(to, to);}
+            navigationControls.transitioning = false;
+
+            // Update NSFW settings based on route params
+            directoryStatus.nsfwOptional = n.to.params.sfw
+                ? directoryStatus.nsfwKeyword : "";
+
+            // Normalize and process the target directory
+            const toPath = n.to.url.search
+                ? n.to.url.pathname + n.to.url.search
+                : n.to.url.pathname.endsWith("/")
+                    ? n.to.url.pathname.slice(0, -1) || "/"
+                    : n.to.url.pathname;
+
+            await directoryProcessing(toPath, toPath);}
     }); //resets x, y positions
 
     beforeNavigate(async (n, willUnload, to) => {
         if (n.delta !== 0 && n.type === "popstate") {
-            let to = (n.to.url.pathname).slice(0, -1) ?? "/"; //checks reload vs browser
-            await directoryProcessing($directoryStatus.rawDirectory, to);
-            $navigationControls.transitioning = true;
-            setTimeout(async () => {
-                $navigationControls.transitioning = false;
-            }, 250);}
+            // Normalize the target path
+            const toPath = n.to.url.pathname.endsWith("/")
+                ? n.to.url.pathname.slice(0, -1) || "/"
+                : n.to.url.pathname;
 
-        if ($updated && !willUnload && to?.url) {
-            location.href = to.url.href;}
+            await directoryProcessing(directoryStatus.rawDirectory, toPath);
+            navigationControls.transitioning = true;
+
+            // Ensure transitioning resets after a delay
+            setTimeout(() => {
+                navigationControls.transitioning = false;
+            }, 250);
+        }
+
+        // Handle page updates for navigation
+        if (updated && !willUnload && to?.url) {
+            location.href = to.url.href;
+        }
     }); //resets x, y positions
 
-    let transition,
-        transitionSpeed = [50, 20]; // transition position multipliers
-
-    $:  transition = $navigationControls.direction[1] === 0 ? transitionFunctions["fly"] : transitionFunctions["fade"];
+    let transitionSpeed = [50, 20]; // transition position multipliers
 </script>
 
 <div class="parentElement">

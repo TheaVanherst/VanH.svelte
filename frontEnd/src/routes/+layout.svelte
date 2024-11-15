@@ -18,12 +18,12 @@
     import SpaceshipCursor 		from "$root/components/layout/coreLayoutComponents/idleElements/spaceshipCursor.svelte";
     import CometGenerator 		from "$root/components/layout/coreLayoutComponents/idleElements/cometGenerator.svelte";
     import Background 			from "$root/components/layout/coreLayoutComponents/idleElements/background.svelte";
-    import ScrollBoundery 		from "$root/components/layout/coreLayoutComponents/pageLayout/scrollBoundery.svelte";
+    import ScrollBoundery 		from "$root/components/layout/coreLayoutComponents/idleElements/scrollBoundery.svelte";
 
     export let data;
 
-    let screenWidth = 		0, screenHeight = 	0,
-        bodyHeight = 		0, scrollPos = 		0,
+    let screenWidth = 0, layoutHeight, screenHeight,
+		scrollPos = 0, scrollSpeed = 0,
         textscrollEnable = 	false;
 
     onMount(() => {
@@ -44,16 +44,15 @@
 			: $pageTitlebar = loadingIco
 		: $pageTitlebar = websiteTag;
 
-    let bottom = false, top = false;
     const
-    	scrollBounderyCheck = () => {
+        wheelScroll = (e) => {
             setTimeout(() => {
-                if (bodyHeight.clientHeight === scrollPos + screenHeight) {
-                    $fullscreenGalleryStore.componentData === undefined ? bottom = true : false;
-                    setTimeout(() => {bottom = false;}, 250);}
-                if (scrollPos === 0) {
-                    $fullscreenGalleryStore.componentData === undefined ? top = true : false;
-                    setTimeout(() => {top = false;}, 250);}
+                scrollSpeed =
+                    $fullscreenGalleryStore.componentData === undefined ?
+                        layoutHeight?.clientHeight === scrollPos + screenHeight || scrollPos === 0 ?
+                            e.deltaY : 0
+                        : 0;
+                setTimeout(() => {scrollSpeed = 0}, 250);
             }, 50);};
 </script>
 
@@ -61,7 +60,7 @@
 	<title>{$pageTitlebar}</title>
 </svelte:head>
 
-<svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} bind:scrollY={scrollPos} on:wheel={scrollBounderyCheck}/>
+<svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} bind:scrollY={scrollPos} on:wheel={wheelScroll}/>
 
 <Background/>
 <CometGenerator/>
@@ -75,8 +74,8 @@
 	</div>
 
 	<div id="scrollParent">
-		<ScrollBoundery {top} {bottom}>
-			<div id="layout" class="wrapCorrection" style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}" bind:this={bodyHeight}
+		<ScrollBoundery {scrollSpeed}>
+			<div id="layout" class="wrapCorrection" style="{$deviceData.deviceType < 2 ? 'overflow-x: hidden' : ''}" bind:this={layoutHeight}
 				 class:dumbforceclip={$directoryStatus.currentRoot === "/"}>
 				<!-- this is the page body height, and generates the scroll functionality. -->
 				<div in:fly={{y: -100, duration: 500, delay: 350 }}>
