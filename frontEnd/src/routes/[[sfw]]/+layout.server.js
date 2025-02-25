@@ -24,11 +24,11 @@ export const load = async () => {
             // fetches & deals with character searches
         tags:
             await client.fetch(`
-                [{"category": "design",      "tags": *[_type == 'designTags']` + seachQuery + `,    "nsfw": false},
-                {"category": "explicit",    "tags": *[_type == 'explicitTags']` + seachQuery + `,   "nsfw": true},
-                {"category": "genre",       "tags": *[_type == 'genreTag']` + seachQuery + `,       "nsfw": false},
-                {"category": "generic",     "tags": *[_type == 'genericTags']` + seachQuery + `,    "nsfw": false},
-                {"category": "nsfw",        "tags": *[_type == 'nsfwTags']` + seachQuery + `,       "nsfw": true}]
+                [{"tags": *[_type == 'designTags']` + seachQuery + `,    "nsfw": false},
+                {"tags": *[_type == 'explicitTags']` + seachQuery + `,   "nsfw": true},
+                {"tags": *[_type == 'genreTag']` + seachQuery + `,       "nsfw": false},
+                {"tags": *[_type == 'genericTags']` + seachQuery + `,    "nsfw": false},
+                {"tags": *[_type == 'nsfwTags']` + seachQuery + `,       "nsfw": true}]
             `)
             //{"category": "culture",    "tags": *[_type == 'cultureTags']` + seachQuery + `,    "nsfw": false},
     };

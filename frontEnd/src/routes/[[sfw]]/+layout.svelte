@@ -8,30 +8,32 @@
 
     import { dataSetStore } 	from "$lib/settings/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/searchController.js";
-    import { navigationData, navigationControls, directoryStatus, navigationDirectories }
+    import { navigationData, navigationControls }
 								from "$lib/settings/navigationHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
    	import NavBar 				from "$root/components/layout/coreLayoutComponents/headerElements/navBar.svelte";
-
-    import SanityImage 			from "$root/serializer/sanityImage.svelte";
-    import RollupButton 		from "$root/components/generic/buttons/rollupButton.svelte";
-    import InlineTag 			from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
+	import InlineGenreTag 		from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
 
     const
 		paramLocalUpdate = () => {
-			value = $page.url.searchParams.get("query") || "";
-			value = decodeURIComponent(value.replaceAll('-',' '))
+			inputValue = $page.url.searchParams.get("query") || "";
+			inputValue = decodeURIComponent(inputValue.replaceAll('-',' '))
 			$dataSetStore.page = $page.url.searchParams.get("page") || 0;
-			$dataSetStore.searchQuery = value;},
+			$dataSetStore.searchQuery = inputValue;},
     	queryReset = () => {
-			value = "";
+			inputValue = "";
 			$dataSetStore.searchQuery = "";
 			$dataSetStore.page = 		0;}
 
+    const handleClickOutside = (event) => {
+        searchVisibility = !(!!container && !container.contains(event.target));}
     onMount(() => {
+        document.addEventListener('click', handleClickOutside);
         if ($navigationData.search){
-            paramLocalUpdate();}});
+            paramLocalUpdate();}
+        return () => {
+            document.removeEventListener('click', handleClickOutside);};});
     afterNavigate((e) => {
         if ($navigationData.search){
             paramLocalUpdate();}
@@ -43,11 +45,15 @@
         if (e.from.route.id !== e?.to?.route?.id) {
             queryReset();}});
 
-    export let data;
+    export let
+		data;
+    	data.tags = data.tags.map(e=>e.tags).flat();
 
-    // search functionality
-    let value,
-		active = false;
+    let container;
+    let inputValue,
+		searchVisibility = false,
+		filteredList = [],
+		filteredWord = "";
 
     // generic search.
     const
@@ -65,10 +71,19 @@
 
     	// constructs a search param from tag data.
     	queryBuilder = (e => {
+            inputValue = inputValue.slice(0, -filteredWord.length)
 			e = e.toLowerCase() // forces the query to be in lowercase by the new element also being lowercase.
-			hardSearch((value.includes(e) ? value.replaceAll(`${e}`, '') : value + ` ${e}`).split(" ").filter(n => n).join("-"))});
+			hardSearch((inputValue.includes(e) ? inputValue.replaceAll(`${e}`, '') : inputValue + ` ${e}`).split(" ").filter(n => n).join("-"))});
 
-    $: $navigationData.search === false ? active = false : false;
+    $:	if (!inputValue) {
+        	filteredList = [];}
+		else {
+            searchVisibility = true;
+            const
+				partionedList = inputValue.split(" ");
+            	filteredWord = partionedList[partionedList.length-1];
+            filteredList = data.tags.filter(e=>e.title.toLowerCase().includes(filteredWord ?? ""));
+            filteredList.length === 1 && filteredWord === filteredList[0]?.title.toLowerCase() ? filteredList = [] : filteredList;}
 </script>
 
 {#if $navigationData.navigation || $navigationData.socials || $navigationData.logo}
@@ -79,41 +94,32 @@
 {#if $navigationData.search}
 <!--	Search bar & character buttons-->
 	<div class="searchBarWrapper" in:slide={{delay: 125}} out:slide={{delay: 175}}>
-		<div class="searchBar">
-			<form on:submit|preventDefault={() => hardSearch(value, 0)}>
-				<input type="search" class="input" placeholder="Search..." bind:value={value}/></form>
-			<RollupButton bind:active padding={3}/></div></div>
-{/if}
-
-{#if active && data.tags && $navigationData.search}
-	<div class="tableGroup wideBorder" transition:slide>
-
-		{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]].characters}
-			<h4>Characters</h4>
-			<div class="characterInline">
-				{#each data.characters as character, c}
-					<div class="characterIcon">
-						<div on:mousedown={() => queryBuilder(":" + character.nickName)}>
-							<div class="profileIcon rounded" class:active={value.includes(character.nickName.toLowerCase())}>
-								<SanityImage image={character.charIcon}/></div></div></div>
-				{/each}
+		<div id="hoverWrapper"
+			 	bind:this={container}
+			 	on:mouseclick={() => searchVisibility = true}>
+			<div class="searchBar">
+				<form on:submit|preventDefault={() => hardSearch(inputValue, 0)}>
+					<input type="search" class="input" placeholder="Search..." bind:value={inputValue}/></form>
 			</div>
-		{/if}
-
-		{#each data.tags as tagSet}
-			{#if !tagSet.nsfw && !$navigationControls.nsfw || $navigationControls.nsfw}
-				{#if navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]]?.queryTypes?.includes(tagSet.category) || $directoryStatus.rootIndex[1] === undefined}
-					<div transition:slide>
-						<h4>{tagSet.category} Tags</h4>
-						<div class="tagGroup">
-							{#each tagSet.tags as tag, e}
-								<div on:mousedown={() => queryBuilder(tag.title)}>
-									<InlineTag tag={tag} active={value.includes(tag.title.toLowerCase())}/></div>
-							{/each}
-					</div></div>
-				{/if}
+			{#if filteredList.length > 0 && filteredWord.length > 0 && searchVisibility}
+				<div id="autocompleteWrapper"
+					 in:slide={{delay: 25}} out:slide={{delay: 175}}>
+					<div id="autocomplete">
+						<h5 class="title">Suggested Terms;</h5> <br>
+						{#each filteredList.slice(0, 16) as tag}
+							<div class="dropDownItem clickable" on:click={() => queryBuilder(tag.title)}>
+								<InlineGenreTag tag={tag} inv={true}/>
+							</div>
+						{/each}
+						{#if filteredList.length === 0}
+							<div class="dropDownItem readMore">
+								<p>No search terms found.</p>
+							</div>
+						{/if}
+					</div>
+				</div>
 			{/if}
-		{/each}
+		</div>
 	</div>
 {/if}
 
@@ -122,11 +128,6 @@
 </TransitionHandler>
 
 <style lang="scss">
-	h4 {
-		width: 100%;
-		color: 	black;
-		padding: 0 0 5px 0;}
-
 	.searchBarWrapper {
 		margin: 	10px auto 0 auto;
 		.searchBar {
@@ -137,34 +138,34 @@
 			form {
 				display: contents;}}}
 
-	.characterInline {
-		display: 	inline-block;
-		margin: 	5px 0 3px 5px;
-		.characterIcon {
-			display: 	inline-block;
-			margin: 	0 5px 5px 0;
-			.profileIcon {
-					transition: opacity .2s ease, border .3s ease;
-					background: transparent;
-					border: 	1px solid white;
-					opacity: 	0.6;
-				&.active {
-					border: 	1px solid var(--dark1);
-					opacity: 	1;}
-				&:hover {
-					opacity: 	1;}}}}
+	#autocompleteWrapper {
+		position: 	absolute;
+		z-index: 	100;
+		width: 		100%;}
 
-	.tableGroup {
-		background: var(--transPure1);
-		padding: 	15px;
-		margin: 	15px 0 0 0;
-		max-height: 300px;
-		overflow: 	scroll;
+	#autocomplete {
+		width: 		max-content;
+		max-width: 	620px;
+		box-sizing: border-box;
 
-		.tagGroup {
-			padding: 		5px 5px;
-			display: 		flex;
-			flex-wrap: 		wrap;
-			flex-direction: row;
-			color: 			black;}}
+		display: 	flex;
+		flex-wrap: 	wrap;
+		justify-content: 	center;
+		align-items: 		start;
+
+		gap:	 	0 2px;
+		padding: 	6px;
+		margin: 	10px auto;
+
+		border-radius:  12px;
+		background: 	var(--transPure1);
+
+		.title {
+			color: black;
+			padding: 2px 5px 10px 5px;
+			width: 100%;}
+
+		.dropDownItem {
+			&.readMore {
+				background: var(--dark1);}}}
 </style>

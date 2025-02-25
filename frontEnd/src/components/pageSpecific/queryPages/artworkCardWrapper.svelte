@@ -55,10 +55,7 @@
 		use:clickOutside
 		on:mouseenter={hovered}
 		on:mouseleave={unhovered}
-		on:click_outside={clickOff}
-		role="region"
-		aria-label="Artwork Description Wrapper"
->
+		on:click_outside={clickOff}>
 	{#if newTag && newAddition && !disableNew}
 		<div class="newItem shortBorder" role="status" aria-live="polite">
 			<p>NEW</p>
@@ -68,10 +65,6 @@
 		<div	class="galleryContainer"
 				on:click={cardSelected}
 				class:clickable={active}
-				role="button"
-				tabindex="0"
-				aria-pressed={active}
-				aria-label="Select Gallery"
 				on:mouseenter={hovered}
 				on:mouseleave={unhovered}
 				on:keydown={(e) => e.key === 'Enter' && cardSelected()}>
@@ -84,9 +77,6 @@
 		</div>
 		<div 	class="galleryCard"
 				on:click={cardFloatClick}
-				role="button"
-				tabindex="0"
-				aria-label="Expand Artwork Description"
 				on:mouseenter={hovered}
 				on:mouseleave={unhovered}
 				on:keydown={(e) => e.key === 'Enter' && accessibilityToggle(e)}>

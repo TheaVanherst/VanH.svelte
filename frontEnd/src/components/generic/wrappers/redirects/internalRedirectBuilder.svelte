@@ -1,67 +1,92 @@
 <script>
-    import { goto } 			from "$app/navigation";
-    import { galleryChange } 	from "$lib/settings/pageSettings.js";
+    import { goto } from "$app/navigation";
+    import { galleryChange } from "$lib/settings/pageSettings.js";
 
-    import { directoryProcessing, directoryStatus, navigationControls, navigationDirectories }
-								from '$lib/settings/navigationHandling.js';
-    import { pageName }		 	from "$lib/layout/titlebarScoller.js";
+    import {
+        directoryProcessing,
+        directoryStatus,
+        navigationControls,
+        navigationDirectories
+    } from '$lib/settings/navigationHandling.js';
 
-    export let
-        url = 			undefined,
-		redirectName = 	undefined,
-		nsfwPointer = 	undefined;
+    import { pageName } from "$lib/layout/titlebarScoller.js";
 
-    const redirectCheck = (e = "", n, p = undefined) => {
+    export let url = undefined;
+    export let redirectName = undefined;
+    export let nsfwPointer = undefined;
+
+    // Helper to find the page root
+    const findPageRoot = (path) => {
+        const
+			indices = navigationDirectories.map((dir) =>
+				dir.pages
+					? dir.pages.findIndex((page) => page.path === path)
+					: dir.path === path),
+       		dirIndex =
+				indices.findIndex((idx) => idx !== -1 && idx !== false);
+        return dirIndex !== -1
+            ? navigationDirectories[dirIndex]?.pages?.[indices[dirIndex]] ||
+            navigationDirectories[dirIndex]
+            : false;
+    };
+
+    // Main redirect handler
+    const redirectCheck = (route = "", customName, forceNSFW = undefined) => {
         let newRoute;
 
-        if (e === "") { // url fallback
-            e = $directoryStatus.currentRoot;}
+        // Fallback to current root if no route is provided
+        if (!route) route = $directoryStatus.currentRoot;
 
-        if (p !== undefined) { // forced NSFW change
-            $navigationControls.nsfw = p;
+        if (forceNSFW !== undefined) {
+            $navigationControls.nsfw = forceNSFW;
 
-            if (p === false) { // SFW redirect
-                const
-                    arrayCheck1 = navigationDirectories.map(
-                        i => !!i.pages ?
-                            i.pages.findIndex(a => a.path === e) :
-                            i.path === e),
-                    arrayCheck2 = arrayCheck1.findIndex(i => i !== -1 && i !== false),
-                    pageRoot = navigationDirectories[arrayCheck2]?.pages ?
-                        navigationDirectories[arrayCheck2]?.pages[arrayCheck1[arrayCheck2]] :
-                        navigationDirectories[arrayCheck2] ?? false;
-
+            if (!forceNSFW) {
+                // Handle SFW redirection
+                const pageRoot = findPageRoot(route);
                 $directoryStatus.nsfwOptional = "";
-                newRoute = pageRoot.nsfw ? '/featured' : !!$directoryStatus.strippedUrl ? ($directoryStatus.strippedUrl + $directoryStatus.query) : "/";}
-            else { // NSFW redirect
+                newRoute = pageRoot?.nsfw
+                    ? "/featured"
+                    : $directoryStatus.strippedUrl
+                        ? `${$directoryStatus.strippedUrl}${$directoryStatus.query}`
+                        : "/";
+            } else {
+                // Handle NSFW redirection
                 $directoryStatus.nsfwOptional = $directoryStatus.nsfwKeyword;
-                newRoute = "/" + $directoryStatus.nsfwKeyword + $directoryStatus.strippedUrl + $directoryStatus.query;}}
-        else {
-            newRoute = $directoryStatus.nsfwUrlCheck() + e;}
+                newRoute = `/${$directoryStatus.nsfwKeyword}${$directoryStatus.strippedUrl}${$directoryStatus.query}`;
+            }
+        } else {
+            // Default redirection logic
+            newRoute = $directoryStatus.nsfwUrlCheck() + route;
+        }
 
-        // this allows plain redirects via. eg. /artwork, and adds the NSFW filter keyword.
+        // Execute the redirection if necessary
         if (newRoute !== $directoryStatus.rawDirectory && !$navigationControls.transitioning) {
             galleryChange();
-			directoryProcessing($directoryStatus.rawDirectory, newRoute);
+            directoryProcessing($directoryStatus.rawDirectory, newRoute);
 
             $navigationControls.transitioning = true;
-            window.scrollTo({top: 0, behavior: 'smooth'});
-            setTimeout(
-                async () => {
-					await goto(newRoute);
-					$navigationControls.transitioning = false;
-				}, 250);}
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setTimeout(async () => {
+                await goto(newRoute);
+                $navigationControls.transitioning = false;
+            }, 250);
+        }
 
-    	if (n) { // this sets a custom page name.
-            $pageName = n;}}
+        // Update page name if provided
+        if (customName) $pageName = customName;
+    };
 </script>
 
-<a href="{$navigationControls.nsfw ? `/${$directoryStatus.nsfwKeyword}`  : ''}{url}" target=""
-   on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}> <!-- NEEDS to be a click, otherwise it doesn't register queries. -->
-		<slot/>
+<a
+		href="{$navigationControls.nsfw ? `/${$directoryStatus.nsfwKeyword}` : ''}{url}"
+		target=""
+		on:click|preventDefault={() => redirectCheck(url, redirectName, nsfwPointer)}>
+	<slot />
 </a>
 
 <style lang="scss">
 	a {
-		color: inherit;}
+		color: inherit;
+	}
 </style>
+

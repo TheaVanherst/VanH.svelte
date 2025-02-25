@@ -10,15 +10,15 @@ const
         {   title: "Home",          imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
         {   title: "Creations",     imagePath: "artworksIcon",      pages: [
             {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",       nsfw:false,     pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
-                    characters: true, queryTypes: ["explicit","genre","generic","nsfw"]},
+                    characters: true, queryTypes: ["explicitTags","genreTag","genericTags","nsfwTags"]},
             {   title: "Design",    imagePath: "colourWheelIcon",   path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
-                    characters: true, queryTypes: ["design","genre","generic"]},
+                    characters: true, queryTypes: ["designTags","genreTag","genericTags"]},
             {   title: "Mods",      imagePath: "workshopIcon",      path: "/workshop",      nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
                     characters: true, queryTypes: []}
         ]},
         {   title: "Universe",      imagePath: "universeIcon",      pages: [
             {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",       nsfw:true,      pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector,
-                    characters: true, queryTypes: ["explicit","nsfw"]},
+                    characters: true, queryTypes: ["explicitTags","nsfwTags"]},
             // {   title: "Lore",      imagePath: "charactersIcon",    path: "/personas",   nsfw:false,   pagePreview: "𝗖𝗵𝗮𝗿𝗮𝗰𝘁𝗲𝗿𝘀" + redirector},
         ]},
         {   title: "Portfolio",     imagePath: "profileIcon",   pages: [
@@ -27,6 +27,7 @@ const
             {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",       nsfw:false,     pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
             {   title: "Carrd",     imagePath: "profileIcon",       path: "/carrd",         nsfw:false,     pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector}]}
     ];
+
 
 export { navigationDirectories };
 
@@ -59,48 +60,69 @@ export { directoryStatus, navigationControls, deviceData, navigationData };
 // ---------------------
 
 const
-    directoryProcessing = async (previousRaw, currentRaw) => {
-        const
-            slicer = i => i.slice(-1) === "/" ? i.slice(0, -1) : i,
-            indexCheck = i => navigationDirectories.findIndex(e => e.pages ? e.pages.map(a => a.path).includes("/" + i) : e.path === "/" + i);
+    slicer = (path) => path.endsWith("/") ? path.slice(0, -1) : path,
+    indexCheck = (segment) =>
+        navigationDirectories.findIndex(dir =>
+            dir.pages
+                ? dir.pages.some(page => page.path === `/${segment}`)
+                : dir.path === `/${segment}`
+        ),
+    findPageIndex = (path) =>
+        navigationDirectories[path]?.pages?.findIndex((page) =>
+            page.path === path ? path : undefined
+        ) ?? 0;
 
+const
+    directoryProcessing = async (previousRaw, currentRaw) => {
+        const nsfwCheckBool = +get(navigationControls).nsfw + 1;
+
+        // Preprocess URLs
         previousRaw = slicer(previousRaw);
         currentRaw = slicer(currentRaw);
-
         const
             previousPageArray = previousRaw.split("/"),
-            currentPageArray = currentRaw.split("/") ?? [''],
-            nsfwCheckBool = get(navigationControls).nsfw ? 2 : 1,
-            strippedRawQuery = (currentRaw).split("?"), //removes queryPresets from the search
+            currentPageArray = currentRaw.split("/") ?? [""],
+            strippedRawQuery = currentRaw.split("?"),
+            strippedUrlCheck = get(navigationControls).nsfw
+                ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`, "")
+                : strippedRawQuery[0],
             prevPageIndex = indexCheck(currentPageArray[nsfwCheckBool]),
-            currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]);
-        const
-            strippedUrlCheck = get(navigationControls).nsfw ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`,'') : strippedRawQuery[0],
-            pageId = navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined
+            currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]),
+            pageId = navigationDirectories[currPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined
 
-        let directionOffset = [];
 
-        if (currentPageArray.length ^ previousPageArray.length && prevPageIndex ^ currPageIndex) {
-            // initial page load
-            directionOffset =   [0,0]}
-        else if (currentPageArray.length === previousPageArray.length && prevPageIndex === currPageIndex) {
-            // transitioning in vertical direction
-            const pagesIdPos = e => navigationDirectories[prevPageIndex]?.pages?.findIndex(i => e === i.path ? i.path : null) ?? 0;
-            directionOffset =   [0, pagesIdPos(previousRaw.replace('/afterdark','')) > pagesIdPos(currentRaw.replace('/afterdark','')) ? 1 : -1 ?? 0];}
-        else {
-            // transitioning in horizontal direction
-            directionOffset =   [prevPageIndex > currPageIndex ? 1 : -1 ?? 0, 0]}
-                // ensures everything is synced on random page redirect
+        // Determine direction
+        let directionOffset = [0, 0];
+        if (currentPageArray.length !== previousPageArray.length || prevPageIndex !== currPageIndex) {
+            // Horizontal transition
+            directionOffset = [prevPageIndex > currPageIndex ? 1 : -1, 0];
+        } else if (currentPageArray.length === previousPageArray.length && prevPageIndex === currPageIndex) {
+            // Vertical transition
+            directionOffset = [
+                0,
+                findPageIndex(previousRaw.replace("/afterdark", "")) >
+                findPageIndex(currentRaw.replace("/afterdark", ""))
+                    ? 1
+                    : -1,
+            ];
+        }
 
-        navigationControls.update(e => ({ ...e,
-            direction: directionOffset}));
-        directoryStatus.update(e => ({ ...e,
-            rawDirectory:   currentRaw,
-            currentRoot:    "/" + (currentPageArray[nsfwCheckBool] ?? ""),
-            nsfwOptional:   get(navigationControls).nsfw ? "/" + get(directoryStatus).nsfwKeyword : '',
-            query:          strippedRawQuery[1] ? "?" + strippedRawQuery[1] : "",
-            strippedUrl:    strippedUrlCheck,
-            rootIndex:      [prevPageIndex, pageId]}));
+        navigationControls.update((state) => ({
+            ...state,
+            direction: directionOffset,
+        }));
+
+        directoryStatus.update((state) => ({
+            ...state,
+            rawDirectory: currentRaw,
+            currentRoot: `/${currentPageArray[nsfwCheckBool] || ""}`,
+            nsfwOptional: get(navigationControls).nsfw
+                ? `/${get(directoryStatus).nsfwKeyword}`
+                : "",
+            query: strippedRawQuery[1] ? `?${strippedRawQuery[1]}` : "",
+            strippedUrl: strippedUrlCheck,
+            rootIndex: [prevPageIndex, pageId],
+        }));
     };
 
 export { directoryProcessing };

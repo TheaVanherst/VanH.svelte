@@ -7,9 +7,7 @@
 
     let shoot = {},
     	position =
-			spring(
-				{	x: -($deviceData.screenSize / 2), y: -100 },
-				{ 	stiffness: 0.1, damping: 0.6 });
+			spring({	x: -($deviceData.screenSize / 2), y: -100 }, { 	stiffness: 0.1, damping: 0.6 });
 
     $: $mousePosition.x && position.set({ x: $mousePosition.x, y: $mousePosition.y});
 </script>

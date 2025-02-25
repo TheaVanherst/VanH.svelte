@@ -18,7 +18,7 @@ export default defineType({
       name: 'slug', title: 'Slug',
       type: 'slug',
       options: {
-        source: 'handle',
+        source: 'itemName',
         maxLength: 16,
         isUnique: slugUniqueCheck
       },

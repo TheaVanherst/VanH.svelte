@@ -17,14 +17,19 @@
 		timer;
 
     const copy = () => {
-        let redirectOutput = $page.url.origin + $page.url.pathname;
-        	redirectOutput += $page.url.search.includes("gallery") ?
-            ($page.url.search) :
-            ($page.url.search ? $page.url.search + "&" : "?") + "gallery=" + urlRedirect
+        const { origin, pathname, search } = $page.url;
+        const galleryParam = `gallery=${urlRedirect}`;
+        const redirectOutput = search.includes("gallery")
+            ? `${origin}${pathname}${search}`
+            : `${origin}${pathname}${search ? `${search}&${galleryParam}` : `?${galleryParam}`}`;
+
         navigator.clipboard.writeText(redirectOutput)
-        copied = true;
-        setTimeout(() => { copied = false; }, 3000);};
-    // this is lazy, but it works.
+            .then(() => {
+                copied = true;
+                setTimeout(() => { copied = false; }, 3000);})
+            .catch(err => {
+                console.error('Error copying text: ', err);});
+    };
 </script>
 
 <div class="controls" class:inverted on:click|stopPropagation>

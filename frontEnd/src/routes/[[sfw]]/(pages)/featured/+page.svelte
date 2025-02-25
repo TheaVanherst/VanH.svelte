@@ -1,6 +1,6 @@
 <script>
-    import { deviceData, navigationControls }
-							from '$lib/settings/navigationHandling.js';
+    import { deviceData, navigationControls
+    					  } from '$lib/settings/navigationHandling.js';
 
     import SidebarTexts 	from "$root/components/layout/coreLayoutComponents/pageLayout/sidebarTexts.svelte";
     import ArtworkCard 		from "$root/components/pageSpecific/queryPages/artworkCardWrapper.svelte";
