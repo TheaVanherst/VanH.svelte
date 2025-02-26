@@ -10,15 +10,15 @@ const
         {   title: "Home",          imagePath: "houseIcon",         path: "/featured",      nsfw:false,     pagePreview: "𝐇𝐨𝐦𝐞" + redirector},
         {   title: "Creations",     imagePath: "artworksIcon",      pages: [
             {   title: "Art",       imagePath: "galleryIcon",       path: "/artwork",       nsfw:false,     pagePreview: "𝕬𝖗𝖙𝖜𝖔𝖗𝖐" + redirector,
-                    characters: true, queryTypes: ["explicitTags","genreTag","genericTags","nsfwTags"]},
+                    characters: true, queryTypes: ["explicitTags","genreTag","genericTags","nsfwTags","characterTags"]},
             {   title: "Design",    imagePath: "colourWheelIcon",   path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
-                    characters: true, queryTypes: ["designTags","genreTag","genericTags"]},
+                    characters: true, queryTypes: ["designTags","genreTag","genericTags","characterTags"]},
             {   title: "Mods",      imagePath: "workshopIcon",      path: "/workshop",      nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
                     characters: true, queryTypes: []}
         ]},
         {   title: "Universe",      imagePath: "universeIcon",      pages: [
             {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",       nsfw:true,      pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector,
-                    characters: true, queryTypes: ["explicitTags","nsfwTags"]},
+                    characters: true, queryTypes: ["explicitTags","nsfwTags","characterTags"]},
             // {   title: "Lore",      imagePath: "charactersIcon",    path: "/personas",   nsfw:false,   pagePreview: "𝗖𝗵𝗮𝗿𝗮𝗰𝘁𝗲𝗿𝘀" + redirector},
         ]},
         {   title: "Portfolio",     imagePath: "profileIcon",   pages: [
@@ -27,7 +27,6 @@ const
             {   title: "Artists",   imagePath: "charactersIcon",    path: "/authors",       nsfw:false,     pagePreview: "𝐀𝐮𝐭𝐡𝐨𝐫𝐬" + redirector},
             {   title: "Carrd",     imagePath: "profileIcon",       path: "/carrd",         nsfw:false,     pagePreview: "𝗦𝗼𝗰𝗶𝗮𝗹𝘀" + redirector}]}
     ];
-
 
 export { navigationDirectories };
 
@@ -87,8 +86,9 @@ const
                 ? strippedRawQuery[0].replaceAll(`/${get(directoryStatus).nsfwKeyword}`, "")
                 : strippedRawQuery[0],
             prevPageIndex = indexCheck(currentPageArray[nsfwCheckBool]),
-            currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]),
-            pageId = navigationDirectories[currPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? undefined
+            currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]);
+        const
+            pageId = navigationDirectories[currPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? 0
 
 
         // Determine direction

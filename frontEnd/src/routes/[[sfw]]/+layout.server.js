@@ -19,17 +19,18 @@ export const load = async () => {
                             ${socialPlatformQuery},
                             nsfw,
                             url}}`),
-        characters:
-            await client.fetch(`*[_type == 'characterOrder'].characters[]->{charIcon, nickName}`),
-            // fetches & deals with character searches
         tags:
             await client.fetch(`
-                [{"tags": *[_type == 'designTags']` + seachQuery + `,    "nsfw": false},
-                {"tags": *[_type == 'explicitTags']` + seachQuery + `,   "nsfw": true},
-                {"tags": *[_type == 'genreTag']` + seachQuery + `,       "nsfw": false},
-                {"tags": *[_type == 'genericTags']` + seachQuery + `,    "nsfw": false},
-                {"tags": *[_type == 'nsfwTags']` + seachQuery + `,       "nsfw": true}]
+                [
+                    {"tags": *[_type == 'designTags']${seachQuery}},
+                    {"tags": *[_type == 'explicitTags']${seachQuery}},
+                    {"tags": *[_type == 'nsfwTags']${seachQuery}},
+                    {"tags": *[_type == 'genreTag']${seachQuery}},
+                    {"tags": *[_type == 'genericTags']${seachQuery}},
+                    {"tags": *[_type == 'characterOrder'].characters[]->{"type": "characterTags", "relatedTags": fullName, "title": ":"+nickName, "icon": charIcon}}
+                ]
             `)
             //{"category": "culture",    "tags": *[_type == 'cultureTags']` + seachQuery + `,    "nsfw": false},
+            //{"tags": *[_type == 'characterOrder'].characters[]->{charIcon, nickName}, "nsfw": false}
     };
 }

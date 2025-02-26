@@ -8,26 +8,25 @@
 
     import { dataSetStore } 	from "$lib/settings/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/searchController.js";
-    import { navigationData, navigationControls }
-								from "$lib/settings/navigationHandling.js";
+    import {navigationData, navigationControls, navigationDirectories, directoryStatus}
+        from "$lib/settings/navigationHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
    	import NavBar 				from "$root/components/layout/coreLayoutComponents/headerElements/navBar.svelte";
 	import InlineGenreTag 		from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
 
-    const
-		paramLocalUpdate = () => {
-			inputValue = $page.url.searchParams.get("query") || "";
-			inputValue = decodeURIComponent(inputValue.replaceAll('-',' '))
-			$dataSetStore.page = $page.url.searchParams.get("page") || 0;
-			$dataSetStore.searchQuery = inputValue;},
-    	queryReset = () => {
-			inputValue = "";
-			$dataSetStore.searchQuery = "";
-			$dataSetStore.page = 		0;}
+    export let data;
+
+    let container;
+    let inputValue,
+        searchVisibility = false,
+        filteredTagStore = [],
+        filteredList = [],
+        filteredWord = "";
 
     const handleClickOutside = (event) => {
         searchVisibility = !(!!container && !container.contains(event.target));}
+
     onMount(() => {
         document.addEventListener('click', handleClickOutside);
         if ($navigationData.search){
@@ -35,6 +34,8 @@
         return () => {
             document.removeEventListener('click', handleClickOutside);};});
     afterNavigate((e) => {
+        if (data?.tags) {
+            paramFilterUpdate();}
         if ($navigationData.search){
             paramLocalUpdate();}
         if (e.delta || e.type === "enter") {
@@ -45,15 +46,24 @@
         if (e.from.route.id !== e?.to?.route?.id) {
             queryReset();}});
 
-    export let
-		data;
-    	data.tags = data.tags.map(e=>e.tags).flat();
+    let nsfwBlacklist = ["nsfwTags", "explicitTags"]
 
-    let container;
-    let inputValue,
-		searchVisibility = false,
-		filteredList = [],
-		filteredWord = "";
+    const
+		paramFilterUpdate = () => {
+            filteredTagStore = structuredClone(data.tags).map(e=>e.tags).flat();
+            filteredTagStore = filteredTagStore.filter(i=>navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]]?.queryTypes.includes(i.type))
+            filteredTagStore = !$navigationControls.nsfw ? filteredTagStore.filter(i=> !nsfwBlacklist.includes(i.type)) : filteredTagStore},
+		paramLocalUpdate = () => {
+			inputValue = $page.url.searchParams.get("query") || "";
+			inputValue = decodeURIComponent(inputValue.replaceAll('-',' '))
+			$dataSetStore.page = $page.url.searchParams.get("page") || 0;
+			$dataSetStore.searchQuery = inputValue;},
+    	queryReset = () => {
+			inputValue = "";
+			$dataSetStore.searchQuery = "";
+			$dataSetStore.page = 		0;}
+
+    paramFilterUpdate()
 
     // generic search.
     const
@@ -82,8 +92,10 @@
             const
 				partionedList = inputValue.split(" ");
             	filteredWord = partionedList[partionedList.length-1];
-            filteredList = data.tags.filter(e=>e.title.toLowerCase().includes(filteredWord ?? ""));
-            filteredList.length === 1 && filteredWord === filteredList[0]?.title.toLowerCase() ? filteredList = [] : filteredList;}
+			// $navigationControls.nsfw ? ;
+			if (filteredTagStore) {
+                filteredList = filteredTagStore?.filter(e=>e?.title.toLowerCase().includes(filteredWord ?? ""));
+                filteredList.length === 1 && filteredWord === filteredList[0]?.title.toLowerCase() ? filteredList = [] : filteredList;}}
 </script>
 
 {#if $navigationData.navigation || $navigationData.socials || $navigationData.logo}
@@ -102,13 +114,14 @@
 					<input type="search" class="input" placeholder="Search..." bind:value={inputValue}/></form>
 			</div>
 			{#if filteredList.length > 0 && filteredWord.length > 0 && searchVisibility}
-				<div id="autocompleteWrapper"
-					 in:slide={{delay: 25}} out:slide={{delay: 175}}>
+				<div id="autocompleteWrapper">
 					<div id="autocomplete">
 						<h5 class="title">Suggested Terms;</h5> <br>
 						{#each filteredList.slice(0, 16) as tag}
 							<div class="dropDownItem clickable" on:click={() => queryBuilder(tag.title)}>
-								<InlineGenreTag tag={tag} inv={true}/>
+								{#key tag}
+									<InlineGenreTag tag={tag} inv={true}/>
+								{/key}
 							</div>
 						{/each}
 						{#if filteredList.length === 0}

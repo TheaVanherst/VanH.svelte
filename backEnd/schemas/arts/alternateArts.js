@@ -12,8 +12,10 @@ export default defineType({
   groups: [
     { name: 'PieceData', title: 'Piece Data', default: true,
       icon: ClipboardImageIcon },
-    { name: 'MetaData', title: 'Archive / Metadata',
+    { name: 'Archive', title: 'Archive',
       icon: ArchiveIcon },
+    { name: 'MetaData', title: 'Metadata',
+      icon: BookIcon },
   ],
   orderings: [
     {
@@ -52,15 +54,45 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
 
+    {
+      name: 'fileType', title: 'Gallery or Video',
+      description: 'Is the files you wish to upload images or video?',
+      type: 'boolean',  group: 'PieceData',
+      initialValue: false,
+      hidden: ({parent}) => parent?.gallery?.images?.length > 0 || parent?.videoGallery?.length > 0,
+    },
     defineField({
-      name: 'gallery', title: 'Gallery of Images',
-      type: 'blockGallery', group: 'PieceData'
+      name: 'gallery',      title: 'Gallery of Images',
+      type: 'blockGallery', group: 'PieceData',
+      hidden: ({parent}) => parent?.fileType
+    }),
+    defineField({
+      name: 'videoGallery',  title: 'Gallery of Videos',
+      type: 'array',    group: 'PieceData',
+      hidden: ({parent}) => !parent?.fileType,
+      of: [
+        defineField({
+          name: 'videoUrl', title: 'Youtube video URL',
+          validation: Rule => Rule.required(),
+          type: 'string',
+        }),
+      ]
+    }),
+
+
+    defineField({
+      name: 'characters', title: 'Characters',
+      type: 'array', group: 'Archive',
+      of: [{
+        type: 'reference',
+        to: [{type: 'character'}]
+      }],
     }),
 
     defineField({
       name: 'tagData', title: 'Tags',
       description: 'Searchable Tags',
-      type: 'array', group: 'MetaData',
+      type: 'array', group: 'Archive',
       of: [{
         name: 'explicitTag', type: 'reference',
         to: {type: 'explicitTags'},
@@ -78,6 +110,29 @@ export default defineType({
         to: {type: 'cultureTags'},
       }],
       validation: Rule => Rule.required().unique(),
+    }),
+
+    defineField({
+      name: 'discordReferences',
+      title: 'Discord Referencing',
+      type: 'object', group: 'MetaData',
+      fields: [
+        {
+          name: 'photoshopRef', title: 'Photoshop Message ID',
+          type: 'string',
+          hidden: ({parent}) => parent?.TooLarge,
+        },
+        {
+          name: 'TooLarge', title: 'Oversized Photoshop File',
+          description: 'Is the file larger than 500mb?',
+          type: 'boolean', initialValue: false,
+          hidden: ({parent}) => parent?.photoshopRef?.length > 0,
+        },
+        {
+          name: 'archiveRef', title: 'Artchive Message ID',
+          type: 'string',
+        },
+      ],
     }),
 
     defineField({
