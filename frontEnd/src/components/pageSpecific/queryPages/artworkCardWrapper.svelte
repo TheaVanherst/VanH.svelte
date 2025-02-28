@@ -5,11 +5,13 @@
 
     import SanityGalleries 			from "$root/serializer/sanityGalleries.svelte";
     import ArtworkDescription 		from "$root/components/pageSpecific/queryPages/artworkDescription.svelte";
+    import { galleryManager } 		from "$lib/controllers/searchController.js";
 
     export let
 		data,
         newTag = 		true,
-        disableNew = 	false;
+        disableNew = 	false,
+        expandedTags = 	false;
 
     let active = 	false,
 		hover = 	false,
@@ -18,23 +20,19 @@
     const
         newAddition = (new Date() - new Date(data.publishedAt)) / (1000 * 3600 * 24) < 7,
         cardSelected = () => {
-            if (!active) {
-                const dataReOrg = structuredClone(data);
-                const { styleType: style, renderType: render } = data.gallery;
-
-                dataReOrg.gallery = dataReOrg.gallery.images.flat();
-
-                if (style && render) {
-                    dataReOrg.gallery.styleType = 	style;
-                    dataReOrg.gallery.renderType = 	render;}
-                // forces the gallery object to a 2d array, rather than 3d.
-                galleryStore(ArtworkDescription,dataReOrg)}};
+            const
+				{ gallery, ...rest } = data,
+            	{ styleType, renderType, images } = gallery;
+            const
+				galleryData = {
+					...rest,
+					gallery: images.flat(),
+					...(styleType && renderType && { styleType, renderType })};
+            // forces the gallery object to a 2d array, rather than 3d.
+            galleryManager.artworkSelection(galleryData)
+            galleryStore(ArtworkDescription,galleryData)};
 
     const
-		cardFloatClick = () => {
-			active = active ? active : !active;},
-		accessibilityToggle = () => {
-        	active = !active;},
     	hovered = () => {
 			hover = true;
 			clearInterval(timer);},
@@ -42,10 +40,11 @@
 			timer = setTimeout(() => {
 				hover = false;
 				active = false;
-			}, 500);},
+			}, 800);},
 		clickOff = () => {
-			hover = false;
-			active = false;};
+        	if (hover) {
+                hover = false;
+                active = false;}};
 
 </script>
 
@@ -53,8 +52,6 @@
 		class="interactionWrapper wideBorder"
 		class:glow={newAddition && !disableNew}
 		use:clickOutside
-		on:mouseenter={hovered}
-		on:mouseleave={unhovered}
 		on:click_outside={clickOff}>
 	{#if newTag && newAddition && !disableNew}
 		<div class="newItem shortBorder" role="status" aria-live="polite">
@@ -62,25 +59,20 @@
 		</div>
 	{/if}
 	<div class="galleryWrapper">
-		<div	class="galleryContainer"
-				on:click={cardSelected}
-				class:clickable={active}
+		<div 	class="galleryCard"
+				on:click={() => active = true}
 				on:mouseenter={hovered}
-				on:mouseleave={unhovered}
-				on:keydown={(e) => e.key === 'Enter' && cardSelected()}>
+				on:mouseleave={unhovered}>
+			<ArtworkDescription {data} {hover} {active} {expandedTags}/>
+		</div>
+		<div	class="galleryContainer"
+				on:mouseenter={hovered}
+				on:mouseleave={unhovered}>
 			<div	class="imageGallery"
-					class:blurred={data.sfw && !navigationControls.nsfw}
-					role="img"
-					aria-label="Image Gallery">
+					on:click={cardSelected}
+					class:blurred={!$navigationControls.localNsfwCheck(data.sfw)}>
 				<SanityGalleries portableText={data.gallery} />
 			</div>
-		</div>
-		<div 	class="galleryCard"
-				on:click={cardFloatClick}
-				on:mouseenter={hovered}
-				on:mouseleave={unhovered}
-				on:keydown={(e) => e.key === 'Enter' && accessibilityToggle(e)}>
-			<ArtworkDescription {data} {hover} {active} absolute={true} />
 		</div>
 	</div>
 </div>
@@ -105,11 +97,11 @@
 
 	.galleryWrapper {			position: 		relative;
 								overflow: 		hidden;
-		.galleryContainer {		pointer-events: all;
-			&.clickable {
-				.imageGallery {	pointer-events: none;}}}}
-	.galleryCard {	bottom: 5px;
-					left: 5px;
-					width: calc(100% - 10px);
-					position: relative;}
+		.galleryContainer {		pointer-events: all;}}
+	.galleryCard {
+		bottom: 5px;
+		left: 	5px;
+		width: 	calc(100% - 10px);
+		position: 	absolute;
+		z-index: 	1;}
 </style>

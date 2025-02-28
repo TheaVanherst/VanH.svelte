@@ -9,7 +9,7 @@
     import { dataSetStore } 	from "$lib/settings/pageSettings.js";
     import { urlSerializer } 	from "$lib/controllers/searchController.js";
     import {navigationData, navigationControls, navigationDirectories, directoryStatus}
-        from "$lib/settings/navigationHandling.js";
+        						from "$lib/settings/navigationHandling.js";
 
     import TransitionHandler 	from "$lib/controllers/transitionHandler.svelte";
    	import NavBar 				from "$root/components/layout/coreLayoutComponents/headerElements/navBar.svelte";
@@ -19,24 +19,18 @@
 
     let container;
     let inputValue,
-        searchVisibility = false,
-        filteredTagStore = [],
-        filteredList = [],
-        filteredWord = "";
+        searchVisibility = false;
 
     const handleClickOutside = (event) => {
         searchVisibility = !(!!container && !container.contains(event.target));}
 
     onMount(() => {
         document.addEventListener('click', handleClickOutside);
-        if ($navigationData.search){
-            paramLocalUpdate();}
         return () => {
             document.removeEventListener('click', handleClickOutside);};});
     afterNavigate((e) => {
-        if (data?.tags) {
-            paramFilterUpdate();}
-        if ($navigationData.search){
+        if ($navigationData.search && data?.tags){
+            paramFilterUpdate();
             paramLocalUpdate();}
         if (e.delta || e.type === "enter") {
             $navigationControls.transitioning = true;
@@ -46,13 +40,16 @@
         if (e.from.route.id !== e?.to?.route?.id) {
             queryReset();}});
 
-    let nsfwBlacklist = ["nsfwTags", "explicitTags"]
+    let nsfwBlacklist = ["nsfwTags", "explicitTags"];
+	let filteredTagStore = [],
+        filteredList = [],
+        filteredWord = "";
 
     const
 		paramFilterUpdate = () => {
             filteredTagStore = structuredClone(data.tags).map(e=>e.tags).flat();
             filteredTagStore = filteredTagStore.filter(i=>navigationDirectories[$directoryStatus.rootIndex[0]]?.pages?.[$directoryStatus.rootIndex[1]]?.queryTypes.includes(i.type))
-            filteredTagStore = !$navigationControls.nsfw ? filteredTagStore.filter(i=> !nsfwBlacklist.includes(i.type)) : filteredTagStore},
+            filteredTagStore = !$navigationControls.nsfw ? filteredTagStore.filter(i=> !nsfwBlacklist.includes(i.type)) : filteredTagStore;},
 		paramLocalUpdate = () => {
 			inputValue = $page.url.searchParams.get("query") || "";
 			inputValue = decodeURIComponent(inputValue.replaceAll('-',' '))
@@ -63,9 +60,6 @@
 			$dataSetStore.searchQuery = "";
 			$dataSetStore.page = 		0;}
 
-    paramFilterUpdate()
-
-    // generic search.
     const
 		hardSearch = (query = "", page = 0) => {
             $navigationControls.transitioning = true;
@@ -88,14 +82,14 @@
     $:	if (!inputValue) {
         	filteredList = [];}
 		else {
-            searchVisibility = true;
-            const
-				partionedList = inputValue.split(" ");
-            	filteredWord = partionedList[partionedList.length-1];
-			// $navigationControls.nsfw ? ;
-			if (filteredTagStore) {
-                filteredList = filteredTagStore?.filter(e=>e?.title.toLowerCase().includes(filteredWord ?? ""));
-                filteredList.length === 1 && filteredWord === filteredList[0]?.title.toLowerCase() ? filteredList = [] : filteredList;}}
+			searchVisibility = true;
+            if (filteredTagStore.length > 0) {
+                filteredWord = inputValue.split(" ").pop();
+                filteredList = filteredTagStore.filter(e =>
+                    e?.title.toLowerCase().includes(filteredWord) ||
+                    e.relatedTags?.toLowerCase().includes(filteredWord));
+                filteredList.length === 1 && filteredWord === filteredList[0]?.title.toLowerCase() ?
+					filteredList = [] : filteredList;}}
 </script>
 
 {#if $navigationData.navigation || $navigationData.socials || $navigationData.logo}
@@ -145,9 +139,6 @@
 		margin: 	10px auto 0 auto;
 		.searchBar {
 			display: 	flex;
-			gap: 		10px;
-			margin: 	0 auto;
-			padding: 	0 0 0 10px;
 			form {
 				display: contents;}}}
 
@@ -157,7 +148,7 @@
 		width: 		100%;}
 
 	#autocomplete {
-		width: 		max-content;
+		width: 		100%;
 		max-width: 	620px;
 		box-sizing: border-box;
 

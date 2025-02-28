@@ -70,8 +70,7 @@
 <style lang="scss">
 	.authorCardWrapper {
 		display: inline-grid;
-		margin: 0 0 auto 0;
-	}
+		margin: 4px 0 auto 0;}
 
 	.marginGap {
 		margin: 		1px 0 auto 0;}
@@ -95,7 +94,7 @@
 	.characterCard {
 		display: 		flex;
 		vertical-align: bottom;
-		margin: 		1px 1px 1px 1px ;
+		margin: 		3px 1px 1px 1px ;
 		padding:    	3px 10px 3px 3px;
 		gap: 			5px;
 		border-radius: 	20px;

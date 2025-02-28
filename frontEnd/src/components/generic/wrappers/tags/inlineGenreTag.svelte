@@ -21,7 +21,7 @@
     let tagColours = inv ?
 		{	back: colours[placement].colour, 	text: colours[placement].text, 		edge: colours[placement].colour,
 			backHov: "var(--accent1)", 			textHov: 	"#fff",					edgeHov: "var(--accent1)"} :
-		{	back: "transparent", 				text: 		"#000", 				edge: colours[placement].colour,
+		{	back: "transparent", 				text: 		"inherit", 				edge: colours[placement].colour,
             backHov: colours[placement].colour, textHov: colours[placement].text,   edgeHov: colours[placement].colour}
 </script>
 

@@ -42,8 +42,7 @@
 						idKey=	{`slug`}
 						animate= {false}
 						let:item>
-					<div class="artPost" id="{item.slug}"
-						 on:click={galleryManager.artworkSelection(item)}>
+					<div class="artPost" id="{item.slug}">
 						<ArtworkCard data={item}/>
 					</div>
 				</Masonry>

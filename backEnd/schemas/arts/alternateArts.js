@@ -90,6 +90,27 @@ export default defineType({
     }),
 
     defineField({
+      name: 'commissionData',
+      title: 'Commission Information',
+      type: 'object', group: 'Archive',
+      fields: [
+        defineField({
+          name: 'characters', title: 'Characters',
+          type: 'array',
+          of: [{
+            type: 'reference',
+            to: [{ type: 'alterCharacter' }]
+          }],
+        }),
+        defineField({
+          name: 'artType', title: 'Commission Type',
+          type: 'reference',
+          to: [{ type: 'commissionType' }]
+        }),
+      ],
+    }),
+
+    defineField({
       name: 'tagData', title: 'Tags',
       description: 'Searchable Tags',
       type: 'array', group: 'Archive',

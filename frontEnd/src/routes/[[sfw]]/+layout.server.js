@@ -30,7 +30,5 @@ export const load = async () => {
                     {"tags": *[_type == 'characterOrder'].characters[]->{"type": "characterTags", "relatedTags": fullName, "title": ":"+nickName, "icon": charIcon}}
                 ]
             `)
-            //{"category": "culture",    "tags": *[_type == 'cultureTags']` + seachQuery + `,    "nsfw": false},
-            //{"tags": *[_type == 'characterOrder'].characters[]->{charIcon, nickName}, "nsfw": false}
     };
 }

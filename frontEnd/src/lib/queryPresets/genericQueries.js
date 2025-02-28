@@ -64,6 +64,18 @@ const
                  ${authorQueries.info},
                  ${authorQueries.icon},
                  ${authorQueries.socials}},
+            'photoshopRefId': discordReferences.photoshopRef,
+            'archiveTooLarge': discordReferences.TooLarge,
+            'imageRefId': discordReferences.archiveRef,
+                characters[]-> {
+                    ${characterData.preview},
+                    ${characterData.info}},
+            'commissionData': commissionData {
+            'commissionType': artType-> typeName,
+                characters[]-> {
+                    ${characterData.commInfo},
+                    ${characterData.preview},
+                    ${characterData.ownership}}},
             ${genericRequests.gallery},
              ${genericRequests.tags}
         `;

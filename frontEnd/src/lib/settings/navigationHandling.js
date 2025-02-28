@@ -14,7 +14,7 @@ const
             {   title: "Design",    imagePath: "colourWheelIcon",   path: "/design",        nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
                     characters: true, queryTypes: ["designTags","genreTag","genericTags","characterTags"]},
             {   title: "Mods",      imagePath: "workshopIcon",      path: "/workshop",      nsfw:false,     pagePreview: "𝔇𝔢𝔰𝔦𝔤𝔫" + redirector,
-                    characters: true, queryTypes: []}
+                    characters: true, queryTypes: ["designTags","genreTag"]}
         ]},
         {   title: "Universe",      imagePath: "universeIcon",      pages: [
             {   title: "Erotica",   imagePath: "bookIcon",          path: "/erotica",       nsfw:true,      pagePreview: "𝓔𝓻𝓸𝓽𝓲𝓬𝓪" + redirector,
@@ -36,7 +36,7 @@ const
     directoryStatus =
         writable({
             rawDirectory: "/", strippedUrl: '/', currentRoot: '/',
-            rootIndex: [0,undefined],
+            rootIndex: [0,0],
             query: '', nsfwKeyword: 'afterdark',
             nsfwUrlCheck: () => get(navigationControls).nsfw ? "/" + get(directoryStatus).nsfwKeyword : ""}),
     navigationControls =
@@ -88,8 +88,7 @@ const
             prevPageIndex = indexCheck(currentPageArray[nsfwCheckBool]),
             currPageIndex = indexCheck(previousPageArray[nsfwCheckBool]);
         const
-            pageId = navigationDirectories[currPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? 0
-
+            pageId = navigationDirectories[prevPageIndex]?.pages?.findIndex(e => e.path === "/" + currentPageArray[nsfwCheckBool]) ?? 0
 
         // Determine direction
         let directionOffset = [0, 0];

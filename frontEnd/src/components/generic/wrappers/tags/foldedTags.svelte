@@ -8,9 +8,11 @@
     import InlineTag 			from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
 
     export let
-		tagSet,
-		urlRedirect,
-		inverted = 		false;
+		tagSet = [],
+		urlRedirect;
+    export let
+		tagsOpen = 		false,
+        redirectType = "gallery";
 
     let active = 		false,
 		copied = 		false,
@@ -18,8 +20,8 @@
 
     const copy = () => {
         const { origin, pathname, search } = $page.url;
-        const galleryParam = `gallery=${urlRedirect}`;
-        const redirectOutput = search.includes("gallery")
+        const galleryParam = `${redirectType}=${urlRedirect}`;
+        const redirectOutput = search.includes(redirectType)
             ? `${origin}${pathname}${search}`
             : `${origin}${pathname}${search ? `${search}&${galleryParam}` : `?${galleryParam}`}`;
 
@@ -32,11 +34,11 @@
     };
 </script>
 
-<div class="controls" class:inverted on:click|stopPropagation>
+<div class="controls" on:click|stopPropagation>
 	<div class="buttonWrapper"
 		 class:copied on:click={()=>copy()}>
 		<div class="button"
-			 	on:click={()=>copy()}>
+			 on:click={()=>copy()}>
 			{#if !copied}
 				<img src="/icons/linkIcon.webp" transition:fade />
 			{:else}
@@ -44,10 +46,10 @@
 			{/if}
 		</div>
 	</div>
-	{#if tagSet.length > 0}
+	{#if tagSet?.length > 0 && !tagsOpen}
 		<div class="buttonWrapper"
-				on:mouseenter={() => clearInterval(timer)}
-				on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
+			 on:mouseenter={() => clearInterval(timer)}
+			 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
 			<div class="button" class:active id="tagButton">
 				{#if !active}
 					<img src="/icons/tagIcon.webp" on:click={()=>active=true} transition:fade />
@@ -59,7 +61,7 @@
 	{/if}
 </div>
 
-{#if tagSet.length > 0 && active}
+{#if tagSet.length > 0 && active || tagsOpen}
 	<div class="postTags" transition:slide on:click|stopPropagation
 		 on:mouseenter={() => clearInterval(timer)}
 		 on:mouseleave={() => timer = setInterval(function () {active = false;}, 2000)}>
@@ -76,7 +78,7 @@
 		float: 		right;
 		display: 	table;
 		gap: 		5px;
-		margin: 	0px -2px 0 auto;
+		margin: 	3px -2px 6px auto;
 		> *:first-child {
 			margin: 0 0 0 auto;}}
 
@@ -117,5 +119,4 @@
 			img { filter: 	invert(0)}}}
 
 	.postTags {	margin: 	12px 0 0 0;}
-
 </style>

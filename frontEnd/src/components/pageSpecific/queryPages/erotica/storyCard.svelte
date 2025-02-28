@@ -1,13 +1,12 @@
 <script>
     import { createdPush } 	from "$lib/builders/dateBuilder.js";
-	import { directoryStatus, deviceData } from "$lib/settings/navigationHandling.js";
+	import { deviceData } from "$lib/settings/navigationHandling.js";
 
-    import RedirectBuilder from "$root/components/generic/wrappers/redirects/internalRedirectBuilder.svelte";
     import SanityImage 		from "$root/serializer/sanityImage.svelte";
     import PortableText 	from "$root/serializer/portableText.svelte";
 
-    import InlineTag 		from "$root/components/generic/wrappers/tags/inlineGenreTag.svelte";
     import SocialsFoldable 	from "$root/components/generic/wrappers/socialsFoldable.svelte";
+    import FoldedTags 		from "$root/components/generic/wrappers/tags/foldedTags.svelte";
 
     export let data;
 </script>
@@ -27,21 +26,11 @@
 		<div class="writers">
 			<p class="citation">
 				Written & developed by;</p>
-			{#each data.authors as author, a}
+			{#each data.authors as author}
 				<SocialsFoldable author={author}/>
 			{/each}
+			<FoldedTags tagSet={data.tags} urlRedirect={data.slug} redirectType="story" tagsOpen={true}/>
 		</div>
-		{#if data.tags?.length > 0}
-			<div>
-				<div class="postTags">
-					{#each data.tags as tag}
-						<RedirectBuilder url="{$directoryStatus.strippedUrl}?query={tag.title.toLowerCase().replaceAll(' ','-')}">
-							<InlineTag tag={tag}/>
-						</RedirectBuilder>
-					{/each}
-				</div>
-			</div>
-		{/if}
 	</div>
 	<div id="characterBlock">
 		<p class="citation">

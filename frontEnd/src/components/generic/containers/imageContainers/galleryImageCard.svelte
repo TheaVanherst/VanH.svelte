@@ -3,13 +3,11 @@
 
     export let
 		active = 	false,
-		hover = 	false,
-		absolute = 	false
+		hover = 	false;
 </script>
 
 {#if !active}
 	<div class="previewCard card"
-		 class:absolute={absolute}
 		 class:hovered={hover}
 		 transition:fly={{y: -50, duration: 400 }}>
 		{#if $$slots['title']}
@@ -22,7 +20,6 @@
 	</div>
 {:else}
 	<div class="infoPlate regularBorder card"
-		 class:absolute={absolute}
 		 transition:fly={{y: 50, duration: 400 }}>
 		<div class="descCard regularBorder">
 			<div class="titleCard">
@@ -46,6 +43,8 @@
 							color: 	black;}
 	:global(.card span) {	color: 	white;}
 
+	.previewCard {
+		position: 	absolute;}
 	.previewCard, .infoPlate {
 		bottom: 	0;
 		.titleCard, .descCard {
@@ -58,7 +57,6 @@
 			> * {
 				display: block;}}}
 
-	.absolute {		position: 	absolute;}
 	.infoPlate {	overflow: 	hidden scroll;}
 	.wrapper {		margin: 	8px 12px 10px 10px;
 					color: black;}

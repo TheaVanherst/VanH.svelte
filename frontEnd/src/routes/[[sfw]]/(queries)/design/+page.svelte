@@ -42,9 +42,8 @@
 						idKey=	{`slug`}
 						animate= {false}
 						let:item>
-					<div class="designPost" id="{item.slug}"
-						 on:click={galleryManager.artworkSelection(item)}>
-						<ArtworkCard data={item}/>
+					<div class="designPost" id="{item.slug}">
+						<ArtworkCard data={item} expandedTags={true}/>
 					</div>
 				</Masonry>
 			{/if}

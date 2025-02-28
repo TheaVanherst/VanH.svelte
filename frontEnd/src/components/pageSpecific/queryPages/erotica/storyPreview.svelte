@@ -50,7 +50,7 @@
 					<SocialsFoldable author={character} character={true} inverted={true}/></div>
 			{/each}
 			{#if story.tags?.length > 0}
-				<FoldedTags tagSet={story.tags} urlRedirect={story.slug} redirectType="story="/>
+				<FoldedTags tagSet={story.tags} urlRedirect={story.slug} redirectType="story"/>
 			{/if}
 		</div>
 	</div>
